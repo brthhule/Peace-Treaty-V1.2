@@ -26,4 +26,6 @@ May 28:
 	 5:20 - 7:20 pm (2 hours): Worked on trying to use an actual IDE isntead of repl. Downloaded CLion and tried using DockerDesktop, got into trouble trying to figure out the hyper thing, the virtual machine program thing, and just settled down on using visual studio and copying files over instead of trying to keep using linux containers. It was pretty easy to bring files over because istead of copyign and pasting the content, I just downloaded the revelant files and uploaded them. Found out that the current replit project I was working on wasn't uploading to github for some reason, so I think I have to abandon that specific project and use something different that's actually connected to GitHub. The Windows/Visual Studio Version I'm currently working on is Peace Treaty V1.2
 	 20 min: Added all the files to the Peace Treaty V1.2 sln thing, so it should all show up on GitHub now. Previously, the files wouldn't show up on Github, but it would in Visual Studio. I think this was because I had my files stored locally, not in the project, so I basically just moved them from downloads to the project folder.
 				
+May 29:
+	20 min: Worked on cleaning up OtherFunctions-- getInput.
 								

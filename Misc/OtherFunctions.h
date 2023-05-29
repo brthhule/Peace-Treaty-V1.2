@@ -25,7 +25,7 @@ public:
   OtherFunctions();
 
   // Check input-- maybe use template for this?
-  std::string getInput(std::string text, std::vector<std::string> AV, bool redo);
+  std::string getInput(std::string text, std::vector<std::string> AV, bool isNumber, bool redo);
 
   // Map stuff
   int translateCoordinate(int coordinate, char indicator, char whichWay);

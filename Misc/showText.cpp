@@ -20,8 +20,8 @@
 std::vector<std::string> showOptions(int caseNum)
 {
 	std::string caseNumString = std::to_string(caseNum);
-  std::fstream newfile;
-  newfile.open("MA/Options.txt", std::ios::in); // open a file to perform read operation using file object
+	std::fstream newfile;
+	newfile.open("MA/Options.txt", std::ios::in); // open a file to perform read operation using file object
 	std::vector<std::string> acceptableValues = {"H"};
 	
   if (newfile.is_open()) 
@@ -159,10 +159,13 @@ void showHelp (int caseNum)
 
 void printFile (std::string fileName)
 {
+	std::cout << "Debug... printFile opened\n";
+   
 	std::fstream newfile;
 	newfile.open(fileName, std::ios::in);
 	if (newfile.is_open())
 	{
+		std::cout << "File" + fileName + " is open...\n";
 		std::string line;
 		while (getline(newfile, line))
 		{
@@ -187,7 +190,7 @@ char getOption (int caseNum)
 {
 	std::string caseNumString = std::to_string(caseNum);
 	OtherFunctions OF;
-	return OF.getInput ("showOptions, " + caseNumString, {}, false).at(0);
+	return OF.getInput ("showOptions" + caseNumString, {}, false, false).at(0);
 }
 
 // void scoutLogFunction ()
@@ -199,3 +202,4 @@ char getOption (int caseNum)
   
 // Options:GRB
 // }
+

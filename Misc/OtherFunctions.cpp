@@ -4,40 +4,41 @@
 
 OtherFunctions::OtherFunctions() {}
 
-std::string OtherFunctions::getInput(std::string text, std::vector<std::string> AV, bool redo) 
+//Gets user input and returns a valid response. Parameters: (string text, vector<string> acceptable values, bool isNumber, bool redo)
+std::string OtherFunctions::getInput(std::string text, std::vector<std::string> AV, bool isNumber, bool redo) 
 {
+	//bool redo is to keep track of whether the function has been recursed or not
 	debugFunction("OtherFunctions, getInput");
+
 	std::string input;
 	if (redo == false)
 	{
 		//std::cout << "String: " << text.substr(0,10) << std::endl;
-		if (text.substr(0, 11) == "showOptions")
+		if (text.substr(0, text.length() - 2) == "showOptions")
 		{
-			int comma = text.find(",");
-			std::string number = text.substr(comma + 2);
-			int caseNum = stoi(number);
+			int caseNum = text.at(text.length()-1);
 			AV = showOptions(caseNum);
-			AV.insert(AV.begin(), "letter");
+			isNumber == false;//want a letter option
 			std::cout << "Enter an option: ";
 		}
 		else
+		{
 			std::cout << text;
+		}
 		
 		std::cout << "\033[31m";
-	  std::getline(std::cin, input);
-	  std::cout << "\033[0m";
+		std::getline(std::cin, input);
+		std::cout << "\033[0m";
 	} 
 	else if (redo == true)
 	{
 		std::cout << std::endl;
-    std::cout << "Invalid character entered. Please try again. " << std::endl;
-    std::cout << "Please enter a valid character: ";
-    std::cout << "\033[31m";
-    std::getline(std::cin, input);
-    std::cout << "\033[0m";
+		std::cout << "Invalid character entered. Please try again. \nPlease enter a valid character: \033[31m";
+		std::getline(std::cin, input);
+		std::cout << "\033[0m";
 	}
 
-  if (input.length() == 1 && AV[0] == "letter")
+  if (input.length() == 1 && isNumber == false)
 	{
 		char letter = toupper(input.at(0));
 		input.clear();
@@ -54,18 +55,18 @@ std::string OtherFunctions::getInput(std::string text, std::vector<std::string> 
   //     if (number == inputInt)
   //       return std::to_string(inputInt);
 	
-  return getInput(text, AV, true);
+  return getInput(text, AV, isNumber, true);
   
 }
 
 std::string OtherFunctions::createRandomName() {
 	debugFunction("OtherFunctions, createRandomName");
-  std::string name = "";
+	std::string name = "";
 	std::string consonants = "bcdfghjklmnpqrstvwxyz";
 	std::string vowels = "aeiou";
 	
   char newCharacter = ' ';
-  for (int x = 0; x < 4; x++) {
+  for (int x = 0; x < 6; x++) {
     if (x % 2 == 0) // if even
     {
       newCharacter = consonants.at(rand() % 21);
@@ -84,8 +85,7 @@ std::string OtherFunctions::createRandomName() {
 void OtherFunctions::clearScreen() 
 {
 	debugFunction("OtherFunctions, clearScreen");
-  std::cout << "\033[32m";
-  std::cout << "Clearing screen. \n";
+  std::cout << "\033[32mClearing screen. \n";
   std::cout << "\033[0m";
   std::chrono::seconds dura(1);
   std::this_thread::sleep_for(dura);

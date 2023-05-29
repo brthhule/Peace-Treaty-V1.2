@@ -29,7 +29,7 @@
 
 
 //Main Actions
-#include "../PlayerAction.h"
+#include "..\PlayerAction.h"
 
 
 
@@ -113,7 +113,7 @@ int main()/*main code*/
 char introduction()/*introduce player to game synopsis*/
 {
 		OF.debugFunction("main, introduction");
-		printFile("MA/Synopsis.txt");
+		printFile("..\TxtFiles\Synopsis.txt");
 		return getOption(3);
 }
 void resumeGame() /*download data from previous game fix this*/
