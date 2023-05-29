@@ -1,0 +1,88 @@
+\033[;34m ---------- Begin Help ----------\n
+
+case 2:
+- You can select to move one of your army units. Only army units deployed with an army commander can move (these are sent out via your capital). \n
+- Garrisons cannot move, but they can be absorved into army units that are in the same province as an army. \n\n
+- If you move an army unit to an empty province, the army unit takes over that province without resistance. \n
+- If you move an army unit to an enemy province, the army unit will attack the enemy province. The army with the greater combat power will win, but the amount of losses and the types of troops lost will vary depending on troop composition. \n
+- If you move an army unit to one of your provinces, you can absorb some of the garrison troops into the army as long as the army capacity is not exceeded. You can also merge troops from two or more different armies so long as they're in the same province, but there cannot be two army commanders in one army. \n\n
+You can increase the size of an army by increasing the level of the army's commander (this can only be done when the army commander and their army are in the capital-- player action \"player deployment\"). \n
+  
+case 3: 
+Start a new conquest (S):\n
+- Start a new game\n
+Resume a previous conquest (R):\n
+- Enter a code/text file to import a game/generate a game with information from a previous play through\n
+  
+case 4: // playerActionHelp
+Build infrastructure (B):\n
+- Select one of your provinces and build or upgrade one or several of the buildings in the province (Farm, Lumber Mill, Quarry, Mine, Church, and Barracks) \n\n
+
+Train troops (T):\n
+- Select one of your provinces and train troops\n
+- The tier troop you can train depends on the level of the barracks in this province\n
+- Your capital province automatically starts with a barracks level of 1. You can upgrade a province's barracks through the build infrastructure action. \n\n
+
+View your stats (V):\n
+- See your overall stats, including the total amount of resourcesand troops across all your provinces \n
+- You can see the specific stats of each of your provinces through the view map action. \n\n
+
+View the map (M):\n
+- See a map of the continent. Help for the map is available in the map section. \n
+- Through the map, you can see the specific stats of each of your province(such as resources and troops available in the province). \n
+- You can also scoutand attack enemy provinces through this action. \n\n
+
+View army deployment (A):\n
+- Train army commanders here. The amount of army commanders you can have corresponds to the size of the continent. \n
+- Through this action, you can also see the coordinates of each of your armiesand their specific stats. \n
+- If an army is totally defeated, its army commander will dieand a new one will have to be trained \n\n
+
+Go to the next turn (G):\n
+- This a turn - based game.You can scout enemy provinces, train troops, view your stats, and build infrastructure as much as you'd like. \n
+- However, you can only get new resources by going to the next turn, and each of your armies can only move once per turn. \n\n
+
+Pause game (P):\n
+- End the game and get a code to play again at another time. \n
+    break;
+
+
+
+
+
+
+case 5: 
+Train a commander (T):\n
+- The price of training a commander increases as the amount of commanders you have increases. You start off with one commander\n
+
+Upgrade a commander (U):\n
+- The price of upgrading a commander increases as the level of the commander increases\n
+- There is no cap on how much you can upgrade a commander\n
+- The greater the level of a commander, the more troops they can lead in their army (5 units per level) \n\n
+
+View army overview (V):\n
+- See all your armies (their coordinates and their stats)\n\n
+
+Deploy a commander (D):\n
+- Move commanders out of the capital and onto the map\n
+    break;
+  
+case 8: 
+On the map, each coordinate is a province that containes a type of unit (identified by a symbol). Here is a list of what each symbol on the map: \n\n
+P) Your capital province\n
+p) One of your provinces\n
+E) Your enemy's capital province\n
+e) One of your eneny's provinces\n
+H) One of your army units\n
+V) One of your enemy's army units\n\n
+		
+If there are two letters in one province, that means that there are two units there-- if a province has PH, that means the player capital province and a commander unit are there. The number next to the letter indicates how many commander units are in the province\n\n
+Enter the x and y coordinates of the province you want to select. Depending on the type of province, you can build infrastructure, train troops, move armies, or attack armies. \n
+
+case 12:
+
+
+
+End
+-------------- End Help ---------------- \033[;0m\n\n
+  OtherFunctions OF;
+	OF.enterAnything();

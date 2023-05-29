@@ -1,0 +1,1160 @@
+int convertBuildingNumber(char buildingLetter, int& buildingNumber)
+{
+    //0 means don't do anything, 1 means repeat
+    buildingLetter = toupper(buildingLetter);
+    switch (buildingLetter)
+    {
+    case 'F':
+        buildingNumber = 0;
+        return 0;
+        break;
+    case 'L':
+        buildingNumber = 1;
+        return 0;
+        break;
+    case 'Q':
+        buildingNumber = 2;
+        return 0;
+        break;
+    case 'M':
+        buildingNumber = 3;
+        return 0;
+        break;
+    case 'C':
+        buildingNumber = 4;
+        return 0;
+        break;
+    case 'B':
+        buildingNumber = 5;
+        return 0;
+        break;
+    default:
+        cout << "Invalid character entered. Please try again." << endl;
+        return 1;
+        break;
+    }
+}
+
+
+//upgradeBuilding function
+//switch (buildingLetter) //delete this if works
+//{
+//    case 'F':
+//        buildingNumber = 0;
+//        break;
+//    case 'L':
+//        buildingNumber = 1;
+//        break;
+//    case 'Q':
+//        buildingNumber = 2;
+//        break;
+//    case 'M':
+//        buildingNumber = 3;
+//        break;
+//    case 'C':
+//        buildingNumber = 4;
+//        break;
+//    case 'B':
+//        buildingNumber = 5;
+//        break;
+//}
+
+//playerAttack function
+//if (map[xCoordinate + 1][yCoordinate] == 'H') //middle right
+//{
+//    amountOfHeros++;
+//    canAttack = 'Y';
+//    herosCanAttack[0][y] = xCoordinate + 1;
+//    herosCanAttack[1][y] = yCoordinate;
+//    y++;
+//}
+//if (map[xCoordinate + 1][yCoordinate + 1] == 'H') //upper right
+//{
+//    amountOfHeros++;
+//    canAttack = 'Y';
+//    herosCanAttack[0][y] = xCoordinate + 1;
+//    herosCanAttack[1][y] = yCoordinate + 1;
+//    y++;
+//}
+//if (map[xCoordinate + 1][yCoordinate - 1] == 'H') //lower right
+//{
+//    amountOfHeros++;
+//    canAttack = 'Y';
+//    herosCanAttack[0][y] = xCoordinate + 1;
+//    herosCanAttack[1][y] = yCoordinate - 1;
+//    y++;
+//}
+//if (map[xCoordinate][yCoordinate + 1] == 'H') //upper middle
+//{
+//    amountOfHeros++;
+//    canAttack = 'Y';
+//    herosCanAttack[0][y] = xCoordinate;
+//    herosCanAttack[1][y] = yCoordinate + 1;
+//    y++;
+//}
+//if (map[xCoordinate][yCoordinate - 1] == 'H') //lower middle
+//{
+//    amountOfHeros++;
+//    canAttack = 'Y';
+//    herosCanAttack[0][y] = xCoordinate;
+//    herosCanAttack[1][y] = yCoordinate - 1;
+//    y++;
+//}
+//if (map[xCoordinate - 1][yCoordinate - 1] == 'H') //lower left
+//{
+//    amountOfHeros++;
+//    canAttack = 'Y';
+//    herosCanAttack[0][y] = xCoordinate - 1;
+//    herosCanAttack[1][y] = yCoordinate - 1;
+//    y++;
+//}
+//if (map[xCoordinate - 1][yCoordinate] == 'H') //middle left
+//{
+//    amountOfHeros++;
+//    canAttack = 'Y';
+//    herosCanAttack[0][y] = xCoordinate - 1;
+//    herosCanAttack[1][y] = yCoordinate;
+//    y++;
+//}
+//if (map[xCoordinate - 1][yCoordinate + 1] == 'H') //upper left
+//{
+//    amountOfHeros++;
+//    canAttack = 'Y';
+//    herosCanAttack[0][y] = xCoordinate - 1;
+//    herosCanAttack[1][y] = yCoordinate + 1;
+//    y++;
+//}
+
+
+int translateCoordinate(int coordinate, char indicator, char whichWay, int continentSize)
+{
+    /*replacement = xCoordinate;
+    xCoordinate = translateCoordinate(yCoordinate, 'y', 'I');
+    yCoordinate = translateCoordinate (replacement, 'x', 'I');*/
+    int translation = 0;
+    switch (whichWay)
+    {
+        case 'I':
+            switch (indicator)
+            {
+                case 'x':
+                    translation = coordinate - 1;
+                    break;
+
+                case 'y':
+                    translation = continentSize - coordinate;
+                    break;
+            }
+            break;
+        case 'O':
+            switch (indicator)
+            {
+            case 'x':
+                translation = coordinate + 1;
+                break;
+            case 'y':
+                translation = continentSize - coordinate;
+                translation = abs(translation);
+                break;
+            }
+            break;
+    }
+    return translation;
+}
+
+
+
+//void other(int identifier, int continentSizeReplacement, char mapReplacement[15][15])
+//{
+//    switch (identifier)
+//    {
+//        case 1:
+//        {
+//            /*void showMap(int continentSizeReplacement, char mapReplacement[15][15])
+//            {*/
+//            int thingy = continentSizeReplacement;
+//            for (int x = 0; x < continentSizeReplacement; x++)
+//            {
+//                if (thingy < 9)
+//                    cout << thingy << " | ";
+//                else
+//                    cout << thingy << "| ";
+//                thingy--;
+//                for (int y = 0; y < continentSizeReplacement; y++)
+//                {
+//                    cout << mapReplacement[x][y] << " ";
+//                }
+//                cout << endl;
+//            }
+//            cout << "    ";
+//            for (int a = 0; a < continentSizeReplacement; a++)
+//            {
+//                cout << "- ";
+//            }
+//            cout << endl;
+//            cout << "    ";
+//            for (int a = 0; a < continentSizeReplacement; a++)
+//            {
+//                cout << a + 1 << " ";
+//            }
+//            cout << endl;
+//            cout << endl;
+//            /*}*/
+//            break;
+//        }
+//        case 2:
+//        {
+//            /*void playerMapHelp()
+//            {*/
+//            cout << "On the map, each coordinate is a province that containes a type of unit (identified by a symbol). Here is a list of what each symbol on the mapReplacementmeans: " << endl << endl;
+//            cout << "P) Your capital province " << endl;
+//            cout << "p) One of your provinces " << endl;
+//            cout << "E) Your enemy's capital province " << endl;
+//            cout << "e) One of your eneny's provinces " << endl;
+//            cout << "H) One of your army units " << endl;
+//            cout << "V) One of your enemy's army units " << endl;
+//            cout << endl;
+//            cout << "Enter the x and y coordinates of the province you want to select. Depending on the type of province, you can build infrastructure, train troops, move armies, or attack armies. " << endl;
+//            /*}*/
+//            break;
+//        }
+//
+//    }
+//        
+//}
+
+
+//void showMap(int continentSizeReplacement, char mapReplacement [15][15])
+//{
+//    int thingy = continentSize;
+//    for (int x = 0; x < continentSize; x++)
+//    {
+//        if (thingy < 9)
+//            cout << thingy << " | ";
+//        else
+//            cout << thingy << "| ";
+//        thingy--;
+//        for (int y = 0; y < continentSize; y++)
+//        {
+//            cout << map[x][y] << " ";
+//        }
+//        cout << endl;
+//    }
+//    cout << "    ";
+//    for (int a = 0; a < continentSize; a++)
+//    {
+//        cout << "- ";
+//    }
+//    cout << endl;
+//    cout << "    ";
+//    for (int a = 0; a < continentSize; a++)
+//    {
+//        cout << a + 1 << " ";
+//    }
+//    cout << endl;
+//    cout << endl;
+//}
+
+//void playerMapHelp()
+//{
+//    cout << "On the map, each coordinate is a province that containes a type of unit (identified by a symbol). Here is a list of what each symbol on the map means: " << endl << endl;
+//    cout << "P) Your capital province " << endl;
+//    cout << "p) One of your provinces " << endl;
+//    cout << "E) Your enemy's capital province " << endl;
+//    cout << "e) One of your eneny's provinces " << endl;
+//    cout << "H) One of your army units " << endl;
+//    cout << "V) One of your enemy's army units " << endl;
+//    cout << endl;
+//    cout << "Enter the x and y coordinates of the province you want to select. Depending on the type of province, you can build infrastructure, train troops, move armies, or attack armies. " << endl;
+//}
+
+//char checkChar(vector<string> acceptableValuesOne, vector<string> acceptableValuesTwo, vector<char> acceptableValuesThree, string input)
+//{
+//
+//    char goodToGo;
+//    string character;
+//    do
+//    {
+//        goodToGo = 'G';
+//        if (input.length() == 1)
+//        {
+//            for (int x = 0; x < acceptableValuesOne.size(); x++)
+//            {
+//                if (input == acceptableValuesOne[x] || input == acceptableValuesTwo[x])
+//                {
+//                    goodToGo = 'G';
+//                    return acceptableValuesThree[x];
+//                }
+//            }
+//        }
+//        goodToGo = 'B';
+//
+//        cout << endl;
+//        cout << "Invalid character entered. Please try again. " << endl;
+//        cout << "Please enter a valid character: ";
+//        getline(cin, input);
+//
+//    } while (goodToGo == 'B');
+//}
+
+//int checkInt(vector<string> acceptableValuesOne, vector<int> acceptableValuesTwo, string input)
+//{
+//    char repeat = 'Y';
+//    do
+//    {
+//        repeat = 'N';
+//        for (int x = 0; x < acceptableValuesOne.size(); x++)
+//        {
+//            if (input == acceptableValuesOne[x])
+//            {
+//                repeat = 'N';
+//                return acceptableValuesTwo[x];
+//            }
+//        }
+//        repeat = 'Y';
+//        cout << endl;
+//        cout << "Invalid character entered. Please try again." << endl;
+//        cout << "Please enter a valid number: ";
+//        getline(cin, input);
+//
+//    } while (repeat == 'Y');
+//}
+
+
+switch (a)
+    {
+    case 0:
+        battleCalculationsTwo(lostCombatPower, deadTroops, playerTroopsLost, attackUnitWithX, attackUnitWithY, a);
+
+
+        /*for (int b = 0; b < 16; b++)
+        {
+            if (mapArmiesNumbersTroopsPresent[attackUnitWithX][attackUnitWithY][0] > 0)
+            {
+                b = 16;
+            }
+            else
+            {
+                if (lostCombatPower > 0)
+                {
+                    lostCombatPower -= troopsCP[a];
+                    deadTroops[a] ++;
+                    mapArmiesNumbersTroopsPresent[attackUnitWithX][attackUnitWithY][0] -= 1;
+                    playerTroopsLost[a] += 1;
+                }
+                else
+                    b = 16;
+            }
+        }*/
+        break;
+    case 1:
+        for (int b = 0; b < 8; b++)
+        {
+            if (mapArmiesNumbersTroopsPresent[attackUnitWithX][attackUnitWithY][1] > 0)
+            {
+                b = 8;
+            }
+            else
+            {
+                if (lostCombatPower > 0)
+                {
+                    lostCombatPower -= troopsCP[a];
+                    deadTroops[a] ++;
+                    mapArmiesNumbersTroopsPresent[attackUnitWithX][attackUnitWithY][1] -= 1;
+                    playerTroopsLost[a] += 1;
+                }
+                else
+                    b = 8;
+            }
+        }
+        break;
+    case 2:
+        for (int b = 0; b < 4; b++)
+        {
+            if (mapArmiesNumbersTroopsPresent[attackUnitWithX][attackUnitWithY][2] > 0)
+            {
+                b = 4;
+            }
+            else
+            {
+                if (lostCombatPower > 0)
+                {
+                    lostCombatPower -= troopsCP[a];
+                    deadTroops[a] ++;
+                    mapArmiesNumbersTroopsPresent[attackUnitWithX][attackUnitWithY][2] -= 1;
+                    playerTroopsLost[a] += 1;
+                }
+                else
+                    b = 4;
+            }
+        }
+        break;
+    case 3:
+        for (int b = 0; b < 2; b++)
+        {
+            if (mapArmiesNumbersTroopsPresent[attackUnitWithX][attackUnitWithY][3] > 0)
+            {
+                b = 2;
+            }
+            else
+            {
+                if (lostCombatPower > 0)
+                {
+                    lostCombatPower -= troopsCP[a];
+                    deadTroops[a] ++;
+                    mapArmiesNumbersTroopsPresent[attackUnitWithX][attackUnitWithY][3] -= 1;
+                    playerTroopsLost[a] += 1;
+                }
+                else
+                    b = 2;
+            }
+        }
+        break;
+    case 4:
+        if (mapArmiesNumbersTroopsPresent[attackUnitWithX][attackUnitWithY][4] > 0)
+        {
+            if (lostCombatPower > 0)
+            {
+                lostCombatPower -= troopsCP[a];
+                deadTroops[a] ++;
+                mapArmiesNumbersTroopsPresent[attackUnitWithX][attackUnitWithY][4] -= 1;
+                playerTroopsLost[a] += 1;
+            }
+        }
+        a = -1;
+        break;
+    }
+
+int mapArmiesNumbersResources[15][15][5] = { 0 };/*
+[0] = food the army possesses
+[1]  = wood
+[2] = ore
+[3] = gold
+[4] = mana
+*/
+int mapArmiesNumbersOther[15][15][5] = { 0 };/*
+[0] = total troops
+[1] = totalCP
+[2] = leaderLevel
+[3] = maxTroops
+[4] = food consumption*/
+int mapArmiesNumbersTroopsPresent[15][15][5] = { 0 };/*[0] = militia present
+[1] = guards present
+[2] = cavalry present
+[3] = knights present
+[4]  = paladins present*/
+int mapArmiesNumbersTroopsInjured[15][15][5] = { 0 };/*[0] = militia injured
+[1] = guards injured
+[2] = cavalry injured
+[3] = knights injured
+[4] = paladins injured*/
+
+
+
+HANDLE console_color;
+
+// Color of the console
+console_color = GetStdHandle(STD_OUTPUT_HANDLE);
+
+// P is color code according to your need.
+SetConsoleTextAttribute(console_color, P);
+
+0   BLACK
+1   BLUE
+2   GREEN
+3   CYAN
+4   RED
+5   MAGENTA
+6   BROWN
+7   LIGHTGRAY
+8   DARKGRAY
+9   LIGHTBLUE
+10  LIGHTGREEN
+11  LIGHTCYAN
+12  LIGHTRED
+13  LIGHTMAGENTA
+14  YELLOW
+15  WHITE*/
+
+cout << "Resources in this army: " << endl;
+    for (int x = 0; x < 5; x++)
+    {
+        cout << "- " << provinceResourcesNamesThree[x] << ": " << commanderArmyStats[x] << endl;
+    }
+
+    cout << "Troops in this army: " << endl;
+    for (int x = 5; x < 10; x++)
+    {
+        cout << "- " << troopNamesThree[x - 5] << ": " << commanderArmyStats[x] << endl;
+    }
+
+    cout << "Troops injured in this army: " << endl;
+    for (int x = 10; x < 15; x++)
+    {
+        cout << "- " << troopNamesThree[x - 10] << ": " << commanderArmyStats[x] << endl;
+    }
+    cout << endl;
+    cout << "Total troops: " << commanderArmyStats[15] << endl;
+    cout << "Total CP: " << commanderArmyStats[16] << endl;
+    cout << "Commander level: " << commanderArmyStats[17] << endl;
+    cout << "Max troops: " << commanderArmyStats[18] << endl;
+    cout << "Food consumption: " << commanderArmyStats[19] << endl;
+
+
+
+
+    template <typename T>
+T getValue(string outputText, vector <T> acceptableValues, int caseInstance)
+{
+    for (int x = 0; x < acceptableValues.size(); x++)
+    {
+        cout << "Item: " << acceptableValues[0] << endl;
+    }
+
+    vector <string> compareTheseValues;
+    string userInput = " ";
+    string a = "";
+    //if (typeid(acceptableValues[0]) != typeid(string))
+    for (int x = 0; x < acceptableValues.size(); x++)
+    {
+        a = "" + acceptableValues[x];
+        compareTheseValues.push_back(a);
+    }
+    if (caseInstance == 1)
+    {
+        std::cout << outputText;
+    }
+    std::getline(cin, userInput);
+
+    do
+    {
+        for (int x = 0; x < acceptableValues.size(); x++)
+        {
+            if (userInput == compareTheseValues[x])
+            {
+                return acceptableValues[x];
+            }
+        }
+
+        std::cout << endl;
+        std::cout << "Invalid character entered. Please try again. " << endl;
+        std::cout << "Please enter a valid character: ";
+        std::getline(cin, userInput);
+
+    } while (1 > 0);
+    return '1'; /*added this bc the debugger said that not all control paths return a value*/
+}
+
+
+
+void Participants::removeCommanderIdentifier(int index)
+{
+    commanderIdentifiersList.erase(commanderIdentifiersList.begin() + index);
+}
+void Participants::updateCommanderIdentifiers()
+{
+    commanderIdentifiersList.erase(commanderIdentifiersList.begin()); /*deletes the assigned letter identifier from the letter identifier list so
+                    it isn't repeated*/
+    if (commanderIdentifiersList.size() == 0) /*if the lesster identifier list is empty, reset it*/
+    {
+        for (int x = 0; x < sizeof(generalCommanderIdentifiers); x++)
+        {
+            commanderIdentifiersList.push_back(generalCommanderIdentifiers[x]);
+        }
+        for (int x = 0; x < commanderIdentifiersList.size(); x++) /* delete any existing commander identifiers from resetted identifier
+            list so it isn't used again*/
+        {
+            for (int y = 0; y < commanderIdentifiersList.size(); y++)/*This finds the index of the element that needs to be deleted. Potential
+"fix this": modify it such that it searches for the element to delete by searching for the char rather than scanning for the index-- if element is
+equal to this identifier, this one, or this one, remove it; go through playerCommanderIdentifiersList like this*/
+            {
+                if (commanderIdentifiersList[y] == commanderIdentifiers[x])
+                {
+                    commanderIdentifiersList.erase(commanderIdentifiersList.begin() + y);
+                    y--;
+                }
+            }
+        }
+    }
+}
+
+void CommanderProfile::changeCommanderIdentifier(char identifier)
+{
+    commanderIdentifier = identifier;
+}
+char CommanderProfile::getCommanderIdentifier()
+{
+    return commanderIdentifier;
+}
+
+char Participants::returnGetProvinceIdentifier(int xCoordinate, int yCoordinate)
+{
+    int provinceIndex = findProvinceIndexWithCoordinates(xCoordinate, yCoordinate);
+    return listOfProvinces[provinceIndex].getProvinceIdentifier();
+}
+
+char Participants::confirmNameNoRepeat(string name)
+{
+    char doesThisRepeat = 'N';
+    for (int x = 0; x < listOfProvinces.size(); x++)
+    {
+        if (listOfProvinces[x].getUnitName() == name)
+        {
+            return 'Y';
+        }
+    }
+    for (int x = 0; x < listOfCommanders.size(); x++)
+    {
+        if (listOfCommanders[x].getUnitName() == name)
+        {
+            return 'Y';
+        }
+    }
+    return 'N';
+}
+
+int Participants::findUnitLevel(int xCoordinate, int yCoordinate, int unitIndex)//Fix this--- it's a mess
+{
+    //unit index is the index of the commander 
+    Provinces* targetProvince = returnProvince(findProvinceIndexWithCoordinates(xCoordinate, yCoordinate));
+    int unitLevel = 0;
+    char commanderChar = ' ';
+
+    switch (identifier)
+    {
+    case 'C': //If the unit is a commander
+    {
+        //If there is only one commander in this province (passed through coordinates)
+        if (provincesMap[xCoordinate][yCoordinate].getCommandersPresent() == 1)
+        {
+            //Searches through all the commanders
+            for (int x = 0; x < participantsList[*pAParticipantIndex].howManyCommanders(); x++)
+            {
+                //If the passed coordinates match the coordinates of one of the commanders in the list,
+                //return that commander's level
+                if (xCoordinate == newParticipant->returnCommander(x)->getCoordinate('X') &&
+                    yCoordinate == newParticipant->returnCommander(x)->getCoordinate('Y'))
+                {
+                    return newParticipant->returnCommander(x)->getCommanderLevel();
+                }
+            }
+        }
+    }
+    case 'P':
+    {
+        if (provincesMap[xCoordinate][yCoordinate].getCommandersPresent() == 0)
+        {
+            return provincesMap[xCoordinate][yCoordinate].findProvinceLevel();
+        }
+    }
+    default:
+        return 0;//if something goes wrong
+    }
+}
+
+void Participants::clearCanSelectThisUnit()
+{
+    for (int x = 0; x < listOfCommanders.size(); x++)
+    {
+        listOfCommanders[x].resetCanSelectThisUnit();
+    }
+
+    for (int x = 0; x < listOfProvinces.size(); x++)
+    {
+        listOfProvinces[x].resetCanSelectThisUnit();
+    }
+}
+
+CommanderProfile& Provinces::getCommander(int index)
+{
+	return commandersPresent[index];
+}
+
+int Provinces::getCommandersPresent()
+{
+	return commandersPresentIndex.size();
+}
+
+int findProvinceIndex(int xCoordinate, int yCoordinate)
+{
+    Participants* newParticipant;
+    newParticipant = &participantsList[*pAParticipantIndex];
+    //For each province the participant has
+    for (int x = 0; x < newParticipant->howManyProvinces(); x++)
+    {
+        //If the coordinates passed to the function are equal to a province's coordinates from the list
+        if (xCoordinate == newParticipant->listOfProvincesX[x] &&
+            yCoordinate == newParticipant->listOfProvincesY[x])
+        {
+            //This is the province's index in listOfProvinces
+            return x;
+        }
+    }
+    return -1;//In case something goes wrong
+}
+
+string convertPCIToString(vector <char> playerCommanderIdentifiers)
+{
+    string convertedString;
+    for (char conversion : playerCommanderIdentifiers)
+    {
+        convertedString.push_back(conversion);
+    }
+    return convertedString;
+}
+
+char mapMoveUnit[15][15] = { 'N' };
+
+
+    /*Initialize scoutLogTurnLevel such that there are no values in them at first*/
+    for (int a = 0; a < continentSize; a++)
+    {
+        for (int b = 0; b < continentSize; b++)
+        {
+            for (int d = 0; d <= 1; d++)
+            {
+                scoutLogTurnLevel[a][b][d] = -1;
+            }
+        }
+    }
+
+//int provinceResources[15][15][5] = { 0 }; /*food, wood, ore, gold, mana*/
+
+void playerActionHelp()
+{
+    std::cout << "\033[;34m"; //NW
+    cout << "---------- This is the beginning of the Help message ----------" << endl;
+    cout << "Build infrastructure (B): " << endl;
+    cout << "- Select one of your provincesand build or upgrade one or several of the buildings in the province (Farm, Lumber Mill, Quarry, Mine, Church, and Barracks) " << endl << endl;
+
+    cout << "Train troops (T): " << endl;
+    cout << "- Select one of your provinces and train troops " << endl;
+    cout << "- The tier troop you can train depends on the level of the barracks in this province" << endl;
+    cout << "- Your capital province automatically starts with a barracks level of 1. You can upgrade a province's barracks through the build infrastructure action. " << endl << endl;
+
+    cout << "View your stats (V): " << endl;
+    cout << "- See your overall stats, including the total amount of resourcesand troops across all your provinces " << endl;
+    cout << "- You can see the specific stats of each of your provinces through the view map action. " << endl << endl;
+
+    cout << "View the map (M): " << endl;
+    cout << "- See a map of the continent. Help for the map is available in the map section. " << endl;
+    cout << "- Through the map, you can see the specific stats of each of your province(such as resources and troops available in the province). " << endl;
+    cout << "- You can also scoutand attack enemy provinces through this action. " << endl << endl;
+
+    cout << "View army deployment (A): " << endl;
+    cout << "- Train army commanders here. The amount of army commanders you can have corresponds to the size of the continent. " << endl;
+    cout << "- Through this action, you can also see the coordinates of each of your armiesand their specific stats. " << endl;
+    cout << "- If an army is totally defeated, its army commander will dieand a new one will have to be trained " << endl << endl;
+
+    cout << "Go to the next turn (G): " << endl;
+    cout << "- This a turn - based game.You can scout enemy provinces, train troops, view your stats, and build infrastructure as much as you'd like. " << endl;
+    cout << "- However, you can only get new resources by going to the next turn, and each of your armies can only move once per turn. " << endl << endl;
+
+    cout << "Pause game (P): " << endl;
+    cout << "- End the game and get a code to play again at another time. " << endl;
+    cout << "---------- This is the end of the Help message ----------" << endl;
+    cout << endl;
+    std::cout << "\033[;0m"; //NW
+    cout << "Enter 'P' when you've finished reading the help message to proceed back to the Main menu: ";
+}
+
+void playerMapHelp()
+{
+    std::cout << "\033[;34m"; //NW
+    cout << endl;
+    cout << "---------- This is the beginning of the Help message ----------" << endl;
+    cout << "On the map, each coordinate is a province that containes a type of unit (identified by a symbol). Here is a list of what each symbol on the map: " << endl << endl;
+    cout << "P) Your capital province " << endl;
+    cout << "p) One of your provinces " << endl;
+    cout << "E) Your enemy's capital province " << endl;
+    cout << "e) One of your eneny's provinces " << endl;
+    cout << "H) One of your army units " << endl;
+    cout << "V) One of your enemy's army units " << endl;
+    cout << endl;
+    cout << "If there are two letters in one province, that means that there are two units there-- if a province has PH, that means the player capital province and a commander unit are there. The number next to the letter indicates how many commander units are in the province" << endl << endl;
+    cout << "Enter the x and y coordinates of the province you want to select. Depending on the type of province, you can build infrastructure, train troops, move armies, or attack armies. " << endl;
+    cout << "------------ This is the end of the Help message ------------" << endl;
+    cout << endl;
+    std::cout << "\033[;0m"; //NW
+}
+
+void armyDeploymentHelp(int maxAmountOfCommanders)
+{
+    std::cout << "\033[;34m"; //NW
+    cout << "---------- This is the beginning of the Help message ----------" << endl;
+    cout << "Train a commander (T): " << endl;
+    cout << "- The price of training a commander increases as the amount of commanders you have increases. You start off with one commander" << endl;
+    cout << "- The max limit of commanders you can train: " << maxAmountOfCommanders << endl << endl;
+
+    cout << "Upgrade a commander (U): " << endl;
+    cout << "- The price of upgrading a commander increases as the level of the commander increases" << endl;
+    cout << "- There is no cap on how much you can upgrade a commander" << endl;
+    cout << "- The greater the level of a commander, the more troops they can lead in their army (5 units per level) " << endl << endl;
+
+    cout << "View army overview (V): " << endl;
+    cout << "- See all your armies (their coordinates and their stats)" << endl << endl;
+
+    cout << "Deploy a commander (D): " << endl;
+    cout << "- Move commanders out of the capital and onto the map" << endl;
+    cout << "---------- This is the end of the Help message ----------" << endl;
+    cout << endl;
+    std::cout << "\033[;0m"; //NW
+}
+
+void playerUnitActionHelp()
+{
+    std::cout << "\033[;34m"; //NW
+    cout << "---------- This is the beginning of the Help message ----------" << endl;
+    cout << "- You can select to move one of your army units. Only army units deployed with an army commander can move (these are sent out via your capital). " << endl;
+    cout << "- Garrisons cannot move, but they can be absorved into army units that are in the same province as an army. " << endl << endl;
+    cout << "- If you move an army unit to an empty province, the army unit takes over that province without resistance. " << endl;
+    cout << "- If you move an army unit to an enemy province, the army unit will attack the enemy province. The army with the greater combat power will win, but the amount of losses and the types of troops lost will vary depending on troop composition. " << endl;
+    cout << "- If you move an army unit to one of your provinces, you can absorb some of the garrison troops into the army as long as the army capacity is not exceeded. You can also merge troops from two or more different armies so long as they're in the same province, but there cannot be two army commanders in one army. " << endl;
+    cout << endl;
+    cout << "You can increase the size of an army by increasing the level of the army's commander (this can only be done when the army commander and their army are in the capital-- player action 'player deployment'). " << endl;
+    cout << "---------- This is the end of the Help message ----------" << endl;
+    cout << endl;
+    std::cout << "\033[;0m"; //NW
+}
+
+void introductionHelp ()
+{
+    std::cout << "\033[;34m"; //NW
+    cout << "---------- This is the beginning of the Help message ----------" << endl;
+    cout << "Start a new conquest (S): " << endl;
+    cout << "- Start a new game" << endl;
+    cout << "Resume a previous conquest (R): " << endl;
+    cout << "- Enter a code/text file to import a game/generate a game with information from a previous play through" << endl;
+    cout << "---------- This is the end of the Help message ----------" << endl;
+    cout << endl;
+    std::cout << "\033[;0m"; //NW
+}
+
+int findAmountOfEnemyProvinces()
+{
+    int amountOfProvinces = 0;
+    for (int x = 1; x < participantsList.size(); x++)
+    {
+        amountOfProvinces += participantsList[x].howManyProvinces();
+    }
+    return amountOfProvinces;
+}
+
+void findTotalPlayerUnits(int totalPlayerUnits[5])
+{
+    for (int x = 0; x < 5; x++)
+    {
+        totalPlayerUnits[x] = 0;
+    }
+    for (int x = 0; x < continentSize; x++)
+    {
+        for (int y = 0; y < continentSize; y++)
+        {
+            if (provincesMap[x][y].getBelongsToParticipant() == currentParticipantIndex)
+            {
+                for (int a = 0; a < 5; a++)
+                {
+                    totalPlayerUnits[a] += provincesMap[x][y].getTroopsPresent(a);
+                }
+            }
+        }
+    }
+    for (int b = 0; b < participantsList[currentParticipantIndex].howManyCommanders(); b++)
+    {
+        for (int c = 0; c < 5; c++)
+        {
+            totalPlayerUnits[c] += allCommanders[currentParticipantIndex][b].getTroopsPresent(c);
+        }
+    }
+}
+
+int OtherFunctions::getInt(std::string textToDisplay, std::vector<int> acceptableValues, int caseInstance) {
+  std::string userInput;
+  if (caseInstance == 1) {
+    std::cout << textToDisplay;
+  }
+  std::cout << "\033[31m";
+  std::getline(std::cin, userInput);
+  std::cout << "\033[0m";
+  return checkInt(acceptableValues, userInput);
+}
+int OtherFunctions::checkInt(std::vector<int> &acceptableValuesTwo, std::string input) {
+  std::vector<std::string> acceptableValuesOne;
+  std::string foo = " ";
+  for (int a = 0; a < acceptableValuesTwo.size(); a++) {
+    foo = std::to_string(acceptableValuesTwo[a]);
+    acceptableValuesOne.push_back(foo);
+  }
+
+  char repeat = 'Y';
+  do {
+    repeat = 'N';
+    for (int x = 0; x < acceptableValuesOne.size(); x++) {
+      if (input == acceptableValuesOne[x]) {
+        repeat = 'N';
+        return acceptableValuesTwo[x];
+      }
+    }
+    repeat = 'Y';
+		println("\nInvalid character entered. Please try again.");
+		print("Please enter a valid number: \033[31m");
+    std::getline(std::cin, input);
+    std::cout << "\033[0m";
+
+  } while (repeat == 'Y');
+  return -1;
+}
+
+
+attackingProvince = attackingParticipant->getCoords(3);
+    std::cout << std::endl;
+    if (attackingProvince->getCoordinate('X') == -1) {
+      std::cout << "Returning to previous menu... " << std::endl << std::endl;
+      repeatVerifyCanAttack = 'N';
+    } else {
+      bool canAttack = false;
+
+      for (int b = 0; b < amountOfHeros; b++) {
+        if (attackingProvince ==
+            &provincesMap[herosCanAttack[0][b]]
+                         [herosCanAttack[1][b]]) /*fix this*/
+        {
+          canAttack = true;
+        }
+      }
+
+      if (canAttack) {
+        for (int playerCommanderIndex = 0;
+             playerCommanderIndex < newParticipant->commandersNum();
+             playerCommanderIndex++) {
+          Provinces *newProvince =
+              &provincesMap[attackingCommander->returnCoordinate('X')]
+                           [attackingCommander->returnCoordinate('Y')];
+          if (newProvince == attackingProvince) {
+            playerCommitAttack(); // fix this
+          }
+        }
+      } else {
+        std::cout << "Invalid unit selected. Please try again" << std::endl;
+        break;
+      }
+    }
+
+
+
+  for (int b = 0; b < targetProvince->commanders.size(); b++) {
+    CommanderProfile *newCommander =
+        participantsList[targetParticipantIndex].getCommander(
+            enemyProvince->returnCommanderIndex(b));
+
+    std::cout << b + 2 << ") Commander " << newCommander.getUnitName()
+              << " (Level " << newCommander.getCommanderLevel() << ") "
+              << std::endl;
+    acceptableValues.push_back(b + 2);
+  }
+  int numberSelected =
+      getInt("Enter the number of the unit you would like to select (the "
+             "number to the left of the first ')' symbol): ",
+             acceptableValues, 1);
+  if (numberSelected == 1) {
+    // Identify target as a province
+    targetInformation[0] = 0;
+    Provinces *target targetInformation[1] =
+        participantsList[targetParticipantIndex]
+            .findProvinceIndexWithCoordinates(targetXCoordinate,
+                                              targetYCoordinate);
+    unitType = "Province ";
+    unitName = enemyProvince->getUnitName();
+    enemyLevel = enemyProvince->findProvinceLevel();
+  } else {
+    targetInformation[0] = 1; // Identify target as a commander
+    targetInformation[1] =
+        numberSelected - 2; // Have to check if this is right later
+    unitType = "Commander";
+    CommanderProfile *newCommander =
+        &allCommanders[targetParticipantIndex][targetInformation[1]];
+    unitName = newCommander->getUnitName();
+    enemyLevel = newCommander->getCommanderLevel();
+  }
+
+	switch (troopIndex)
+	{
+  case 0:
+  case 1:
+  case 2:
+  case 3: {
+    int b = a + 5;
+    battleCalculationsTwo(lostCombatPower, deadTroops, b);
+    break;
+  }
+  case 4:
+    if (attackingCommander->getTroopsPresent(
+            9) > 0) {
+      if (lostCombatPower > 0) {
+        lostCombatPower -= troopsCP[a];
+        deadTroops[a]++;
+        allCommanders[currentParticipantIndex][commanderIndex].removeTroops(9,
+                                                                            1);
+        participantsList[currentParticipantIndex].playerTroopsLost[a] += 1;
+      }
+    }
+    a = -1;
+    break;
+  }
+
+
+std::vector<Provinces *> TrainMA::getTrainProvince() {
+  std::cout << "Welcome to the Player Train menu" << std::endl << std::endl;
+  getTrainBuildCoordinates(provinceXCoordinate, provinceYCoordinate);
+
+  if (provinceXCoordinate == -1 || provinceYCoordinate == -1) {
+    repeatThisOne = 'N';
+    std::cout << "Returning to Main menu... " << std::endl;
+  } else {
+    if (provincesMap[provinceXCoordinate][provinceYCoordinate]
+            .getBelongsToParticipant() == currentParticipantIndex) {
+      TrainMAFunction();
+    } else {
+      std::cout << "Invalid province elected. Please try again. " << std::endl;
+    }
+    std::cout << std::endl;
+  }
+}
+
+	for (int x = 0; x < 5; x++)
+	{
+		provinceStats[x] = &resourcesPresent[x];
+		provinceStats[x] = &initialResources[x];
+		provinceStats[x + 6] = &troopsPresent[x];
+		provinceStats[x + 18] = &buildingLevels[x];
+	}
+	provinceStats[5] = &totalMaxResources;
+	provinceStats[23] = &buildingLevels[6];
+	provinceStats[24] = &buildingLevels[7];
+	provinceStats[25] = &CP;
+	provinceStats[11] = &maxGarrison;
+	provinceStats[17] = &maxInfirmaryCapacity;
+	provinceStats[26] = &foodConsumption;
+
+void Provinces::compileProvinceStats (std::array<std::array<int, 5>, 7> &provinceStatsArray, bool &isACapitalArg, std::array<std::vector<int>, 7> &otherStats, std::string &unitNameArg, std::unordered_map<std::string, CommanderProfile*> &commandersArg)
+{
+	unitNameArg = unitName;
+	isACapitalArg = isACapital;
+	
+
+	provinceStatsArray[0] = resourcesPresent;
+	provinceStatsArray[1] = troopsPresent;
+	provinceStatsArray[2] = troopsInjured;
+	provinceStatsArray[3] = troopsLost;
+	provinceStatsArray[4] = resourceBuildingsLevels;
+	provinceStatsArray[5] = resourceBuildingsProduction;
+	provinceStatsArray[6] = maxResources;
+
+	
+	otherStats[0] =  {CP, totalTroops, troopsTrainedThisTurn}; //Troop Stuff
+
+	otherStats[1] =  {xCoord, yCoord};
+	otherStats[2] =  {participantIndex, unitLevel};
+	otherStats[3] =  {maxGarrison, maxInfirmaryCapacity};
+	
+	std::vector <int >newVector;
+	for (int x: otherBuildingsLevels)
+		newVector.push_back(x);
+	otherStats[4] =  newVector;
+	
+  otherStats[5] =  {totalMaxResources, foodConsumption};
+	otherStats[6] =  {scoutReportTurn, scoutReportLogLevel, logAccuracy};
+
+	commandersArg = commanders;
+
+
+	//Commander stuff
+	int resourcesPresent[5] = {0, 0, 0, 0, 0};
+	int troopsPresent[5] = {0, 0, 0, 0, 0};
+	int troopsInjured[5] = {0, 0, 0, 0, 0};
+	int troopsLost[5] = {0, 0, 0, 0, 0};
+	int CP;
+	int totalTroops;
+	int foodConsumption;
+
+	const int initialStats[5] = { 5, 4, 3, 2, 1 };
+
+  //Coordinates;
+	int *coords [2];
+	int xCoord = 0;
+	int yCoord = 0;
+	char canSelectThisUnit;
+	int participantIndex;
+	std::string unitName;
+	std::string isCommanderOrProvince;
+	int unitLevel;
+	OtherFunctions OF;
+}
+
+	for (int x = 0; x < 20; x++) //fix this
+	{
+		//findRange = *provinceStats[x];
+		accuracyAdjustedValueOne = findRange * newAccuracy;
+		fooOne = findRange - (int)accuracyAdjustedValueOne;
+		fooTwo = findRange + (int)accuracyAdjustedValueOne;
+		accuracyAdjustedValueTwo = rand() % fooOne + fooTwo;
+		updateProvinceScoutLog(x, accuracyAdjustedValueTwo);
+	}
+	updateProvinceScoutLog(20, turn);
+	updateProvinceScoutLog(21, accuracy);
+
+	/*/*
+[0] food present
+[1] wood present
+[2] ore present
+[3] gold present
+[4] mana present
+[5] max resources province can hold
+[6] garrisoned militia
+[7] garrisoned guards
+[8] garrisoned cavalry
+[9] garrisoned knights
+[10] garrisoned paladins
+[11] max garrison
+[12] injured malitia
+[13] injured guards
+[14] injured cavalry
+[15] injured knights
+[16] injured paladins
+[17] max infirmary capacity
+[18] farm level
+[19] lumber mill level
+[20] quarry level
+[21] mine level
+[22] church level
+[23] barracks level
+[24] infirmary level
+[25] total CP
+[26] food consumption*/
+
+int calculateTotalUnits ();
+std::vector<int> calculateEachUnit();
+int calculateTotalResources();
+std::vector<int> calculateEachResource();
+int calculateTotalTroopsLost();
+std::vector<int> calculateEachTroopLost();
+
+// for (int x = 0; x < capitalProvince->howManyCommanders(); x++) {
+//   int xCoordinate = newParticipant->listOfProvincesX[x];
+//   int yCoordinate = newParticipant->listOfProvincesY[x];
+
+//   listOfCommandersIndex.push_back(
+//       provincesMap[xCoordinate][yCoordinate].returnCommanderIndex(x));
+//   amountOfCommanders.push_back(x + 1);
+// }
+
+const std::array<std::string, UNIT_AMOUNT> TROOP_NAMES = { "Militia", "Guards", "Cavalry", "Knights", "Paladins" };
+  const std::array<std::string, UNIT_AMOUNT> RESOURCE_BUILDING_NAMES = { "Farm", "Lumber Mill", "Quarry", "Mine", "Church" };
+  const std::array<std::string, 5> OTHER_BUILDING_NAMES = {"Barracks","Infirmary","Library","Wall","Residences"};
+  const std::array<std::string, UNIT_AMOUNT> RESOURCE_NAMES = { "Food", "Wood", "Ore", "Gold", "Mana" };
+  
+  const std::array<int, UNIT_AMOUNT> TROOPS_COST = { 5, 4, 3, 2, 1 };
+  const std::array<int, UNIT_AMOUNT> INITIAL_VALUES = { 5, 4, 3, 2, 1 };
+  const std::array<int, UNIT_AMOUNT> TROOPS_CP = { 1,2,4,8,16 };
+  const std::array<int, UNIT_AMOUNT> RESOURCE_PRODUCTION = { 5,4,3,2,1};
+  const int BARRACKS_PRODUCTION = 2;

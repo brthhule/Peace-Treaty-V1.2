@@ -1,0 +1,26 @@
+Need to do:
+- set up gameplay-- build, train, attack, scout functionality
+- set up enemy gameplay-- use random number system to build, train, attack, or scout
+- scout functionality-- fog of war, can only explore areas of the map that are on the continent, 
+- can only scout territories bordering player's kingdom
+- have opponent number variable, figure this out. Is only in generateContinent function and the one above it, doesn't show up anywhere else. Should be in resume game code
+(global variable?)
+- add fog of war (have another map array, this is shown when the player views the map)
+- add population cap to provinces-- add residence building, increasing level increases the amount held by garrison (not affected by commander army size, 
+or maybe it is?)
+- add immigrant functionality-- the more peaceful a nation, more immigrants come per turn, immigrants needed to train troops
+- add feed population functionality-- every turn, each province/army consumes food?
+- residential building-- cap on immigrants and troops per province
+- add functionality to modify troop stats: militia has 12 carrying capacity, guards have CP increased to 12 when defending, cavalry have CP 
+increased to 12 when attacking, knights have CP increased to 12 when fighting against an army with paladins (to counter paladins), paladins just have stats of 16
+by value-- do the same for Provinces
+-Rewrite battle calculations so both the attacking commander and the defending commander(s) lose CP throughout battle, changes 
+how battle functionality works... Consider if all enemy defending units are grouped together or not
+Key words to look out for (ctrl f)
+- "fix this" things that need to be addressed
+- "delete this" delete these lines of code if code works without it
+- Have to finish working on ScoutMA
+- Fix AttackMA
+- Add functionality for training province garrisons
+- Fix battleCalculations functionality
+- Implement Class for army units (militia, guards, knights, paladins, etc...)

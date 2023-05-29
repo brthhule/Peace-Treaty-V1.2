@@ -1,0 +1,29 @@
+May 8: 40 min
+	1:45 - 2:25 pm (40 min): Working on fixing the coordinate system by replacing it with a hashmap/linked list system. Got the Linked list structure done (struct and class), working on implementing it. Taking from what I've learned in the past, I'm going to implement the changes gradually, incrementally implementing the linked list into various areas so I know it works instead of completely rewriting the whole program and hoping it works out like I've done before. Working on implementing the Linked List-- program isn't recognizing it for some reason
+
+Resources:
+https://www.codesdope.com/blog/article/c-linked-lists-in-c-singly-linked-list/
+https://www.codesdope.com/blog/article/linked-list-traversal-using-loop-and-recursion-in-/
+--------------------------------------------
+May 9: 20 min
+	1:50 - 2:10 pm (20 min): Continuing working on the linked list. Working on implementing the linkedList in Participants, have to work on getting a translation system going.
+--------------------
+May 10: 25 min
+	1:55 - 2:20 pm (25 min): Working on new coordinate system. Creating new Provinces hash map. Working on the coordinate system, I figured out that x = LL % 5 and y = 5 - (LL / 5 truncated). That's how I figure out a province's coordinates from its Linked List number (LL). Now, the complicated part is reversing it so I can get the Linked List number from the coordinates. I figured it out (2:14): LL = f(x,y) = 25-5y + x. Made two methods: getLLCoordinates (Provinces) and translateCorodinateToLL (OtherFunctions)
+-------------------------
+May 11: (35 min)
+	1:50  - 2:25 pm (35 min): Worked on reorganizing projectLog into separate logs by month. Working on modifying showMap to use provincesLL.
+-------------------------
+May 15 (30 min):
+	1:50 - 2:20 pm (30 min): Working on fixing the player initialization mechanic. Getting caught up on createCapital. Getting weir debugging response-- temp->province->getLLN: 1855870240-- when trying to get the province index in the linked list. Going to try seeing if the problem is in how the linked list is initiated. Getting signal: segmentation fault (core dumped) error
+--------------------
+May 16: 35 min
+	1:45 - 2:20 pm (35 min): Working on debugging system-- debuggingFunction in OtherFunctions. Implemented debugFunction (changed from debuggingFunction) in Provinces, LinkedList, main, and OtherFunctions. I'm going have to do the same for the other files as well. I think the segmentation error is coming from void LinkedList::listProvinces()... I'll have to look into this.
+
+
+-----------------------
+May 28:
+	 5:20 - 7:20 pm (2 hours): Worked on trying to use an actual IDE isntead of repl. Downloaded CLion and tried using DockerDesktop, got into trouble trying to figure out the hyper thing, the virtual machine program thing, and just settled down on using visual studio and copying files over instead of trying to keep using linux containers. It was pretty easy to bring files over because istead of copyign and pasting the content, I just downloaded the revelant files and uploaded them. Found out that the current replit project I was working on wasn't uploading to github for some reason, so I think I have to abandon that specific project and use something different that's actually connected to GitHub. The Windows/Visual Studio Version I'm currently working on is Peace Treaty V1.2
+	 20 min: Added all the files to the Peace Treaty V1.2 sln thing, so it should all show up on GitHub now. Previously, the files wouldn't show up on Github, but it would in Visual Studio. I think this was because I had my files stored locally, not in the project, so I basically just moved them from downloads to the project folder.
+				
+								

@@ -13,181 +13,199 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Resource Files\projectLogs">
-      <UniqueIdentifier>{3152b1d7-8918-4a3b-ae78-6c44769b270f}</UniqueIdentifier>
+    <Filter Include="Resource Files\AdministrativeDocs">
+      <UniqueIdentifier>{114a58c4-1e86-4d01-881b-4ac99f352b56}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\MA">
-      <UniqueIdentifier>{49ca66fb-d7f9-4ab9-9e69-a83a3d675ca0}</UniqueIdentifier>
+    <Filter Include="Resource Files\ProjectLog">
+      <UniqueIdentifier>{9f14836d-4593-4a74-bf9c-919befeb0233}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Units">
-      <UniqueIdentifier>{cf030a34-70c5-4558-9b0f-1f7d651a1ec9}</UniqueIdentifier>
+    <Filter Include="Source Files\TxtFiles">
+      <UniqueIdentifier>{a01cc93e-dcfc-4253-9310-7ef91e565c36}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Misc">
-      <UniqueIdentifier>{c0911772-4ba8-46e2-9853-51bb5c7e426e}</UniqueIdentifier>
+    <Filter Include="Header Files\MA H">
+      <UniqueIdentifier>{52562112-54a5-46c0-9b9c-35d1daab56e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MA S">
+      <UniqueIdentifier>{645fa730-a13f-4de4-a52d-2767edb3122c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Misc S">
+      <UniqueIdentifier>{b783db2f-ab3c-432f-8bb0-99e62f2f7d6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Units S">
+      <UniqueIdentifier>{f04b78b2-a229-47ff-bcc6-c02df5d3dd03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Misc H">
+      <UniqueIdentifier>{8490581d-01bd-4776-a91e-9478bd5f48d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Units H">
+      <UniqueIdentifier>{820aa086-cb6a-4364-81be-b652acbdc994}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Peace Treaty V1.2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\ArmyOverviewMA (1).cpp">
-      <Filter>Source Files\MA</Filter>
+    <ClCompile Include="..\MA\ArmyOverviewMA.cpp">
+      <Filter>Source Files\MA S</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\AttackMA (1).cpp">
-      <Filter>Source Files\MA</Filter>
+    <ClCompile Include="..\MA\AttackMA.cpp">
+      <Filter>Source Files\MA S</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\BuildMA.cpp">
-      <Filter>Source Files\MA</Filter>
+    <ClCompile Include="..\MA\BuildMA.cpp">
+      <Filter>Source Files\MA S</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\LinkedList.cpp">
-      <Filter>Source Files\MA</Filter>
+    <ClCompile Include="..\MA\MapMA.cpp">
+      <Filter>Source Files\MA S</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\MapMA.cpp">
-      <Filter>Source Files\MA</Filter>
+    <ClCompile Include="..\MA\Mobility.cpp">
+      <Filter>Source Files\MA S</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\Mobility.cpp">
-      <Filter>Source Files\MA</Filter>
+    <ClCompile Include="..\MA\ScoutMA.cpp">
+      <Filter>Source Files\MA S</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\ScoutMA.cpp">
-      <Filter>Source Files\MA</Filter>
+    <ClCompile Include="..\MA\TrainMA.cpp">
+      <Filter>Source Files\MA S</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\TrainMA (19).cpp">
-      <Filter>Source Files\MA</Filter>
+    <ClCompile Include="..\Misc\OtherFunctions.cpp">
+      <Filter>Source Files\Misc S</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\ConstValues.cpp">
-      <Filter>Source Files\Misc</Filter>
+    <ClCompile Include="..\Misc\showText.cpp">
+      <Filter>Source Files\Misc S</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\OtherFunctions.cpp">
-      <Filter>Source Files\Misc</Filter>
+    <ClCompile Include="..\Misc\ConstValues.cpp">
+      <Filter>Source Files\Misc S</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\showText.cpp">
-      <Filter>Source Files\Misc</Filter>
+    <ClCompile Include="..\Misc\LinkedList.cpp">
+      <Filter>Source Files\Misc S</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\AllUnits.cpp">
-      <Filter>Source Files\Units</Filter>
+    <ClCompile Include="..\Units\Participants.cpp">
+      <Filter>Source Files\Units S</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\CommanderProfile.cpp">
-      <Filter>Source Files\Units</Filter>
+    <ClCompile Include="..\Units\Provinces.cpp">
+      <Filter>Source Files\Units S</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\Participants.cpp">
-      <Filter>Source Files\Units</Filter>
+    <ClCompile Include="..\Units\AllUnits.cpp">
+      <Filter>Source Files\Units S</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\PlayerAction.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\Units\CommanderProfile.cpp">
+      <Filter>Source Files\Units S</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Downloads\Provinces.cpp">
+    <ClCompile Include="..\PlayerAction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\..\..\OneDrive\Desktop\AdministrativeDocs\debugQuickAccess.txt">
-      <Filter>Resource Files</Filter>
+    <Text Include="..\AdministrativeDocs\debugQuickAccess.txt">
+      <Filter>Resource Files\AdministrativeDocs</Filter>
     </Text>
-    <Text Include="..\..\..\..\OneDrive\Desktop\AdministrativeDocs\deletedContent.txt">
-      <Filter>Resource Files</Filter>
+    <Text Include="..\AdministrativeDocs\deletedContent.txt">
+      <Filter>Resource Files\AdministrativeDocs</Filter>
     </Text>
-    <Text Include="..\..\..\..\OneDrive\Desktop\AdministrativeDocs\headersAllocation.txt">
-      <Filter>Resource Files</Filter>
+    <Text Include="..\AdministrativeDocs\headersAllocation.txt">
+      <Filter>Resource Files\AdministrativeDocs</Filter>
     </Text>
-    <Text Include="..\..\..\..\OneDrive\Desktop\AdministrativeDocs\needToDo.txt">
-      <Filter>Resource Files</Filter>
+    <Text Include="..\AdministrativeDocs\needToDo.txt">
+      <Filter>Resource Files\AdministrativeDocs</Filter>
     </Text>
-    <Text Include="..\..\..\..\OneDrive\Desktop\AdministrativeDocs\notes.txt.txt">
-      <Filter>Resource Files</Filter>
+    <Text Include="..\AdministrativeDocs\notes.txt.txt">
+      <Filter>Resource Files\AdministrativeDocs</Filter>
     </Text>
-    <Text Include="..\..\..\..\OneDrive\Desktop\AdministrativeDocs\tips.txt.txt">
-      <Filter>Resource Files</Filter>
+    <Text Include="..\AdministrativeDocs\tips.txt.txt">
+      <Filter>Resource Files\AdministrativeDocs</Filter>
     </Text>
-    <Text Include="..\..\..\..\Downloads\Synopsis.txt">
-      <Filter>Resource Files</Filter>
+    <Text Include="..\ProjectLog\4November2022.txt">
+      <Filter>Resource Files\ProjectLog</Filter>
     </Text>
-    <Text Include="..\..\..\..\Downloads\Help.txt">
-      <Filter>Resource Files</Filter>
+    <Text Include="..\ProjectLog\5January2023.txt">
+      <Filter>Resource Files\ProjectLog</Filter>
     </Text>
-    <Text Include="..\..\..\..\Downloads\Options.txt">
-      <Filter>Resource Files</Filter>
+    <Text Include="..\ProjectLog\6February2023.txt">
+      <Filter>Resource Files\ProjectLog</Filter>
     </Text>
-    <Text Include="..\..\..\..\OneDrive\Desktop\AdministrativeDocs\projectLogs\1June2022.txt">
-      <Filter>Resource Files\projectLogs</Filter>
+    <Text Include="..\ProjectLog\7March2023.txt">
+      <Filter>Resource Files\ProjectLog</Filter>
     </Text>
-    <Text Include="..\..\..\..\OneDrive\Desktop\AdministrativeDocs\projectLogs\2July2022.txt">
-      <Filter>Resource Files\projectLogs</Filter>
+    <Text Include="..\ProjectLog\8April2023.txt">
+      <Filter>Resource Files\ProjectLog</Filter>
     </Text>
-    <Text Include="..\..\..\..\OneDrive\Desktop\AdministrativeDocs\projectLogs\3August2022.txt">
-      <Filter>Resource Files\projectLogs</Filter>
+    <Text Include="..\ProjectLog\9May2023.txt">
+      <Filter>Resource Files\ProjectLog</Filter>
     </Text>
-    <Text Include="..\..\..\..\OneDrive\Desktop\AdministrativeDocs\projectLogs\4November2022.txt">
-      <Filter>Resource Files\projectLogs</Filter>
+    <Text Include="..\ProjectLog\logOverview.txt">
+      <Filter>Resource Files\ProjectLog</Filter>
     </Text>
-    <Text Include="..\..\..\..\OneDrive\Desktop\AdministrativeDocs\projectLogs\5January2023.txt">
-      <Filter>Resource Files\projectLogs</Filter>
+    <Text Include="..\ProjectLog\1June2022.txt">
+      <Filter>Resource Files\ProjectLog</Filter>
     </Text>
-    <Text Include="..\..\..\..\OneDrive\Desktop\AdministrativeDocs\projectLogs\6February2023.txt">
-      <Filter>Resource Files\projectLogs</Filter>
+    <Text Include="..\ProjectLog\2July2022.txt">
+      <Filter>Resource Files\ProjectLog</Filter>
     </Text>
-    <Text Include="..\..\..\..\OneDrive\Desktop\AdministrativeDocs\projectLogs\7March2023.txt">
-      <Filter>Resource Files\projectLogs</Filter>
+    <Text Include="..\ProjectLog\3August2022.txt">
+      <Filter>Resource Files\ProjectLog</Filter>
     </Text>
-    <Text Include="..\..\..\..\OneDrive\Desktop\AdministrativeDocs\projectLogs\8April2023.txt">
-      <Filter>Resource Files\projectLogs</Filter>
+    <Text Include="..\TxtFiles\Options.txt">
+      <Filter>Source Files\TxtFiles</Filter>
     </Text>
-    <Text Include="..\..\..\..\OneDrive\Desktop\AdministrativeDocs\projectLogs\9May2023.txt">
-      <Filter>Resource Files\projectLogs</Filter>
+    <Text Include="..\TxtFiles\Synopsis.txt">
+      <Filter>Source Files\TxtFiles</Filter>
     </Text>
-    <Text Include="..\..\..\..\OneDrive\Desktop\AdministrativeDocs\projectLogs\logOverview.txt">
-      <Filter>Resource Files\projectLogs</Filter>
+    <Text Include="..\TxtFiles\Help.txt">
+      <Filter>Source Files\TxtFiles</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\Downloads\ArmyOverviewMA (1).h">
+    <ClInclude Include="..\PlayerAction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\BuildMA.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\MA\TrainMA.h">
+      <Filter>Header Files\MA H</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\LinkedList.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\MA\ScoutMA.h">
+      <Filter>Header Files\MA H</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\MapMA.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\MA\MapMA.h">
+      <Filter>Header Files\MA H</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\Mobility.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\MA\Mobility.h">
+      <Filter>Header Files\MA H</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\ScoutMA.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\MA\BuildMA.h">
+      <Filter>Header Files\MA H</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\TrainMA.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\MA\AttackMA.h">
+      <Filter>Header Files\MA H</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\ConstValues.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\MA\ArmyOverviewMA.h">
+      <Filter>Header Files\MA H</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\OtherFunctions.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\Misc\LinkedList.h">
+      <Filter>Header Files\Misc H</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\showText.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\Misc\ConstValues.h">
+      <Filter>Header Files\Misc H</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\AllUnits.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\Misc\OtherFunctions.h">
+      <Filter>Header Files\Misc H</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\CommanderProfile.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\Misc\showText.h">
+      <Filter>Header Files\Misc H</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\Participants.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\Units\CommanderProfile.h">
+      <Filter>Header Files\Units H</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\Provinces.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\Units\AllUnits.h">
+      <Filter>Header Files\Units H</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Downloads\PlayerAction.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\Units\Participants.h">
+      <Filter>Header Files\Units H</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Units\Provinces.h">
+      <Filter>Header Files\Units H</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\Downloads\README.md">
-      <Filter>Source Files</Filter>
+    <None Include="..\README.md">
+      <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
 </Project>

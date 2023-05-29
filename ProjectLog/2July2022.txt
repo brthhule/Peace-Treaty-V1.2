@@ -1,0 +1,137 @@
+July 1: 1 hour
+	9:40 pm - 10:40 (1 hour): Debugging, fixing things, sorting through older versions of game (such as tileConquests). Found something wrong with upgradeBuilding (I think it's the declaration of the requiredResourcesBuildings array)
+-------------------------------------------
+July 2: 1 hour
+	9:30 pm - 10:30 (1 hour): Some cleaning work, realized that I can add a thing in the checkChar function to use the AVThree variable to find AVOne and AVTwo, So I wouldn't have to repeat these all the time (cleaning up efficiency stuff and removing redundant things). Fixed issue with upgradeBuilding function. Cleaned up a lot of the warnings (such as uninitialized variables).
+----------------------------------------------
+July 4: 1 hour, 45 min
+	12:36 am - 2:00 am (1 hour, 25 min): Cleaned up TrainMA function so it loops back to TrainMA after TrainMAFunction rather than repeating itself, did the thing I did with checkChar (made it so that only one vector has to be passed for it to work)
+
+	10:40 am - 11:00 am (20 min): Tried using Git and stuff (cloning repository-- need to do more research), cleaned up code, started working on playerScout
+--------------------------------------------
+July 5th: 30 min
+	11:15 pm - 11:45 pm (30 min): Worked on viewArmyOverview function, did some cleaning up
+-----------------------------------------------
+July 6th: 1 hour, 40 min
+	11:45 am - 12:25 pm (40 min): Developed getTrainBuildCoordinates and findCommanderIndex functions to increase readibility, did some cleaning up
+	
+10:30 pm - 11:30 pm (1 hour): Clean up code, reduce redundancy
+https://www.youtube.com/show/SCJESAAO27j5IS9Lsr0NXvRA?season=6&sbp=CgE2
+------------------------------------------
+July 7th: 1 hour, 15 min
+	9:45 pm - 11:00 pm (1 hour, 15 min): Studying C++ on GeeksforGeeks, added color to showMap function
+------------------------------------------
+July 9th: 1 hour, 55 min
+	4:05 pm - 5:10 pm (1 hour, 5 min): made the viewAllStatsFunction (consolodiated information into the textFunctions.cpp file, made program more readible)
+
+    9:20 pm - 10:10 pm (50 min): Developed playerScout function, did stuff, figured out some coloring 
+-------------------------------------------
+July 10: 55 min
+    11:05 pm - 11:20 pm (15 min): Added color to repl (woo)
+
+    11:20 pm - 12:00 am (40 min): worked on more color stuff, modified code such that when the continent is generated, the player starts with 1 commander rather than no commanders
+--------------------------------------------
+July 11: 55 min
+    12:00 am - 12:10 am (10 min): Worked on stuff mentioned in July 10-- carried over
+
+    10:00 pm - 10:15 pm (15 min): Working on fixing presentation erros and stuff
+
+    11:25 pm - 11:55 pm (30 min): Did some more fixing, trying to get deployCommander function to work. Met with "signal: segmentation fault (core dumped)" error message, tried to see if this error popped up with the playerBuild functions. After entering the letter of the building I want to upgrade, the required resources were printed and then the same error message was printed again.
+--------------------------------------
+July 12: 1 hour
+    10:50 pm - 11:50 pm (1 hour): Worked on playerScout functions, encountered a lot of erros (the segmentation fault error keeps popping up (maybe use visual studio instead of repl?))
+--------------------------------------------
+July 13: 50 min
+	8:30 pm - 9:20 pm (50 min): Tried fixing errors and stuff, tried moving some functions to otherFunctions.cpp (like createMap), ran into some errors (something with the strings in the .h files). For some reason, got an abort error when running program-- after it says "gameplay _ selected", the program crashes...
+-----------------------------------------------
+July 15: 1 hour, 15 min
+	10:15 pm - 11:30 pm (1 hour, 15 min): Fixed problems by using a string for the checkChar function instead of vectors (used string manipulators
+to find each character in the string, added it to a vector inside of the checkChar function instead of passing a vector to the function). Offloaded
+the checkChar function to otherFunctions.cpp, started clearing space in the main file. Found a problem: passing a string instead of a vector doesn't
+work for checkInt because I can convert string to char through stringName.at(index), but I can't convert string to int, soooo.... Also moved printMapValues
+to textFunctions.cpp, moved findCommanderIndex to otherFunctions.cpp. Organizing the main file so it covers the main branch actions (side branches
+and other functionalities are moved to textFunctions.cpp (if their primary purpose is to print information) or otherFunctions.cpp (if the purpose of the function is to return a variable derived from arguments passed to it)).
+--------------------------------------------
+July 16: 3 hours, 30 min
+	2:00 pm - 2:30 pm (30 min): Tried getting army deployment to work, ran into issues (something with vector out of bound index, don't know what's
+wrong-- the index is 0 and the size of the vector is 1). Tried seeing if I can make a vector object so that I can use a class to store the values of 
+the various armies.
+
+	8:35 pm - 11:15 pm (2 hours, 40 min): Made CommanderProfile class, made it so that instead of tracking the various commanders by their coordinates, I would identify them as objects instead. This means that the object's stats and values carry on with them, so I don't have to keep changing the values of the objects according to wear they are (in the coordinate-based system, each time a unit (commander)'s coordinates changed, I had to update all their coordinates to move too). It's becoming more streamlined now, started doing the same for provinces as well.
+
+	11:25 pm - 11:45 pm (20 min): Worked on Provinces class
+----------------------------------------
+July 17: 2 hours, 15 min
+	9:20 pm - 11:00 pm (1 hour, 40 min): Worked on the various classes, created AllUnits class as a parent to Provinces and CommanderProfile, running into errors
+trying to convert the code to OOP
+
+	11:15 pm - 11:50 pm (35 min): Worked on Provinces class, did more updating between the main cpp file and the classes
+----------------------------------------
+July 18: 2 hours, 40 min
+	11:10 am - 11:20 am (10 min): It's all just a giant mess... Working on mapCharacters now (changing it to a pointer to the provinceList objects)
+
+	12:20 pm - 1:00 pm (40 min): Trying to sort out some errors, figuring out how the classes work with each other
+
+	5:50 pm - 6:30 pm (40 min): Fixed some stuff, got the initial screen to work again. Still getting error about line 1732 (vector out of range thing)
+worked on Provinces class, removed mapCharacters array (going to use the provincesList). Updated showMap to reflect the change
+
+	10:00 pm - 11:10 pm (1 hour, 10 min): Developed getChar function to replace checkChar function, tried rewriting deployCommander function to try to address error (putting blocks of code into new functions), didn't work. Still having problems. Thinking about make the main actions into classes, see if this changes anything. Upsides: classes organize things, if I have a different class for each main action (like building or training), I can put it into its own files. Organization is a plus (putting everything in its own file). Downside: May be difficult to go through and find stuff (stuff is organized, but there are so many files and so many functions) 
+------------------------------------------------
+July 19: 1 hour, 15 min
+	10:00 pm - 11:15 pm (1 hour, 15 min): Still trying to figure out how to get rid of the vector error. I think I have to make everything into classes and
+objects... messed up the playerScout function. Tried making the TrainMA functions into a class.
+---------------------------------------------------
+July 20: 2 hours, 5 min
+	12:00 pm - 12:20 pm (20 min): Worked on TrainMA function-- deleted the first original TrainMA function (it was just meant to find coordinates in case there weren't coordinates)
+
+	2:40 pm - 3:05 pm (25 min): It's all broken, getting a lot of errors regarding the classes 
+(Like "'addSpecificTroop': is not a member of 'Provinces")
+
+	5:35 pm - 5:45 pm (10 min): Don't know what's wrong; I think there's something wrong with the inheritance. Basically just added the AllUnits stuff to Provinces and made it so that Provinces wasn't a child of AllUnits anymore. AllUnits works for CommanderProfile though (?????). Getting link error message thingy
+
+	6:05 pm - 6:55 pm (50 min): Made armyDeployment its own class, working on making playerAttack a class (AttackMA)
+
+	7:30 pm - 7:50 pm (20 min): Finished making AttackMA class (for now)
+--------------------------------------------
+July 23: 1 hour, 20 min
+  2:40 pm - 2:45 pm (5 min): Updated sizeof instances-- now includes / sizeof(*data type)
+
+	8:45 pm - 10:00 pm (1 hour, 15 min): Reorganized some stuff, fixed all the warnings that Visual Studio was telling me about, made Provinces a child of AllUnits, trying to simplify stuff more, ran into error (LNK1168 cannot open c:\Users\Brennen\source\repos\FFE V1.2\x64\Debug\FFE V1.2.exe for writing)
+, still haven't fixed the segmentation core fault/vector subscript out of range error
+-----------------------------------------
+July 24: 1 hour, 15 min
+    10:00 pm - 10:50 pm (50 min): Creating Participants class, started offloading variables like commandersList and adapting them to Participants
+
+	11:35 PM - 12:00 am (25 min): Worked on Participants class
+-----------------------------------------------
+July 25: 2 hours, 20 min
+	10:10 am - 10:45 am (35 min): Worked out instances of commandersList from the main file... have to move on to the other files now.
+
+	11:15 am - 11:45 am (30 min): Worked out some errors that came about due to deleting commandersList
+
+	4:10 pm - 4:30 pm (20 min): Kept working out some errors
+
+	7:40 pm - 8:00 pm (20 min): Kept working on working out errors. Found that there's work to do in AttackMA class (Have to sort out how the program knows what target to attack)
+
+	9:45 pm - 10:20 (35 min): Sorted out errors, getting "'&' requires I-value error" now ??????
+---------------------------------------------
+July 27: 2 hours, 5 min
+	5:40 pm - 6:55 pm (1 hour, 15 min): Fixed the I-value errors by just deleting the CommanderProfile pointers and just using
+Participants objects)... still getting errors (tried using template to merge checkChar and checkInt into one)
+
+	10:50 pm - 10:55 pm (5 min): Got rid of getValue, caused too many errors, not worth it
+
+	10:55 pm - 11:40 pm (45 min): Made it so that addCommander in Participants returns value by reference rather than by value... This way, data that has to be mutated/modified can be
+---------------------------------------------
+July 28: 55 min
+    11:15 pm - 12:10 pm (55 min): Working on ScoutMA class... everything is messed up-- have to figure out how scoutLogCalculations is gonna work, differentiating between Provinces and CommanderProfile scout reports
+------------------------------------------
+July 29: 35 min
+	10:00 pm - 10:15 pm (15 min): Working on ScoutMA-- wondering how I'm gonna keep track of the provinces and commanders
+
+	11:30 pm - 11:50 pm (20 min): Worked on ScoutMA (playerScout function-- figured out how to differentiate between picking a province or commander target)
+------------------------------------------
+July 30: 2 hours, 25 min
+	10:00 pm - 11:30 pm (1 hour, 30 min): Finished working on ScoutMA (I think), now getting errors about Provinces and CommanderProfile.h (stuff like "missing type specificer - int assumed. Note: C++ does not support default-int", don't know where these errors are coming from... the text editor doesn't show anything red as incorrect, maybe I just have to do some restructuring ??????)
+
+	8:45 pm - 9:40 pm (55 min): Worked on debugging code, need to do some work regarding Commander info (like which participants it belongs to)

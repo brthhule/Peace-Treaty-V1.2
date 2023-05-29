@@ -1,0 +1,73 @@
+August 1: 1 hour, 40 min
+	8:00 pm - 9:40 pm (1 hour, 40 min): Did some debugging, ran into errors with how Commander and Provinces are returned through returnCommander and returnProvince... I think I have to make listOfCommanders and listOfProvinces public variables in Participants so I can access objects directly rather than through functions... yeah, I'm going all in on making listOfCommanders a public variable and accessing it directly
+----------------------------------------------
+August 2: 2 hours, 5 min
+	5:45 pm - 6:25 pm (40 min): Plan is working, getting less errors (100 something instead of 200 something), gonna keep going
+
+	8:15 pm - 8:35 pm (20 min): Have so much work to do.... having problems with the program handling CommanderProfile, gonna have to do something similar to provincesMap for commanders
+
+	9:40 pm - 9:50 pm (10 min): Ironed out all the errors... It seems like I can only use CommanderProfile and Provinces in the main file, had to modify Participants to accomodate this (Participants objects store information like commander index and province x/y coordinates to identify which
+element in allCommanders or provincesMap (2D vectors storing all provinces and commanders) need to be accessed). Basically, I went back in time to before
+I implemented the use of objects to simplify things (for the most part, still use objects to streamline informaiton and stuff). Program now runs again.
+However, still getting vector out of range error thingy--- ?????????
+
+	9:50 pm - 10:25 pm (35 min): Traced back code, found error happened in the code segment before generateNewContinent-- the one initializing 
+the resources of each province. Continued tracing code, got a new error after I put the initializing resources loop inside of generateNewContinent...
+error is in the Province 3 parameter overload constructor. Figured out that in the constructor, I forgot to add the x < argument thingy to say how many times the loop for the scout log thingy should run, now having a problem in generateNewContinent in the create capitals loop thing... waiting as debugger says
+cannot open the file thingy
+
+	10:30 pm - 10:50 pm (20 min): Got showMap to work, still getting error with create map functionality though
+-----------------------------------------
+August 3: 1 hour, 20 min
+	5:20 - 5:40 pm (20 min): Deleted findProvinceIndex (from main) function because is redundant of findProvinceIndexWithCoordinates in Provinces, moved addNewCommander from main to Participants. Having problems with create capitals loop in generateNewContinent-- same coordinates keep getting generated?????
+
+	9:20 pm - 10:20 pm (1 hour): did some more work consolidating information and stuff. Main thing I did: moved the map main action stuff to the newly created MapMA class. Main file went down from ~2000 lines to ~300 lines... found a lot of issues (especially in AllUnits and CommanderProfile-- how to initialize and
+keep track of indexInList and other stuff)
+---------------------------------------------
+August 4: 50 min
+	9:45 pm - 10:35 pm (50 min): Figured out what was wrong with rand-- called srand multiple times each time I had to get a random number (just had to call it once, in main). Figured out create commanders-- error was because added CommanderProfile objects to allCommanders[participantIndexTemp], didn't push 
+CommanderProfile vectors to allCommanders yet though.  Something was wrong with BuildMA in which trying to enter the x coordinate would result in
+a vector subscript out of range error, fixed it by making getCoordinates work by taking parameters passed by reference rather than returning a vector.
+Modified listOfActions so that when picking something to do, help would also be included (stringToSend += 'H';). Made the text color in printBuildingStats and printResources brighter by using 1m. Getting LNK1168 error (cannot open... exe for writing). Works some times, not other times...
+no idea why
+----------------------------------------------
+August 5: 45 min
+	11:30 am - 11:35 am (5 min): Tried to do some debugging, just added comments to see where things are. I think the program is failing because of
+something in initialize resources.
+	10:30 pm - 11:00 pm (30 min): Trying to debug. Figured out the issue: in initializeResources, used getCapitalCoordinate, but the parameters were formmated
+as (int whichCoordinate, int value). To keep track of capital coordinates, array int capitalCoordinates [2] was used in the Participants class.
+Changed this so that instead of an array, used capitalX and capitalY. Also changed getCapitalCoordinate so parameters was (char whichCoordinate).
+	11:10 pm - 10:20 pm (10 min): deleted the 1m thing... didn't make text brighter, just made it white. Having trouble with getting coordinates for BuildMA. When I enter
+the coordinates graphically (normally), doens't work. When I enter coordinates as array/vector/machine sensible coordinates, it works ????
+Getting LNK1168 error...
+----------------------------------------------
+August 6: 35 min
+    10:30 pm - 11:10 pm (35 min): Tried to make names for the AI. Developed getKingdomName and setKingdomName in Participants. I tried setting the participant
+names when the participants were created, but createNewName needs there to be more than 0 commanders in the list of commnaders or else the list is null (can't 
+return list of commanders sie if it's null). Had to move the name generation stuff to the end of generateNewContinent, works now. Have developed framework for 
+working with AI and probability of actions and stuff (Read below). Also changed the game synopsis to be less cringy... it's still pretty bad tho
+
+For the AI, have an array like this: int AIActionProbability = [how many actions there are] = {1, 2, 3, 4, 5}
+
+The difference between each element's value affects the probability. For example, since the difference between each element is 1, they will all have an equally likely chance of happening. However, if the array was like this {1, 2, 8, 9, 10}, the differences are the same across the board except for between indices 1 and 2. This means that all other values have the same chance of occurring, but the action that happens between said indices has a greater chance of happening. Applying this, it would be something like: if (randomNumberGenerated >= AIActionProbability[0] && <= AIActionProbability[1]), do some particiular action.
+---------------------------------------------
+August 7: 20 min
+    8:40 pm - 9:00 pm (20 min): Did some aesthetic stuff -- user input now comes up as red text in the console. Started working on developing framework for AI action stuff
+-----------------------------------------
+August 11: 1 hour, 45 min
+    12:40 am - 1:35 am (55 min): Working on BuildMA, created coordinateFunctions.h to keep track of coordinate-related functions and organize otherFunctions.h. Working on getTrainBuildCoordinates to return the right coordinates. Fixec it for the most part, program ends when I enter (5, 1), but it translates everything else (I think it's a problem with the range or something). Figured it out (I think): added the following code to BuildMA in findProvinceCoordinates function
+
+if (provinceXCoordinate == continentSize && provinceYCoordinate == 1)
+{
+    //weird exception in translating units-- everything else units, except for the bottom left province
+    cout << "Continent size: " << continentSize << endl;
+    provinceXCoordinate = continentSize - 1;
+    provinceYCoordinate = continentSize - 1;
+}
+
+    11:10 am - 11:50 am (40 min): Contined working on getTrainBuildCoordinates-- adjusted the input branch of the translateCoordinate tree to be the abs of coordinate - continentSize rather than continentSize - coordinate. Did some aesthetic stuff like adding information and adding spaces
+
+    5:55 pm - 6:05 pm (10 min): Updated formating for printResources and printBuildingStats, stil getting erros when coordinates being entered are on the first y column (y = 1) on the map shown. I think it's being read as -1 or something (the y coordinate), because the x coordinate if statement (to check if it isn't -1) goes through, but the code printing out x and y after entering the y coordinate isn't being printed
+----------------------------------
+August 27: 15 min
+    11:15 pm - 11:30 pm (15 min): Started to modify the screen so that it always shows the map instead of having an option to see the map

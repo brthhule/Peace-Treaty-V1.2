@@ -17,20 +17,21 @@
 
 
 //Player infrastructure
-#include "../../../../Downloads/Provinces.h"
-#include "../../../../Downloads/Participants.h"
-#include "../../../../Downloads/CommanderProfile.h"
+#include "../Units/Provinces.h"
+#include "../Units/Participants.h"
+#include "../Units/CommanderProfile.h"
 
 //Miscellaneous
-#include "../../../../Downloads/OtherFunctions.h"
-#include "../../../../Downloads/showText.h"
+#include "../Misc/OtherFunctions.h"
+#include "../Misc/showText.h"
+#include "../Misc/ConstValues.h"
+#include "../Misc/LinkedList.h"
 
 
 //Main Actions
-#include "../../../../Downloads/PlayerAction.h"
+#include "../PlayerAction.h"
 
-#include "../../../../Downloads/ConstValues.h"
-#include "../../../../Downloads/LinkedList.h"
+
 
 LinkedList provincesLL;
 //Linked lsit number, province address

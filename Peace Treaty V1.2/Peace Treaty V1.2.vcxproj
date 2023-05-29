@@ -127,64 +127,65 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\Downloads\AllUnits.cpp" />
-    <ClCompile Include="..\..\..\..\Downloads\ArmyOverviewMA (1).cpp" />
-    <ClCompile Include="..\..\..\..\Downloads\AttackMA (1).cpp" />
-    <ClCompile Include="..\..\..\..\Downloads\BuildMA.cpp" />
-    <ClCompile Include="..\..\..\..\Downloads\CommanderProfile.cpp" />
-    <ClCompile Include="..\..\..\..\Downloads\ConstValues.cpp" />
-    <ClCompile Include="..\..\..\..\Downloads\LinkedList.cpp" />
-    <ClCompile Include="..\..\..\..\Downloads\MapMA.cpp" />
-    <ClCompile Include="..\..\..\..\Downloads\Mobility.cpp" />
-    <ClCompile Include="..\..\..\..\Downloads\OtherFunctions.cpp" />
-    <ClCompile Include="..\..\..\..\Downloads\Participants.cpp" />
-    <ClCompile Include="..\..\..\..\Downloads\PlayerAction.cpp" />
-    <ClCompile Include="..\..\..\..\Downloads\Provinces.cpp" />
-    <ClCompile Include="..\..\..\..\Downloads\ScoutMA.cpp" />
-    <ClCompile Include="..\..\..\..\Downloads\showText.cpp" />
-    <ClCompile Include="..\..\..\..\Downloads\TrainMA (19).cpp" />
+    <ClCompile Include="..\MA\ArmyOverviewMA.cpp" />
+    <ClCompile Include="..\MA\AttackMA.cpp" />
+    <ClCompile Include="..\MA\BuildMA.cpp" />
+    <ClCompile Include="..\MA\MapMA.cpp" />
+    <ClCompile Include="..\MA\Mobility.cpp" />
+    <ClCompile Include="..\MA\ScoutMA.cpp" />
+    <ClCompile Include="..\MA\TrainMA.cpp" />
+    <ClCompile Include="..\Misc\ConstValues.cpp" />
+    <ClCompile Include="..\Misc\LinkedList.cpp" />
+    <ClCompile Include="..\Misc\OtherFunctions.cpp" />
+    <ClCompile Include="..\Misc\showText.cpp" />
+    <ClCompile Include="..\PlayerAction.cpp" />
+    <ClCompile Include="..\Units\AllUnits.cpp" />
+    <ClCompile Include="..\Units\CommanderProfile.cpp" />
+    <ClCompile Include="..\Units\Participants.cpp" />
+    <ClCompile Include="..\Units\Provinces.cpp" />
     <ClCompile Include="Peace Treaty V1.2.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\..\..\Downloads\Help.txt" />
-    <Text Include="..\..\..\..\Downloads\Options.txt" />
-    <Text Include="..\..\..\..\Downloads\Synopsis.txt" />
-    <Text Include="..\..\..\..\OneDrive\Desktop\AdministrativeDocs\debugQuickAccess.txt" />
-    <Text Include="..\..\..\..\OneDrive\Desktop\AdministrativeDocs\deletedContent.txt" />
-    <Text Include="..\..\..\..\OneDrive\Desktop\AdministrativeDocs\headersAllocation.txt" />
-    <Text Include="..\..\..\..\OneDrive\Desktop\AdministrativeDocs\needToDo.txt" />
-    <Text Include="..\..\..\..\OneDrive\Desktop\AdministrativeDocs\notes.txt.txt" />
-    <Text Include="..\..\..\..\OneDrive\Desktop\AdministrativeDocs\projectLogs\1June2022.txt" />
-    <Text Include="..\..\..\..\OneDrive\Desktop\AdministrativeDocs\projectLogs\2July2022.txt" />
-    <Text Include="..\..\..\..\OneDrive\Desktop\AdministrativeDocs\projectLogs\3August2022.txt" />
-    <Text Include="..\..\..\..\OneDrive\Desktop\AdministrativeDocs\projectLogs\4November2022.txt" />
-    <Text Include="..\..\..\..\OneDrive\Desktop\AdministrativeDocs\projectLogs\5January2023.txt" />
-    <Text Include="..\..\..\..\OneDrive\Desktop\AdministrativeDocs\projectLogs\6February2023.txt" />
-    <Text Include="..\..\..\..\OneDrive\Desktop\AdministrativeDocs\projectLogs\7March2023.txt" />
-    <Text Include="..\..\..\..\OneDrive\Desktop\AdministrativeDocs\projectLogs\8April2023.txt" />
-    <Text Include="..\..\..\..\OneDrive\Desktop\AdministrativeDocs\projectLogs\9May2023.txt" />
-    <Text Include="..\..\..\..\OneDrive\Desktop\AdministrativeDocs\projectLogs\logOverview.txt" />
-    <Text Include="..\..\..\..\OneDrive\Desktop\AdministrativeDocs\tips.txt.txt" />
+    <Text Include="..\AdministrativeDocs\debugQuickAccess.txt" />
+    <Text Include="..\AdministrativeDocs\deletedContent.txt" />
+    <Text Include="..\AdministrativeDocs\headersAllocation.txt" />
+    <Text Include="..\AdministrativeDocs\needToDo.txt" />
+    <Text Include="..\AdministrativeDocs\notes.txt.txt" />
+    <Text Include="..\AdministrativeDocs\tips.txt.txt" />
+    <Text Include="..\ProjectLog\1June2022.txt" />
+    <Text Include="..\ProjectLog\2July2022.txt" />
+    <Text Include="..\ProjectLog\3August2022.txt" />
+    <Text Include="..\ProjectLog\4November2022.txt" />
+    <Text Include="..\ProjectLog\5January2023.txt" />
+    <Text Include="..\ProjectLog\6February2023.txt" />
+    <Text Include="..\ProjectLog\7March2023.txt" />
+    <Text Include="..\ProjectLog\8April2023.txt" />
+    <Text Include="..\ProjectLog\9May2023.txt" />
+    <Text Include="..\ProjectLog\logOverview.txt" />
+    <Text Include="..\TxtFiles\Help.txt" />
+    <Text Include="..\TxtFiles\Options.txt" />
+    <Text Include="..\TxtFiles\Synopsis.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\Downloads\README.md" />
+    <ClInclude Include="..\MA\ArmyOverviewMA.h" />
+    <ClInclude Include="..\MA\AttackMA.h" />
+    <ClInclude Include="..\MA\BuildMA.h" />
+    <ClInclude Include="..\MA\MapMA.h" />
+    <ClInclude Include="..\MA\Mobility.h" />
+    <ClInclude Include="..\MA\ScoutMA.h" />
+    <ClInclude Include="..\MA\TrainMA.h" />
+    <ClInclude Include="..\Misc\ConstValues.h" />
+    <ClInclude Include="..\Misc\LinkedList.h" />
+    <ClInclude Include="..\Misc\OtherFunctions.h" />
+    <ClInclude Include="..\Misc\showText.h" />
+    <ClInclude Include="..\PlayerAction.h" />
+    <ClInclude Include="..\Units\AllUnits.h" />
+    <ClInclude Include="..\Units\CommanderProfile.h" />
+    <ClInclude Include="..\Units\Participants.h" />
+    <ClInclude Include="..\Units\Provinces.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\Downloads\AllUnits.h" />
-    <ClInclude Include="..\..\..\..\Downloads\ArmyOverviewMA (1).h" />
-    <ClInclude Include="..\..\..\..\Downloads\BuildMA.h" />
-    <ClInclude Include="..\..\..\..\Downloads\CommanderProfile.h" />
-    <ClInclude Include="..\..\..\..\Downloads\ConstValues.h" />
-    <ClInclude Include="..\..\..\..\Downloads\LinkedList.h" />
-    <ClInclude Include="..\..\..\..\Downloads\MapMA.h" />
-    <ClInclude Include="..\..\..\..\Downloads\Mobility.h" />
-    <ClInclude Include="..\..\..\..\Downloads\OtherFunctions.h" />
-    <ClInclude Include="..\..\..\..\Downloads\Participants.h" />
-    <ClInclude Include="..\..\..\..\Downloads\PlayerAction.h" />
-    <ClInclude Include="..\..\..\..\Downloads\Provinces.h" />
-    <ClInclude Include="..\..\..\..\Downloads\ScoutMA.h" />
-    <ClInclude Include="..\..\..\..\Downloads\showText.h" />
-    <ClInclude Include="..\..\..\..\Downloads\TrainMA.h" />
+    <None Include="..\README.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

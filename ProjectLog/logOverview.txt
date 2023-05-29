@@ -1,0 +1,118 @@
+			Log Overview           Minute Conversion
+June 10: June 15th: 7 hours     	420 
+June 16: 45 min                 	45 
+June 19: 2 hours                	120 
+June 20: 1 hour, 40 min         	100 
+June 21: 20 min                 	20 
+June 22: 30 min                 	30 
+June 23: 30 min                 	30 
+June 24: 1 hour, 30 min           90 
+June 25: 2 hours, 35 min          155 
+June 26: 1 hour, 45 min           105 
+June 27: 2 hours, 15 min          135 
+June 29: 1 hour                   60 
+June 30: 3 hours, 50 min          230 
+
+June Total: 25 hours, 40 min			1540
+--------------------------------------
+July 1: 1 hour                    60 
+July 2: 1 hour                    60 
+July 4: 1 hour, 45 min            105
+July 5th: 30 min                  30 
+July 6th: 1 hour, 40 min          100 
+July 7th: 1 hour, 15 min          75 
+July 9th: 1 hour, 55 min          115 
+July 10: 55 min                   55 
+July 11: 55 min                   55 
+July 12: 1 hour                   60 
+July 13: 50 min					  				50 
+July 15: 1 hour, 15 min			  		75 
+July 16: 3 hours, 30 min          210 
+July 17: 2 hours, 15 min          135 
+July 18: 2 hours, 40 min		 			160 
+July 19: 1 hour, 15 min           75 
+July 20: 2 hours, 5 min			  		125 
+July 23: 1 hour, 20 min			  		80 
+July 24: 1 hour, 15 min			  		75 
+July 25: 2 hours, 20 min		  		140 
+July 27: 2 hours, 5 min			  		125 
+July 28: 55 min					  				55 
+July 29: 35 min					  				35 
+July 30: 2 hours, 25 min		  		145 
+
+July Total: 36 hours, 40 min			2200 
+--------------------------------------
+August 1: 1 hour, 40 min		  		100 
+August 2: 2 hours, 5 min		  		125 
+August 3: 1 hour, 20 min		  		80 
+August 4: 50 min									50
+August 5: 45 min									45
+August 6: 35 min									35
+August 7: 20 min									20
+August 11: 1 hour, 45 min					105
+August 27: 15 min									15
+
+August Total: 9 hours, 35 min		  575
+--------------------------------------
+September Total: 0								0
+October Total: 0									0
+--------------------------------------
+November 8: 20 min								20
+November 13: 5 min								5
+November 23: 35 min								35
+
+November Total: 1 hour						60
+-------------------------------------
+January 27: 1 hour, 20 min				80
+January 28: 1 hour, 25 min				85
+January 30: 5 min									5
+January 31: 1 hour, 5 min					65
+
+January Total: 3 hours, 55 min		235
+--------------------------------------
+February 1: 20 min								20
+February 2: 25 min								25
+February 18: 1 hour, 15 min				75
+February 19: 2 hours, 30 min			150
+February 20: 30 min								30
+February 23: 2 hours, 5 min				125
+February 24: 4 hours, 40 min			280
+February 26: 2 hours							120
+February 28: 50 min								50
+
+February Total: 14 hours, 35 min	875
+--------------------------------------
+March 2: 20 min										20
+March 7: 3 hours, 15 min					195
+March 10: 3 hours, 50 min					230
+March 11: 4 hours, 10 min         250
+March 12: 1 hour, 40 min          100
+March 17: 1 hour									60
+March 18: 4 hours, 15 min					255
+March 19: 2 hours, 35 min					155
+March 20: 1 hour, 50 min					110
+March 21: 1 hour, 40 min          100
+March 28: 3 hours, 5 min          185
+March 29: 30 min                  30
+
+March Total: 28 hours, 10 min			1690
+--------------------------------------
+April 3: 30 min                   30
+April 11: 15 min                  15
+April 12: 20 min                  20
+April 14: 30 min                  30
+April 23: 1 hour                  60
+
+April Total: 2 hours, 35 min      155 
+---------------------------------------
+May 8: 40 min                     40
+May 9: 20 min                     20
+May 10: 25 min                    25
+May 11: 35 min                    35
+May 15: 30 min                    30
+May 16: 35 min                    35
+
+May Total: 3 hours, 5 min         185
+--------------------------------------
+Log:	Total: 125 hours, 15 min  	7515 min
+

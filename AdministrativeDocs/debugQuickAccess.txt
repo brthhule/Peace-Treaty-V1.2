@@ -1,0 +1,11 @@
+Enter the following for selecting a province:
+s
+5
+1
+1
+1
+1
+1
+u
+p
+
