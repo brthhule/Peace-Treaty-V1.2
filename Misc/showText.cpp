@@ -124,16 +124,18 @@ void printOptions (std::string tp, int &type, bool &skip, std::vector<std::strin
 	}	
 }
 
+//Returns that help prompt that correlates with the specified numerical identifier (caseNum)
 void showHelp (int caseNum)
 {
 	std::string caseNumString = std::to_string(caseNum);
-  std::fstream newfile;
-  newfile.open("Help.txt", std::ios::in);
-  if (newfile.is_open()) 
+
+	std::fstream newfile;//create file
+	newfile.open("Help.txt", std::ios::in);//open Help.txt file, we want to see inside of it
+	if (newfile.is_open()) //if it successfully opens
 	{
-		std::string line;
+		std::string line;//Creates new line
 		bool pause = false;
-    while (getline(newfile, line)) 
+		while (getline(newfile, line)) 
 		{
 			bool wait = false;
 
@@ -153,44 +155,64 @@ void showHelp (int caseNum)
 			if (pause == false && wait == false)
 				std::cout << line;
 		}
-    newfile.close(); // close the file object.
-  }
+	newfile.close(); // close the file object.
+	}
 }
 
 void printFile (std::string fileName)
 {
 	std::cout << "Debug... printFile opened\n";
-   
-	std::fstream newfile;
-	newfile.open(fileName, std::ios::in);
-	if (newfile.is_open())
+	
+	std::fstream newfile;//create file
+	newfile.open(fileName, std::ios::in);//Open file
+	if (newfile.is_open())//If the file opens successfully
 	{
-		std::cout << "File" + fileName + " is open...\n";
+		std::cout << "File" + fileName + " is open...\n";//Confirmation
 		std::string line;
-		while (getline(newfile, line))
+		while (getline(newfile, line)) //Iterate through file
 		{
-			if (line.substr(0,1) != "!")
-				std::cout << line << std::endl;
-			else if (line.substr(1) == "RED")
-				std::cout << RED;
-			else if (line.substr(1) == "BLUE")
-				std::cout << BLUE;
-			else if (line.substr(1) == "WHITE")
-				std::cout << WHITE;
-			else if (line.substr(1) == "NEWLINE")
+			if (line.substr(0, 1) == "!")//If this line is a special qualifier, do some specific text modifier
+			{
+				switch (line.at(1))
+				{
+				case 'R':
+					std::cout << RED;
+					break;
+				case 'B':
+					std::cout << BLUE;
+					break;
+				case 'W':
+					std::cout << WHITE;
+					break;
+				case 'N':
 					std::cout << std::endl;
+					break;
+				}
+			}
+			else//print line as normal
+			{
+				std::cout << line << std::endl;
+			}
+			
 		}
-		newfile.close();
+		newfile.close();//close file
 	}
-	std::cout << std::endl;
+	std::cout << std::endl;//add space
 	
 }
 
+//Gets an input from the user that pertains to choosing an option from one of the showOptions prompts
 char getOption (int caseNum)
 {
-	std::string caseNumString = std::to_string(caseNum);
 	OtherFunctions OF;
-	return OF.getInput ("showOptions" + caseNumString, {}, false, false).at(0);
+	return OF.getInput ("showOptions" + std::to_string(caseNum), {}, false, false).at(0);
+	/*
+	In order:
+	- showOptions indicates that the options must be printed out, taken from the Options.txt file
+	- caseNum indicates the options prompt that must be printed
+	- Empty brackets indicate that the acceptable values are unknown at this point and must be found from the Options.txt file
+	- third parameter, false, indicates that we want to get a char/letter value in return, not a number
+	- the fourth parameter, false, indcates that getInput will be run initially from this call; it is not being reiterated at this point*/
 }
 
 // void scoutLogFunction ()
