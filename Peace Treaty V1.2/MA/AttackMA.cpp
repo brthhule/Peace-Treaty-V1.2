@@ -97,7 +97,7 @@ void AttackMA::playerCommitAttack()
 
 	do {
 		repeatViewAllArmyStats = 'N';
-		viewAllArmyStats = OF.getInput("View all army stats? (Y/N) ", {"Y", "N"}, 1).at(0);
+		viewAllArmyStats = OF.getInput("View all army stats? (Y/N) ", {"Y", "N"}, false, false).at(0);
 		std::cout << std::endl;
 
 		switch (viewAllArmyStats) {

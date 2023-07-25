@@ -68,7 +68,7 @@ void PlayerAction::initialDecision() {
     break;
   }
   case 'P': {
-    char pauseGameQuestionChar = OF.getInput("Pausing the game will end this session of gameplay. Proceed? (Y/N): ", {"Y", "N"}, false).at(0);
+    char pauseGameQuestionChar = OF.getInput("Pausing the game will end this session of gameplay. Proceed? (Y/N): ", {"Y", "N"}, false, false).at(0);
 		
     if (pauseGameQuestionChar == 'Y') 
       pauseGame();

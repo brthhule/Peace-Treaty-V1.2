@@ -73,7 +73,7 @@ void Mobility::moveUnitOne() {
                 << ")? (Y/N) ";
 
       // If participants confirms movement
-      if (OF.getInput("Replacement", {"Y", "N"}, false).at(0) == 'Y') {
+      if (OF.getInput("Replacement", {"Y", "N"}, false, false).at(0) == 'Y') {
         // If it's peaceful (moving to one of their own provinces)
         if (attackScenario == 'P') {
 					std::array<int, 2> coordinates = moveTwo->getCoordinates();

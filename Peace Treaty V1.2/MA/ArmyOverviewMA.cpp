@@ -56,7 +56,7 @@ void ArmyOverviewMA::upgradeCommandersTwo()
   participant->getCommanderByName(commanderName)->printCosts(costsArray);
 
 	char proceedWithUpgradeQuestion =
-      OF.getInput("\nProceed with upgrade? ", {"Y", "N"}, 1).at(0);
+      OF.getInput("\nProceed with upgrade? ", {"Y", "N"}, false, false).at(0);
   if (proceedWithUpgradeQuestion == 'Y') {
 
     std::array<int, 5> commanderCosts = costsArray;
@@ -93,7 +93,7 @@ void ArmyOverviewMA::trainCommanders() {
 
   std::array<int, 5> trainCosts = participant->getTrainCosts();
 
-  if (OF.getInput("Proceed with training", {"Y", "N"}, 1).at(0) == 'Y') 	{
+  if (OF.getInput("Proceed with training", {"Y", "N"}, false, false).at(0) == 'Y') 	{
     if (commandersNum < participant->getMaxCommanders()) /*if amount of commanders is less than max (not at max capacity)*/
         proceedWithTraining(trainCosts);
     else 
@@ -129,7 +129,7 @@ void ArmyOverviewMA::deployCommanderMF()
   participant->getCommanderByName(commanderName)->printCommanderStats();
 
   std::cout << "Deploy commander " + commanderName + "? (Y/N) ";
-  char confirmDeploy = OF.getInput("Replacement", {"Y", "N"}, 2).at(0);
+  char confirmDeploy = OF.getInput("Replacement", {"Y", "N"}, false, false).at(0);
 
   if (confirmDeploy == 'Y') 
 	{

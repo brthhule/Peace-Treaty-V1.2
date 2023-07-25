@@ -129,22 +129,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\MA\ArmyOverviewMA.cpp" />
-    <ClCompile Include="..\MA\AttackMA.cpp" />
-    <ClCompile Include="..\MA\BuildMA.cpp" />
-    <ClCompile Include="..\MA\MapMA.cpp" />
-    <ClCompile Include="..\MA\Mobility.cpp" />
-    <ClCompile Include="..\MA\ScoutMA.cpp" />
-    <ClCompile Include="..\MA\TrainMA.cpp" />
-    <ClCompile Include="..\Misc\ConstValues.cpp" />
-    <ClCompile Include="..\Misc\LinkedList.cpp" />
-    <ClCompile Include="..\Misc\OtherFunctions.cpp" />
-    <ClCompile Include="..\Misc\showText.cpp" />
-    <ClCompile Include="..\PlayerAction.cpp" />
-    <ClCompile Include="..\Units\AllUnits.cpp" />
-    <ClCompile Include="..\Units\CommanderProfile.cpp" />
-    <ClCompile Include="..\Units\Participants.cpp" />
-    <ClCompile Include="..\Units\Provinces.cpp" />
+    <ClCompile Include="MA\ArmyOverviewMA.cpp" />
+    <ClCompile Include="MA\AttackMA.cpp" />
+    <ClCompile Include="MA\BuildMA.cpp" />
+    <ClCompile Include="MA\MapMA.cpp" />
+    <ClCompile Include="MA\Mobility.cpp" />
+    <ClCompile Include="MA\ScoutMA.cpp" />
+    <ClCompile Include="MA\TrainMA.cpp" />
+    <ClCompile Include="Misc\ConstValues.cpp" />
+    <ClCompile Include="Misc\LinkedList.cpp" />
+    <ClCompile Include="Misc\OtherFunctions.cpp" />
+    <ClCompile Include="Misc\showText.cpp" />
+    <ClCompile Include="PlayerAction.cpp" />
+    <ClCompile Include="Units\AllUnits.cpp" />
+    <ClCompile Include="Units\CommanderProfile.cpp" />
+    <ClCompile Include="Units\Participants.cpp" />
+    <ClCompile Include="Units\Provinces.cpp" />
     <ClCompile Include="Peace Treaty V1.2.cpp" />
   </ItemGroup>
   <ItemGroup>

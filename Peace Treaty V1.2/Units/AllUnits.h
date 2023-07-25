@@ -8,8 +8,6 @@
 #include "../Misc/ConstValues.h"
 #include "../Misc/OtherFunctions.h"
 
-#define UNIT_AMOUNT = 5
-
 /*int resourcesPresent[5];
 	int troopsPresent[5];
 	int troopsInjured[5];

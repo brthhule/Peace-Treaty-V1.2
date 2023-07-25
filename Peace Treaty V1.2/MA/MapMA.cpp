@@ -16,7 +16,7 @@ void MapMA::viewPlayerMap() {
     participant->showMap();
     println("Welcome to the View Map action menu");
 
-		whatToDo = OF.getInput("showOptions, 8", {}, false).at(0);
+		whatToDo = OF.getInput("showOptions, 8", {}, false, false).at(0);
   }
   else
     whatToDo = 'P';
@@ -132,7 +132,7 @@ void MapMA::selectEnemyProvince(Provinces *newP) {
   }
   case 'V': {
     if (enemyProvince->getScoutReportTurn() != -1)
-      if (OF.getInput("View scout log for this province? (Y/N) ", {"Y", "N"}, 1).at(0) ==
+      if (OF.getInput("View scout log for this province? (Y/N) ", {"Y", "N"}, false, false).at(0) ==
           'Y')
         scoutLogFunction(enemyProvince);
 		

@@ -64,7 +64,7 @@ void BuildMA::upgradeBuildings() {
   int buildingNumber = 0;
 	std::vector<std::string> buildingLetterList = {"F", "L", "Q", "M", "C", "B", "H"};
 
-  char buildingLetter = OF.getInput("Enter the first letter of the building you want to upgrade (enter 'H' for help): ", buildingLetterList, false).at(0);
+  char buildingLetter = OF.getInput("Enter the first letter of the building you want to upgrade (enter 'H' for help): ", buildingLetterList, false, false).at(0);
 	
   if (buildingLetter != 'H') {
     for (int x = 0; x < 6; x++) {
@@ -75,7 +75,7 @@ void BuildMA::upgradeBuildings() {
     }
 
     printInformation(buildingNumber, requiredResources);
-    char upgradeProceed = OF.getInput("Proceed with upgrade? (Y/N) ", {"Y", "N"}, 1).at(0);
+    char upgradeProceed = OF.getInput("Proceed with upgrade? (Y/N) ", {"Y", "N"}, false, false).at(0);
 
     if (upgradeProceed == 'Y') {
       bool upgradeSuccess = province->subtractCheckResources(requiredResources);
@@ -92,7 +92,7 @@ void BuildMA::upgradeBuildings() {
     showHelp(12);
   }
 	
-  char upgradeAgain = OF.getInput("Upgrade another building (Y/N): ", {"Y", "N"}, 1).at(0);
+  char upgradeAgain = OF.getInput("Upgrade another building (Y/N): ", {"Y", "N"}, false, false).at(0);
   if (upgradeAgain == 'Y') {
     upgradeBuildings();
   }
