@@ -73,7 +73,7 @@ bool debuggingMode = true;
 int main()/*main code*/
 {
 	OF.debugFunction("main, main");
-	srand(time(0));
+	srand((unsigned int)time(0));
 	char startOrResume = introduction();
 
 	switch (startOrResume)
@@ -113,7 +113,7 @@ int main()/*main code*/
 char introduction()/*introduce player to game synopsis*/
 {
 	OF.debugFunction("main, introduction");
-	printFile("TxtFiles\Synopsis.txt");
+	printFile("TxtFiles\\Synopsis.txt");
 	return getOption(3);
 }
 void resumeGame() /*download data from previous game fix this*/
@@ -222,14 +222,21 @@ void createMap() {
 void endScreen()
 {
 	OF.debugFunction("main, endScreen");
-	for (int x = 0; x <= (int) participantsList.size(); x++)
+	for (int x = 0; x <= (int)participantsList.size(); x++)
 	{
-		(participantsList[x].isAlive()) ? std::cout << "Congratulatios to player " << participantsList[x].getKingdomName() << " for winning. You have successfully conquered your enemies and now reign as the Emperor! \n"
+		if (participantsList[x].isAlive())
+		{
+			std::cout << "Congratulatios to player " << participantsList[x].getKingdomName() << " for winning. You have successfully conquered your enemies and now reign as the Emperor! \n";
+
+		}
 	}
 	char playAgain = OF.getInput("Play again? (Y/N) ", { "letter", "Y", "N" }, false, false).at(0);
 	
 	
-	(playAgain == 'Y') ? main();
+	if (playAgain == 'Y')
+	{
+		main();
+	}
 }
 
 void updateTurnResources() {
@@ -273,9 +280,10 @@ void gamePlay()
 	//If there are more than one players, keep playing
 	int participantsAlive = 0;
 	for (Participants newParticipant : participantsList)
-		(newParticipant.isAlive() == true) ? participantsAlive++;
+		if (newParticipant.isAlive() == true)
+			participantsAlive++;
 
-	(participantsAlive > 1) ? gamePlay();
+	(participantsAlive > 1) ? gamePlay() : OF.nothing();
 
 	endScreen();
 }

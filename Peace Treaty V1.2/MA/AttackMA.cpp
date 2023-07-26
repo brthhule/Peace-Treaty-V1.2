@@ -40,7 +40,7 @@ void AttackMA::findCommander(std::vector <CommanderProfile *> commandersCanAttac
 	std::string commanderName;
   std::cout << "The following commanders can attack the target: \n";
   std::cout << "Amount of commanders: " << commandersCanAttack.size() << std::endl;
-  for (int x = 0; x < commandersCanAttack.size(); x++) {
+  for (int x = 0; x < (int)commandersCanAttack.size(); x++) {
     std::cout << "Commander " << commandersCanAttack[x]->getUnitName() << ", Level: " << commandersCanAttack[x]->getLevel();
   }
 	std::cout << "Enter the name of the commander you would like to select: ";

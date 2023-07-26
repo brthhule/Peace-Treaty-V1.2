@@ -71,7 +71,7 @@ void Participants::createCapital() {
 // Accessors
 Provinces *Participants::getCapital() { return provincesList[capitalIndex]; }
 Provinces *Participants::findProvince(int x, int y) {
-  for (int a = 0; a < provincesList.size(); a++) {
+  for (int a = 0; a < (int) provincesList.size(); a++) {
     Provinces *newProvince = provincesList[a];
     if (x == newProvince->getCoordinate(0) &&
         y == newProvince->getCoordinate(1))
@@ -91,7 +91,7 @@ void Participants::initialCapRSS() {
 
 // Mutators
 void Participants::setCapital(Provinces *newProvince) {
-  for (int x = 0; x < provincesList.size(); x++) {
+  for (int x = 0; x < (int) provincesList.size(); x++) {
     if (provincesList[x] == newProvince) {
       capitalIndex = x;
       x = provincesList.size();
@@ -447,14 +447,15 @@ Provinces* Participants::getProvinceByName(std::string name)
 	for (Provinces* newProvince: provincesList)
 		if (newProvince->getUnitName() == name)
 			return newProvince;
+	return NULL;
 }
 
-Provinces* Participants::selectRandomProvince()
+/*Provinces* Participants::selectRandomProvince()
 {
     //place holder
     Provinces newProvince;
     return &newProvince;
-}
+}*/
 
 bool Participants::hasProvince (std::string name)
 {
@@ -499,9 +500,9 @@ void Participants::displayCommanders()
 void Participants::showMapCoordinates()
 {
 	std::cout << "Input: \n";
-	for (int x = 0; x < provincesMap.size(); x++)
+	for (int x = 0; x < (int) provincesMap.size(); x++)
 	{
-		for (int y = 0; y < provincesMap[x].size(); y++)
+		for (int y = 0; y < (int) provincesMap[x].size(); y++)
 		{
 			std::cout << provincesMap[x][y].printCoordinates() << " ";
 		}
@@ -510,9 +511,9 @@ void Participants::showMapCoordinates()
 	std::cout << std::endl;
 	
 	std::cout << "Output: \n";
-	for (int x = 0; x < provincesMap.size(); x++)
+	for (int x = 0; x < (int) provincesMap.size(); x++)
 	{
-		for (int y = 0; y < provincesMap[x].size(); y++)
+		for (int y = 0; y < (int) provincesMap[x].size(); y++)
 		{
 			std::cout << provincesMap[x][y].printOutputCoordinates() << " ";
 		}

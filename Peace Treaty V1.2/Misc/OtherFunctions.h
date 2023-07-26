@@ -51,6 +51,9 @@ public:
 	//Debugging
 	void debugFunction(std::string functionName);
 
+	//For if/ternary statements with no "else"
+	void nothing() {};
+
 
 
 private:

@@ -8,8 +8,6 @@ ArmyOverviewMA::ArmyOverviewMA(Participants *newP) {
 }
 
 void ArmyOverviewMA::armyDeploymentMF() {
-  char armyDeploymentActionChar;
-
   println("Welcome to the Army Deployment action menun\n");
 
   switch (getOption(5)) {

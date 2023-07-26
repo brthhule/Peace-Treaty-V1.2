@@ -76,7 +76,7 @@ int Provinces::findProvinceLevel()
 void Provinces::updateProvinceResources()
 {
 	OF.debugFunction("Provinces, updateProvinceResources");
-	for (int x = 0; x < resourceBuildingsLevels.size(); x++)
+	for (int x = 0; x < (int) resourceBuildingsLevels.size(); x++)
 		resourcesPresent[x] += resourceBuildingsProduction[x];
 }
 
@@ -260,7 +260,7 @@ void Provinces::completeProvinceScoutReport(int accuracy, Provinces* targetProvi
 	participantIndex = t->getParticipantIndex();
 	unitLevel = t->getLevel();
 	unitName = t->getUnitName();
-	CP = getEstimate(newAccuracy, t->getCP());
+	CP = getEstimate((int) newAccuracy, t->getCP());
 
 	maxGarrison = t->getMaxGarrison();
 	maxInfirmaryCapacity = t->getMaxInfirmaryCapacity();

@@ -18,7 +18,7 @@ std::string OtherFunctions::getInput(std::string text, std::vector<std::string> 
 		{
 			int caseNum = text.at(text.length()-1);
 			AV = showOptions(caseNum);
-			isNumber == false;//want a letter option
+			isNumber = false;//want a letter option
 			std::cout << "Enter an option: ";
 		}
 		else
@@ -122,11 +122,12 @@ int OtherFunctions::translateCoordinateInput(int coordinate, char indicator)
     return abs(coordinate - continentSize);
     break;
   }
+  return NULL;
 }
 
 int OtherFunctions::translateCoordinateOutput(int coordinate, char indicator) 
 {
-	debugFunction("OtherFunctions, translateCoordinateOutput");
+debugFunction("OtherFunctions, translateCoordinateOutput");
   switch (indicator) {
   case 'x':
     return coordinate + 1;
@@ -135,6 +136,7 @@ int OtherFunctions::translateCoordinateOutput(int coordinate, char indicator)
     return abs(continentSize - coordinate);
     break;
   }
+  return NULL;
 }
 
 std::string OtherFunctions::printCoordinates(std::array<int, 2> coordinates)

@@ -46,7 +46,7 @@ void Mobility::moveUnitOne() {
 
     int provinceIndexSelected = 0;
     char provinceIsInList = 'N';
-    for (int x = 0; x < provincesCanSelect.size(); x++) {
+    for (int x = 0; x < (int)provincesCanSelect.size(); x++) {
       if (moveTwo == provincesCanSelect[x]) {
         provinceIndexSelected = x;
         provinceIsInList =

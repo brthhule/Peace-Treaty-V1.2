@@ -65,7 +65,7 @@ public:
 	bool subtractCheckResources(std::string provinceName, std::array<int, 5> resourcesArray);
 	Provinces* getProvinceByName(std::string name);
   bool hasProvince (std::string name);
-  Provinces* selectRandomProvince();
+  //Provinces* selectRandomProvince();
 
 
 
