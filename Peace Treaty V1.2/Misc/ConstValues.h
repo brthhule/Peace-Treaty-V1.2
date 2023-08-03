@@ -6,11 +6,8 @@
 
 #define UNIT_AMOUNT 5
 
-class ConstValues 
+namespace CV 
 {
-public:
-	ConstValues();
-
   const std::array<std::string, UNIT_AMOUNT> TROOP_NAMES = { "Militia", "Guards", "Cavalry", "Knights", "Paladins" };
   const std::array<std::string, UNIT_AMOUNT> RESOURCE_BUILDING_NAMES = { "Farm", "Lumber Mill", "Quarry", "Mine", "Church" };
   const std::array<std::string, 5> OTHER_BUILDING_NAMES = {"Barracks","Infirmary","Library","Wall","Residences"};
