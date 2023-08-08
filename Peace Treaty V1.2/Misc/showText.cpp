@@ -19,17 +19,22 @@
 
 std::vector<std::string> showOptions(int caseNum)
 {
+	OtherFunctions OF;
+	OF.debugFunction("showText, showOptions");
 	std::string caseNumString = std::to_string(caseNum);
 	std::fstream newfile;
-	newfile.open("MA/Options.txt", std::ios::in); // open a file to perform read operation using file object
+
+	std::cout << "Openiong file...\n";
+	newfile.open("Options.txt", std::ios::in); // open a file to perform read operation using file object
 	std::vector<std::string> acceptableValues = {"H"};
 	
-  if (newfile.is_open()) 
+	if (newfile.is_open()) 
 	{
+		std::cout << "File is open...\n";
 		std::string line;
 		bool pause = false;
 		bool addToArray = false;
-    while (getline(newfile, line)) 
+		while (getline(newfile, line)) 
 		{
 			bool wait = false;
 			
@@ -88,6 +93,8 @@ std::vector<std::string> showOptions(int caseNum)
 
 void printOptions (std::string tp, int &type, bool &skip, std::vector<std::string> &acceptableValues)
 {
+	OtherFunctions OF;
+	OF.debugFunction("showText, printOptions");
 	if (tp == "List of Options:")
 		type = 1;
 	else if (tp == "Options:")
@@ -161,13 +168,13 @@ void showHelp (int caseNum)
 
 void printFile (std::string fileName)
 {
-	std::cout << "Debug... printFile opened\n";
+	OtherFunctions OF;
+	OF.debugFunction("showText, printFile");
 	
 	std::fstream newfile;//create file
 	newfile.open(fileName, std::ios::in);//Open file
 	if (newfile.is_open())//If the file opens successfully
 	{
-		std::cout << "File" + fileName + " is open...\n";//Confirmation
 		std::string line;
 		while (getline(newfile, line)) //Iterate through file
 		{

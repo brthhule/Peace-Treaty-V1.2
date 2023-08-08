@@ -18,7 +18,7 @@
 
 extern std::vector<std::vector<Provinces>> provincesMap;
 extern std::vector<Participants> participantsList;
-extern ConstValues CV;
+using namespace CV;
 
 class MapMA
 {

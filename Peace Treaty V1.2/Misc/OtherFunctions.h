@@ -15,8 +15,9 @@
 #include "ConstValues.h"
 #include "showText.h"
 
+using namespace CV;
+
 extern int continentSize;
-extern ConstValues CV;
 extern int currentParticipantIndex;
 extern bool debuggingMode;
 

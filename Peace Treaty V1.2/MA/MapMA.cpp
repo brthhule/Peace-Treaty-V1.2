@@ -231,12 +231,12 @@ void MapMA::provinceReportLog(char whatReportChar, Provinces* enemyProvince) {
   case 'G': {
     std::cout << "Garrisoned troops: " << std::endl;
     for (int x = 0; x < 5; x++) {
-      std::cout << "-" << CV.TROOP_NAMES[x] << ": "
+      std::cout << "-" << CV::TROOP_NAMES[x] << ": "
                 << enemyProvince->getTroopsPresent(x)
                 << std::endl;
       totalGarrisonedCP +=
           (enemyProvince->getTroopsPresent(x) *
-           CV.TROOPS_CP[x]);
+           CV::TROOPS_CP[x]);
     }
     std::cout << "Total Garrison Combat Power: " << totalGarrisonedCP << std::endl
               << std::endl;

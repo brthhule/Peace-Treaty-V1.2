@@ -86,7 +86,7 @@ int Participants::commandersNum() { return commandersList.size(); }
 void Participants::initialCapRSS() {
 	//Add functionality so, depending on the difficulty, AI participants get more or less resources to start off with
   Provinces *newProvince = getCapital();
-	newProvince -> modifyResources(CV.INITIAL_VALUES, true);
+	newProvince -> modifyResources(CV::INITIAL_VALUES, true);
 }
 
 // Mutators
@@ -147,11 +147,11 @@ void Participants::viewStats() {
   std::cout << "Kingdom name: " << kingdomName << "\n\n";
 
   for (int x = 0; x < 5; x++) {
-    std::cout << "Total " << CV.RESOURCE_NAMES[x] << ": " << totalResources[x] << std::endl;
+    std::cout << "Total " << CV::RESOURCE_NAMES[x] << ": " << totalResources[x] << std::endl;
   }
 
   for (int x = 0; x < 5; x++) 
-    std::cout << "Total " << CV.TROOP_NAMES[x] << " alive: " << eachUnit[x] << std::endl;
+    std::cout << "Total " << CV::TROOP_NAMES[x] << " alive: " << eachUnit[x] << std::endl;
   
   std::cout << "Your total army combat power: " << calculatePlayerValues(1).at(0);
   std::cout << "\nYour numnber of provinces: " << provincesNum() << "\n\n";
@@ -168,7 +168,7 @@ std::vector<int> Participants::calculatePlayerValues(int decision) {
   case 1: { // Return total CP
 		int totalCPThingy = 0;
 		for (int x = 0; x < 5; x++)
-			totalCPThingy += newArray[x] * CV.TROOPS_CP[x];
+			totalCPThingy += newArray[x] * CV::TROOPS_CP[x];
     return {totalCPThingy};
   }
   case 2: {
@@ -215,7 +215,7 @@ void Participants::viewAllStatsFunction() {
   std::cout << BLUE; // NW
 	std::array<int,5> troopsLost = calculateEach(3);
   for (int x = 0; x < 5; x++) {
-    std::cout << CV.TROOP_NAMES[x] << " lost: "
+    std::cout << CV::TROOP_NAMES[x] << " lost: "
               << troopsLost[x]
               << std::endl;
   }

@@ -124,7 +124,7 @@ void AttackMA::calculateTroopsLost(CommanderProfile* commander, int lostCombatPo
 	
 	int troopPresent = commander -> getTroopsPresent(troopIndex);
 	
-	int troopCP = CV.TROOPS_CP[troopIndex];
+	int troopCP = CV::TROOPS_CP[troopIndex];
 
 	//If lostCP > 16
 	if (lostCombatPower - 16 > 0)
@@ -170,17 +170,17 @@ void AttackMA::battleCalculationsTwo(int &lostCombatPower, int troopsLost[5], in
 
   int z = abs(4 - troopIndex);
 
-  for (int b = 0; b < CV.TROOPS_CP[z]; b++) {
+  for (int b = 0; b < CV::TROOPS_CP[z]; b++) {
     if (attackingCommander->getTroopsPresent(5) > 0) {
-      b = CV.TROOPS_CP[z];
+      b = CV::TROOPS_CP[z];
     } else {
       if (lostCombatPower > 0) {
-        lostCombatPower -= CV.TROOPS_CP[troopIndex];
+        lostCombatPower -= CV::TROOPS_CP[troopIndex];
         troopsLost[troopIndex]++;
         attackingCommander->modifySpecificTroop(troopIndex, 1, false);
         attackingCommander->addSpecificTroopLost(troopIndex, 1);
       } else
-        b = CV.TROOPS_CP[z];
+        b = CV::TROOPS_CP[z];
     }
   }
 }
@@ -191,7 +191,7 @@ void AttackMA::printResourcesGained()
 	std::cout << "Resources gained: \n \033[;34m";
 
 	for (int x = 0; x < 5; x++)
-		std::cout << "- " << CV.RESOURCE_NAMES[x] << ": " << currentResources[x] - oldResources[x] <<  "\n\n\033[;0m";
+		std::cout << "- " << CV::RESOURCE_NAMES[x] << ": " << currentResources[x] - oldResources[x] <<  "\n\n\033[;0m";
 }
 
 void AttackMA::determineLostCP(int attackerCP, int defendingCP, int& attackerLostCP, int& defenderLostCP)
@@ -228,12 +228,12 @@ void AttackMA::casualtyReport(std::array<int,5> troopsLost, std::array<int,5> in
     std::cout << "Troops casualties: " << std::endl;
     for (int x = 0; x < 5; x++) /*print out deaths*/
     {
-        std::cout << CV.TROOP_NAMES[x] << " lost: " << troopsLost[x] << std::endl;
+        std::cout << CV::TROOP_NAMES[x] << " lost: " << troopsLost[x] << std::endl;
     }
     std::cout << std::endl;
     for (int x = 0; x < 5; x++) /*print out deaths*/
     {
-        std::cout << CV.TROOP_NAMES[x] << " injured: " << injuredTroops[x] << std::endl;
+        std::cout << CV::TROOP_NAMES[x] << " injured: " << injuredTroops[x] << std::endl;
     }
     std::cout << std::endl;
 }

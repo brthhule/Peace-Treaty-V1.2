@@ -72,9 +72,6 @@
     <ClCompile Include="..\Misc\showText.cpp">
       <Filter>Source Files\Misc S</Filter>
     </ClCompile>
-    <ClCompile Include="..\Misc\ConstValues.cpp">
-      <Filter>Source Files\Misc S</Filter>
-    </ClCompile>
     <ClCompile Include="..\Misc\LinkedList.cpp">
       <Filter>Source Files\Misc S</Filter>
     </ClCompile>

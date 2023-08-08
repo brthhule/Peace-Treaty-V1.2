@@ -8,7 +8,7 @@
 #include "CommanderProfile.h"
 #include "../Misc/ConstValues.h"
 
-extern ConstValues CV;
+using namespace CV;
 
 extern int continentSize;
 extern const int BARRACKS_PRODUCTION;

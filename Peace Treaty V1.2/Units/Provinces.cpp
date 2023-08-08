@@ -14,7 +14,7 @@ Provinces::Provinces(int sendXCoordinate, int sendYCoordinate, int pIndex)
 		x = 1;
 	for (int &x: otherBuildingsLevels)
 		x = 1;
-	resourcesPresent = CV.INITIAL_VALUES;
+	resourcesPresent = CV::INITIAL_VALUES;
 	xCoord = sendXCoordinate;
 	yCoord = sendYCoordinate;
 	participantIndex = pIndex;
@@ -31,7 +31,7 @@ Provinces::Provinces (int LLNumArg)
 void Provinces::basicStats()
 {
 	OF.debugFunction("Provinces, basicStats");
-	OF.modifyArray(resourcesPresent, CV.INITIAL_VALUES, true);
+	OF.modifyArray(resourcesPresent, CV::INITIAL_VALUES, true);
 	
 	scoutReportTurn = -1;
 	scoutReportLogLevel = -1;
@@ -109,16 +109,16 @@ void Provinces::printBuildingStats()
 	OF.debugFunction("Provinces, printBuildingStats");
 	for (int x = 0; x < 5; x++)
 	{
-		resourceBuildingsProduction[x] = resourceBuildingsLevels[x] * CV.INITIAL_VALUES[x];
+		resourceBuildingsProduction[x] = resourceBuildingsLevels[x] * CV::INITIAL_VALUES[x];
 	}
     std::cout << "\033[;34m";
 
 	std::cout << "Building stats of this province: " << std::endl;
 	for (int x = 0; x < 5; x++)
 	{
-		std::cout << "- " << CV.RESOURCE_BUILDING_NAMES[x] << " (" << CV.RESOURCE_BUILDING_NAMES[x].at(0) << ") " << std::endl;
+		std::cout << "- " << CV::RESOURCE_BUILDING_NAMES[x] << " (" << CV::RESOURCE_BUILDING_NAMES[x].at(0) << ") " << std::endl;
 		std::cout << "    Level: " << resourceBuildingsLevels[x] << std::endl;
-		std::cout << "    " << CV.RESOURCE_NAMES[x] << " production rate : " << resourceBuildingsProduction[x] << std::endl;
+		std::cout << "    " << CV::RESOURCE_NAMES[x] << " production rate : " << resourceBuildingsProduction[x] << std::endl;
 	}
 	//Add implementation
 	std::cout << "Barracks (B) " << std::endl;
@@ -138,7 +138,7 @@ void Provinces::updateBuildingsProduction()
 	OF.debugFunction("Provinces, updateBuildingsProduction");
 	for (int x = 0; x < 5; x++)
 	{
-		resourceBuildingsProduction[x] = resourceBuildingsLevels[x] * CV.RESOURCE_PRODUCTION[x];
+		resourceBuildingsProduction[x] = resourceBuildingsLevels[x] * CV::RESOURCE_PRODUCTION[x];
 	}
 }
 

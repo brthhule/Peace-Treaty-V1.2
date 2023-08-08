@@ -26,7 +26,7 @@
 
 extern LinkedList provincesLL;
 extern std::unordered_map<int, Provinces*> provincesHH;
-extern ConstValues CV;
+using namespace CV;
 extern int continentSize;
 extern std::vector <std::vector <Provinces>> provincesMap;
 

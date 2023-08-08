@@ -14,7 +14,7 @@
 
 extern std::vector<Participants> participantsList;
 extern int continentSize;
-extern ConstValues CV;
+using namespace CV;
 
 class BuildMA
 {

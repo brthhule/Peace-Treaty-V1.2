@@ -48,7 +48,7 @@ void AllUnits::addInjuredTroops(std::array<int, 5> troops){
 int AllUnits::getCP(){
 	CP = 0;
 	for (int x = 0; x < 5; x++){
-		CP += troopsPresent[x] * CV.TROOPS_CP[x];
+		CP += troopsPresent[x] * CV::TROOPS_CP[x];
 	}
 	return CP;
 }

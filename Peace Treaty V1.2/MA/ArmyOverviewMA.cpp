@@ -148,7 +148,7 @@ void ArmyOverviewMA::deployCommanderMF()
 void ArmyOverviewMA::printCosts(std::vector<int> costs, std::string type) {
   std::cout << "The following are the " << type << " costs: \n";
   for (int x = 0; x < 5; x++)
-    std::cout << CV.RESOURCE_NAMES[x] << ": " << costs[x];
+    std::cout << CV::RESOURCE_NAMES[x] << ": " << costs[x];
 
   std::cout << "The following are the resources currently in your capital: \n";
   participant->getCapital()->printResources();

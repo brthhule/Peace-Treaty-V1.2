@@ -12,7 +12,7 @@
 	int troopsPresent[5];
 	int troopsInjured[5];
 	int totalCP;*/
-extern ConstValues CV;
+using namespace CV;
 extern int continentSize;
 
 class AllUnits

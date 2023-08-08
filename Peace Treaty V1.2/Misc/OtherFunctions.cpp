@@ -14,9 +14,10 @@ std::string OtherFunctions::getInput(std::string text, std::vector<std::string> 
 	if (redo == false)
 	{
 		//std::cout << "String: " << text.substr(0,10) << std::endl;
-		if (text.substr(0, text.length() - 2) == "showOptions")
+		if (text.substr(0, 4) == "show")
 		{
-			int caseNum = text.at(text.length()-1);
+			int caseNum = std::stoi(text.substr(text.length() - 1));
+			std::cout << "CaseNum: " << caseNum << std::endl;
 			AV = showOptions(caseNum);
 			isNumber = false;//want a letter option
 			std::cout << "Enter an option: ";
@@ -65,34 +66,32 @@ std::string OtherFunctions::createRandomName() {
 	std::string consonants = "bcdfghjklmnpqrstvwxyz";
 	std::string vowels = "aeiou";
 	
-  char newCharacter = ' ';
-  for (int x = 0; x < 6; x++) {
-    if (x % 2 == 0) // if even
-    {
-      newCharacter = consonants.at(rand() % 21);
-    } else if (x % 2 == 1) // if odd
-    {
-      newCharacter = vowels.at(rand() % 5);
-    }
-    if (x == 0) {
-      newCharacter = toupper(newCharacter);
-    }
-    name += newCharacter;
-  }
-  return name;
+	char newCharacter = ' ';
+	for (int x = 0; x < 6; x++) {
+	if (x % 2 == 0) // if even
+	{
+		newCharacter = consonants.at(rand() % 21);
+	} else if (x % 2 == 1) // if odd
+	{
+		newCharacter = vowels.at(rand() % 5);
+	}
+	if (x == 0) {
+		newCharacter = toupper(newCharacter);
+	}
+	name += newCharacter;
+	}
+	return name;
 }
 
 void OtherFunctions::clearScreen() 
 {
 	debugFunction("OtherFunctions, clearScreen");
-  std::cout << "\033[32mClearing screen. \n";
-  std::cout << "\033[0m";
-  std::chrono::seconds dura(1);
-  std::this_thread::sleep_for(dura);
-  system("clear"); /*Non-Windows*/
+	std::cout << "\033[32mClearing screen. \n";
+	std::cout << "\033[0m";
+	std::chrono::seconds dura(1);
+	std::this_thread::sleep_for(dura);
+	system("clear"); /*Non-Windows*/
 }
-
-
 
 int OtherFunctions::translateCoordinate(int coordinate, char indicator, char whichWay) 
 {
@@ -178,7 +177,7 @@ void OtherFunctions::printResources(std::array<int, 5> resourcesArray)
 {
 	debugFunction("OtherFunctions, printResources");
 	for (int x = 0; x < 5; x++)
-		std::cout << "- " << CV.RESOURCE_NAMES[x] << ": " << resourcesArray[x] <<  std::endl;
+		std::cout << "- " << CV::RESOURCE_NAMES[x] << ": " << resourcesArray[x] <<  std::endl;
 	
 	std::cout <<  std::endl;
 }
@@ -202,8 +201,8 @@ int OtherFunctions::translateCoordinateToLL (int x, int y)
 
 void OtherFunctions::debugFunction(std::string functionName)
 {
-	if (debuggingMode == true)
-		
 
+	/*functionName is styled as "file name, function name*/
+	if (debuggingMode == true)
 		std::cout << "\033[35mFunction: " << functionName << "\033[0m\n";
 }

@@ -12,7 +12,7 @@
 #include "ConstValues.h"
 #include "OtherFunctions.h"
 
-extern ConstValues CV;
+using namespace CV;
 
 std::vector<std::string> showOptions(int caseNum);
 void printOptions(std::string tp, int &type, bool &skip, std::vector<std::string> &acceptableValues);

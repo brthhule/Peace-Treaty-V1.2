@@ -16,7 +16,7 @@ extern std::vector <Participants> participantsList;
 extern std::vector<std::vector<Provinces>> provincesMap;
 extern int continentSize;
 extern int enemyDifficulty;
-extern ConstValues CV;
+using namespace CV;
 
 class AttackMA
 {

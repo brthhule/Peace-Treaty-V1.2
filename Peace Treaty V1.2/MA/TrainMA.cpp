@@ -28,7 +28,7 @@ void TrainMA::TrainMAFunction() {
     if (troopTier > 5)
         troopTier = 5;
 
-    std::cout << "The max tier troop you can train: " << troopTier << ", " << CV.TROOP_NAMES[troopTier - 1] << std::endl;
+    std::cout << "The max tier troop you can train: " << troopTier << ", " << CV::TROOP_NAMES[troopTier - 1] << std::endl;
 
     int maxTroopsCanTrain = province->getBuildingLevel(5) * 2;
 

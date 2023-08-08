@@ -63,7 +63,7 @@ int continentSize = 0;
 int enemyDifficulty = 0;
 
 
-ConstValues CV;
+using namespace CV;
 
 int totalMaxCommanders = 0;
 bool debuggingMode = true;
@@ -113,7 +113,7 @@ int main()/*main code*/
 char introduction()/*introduce player to game synopsis*/
 {
 	OF.debugFunction("main, introduction");
-	printFile("TxtFiles\\Synopsis.txt");
+	printFile("Synopsis.txt");
 	return getOption(3);
 }
 void resumeGame() /*download data from previous game fix this*/
