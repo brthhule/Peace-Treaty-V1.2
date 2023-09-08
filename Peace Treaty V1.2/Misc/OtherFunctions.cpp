@@ -201,7 +201,6 @@ int OtherFunctions::translateCoordinateToLL (int x, int y)
 
 void OtherFunctions::debugFunction(std::string functionName)
 {
-
 	/*functionName is styled as "file name, function name*/
 	if (debuggingMode == true)
 		std::cout << "\033[35mFunction: " << functionName << "\033[0m\n";

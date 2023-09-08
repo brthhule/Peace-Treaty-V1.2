@@ -23,6 +23,7 @@ extern bool debuggingMode;
 
 class OtherFunctions {
 public:
+	//Constructor
   OtherFunctions();
 
   // Check input-- maybe use template for this?
@@ -32,14 +33,16 @@ public:
   int translateCoordinate(int coordinate, char indicator, char whichWay);
   int translateCoordinateInput(int coordinate, char indicator);
   int translateCoordinateOutput(int coordinate, char indicator);
+  std::string printCoordinates(std::array<int, 2> coordinates);
+
 
   // Name Functionality
   std::string createRandomName();
 
   // Other stuff
   void clearScreen();
-  std::string printCoordinates(std::array<int, 2> coordinates);
 
+  //Manipulate vectors
   std::vector<int> addVectors(std::vector<int> primeVector, std::vector<int> secondaryVector);
   std::vector<int> subtractVectors(std::vector<int> primeVector, std::vector<int> secondaryVector);
   std::array<int, 5> modifyArray(std::array<int, 5> primeArray, std::array<int, 5> secondaryArray, bool isAdd);

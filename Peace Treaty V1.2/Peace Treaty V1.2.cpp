@@ -113,7 +113,7 @@ int main()/*main code*/
 char introduction()/*introduce player to game synopsis*/
 {
 	OF.debugFunction("main, introduction");
-	printFile("Synopsis.txt");
+	printFile("TxtFiles\\Synopsis.txt");
 	return getOption(3);
 }
 void resumeGame() /*download data from previous game fix this*/
