@@ -8,7 +8,6 @@
 
 #include "Mobility.h"
 
-#include "../Misc/showText.h"
 #include "../Units/Participants.h"
 #include "../Misc/OtherFunctions.h"
 

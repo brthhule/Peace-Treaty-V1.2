@@ -16,7 +16,7 @@ void MapMA::viewPlayerMap() {
     participant->showMap();
     println("Welcome to the View Map action menu");
 
-		whatToDo = OF.getInput("showOptions, 8", {}, false, false).at(0);
+		whatToDo = OF.getInput(false, -1, "showOptions, 8", {}, false, false).at(0);
   }
   else
     whatToDo = 'P';
@@ -35,7 +35,7 @@ void MapMA::viewPlayerMap() {
     break;
   }
   case 'H': {
-    showHelp(8);
+    OF.showHelp(8);
     viewPlayerMap();
     break;
   }
@@ -85,7 +85,7 @@ void MapMA::selectPlayerProvince() {
   }
   std::cout << std::endl << std::endl;
 
-  char selectPlayerCapitalAction = getOption(9);
+  char selectPlayerCapitalAction = OF.getOption(9);
 
   switch (selectPlayerCapitalAction) {
   case 'B': {
@@ -116,7 +116,7 @@ void MapMA::selectEnemyProvince(Provinces *newP) {
 
   println("\n\nWelcome to the Enemy Provinces Action Selection menu ");
 	
-  char selectUnitEnemyProvinceChar = getOption(10);
+  char selectUnitEnemyProvinceChar = OF.getOption(10);
 
   switch (selectUnitEnemyProvinceChar) {
   case 'A': {
@@ -132,7 +132,7 @@ void MapMA::selectEnemyProvince(Provinces *newP) {
   }
   case 'V': {
     if (enemyProvince->getScoutReportTurn() != -1)
-      if (OF.getInput("View scout log for this province? (Y/N) ", {"Y", "N"}, false, false).at(0) ==
+      if (OF.getInput(false, -1, "View scout log for this province? (Y/N) ", {"Y", "N"}, false, false).at(0) ==
           'Y')
         scoutLogFunction(enemyProvince);
 		
@@ -150,7 +150,7 @@ void MapMA::playerUnitAction(Provinces *newP) {
 	Provinces *newProvince = newP;
   println("This is one of your armies ");
 	
-	switch (getOption(2)) {
+	switch (OF.getOption(2)) {
 	case 'P': //Move this unit
 	{
 		playerUnitActionP(newProvince);
@@ -158,7 +158,7 @@ void MapMA::playerUnitAction(Provinces *newP) {
 	}
 	case 'H':
 	{
-		showHelp(2);
+		OF.showHelp(2);
 		playerUnitAction(newProvince);
 		break;
 	}
@@ -201,7 +201,7 @@ void MapMA::selectEnemyAction() /*Add implementation*/
 {
   std::cout << "This is an enmy army. \n";
 
-	switch (getOption(1))
+	switch (OF.getOption(1))
 	{
 		case 'A':
 			break;
@@ -221,7 +221,7 @@ void MapMA::scoutLogFunction(Provinces* enemyProvince) {
   std::cout << "Turn of scout report: " << enemyProvince->getScoutReportTurn() << "; Level of report: " << enemyProvince -> getScoutLogTurnLevel() << "\n\n";
   do 
 	{
-    whatReportChar = getOption(11);
+    whatReportChar = OF.getOption(11);
     provinceReportLog(whatReportChar, enemyProvince);
   } while (repeatScoutLog == 'Y');
 }

@@ -43,7 +43,7 @@ void TrainMA::TrainMAFunction() {
     }
 
 
-    trainTroop = std::stoi(OF.getInput("What tier troop do you want to train? (1/2/3/4/5) ", trainTroopsAV, false, false));
+    trainTroop = std::stoi(OF.getInput(false, -1, "What tier troop do you want to train? (1/2/3/4/5) ", trainTroopsAV, false, false));
     char repeatOuterDoLoop = 'N';
     if (trainTroop <= troopTier) {
         int amountOfTroops = 0;
@@ -60,7 +60,7 @@ void TrainMA::TrainMAFunction() {
                 << " troops do you want to train (troops trained in this barracks: "
                 << province->getTroopsTrainedThisTurn() << "/"
                 << maxTroopsCanTrain << ")? ";
-            amountOfTroops = std::stoi(OF.getInput("Replacement", amountOfTroopsAV, false, false));
+            amountOfTroops = std::stoi(OF.getInput(false, -1, "Replacement", amountOfTroopsAV, false, false));
 
             if (amountOfTroops <= maxTroopsCanTrain -
                 province->getTroopsTrainedThisTurn()) {
@@ -77,7 +77,7 @@ void TrainMA::TrainMAFunction() {
                 std::vector<char> proceedWithTrainingThree = { 'P', 'S', 'M' };
 
                 do {
-                    switch (getOption(6)) {
+                    switch (OF.getOption(6)) {
                     case 'P': {
                         bool trainingIsSuccess = province->subtractCheckResources(requiredResources);
 

@@ -14,7 +14,6 @@
 
 #include "../Misc/ConstValues.h"
 #include "../Misc/OtherFunctions.h"
-#include "../Misc/showText.h"
 
 extern std::vector<std::vector<Provinces>> provincesMap;
 extern std::vector<Participants> participantsList;

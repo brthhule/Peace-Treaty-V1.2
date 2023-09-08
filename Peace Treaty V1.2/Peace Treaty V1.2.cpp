@@ -23,7 +23,6 @@
 
 //Miscellaneous
 #include "Misc/OtherFunctions.h"
-#include "Misc/showText.h"
 #include "Misc/ConstValues.h"
 #include "Misc/LinkedList.h"
 
@@ -93,7 +92,7 @@ int main()/*main code*/
 	}
 	case 'H':
 	{
-		showHelp(3);
+		OF.showHelp(3);
 		main();
 		break;
 	}
@@ -113,8 +112,8 @@ int main()/*main code*/
 char introduction()/*introduce player to game synopsis*/
 {
 	OF.debugFunction("main, introduction");
-	printFile("TxtFiles\\Synopsis.txt");
-	return getOption(3);
+	OF.printFile("TxtFiles\\Synopsis.txt");
+	return OF.getOption(3);
 }
 void resumeGame() /*download data from previous game fix this*/
 {
@@ -130,17 +129,17 @@ void startGame()
 	OF.debugFunction("main, startGame");
 	std::string text = "What continent size do you want to play on?\n- 5 (Recommended for mobile devices)\n- 10 (Medium-sized map)\n- 15 (Full experienced, recommended for a monitor)\nEnter the number here: ";
 	//"What continent size do you want to play on? (5, 10, 15) "
-	std::string input = OF.getInput(text, { "number", "5", "10", "15" }, true, false);
+	std::string input = OF.getInput(false, -1, text, { "number", "5", "10", "15" }, true, false);
 	continentSize = std::stoi(input);
 	OF.clearScreen();
 	std::cout << "Continent size " << RED << continentSize << WHITE << " created..\n\n";
 
-	int pNum = std::stoi(OF.getInput("How many AI kingdoms will you fight? (1, 2, 3) ", { "number", "1", "2", "3" }, true, false));
+	int pNum = std::stoi(OF.getInput(false, -1, "How many AI kingdoms will you fight? (1, 2, 3) ", { "number", "1", "2", "3" }, true, false));
 	std::cout << RED << pNum << WHITE << " opponent kingdoms generated... \n\n";
 	OF.clearScreen();
 	totalMaxCommanders = continentSize;
 
-	enemyDifficulty = std::stoi(OF.getInput("What gameplay difficulty do you want (1-3): ", { "number","1","2","3" }, true, false));
+	enemyDifficulty = std::stoi(OF.getInput(false, -1, "What gameplay difficulty do you want (1-3): ", { "number","1","2","3" }, true, false));
 	OF.clearScreen();
 	std::cout << "Gameplay difficulty " << RED << enemyDifficulty << WHITE << " selected. \n\n";
 
@@ -155,7 +154,7 @@ void generateNewContinent(int pNum)
 	for (int x = 1; x <= 3; x++)
 		howManyPlayers.push_back(std::to_string(x));
 
-	int players = std::stoi(OF.getInput("How many human players are there (1/2/3; 1 is recommended for single player experience): ", howManyPlayers, true, false));
+	int players = std::stoi(OF.getInput(false, -1, "How many human players are there (1/2/3; 1 is recommended for single player experience): ", howManyPlayers, true, false));
 	OF.clearScreen();
 	std::cout << RED << players << WHITE << " players initialized...\n\n";
 	pNum += players;
@@ -230,7 +229,7 @@ void endScreen()
 
 		}
 	}
-	char playAgain = OF.getInput("Play again? (Y/N) ", { "letter", "Y", "N" }, false, false).at(0);
+	char playAgain = OF.getInput(false, -1, "Play again? (Y/N) ", { "letter", "Y", "N" }, false, false).at(0);
 	
 	
 	if (playAgain == 'Y')

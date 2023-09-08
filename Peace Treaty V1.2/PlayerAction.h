@@ -11,7 +11,6 @@
 
 
 #include "Misc/OtherFunctions.h"
-#include "Misc/showText.h"
 #include "Units/Participants.h"
 
 class PlayerAction
