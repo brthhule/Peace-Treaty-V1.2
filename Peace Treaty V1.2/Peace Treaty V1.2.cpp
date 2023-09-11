@@ -193,30 +193,6 @@ void generateNewContinent(int pNum)
 	std::cout << "Created participants";
 }
 
-void createMap() {
-	OF.debugFunction("main, createMap");
-	/*Basically create the map-- make each province an object of Provinces*/
-	// int a = 1;
-	// for (int x = 0; x < continentSize; x++) 
-	// {
-	 //    std::vector<Provinces> vectorThingy;
-	 //    provincesMap.push_back(vectorThingy);
-	 //    for (int y = 0; y < continentSize; y++) {
-	// 	Provinces newProvince(x-1, y, -1);
-	// 	newProvince.assignLinkedListNumber(a);
-	// 	a++;
-	// 	std::cout << ""
-	// 	provincesLL.addNode(newProvince);
-	// 	provincesHH[a] = &newProvince;
-	// 	provincesMap[x].push_back(newProvince);
-	 //    }
-	 //  }
-	std::vector<Provinces*> allProvinces = provincesLL.createMap(continentSize);
-	for (int x = 0; x < (int)allProvinces.size(); x++)
-		provincesHH[x] = allProvinces[x];
-
-	provincesLL.listProvinces();
-}
 
 void endScreen()
 {

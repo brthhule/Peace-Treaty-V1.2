@@ -138,7 +138,6 @@
     <ClCompile Include="MA\TrainMA.cpp" />
     <ClCompile Include="Misc\LinkedList.cpp" />
     <ClCompile Include="Misc\OtherFunctions.cpp" />
-    <ClCompile Include="Misc\showText.cpp" />
     <ClCompile Include="PlayerAction.cpp" />
     <ClCompile Include="Units\AllUnits.cpp" />
     <ClCompile Include="Units\CommanderProfile.cpp" />

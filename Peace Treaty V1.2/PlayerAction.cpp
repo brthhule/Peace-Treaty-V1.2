@@ -26,7 +26,7 @@ void PlayerAction::initialDecision() {
 		std::cout << std::endl;
     participant->showMap();
     
-    courseOfAction = getOption(4);
+    courseOfAction = OF.getOption(4);
   }
   else // If the participant is the AI
   {
@@ -64,7 +64,7 @@ void PlayerAction::initialDecision() {
     goToNextTurn = true;
     break;
   case 'H': {
-		showHelp(4);
+		OF.showHelp(4);
     break;
   }
   case 'P': {

@@ -59,7 +59,7 @@ std::string OtherFunctions::getInput(bool isSO, int caseNumArg, std::string text
   //     if (number == inputInt)
   //       return std::to_string(inputInt);
 	
-  return getInput(text, AV, isNumber, true);
+  return getInput(false, -1, text, AV, isNumber, true);
   
 }
 
@@ -232,7 +232,7 @@ void OtherFunctions::debugFunction(std::string functionName)
 std::vector<std::string> OtherFunctions::showOptions(int caseNum)
 {
 	//For debugging
-	debugFunction("showText, showOptions");
+	debugFunction("showText, showOptions-- add implementation");
 	//Create OtherFunctions object
 	std::string caseNumString = std::to_string(caseNum);
 	std::fstream newfile;
@@ -243,7 +243,7 @@ std::vector<std::string> OtherFunctions::showOptions(int caseNum)
 
 	if (newfile.is_open())
 	{
-		showOptions2();
+		//Add implementation
 	}
 	newfile.close(); // close the file object.
 
@@ -303,7 +303,7 @@ void OtherFunctions::showHelp(int caseNum)
 	{
 		std::string line;//Creates new line
 		bool pause = false;
-		while (getline(newfile, line))
+		while (std::getline(newfile, line))
 		{
 			bool wait = false;
 
@@ -327,12 +327,12 @@ void OtherFunctions::showHelp(int caseNum)
 	}
 }
 
-void OtherFunctions::printFile(std::string fileName)
+void OtherFunctions::printFile(std::string filename)
 {
 	debugFunction("showText, printFile");
 	std::cout << "File name: " << filename << std::endl;
 	std::fstream newfile;//create file
-	newfile.open(fileName, std::ios::in);//Open file
+	newfile.open(filename, std::ios::in);//Open file
 	if (newfile.is_open())//If the file opens successfully
 	{
 		std::string line;

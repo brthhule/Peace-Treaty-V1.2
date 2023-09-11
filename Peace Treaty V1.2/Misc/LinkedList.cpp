@@ -65,6 +65,10 @@ Provinces* LinkedList::getProvinceByNum (int num)
 			return temp->province;
 		}
 	}
+
+	std::cout << "Error path... \n";
+	Provinces newProvince;
+	return &newProvince;
 }
 
 std::vector<Provinces*> LinkedList::createMap (int size)
