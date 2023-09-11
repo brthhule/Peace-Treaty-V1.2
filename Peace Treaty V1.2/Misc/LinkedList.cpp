@@ -1,7 +1,5 @@
 #include "LinkedList.h"
 
-
-
 LinkedList::LinkedList()
 {
 	OF.debugFunction("LinkedList, LinkedList (0)");

@@ -79,7 +79,7 @@ public:
 	int getParticipantIndex();
 
 	//AI
-	void createAsPlayer (bool choice);
+	void createAsPlayer (bool status);
 	bool isAlive();
 	bool isPlayer(){return playerStatus;}
   void setPlayerStatus (bool status){playerStatus = status;}

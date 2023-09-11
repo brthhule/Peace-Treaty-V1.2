@@ -19,7 +19,7 @@ using namespace CV;
 
 extern int continentSize;
 extern int currentParticipantIndex;
-extern bool debuggingMode;
+
 
 class OtherFunctions {
 public:
@@ -63,6 +63,7 @@ public:
 
 
 private:
+	bool debuggingMode = true;
 };
 
 #endif

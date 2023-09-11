@@ -20,6 +20,7 @@
 #include "Units/Provinces.h"
 #include "Units/Participants.h"
 #include "Units/CommanderProfile.h"
+#include "Units/Database.h"
 
 //Miscellaneous
 #include "Misc/OtherFunctions.h"
@@ -32,9 +33,7 @@
 
 
 
-LinkedList provincesLL;
 //Linked lsit number, province address
-std::unordered_map <int, Provinces*> provincesHH;
 
 #define UNIT_AMOUNT 5
 #define RED "\033[31m"
@@ -51,11 +50,7 @@ void createMap();
 
 void AITurn();
 /*Miscellaneous*/
-std::vector <std::vector <Provinces>> provincesMap;
-std::vector <Participants> participantsList;
-int currentParticipantIndex;
 OtherFunctions OF;
-int turn = 1;
 
 /*other important stuff*/
 int continentSize = 0;
@@ -65,7 +60,8 @@ int enemyDifficulty = 0;
 using namespace CV;
 
 int totalMaxCommanders = 0;
-bool debuggingMode = true;
+
+Database db;
 
 
 
@@ -149,47 +145,19 @@ void generateNewContinent(int pNum)
 {
 	OF.debugFunction("main, generateNewContinent");
 	std::cout << "Create map...\n";
-	createMap();
-	std::vector<std::string> howManyPlayers = { "number" };
+	db.createMap();
+
 	for (int x = 1; x <= 3; x++)
 		howManyPlayers.push_back(std::to_string(x));
 
-	int players = std::stoi(OF.getInput(false, -1, "How many human players are there (1/2/3; 1 is recommended for single player experience): ", howManyPlayers, true, false));
+	int players = std::stoi(OF.getInput(false, -1, "How many human players are there (1/2/3; 1 is recommended for single player experience): ", {}, true, false));
 	OF.clearScreen();
+
 	std::cout << RED << players << WHITE << " players initialized...\n\n";
 	pNum += players;
 	std::cout << "pNum: " << pNum << std::endl;
 
-
-
-	for (int x = 0; x < pNum; x++)
-	{
-		std::cout << "Current pNum: " << x << std::endl;
-		Participants newParticipant(x);
-		std::cout << "Participant name: " << newParticipant.getKingdomName();
-		std::cout << "Participant index: " << newParticipant.getParticipantIndex();
-
-		//Create x + 1 many players
-		if (x < players)
-		{
-			std::cout << "Try to create player\n";
-			//std::cout << "New participant created... \n";
-			newParticipant.createAsPlayer(true);
-			std::cout << "Player created \n";
-		}
-		//Everyone else is enemy AI
-		else
-		{
-			std::cout << "Try to create AI \n";
-			newParticipant.createAsPlayer(false);
-			std::cout << "AI created \n";
-		}
-
-		//   std::cout << "Participant index: " << newParticipant.getParticipantIndex() << std::endl;
-		participantsList.push_back(newParticipant);
-		std::cout << "Participant pushed back" << std::endl;
-
-	}
+	db.initializeParticipants(pNum, players);
 	std::cout << "Created participants";
 }
 
@@ -214,42 +182,28 @@ void endScreen()
 	}
 }
 
-void updateTurnResources() {
-	OF.debugFunction("main, updateTurnResources");
-	for (int x = 0; x < continentSize; x++) {
-		for (int y = 0; y < continentSize; y++) {
-			provincesMap[x][y].updateBuildingsProduction();
-			provincesMap[x][y].updateProvinceResources();
-		}
-	}
-
-	//LL Alternative:
-	provincesLL.LLupdateprovinceResources();
-}
-
 void gamePlay()
 {
 	OF.debugFunction("main, gamePlay");
 	bool gameEnd = false;
 
+	//Create vector to copy the list of participants from the database
+	std::vector<Participants*> copyVector = db.getParticipantsList();
+
 	//Iterate through partiicpants by reference
-	for (Participants& newParticipant : participantsList)
+	for (Participants* newParticipant : copyVector)
 	{
-		if (newParticipant.isAlive())
+		//If the current participant is alive
+		if (newParticipant->isAlive())
 		{
-			PlayerAction newPlayerAction(&newParticipant);
+			//Create new PlayerAction object
+			PlayerAction newPlayerAction(newParticipant);
+			//Run through PlayerAction
 			newPlayerAction.initialDecision();
 		}
 	}
 	turn++;
-	// for (int x = 0; x < provincesMap.size(); x++)
-	// {
-	//   for (int y = 0; y < provincesMap[0].size(); y++)
-	//   {
-	//     provincesMap[x][y].updateProvinceResources();
-	//   }
-	// }
-	updateTurnResources();
+	db.updateTurnResources();
 
 	//Check game end
 	//If there are more than one players, keep playing

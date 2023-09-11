@@ -131,17 +131,23 @@ bool Participants::isAlive() {
 	return false;
 }
 
-void Participants::createAsPlayer(bool choice)
+void Participants::createAsPlayer(bool status)
 {
+	String name;
+	std::cout << "This is a human player...\n";
 	playerStatus = choice;
 	//If player
-	if (choice == true)
+	if (status == true)
 	{
 		std::cout << "Enter a name for this participant: " << RED;
-		getline(std::cin, kingdomName);
+		getline(std::cin, name);
+		newParticipant.setKingdomName(name);
+		newParticipant.setPlayerStatus(true);
 		std::cout << WHITE << "Participant " << RED << kingdomName << WHITE << " created... \n\n";
+		return;
 	}
-
+	std::cout << "Player created \n";
+	std::cout << "AI created \n";
 }
 
 void Participants::viewStats() {

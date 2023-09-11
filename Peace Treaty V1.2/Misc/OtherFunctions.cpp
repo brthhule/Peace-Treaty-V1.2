@@ -5,7 +5,7 @@
 OtherFunctions::OtherFunctions() {}
 
 //Gets user input and returns a valid response. Parameters: (string text, vector<string> acceptable values, bool isNumber, bool redo)
-std::string OtherFunctions::getInput(bool isSO, int caseNumArg, std::string text, std::vector<std::string> AV, bool isNumber, bool redo) 
+std::string OtherFunctions::getInput(bool isSO/*is showOptions*/, int caseNumArg, std::string text, std::vector<std::string> AV, bool isNumber, bool redo)
 {
 
 	//bool redo is to keep track of whether the function has been recursed or not
