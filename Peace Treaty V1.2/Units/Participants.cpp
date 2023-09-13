@@ -6,7 +6,8 @@
 #define WHITE "\033[0m"
 #define BLUE "\033[;34m"
 
-// Constructor
+	// Constructor
+//Constructor
 Participants::Participants(int pIndex) {
 	std::cout << "Create Capital\n";
 	createCapital();
@@ -49,7 +50,7 @@ void Participants::createCapital() {
 	 //   createCapital();
 	 // }
 
-	   //ParticipantsList Alternative
+	//ParticipantsList Alternative
 	int num = rand() % provincesLL.getProvincesNum();
 	std::cout << "Num: " << num << std::endl;
 	Provinces* newProvince = provincesLL.getProvinceByNum(num);
@@ -133,12 +134,12 @@ bool Participants::isAlive() {
 
 void Participants::createAsPlayer(bool status)
 {
-	String name;
 	std::cout << "This is a human player...\n";
 	playerStatus = choice;
 	//If player
 	if (status == true)
 	{
+		String name;
 		std::cout << "Enter a name for this participant: " << RED;
 		getline(std::cin, name);
 		newParticipant.setKingdomName(name);

@@ -1,4 +1,4 @@
-/*How to use colors: */
+﻿/*How to use colors: */
 /*On Linux, you can change the current foreground and background color by writing special character sequences into the output. Write the ESC escape character (octal "\033", hex \x1b), followed by an opening square bracket [. The color definition will follow next, termniated by a lowercase m.
 
 The color definition is a series of numbers, separated by semicolons. In order to make the text color red (number 31),
@@ -27,3 +27,318 @@ inverse off      27*/
 resources
 - https://www.educba.com/c-plus-plus-graphics/ graphics
 https://stackoverflow.com/questions/313970/how-to-convert-an-instance-of-stdstring-to-lower-case
+
+Modern c++: https://learn.microsoft.com/en-us/cpp/cpp/welcome-back-to-cpp-modern-cpp?view=msvc-170
+
+//constexpr int size = 10; // modern C++ same thing as #define SIZE 10
+
+
+struct S
+{
+    std::string name;
+    float num;
+    S(std::string s, float f) : name(s), num(f) {}
+};
+
+int main()
+{
+    // C-style initialization
+    std::vector<S> v;
+    S s1("Norah", 2.7);
+    S s2("Frank", 3.5);
+    S s3("Jeri", 85.9);
+
+    v.push_back(s1);
+    v.push_back(s2);
+    v.push_back(s3);
+
+    // Modern C++:
+    std::vector<S> v2 {s1, s2, s3};
+
+    // or...
+    std::vector<S> v3{ {"Norah", 2.7}, {"Frank", 3.5}, {"Jeri", 85.9} };
+
+}
+
+In C-style programming, a function can be passed to another function by using a function pointer. Function pointers are inconvenient to maintain and understand. The function they refer to may be defined elsewhere in the source code, far away from the point at which it's invoked. Also, they're not type-safe. Modern C++ provides function objects, classes that override the operator() operator, which enables them to be called like a function. The most convenient way to create function objects is with inline lambda expressions. The following example shows how to use a lambda expression to pass a function object, that the find_if function will invoke on each element in the vector:
+
+std::vector<int> v {1,2,3,4,5};
+    int x = 2;
+    int y = 4;
+    auto result = find_if(begin(v), end(v), [=](int i) { return i > x && i < y; });
+
+    The lambda expression [=](int i) { return i > x && i < y; } can be read as "function that takes a single argument of type int and returns a boolean that indicates whether the argument is greater than x and less than y." Notice that the variables x and y from the surrounding context can be used in the lambda. The [=] specifies that those variables are captured by value; in other words, the lambda expression has its own copies of those values.
+
+
+unique_pointer:
+// stl_release_unique.cpp
+// Compile by using: cl /W4 /EHsc stl_release_unique.cpp
+#include <iostream>
+#include <memory>
+
+struct Sample {
+   int content_;
+   Sample(int content) : content_(content) {
+      std::cout << "Constructing Sample(" << content_ << ")" << std::endl;
+   }
+   ~Sample() {
+      std::cout << "Deleting Sample(" << content_ << ")" << std::endl;
+   }
+};
+
+void ReleaseUniquePointer() {
+   // Use make_unique function when possible.
+   auto up1 = std::make_unique<Sample>(3);
+   auto up2 = std::make_unique<Sample>(42);
+
+   // Take over ownership from the unique_ptr up2 by using release
+   auto ptr = up2.release();
+   if (up2) {
+      // This statement does not execute, because up2 is empty.
+      std::cout << "up2 is not empty." << std::endl;
+   }
+   // We are now responsible for deletion of ptr.
+   delete ptr;
+   // up1 deletes its stored pointer when it goes out of scope.
+}
+
+int main() {
+   ReleaseUniquePointer();
+}
+
+Constructing Sample(3)
+Constructing Sample(42)
+Deleting Sample(42)
+Deleting Sample(3)
+
+
+            How to use map:
+#include <map>
+#include <iostream>
+
+typedef std::map<char, int> Mymap;
+int main()
+    {
+    Mymap c1;
+
+    c1.insert(Mymap::value_type('a', 1));
+    c1.insert(Mymap::value_type('b', 2));
+    c1.insert(Mymap::value_type('c', 3));
+
+// find and show elements
+    std::cout << "c1.at('a') == " << c1.at('a') << std::endl;
+    std::cout << "c1.at('b') == " << c1.at('b') << std::endl;
+    std::cout << "c1.at('c') == " << c1.at('c') << std::endl;
+
+    return (0);
+    }
+
+            //Iterator
+int main( )
+{
+   using namespace std;
+   map <int, int> m1;
+
+   map <int, int> :: iterator m1_Iter;
+   map <int, int> :: const_iterator m1_cIter;
+   typedef pair <int, int> Int_Pair;
+
+   m1.insert ( Int_Pair ( 0, 0 ) );
+   m1.insert ( Int_Pair ( 1, 1 ) );
+   m1.insert ( Int_Pair ( 2, 4 ) );
+
+   m1_cIter = m1.begin ( );
+   cout << "The first element of m1 is " << m1_cIter -> first << endl;
+
+   m1_Iter = m1.begin ( );
+   m1.erase ( m1_Iter );
+
+   // The following 2 lines would err because the iterator is const
+   // m1_cIter = m1.begin ( );
+   // m1.erase ( m1_cIter );
+
+   m1_cIter = m1.begin( );
+   cout << "The first element of m1 is now " << m1_cIter -> first << endl;
+}
+
+        Unordered map
+
+typedef std::unordered_map<char, int> Mymap;
+int main()
+{
+    Mymap c1;
+
+    c1.insert(Mymap::value_type('a', 1));
+    c1.insert(Mymap::value_type('b', 2));
+    c1.insert(Mymap::value_type('c', 3));
+
+    // find and show elements
+    std::cout << "c1.at('a') == " << c1.at('a') << std::endl;
+    std::cout << "c1.at('b') == " << c1.at('b') << std::endl;
+    std::cout << "c1.at('c') == " << c1.at('c') << std::endl;
+
+    return (0);
+}
+
+        Iterate through unordered map
+typedef std::unordered_map<char, int> Mymap;
+int main()
+{
+    Mymap c1;
+
+    c1.insert(Mymap::value_type('a', 1));
+    c1.insert(Mymap::value_type('b', 2));
+    c1.insert(Mymap::value_type('c', 3));
+
+    // display contents " [c 3] [b 2] [a 1]"
+    for (Mymap::const_iterator it = c1.begin();
+        it != c1.end(); ++it)
+        std::cout << " [" << it->first << ", " << it->second << "]";
+    std::cout << std::endl;
+
+    // inspect first two items " [c 3] [b 2]"
+    Mymap::iterator it2 = c1.begin();
+    std::cout << " [" << it2->first << ", " << it2->second << "]";
+    ++it2;
+    std::cout << " [" << it2->first << ", " << it2->second << "]";
+    std::cout << std::endl;
+
+    // inspect bucket containing 'a'
+    Mymap::const_local_iterator lit = c1.begin(c1.bucket('a'));
+    std::cout << " [" << lit->first << ", " << lit->second << "]";
+
+    return (0);
+}
+
+
+for (std::vector<int>::const_iterator itr = myvec.cbegin(); itr != myvec.cend(); ++itr)
+for (auto itr = myvec.cbegin(); itr != myvec.cend(); ++itr)
+for (const auto& x : myvec)
+
+
+
+
+
+
+
+Pointer for member function:
+Is the type of “pointer-to-member-function” different from “pointer-to-function”? ¶ Δ
+Yep.
+
+Consider the following function:
+
+int f(char a, float b);
+The type of this function is different depending on whether it is an ordinary function or a non-static member function of some class:
+
+Its type is “int (*)(char,float)” if an ordinary function
+Its type is “int (Fred::*)(char,float)” if a non-static member function of class Fred
+Note: if it’s a static member function of class Fred, its type is the same as if it were an ordinary function: “int (*)(char,float)”.
+
+
+Array of pointers to functions:
+void test1();
+void test2();            /*  Prototypes */
+void test3();
+
+/* array with three functions */
+void (*functptr[])() = { test1, test2, test3 } ;
+
+void main()
+{
+   (*functptr[0])();    /*  Call first function  */
+   (*functptr[1])();    /*  Call second function */
+   (*functptr[2])();    /*  Call third function  */
+}
+
+void test1()
+{
+   printf("hello 0\n");
+}
+
+void test2()
+{
+   printf("hello 1\n");
+}
+
+void test3()
+{
+   printf("hello 2\n");
+}
+
+typedef B* (A::*MemFuncPtr)(); // readability
+MemFuncPtr mfs[] = { &A::foo, &A::bar }; // declaring and initializing the array
+B* bptr1 = (pointerToA->*mfs[0])(); // call A::foo() through pointer to A
+B* bptr2 = (instanceOfA.*mfs[0])(); // call A::foo() through instance of A
+
+
+
+
+The member function pointer syntax is ReturnType (Class::*)(ParameterTypes...), so e.g.:
+
+typedef B* (A::*MemFuncPtr)(); // readability
+MemFuncPtr mfs[] = { &A::foo, &A::bar }; // declaring and initializing the array
+B* bptr1 = (pointerToA->*mfs[0])(); // call A::foo() through pointer to A
+B* bptr2 = (instanceOfA.*mfs[0])(); // call A::foo() through instance of A
+See e.g. this InformIT article for more details on pointers to members.
+
+You might also want to look into Boost.Bind and Boost.Function (or their TR1 equivalents) which allow you to opaquely bind the member-function-pointers to an instance:
+
+typedef boost::function<B* ()> BoundMemFunc;
+A instanceOfA;
+BoundMemFunc mfs[] = { 
+    boost::bind(&A::foo, &instanceOfA), 
+    boost::bind(&A::bar, &instanceOfA) 
+};
+B* bptr = mfs[0](); // call A::foo() on instanceOfA
+To use such an array as a member, note that you can't initialize arrays using the member initializer list. Thus you can either assign to it in the constructor body:
+
+A::A {
+    mfs[0] = &A::foo;
+}
+... or you use a type that can actually be initialized there like std::vector or boost::array:
+
+struct A {
+    const std::vector<MemFuncPtr> mfs;
+    // ...
+};
+
+namespace {
+    std::vector<MemFuncPtr> init_mfs() {
+        std::vector<MemFuncPtr> mfs;
+        mfs.push_back(&A::foo);
+        mfs.push_back(&A::bar);
+        return mfs;
+    }
+}
+
+A::A() : mfs(init_mfs()) {}
+
+
+
+Alternative: 
+#include <vector>
+class B;
+class A {
+   public:
+    B* foo() {
+        // return something;
+        return nullptr;
+    }
+
+    B* bar() {
+        // return something;
+        return nullptr;
+    }
+    
+    //C++ 11: functional brings std::function, which has zero overhead 
+    //but is actually a useful type with which one can work
+    std::vector<std::function<B*()>> container;
+
+    /* [=]() { return foo(); }
+     * that's a lambda. In practice it "compiles away", i.e. calling
+     * the lambda function is the same as calling foo or bar directly
+     * Note how [=] means we're passing in "this", so that we can 
+     * actually call foo().
+     */
+    A() : container{{[=]() { return foo(); }}, {[=]() { return bar(); }}} {}
+};

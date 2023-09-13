@@ -12,6 +12,14 @@
 #include "OtherFunctions.h"
 #include "LinkedList.h"//might need to move Database up, out of Units, so it can have a larger scope
 
+#define print(x) std::cout << x;
+#define println(x) std::cout << x << std::endl;
+#define RED "\033[31m"
+#define WHITE "\033[0m"
+#define BLUE "\033[;34m"
+//constexpr int size = 10; // modern C++ same thing as #define SIZE 10
+
+
 
 //Clase for an object that contians everything in the system/game
 //Purpose: from now on, create 
@@ -25,6 +33,7 @@ public:
 	std::vector<Participants*> getParticipantsList ();
 	void updateTurnResources();
 
+
 private:
 	OtherFunctions OF;
 	std::vector<Participants> participantsList;
@@ -33,6 +42,7 @@ private:
 	int currentParticipantIndex;
 	int turn = 1;
 	int continentSize = 0;
+	//Linked list of provinces
 	LinkedList provincesLL;
 };
 

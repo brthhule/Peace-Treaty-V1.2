@@ -69,11 +69,11 @@ Provinces* LinkedList::getProvinceByNum (int num)
 	return &newProvince;
 }
 
-std::vector<Provinces*> LinkedList::createMap (int size)
+std::unordered_map<std::string, Provinces*> LinkedList::createMap (int size)
 {
 	OF.debugFunction("LinkedList, createMap");
 	std::cout << "LLCreate Map...\n";
-	std::vector <Provinces*> allProvinces;
+	std::unordered_map<std::string, Provinces*> provincesList;
 	for (int x = 0; x < size * size; x++)
 	{
 		Provinces newProvince (x);
