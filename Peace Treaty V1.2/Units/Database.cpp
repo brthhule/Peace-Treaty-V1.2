@@ -48,7 +48,7 @@ void Database::initializeParticipants(int totalPlayers, int humanPlayers) {
 
 }
 
-std::vector <Participants*> Database::getParticipantsList() {
+vector <Participants*> Database::getParticipantsList() {
 	return &participantsList;
 }
 
@@ -63,4 +63,17 @@ void Database::updateTurnResources() {
 
 	//LL Alternative:
 	provincesLL.LLupdateprovinceResources();
+}
+
+void Database::setContinentSize(int num) {
+	continentSize = num;
+}
+int Database::getContinentSize() {
+	return continentSize;
+}
+void Database::setMaxCommanders(int num) {
+	return maxCommanders;
+}
+int Database::getMaxCommanders() {
+	return maxCommanders;
 }

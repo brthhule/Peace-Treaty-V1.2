@@ -1,4 +1,8 @@
 #include "Provinces.h"
+
+#define print(x) std::cout << x;
+#define println(x) std::cout << x << std::endl;
+
 //constructors
 Provinces::Provinces()
 {
@@ -347,4 +351,95 @@ std::string Provinces::getLLCoordinates ()
 	int y = 5 - (int)(linkedListNumber / 5);
 	std::string coordinatesString = "(" + std::to_string(x) + ", " + std::to_string(y) + ")";
 	return coordinatesString;
+}
+
+
+void Provinces::playerBuildFunction() {
+	OF.clearScreen();
+	std::cout<<
+		"---------- Start printing province information ----------\n\033[34m";
+	std::cout << "Province of kingdom " + participant->getKingdomName();
+	std::cout << "Coordinates: ("
+		<< OF.translateCoordinate(getCoordinate('X'), 'x', 'O') << ", "
+		<< OF.translateCoordinate(getCoordinate('Y'), 'y', 'O')
+		<< ") \n\n\033[0m";
+
+	this->printResources();
+	printBuildingStats();
+	println("---------- End printing province information ----------\n");
+
+	char upgradeBuilding = ' ';
+	char repeatPlayerBuildFunction = 'Y';
+
+	upgradeBuilding = OF.getOption(7);
+	if (OF.getOption(7) == 'U') {
+		upgradeBuildings();
+		playerBuildFunction();
+		std::cout << std::endl;
+	}
+	else {
+		std::cout << "Returning to previous menu... " << std::endl;
+		OF.clearScreen();
+	}
+}
+
+void Provinces::upgradeBuildings() {
+	std::array<int, 5> requiredResources = { 0, 0, 0, 0, 0 };
+	int buildingNumber = 0;
+	std::vector<std::string> buildingLetterList = { "F", "L", "Q", "M", "C", "B", "H" };
+
+	char buildingLetter = OF.getInput(false, -1, "Enter the first letter of the building you want to upgrade (enter 'H' for help): ", buildingLetterList, false, false).at(0);
+
+	if (buildingLetter != 'H') {
+		upgradeBuildings2();
+	}
+	else {
+		OF.showHelp(12);
+	}
+
+	char upgradeAgain = OF.getInput(false, -1, "Upgrade another building (Y/N): ", { "Y", "N" }, false, false).at(0);
+	if (upgradeAgain == 'Y') {
+		upgradeBuildings2(buildingLetter, buildingNumber, requiredResources);
+	}
+	std::cout << "Returning to Build Infrastructure action menu. " << std::endl;
+}
+
+void Provinces::upgradeBuildings2(char buildingLetter, int buildingNumber, std::array<int, 5> requiredResources) {
+	for (int x = 0; x < 6; x++) {
+		if (buildingLetter == buildingLetterList[x].at(0)) {
+			buildingNumber = x;
+			break;
+		}
+	}
+
+	printInformation(buildingNumber, requiredResources);
+	char upgradeProceed = OF.getInput(false, -1, "Proceed with upgrade? (Y/N) ", { "Y", "N" }, false, false).at(0);
+
+	if (upgradeProceed == 'Y') {
+		bool upgradeSuccess = this->subtractCheckResources(requiredResources);
+
+		if (upgradeSuccess == false) {
+			modifyResources(requiredResources, true);
+			println("Upgrade failed. Not enough resources. ");
+		}
+		else {
+			println("Upgrade successful.\n");
+			this->increaseBuildingLevel(buildingNumber, 1);
+		}
+	}
+}
+
+//Fix this to differentiate between resource buildings and othe rother buildings; right now, only accounts for resource buildings
+void Provinces::printInformation(int buildingNumber, std::array<int, 5> requiredResources) {
+	std::cout << "---------- Start printing information----------\n\n\033[34m";
+	println(CV::RESOURCE_BUILDING_NAMES[buildingNumber] + " selected \n");
+	println("The following is the cost of the upgrade: ");
+	for (int x = 0; x < 5; x++) {
+		requiredResources[x] = (int)requiredResourcesBuildings[buildingNumber][x] * this->getBuildingLevel(x);
+		std::cout << CV::RESOURCE_NAMES[x] << ": " << requiredResources[x]
+			<< std::endl;
+	}
+	println("\nThe following are how many resources are in this province: ");
+	this->printResources();
+	std::cout << "----------End printing informatio----------" << std::endl;
 }

@@ -39,7 +39,7 @@ void PlayerAction::initialDecision() {
   switch (courseOfAction) {
   case 'B': {
 		Provinces *newProvince = participant->getYourProvince(1);
-    BuildMA newBuildMA(newProvince, participant);
+        newProvince->playerBuildFunction();
     break;
   }
   case 'T': {

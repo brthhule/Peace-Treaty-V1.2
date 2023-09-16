@@ -1,6 +1,9 @@
 #include "OtherFunctions.h"
 #define print(x) std::cout << x;
 #define println(x) std::cout << x << std::endl;
+#define RED "\033[31m"
+#define WHITE "\033[0m"
+#define BLUE "\033[;34m"
 
 OtherFunctions::OtherFunctions() {}
 
@@ -208,12 +211,6 @@ void OtherFunctions::debugFunction(std::string functionName)
 	if (debuggingMode == true)
 		std::cout << "\033[35mFunction: " << functionName << "\033[0m\n";
 }
-
-
-
-#define RED "\033[31m"
-#define WHITE "\033[0m"
-#define BLUE "\033[;34m"
 
 /*
 1 - selectEnemyAction

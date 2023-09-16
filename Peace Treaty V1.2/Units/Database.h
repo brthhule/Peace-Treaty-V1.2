@@ -9,8 +9,8 @@
 #include "Participants.h"
 #include "Provinces.h"
 #include "CommanderPRofile.h"
-#include "OtherFunctions.h"
-#include "LinkedList.h"//might need to move Database up, out of Units, so it can have a larger scope
+#include "../Misc/OtherFunctions.h"
+#include "../Misc/LinkedList.h"//might need to move Database up, out of Units, so it can have a larger scope
 
 #define print(x) std::cout << x;
 #define println(x) std::cout << x << std::endl;
@@ -33,6 +33,11 @@ public:
 	std::vector<Participants*> getParticipantsList ();
 	void updateTurnResources();
 
+	void setContinentSize(int num);
+	int getContinentSize();
+	void setMaxCommanders(int num);
+	int getMaxCommanders();
+
 
 private:
 	OtherFunctions OF;
@@ -41,9 +46,10 @@ private:
 	std::vector <std::vector <Provinces>> provincesMap;
 	int currentParticipantIndex;
 	int turn = 1;
-	int continentSize = 0;
+	int continentSize;
 	//Linked list of provinces
 	LinkedList provincesLL;
+	int maxCommanders;
 };
 
 #endif

@@ -89,8 +89,7 @@ void MapMA::selectPlayerProvince() {
 
   switch (selectPlayerCapitalAction) {
   case 'B': {
-    BuildMA newBuildMA(prov, participant);
-    newBuildMA.playerBuildFunction();
+    prov->playerBuildFunction();
     break;
   }
   case 'T': {

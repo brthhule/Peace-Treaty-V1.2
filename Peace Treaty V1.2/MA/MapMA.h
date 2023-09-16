@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-#include "BuildMA.h"
+
 #include "ScoutMA.h"
 #include "AttackMA.h"
 #include "TrainMA.h"

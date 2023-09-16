@@ -25,6 +25,7 @@ Participants::Participants(int pIndex) {
 		for (int y = 0; y < continentSize; y++)
 		{
 			Provinces newProvince;
+			newProvince.setKingdomName(this->getKingdomName());
 			provincesVector.push_back(newProvince);
 		}
 		scoutMap.push_back(provincesVector);
@@ -80,8 +81,7 @@ Provinces* Participants::findProvince(int x, int y) {
 	}
 
 	std::cout << "Error occurred, error path...\n";
-	Provinces newProvince;
-	return &newProvince;
+	return this->getErrorProvince();
 }
 
 int Participants::provincesNum() { return provincesList.size(); }
@@ -135,15 +135,15 @@ bool Participants::isAlive() {
 void Participants::createAsPlayer(bool status)
 {
 	std::cout << "This is a human player...\n";
-	playerStatus = choice;
+	playerStatus = status;
 	//If player
 	if (status == true)
 	{
-		String name;
+		std::string name;
 		std::cout << "Enter a name for this participant: " << RED;
 		getline(std::cin, name);
-		newParticipant.setKingdomName(name);
-		newParticipant.setPlayerStatus(true);
+		this->setKingdomName(name);
+		this->setPlayerStatus(true);
 		std::cout << WHITE << "Participant " << RED << kingdomName << WHITE << " created... \n\n";
 		return;
 	}
@@ -267,8 +267,7 @@ Provinces* Participants::getYourProvince(int identifier) {
 	getYourProvince(identifier);
 
 	std::cout << "Invalid path... \n";
-	Provinces emptyProvince;
-	return &emptyProvince;
+	return this->getErrorProvince();
 }
 Provinces* Participants::getCoords(int identifier) {
 	std::vector<std::string> actualCoordinatesAVTwo = { "-1" };
@@ -319,8 +318,7 @@ Provinces* Participants::getCoords(int identifier) {
 	
 	//Empty path
 	std::cout << "Error path...";
-	Provinces newProvince;
-	return &newProvince;
+	return this->getErrorProvince();
 }
 
 int Participants::getRandomCoordinate() { return rand() % continentSize; }
@@ -610,4 +608,38 @@ void Participants::showMap()
 			std::cout << a + 1 << "  ";
 	}
 	std::cout << "\n\n";
+}
+
+Provinces* Participants::findProvince() {
+	OF.debugFunction("Participants, findProvince--revise");
+	std::cout << "Welcome to the Player Build menu\n\n";
+	Provinces* province = this->getCoords(1);
+
+	if (province->getCoordinate('X') != -1) {
+		//If this province belongs to the current participant
+		int participantIndex = this->getParticipantIndex();
+		if (province->getParticipantIndex() == participantIndex) {
+			return province;
+			//What does this do???
+			province->playerBuildFunction();
+		}
+		else {//If does not belong to the current participant
+			print("Invalid province elected. Please try again. \nEnter anything to "
+				"proceed back to the Player Build menu (Screen will clear) ");
+			OF.enterAnything();
+		}
+		std::cout << std::endl;
+	}
+	else
+	{
+		std::cout << "Returning to player action menu...\n";
+	}
+
+	std::cout << "Error path...\n";
+	return this->getErrorProvince();
+}
+
+Provinces* Participants::getErrorProvince() {
+	Provinces *emptyProvince = &errorProvince;
+	return emptyProvince;
 }

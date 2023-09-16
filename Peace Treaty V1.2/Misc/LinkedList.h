@@ -2,6 +2,7 @@
 #define LINKEDLIST_H
 
 #include <iostream>
+#include <vector>
 #include <unordered_map>
 #include "OtherFunctions.h"
 #include "../Units/Provinces.h"
@@ -52,6 +53,7 @@ private:
 
 	//Infrastructure stuff
 	OtherFunctions OF;
+	std::vector<Provinces*> allProvinces;
 };
 
 

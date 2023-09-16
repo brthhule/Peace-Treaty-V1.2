@@ -5,7 +5,6 @@
 #include <cmath>
 
 #include "MA/ArmyOverviewMA.h"
-#include "MA/BuildMA.h"
 #include "MA/TrainMA.h"
 #include "MA/MapMA.h"
 

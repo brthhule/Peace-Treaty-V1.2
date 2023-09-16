@@ -8,6 +8,9 @@
 #include "CommanderProfile.h"
 #include "../Misc/ConstValues.h"
 
+#define print(x) std::cout << x;
+#define println(x) std::cout << x << std::endl;
+
 using namespace CV;
 
 extern int continentSize;
@@ -16,82 +19,115 @@ extern int turn;
 
 const int LOG_SIZE = 20;
 
-class Provinces : public AllUnits {
+class Build
+{
 public:
-  /*Constructors*/
-  Provinces();
-  Provinces(int xCoordinate, int yCoordinate, int pIndex);
+	Build() {}
+	virtual ~Build() {}
+	virtual void playerBuildFunction() = 0;
+	virtual void upgradeBuildings() = 0;
+	virtual void upgradeBuildings2() = 0;
+	virtual void printInformation(int buildingNumber, std::array<int, 5> requiredResources) = 0;
+	double requiredResourcesBuildings[6][5] = {
+		{1, 0.5, 0.25, 0.125, 0.0625},
+		{2, 1, 0.5, 0.25, 0.125},
+		{3, 2, 1, 0.5, 0.25},
+		{4, 3, 2, 1, 0.5},
+		{5, 4, 3, 2, 1},
+		{1, 1, 1, 1, 0.2} };
+private:
+	/*double requiredResourcesFarm [5] = {1, 0.5, 0.25, 0.125, 0.0625};
+   double requiredResourcesLumberMill [5] = {2, 1, 0.5, 0.25, 0.125};
+   double requiredResourcesQuarry [5] = {3, 2, 1, 0.5, 0.25};
+   double requiredResourcesMine [5] = {4, 3, 2, 1, 0.5};
+   double requiredResourcesChurch [5] = {5, 4, 3, 2, 1};
+   double requiredResourcesBarracks [5] = {1, 1, 1, 1, 0.2};*/
+};
+
+class Provinces : public AllUnits, public Build {
+public:
+	/*Constructors*/
+	Provinces();
+	Provinces(int xCoordinate, int yCoordinate, int pIndex);
 	Provinces(int LLNumArg);
 	void basicStats();
 
 	/*Initialization*/
-	bool isCapital(){return isACapital;}
+	bool isCapital() { return isACapital; }
 	void setCoordinates(int xCoordinate, int yCoordinate);
-  void initializeCapital(); // provinceIsACapital
+	void initializeCapital(); // provinceIsACapital
 
 	/*Province Identity*/
 	int getCoordinate(char identifier);
-  bool deleteStatus();
+	bool deleteStatus();
 	std::string getProvinceName();
-  void setDeleteProvince() { deleteProvince = true; }
+	void setDeleteProvince() { deleteProvince = true; }
 
-  /*Garrisons*/
-  int getMaxGarrison();
+	/*Garrisons*/
+	int getMaxGarrison();
 	int getMaxInfirmaryCapacity();
 
 
 	//Buildings
-  int findMaxInfirmaryCapacity() { return (otherBuildingsLevels[1] * 10); };
-  int getBuildingLevel(int index);
-  void increaseBuildingLevel(int index, int amount);
+	int findMaxInfirmaryCapacity() { return (otherBuildingsLevels[1] * 10); };
+	int getBuildingLevel(int index);
+	void increaseBuildingLevel(int index, int amount);
 
 
-  // Commanders
-  CommanderProfile* getCommander (std::string name);
-  int findProvinceLevel();
-  void addCommander(CommanderProfile *newCommander);
-	void removeCommander(CommanderProfile *newCommander);
+	// Commanders
+	CommanderProfile* getCommander(std::string name);
+	int findProvinceLevel();
+	void addCommander(CommanderProfile* newCommander);
+	void removeCommander(CommanderProfile* newCommander);
 	std::vector <CommanderProfile*> getAllCommanders();
-	int commandersNum(){return commanders.size();}
-	void printCommanders ();
-	bool hasCommander (std::string name);
+	int commandersNum() { return commanders.size(); }
+	void printCommanders();
+	bool hasCommander(std::string name);
 
 	/*Training*/
-  int getTroopsTrainedThisTurn() { return troopsTrainedThisTurn; };
-  void addTroopsTrainedThisTurn(int amount);
-  void resetTroopsTrainedThisTurn();
+	int getTroopsTrainedThisTurn() { return troopsTrainedThisTurn; };
+	void addTroopsTrainedThisTurn(int amount);
+	void resetTroopsTrainedThisTurn();
 
 	int getLinkedListNumber();
 	void assignLinkedListNumber(int number);
 
 	/*Resources*/
 	bool subtractCheckResources(std::array<int, 5> resourcesArray);
-  std::array<int,5> getTotalResources();
+	std::array<int, 5> getTotalResources();
 
 	/*Stats*/
-  void printBuildingStats();
-	int getTotalCP ();
+	void printBuildingStats();
+	int getTotalCP();
 	void updateBuildingsProduction();
-  void updateProvinceResources();
+	void updateProvinceResources();
 
 	/*Scout Stuff*/
 	void completeProvinceScoutReport(int accuracy, Provinces* targetProvince, int scoutTurn);
 	int getEstimate(int newAccuracy, int quantity);
-	int getScoutReportTurn(){return scoutReportTurn;}
-	int getScoutLogTurnLevel(){return scoutReportLogLevel;}
-	std::array<int,5> getResourceBuildingLevels();
-	std::array<int,5> getResourceBuildignsProduction();
-	std::array<int,5> getOtherBuildingsLevels ();
+	int getScoutReportTurn() { return scoutReportTurn; }
+	int getScoutLogTurnLevel() { return scoutReportLogLevel; }
+	std::array<int, 5> getResourceBuildingLevels();
+	std::array<int, 5> getResourceBuildignsProduction();
+	std::array<int, 5> getOtherBuildingsLevels();
 	int getBarracksCapacity();
-	int getBarracksLevel(){return *barracksLevel;}
-	std::array<int,5> getMaxResources();
-	std::string getLLCoordinates ();
+	int getBarracksLevel() { return *barracksLevel; }
+	std::array<int, 5> getMaxResources();
+	std::string getLLCoordinates();
 
-	
+	public void playerBuildFunction();
+	public void upgradeBuildings();
+	public void upgradeBuildings2(char buildingLetter, int buildingNumber, std::array<int, 5> requiredResources);
+	public void printInformation(int buildingNumber, std::array<int, 5> requiredResources);
+
+	void setKingdomName(std::string name) { kingdomName = name; }
+	std::string getKingdomName() { return kingdomName; }
+
+
 private:
 	/*Garrison*/
-  int maxGarrison;//derived
-  int maxInfirmaryCapacity;//derived
+	int maxGarrison;//derived
+	int maxInfirmaryCapacity;//derived
 
 	std::array<int, 5> resourceBuildingsLevels;
 	std::array<int, 5> resourceBuildingsProduction;
@@ -99,20 +135,20 @@ private:
 	int* barracksLevel = &otherBuildingsLevels[0];
 	int* infirmaryLevel = &otherBuildingsLevels[1];
 	int* libraryLevel = &otherBuildingsLevels[2];
-	int* wallLevel = &otherBuildingsLevels[3];	
+	int* wallLevel = &otherBuildingsLevels[3];
 	int* residencesLevel = &otherBuildingsLevels[4];
 
 	int barracksCapacity;//derived
-	
-  std::array<int,5> maxResources;//derived
-  int totalMaxResources;//derived
 
-  int troopsTrainedThisTurn;//variable
-  int foodConsumption;//variable
+	std::array<int, 5> maxResources;//derived
+	int totalMaxResources;//derived
 
-  bool isACapital;//stat
+	int troopsTrainedThisTurn;//variable
+	int foodConsumption;//variable
 
-  bool deleteProvince;//conditional
+	bool isACapital;//stat
+
+	bool deleteProvince;//conditional
 
 	std::unordered_map<std::string, CommanderProfile*> commanders;
 	std::unordered_map<std::string, CommanderProfile*>::iterator it;
@@ -122,6 +158,7 @@ private:
 	int logAccuracy;
 	double newAccuracy;
 	int linkedListNumber;
+	std::string kingdomName;
 };
 
 #endif

@@ -13,7 +13,7 @@
 	int troopsInjured[5];
 	int totalCP;*/
 using namespace CV;
-extern int continentSize;
+
 
 class AllUnits
 {

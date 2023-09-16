@@ -65,8 +65,8 @@ Provinces* LinkedList::getProvinceByNum (int num)
 	}
 
 	std::cout << "Error path... \n";
-	Provinces newProvince;
-	return &newProvince;
+	//Let's see if this works
+	return nullptr;
 }
 
 std::unordered_map<std::string, Provinces*> LinkedList::createMap (int size)
@@ -77,10 +77,12 @@ std::unordered_map<std::string, Provinces*> LinkedList::createMap (int size)
 	for (int x = 0; x < size * size; x++)
 	{
 		Provinces newProvince (x);
+		newProvince.setKingdomName("EMPTY");
 		addNode(newProvince);
-		allProvinces.push_back(&newProvince);
+		std::pair<std::string, Provinces*> newValue(newProvince.getProvinceName(), &newProvince);
+		provincesList.insert(newValue);
 	}
-	return allProvinces;
+	return provincesList;
 }
 
 void LinkedList::listProvinces()

@@ -93,6 +93,8 @@ public:
 	int calculateTotals (int option);
 	std::array<int, 5> calculateEach(int option);
 
+	Provinces* findProvince();
+
 
 	//Coordinate stuff
 	
@@ -109,6 +111,8 @@ public:
 	void displayCommanders();
 	std::string selectCommander();
 	CommanderProfile* getSelectedCommander(){return selectedCommander;}
+
+	static Provinces* getErrorProvince();
   
 
 
@@ -133,6 +137,7 @@ std::array <int, 5> trainCosts = {5, 4, 3, 2, 1};
 	OtherFunctions OF;
   std::unordered_map<std::string, CommanderProfile*>::iterator it;
 	CommanderProfile* selectedCommander; //For ArmyDeploymentMA
+	static Provinces errorProvince;
 };
 
 #endif

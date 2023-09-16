@@ -131,7 +131,6 @@
   <ItemGroup>
     <ClCompile Include="MA\ArmyOverviewMA.cpp" />
     <ClCompile Include="MA\AttackMA.cpp" />
-    <ClCompile Include="MA\BuildMA.cpp" />
     <ClCompile Include="MA\MapMA.cpp" />
     <ClCompile Include="MA\Mobility.cpp" />
     <ClCompile Include="MA\ScoutMA.cpp" />
