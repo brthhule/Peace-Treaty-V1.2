@@ -135,6 +135,14 @@ private:
 	double newAccuracy;
 	int linkedListNumber;
 	std::string kingdomName;
+
+	double requiredResourcesBuildings[6][5] = {
+		{1, 0.5, 0.25, 0.125, 0.0625},
+		{2, 1, 0.5, 0.25, 0.125},
+		{3, 2, 1, 0.5, 0.25},
+		{4, 3, 2, 1, 0.5},
+		{5, 4, 3, 2, 1},
+		{1, 1, 1, 1, 0.2} };
 };
 
 #endif
