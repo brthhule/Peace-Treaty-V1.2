@@ -48,9 +48,9 @@ void ArmyOverviewMA::upgradeCommandersOne() /*fix this-- finish making it*/
 }
 void ArmyOverviewMA::upgradeCommandersTwo() 
 {
-	std::array<int,5> costsArray = participant->getCommanderByName(commanderName)->getUpgradeCosts();
+	std::array<int,5> costsArray = participant->getCommander(commanderName)->getUpgradeCosts();
 	
-  participant->getCommanderByName(commanderName)->printCosts(costsArray);
+  participant->getCommander(commanderName)->printCosts(costsArray);
 
 	char proceedWithUpgradeQuestion =
       OF.getInput(false, -1, "\nProceed with upgrade? ", {"Y", "N"}, false, false).at(0);
@@ -60,8 +60,8 @@ void ArmyOverviewMA::upgradeCommandersTwo()
 		bool commanderUpgradeIsSuccess = participant->getCapital()->subtractCheckResources(commanderCosts);
 
     if (commanderUpgradeIsSuccess == true) {
-      participant->getCommanderByName(commanderName)->addLevel();
-      std::cout << "Upgrade successful; Commander " + commanderName + "is now level " << participant->getCommanderByName(commanderName)->getLevel() << std::endl;
+      participant->getCommander(commanderName)->addLevel();
+      std::cout << "Upgrade successful; Commander " + commanderName + "is now level " << participant->getCommander(commanderName)->getLevel() << std::endl;
     } else {
       participant->getCapital()->modifyResources(commanderCosts, true);
       std::cout << "Upgrade failed. " << std::endl;
@@ -75,10 +75,10 @@ if (commanderName != "-1")
 	{
 		std::cout << "Commander " << commanderName << " selected... " << std::endl;
     std::cout << "The coordinates of this Commander: ";
-		participant->getCommanderByName(commanderName)->printCoordinates();
+		participant->getCommander(commanderName)->printCoordinates();
 		std::cout << "\n\n";
 
-    participant->getCommanderByName(commanderName)->printCommanderStats();
+    participant->getCommander(commanderName)->printCommanderStats();
 	}
 	OF.enterAnything();	
 }
@@ -123,14 +123,14 @@ void ArmyOverviewMA::deployCommanderMF()
   if (commanderName != "-1")
 		return;
 	
-  participant->getCommanderByName(commanderName)->printCommanderStats();
+  participant->getCommander(commanderName)->printCommanderStats();
 
   std::cout << "Deploy commander " + commanderName + "? (Y/N) ";
   char confirmDeploy = OF.getInput(false, -1, "Replacement", {"Y", "N"}, false, false).at(0);
 
   if (confirmDeploy == 'Y') 
 	{
-    if (participant->getCommanderByName(commanderName)->hasMovedQuestion() == false) {
+    if (participant->getCommander(commanderName)->hasMovedQuestion() == false) {
       Mobility newMobility(commanderName, participant);
       newMobility.moveUnitOne();
     } 

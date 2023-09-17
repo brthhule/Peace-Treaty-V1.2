@@ -4,13 +4,13 @@
 #define println(x) std::cout << x << std::endl;
 
 //constructors
-Provinces::Provinces()
+Provinces::Provinces() : Build()
 {
 	OF.debugFunction("Provinces, Provinces (1)");
 	participantIndex = -1;
 	basicStats();
 }
-Provinces::Provinces(int sendXCoordinate, int sendYCoordinate, int pIndex)
+Provinces::Provinces(int sendXCoordinate, int sendYCoordinate, int pIndex) : Build()
 {
 	OF.debugFunction("Provinces, Provinces (3)");
 	//Initialize building levels
@@ -399,12 +399,12 @@ void Provinces::upgradeBuildings() {
 
 	char upgradeAgain = OF.getInput(false, -1, "Upgrade another building (Y/N): ", { "Y", "N" }, false, false).at(0);
 	if (upgradeAgain == 'Y') {
-		upgradeBuildings2(buildingLetter, buildingNumber, requiredResources);
+		upgradeBuildings2(buildingLetter, buildingNumber, requiredResources, buildingLetterList);
 	}
 	std::cout << "Returning to Build Infrastructure action menu. " << std::endl;
 }
 
-void Provinces::upgradeBuildings2(char buildingLetter, int buildingNumber, std::array<int, 5> requiredResources) {
+void Provinces::upgradeBuildings2(char buildingLetter, int buildingNumber, std::array<int, 5> requiredResources, std::vector<std::string> buildingLetterList) {
 	for (int x = 0; x < 6; x++) {
 		if (buildingLetter == buildingLetterList[x].at(0)) {
 			buildingNumber = x;

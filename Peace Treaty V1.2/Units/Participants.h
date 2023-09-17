@@ -140,4 +140,6 @@ std::array <int, 5> trainCosts = {5, 4, 3, 2, 1};
 	static Provinces errorProvince;
 };
 
+
+
 #endif

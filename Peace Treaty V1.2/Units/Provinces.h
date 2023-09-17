@@ -7,6 +7,7 @@
 #include "AllUnits.h"
 #include "CommanderProfile.h"
 #include "../Misc/ConstValues.h"
+#include "../Interfaces/Build.h"
 
 #define print(x) std::cout << x;
 #define println(x) std::cout << x << std::endl;
@@ -18,31 +19,6 @@ extern const int BARRACKS_PRODUCTION;
 extern int turn;
 
 const int LOG_SIZE = 20;
-
-class Build
-{
-public:
-	Build() {}
-	virtual ~Build() {}
-	virtual void playerBuildFunction() = 0;
-	virtual void upgradeBuildings() = 0;
-	virtual void upgradeBuildings2() = 0;
-	virtual void printInformation(int buildingNumber, std::array<int, 5> requiredResources) = 0;
-	double requiredResourcesBuildings[6][5] = {
-		{1, 0.5, 0.25, 0.125, 0.0625},
-		{2, 1, 0.5, 0.25, 0.125},
-		{3, 2, 1, 0.5, 0.25},
-		{4, 3, 2, 1, 0.5},
-		{5, 4, 3, 2, 1},
-		{1, 1, 1, 1, 0.2} };
-private:
-	/*double requiredResourcesFarm [5] = {1, 0.5, 0.25, 0.125, 0.0625};
-   double requiredResourcesLumberMill [5] = {2, 1, 0.5, 0.25, 0.125};
-   double requiredResourcesQuarry [5] = {3, 2, 1, 0.5, 0.25};
-   double requiredResourcesMine [5] = {4, 3, 2, 1, 0.5};
-   double requiredResourcesChurch [5] = {5, 4, 3, 2, 1};
-   double requiredResourcesBarracks [5] = {1, 1, 1, 1, 0.2};*/
-};
 
 class Provinces : public AllUnits, public Build {
 public:
@@ -115,10 +91,10 @@ public:
 	std::array<int, 5> getMaxResources();
 	std::string getLLCoordinates();
 
-	public void playerBuildFunction();
-	public void upgradeBuildings();
-	public void upgradeBuildings2(char buildingLetter, int buildingNumber, std::array<int, 5> requiredResources);
-	public void printInformation(int buildingNumber, std::array<int, 5> requiredResources);
+	void playerBuildFunction();
+	void upgradeBuildings();
+	void upgradeBuildings2(char buildingLetter, int buildingNumber, std::array<int, 5> requiredResources, std::vector<std::string> buildingLetterList);
+	void printInformation(int buildingNumber, std::array<int, 5> requiredResources);
 
 	void setKingdomName(std::string name) { kingdomName = name; }
 	std::string getKingdomName() { return kingdomName; }

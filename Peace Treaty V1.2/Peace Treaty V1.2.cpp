@@ -45,8 +45,6 @@ void startGame();
 void generateNewContinent(int pNum);
 void gamePlay();
 void endScreen();
-void updateTurnResources();
-void createMap();
 
 void AITurn();
 /*Miscellaneous*/

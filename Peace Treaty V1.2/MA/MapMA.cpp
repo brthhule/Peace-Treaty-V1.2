@@ -182,7 +182,7 @@ void MapMA::playerUnitActionP(Provinces *newP)
 		playerUnitAction(newProvince);
 	}
 	
-	if (participant->getCommanderByName(commanderName)->hasMovedQuestion() == false) {
+	if (participant->getCommander(commanderName)->hasMovedQuestion() == false) {
 		Mobility newMobility (commanderName, participant);
 		newMobility.moveUnitOne(); /*fix this*/
 		playerUnitAction(newProvince);

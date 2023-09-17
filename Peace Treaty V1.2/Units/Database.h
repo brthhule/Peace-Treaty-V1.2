@@ -37,7 +37,7 @@ public:
 	int getContinentSize();
 	void setMaxCommanders(int num);
 	int getMaxCommanders();
-
+	void showMap();
 
 private:
 	OtherFunctions OF;

@@ -48,7 +48,7 @@ void AttackMA::findCommander(std::vector <CommanderProfile *> commandersCanAttac
 	if (attackingParticipant->hasCommander(commanderName) == false)
 		findCommander(commandersCanAttack);
 	
-	attackingCommander = attackingParticipant -> getCommanderByName(commanderName);
+	attackingCommander = attackingParticipant -> getCommander(commanderName);
 	preAttack();
 }
 

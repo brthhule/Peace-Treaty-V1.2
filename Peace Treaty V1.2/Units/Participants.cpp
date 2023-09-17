@@ -219,8 +219,6 @@ std::string Participants::getNewName() {
 
 std::array<int, 5> Participants::getTrainCosts() { return trainCosts; }
 
-int Participants::getMaxCommanders() { return maxCommanders; }
-
 void Participants::setParticipantIndex(int num) { participantIndex = num; }
 
 int Participants::getParticipantIndex() { return participantIndex; }
@@ -252,6 +250,7 @@ void Participants::printListOfProvinces() {
 	}
 }
 
+//Shows the list of provinces, prompts user to select a province, checks if the province belongs to the participant. If it does, return that province. If it doesn't, call method again
 Provinces* Participants::getYourProvince(int identifier) {
 	OF.debugFunction("Participants, getYourProvince-- revise to make it an array??");
 	Provinces* newProvince = getCoords(identifier);
@@ -329,7 +328,7 @@ bool Participants::hasCommander(std::string name) {
 	return true;
 }
 
-CommanderProfile* Participants::getCommanderByName(std::string name) {
+CommanderProfile* Participants::getCommander(std::string name) {
 	return commandersList[name];
 }
 int Participants::calculateTotals(int option)
@@ -544,71 +543,7 @@ void Participants::showMapCoordinates()
 	std::cout << std::endl;
 }
 
-void Participants::showMap()
-{
-	int LLNumber = 1;
-	std::cout << "Map: \n";
 
-	int thingy = continentSize;
-	for (int x = 0; x < continentSize; x++) {
-		// Y axis stuff
-		if (thingy < 10)
-			std::cout << " " << thingy << "| ";
-		else
-			std::cout << thingy << "| ";
-
-		thingy--;
-		// End y axis stuff
-
-		for (int y = 0; y < continentSize; y++) {
-			char letter = ' '; // Fix this later
-			Provinces* showMapProvince = provincesHH[LLNumber];
-			LLNumber++;
-
-			if (showMapProvince->getParticipantIndex() == participantIndex)
-			{
-				std::cout << BLUE;
-				if (showMapProvince->isCapital() == true)
-					letter = 'C';
-				else
-					letter = 'p';
-			}
-			else if (showMapProvince->getParticipantIndex() != -1)
-			{
-				std::cout << RED;
-				if (provincesMap[x][y].isCapital() == true)
-					letter = 'C';
-				else
-					letter = 'p';
-			}
-			else {
-				letter = '0';
-			}
-
-			std::cout << letter << showMapProvince->commandersNum();
-			//std::cout << "  ";
-			std::cout << LLNumber - 1 << " ";
-			std::cout << WHITE;
-		}
-		std::cout << std::endl;
-	}
-
-	// X axis stuff
-	std::cout << "    ";
-	for (int a = 0; a < continentSize - 1; a++) {
-		std::cout << "----";
-	}
-	std::cout << "--";
-	std::cout << std::endl;
-	std::cout << "    ";
-	for (int a = 0; a < continentSize; a++) {
-		if (a < 9)
-			std::cout << a + 1 << "   ";
-		else
-			std::cout << a + 1 << "  ";
-	}
-	std::cout << "\n\n";
-}
 
 Provinces* Participants::findProvince() {
 	OF.debugFunction("Participants, findProvince--revise");
@@ -643,3 +578,4 @@ Provinces* Participants::getErrorProvince() {
 	Provinces *emptyProvince = &errorProvince;
 	return emptyProvince;
 }
+

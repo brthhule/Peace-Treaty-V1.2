@@ -4,7 +4,7 @@
 
 Mobility::Mobility(std::string commanderName, Participants *newP)
 {
-	selectedCommander = participant->getCommanderByName(commanderName);
+	selectedCommander = participant->getCommander(commanderName);
 	selectedCommanderProvince = &provincesMap[selectedCommander->getCoordinate('X')][selectedCommander->getCoordinate('Y')];
 	participant = newP;
 }
