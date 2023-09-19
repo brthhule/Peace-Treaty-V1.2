@@ -40,18 +40,18 @@ public:
 	std::string createRandomName();
 
 	// Other stuff
-	void clearScreen();
-	void enterAnything();
+	static void clearScreen();
+	static void enterAnything();
 
 	//Manipulate vectors
-	std::array<int, 5> modifyArray(std::array<int, 5> primeArray, std::array<int, 5> secondaryArray, bool isAdd);
-	void printResources(std::array<int, 5> resourcesArray);
+	static std::array<int, 5> modifyArray(std::array<int, 5> primeArray, std::array<int, 5> secondaryArray, bool isAdd);
+	static void printResources(std::array<int, 5> resourcesArray);
 
 	//Debugging
-	void debugFunction(std::string functionName);
+	static void debugFunction(std::string functionName);
 
 	//For if/ternary statements with no "else"
-	void nothing() {};
+	static void nothing() {};
 
 	//Text stuff
 	std::vector<std::string> showOptions(int caseNum);
