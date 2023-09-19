@@ -358,7 +358,7 @@ void Provinces::playerBuildFunction() {
 	OF.clearScreen();
 	std::cout<<
 		"---------- Start printing province information ----------\n\033[34m";
-	std::cout << "Province of kingdom " + participant->getKingdomName();
+	std::cout << "Province of kingdom " + getKingdomName();
 	std::cout << "Coordinates: ("
 		<< OF.translateCoordinate(getCoordinate('X'), 'x', 'O') << ", "
 		<< OF.translateCoordinate(getCoordinate('Y'), 'y', 'O')
@@ -391,7 +391,7 @@ void Provinces::upgradeBuildings() {
 	char buildingLetter = OF.getInput(false, -1, "Enter the first letter of the building you want to upgrade (enter 'H' for help): ", buildingLetterList, false, false).at(0);
 
 	if (buildingLetter != 'H') {
-		upgradeBuildings2();
+		upgradeBuildings2(buildingLetter, buildingNumber, requiredResources, buildingLetterList);
 	}
 	else {
 		OF.showHelp(12);
@@ -412,7 +412,7 @@ void Provinces::upgradeBuildings2(char buildingLetter, int buildingNumber, std::
 		}
 	}
 
-	printInformation(buildingNumber, requiredResources);
+	printInformation(buildingNumber, requiredResources, buildingLetterList);
 	char upgradeProceed = OF.getInput(false, -1, "Proceed with upgrade? (Y/N) ", { "Y", "N" }, false, false).at(0);
 
 	if (upgradeProceed == 'Y') {
@@ -430,7 +430,7 @@ void Provinces::upgradeBuildings2(char buildingLetter, int buildingNumber, std::
 }
 
 //Fix this to differentiate between resource buildings and othe rother buildings; right now, only accounts for resource buildings
-void Provinces::printInformation(int buildingNumber, std::array<int, 5> requiredResources) {
+void Provinces::printInformation(int buildingNumber, std::array<int, 5> requiredResources, std::vector<std::string> buildingLetterList) {
 	std::cout << "---------- Start printing information----------\n\n\033[34m";
 	println(CV::RESOURCE_BUILDING_NAMES[buildingNumber] + " selected \n");
 	println("The following is the cost of the upgrade: ");

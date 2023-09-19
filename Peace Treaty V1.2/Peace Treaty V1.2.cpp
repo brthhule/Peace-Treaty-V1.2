@@ -51,7 +51,7 @@ void AITurn();
 OtherFunctions OF;
 
 /*other important stuff*/
-int continentSize = 0;
+int *continentSize;
 int enemyDifficulty = 0;
 
 
@@ -120,6 +120,7 @@ void startGame()
 	//"What continent size do you want to play on? (5, 10, 15) "
 	std::string input = OF.getInput(false, -1, text, {"5", "10", "15" }, true, false);
 	db.setContinentSize(std::stoi(input));
+	continentSize = db.getContinentSizePointer();
 	OF.clearScreen();
 
 	std::cout << "Continent size " << RED << db.getContinentSize() << WHITE << " created..\n\n";

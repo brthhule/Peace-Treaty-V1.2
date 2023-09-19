@@ -11,8 +11,12 @@
 #include "../Misc/OtherFunctions.h"
 #include "../Misc/ConstValues.h"
 
+#include "../Units/Database.h"
+
 extern std::vector <std::vector <Provinces>> provincesMap;
 extern std::vector <Participants> participantsList;
+
+extern Database db;
 
 using namespace CV;
 
@@ -21,7 +25,6 @@ class TrainMA
 public:
 	//constructor
 	TrainMA();
-	TrainMA(Participants *newParticipant);
 	//other functions
 	void TrainMAFunction();
 private:

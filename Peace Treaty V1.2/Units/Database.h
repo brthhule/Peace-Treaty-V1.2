@@ -39,11 +39,20 @@ public:
 	int getMaxCommanders();
 	void showMap();
 
+	int *getContinentSizePointer() { return &continentSize; }
+	void setCurrentParticipant(Participants *p) {
+		currentParticipant = p;
+	}
+	Participants *getCurrentParticipant() {
+		return currentParticipant;
+	}
+
 private:
 	OtherFunctions OF;
 	std::vector<Participants> participantsList;
 	std::unordered_map <int, Provinces*> provincesHH;
 	std::vector <std::vector <Provinces>> provincesMap;
+	Participants* currentParticipant;
 	int currentParticipantIndex;
 	int turn = 1;
 	int continentSize;

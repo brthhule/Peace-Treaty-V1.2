@@ -8,7 +8,7 @@ public:
 	virtual ~Build() {};
 	virtual void playerBuildFunction() = 0;
 	virtual void upgradeBuildings() = 0;
-	virtual void upgradeBuildings2() = 0;
+	virtual void upgradeBuildings2(char buildingLetter, int buildingNumber, std::array<int, 5> requiredResources, std::vector<std::string> buildingLetterList) = 0;
 	virtual void printInformation(int buildingNumber, std::array<int, 5> requiredResources, std::vector<std::string> buildingLetterList) = 0;
 	/*double requiredResourcesBuildings[6][5] = {
 		{1, 0.5, 0.25, 0.125, 0.0625},

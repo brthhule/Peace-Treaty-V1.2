@@ -24,7 +24,7 @@ void PlayerAction::initialDecision() {
     std::cout << "\n\nWelcome to the Main Action menu \n\n";
 		participant->showMapCoordinates();
 		std::cout << std::endl;
-    participant->showMap();
+    db.showMap();
     
     courseOfAction = OF.getOption(4);
   }
@@ -43,20 +43,19 @@ void PlayerAction::initialDecision() {
     break;
   }
   case 'T': {
-    TrainMA newTrainMA(participant);
-    newTrainMA.TrainMAFunction();
+    TrainMA newTrainMA();
     break;
   }
   case 'S':
     participant->viewStats();
     break;
   case 'U': {
-    MapMA newMap(participant);
+    MapMA newMap();
     newMap.viewPlayerMap();
     break;
   }
   case 'D': {
-    ArmyOverviewMA newArmyOverview(participant);
+    ArmyOverviewMA newArmyOverview();
     newArmyOverview.armyDeploymentMF();
     break;
   }

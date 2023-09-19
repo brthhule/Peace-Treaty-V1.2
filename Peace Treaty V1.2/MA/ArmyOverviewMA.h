@@ -7,14 +7,13 @@
 #include <unordered_map>
 
 #include "Mobility.h"
+#include "../Units/Database.h"
 
 #include "../Units/Participants.h"
 #include "../Misc/OtherFunctions.h"
 
-extern std::vector<Participants> participantsList;
+extern Database db;
 
-extern int currentParticipantIndex;
-extern int maxAmountOfCommanders;
 
 #define UNIT_SIZE 5
 
@@ -22,7 +21,7 @@ class ArmyOverviewMA
 {
 public:
 	//constructor
-	ArmyOverviewMA(Participants *newP);
+	ArmyOverviewMA();
 
 	//Accessors
 	void printCosts(std::vector<int>costs, std::string type);

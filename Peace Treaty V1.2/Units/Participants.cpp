@@ -575,7 +575,6 @@ Provinces* Participants::findProvince() {
 }
 
 Provinces* Participants::getErrorProvince() {
-	Provinces *emptyProvince = &errorProvince;
-	return emptyProvince;
+	return errorProvince;
 }
 

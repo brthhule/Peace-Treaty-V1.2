@@ -2,16 +2,13 @@
 
 TrainMA::TrainMA()
 {
-
-}
-TrainMA::TrainMA(Participants* newParticipant)
-{
-    participant = newParticipant;
+    participant = db.getCurrentParticipant();
     province = participant->getCapital();
+    TrainMAFunction();
 }
 
 void TrainMA::TrainMAFunction() {
-    participant->showMap();
+    db.showMap();
     int troopCost[5] = { 5, 4, 3, 2, 1 };
 
     int barracksLevel = province->getBuildingLevel(5);

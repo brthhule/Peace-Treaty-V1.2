@@ -94,7 +94,7 @@ public:
 	void playerBuildFunction();
 	void upgradeBuildings();
 	void upgradeBuildings2(char buildingLetter, int buildingNumber, std::array<int, 5> requiredResources, std::vector<std::string> buildingLetterList);
-	void printInformation(int buildingNumber, std::array<int, 5> requiredResources);
+	void printInformation(int buildingNumber, std::array<int, 5> requiredResources, std::vector<std::string> buildingLetterList);
 
 	void setKingdomName(std::string name) { kingdomName = name; }
 	std::string getKingdomName() { return kingdomName; }
@@ -136,7 +136,7 @@ private:
 	int linkedListNumber;
 	std::string kingdomName;
 
-	double requiredResourcesBuildings[6][5] = {
+	const double requiredResourcesBuildings[6][5] = {
 		{1, 0.5, 0.25, 0.125, 0.0625},
 		{2, 1, 0.5, 0.25, 0.125},
 		{3, 2, 1, 0.5, 0.25},

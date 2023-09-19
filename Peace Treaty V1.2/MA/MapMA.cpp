@@ -5,15 +5,14 @@
 
 
 
-MapMA::MapMA(Participants *newParticipant) { participant = newParticipant;
-pIndex = participant->getParticipantIndex();}
+MapMA::MapMA() { participant = db.getCurrentParticipant();}
 
 void MapMA::viewPlayerMap() {
   char whatToDo = ' ';
 	
   if (participant->isPlayer())
   {
-    participant->showMap();
+    db.showMap();
     println("Welcome to the View Map action menu");
 
 		whatToDo = OF.getInput(false, -1, "showOptions, 8", {}, false, false).at(0);
@@ -50,7 +49,7 @@ Participants *MapMA::getParticipant() { return participant; }
 
 void MapMA::selectUnitOriginal(Provinces *selectedProvince) {
 	prov = selectedProvince;
-  if (prov->part() == pIndex) // If belongs to participant
+  if (prov->part() == participant->getParticipantIndex()) // If belongs to participant
   {
     selectPlayerProvince();
   }
@@ -60,7 +59,7 @@ void MapMA::selectUnitOriginal(Provinces *selectedProvince) {
         0) // If there are more than 0 commnaders
     {
 			//If the commander here is yours
-      if (prov->getCommander(0)->getParticipantIndex() == pIndex)
+      if (prov->getCommander(0)->getParticipantIndex() == participant->getParticipantIndex())
       {
         playerUnitAction(prov);
       } 
@@ -93,8 +92,7 @@ void MapMA::selectPlayerProvince() {
     break;
   }
   case 'T': {
-    TrainMA newTrainMA(participant);
-    newTrainMA.TrainMAFunction();
+    TrainMA newTrainMA();
     break;
   }
   case 'M':

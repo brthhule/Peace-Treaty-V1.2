@@ -2,8 +2,8 @@
 #define print(x) std::cout << x;
 #define println(x) std::cout << x << std::endl;
 
-ArmyOverviewMA::ArmyOverviewMA(Participants *newP) {
-  participant = newP;
+ArmyOverviewMA::ArmyOverviewMA() {
+  participant = db.getCurrentParticipant();
   commandersNum = participant->commandersNum();
 }
 
@@ -85,13 +85,13 @@ if (commanderName != "-1")
 
 void ArmyOverviewMA::trainCommanders() {
   std::string yesOrNoString;
-  std::cout << "You have " << commandersNum << "/" << participant->getMaxCommanders() << " total army commanders. \n";
+  std::cout << "You have " << commandersNum << "/" << db.getMaxCommanders() << " total army commanders. \n";
   std::cout << "Do you want to train a commander? (Y/N) ";
 
   std::array<int, 5> trainCosts = participant->getTrainCosts();
 
   if (OF.getInput(false, -1, "Proceed with training", {"Y", "N"}, false, false).at(0) == 'Y') 	{
-    if (commandersNum < participant->getMaxCommanders()) /*if amount of commanders is less than max (not at max capacity)*/
+    if (commandersNum < db.getMaxCommanders()) /*if amount of commanders is less than max (not at max capacity)*/
         proceedWithTraining(trainCosts);
     else 
       std::cout << "At maximum army commander amount. Training failed, returning to menu \n";
