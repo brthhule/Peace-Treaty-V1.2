@@ -63,7 +63,7 @@ public:
 
 
 private:
-	static const bool debuggingMode;
+	static bool debuggingMode;
 };
 
 #endif

@@ -1,7 +1,7 @@
 #include "Database.h"
 
 Database::Database() {
-	provincesList = provincesLL.createMap();
+	provincesUM = provincesLL.createMap();
 }
 
 void Database::createMap() {

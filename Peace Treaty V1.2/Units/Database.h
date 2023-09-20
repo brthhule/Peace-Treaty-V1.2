@@ -50,8 +50,9 @@ public:
 private:
 	OtherFunctions OF;
 	std::vector<Participants> participantsList;
-	std::unordered_map <int, Provinces*> provincesHH;
+	std::unordered_map <int, Provinces*> provincesUM;
 	std::vector <std::vector <Provinces>> provincesMap;
+	std::vector<Provinces> provincesList;
 	Participants* currentParticipant;
 	int currentParticipantIndex;
 	int turn = 1;

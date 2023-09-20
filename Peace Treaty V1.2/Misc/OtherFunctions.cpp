@@ -389,4 +389,4 @@ char OtherFunctions::getOption(int caseNum)
 // Options:GRB
 // }
 
-const bool OtherFunctions::debuggingMode = true;
+bool OtherFunctions::debuggingMode = true;
