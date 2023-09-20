@@ -137,14 +137,26 @@
     <ClCompile Include="MA\TrainMA.cpp" />
     <ClCompile Include="Misc\LinkedList.cpp" />
     <ClCompile Include="Misc\OtherFunctions.cpp" />
+    <ClCompile Include="Peace Treaty V1.2.cpp" />
     <ClCompile Include="PlayerAction.cpp" />
     <ClCompile Include="Units\AllUnits.cpp" />
     <ClCompile Include="Units\CommanderProfile.cpp" />
+    <ClCompile Include="Units\Database.cpp" />
+    <ClCompile Include="Units\Map.cpp" />
     <ClCompile Include="Units\Participants.cpp" />
     <ClCompile Include="Units\Provinces.cpp" />
-    <ClCompile Include="Peace Treaty V1.2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="..\..\..\..\..\Downloads\1June2022.txt" />
+    <Text Include="..\..\..\..\..\Downloads\2July2022.txt" />
+    <Text Include="..\..\..\..\..\Downloads\3August2022.txt" />
+    <Text Include="..\..\..\..\..\Downloads\4November2022.txt" />
+    <Text Include="..\..\..\..\..\Downloads\5January2023.txt" />
+    <Text Include="..\..\..\..\..\Downloads\6February2023.txt" />
+    <Text Include="..\..\..\..\..\Downloads\7March2023.txt" />
+    <Text Include="..\..\..\..\..\Downloads\8April2023.txt" />
+    <Text Include="..\..\..\..\..\Downloads\9May2023.txt" />
+    <Text Include="..\..\..\..\..\Downloads\logOverview.txt" />
     <Text Include="..\AdministrativeDocs\debugQuickAccess.txt" />
     <Text Include="..\AdministrativeDocs\deletedContent.txt" />
     <Text Include="..\AdministrativeDocs\headersAllocation.txt" />
@@ -161,27 +173,34 @@
     <Text Include="..\ProjectLog\8April2023.txt" />
     <Text Include="..\ProjectLog\9May2023.txt" />
     <Text Include="..\ProjectLog\logOverview.txt" />
-    <Text Include="..\TxtFiles\Help.txt" />
-    <Text Include="..\TxtFiles\Options.txt" />
-    <Text Include="..\TxtFiles\Synopsis.txt" />
+    <Text Include="AdministrativeDocs\debugQuickAccess.txt" />
+    <Text Include="AdministrativeDocs\deletedContent.txt" />
+    <Text Include="AdministrativeDocs\headersAllocation.txt" />
+    <Text Include="AdministrativeDocs\needToDo.txt" />
+    <Text Include="AdministrativeDocs\notes.txt.txt" />
+    <Text Include="AdministrativeDocs\tips.txt.txt" />
+    <Text Include="TxtFiles\Help.txt" />
+    <Text Include="TxtFiles\Options.txt" />
+    <Text Include="TxtFiles\Synopsis.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\MA\ArmyOverviewMA.h" />
-    <ClInclude Include="..\MA\AttackMA.h" />
-    <ClInclude Include="..\MA\BuildMA.h" />
-    <ClInclude Include="..\MA\MapMA.h" />
-    <ClInclude Include="..\MA\Mobility.h" />
-    <ClInclude Include="..\MA\ScoutMA.h" />
-    <ClInclude Include="..\MA\TrainMA.h" />
-    <ClInclude Include="..\Misc\ConstValues.h" />
-    <ClInclude Include="..\Misc\LinkedList.h" />
-    <ClInclude Include="..\Misc\OtherFunctions.h" />
-    <ClInclude Include="..\Misc\showText.h" />
-    <ClInclude Include="..\PlayerAction.h" />
-    <ClInclude Include="..\Units\AllUnits.h" />
-    <ClInclude Include="..\Units\CommanderProfile.h" />
-    <ClInclude Include="..\Units\Participants.h" />
-    <ClInclude Include="..\Units\Provinces.h" />
+    <ClInclude Include="Interfaces\Build.h" />
+    <ClInclude Include="MA\ArmyOverviewMA.h" />
+    <ClInclude Include="MA\AttackMA.h" />
+    <ClInclude Include="MA\MapMA.h" />
+    <ClInclude Include="MA\Mobility.h" />
+    <ClInclude Include="MA\ScoutMA.h" />
+    <ClInclude Include="MA\TrainMA.h" />
+    <ClInclude Include="Misc\ConstValues.h" />
+    <ClInclude Include="Misc\LinkedList.h" />
+    <ClInclude Include="Misc\OtherFunctions.h" />
+    <ClInclude Include="PlayerAction.h" />
+    <ClInclude Include="Units\AllUnits.h" />
+    <ClInclude Include="Units\CommanderProfile.h" />
+    <ClInclude Include="Units\Database.h" />
+    <ClInclude Include="Units\Map.h" />
+    <ClInclude Include="Units\Participants.h" />
+    <ClInclude Include="Units\Provinces.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.md" />

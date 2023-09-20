@@ -1,7 +1,7 @@
 // Infrastructure.cpp : Defines the functions for the static library.
 //
 
-#include "Methods.h"
+#include "Infrastructure.h"
 
 
 // TODO: This is an example of a library function

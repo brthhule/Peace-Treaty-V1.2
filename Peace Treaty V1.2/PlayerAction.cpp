@@ -50,12 +50,12 @@ void PlayerAction::initialDecision() {
     participant->viewStats();
     break;
   case 'U': {
-    MapMA newMap();
+    MapMA newMap;
     newMap.viewPlayerMap();
     break;
   }
   case 'D': {
-    ArmyOverviewMA newArmyOverview();
+    ArmyOverviewMA newArmyOverview;
     newArmyOverview.armyDeploymentMF();
     break;
   }

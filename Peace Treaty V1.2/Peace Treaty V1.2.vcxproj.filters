@@ -19,76 +19,85 @@
     <Filter Include="Resource Files\ProjectLog">
       <UniqueIdentifier>{9f14836d-4593-4a74-bf9c-919befeb0233}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\TxtFiles">
-      <UniqueIdentifier>{a01cc93e-dcfc-4253-9310-7ef91e565c36}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\MA H">
-      <UniqueIdentifier>{52562112-54a5-46c0-9b9c-35d1daab56e7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\MA S">
-      <UniqueIdentifier>{645fa730-a13f-4de4-a52d-2767edb3122c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Misc S">
-      <UniqueIdentifier>{b783db2f-ab3c-432f-8bb0-99e62f2f7d6b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Units S">
-      <UniqueIdentifier>{f04b78b2-a229-47ff-bcc6-c02df5d3dd03}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Misc H">
-      <UniqueIdentifier>{8490581d-01bd-4776-a91e-9478bd5f48d3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Units H">
       <UniqueIdentifier>{820aa086-cb6a-4364-81be-b652acbdc994}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MA">
+      <UniqueIdentifier>{c0db1187-4770-466f-ab59-7ff31c9633b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\MA">
+      <UniqueIdentifier>{52562112-54a5-46c0-9b9c-35d1daab56e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Misc">
+      <UniqueIdentifier>{8490581d-01bd-4776-a91e-9478bd5f48d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Misc">
+      <UniqueIdentifier>{4d5bf269-62bb-4022-82c0-21a66cf5c6fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Units">
+      <UniqueIdentifier>{f04b78b2-a229-47ff-bcc6-c02df5d3dd03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AdministrativeDocs">
+      <UniqueIdentifier>{b48726fc-2b61-40ed-ac34-4b27022348fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TxtFiles">
+      <UniqueIdentifier>{e3350fe0-2942-445a-86f6-0dc71cebbdeb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interfaces">
+      <UniqueIdentifier>{6a2c513e-3d48-42fe-82d6-4f0cb1588b95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ProjectLog">
+      <UniqueIdentifier>{255ca0ba-f9de-4c4d-a889-83d31baa9388}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Peace Treaty V1.2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\MA\ArmyOverviewMA.cpp">
-      <Filter>Source Files\MA S</Filter>
-    </ClCompile>
-    <ClCompile Include="..\MA\AttackMA.cpp">
-      <Filter>Source Files\MA S</Filter>
-    </ClCompile>
-    <ClCompile Include="..\MA\BuildMA.cpp">
-      <Filter>Source Files\MA S</Filter>
-    </ClCompile>
-    <ClCompile Include="..\MA\MapMA.cpp">
-      <Filter>Source Files\MA S</Filter>
-    </ClCompile>
-    <ClCompile Include="..\MA\Mobility.cpp">
-      <Filter>Source Files\MA S</Filter>
-    </ClCompile>
-    <ClCompile Include="..\MA\ScoutMA.cpp">
-      <Filter>Source Files\MA S</Filter>
-    </ClCompile>
-    <ClCompile Include="..\MA\TrainMA.cpp">
-      <Filter>Source Files\MA S</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Misc\OtherFunctions.cpp">
-      <Filter>Source Files\Misc S</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Misc\showText.cpp">
-      <Filter>Source Files\Misc S</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Misc\LinkedList.cpp">
-      <Filter>Source Files\Misc S</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Units\Participants.cpp">
-      <Filter>Source Files\Units S</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Units\Provinces.cpp">
-      <Filter>Source Files\Units S</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Units\AllUnits.cpp">
-      <Filter>Source Files\Units S</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Units\CommanderProfile.cpp">
-      <Filter>Source Files\Units S</Filter>
-    </ClCompile>
-    <ClCompile Include="..\PlayerAction.cpp">
+    <ClCompile Include="PlayerAction.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MA\TrainMA.cpp">
+      <Filter>Source Files\MA</Filter>
+    </ClCompile>
+    <ClCompile Include="MA\ArmyOverviewMA.cpp">
+      <Filter>Source Files\MA</Filter>
+    </ClCompile>
+    <ClCompile Include="MA\AttackMA.cpp">
+      <Filter>Source Files\MA</Filter>
+    </ClCompile>
+    <ClCompile Include="MA\MapMA.cpp">
+      <Filter>Source Files\MA</Filter>
+    </ClCompile>
+    <ClCompile Include="MA\Mobility.cpp">
+      <Filter>Source Files\MA</Filter>
+    </ClCompile>
+    <ClCompile Include="MA\ScoutMA.cpp">
+      <Filter>Source Files\MA</Filter>
+    </ClCompile>
+    <ClCompile Include="Misc\OtherFunctions.cpp">
+      <Filter>Source Files\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="Misc\LinkedList.cpp">
+      <Filter>Source Files\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="Units\Provinces.cpp">
+      <Filter>Source Files\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="Units\AllUnits.cpp">
+      <Filter>Source Files\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="Units\CommanderProfile.cpp">
+      <Filter>Source Files\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="Units\Database.cpp">
+      <Filter>Source Files\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="Units\Map.cpp">
+      <Filter>Source Files\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="Units\Participants.cpp">
+      <Filter>Source Files\Units</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -140,64 +149,115 @@
     <Text Include="..\ProjectLog\3August2022.txt">
       <Filter>Resource Files\ProjectLog</Filter>
     </Text>
-    <Text Include="..\TxtFiles\Options.txt">
-      <Filter>Source Files\TxtFiles</Filter>
+    <Text Include="AdministrativeDocs\deletedContent.txt">
+      <Filter>AdministrativeDocs</Filter>
     </Text>
-    <Text Include="..\TxtFiles\Synopsis.txt">
-      <Filter>Source Files\TxtFiles</Filter>
+    <Text Include="AdministrativeDocs\headersAllocation.txt">
+      <Filter>AdministrativeDocs</Filter>
     </Text>
-    <Text Include="..\TxtFiles\Help.txt">
-      <Filter>Source Files\TxtFiles</Filter>
+    <Text Include="AdministrativeDocs\needToDo.txt">
+      <Filter>AdministrativeDocs</Filter>
+    </Text>
+    <Text Include="AdministrativeDocs\notes.txt.txt">
+      <Filter>AdministrativeDocs</Filter>
+    </Text>
+    <Text Include="AdministrativeDocs\tips.txt.txt">
+      <Filter>AdministrativeDocs</Filter>
+    </Text>
+    <Text Include="AdministrativeDocs\debugQuickAccess.txt">
+      <Filter>AdministrativeDocs</Filter>
+    </Text>
+    <Text Include="TxtFiles\Options.txt">
+      <Filter>TxtFiles</Filter>
+    </Text>
+    <Text Include="TxtFiles\Synopsis.txt">
+      <Filter>TxtFiles</Filter>
+    </Text>
+    <Text Include="TxtFiles\Help.txt">
+      <Filter>TxtFiles</Filter>
+    </Text>
+    <Text Include="..\..\..\..\..\Downloads\1June2022.txt">
+      <Filter>ProjectLog</Filter>
+    </Text>
+    <Text Include="..\..\..\..\..\Downloads\2July2022.txt">
+      <Filter>ProjectLog</Filter>
+    </Text>
+    <Text Include="..\..\..\..\..\Downloads\3August2022.txt">
+      <Filter>ProjectLog</Filter>
+    </Text>
+    <Text Include="..\..\..\..\..\Downloads\4November2022.txt">
+      <Filter>ProjectLog</Filter>
+    </Text>
+    <Text Include="..\..\..\..\..\Downloads\5January2023.txt">
+      <Filter>ProjectLog</Filter>
+    </Text>
+    <Text Include="..\..\..\..\..\Downloads\6February2023.txt">
+      <Filter>ProjectLog</Filter>
+    </Text>
+    <Text Include="..\..\..\..\..\Downloads\7March2023.txt">
+      <Filter>ProjectLog</Filter>
+    </Text>
+    <Text Include="..\..\..\..\..\Downloads\8April2023.txt">
+      <Filter>ProjectLog</Filter>
+    </Text>
+    <Text Include="..\..\..\..\..\Downloads\9May2023.txt">
+      <Filter>ProjectLog</Filter>
+    </Text>
+    <Text Include="..\..\..\..\..\Downloads\logOverview.txt">
+      <Filter>ProjectLog</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\PlayerAction.h">
+    <ClInclude Include="MA\TrainMA.h">
+      <Filter>Header Files\MA</Filter>
+    </ClInclude>
+    <ClInclude Include="MA\ArmyOverviewMA.h">
+      <Filter>Header Files\MA</Filter>
+    </ClInclude>
+    <ClInclude Include="MA\AttackMA.h">
+      <Filter>Header Files\MA</Filter>
+    </ClInclude>
+    <ClInclude Include="MA\MapMA.h">
+      <Filter>Header Files\MA</Filter>
+    </ClInclude>
+    <ClInclude Include="MA\Mobility.h">
+      <Filter>Header Files\MA</Filter>
+    </ClInclude>
+    <ClInclude Include="MA\ScoutMA.h">
+      <Filter>Header Files\MA</Filter>
+    </ClInclude>
+    <ClInclude Include="Misc\OtherFunctions.h">
+      <Filter>Header Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Misc\ConstValues.h">
+      <Filter>Header Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Misc\LinkedList.h">
+      <Filter>Header Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Interfaces\Build.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Units\Provinces.h">
+      <Filter>Header Files\Units H</Filter>
+    </ClInclude>
+    <ClInclude Include="Units\AllUnits.h">
+      <Filter>Header Files\Units H</Filter>
+    </ClInclude>
+    <ClInclude Include="Units\CommanderProfile.h">
+      <Filter>Header Files\Units H</Filter>
+    </ClInclude>
+    <ClInclude Include="Units\Database.h">
+      <Filter>Header Files\Units H</Filter>
+    </ClInclude>
+    <ClInclude Include="Units\Map.h">
+      <Filter>Header Files\Units H</Filter>
+    </ClInclude>
+    <ClInclude Include="Units\Participants.h">
+      <Filter>Header Files\Units H</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerAction.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\MA\TrainMA.h">
-      <Filter>Header Files\MA H</Filter>
-    </ClInclude>
-    <ClInclude Include="..\MA\ScoutMA.h">
-      <Filter>Header Files\MA H</Filter>
-    </ClInclude>
-    <ClInclude Include="..\MA\MapMA.h">
-      <Filter>Header Files\MA H</Filter>
-    </ClInclude>
-    <ClInclude Include="..\MA\Mobility.h">
-      <Filter>Header Files\MA H</Filter>
-    </ClInclude>
-    <ClInclude Include="..\MA\BuildMA.h">
-      <Filter>Header Files\MA H</Filter>
-    </ClInclude>
-    <ClInclude Include="..\MA\AttackMA.h">
-      <Filter>Header Files\MA H</Filter>
-    </ClInclude>
-    <ClInclude Include="..\MA\ArmyOverviewMA.h">
-      <Filter>Header Files\MA H</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Misc\LinkedList.h">
-      <Filter>Header Files\Misc H</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Misc\ConstValues.h">
-      <Filter>Header Files\Misc H</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Misc\OtherFunctions.h">
-      <Filter>Header Files\Misc H</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Misc\showText.h">
-      <Filter>Header Files\Misc H</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Units\CommanderProfile.h">
-      <Filter>Header Files\Units H</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Units\AllUnits.h">
-      <Filter>Header Files\Units H</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Units\Participants.h">
-      <Filter>Header Files\Units H</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Units\Provinces.h">
-      <Filter>Header Files\Units H</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
