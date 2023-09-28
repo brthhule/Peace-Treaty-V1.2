@@ -166,7 +166,7 @@ void AttackMA::calculateTroopsLost(CommanderProfile* commander, int lostCombatPo
 
 void AttackMA::battleCalculationsTwo(int &lostCombatPower, int troopsLost[5], int troopIndex) /*fix this*/
 {
-  Participants *playerParticipant = &participantsList[currentParticipantIndex];
+  Participants *playerParticipant = &participantsList[1];//current participantIndex
 
   int z = abs(4 - troopIndex);
 

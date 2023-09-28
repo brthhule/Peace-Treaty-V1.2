@@ -30,7 +30,7 @@ public:
 
 	void createMap();
 	void initializeParticipants(int totalPlayers, int humanPlayers);
-	std::vector<Participants*> getParticipantsList ();
+	std::vector<Participants> *getParticipantsList ();
 	void updateTurnResources();
 
 	void setContinentSize(int num);
@@ -60,6 +60,8 @@ private:
 	//Linked list of provinces
 	LinkedList provincesLL;
 	int maxCommanders;
+
+	int pNum; //have to fix this; current points to nothing
 };
 
 #endif

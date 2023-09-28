@@ -1,7 +1,7 @@
 #include "Database.h"
 
 Database::Database() {
-	provincesUM = provincesLL.createMap();
+	//provincesUM = provincesLL.createMap();
 }
 
 void Database::createMap() {
@@ -22,11 +22,24 @@ void Database::createMap() {
 	// 	provincesMap[x].push_back(newProvince);
 	 //    }
 	 //  }
-	std::vector<Provinces*> allProvinces = provincesLL.createMap(continentSize);
-	for (int x = 0; x < (int)allProvinces.size(); x++)
-		provincesHH[x] = allProvinces[x];
+	try {
+		//Need to change this to unordered map
+		std::vector<Provinces>* allProvinces = provincesLL.createMap(continentSize);
+		for (int x = 0; x < (int)allProvinces->size(); x++)
+		{
+			//Evaluate if this is what I want to do
+			std::pair<int, Provinces*> thang = { x, &allProvinces->at(x) };
+			//Fix this later
+			//provincesHH[x] = thang;
+		}
 
-	provincesLL.listProvinces();
+		provincesLL.listProvinces();
+	}
+	catch (...) {
+		std::cout << "Error occurred...";
+	}
+			
+	
 }
 
 void Database::initializeParticipants(int totalPlayers, int humanPlayers) {
@@ -36,11 +49,10 @@ void Database::initializeParticipants(int totalPlayers, int humanPlayers) {
 		Participants newParticipant(x);
 
 		//Create players many players
-		if (x < players) {
+		if (x < totalPlayers /*I don't know if this is right*/) {
 			newParticipant.createAsPlayer(true);
 		} /*Everyone else is enemy AI*/ else {
 			newParticipant.createAsPlayer(false);
-			
 		}
 
 		participantsList.push_back(newParticipant);
@@ -48,7 +60,7 @@ void Database::initializeParticipants(int totalPlayers, int humanPlayers) {
 
 }
 
-vector <Participants*> Database::getParticipantsList() {
+std::vector <Participants> *Database::getParticipantsList() {
 	return &participantsList;
 }
 
@@ -98,7 +110,7 @@ void Database::showMap() {
 			Provinces* showMapProvince = provincesHH[LLNumber];
 			LLNumber++;
 
-			if (showMapProvince->getParticipantIndex() == participantIndex)
+			if (showMapProvince->getParticipantIndex() == currentParticipantIndex)
 			{
 				std::cout << BLUE;
 				if (showMapProvince->isCapital() == true)

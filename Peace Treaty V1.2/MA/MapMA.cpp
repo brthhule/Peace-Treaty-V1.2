@@ -92,7 +92,7 @@ void MapMA::selectPlayerProvince() {
     break;
   }
   case 'T': {
-    TrainMA newTrainMA();
+    TrainMA newTrainMA;
     break;
   }
   case 'M':

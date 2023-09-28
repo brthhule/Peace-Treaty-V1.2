@@ -72,7 +72,7 @@ int Provinces::findProvinceLevel()
 	for (int x: otherBuildingsLevels)
 		unitLevel += x;
 	
-	unitLevel /= resourceBuildingsLevels.size() + otherBuildingsLevels.size();
+	unitLevel /= (int) resourceBuildingsLevels.size() + (int)otherBuildingsLevels.size();
 	return unitLevel;
 }
 

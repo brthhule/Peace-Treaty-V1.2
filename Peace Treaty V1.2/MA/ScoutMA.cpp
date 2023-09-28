@@ -7,9 +7,8 @@ extern std::vector<Participants> participantsList;
 extern std::vector<std::vector<CommanderProfile>> allCommanders;
 extern int currentParticipantIndex;
 extern int continentSize;
-extern int turn;
-
-ScoutMA::ScoutMA(Participants *newParticipant, Provinces *newProvince) {
+int turn = 1;
+ScoutMA::ScoutMA(Participants* newParticipant, Provinces* newProvince) {
   participant = newParticipant;
   yourProvince = newProvince;
 	provincesCanScout = {};

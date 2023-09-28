@@ -7,8 +7,7 @@
 #include "../Misc/ConstValues.h"
 
 using namespace CV;
-extern int turn;
-
+int turn = 1;
 
 class CommanderProfile : public AllUnits {
 public:

@@ -268,13 +268,14 @@ Provinces* Participants::getYourProvince(int identifier) {
 	std::cout << "Invalid path... \n";
 	return this->getErrorProvince();
 }
+//Have Map MA do this
 Provinces* Participants::getCoords(int identifier) {
 	std::vector<std::string> actualCoordinatesAVTwo = { "-1" };
 	//range of possible coordinates
 	for (int x = 1; x <= continentSize; x++)
 		actualCoordinatesAVTwo.push_back(std::to_string(x));
 
-	showMap();
+	//showMap();
 	std::string phrase;
 	switch (identifier) {
 	case 1:
@@ -575,6 +576,6 @@ Provinces* Participants::findProvince() {
 }
 
 Provinces* Participants::getErrorProvince() {
-	return errorProvince;
+	return this->getCapital();
 }
 

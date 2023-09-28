@@ -107,7 +107,7 @@ public:
 	std::string selectCommander();
 	CommanderProfile* getSelectedCommander() { return selectedCommander; }
 
-	static Provinces* getErrorProvince();
+	Provinces* getErrorProvince();
 
 
 

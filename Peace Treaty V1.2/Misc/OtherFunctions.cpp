@@ -114,6 +114,8 @@ int OtherFunctions::translateCoordinate(int coordinate, char indicator, char whi
     return translateCoordinateOutput(coordinate, indicator);
     break;
   }
+  //Error case
+  return 0;
 }
 
 int OtherFunctions::translateCoordinateInput(int coordinate, char indicator) 

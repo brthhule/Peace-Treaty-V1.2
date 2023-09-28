@@ -35,7 +35,9 @@ public:
 	Provinces* getProvinceByNum (int num);
 
 	//Create the map of provinces; for 0 < size*size, create province objects and add to linked list. Returns the linked list as an unordered_map of pointers
-	std::unordered_map<std::string, Provinces*> createMap(int size);
+	// 
+	//Is this vector or unordered_map? Fix this
+	std::vector<Provinces> *createMap(int size);
 
 	//Show all provinces in linked list-- name and number in linked list
 	void listProvinces();
@@ -54,6 +56,7 @@ private:
 	//Infrastructure stuff
 	OtherFunctions OF;
 	std::vector<Provinces*> allProvinces;
+	std::vector<Provinces> provincesList;
 };
 
 

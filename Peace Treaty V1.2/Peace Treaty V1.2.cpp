@@ -50,13 +50,15 @@ void AITurn();
 OtherFunctions OF;
 
 /*other important stuff*/
-int *continentSize;
+
+int continentSize;
 int enemyDifficulty = 0;
 
 
 using namespace CV;
 
 Database db;
+int turn = 1;
 
 
 
@@ -118,8 +120,9 @@ void startGame()
 	std::string text = "What continent size do you want to play on?\n- 5 (Recommended for mobile devices)\n- 10 (Medium-sized map)\n- 15 (Full experienced, recommended for a monitor)\nEnter the number here: ";
 	//"What continent size do you want to play on? (5, 10, 15) "
 	std::string input = OF.getInput(false, -1, text, {"5", "10", "15" }, true, false);
-	db.setContinentSize(std::stoi(input));
-	continentSize = db.getContinentSizePointer();
+	continentSize = std::stoi(input);
+	//int *thing = db.getContinentSizePointer();
+	//continentSize = *thing;
 	OF.clearScreen();
 
 	std::cout << "Continent size " << RED << db.getContinentSize() << WHITE << " created..\n\n";
@@ -183,16 +186,17 @@ void gamePlay()
 	bool gameEnd = false;
 
 	//Create vector to copy the list of participants from the database
-	std::vector<Participants*> copyVector = db.getParticipantsList();
+	std::vector<Participants> *copyVector = db.getParticipantsList();
 
 	//Iterate through partiicpants by reference
-	for (Participants* newParticipant : copyVector)
+	for (int x = 0; x < copyVector->size(); x++)
 	{
+		Participants newParticipant = copyVector->at(x);
 		//If the current participant is alive
-		if (newParticipant->isAlive())
+		if (newParticipant.isAlive())
 		{
 			//Create new PlayerAction object
-			PlayerAction newPlayerAction(newParticipant);
+			PlayerAction newPlayerAction;
 			//Run through PlayerAction
 			newPlayerAction.initialDecision();
 		}

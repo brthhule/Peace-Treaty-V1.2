@@ -46,6 +46,7 @@ private:
 	bool defenseCanRetreat;
 	std::array<int,5> oldResources;
 	OtherFunctions OF;
+	
 };
 
 #endif

@@ -16,8 +16,6 @@ using namespace CV;
 
 extern int continentSize;
 extern const int BARRACKS_PRODUCTION;
-extern int turn;
-
 const int LOG_SIZE = 20;
 
 class Provinces : public AllUnits, public Build {
@@ -56,7 +54,7 @@ public:
 	void addCommander(CommanderProfile* newCommander);
 	void removeCommander(CommanderProfile* newCommander);
 	std::vector <CommanderProfile*> getAllCommanders();
-	int commandersNum() { return commanders.size(); }
+	int commandersNum() { return (int) commanders.size(); }
 	void printCommanders();
 	bool hasCommander(std::string name);
 
@@ -101,6 +99,8 @@ public:
 
 
 private:
+	int turn = 1;
+
 	/*Garrison*/
 	int maxGarrison;//derived
 	int maxInfirmaryCapacity;//derived

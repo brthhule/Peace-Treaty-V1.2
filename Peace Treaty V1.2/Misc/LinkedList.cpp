@@ -69,20 +69,21 @@ Provinces* LinkedList::getProvinceByNum (int num)
 	return nullptr;
 }
 
-std::unordered_map<std::string, Provinces*> LinkedList::createMap (int size)
+std::vector<Provinces> *LinkedList::createMap (int size)
 {
 	OF.debugFunction("LinkedList, createMap");
 	std::cout << "LLCreate Map...\n";
-	std::unordered_map<std::string, Provinces*> provincesList;
+	provincesList.clear();//Fix this so don't need to clear every time createMap is called.
+	//std::unordered_map<std::string, Provinces> provincesList;
 	for (int x = 0; x < size * size; x++)
 	{
 		Provinces newProvince (x);
 		newProvince.setKingdomName("EMPTY");
 		addNode(newProvince);
-		std::pair<std::string, Provinces*> newValue(newProvince.getProvinceName(), &newProvince);
-		provincesList.insert(newValue);
+		//std::pair<std::string, Provinces> newValue(newProvince.getProvinceName(), newProvince);
+		provincesList.push_back(newProvince);
 	}
-	return provincesList;
+	return &provincesList;
 }
 
 void LinkedList::listProvinces()

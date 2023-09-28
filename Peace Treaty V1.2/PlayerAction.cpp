@@ -1,6 +1,6 @@
 #include "PlayerAction.h"
 
-extern int turn;
+//Fix this
 
 PlayerAction::PlayerAction() {
 	OF.debugFunction("PlayerAction, PlayerAction (0)");
@@ -43,7 +43,7 @@ void PlayerAction::initialDecision() {
     break;
   }
   case 'T': {
-    TrainMA newTrainMA();
+    TrainMA newTrainMA;
     break;
   }
   case 'S':
