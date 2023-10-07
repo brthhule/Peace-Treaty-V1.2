@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <unordered_map>
-#include "OtherFunctions.h"
+#include "OF.h"
 #include "../Units/Provinces.h"
 
 struct node
@@ -54,7 +54,7 @@ private:
 	int provincesNum;
 
 	//Infrastructure stuff
-	OtherFunctions OF;
+	
 	std::vector<Provinces*> allProvinces;
 	std::vector<Provinces> provincesList;
 };

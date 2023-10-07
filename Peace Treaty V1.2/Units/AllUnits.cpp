@@ -62,7 +62,7 @@ void AllUnits::printResources()
 {
 	std::cout << "Resources currently present in this " << isCommanderOrProvince << ": \n";
     std::cout << "\033[;34m";
-	OF.printResources(resourcesPresent);
+	OF::printResources(resourcesPresent);
 	std::cout << "\033[;0m";
 }
 
@@ -147,7 +147,7 @@ std::array<int, 5> AllUnits::getAllTroopsLost()
 
 std::string AllUnits::printCoordinates()
 {
-	return OF.printCoordinates({xCoord, yCoord});
+	return OF::printCoordinates({xCoord, yCoord});
 }
 
 std::array<int,5> AllUnits::getAllResources()

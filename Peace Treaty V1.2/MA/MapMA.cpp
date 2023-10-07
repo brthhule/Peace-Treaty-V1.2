@@ -23,7 +23,7 @@ void MapMA::viewPlayerMap() {
 
   switch (whatToDo) {
   case 'P': {
-		OF.clearScreen();
+		OF::clearScreen();
 		std::cout << "Selecting a province...\n";
     Provinces *province = participant->getYourProvince(1);
 		

@@ -13,7 +13,7 @@
 #include "../Units/Provinces.h"
 
 #include "../Misc/ConstValues.h"
-#include "../Misc/OtherFunctions.h"
+#include "../Misc/OF.h"
 #include "../Units/Database.h"
 
 //extern std::vector<std::vector<Provinces>> provincesMap;
@@ -48,7 +48,7 @@ private:
 	Participants *participant;
 	int pIndex;
 	Provinces *prov;
-	OtherFunctions OF;
+	
 };
 
 #endif

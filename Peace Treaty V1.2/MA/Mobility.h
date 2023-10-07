@@ -10,7 +10,7 @@
 #include "../Units/Provinces.h"
 #include "../Units/CommanderProfile.h"
 
-#include "../Misc/OtherFunctions.h"
+#include "../Misc/OF.h"
 
 
 extern int continentSize;

@@ -5,7 +5,7 @@ Database::Database() {
 }
 
 void Database::createMap() {
-	OF.debugFunction("main, createMap--review");
+	OF::debugFunction("main, createMap--review");
 	/*Basically create the map-- make each province an object of Provinces*/
 	// int a = 1;
 	// for (int x = 0; x < continentSize; x++) 
@@ -65,7 +65,7 @@ std::vector <Participants> *Database::getParticipantsList() {
 }
 
 void Database::updateTurnResources() {
-	OF.debugFunction("main, updateTurnResources");
+	OF::debugFunction("main, updateTurnResources");
 	for (int x = 0; x < continentSize; x++) {
 		for (int y = 0; y < continentSize; y++) {
 			provincesMap[x][y].updateBuildingsProduction();

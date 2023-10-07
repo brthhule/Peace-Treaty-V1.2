@@ -4,17 +4,17 @@
 #include <iostream>
 
 #include "Misc/ConstValues.h"
-#include "Misc/OtherFunctions.h"
+#include "Misc/OF.h"
 
 using namespace CV;
+using namespace OF;
 
-class Input {
-public:
-	static OtherFunctions OF;
-	static std::vector<std::string> getShowPrompt(std::string prompt)
+namespace Input {
+	//For prompt input
+	std::vector<std::string> getShowPrompt(std::string prompt)
 	{
 		//For debugging
-		OF.debugFunction("Input, showOptions");
+		OF::debugFunction("Input, showOptions");
 
 		std::fstream newfile;
 
@@ -58,7 +58,7 @@ public:
 		return acceptableValues;
 	}
 
-	static std::string getOptionPrompt(CV::PROMPTS p) {
+	std::string getOptionPrompt(CV::PROMPTS p) {
 
 		//Print prompt, return acceptable values
 		std::vector<std::string> AV = getShowPrompt(CV::promptsToString(p));
@@ -66,7 +66,7 @@ public:
 		return getOptionPromptQuery(AV);
 	}
 
-	static std::string getOptionPromptQuery(std::vector<std::string>AV){
+	std::string getOptionPromptQuery(std::vector<std::string>AV){
 		std::string input;
 		std::cout << "Enter an option: ";
 		
@@ -82,7 +82,32 @@ public:
 	}
 
 
-private:
+	//For text input
+	std::string getInputText(std::string text, std::vector<std::string> AV)
+	{
+		OF::debugFunction("Iput, getInputText");
+		std::cout << text << "\n";
+		std::string input;
 
+		return getInputQuery(AV);
+	}
+
+	std::string getInputQuery(std::vector<std::string>AV) {
+		std::cout << "Enter an option: ";
+		std::string input;
+
+		CV::addColor(RED);
+		getline(std::cin, input);
+		CV::addColor(RESET);
+
+		for (std::string value : AV) {
+			if (input == value) {
+				return value;
+			}
+		}
+
+		std::cout << "Invalid option... please try again.\n";
+		return getInputQuery(AV);
+	}
 };
 #endif

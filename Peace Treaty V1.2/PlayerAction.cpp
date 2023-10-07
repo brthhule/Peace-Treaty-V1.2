@@ -3,19 +3,19 @@
 //Fix this
 
 PlayerAction::PlayerAction() {
-	OF.debugFunction("PlayerAction, PlayerAction (0)");
+	OF::debugFunction("PlayerAction, PlayerAction (0)");
 }
 
 PlayerAction::PlayerAction(Participants *newP) 
 { 
-	OF.debugFunction("PlayerAction, PlayerAction (1)");
+	OF::debugFunction("PlayerAction, PlayerAction (1)");
 	participant = newP; 
 }
 
 void PlayerAction::initialDecision() {
-	OF.debugFunction("PlayerAction, initialDecision");
+	OF::debugFunction("PlayerAction, initialDecision");
   bool goToNextTurn = false;
-  OF.clearScreen();
+  OF::clearScreen();
   char courseOfAction = ' ';
   if (participant->isPlayer() == true)
   {
@@ -34,7 +34,7 @@ void PlayerAction::initialDecision() {
   }
 
   std::cout << std::endl;
-  OF.clearScreen();
+  OF::clearScreen();
 
   switch (courseOfAction) {
   case 'B': {
@@ -80,7 +80,7 @@ void PlayerAction::initialDecision() {
 }
 
 char PlayerAction::randomAction() {
-	OF.debugFunction("PlayerAction, randomAction");
+	OF::debugFunction("PlayerAction, randomAction");
   int randomNumber = rand() % 6; // Random number 0 to 5 (inclusive)
 	std::vector<char> newVector = {'B', 'T', 'S', 'U', 'D', 'N'};
   return newVector[randomNumber];
@@ -88,7 +88,7 @@ char PlayerAction::randomAction() {
 
 
 void PlayerAction::pauseGame() {
-	OF.debugFunction("PlayerAction, pauseGame");
+	OF::debugFunction("PlayerAction, pauseGame");
   std::string gameCode;
   gameCode += continentSize;
 

@@ -9,14 +9,12 @@
 #include "Participants.h"
 #include "Provinces.h"
 #include "CommanderPRofile.h"
-#include "../Misc/OtherFunctions.h"
+#include "../Misc/OF.h"
 #include "../Misc/LinkedList.h"//might need to move Database up, out of Units, so it can have a larger scope
 
 #define print(x) std::cout << x;
 #define println(x) std::cout << x << std::endl;
-#define RED "\033[31m"
-#define WHITE "\033[0m"
-#define BLUE "\033[;34m"
+
 //constexpr int size = 10; // modern C++ same thing as #define SIZE 10
 
 
@@ -48,7 +46,7 @@ public:
 	}
 
 private:
-	OtherFunctions OF;
+	
 	std::vector<Participants> participantsList;
 	std::unordered_map <int, Provinces*> provincesUM;
 	std::vector <std::vector <Provinces>> provincesMap;

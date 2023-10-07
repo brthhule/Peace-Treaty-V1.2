@@ -2,9 +2,7 @@
 
 #define print(x) std::cout << x;
 #define println(x) std::cout << x << std::endl;
-#define RED "\033[31m"
-#define WHITE "\033[0m"
-#define BLUE "\033[;34m"
+
 
 	// Constructor
 //Constructor
@@ -252,7 +250,7 @@ void Participants::printListOfProvinces() {
 
 //Shows the list of provinces, prompts user to select a province, checks if the province belongs to the participant. If it does, return that province. If it doesn't, call method again
 Provinces* Participants::getYourProvince(int identifier) {
-	OF.debugFunction("Participants, getYourProvince-- revise to make it an array??");
+	OF::debugFunction("Participants, getYourProvince-- revise to make it an array??");
 	Provinces* newProvince = getCoords(identifier);
 	if (newProvince->getParticipantIndex() == participantIndex)
 	{
@@ -262,7 +260,7 @@ Provinces* Participants::getYourProvince(int identifier) {
 	}
 
 	std::cout << "This province does not belong to you. Please try again \n";
-	OF.clearScreen();
+	OF::clearScreen();
 	getYourProvince(identifier);
 
 	std::cout << "Invalid path... \n";
@@ -547,7 +545,7 @@ void Participants::showMapCoordinates()
 
 
 Provinces* Participants::findProvince() {
-	OF.debugFunction("Participants, findProvince--revise");
+	OF::debugFunction("Participants, findProvince--revise");
 	std::cout << "Welcome to the Player Build menu\n\n";
 	Provinces* province = this->getCoords(1);
 

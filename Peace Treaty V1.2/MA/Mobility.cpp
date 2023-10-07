@@ -32,11 +32,11 @@ std::vector<Provinces *> Mobility::moveUnitTwo() {
 }
 
 void Mobility::moveUnitOne() {
-	OtherFunctions OF;
+	
   std::vector<Provinces *> provincesCanSelect;
   if (selectedCommander->hasMovedQuestion() == false) {
 		std::array<int, 2> newCoordinates = selectedCommander->getCoordinates();
-    std::cout<<"The coordinates of the chosen unit unit are: " << OF.printCoordinates(newCoordinates);
+    std::cout<<"The coordinates of the chosen unit unit are: " << OF::printCoordinates(newCoordinates);
 		println("\n\nYou can only move this unit to one of the provinces adjacent to the province it is in");
 		
     provincesCanSelect = moveUnitTwo();

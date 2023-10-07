@@ -8,7 +8,7 @@
 #include "../Units/Provinces.h"
 #include "../Units/Participants.h"
 
-#include "../Misc/OtherFunctions.h"
+#include "../Misc/OF.h"
 #include "../Misc/ConstValues.h"
 
 #include "../Units/Database.h"
@@ -29,7 +29,7 @@ public:
 	void TrainMAFunction();
 private:
 	Provinces *province;
-	OtherFunctions OF;
+	
 	Participants *participant;
 };
 

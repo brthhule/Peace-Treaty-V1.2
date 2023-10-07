@@ -1,5 +1,5 @@
-#ifndef OTHERFUNCTIONS_H
-#define OTHERFUNCTIONS_H
+#ifndef OF_H
+#define OF_H
 
 #include <chrono>
 #include <cstdlib>
@@ -21,12 +21,8 @@ extern int continentSize;
 extern int currentParticipantIndex;
 
 
-class OtherFunctions {
-public:
-	//Constructor
-	OtherFunctions();
-
-
+namespace OF {
+	static const bool debuggingMode = true;
 	// Map stuff
 	int translateCoordinate(int coordinate, char indicator, char whichWay);
 	int translateCoordinateInput(int coordinate, char indicator);
@@ -52,18 +48,10 @@ public:
 	static void nothing() {};
 
 	//Text stuff
-	std::vector<std::string> showOptions(int caseNum);
-	char getOption(int caseNum);
-	void printOptions(std::string tp, int& type, bool& skip, std::vector<std::string>& acceptableValues);
 	void showHelp(int caseNum);
 	void printFile(std::string fileName);
 
-
-
-
-
-private:
-	static bool debuggingMode;
-};
+	
+}
 
 #endif

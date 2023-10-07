@@ -7,7 +7,7 @@
 #include "../Units/Participants.h"
 #include "../Units/Provinces.h"
 
-#include "../Misc/OtherFunctions.h"
+#include "../Misc/OF.h"
 
 class ScoutMA {
 public:
@@ -38,7 +38,7 @@ private:
 
   Provinces *yourProvince;
 	Provinces* targetProvince;
-	OtherFunctions OF;
+	
 };
 
 #endif

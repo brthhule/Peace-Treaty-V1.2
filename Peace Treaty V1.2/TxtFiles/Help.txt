@@ -84,5 +84,5 @@ case 12:
 
 End
 -------------- End Help ---------------- \033[;0m\n\n
-  OtherFunctions OF;
+  
 	OF.enterAnything();

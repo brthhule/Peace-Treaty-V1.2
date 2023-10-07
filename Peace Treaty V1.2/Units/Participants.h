@@ -20,7 +20,7 @@
 #include "Provinces.h"
 #include "CommanderProfile.h"
 
-#include "../Misc/OtherFunctions.h"
+#include "../Misc/OF.h"
 #include "../Misc/ConstValues.h"
 #include "../Misc/LinkedList.h"
 
@@ -128,7 +128,7 @@ private:
 
 	std::array <int, 5> troopsLost = { 0,0,0,0,0 };
 	std::vector<std::vector<Provinces>> scoutMap;
-	OtherFunctions OF;
+	
 	std::unordered_map<std::string, CommanderProfile*>::iterator it;
 	CommanderProfile* selectedCommander; //For ArmyDeploymentMA
 	Provinces errorProvince;

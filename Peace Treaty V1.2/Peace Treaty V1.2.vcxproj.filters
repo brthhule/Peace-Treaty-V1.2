@@ -75,7 +75,7 @@
     <ClCompile Include="MA\ScoutMA.cpp">
       <Filter>Source Files\MA</Filter>
     </ClCompile>
-    <ClCompile Include="Misc\OtherFunctions.cpp">
+    <ClCompile Include="Misc\OF.cpp">
       <Filter>Source Files\Misc</Filter>
     </ClCompile>
     <ClCompile Include="Misc\LinkedList.cpp">
@@ -98,9 +98,6 @@
     </ClCompile>
     <ClCompile Include="Units\Participants.cpp">
       <Filter>Source Files\Units</Filter>
-    </ClCompile>
-    <ClCompile Include="Input.cpp">
-      <Filter>Source Files\Misc</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -229,7 +226,7 @@
     <ClInclude Include="MA\ScoutMA.h">
       <Filter>Header Files\MA</Filter>
     </ClInclude>
-    <ClInclude Include="Misc\OtherFunctions.h">
+    <ClInclude Include="Misc\OF.h">
       <Filter>Header Files\Misc</Filter>
     </ClInclude>
     <ClInclude Include="Misc\ConstValues.h">

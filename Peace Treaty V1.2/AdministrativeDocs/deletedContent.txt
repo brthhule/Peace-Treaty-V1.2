@@ -1088,7 +1088,7 @@ void Provinces::compileProvinceStats (std::array<std::array<int, 5>, 7> &provinc
 	std::string unitName;
 	std::string isCommanderOrProvince;
 	int unitLevel;
-	OtherFunctions OF;
+	
 }
 
 	for (int x = 0; x < 20; x++) //fix this

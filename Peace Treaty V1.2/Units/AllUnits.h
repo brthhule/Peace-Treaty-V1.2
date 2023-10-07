@@ -6,7 +6,7 @@
 #include <iostream>
 #include <array>
 #include "../Misc/ConstValues.h"
-#include "../Misc/OtherFunctions.h"
+#include "../Misc/OF.h"
 
 /*int resourcesPresent[5];
 	int troopsPresent[5];
@@ -86,7 +86,7 @@ protected:
 	std::string unitName;
 	std::string isCommanderOrProvince;
 	int unitLevel;
-	OtherFunctions OF;
+	
 };
 
 #endif

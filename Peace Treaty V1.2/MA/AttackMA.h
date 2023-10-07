@@ -45,7 +45,7 @@ private:
 	std::vector <CommanderProfile*> defendingCommanders;
 	bool defenseCanRetreat;
 	std::array<int,5> oldResources;
-	OtherFunctions OF;
+	
 	
 };
 

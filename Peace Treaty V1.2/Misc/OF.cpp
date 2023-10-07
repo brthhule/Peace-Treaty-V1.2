@@ -1,72 +1,12 @@
-#include "OtherFunctions.h"
+#include "OF.h"
 #define print(x) std::cout << x;
 #define println(x) std::cout << x << std::endl;
-#define RED "\033[31m"
-#define WHITE "\033[0m"
-#define BLUE "\033[;34m"
 
-OtherFunctions::OtherFunctions() {}
+
 
 //Gets user input and returns a valid response. Parameters: (string text, vector<string> acceptable values, bool isNumber, bool redo)
-std::string OtherFunctions::getInput(bool isSO/*is showOptions*/, int caseNumArg, std::string text, std::vector<std::string> AV, bool isNumber, bool redo)
-{
 
-	//bool redo is to keep track of whether the function has been recursed or not
-	debugFunction("OtherFunctions, getInput");
-
-	std::string input;
-
-	//If first time running through getInput
-	if (redo == false)
-	{
-		//std::cout << "String: " << text.substr(0,10) << std::endl;
-		if (isSO)
-		{
-			int caseNum = caseNumArg;
-			std::cout << "CaseNum: " << caseNum << std::endl;
-			AV = showOptions(caseNum);
-			isNumber = false;//want a letter option
-			std::cout << "Enter an option: ";
-		}
-		else
-		{
-			std::cout << text;
-		}
-		
-		std::cout << "\033[31m";
-		std::getline(std::cin, input);
-		std::cout << "\033[0m";
-	} 
-	else if (redo == true)
-	{
-		std::cout << std::endl;
-		std::cout << "Invalid character entered. Please try again. \nPlease enter a valid character: \033[31m";
-		std::getline(std::cin, input);
-		std::cout << "\033[0m";
-	}
-
-  if (input.length() == 1 && isNumber == false)
-	{
-		char letter = toupper(input.at(0));
-		input.clear();
-		input.push_back(letter);
-	}
-
-
-  // if (AV[0] != "number")
-  	for (std::string option: AV)
-  		if (input == option)
-  			return input;
-  // else
-  //   for (int number: AVInt)
-  //     if (number == inputInt)
-  //       return std::to_string(inputInt);
-	
-  return getInput(false, -1, text, AV, isNumber, true);
-  
-}
-
-std::string OtherFunctions::createRandomName() {
+std::string OF::createRandomName() {
 	debugFunction("OtherFunctions, createRandomName");
 	std::string name = "";
 	std::string consonants = "bcdfghjklmnpqrstvwxyz";
@@ -89,7 +29,7 @@ std::string OtherFunctions::createRandomName() {
 	return name;
 }
 
-void OtherFunctions::clearScreen() 
+void OF::clearScreen() 
 {
 	debugFunction("OtherFunctions, clearScreen");
 	std::cout << "\033[32mClearing screen. \n";
@@ -99,7 +39,7 @@ void OtherFunctions::clearScreen()
 	system("clear"); /*Non-Windows*/
 }
 
-int OtherFunctions::translateCoordinate(int coordinate, char indicator, char whichWay) 
+int OF::translateCoordinate(int coordinate, char indicator, char whichWay) 
 {
 	debugFunction("OtherFunctions, translateCoordinate");
   /*replacement = xCoordinate;
@@ -118,7 +58,7 @@ int OtherFunctions::translateCoordinate(int coordinate, char indicator, char whi
   return 0;
 }
 
-int OtherFunctions::translateCoordinateInput(int coordinate, char indicator) 
+int OF::translateCoordinateInput(int coordinate, char indicator) 
 {
 	debugFunction("OtherFunctions, translateCoordinateInput");
   switch (indicator) {
@@ -132,7 +72,7 @@ int OtherFunctions::translateCoordinateInput(int coordinate, char indicator)
   return NULL;
 }
 
-int OtherFunctions::translateCoordinateOutput(int coordinate, char indicator) 
+int OF::translateCoordinateOutput(int coordinate, char indicator) 
 {
 debugFunction("OtherFunctions, translateCoordinateOutput");
   switch (indicator) {
@@ -146,7 +86,7 @@ debugFunction("OtherFunctions, translateCoordinateOutput");
   return NULL;
 }
 
-std::string OtherFunctions::printCoordinates(std::array<int, 2> coordinates)
+std::string OF::printCoordinates(std::array<int, 2> coordinates)
 {
 	debugFunction("OtherFunctions, printCoordinates");
   //std::string x = std::to_string(translateCoordinate(coordinates[0], 'x', 'O'));
@@ -157,7 +97,7 @@ std::string OtherFunctions::printCoordinates(std::array<int, 2> coordinates)
 	return coordinatesString;
 }
 
-// std::vector<int> OtherFunctions::modifyVector(std::vector<int> primeVector, std::vector<int> secondaryVector, bool isAdd)
+// std::vector<int> OF::modifyVector(std::vector<int> primeVector, std::vector<int> secondaryVector, bool isAdd)
 // {
 // 	debugFunction("OtherFunctions, modifyVector");
 // 	if (isAdd)
@@ -169,7 +109,7 @@ std::string OtherFunctions::printCoordinates(std::array<int, 2> coordinates)
 // 	return primeVector;
 // }
 
-std::array<int, 5> OtherFunctions::modifyArray(std::array<int, 5> primeArray, std::array<int, 5> secondaryArray, bool isAdd)
+std::array<int, 5> OF::modifyArray(std::array<int, 5> primeArray, std::array<int, 5> secondaryArray, bool isAdd)
 {
 	debugFunction("OtherFunctions, modifyArray");
 	if (isAdd)
@@ -181,7 +121,7 @@ std::array<int, 5> OtherFunctions::modifyArray(std::array<int, 5> primeArray, st
 	return primeArray;
 }
 
-void OtherFunctions::printResources(std::array<int, 5> resourcesArray)
+void OF::printResources(std::array<int, 5> resourcesArray)
 {
 	debugFunction("OtherFunctions, printResources");
 	for (int x = 0; x < 5; x++)
@@ -190,7 +130,7 @@ void OtherFunctions::printResources(std::array<int, 5> resourcesArray)
 	std::cout <<  std::endl;
 }
 
-void OtherFunctions::enterAnything()
+void OF::enterAnything()
 {
 	debugFunction("OtherFunctions, enterAnything");
 	std::string emptyString = " ";
@@ -199,7 +139,7 @@ void OtherFunctions::enterAnything()
 	println("\n\033[0m")
 }
 
-int OtherFunctions::translateCoordinateToLL (int x, int y)
+int OF::translateCoordinateToLL (int x, int y)
 {
 	debugFunction("OtherFunctions, translateCoordinateToLL");
 	int LLNumber = 0;
@@ -207,7 +147,7 @@ int OtherFunctions::translateCoordinateToLL (int x, int y)
 	return LLNumber;
 }
 
-void OtherFunctions::debugFunction(std::string functionName)
+void OF::debugFunction(std::string functionName)
 {
 	/*functionName is styled as "file name, function name*/
 	if (debuggingMode == true)
@@ -231,7 +171,7 @@ void OtherFunctions::debugFunction(std::string functionName)
 
 
 //Returns that help prompt that correlates with the specified numerical identifier (caseNum)
-void OtherFunctions::showHelp(int caseNum)
+void OF::showHelp(int caseNum)
 {
 	std::string caseNumString = std::to_string(caseNum);
 
@@ -265,7 +205,7 @@ void OtherFunctions::showHelp(int caseNum)
 	}
 }
 
-void OtherFunctions::printFile(std::string filename)
+void OF::printFile(std::string filename)
 {
 	debugFunction("showText, printFile");
 	std::cout << "File name: " << filename << std::endl;
@@ -321,4 +261,4 @@ void OtherFunctions::printFile(std::string filename)
 // Options:GRB
 // }
 
-bool OtherFunctions::debuggingMode = true;
+bool OF::debuggingMode = true;

@@ -67,7 +67,7 @@ void TrainMA::TrainMAFunction() {
                     requiredResources[0] *= amountOfTroops;
                 }
                 std::cout << "The required amount of resources are as follows: \n";
-                OF.printResources(requiredResources);
+                OF::printResources(requiredResources);
 
                 std::cout << std::endl;
                 char repeatProceedWithTraining = 'Y';

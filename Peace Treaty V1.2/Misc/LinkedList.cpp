@@ -2,7 +2,7 @@
 
 LinkedList::LinkedList()
 {
-	OF.debugFunction("LinkedList, LinkedList (0)");
+	OF::debugFunction("LinkedList, LinkedList (0)");
 	head = NULL;
 	tail = NULL;
 	provincesNum = 0;
@@ -10,7 +10,7 @@ LinkedList::LinkedList()
 
 void LinkedList::LLupdateprovinceResources()
 {
-	OF.debugFunction("LinkedList, LLupdateProvinceResources");
+	OF::debugFunction("LinkedList, LLupdateProvinceResources");
 	node *temp;
 	temp = head;
 	while (temp != NULL)
@@ -23,13 +23,13 @@ void LinkedList::LLupdateprovinceResources()
 
 int LinkedList::getProvincesNum ()
 {
-	OF.debugFunction("LinkedList, getProvincesNum");
+	OF::debugFunction("LinkedList, getProvincesNum");
 	return provincesNum;
 }
 
 void LinkedList::addNode (Provinces &provinceArg)
 {
-	OF.debugFunction("LinkedList, addNode");
+	OF::debugFunction("LinkedList, addNode");
 	node *temp = new node;
 	temp->province = &provinceArg;
 	temp->next = NULL;
@@ -49,7 +49,7 @@ void LinkedList::addNode (Provinces &provinceArg)
 
 Provinces* LinkedList::getProvinceByNum (int num)
 {
-	OF.debugFunction("LinkedList, getProvinceByNum");
+	OF::debugFunction("LinkedList, getProvinceByNum");
 	std::cout << "GetProvinceByNum\n";
 	std::cout << "Num: " << num << std::endl;
 	
@@ -71,7 +71,7 @@ Provinces* LinkedList::getProvinceByNum (int num)
 
 std::vector<Provinces> *LinkedList::createMap (int size)
 {
-	OF.debugFunction("LinkedList, createMap");
+	OF::debugFunction("LinkedList, createMap");
 	std::cout << "LLCreate Map...\n";
 	provincesList.clear();//Fix this so don't need to clear every time createMap is called.
 	//std::unordered_map<std::string, Provinces> provincesList;
@@ -88,7 +88,7 @@ std::vector<Provinces> *LinkedList::createMap (int size)
 
 void LinkedList::listProvinces()
 {
-	OF.debugFunction("LinkedList, listProvinces");
+	OF::debugFunction("LinkedList, listProvinces");
 	node *temp;
 	temp = head;
 	int a = 1;

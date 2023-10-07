@@ -9,7 +9,7 @@
 #include "MA/MapMA.h"
 
 
-#include "Misc/OtherFunctions.h"
+#include "Misc/OF.h"
 #include "Units/Participants.h"
 
 class PlayerAction
@@ -22,7 +22,7 @@ public:
 	void pauseGame();
 private:
 	Participants *participant;
-	OtherFunctions OF;
+	
 	
 
 };

@@ -9,7 +9,7 @@ ArmyOverviewMA::ArmyOverviewMA() {
 
 void ArmyOverviewMA::armyDeploymentMF() {
   println("Welcome to the Army Deployment action menun\n");
-  switch (OF.getOption(5)) {
+  switch (OF::getOption(5)) {
   case 'T':
     trainCommanders();
     break;

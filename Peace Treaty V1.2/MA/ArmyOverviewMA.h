@@ -10,7 +10,7 @@
 #include "../Units/Database.h"
 
 #include "../Units/Participants.h"
-#include "../Misc/OtherFunctions.h"
+#include "../Misc/OF.h"
 
 extern Database db;
 
@@ -38,7 +38,7 @@ public:
 private:
 	Participants *participant;
 	int commandersNum;
-	OtherFunctions OF;
+	
 	std::string commanderName;
 };
 
