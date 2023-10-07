@@ -11,6 +11,7 @@
 
 #include "../Units/Participants.h"
 #include "../Misc/OF.h"
+#include "../Input.h"
 
 extern Database db;
 

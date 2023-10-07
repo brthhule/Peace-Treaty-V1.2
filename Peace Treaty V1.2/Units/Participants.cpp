@@ -233,7 +233,7 @@ void Participants::viewAllStatsFunction() {
 	std::cout << "Total troops lost: ";
 	calculatePlayerValues(2);
 	std::cout << "\n\n\033[;0m"; // NW
-	OF.enterAnything();
+	OF::enterAnything();
 }
 
 void Participants::printListOfProvinces() {
@@ -301,7 +301,7 @@ Provinces* Participants::getCoords(int identifier) {
 		yCoordinate = OF.translateCoordinate(replacement, 'x', 'I');
 		std::cout << "Translated x: " << xCoordinate << std::endl;
 		std::cout << "Translated y: " << yCoordinate << std::endl;
-		OF.enterAnything();
+		OF::enterAnything();
 		Provinces* newProvince = &provincesMap[xCoordinate][yCoordinate];
 		return newProvince;
 	}
@@ -350,13 +350,13 @@ std::array<int, 5> Participants::calculateEach(int option)
 		switch (option)
 		{
 		case 1://Calculate each Unit
-			returnArray = OF.modifyArray(returnArray, newCommander->getAllTroopsPresent(), true);
+			returnArray = OF::modifyArray(returnArray, newCommander->getAllTroopsPresent(), true);
 			break;
 		case 2://Calculate each resource
-			returnArray = OF.modifyArray(returnArray, newCommander->getAllResources(), true);
+			returnArray = OF::modifyArray(returnArray, newCommander->getAllResources(), true);
 			break;
 		case 3://calculate each troop lost
-			returnArray = OF.modifyArray(returnArray, newCommander->getAllTroopsLost(), true);
+			returnArray = OF::modifyArray(returnArray, newCommander->getAllTroopsLost(), true);
 			break;
 		default:
 			break;
@@ -370,13 +370,13 @@ std::array<int, 5> Participants::calculateEach(int option)
 		switch (option)
 		{
 		case 1://Calculate each Unit
-			returnArray = OF.modifyArray(returnArray, newProvince->getAllTroopsPresent(), true);
+			returnArray = OF::modifyArray(returnArray, newProvince->getAllTroopsPresent(), true);
 			break;
 		case 2://Calculate each resource
-			returnArray = OF.modifyArray(returnArray, newProvince->getAllResources(), true);
+			returnArray = OF::modifyArray(returnArray, newProvince->getAllResources(), true);
 			break;
 		case 3://calculate each troop lost
-			returnArray = OF.modifyArray(returnArray, newProvince->getAllTroopsLost(), true);
+			returnArray = OF::modifyArray(returnArray, newProvince->getAllTroopsLost(), true);
 			break;
 		default:
 			break;
@@ -560,7 +560,7 @@ Provinces* Participants::findProvince() {
 		else {//If does not belong to the current participant
 			print("Invalid province elected. Please try again. \nEnter anything to "
 				"proceed back to the Player Build menu (Screen will clear) ");
-			OF.enterAnything();
+			OF::enterAnything();
 		}
 		std::cout << std::endl;
 	}

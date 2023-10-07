@@ -27,7 +27,7 @@ std::array<int, 5> AllUnits::getAllTroopsPresent(){
 }
 
 void AllUnits::modifyTroops(std::array<int, 5> troopsAdd, bool isAdd){
-	troopsPresent = OF.modifyArray(troopsPresent, troopsAdd, isAdd);
+	troopsPresent = OF::modifyArray(troopsPresent, troopsAdd, isAdd);
 }
 
 void AllUnits::modifySpecificTroop(int index, int amount, bool isAdd)
@@ -42,7 +42,7 @@ void AllUnits::addSpecificInjuredTroop(int troopIndex, int amount){
 	troopsInjured[troopIndex] += amount;
 }
 void AllUnits::addInjuredTroops(std::array<int, 5> troops){
-	troopsInjured = OF.modifyArray(troopsInjured, troops, true);
+	troopsInjured = OF::modifyArray(troopsInjured, troops, true);
 }
 
 int AllUnits::getCP(){
@@ -88,7 +88,7 @@ void AllUnits::modifySpecificResource(int index, int amount, bool isAdd)
 
 void AllUnits::modifyResources(std::array<int, 5> resourcesArray, bool isAdd)
 {
-	OF.modifyArray(resourcesPresent, resourcesArray, isAdd);
+	OF::modifyArray(resourcesPresent, resourcesArray, isAdd);
 }
 
 int AllUnits::getLevel()
@@ -138,7 +138,7 @@ void AllUnits::addSpecificTroopLost(int index, int amount)
 
 void AllUnits::addTroopsLost(std::array<int, 5> troopsArray)
 {
-	troopsLost = OF.modifyArray(troopsLost, troopsArray, true);
+	troopsLost = OF::modifyArray(troopsLost, troopsArray, true);
 }
 std::array<int, 5> AllUnits::getAllTroopsLost()
 {

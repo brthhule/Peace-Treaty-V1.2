@@ -9,6 +9,8 @@
 #include "../Units/CommanderProfile.h"
 #include "../Units/Provinces.h"
 #include "../Units/AllUnits.h"
+#include "../Input.h"
+
 
 #include "../Misc/ConstValues.h"
 

@@ -90,7 +90,7 @@ int main()/*main code*/
 	}
 	}
 
-	OF.enterAnything();
+	OF::enterAnything();
 	OF::clearScreen();
 
 	gamePlay();

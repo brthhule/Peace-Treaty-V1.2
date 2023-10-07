@@ -1,4 +1,5 @@
 #include "Provinces.h"
+#include "../Input.h"
 
 #define print(x) std::cout << x;
 #define println(x) std::cout << x << std::endl;
@@ -35,7 +36,7 @@ Provinces::Provinces (int LLNumArg)
 void Provinces::basicStats()
 {
 	OF::debugFunction("Provinces, basicStats");
-	OF.modifyArray(resourcesPresent, CV::INITIAL_VALUES, true);
+	OF::modifyArray(resourcesPresent, CV::INITIAL_VALUES, true);
 	
 	scoutReportTurn = -1;
 	scoutReportLogLevel = -1;
@@ -371,8 +372,8 @@ void Provinces::playerBuildFunction() {
 	char upgradeBuilding = ' ';
 	char repeatPlayerBuildFunction = 'Y';
 
-	upgradeBuilding = OF.getOption(7);
-	if (OF.getOption(7) == 'U') {
+	upgradeBuilding = Input::getOptionPrompt(PLAYER_BUILD_FUNCTION).at(0);
+	if (upgradeBuilding == 'U') {
 		upgradeBuildings();
 		playerBuildFunction();
 		std::cout << std::endl;

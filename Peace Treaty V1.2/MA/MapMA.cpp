@@ -15,7 +15,7 @@ void MapMA::viewPlayerMap() {
     db.showMap();
     println("Welcome to the View Map action menu");
 
-		whatToDo = OF.getInput(false, -1, "showOptions, 8", {}, false, false).at(0);
+		whatToDo = Input::getOptionPrompt(VIEW_PLAYER_MAP).at(0);
   }
   else
     whatToDo = 'P';
@@ -84,7 +84,7 @@ void MapMA::selectPlayerProvince() {
   }
   std::cout << std::endl << std::endl;
 
-  char selectPlayerCapitalAction = OF.getOption(9);
+  char selectPlayerCapitalAction = Input::getOptionPrompt(SELECT_PLAYER_PROVINCE).at(0);
 
   switch (selectPlayerCapitalAction) {
   case 'B': {
@@ -147,7 +147,7 @@ void MapMA::playerUnitAction(Provinces *newP) {
 	Provinces *newProvince = newP;
   println("This is one of your armies ");
 	
-	switch (OF.getOption(2)) {
+	switch (Input::getOptionPrompt(PLAYER_UNIT_ACTION).at(0)) {
 	case 'P': //Move this unit
 	{
 		playerUnitActionP(newProvince);
@@ -198,7 +198,7 @@ void MapMA::selectEnemyAction() /*Add implementation*/
 {
   std::cout << "This is an enmy army. \n";
 
-	switch (OF.getOption(1))
+	switch (Input::getOptionPrompt(SELECT_ENEMY_ACTION).at(0))
 	{
 		case 'A':
 			break;
@@ -218,7 +218,7 @@ void MapMA::scoutLogFunction(Provinces* enemyProvince) {
   std::cout << "Turn of scout report: " << enemyProvince->getScoutReportTurn() << "; Level of report: " << enemyProvince -> getScoutLogTurnLevel() << "\n\n";
   do 
 	{
-    whatReportChar = OF.getOption(11);
+    whatReportChar = Input::getOptionPrompt(WHAT_REPORT).at(0);//add functionality for WHAT_REPORT
     provinceReportLog(whatReportChar, enemyProvince);
   } while (repeatScoutLog == 'Y');
 }

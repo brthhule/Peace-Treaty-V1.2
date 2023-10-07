@@ -75,7 +75,7 @@ void ScoutMA::playerScoutStepTwo() // Finish this later
 		accuracy = 0;
 
 	participant->scoutProvince(&provincesMap[coordinates[0]][coordinates[1]], accuracy);
-	OF.enterAnything();
+	OF::enterAnything();
 }
 
 void ScoutMA::getCanScout()

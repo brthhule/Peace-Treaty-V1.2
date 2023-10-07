@@ -9,7 +9,7 @@ ArmyOverviewMA::ArmyOverviewMA() {
 
 void ArmyOverviewMA::armyDeploymentMF() {
   println("Welcome to the Army Deployment action menun\n");
-  switch (OF::getOption(5)) {
+  switch (Input::getOptionPrompt(ARMY_DEPLOYMENT).at(0)) {
   case 'T':
     trainCommanders();
     break;
@@ -44,7 +44,7 @@ void ArmyOverviewMA::upgradeCommandersOne() /*fix this-- finish making it*/
   else 
     std::cout << "No commanders available, can not upgrade\n";
   
-  OF.enterAnything();
+  OF::enterAnything();
 }
 void ArmyOverviewMA::upgradeCommandersTwo() 
 {
@@ -80,7 +80,7 @@ if (commanderName != "-1")
 
     participant->getCommander(commanderName)->printCommanderStats();
 	}
-	OF.enterAnything();	
+	OF::enterAnything();	
 }
 
 void ArmyOverviewMA::trainCommanders() {
@@ -97,7 +97,7 @@ void ArmyOverviewMA::trainCommanders() {
       std::cout << "At maximum army commander amount. Training failed, returning to menu \n";
   } 
 	else 
-    OF.enterAnything();
+    OF::enterAnything();
 }
 
 void ArmyOverviewMA::proceedWithTraining(std::array<int,5> trainCosts) {
@@ -140,7 +140,7 @@ void ArmyOverviewMA::deployCommanderMF()
 			deployCommanderMF();
 		}
 
-	  OF.enterAnything();
+	  OF::enterAnything();
 	}
 }
 

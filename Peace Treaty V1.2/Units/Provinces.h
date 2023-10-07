@@ -8,11 +8,13 @@
 #include "CommanderProfile.h"
 #include "../Misc/ConstValues.h"
 #include "../Interfaces/Build.h"
+#include "../Input.h"
 
 #define print(x) std::cout << x;
 #define println(x) std::cout << x << std::endl;
 
 using namespace CV;
+using namespace Input;
 
 extern int continentSize;
 extern const int BARRACKS_PRODUCTION;

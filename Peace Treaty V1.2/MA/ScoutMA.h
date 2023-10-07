@@ -6,6 +6,8 @@
 
 #include "../Units/Participants.h"
 #include "../Units/Provinces.h"
+#include "../Input.h"
+
 
 #include "../Misc/OF.h"
 

@@ -23,16 +23,14 @@ namespace CV
 
 
 
-	const enum PROMPTS { INTRODUCTION };
-	const std::array<std::string, 1> PROMPTS_STRING = { "INTRODUCTION" };
+	const enum PROMPTS { SELECT_ENEMY_ACTION, PLAYER_UNIT_ACTION, INTRODUCTION, PLAYER_ACTION, ARMY_DEPLOYMENT, TRAIN_MA_FUNCTION, PLAYER_BUILD_FUNCTION, VIEW_PLAYER_MAP, SELECT_PLAYER_PROVINCE, SELECT_ENEMY_PROVINCE, WHAT_REPORT};
+	const std::array<std::string, 11> PROMPTS_STRING = { "SELECT_ENEMY_ACTION", "PLAYER_UNIT_ACTION", "INTRODUCTION", "PLAYER_ACTION", "ARMY_DEPLOYMENT", "TRAIN_MA_FUNCTION", "PLAYER_BUILD_FUNCTION", "VIEW_PLAYER_MAP", "SELECT_PLAYER_PROVINCE", "SELECT_ENEMY_PROVINCE", "WHAT_REPORT" /*Add stuff for this*/};
 
 	std::string promptsToString(PROMPTS p) {
 		return PROMPTS_STRING[p];
 	}
 
-	PROMPTS stringToPrompts(std::string arg) {
-		return PROMPTS(getStringIndex(arg));
-	}
+
 
 	int getStringIndex(std::string arg) {
 		for (int x = 0; x < PROMPTS_STRING.size(); x++) {
@@ -42,6 +40,10 @@ namespace CV
 		}
 		//Error case
 		return -1;
+	}
+
+	PROMPTS stringToPrompts(std::string arg) {
+		return PROMPTS(CV::getStringIndex(arg));
 	}
 
 	const enum COLORS {BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE, RESET};

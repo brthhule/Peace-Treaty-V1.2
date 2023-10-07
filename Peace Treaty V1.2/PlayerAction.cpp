@@ -26,7 +26,7 @@ void PlayerAction::initialDecision() {
 		std::cout << std::endl;
     db.showMap();
     
-    courseOfAction = OF.getOption(4);
+    courseOfAction = Input::getOptionPrompt(PLAYER_ACTION).at(0);
   }
   else // If the participant is the AI
   {

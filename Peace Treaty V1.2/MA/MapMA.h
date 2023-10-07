@@ -15,6 +15,8 @@
 #include "../Misc/ConstValues.h"
 #include "../Misc/OF.h"
 #include "../Units/Database.h"
+#include "../Input.h"
+
 
 //extern std::vector<std::vector<Provinces>> provincesMap;
 //extern std::vector<Participants> participantsList;

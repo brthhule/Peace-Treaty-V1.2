@@ -21,7 +21,7 @@ namespace Input {
 		//std::cout << "Opening file...\n";
 		newfile.open("Prompts.txt", std::ios::in); // open a file to perform read operation using file object
 		std::vector<std::string> acceptableValues = { "H" };
-
+		std::cout << "List of options: \n";
 		std::string line;
 		std::string optionsLine;
 		bool startReading = false;
@@ -43,6 +43,7 @@ namespace Input {
 			}
 		}
 		newfile.close(); // close the file object.
+		std::cout << "Return to previous menu (M)\n";
 
 		//Options:S,R	
 		optionsLine = optionsLine.substr(8);//S,R
@@ -53,23 +54,16 @@ namespace Input {
 			//Cut down the string of values
 			optionsLine = optionsLine.substr(optionsLine.find(",") + 1);//R
 		}
-		//Add the last value
+		//Add the last value (besides go back to previous menu)
 		acceptableValues.push_back(optionsLine);
+		acceptableValues.push_back("M");//go back to previous menu
 		return acceptableValues;
 	}
 
-	std::string getOptionPrompt(CV::PROMPTS p) {
-
-		//Print prompt, return acceptable values
-		std::vector<std::string> AV = getShowPrompt(CV::promptsToString(p));
-		
-		return getOptionPromptQuery(AV);
-	}
-
-	std::string getOptionPromptQuery(std::vector<std::string>AV){
+	std::string getOptionPromptQuery(std::vector<std::string>AV) {
 		std::string input;
 		std::cout << "Enter an option: ";
-		
+
 		getline(std::cin, input);
 		for (std::string value : AV) {
 			if (input == value) {
@@ -81,16 +75,18 @@ namespace Input {
 		return getOptionPromptQuery(AV);
 	}
 
+	std::string getOptionPrompt(CV::PROMPTS p) {
 
-	//For text input
-	std::string getInputText(std::string text, std::vector<std::string> AV)
-	{
-		OF::debugFunction("Iput, getInputText");
-		std::cout << text << "\n";
-		std::string input;
-
-		return getInputQuery(AV);
+		//Print prompt, return acceptable values
+		std::vector<std::string> AV = getShowPrompt(CV::promptsToString(p));
+		
+		return getOptionPromptQuery(AV);
 	}
+
+
+
+
+
 
 	std::string getInputQuery(std::vector<std::string>AV) {
 		std::cout << "Enter an option: ";
@@ -107,6 +103,17 @@ namespace Input {
 		}
 
 		std::cout << "Invalid option... please try again.\n";
+		return getInputQuery(AV);
+	}
+
+
+	//For text input
+	std::string getInputText(std::string text, std::vector<std::string> AV)
+	{
+		OF::debugFunction("Iput, getInputText");
+		std::cout << text << "\n";
+		std::string input;
+
 		return getInputQuery(AV);
 	}
 };
