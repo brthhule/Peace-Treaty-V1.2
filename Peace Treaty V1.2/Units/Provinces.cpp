@@ -389,16 +389,16 @@ void Provinces::upgradeBuildings() {
 	int buildingNumber = 0;
 	std::vector<std::string> buildingLetterList = { "F", "L", "Q", "M", "C", "B", "H" };
 
-	char buildingLetter = OF.getInput(false, -1, "Enter the first letter of the building you want to upgrade (enter 'H' for help): ", buildingLetterList, false, false).at(0);
+	char buildingLetter = Input::getInputText(false, -1, "Enter the first letter of the building you want to upgrade (enter 'H' for help): ", buildingLetterList, false, false).at(0);
 
 	if (buildingLetter != 'H') {
 		upgradeBuildings2(buildingLetter, buildingNumber, requiredResources, buildingLetterList);
 	}
 	else {
-		OF.showHelp(12);
+		OF::showHelp(12);
 	}
 
-	char upgradeAgain = OF.getInput(false, -1, "Upgrade another building (Y/N): ", { "Y", "N" }, false, false).at(0);
+	char upgradeAgain = Input::getInputText(false, -1, "Upgrade another building (Y/N): ", { "Y", "N" }, false, false).at(0);
 	if (upgradeAgain == 'Y') {
 		upgradeBuildings2(buildingLetter, buildingNumber, requiredResources, buildingLetterList);
 	}
@@ -414,7 +414,7 @@ void Provinces::upgradeBuildings2(char buildingLetter, int buildingNumber, std::
 	}
 
 	printInformation(buildingNumber, requiredResources, buildingLetterList);
-	char upgradeProceed = OF.getInput(false, -1, "Proceed with upgrade? (Y/N) ", { "Y", "N" }, false, false).at(0);
+	char upgradeProceed = Input::getInputText(false, -1, "Proceed with upgrade? (Y/N) ", { "Y", "N" }, false, false).at(0);
 
 	if (upgradeProceed == 'Y') {
 		bool upgradeSuccess = this->subtractCheckResources(requiredResources);

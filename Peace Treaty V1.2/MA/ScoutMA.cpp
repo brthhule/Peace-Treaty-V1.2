@@ -54,7 +54,7 @@ void ScoutMA::playerScoutStepTwo() // Finish this later
   int unitLevel = selectUnitToScout(returnUnitName, isProvince, coordinates);
 
   std::cout << "Proceed scout action with unit at " << OF::printCoordinates(coordinates) << "? (Y/N) ";
-  char proceedWithScoutChar = OF.getInput(false, -1, " ", {"Y", "N"}, false, false).at(0);
+  char proceedWithScoutChar = Input::getInputText("", {"Y", "N"}).at(0);
 
   if (proceedWithScoutChar == 'Y') 
 	{

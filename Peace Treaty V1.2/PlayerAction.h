@@ -12,6 +12,8 @@
 #include "Misc/OF.h"
 #include "Units/Participants.h"
 
+extern int turn;
+
 class PlayerAction
 {
 public:

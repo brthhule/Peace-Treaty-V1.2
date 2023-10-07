@@ -34,15 +34,15 @@ namespace OF {
 	std::string createRandomName();
 
 	// Other stuff
-	static void clearScreen();
-	static void enterAnything();
+	void clearScreen();
+	void enterAnything();
 
 	//Manipulate vectors
-	static std::array<int, 5> modifyArray(std::array<int, 5> primeArray, std::array<int, 5> secondaryArray, bool isAdd);
-	static void printResources(std::array<int, 5> resourcesArray);
+	std::array<int, 5> modifyArray(std::array<int, 5> primeArray, std::array<int, 5> secondaryArray, bool isAdd);
+	void printResources(std::array<int, 5> resourcesArray);
 
 	//Debugging
-	static void debugFunction(std::string functionName);
+	void debugFunction(std::string functionName);
 
 	//For if/ternary statements with no "else"
 	static void nothing() {};

@@ -34,7 +34,7 @@ void MapMA::viewPlayerMap() {
     break;
   }
   case 'H': {
-    OF.showHelp(8);
+    OF::showHelp(8);
     viewPlayerMap();
     break;
   }
@@ -113,7 +113,7 @@ void MapMA::selectEnemyProvince(Provinces *newP) {
 
   println("\n\nWelcome to the Enemy Provinces Action Selection menu ");
 	
-  char selectUnitEnemyProvinceChar = OF.getOption(10);
+  char selectUnitEnemyProvinceChar = Input::getOptionPrompt(SELECT_ENEMY_PROVINCE).at(0);
 
   switch (selectUnitEnemyProvinceChar) {
   case 'A': {
@@ -129,7 +129,7 @@ void MapMA::selectEnemyProvince(Provinces *newP) {
   }
   case 'V': {
     if (enemyProvince->getScoutReportTurn() != -1)
-      if (OF.getInput(false, -1, "View scout log for this province? (Y/N) ", {"Y", "N"}, false, false).at(0) ==
+      if (Input::getInputText("View scout log for this province? (Y/N) ", {"Y", "N"}).at(0) ==
           'Y')
         scoutLogFunction(enemyProvince);
 		
@@ -155,7 +155,7 @@ void MapMA::playerUnitAction(Provinces *newP) {
 	}
 	case 'H':
 	{
-		OF.showHelp(2);
+		OF::showHelp(2);
 		playerUnitAction(newProvince);
 		break;
 	}

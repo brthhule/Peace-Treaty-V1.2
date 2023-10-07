@@ -184,6 +184,7 @@
     <Text Include="TxtFiles\Synopsis.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Structure.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Interfaces\Build.h" />
     <ClInclude Include="MA\ArmyOverviewMA.h" />

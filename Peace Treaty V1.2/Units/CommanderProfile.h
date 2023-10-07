@@ -6,6 +6,8 @@
 #include "AllUnits.h"
 #include "../Misc/ConstValues.h"
 
+extern int turn;
+
 using namespace CV;
 
 

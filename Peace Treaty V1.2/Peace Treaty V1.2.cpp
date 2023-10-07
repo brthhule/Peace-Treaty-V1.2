@@ -84,7 +84,7 @@ int main()/*main code*/
 	}
 	case 'H':
 	{
-		OF.showHelp(3);
+		OF::showHelp(3);
 		main();
 		break;
 	}
@@ -109,7 +109,7 @@ void startGame()
 	OF::debugFunction("main, startGame");
 	std::string text = "What continent size do you want to play on?\n- 5 (Recommended for mobile devices)\n- 10 (Medium-sized map)\n- 15 (Full experienced, recommended for a monitor)\nEnter the number here: ";
 	//"What continent size do you want to play on? (5, 10, 15) "
-	std::string input = OF.getInput(false, -1, text, {"5", "10", "15" }, true, false);
+	std::string input = Input::getInputText(text, {"5", "10", "15" });
 	continentSize = std::stoi(input);
 	//int *thing = db.getContinentSizePointer();
 	//continentSize = *thing;
@@ -117,12 +117,12 @@ void startGame()
 
 	std::cout << "Continent size " << RED << db.getContinentSize() << WHITE << " created..\n\n";
 
-	int pNum = std::stoi(OF.getInput(false, -1, "How many AI kingdoms will you fight? (1, 2, 3) ", { "number", "1", "2", "3" }, true, false));
+	int pNum = std::stoi(Input::getInputText("How many AI kingdoms will you fight? (1, 2, 3) ", { "number", "1", "2", "3" }));
 	std::cout << RED << pNum << WHITE << " opponent kingdoms generated... \n\n";
 	OF::clearScreen();
 	db.setMaxCommanders(continentSize);
 
-	enemyDifficulty = std::stoi(OF.getInput(false, -1, "What gameplay difficulty do you want (1-3): ", { "number","1","2","3" }, true, false));
+	enemyDifficulty = std::stoi(Input::getInputText("What gameplay difficulty do you want (1-3): ", { "number","1","2","3" }));
 	OF::clearScreen();
 	std::cout << "Gameplay difficulty " << RED << enemyDifficulty << WHITE << " selected. \n\n";
 
@@ -138,7 +138,7 @@ void generateNewContinent(int pNum)
 	for (int x = 1; x <= 3; x++)
 		howManyPlayers.push_back(std::to_string(x));
 
-	int players = std::stoi(OF.getInput(false, -1, "How many human players are there (1/2/3; 1 is recommended for single player experience): ", howManyPlayers, true, false));
+	int players = std::stoi(Input::getInputText("How many human players are there (1/2/3; 1 is recommended for single player experience): ", howManyPlayers));
 	OF::clearScreen();
 
 	std::cout << RED << players << WHITE << " players initialized...\n\n";
@@ -161,7 +161,7 @@ void endScreen()
 
 		}
 	}
-	char playAgain = OF::getInputText("Play again? (Y/N) ", { "letter", "Y", "N" }).at(0);
+	char playAgain = Input::getInputText("Play again? (Y/N) ", { "letter", "Y", "N" }).at(0);
 	
 	
 	if (playAgain == 'Y')
@@ -201,7 +201,7 @@ void gamePlay()
 		if (newParticipant.isAlive() == true)
 			participantsAlive++;
 
-	(participantsAlive > 1) ? gamePlay() : OF.nothing();
+	//(participantsAlive > 1) ? gamePlay() : OF.nothing();
 
 	endScreen();
 }

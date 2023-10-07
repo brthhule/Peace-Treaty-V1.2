@@ -165,7 +165,7 @@ void Participants::viewStats() {
 	std::cout << "Your total army combat power: " << calculatePlayerValues(1).at(0);
 	std::cout << "\nYour numnber of provinces: " << provincesNum() << "\n\n";
 
-	if (OF.getInput(false, -1, "View all stats? (Y/N) ", { "Y", "N" }, false, false).at(0) == 'Y')
+	if (Input::getInputText(false, -1, "View all stats? (Y/N) ", { "Y", "N" }, false, false).at(0) == 'Y')
 		viewAllStatsFunction();
 
 	std::cout << "Returning to menu" << std::endl;
@@ -288,9 +288,9 @@ Provinces* Participants::getCoords(int identifier) {
 		phrase = "of the army you want to use to attack the target with";
 	}
 
-	int xCoordinate = std::stoi(OF.getInput(false, -1, "Enter the x coordinate " + phrase + " (Enter '-1' to go back to previous menu): ", actualCoordinatesAVTwo, false, false));
+	int xCoordinate = std::stoi(Input::getInputText(false, -1, "Enter the x coordinate " + phrase + " (Enter '-1' to go back to previous menu): ", actualCoordinatesAVTwo, false, false));
 	// Critical: check to make sure the coordinate checkings are correct
-	int yCoordinate = std::stoi(OF.getInput(false, -1, "Enter the y coordinate " + phrase + " (Enter '-1' to go back to previous menu): ", actualCoordinatesAVTwo, false, false));
+	int yCoordinate = std::stoi(Input::getInputText(false, -1, "Enter the y coordinate " + phrase + " (Enter '-1' to go back to previous menu): ", actualCoordinatesAVTwo, false, false));
 
 	std::cout << "X Coordinate: " << xCoordinate << std::endl;
 	std::cout << "Y Coordinate: " << yCoordinate << std::endl;

@@ -260,5 +260,3 @@ void OF::printFile(std::string filename)
 
 // Options:GRB
 // }
-
-bool OF::debuggingMode = true;
