@@ -368,18 +368,7 @@ void OtherFunctions::printFile(std::string filename)
 }
 
 //Gets an input from the user that pertains to choosing an option from one of the showOptions prompts
-char OtherFunctions::getOption(int caseNum)
-{
-	//(bool isSO, int caseNum, std::string text, std::vector<std::string> AV, bool isNumber, bool redo)
-	return getInput(true, caseNum, nullptr, {}, false, false).at(0);
-	/*
-	In order:
-	- showOptions indicates that the options must be printed out, taken from the Options.txt file
-	- caseNum indicates the options prompt that must be printed
-	- Empty brackets indicate that the acceptable values are unknown at this point and must be found from the Options.txt file
-	- third parameter, false, indicates that we want to get a char/letter value in return, not a number
-	- the fourth parameter, false, indcates that getInput will be run initially from this call; it is not being reiterated at this point*/
-}
+
 
 
 
