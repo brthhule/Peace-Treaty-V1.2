@@ -15,9 +15,6 @@
 
 extern Database db;
 
-
-#define UNIT_SIZE 5
-
 class ArmyOverviewMA
 {
 public:

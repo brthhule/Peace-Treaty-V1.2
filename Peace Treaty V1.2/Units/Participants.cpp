@@ -82,8 +82,8 @@ Provinces* Participants::findProvince(int x, int y) {
 	return this->getErrorProvince();
 }
 
-int Participants::provincesNum() { return provincesList.size(); }
-int Participants::commandersNum() { return commandersList.size(); }
+int Participants::provincesNum() { return (int) provincesList.size(); }
+int Participants::commandersNum() { return (int) commandersList.size(); }
 
 
 void Participants::initialCapRSS() {
@@ -97,7 +97,7 @@ void Participants::setCapital(Provinces* newProvince) {
 	for (int x = 0; x < (int)provincesList.size(); x++) {
 		if (provincesList[x] == newProvince) {
 			capitalIndex = x;
-			x = provincesList.size();
+			x = (int) provincesList.size();
 		}
 	}
 }
@@ -165,7 +165,7 @@ void Participants::viewStats() {
 	std::cout << "Your total army combat power: " << calculatePlayerValues(1).at(0);
 	std::cout << "\nYour numnber of provinces: " << provincesNum() << "\n\n";
 
-	if (Input::getInputText(false, -1, "View all stats? (Y/N) ", { "Y", "N" }, false, false).at(0) == 'Y')
+	if (Input::getInputText("View all stats? (Y/N) ", { "Y", "N" }).at(0) == 'Y')
 		viewAllStatsFunction();
 
 	std::cout << "Returning to menu" << std::endl;
@@ -196,7 +196,7 @@ std::vector<int> Participants::calculatePlayerValues(int decision) {
 Provinces* Participants::getProvince(int index) { return provincesList[index]; }
 
 std::string Participants::getNewName() {
-	std::string newName = OF.createRandomName();
+	std::string newName = OF::createRandomName();
 	for (Provinces* newProvince : provincesList)
 		if (newName == newProvince->getUnitName())
 			getNewName();
@@ -288,17 +288,17 @@ Provinces* Participants::getCoords(int identifier) {
 		phrase = "of the army you want to use to attack the target with";
 	}
 
-	int xCoordinate = std::stoi(Input::getInputText(false, -1, "Enter the x coordinate " + phrase + " (Enter '-1' to go back to previous menu): ", actualCoordinatesAVTwo, false, false));
+	int xCoordinate = std::stoi(Input::getInputText("Enter the x coordinate " + phrase + " (Enter '-1' to go back to previous menu): ", actualCoordinatesAVTwo));
 	// Critical: check to make sure the coordinate checkings are correct
-	int yCoordinate = std::stoi(Input::getInputText(false, -1, "Enter the y coordinate " + phrase + " (Enter '-1' to go back to previous menu): ", actualCoordinatesAVTwo, false, false));
+	int yCoordinate = std::stoi(Input::getInputText("Enter the y coordinate " + phrase + " (Enter '-1' to go back to previous menu): ", actualCoordinatesAVTwo));
 
 	std::cout << "X Coordinate: " << xCoordinate << std::endl;
 	std::cout << "Y Coordinate: " << yCoordinate << std::endl;
 	if (xCoordinate != -1 && yCoordinate != -1)
 	{
 		int replacement = xCoordinate;
-		xCoordinate = OF.translateCoordinate(yCoordinate, 'y', 'I');
-		yCoordinate = OF.translateCoordinate(replacement, 'x', 'I');
+		xCoordinate = OF::translateCoordinate(yCoordinate, 'y', 'I');
+		yCoordinate = OF::translateCoordinate(replacement, 'x', 'I');
 		std::cout << "Translated x: " << xCoordinate << std::endl;
 		std::cout << "Translated y: " << yCoordinate << std::endl;
 		OF::enterAnything();

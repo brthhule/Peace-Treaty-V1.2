@@ -361,8 +361,8 @@ void Provinces::playerBuildFunction() {
 		"---------- Start printing province information ----------\n\033[34m";
 	std::cout << "Province of kingdom " + getKingdomName();
 	std::cout << "Coordinates: ("
-		<< OF.translateCoordinate(getCoordinate('X'), 'x', 'O') << ", "
-		<< OF.translateCoordinate(getCoordinate('Y'), 'y', 'O')
+		<< OF::translateCoordinate(getCoordinate('X'), 'x', 'O') << ", "
+		<< OF::translateCoordinate(getCoordinate('Y'), 'y', 'O')
 		<< ") \n\n\033[0m";
 
 	this->printResources();
@@ -389,7 +389,7 @@ void Provinces::upgradeBuildings() {
 	int buildingNumber = 0;
 	std::vector<std::string> buildingLetterList = { "F", "L", "Q", "M", "C", "B", "H" };
 
-	char buildingLetter = Input::getInputText(false, -1, "Enter the first letter of the building you want to upgrade (enter 'H' for help): ", buildingLetterList, false, false).at(0);
+	char buildingLetter = Input::getInputText("Enter the first letter of the building you want to upgrade (enter 'H' for help): ", buildingLetterList).at(0);
 
 	if (buildingLetter != 'H') {
 		upgradeBuildings2(buildingLetter, buildingNumber, requiredResources, buildingLetterList);
@@ -398,7 +398,7 @@ void Provinces::upgradeBuildings() {
 		OF::showHelp(12);
 	}
 
-	char upgradeAgain = Input::getInputText(false, -1, "Upgrade another building (Y/N): ", { "Y", "N" }, false, false).at(0);
+	char upgradeAgain = Input::getInputText("Upgrade another building (Y/N): ", { "Y", "N" }).at(0);
 	if (upgradeAgain == 'Y') {
 		upgradeBuildings2(buildingLetter, buildingNumber, requiredResources, buildingLetterList);
 	}
@@ -414,7 +414,7 @@ void Provinces::upgradeBuildings2(char buildingLetter, int buildingNumber, std::
 	}
 
 	printInformation(buildingNumber, requiredResources, buildingLetterList);
-	char upgradeProceed = Input::getInputText(false, -1, "Proceed with upgrade? (Y/N) ", { "Y", "N" }, false, false).at(0);
+	char upgradeProceed = Input::getInputText("Proceed with upgrade? (Y/N) ", { "Y", "N" }).at(0);
 
 	if (upgradeProceed == 'Y') {
 		bool upgradeSuccess = this->subtractCheckResources(requiredResources);
