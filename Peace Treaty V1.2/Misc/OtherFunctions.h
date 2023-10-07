@@ -26,9 +26,6 @@ public:
 	//Constructor
 	OtherFunctions();
 
-	// Check input-- maybe use template for this?
-	std::string getInputPrompt(std::string text, std::vector<std::string> AV);
-	std::string getInputValue(std::vector<std::string> AV);
 
 	// Map stuff
 	int translateCoordinate(int coordinate, char indicator, char whichWay);
@@ -61,7 +58,7 @@ public:
 	void showHelp(int caseNum);
 	void printFile(std::string fileName);
 
-	char getOptionTwo(std::string type);
+
 
 
 

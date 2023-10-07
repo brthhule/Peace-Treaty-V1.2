@@ -228,68 +228,7 @@ void OtherFunctions::debugFunction(std::string functionName)
 12 - upgradeBuildings
 */
 
-std::vector<std::string> OtherFunctions::showOptions(int caseNum)
-{
-	//For debugging
-	debugFunction("showText, showOptions-- add implementation");
-	//Create OtherFunctions object
-	std::string caseNumString = std::to_string(caseNum);
-	std::fstream newfile;
 
-	std::cout << "Opening file...\n";
-	newfile.open("Options.txt", std::ios::in); // open a file to perform read operation using file object
-	std::vector<std::string> acceptableValues = { "H" };
-
-	if (newfile.is_open())
-	{
-		//Add implementation
-	}
-	newfile.close(); // close the file object.
-
-	// std::cout << "AV: \n";
-	// for (std::string newString: acceptableValues)
-	// 	std::cout << newString << std::endl;
-	return acceptableValues;
-}
-
-void OtherFunctions::printOptions(std::string tp, int& type, bool& skip, std::vector<std::string>& acceptableValues)
-{
-	debugFunction("showText, printOptions");
-	if (tp == "List of Options:")
-		type = 1;
-	else if (tp == "Options:")
-	{
-		type = 2;
-		skip = true;
-	}
-	else if (tp == "End Options")
-	{
-		skip = true;
-		type = 3;
-	}
-
-	switch (type)
-	{
-	case 1:
-		std::cout << tp << std::endl;
-		break;
-	case 2:
-		if (skip == true)
-		{
-			//Do nothing
-			skip = false;
-		}
-		else
-			acceptableValues.push_back(tp);
-		break;
-	case 3:
-		if (skip == true)
-			skip = false;
-		else
-			std::cout << tp << " ";
-		break;
-	}
-}
 
 //Returns that help prompt that correlates with the specified numerical identifier (caseNum)
 void OtherFunctions::showHelp(int caseNum)
