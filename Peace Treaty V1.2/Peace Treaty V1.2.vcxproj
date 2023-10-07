@@ -129,6 +129,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Input.cpp" />
     <ClCompile Include="MA\ArmyOverviewMA.cpp" />
     <ClCompile Include="MA\AttackMA.cpp" />
     <ClCompile Include="MA\MapMA.cpp" />
@@ -180,10 +181,11 @@
     <Text Include="AdministrativeDocs\notes.txt.txt" />
     <Text Include="AdministrativeDocs\tips.txt.txt" />
     <Text Include="TxtFiles\Help.txt" />
-    <Text Include="TxtFiles\Options.txt" />
+    <Text Include="TxtFiles\Prompts.txt" />
     <Text Include="TxtFiles\Synopsis.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Input.h" />
     <ClInclude Include="Interfaces\Build.h" />
     <ClInclude Include="MA\ArmyOverviewMA.h" />
     <ClInclude Include="MA\AttackMA.h" />

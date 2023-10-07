@@ -60,6 +60,8 @@ public:
 	void showHelp(int caseNum);
 	void printFile(std::string fileName);
 
+	char getOptionTwo(std::string type);
+
 
 
 private:

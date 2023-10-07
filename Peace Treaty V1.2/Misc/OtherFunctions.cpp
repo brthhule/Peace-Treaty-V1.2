@@ -381,6 +381,8 @@ char OtherFunctions::getOption(int caseNum)
 	- the fourth parameter, false, indcates that getInput will be run initially from this call; it is not being reiterated at this point*/
 }
 
+
+
 // void scoutLogFunction ()
 // {
 // //case ll

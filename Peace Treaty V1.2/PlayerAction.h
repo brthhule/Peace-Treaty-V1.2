@@ -23,7 +23,7 @@ public:
 private:
 	Participants *participant;
 	OtherFunctions OF;
-	int turn = 1;
+	
 
 };
 

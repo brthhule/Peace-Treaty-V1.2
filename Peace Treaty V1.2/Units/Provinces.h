@@ -99,7 +99,7 @@ public:
 
 
 private:
-	int turn = 1;
+	
 
 	/*Garrison*/
 	int maxGarrison;//derived

@@ -99,6 +99,9 @@
     <ClCompile Include="Units\Participants.cpp">
       <Filter>Source Files\Units</Filter>
     </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Source Files\Misc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\AdministrativeDocs\debugQuickAccess.txt">
@@ -167,7 +170,7 @@
     <Text Include="AdministrativeDocs\debugQuickAccess.txt">
       <Filter>AdministrativeDocs</Filter>
     </Text>
-    <Text Include="TxtFiles\Options.txt">
+    <Text Include="TxtFiles\Prompts.txt">
       <Filter>TxtFiles</Filter>
     </Text>
     <Text Include="TxtFiles\Synopsis.txt">
@@ -257,6 +260,9 @@
       <Filter>Header Files\Units H</Filter>
     </ClInclude>
     <ClInclude Include="PlayerAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

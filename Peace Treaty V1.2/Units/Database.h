@@ -55,7 +55,7 @@ private:
 	std::vector<Provinces> provincesList;
 	Participants* currentParticipant;
 	int currentParticipantIndex;
-	int turn = 1;
+	
 	int continentSize;
 	//Linked list of provinces
 	LinkedList provincesLL;

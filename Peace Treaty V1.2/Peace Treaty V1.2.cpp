@@ -25,6 +25,7 @@
 #include "Misc/OtherFunctions.h"
 #include "Misc/ConstValues.h"
 #include "Misc/LinkedList.h"
+#include "Input.h"
 
 
 //Main Actions
@@ -53,20 +54,22 @@ OtherFunctions OF;
 
 int continentSize;
 int enemyDifficulty = 0;
-
+int turn = 1;
 
 using namespace CV;
 
 Database db;
-int turn = 1;
+
 
 
 
 int main()/*main code*/
 {
 	OF.debugFunction("main, main");
-	srand((unsigned int)time(0));
-	char startOrResume = introduction();
+	//srand((unsigned int)time(0));
+	OF.debugFunction("main, introduction");
+	OF.printFile("TxtFiles\\Synopsis.txt");
+	char startOrResume = Input::getOptionPrompt(INTRODUCTION).at(0);
 
 	switch (startOrResume)
 	{
@@ -91,19 +94,10 @@ int main()/*main code*/
 	}
 	}
 
-	// for (Participants thingy: participantsList)
-	//   std::cout << "Participant index: " << thingy.getParticipantIndex() << std::endl;
-
 	OF.enterAnything();
 	OF.clearScreen();
 
 	gamePlay();
-}
-char introduction()/*introduce player to game synopsis*/
-{
-	OF.debugFunction("main, introduction");
-	OF.printFile("TxtFiles\\Synopsis.txt");
-	return OF.getOption(3);
 }
 void resumeGame() /*download data from previous game fix this*/
 {

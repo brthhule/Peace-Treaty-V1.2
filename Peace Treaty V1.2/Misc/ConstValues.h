@@ -18,6 +18,31 @@ namespace CV
   const std::array<int, UNIT_AMOUNT> TROOPS_CP = { 1,2,4,8,16 };
   const std::array<int, UNIT_AMOUNT> RESOURCE_PRODUCTION = { 5,4,3,2,1};
   const int BARRACKS_PRODUCTION = 2;
+
+
+
+
+
+  const enum PROMPTS {INTRODUCTION};
+  const std::array<std::string, 1> PROMPTS_STRING = {"INTRODUCTION"};
+
+  std::string promptsToString(PROMPTS p) {
+	  return PROMPTS_STRING[p];
+  }
+
+  PROMPTS stringToPrompts(std::string arg) {
+	  return PROMPTS(getStringIndex(arg));
+  }
+
+  int getStringIndex(std::string arg) {
+	  for (int x = 0; x < PROMPTS_STRING.size(); x++) {
+		  if (PROMPTS_STRING[x] == arg) {
+			  return x;
+		  }
+	  }
+	  //Error case
+	  return -1;
+  }
 };
 
 #endif

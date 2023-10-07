@@ -14,12 +14,10 @@ Options:
 P
 M
 
-case 3: /*introduction*/
+INTRODUCTION
 - Start a new game (S)
 - Resume a previous game (R)
-Options:
-S
-R
+Options:S,R
 
 case 4: /*playerAction*/
 - Buildings (B)
