@@ -99,6 +99,12 @@
     <ClCompile Include="Units\Participants.cpp">
       <Filter>Source Files\Units</Filter>
     </ClCompile>
+    <ClCompile Include="ConstValues.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\AdministrativeDocs\debugQuickAccess.txt">

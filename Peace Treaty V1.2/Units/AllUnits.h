@@ -26,6 +26,7 @@ public:
 		CP = 0;
 		unitLevel = 0;
 		participantIndex = -1;
+		foodConsumption = 0;
 	};
 	AllUnits(int index);
 
