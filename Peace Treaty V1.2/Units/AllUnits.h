@@ -31,11 +31,7 @@ public:
 	//--------Troop Functions--------
 	
 	//----Accessors----
-	//Return troops of type index from this unit. Oldname; getTroopsPresent
-	int getTroop(int troopIndex);
-	std::array<int, 5> getAllTroops();
-	//Change troops of type index at this unit by amount
-
+	//Return a troop by index or all troops-- done by type. Pass -1 for troopIndex to return all troops of a type
 	template<typename T> 
 	T getTroop(CV::MutateTroopType type, int troopIndex);
 	
@@ -43,9 +39,6 @@ public:
 	template<typename T>
 	T mutateTroop(CV::MutateTroopType type, int troopIndex, T amount, CV::MutateDirection direction);
 
-
-	std::array<int, 5> getAllTroopsLost();
-	int getTotalTroops ();
 	int getFoodConsumption (){return foodConsumption;}
 
 	//Provinces & Commanders

@@ -32,19 +32,9 @@ AllUnits::AllUnits() {
 
 
 //--------Troop Functions--------
-//----Accessors----
-//Return troops of type index from this unit. Oldname; getTroopsPresent
-
-
-int AllUnits::getTroop(int troopIndex) {
-	return troopsPresent[troopIndex];
-}
-//Change troops of type index at this unit by amount
-std::array<int, 5> AllUnits::getAllTroops() {
-	return troopsPresent;
-}
+//Return a troop by index or all troops-- done by type. Pass -1 for troopIndex to return all troops of a type
 template<typename T>
-T AllUnits::getTroop(CV::MutateTroopType type, int troopIndex {
+T AllUnits::getTroop(CV::MutateTroopType type, int troopIndex) {
 	std::array<int*, 3> troop = { &troopsPresent[troopIndex], &troopsInjured[troopIndex], &troopsLost[troopIndex] };
 	std::array<std::array<int, 5>*, 3> allTroops = { &troopsPresent, &troopsInjured, &troopsLost };
 	T *troopPtr;
@@ -175,10 +165,7 @@ int AllUnits::getCoordinate(char which)
 }
 
 
-std::array<int, 5> AllUnits::getAllTroopsLost()
-{
-	return troopsLost;
-}
+
 
 std::string AllUnits::printCoordinates()
 {
@@ -188,19 +175,6 @@ std::string AllUnits::printCoordinates()
 std::array<int, 5> AllUnits::getAllResources()
 {
 	return resourcesPresent;
-}
-
-std::array<int, 5> AllUnits::getAllTroopsInjured()
-{
-	return troopsInjured;
-}
-
-int AllUnits::getTotalTroops()
-{
-	int troopsNum = 0;
-	for (int x : troopsPresent)
-		troopsNum += x;
-	return troopsNum;
 }
 
 std::string AllUnits::printRawCoordinates()
