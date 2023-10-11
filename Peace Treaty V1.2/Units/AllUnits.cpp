@@ -34,6 +34,32 @@ AllUnits::AllUnits() {
 //--------Troop Functions--------
 //----Accessors----
 //Return troops of type index from this unit. Oldname; getTroopsPresent
+template<typename T>
+T AllUnits::mutateTroop(CV::MutateTroopType type, int troopIndex, T amount, CV::MutateDirection direction) {
+	T* troopPtr;
+	std::array<int*, 3> troop = { &troopsPresent[troopIndex], &troopsInjured[troopIndex], &troopsLost[troopIndex] };
+	std::array<std::array<int, 5>*, 3> allTroops = { &troopsPresent, &troopsInjured, &troopsLost};
+
+	if constexpr (std::is_same_v<T, int>) {
+		troopPtr = troopTypes[type];
+
+		if (direction) {
+			troopPtr += amount;
+			delete troopPtr;
+			return;
+		}
+		troopPtr -= amount;
+		delete troopPtr;
+		return;
+	}
+	else if (constexpr (std::is_same_v < T, std::array<int, 5>)) {
+		troopPtr = allTroops[type];
+		*troopPtr = OF::modifyArray(*troopsPtr, amounts, direction);
+		delete troopPtr;
+		return;
+	}
+}
+
 int AllUnits::getTroop(int troopIndex) {
 	return troopsPresent[troopIndex];
 }
@@ -46,26 +72,9 @@ std::array<int, 5> AllUnits::getAllTroops() {
 //Change troops of type index at this unit by amount
 void AllUnits::mutateTroop(CV::MutateTroopType type, int troopIndex, int amount, CV::MutateDirection direction) {
 	int* troopPtr;
-	switch (type) {
-	case REGULAR:
-		troopPtr = &troopsPresent[troopIndex];
-		break;
-	case INJURED:
-		troopPtr = &troopsInjured[troopIndex];
-		break;
-	case LOST:
-		troopPtr = &troopsLost[troopIndex];
-		break;
-	}
+	
 
-	if (direction) {
-		troopPtr += amount;
-		delete troopPtr;
-		return;
-	}
-	troopPtr -= amount;
-	delete troopPtr;
-	return;
+	
 }
 
 void AllUnits::mutateAllTroops(CV::MutateTroopType type, std::array<int, 5> amounts, CV::MutateDirection direction)
@@ -83,19 +92,12 @@ void AllUnits::mutateAllTroops(CV::MutateTroopType type, std::array<int, 5> amou
 		break;
 	}
 
-	*troopsPtr = OF::modifyArray(*troopsPtr, amounts, direction);
+	
 	delete troopsPtr;
 	return;
 }
 
-//Change all troops at this unit by amounts
-void AllUnits::mutateAllTroops(std::array<int, 5> amounts, bool isAdd) {
-	troopsPresent = OF::modifyArray(troopsPresent, amounts, isAdd);
-}
 
-void AllUnits::addInjuredTroops(std::array<int, 5> troops) {
-	troopsInjured = OF::modifyArray(troopsInjured, troops, true);
-}
 
 int AllUnits::getCP() {
 	CP = 0;
@@ -183,15 +185,7 @@ int AllUnits::getCoordinate(char which)
 	return yCoord;
 }
 
-void AllUnits::addSpecificTroopLost(int index, int amount)
-{
-	troopsLost[index] += amount;
-}
 
-void AllUnits::addTroopsLost(std::array<int, 5> troopsArray)
-{
-	troopsLost = OF::modifyArray(troopsLost, troopsArray, true);
-}
 std::array<int, 5> AllUnits::getAllTroopsLost()
 {
 	return troopsLost;

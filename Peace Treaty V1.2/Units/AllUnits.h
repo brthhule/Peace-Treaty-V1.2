@@ -37,17 +37,13 @@ public:
 	//Change troops of type index at this unit by amount
 	
 	//----Mutators----
-	
 	void mutateTroop(CV::MutateTroopType type, int troopIndex, int amount, CV::MutateDirection direction);
+	void mutateAllTroops(CV::MutateTroopType type, std::array<int, 5> amounts, CV::MutateDirection direction);
 
-	void AllUnits::mutateAllTroops(CV::MutateTroopType type, std::array<int, 5> amounts, CV::MutateDirection direction)
+	template<typename T>
+	T mutateTroop(CV::MutateTroopType type, int troopIndex, T amount, CV::MutateDirection direction);
 
-	void mutateAllTroops(std::array<int, 5> amounts, bool isAdd);
-	void addInjuredTroops(std::array<int, 5> troops);
-	std::array<int,5> getAllTroopsInjured();
 
-	void addSpecificTroopLost(int index, int amount);
-	void addTroopsLost(std::array<int, 5> troopsArray);
 	std::array<int, 5> getAllTroopsLost();
 	int getTotalTroops ();
 	int getFoodConsumption (){return foodConsumption;}
