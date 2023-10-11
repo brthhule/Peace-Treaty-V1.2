@@ -34,11 +34,37 @@ AllUnits::AllUnits() {
 //--------Troop Functions--------
 //----Accessors----
 //Return troops of type index from this unit. Oldname; getTroopsPresent
+
+
+int AllUnits::getTroop(int troopIndex) {
+	return troopsPresent[troopIndex];
+}
+//Change troops of type index at this unit by amount
+std::array<int, 5> AllUnits::getAllTroops() {
+	return troopsPresent;
+}
+template<typename T>
+T AllUnits::getTroop(CV::MutateTroopType type, int troopIndex {
+	std::array<int*, 3> troop = { &troopsPresent[troopIndex], &troopsInjured[troopIndex], &troopsLost[troopIndex] };
+	std::array<std::array<int, 5>*, 3> allTroops = { &troopsPresent, &troopsInjured, &troopsLost };
+	T *troopPtr;
+
+	if (troopIndex == -1) {
+		troopPtr = allTroops[type];
+	}
+	else {
+		troopPtr = troop[type];
+	}
+	return *troopPtr;
+}
+
+//----Mutators----
+//Change troops of type index at this unit by amount
 template<typename T>
 T AllUnits::mutateTroop(CV::MutateTroopType type, int troopIndex, T amount, CV::MutateDirection direction) {
 	T* troopPtr;
 	std::array<int*, 3> troop = { &troopsPresent[troopIndex], &troopsInjured[troopIndex], &troopsLost[troopIndex] };
-	std::array<std::array<int, 5>*, 3> allTroops = { &troopsPresent, &troopsInjured, &troopsLost};
+	std::array<std::array<int, 5>*, 3> allTroops = { &troopsPresent, &troopsInjured, &troopsLost };
 
 	if constexpr (std::is_same_v<T, int>) {
 		troopPtr = troopTypes[type];
@@ -58,43 +84,6 @@ T AllUnits::mutateTroop(CV::MutateTroopType type, int troopIndex, T amount, CV::
 		delete troopPtr;
 		return;
 	}
-}
-
-int AllUnits::getTroop(int troopIndex) {
-	return troopsPresent[troopIndex];
-}
-//Change troops of type index at this unit by amount
-std::array<int, 5> AllUnits::getAllTroops() {
-	return troopsPresent;
-}
-
-//----Mutators----
-//Change troops of type index at this unit by amount
-void AllUnits::mutateTroop(CV::MutateTroopType type, int troopIndex, int amount, CV::MutateDirection direction) {
-	int* troopPtr;
-	
-
-	
-}
-
-void AllUnits::mutateAllTroops(CV::MutateTroopType type, std::array<int, 5> amounts, CV::MutateDirection direction)
-{
-	std::array<int, 5> *troopsPtr;
-	switch (type) {
-	case REGULAR:
-		troopsPtr = &troopsPresent;
-		break;
-	case INJURED:
-		troopsPtr = &troopsInjured;
-		break;
-	case LOST:
-		troopsPtr = &troopsLost;
-		break;
-	}
-
-	
-	delete troopsPtr;
-	return;
 }
 
 

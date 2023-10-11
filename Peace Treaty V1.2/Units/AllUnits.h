@@ -35,11 +35,11 @@ public:
 	int getTroop(int troopIndex);
 	std::array<int, 5> getAllTroops();
 	//Change troops of type index at this unit by amount
+
+	template<typename T> 
+	T getTroop(CV::MutateTroopType type, int troopIndex);
 	
 	//----Mutators----
-	void mutateTroop(CV::MutateTroopType type, int troopIndex, int amount, CV::MutateDirection direction);
-	void mutateAllTroops(CV::MutateTroopType type, std::array<int, 5> amounts, CV::MutateDirection direction);
-
 	template<typename T>
 	T mutateTroop(CV::MutateTroopType type, int troopIndex, T amount, CV::MutateDirection direction);
 
