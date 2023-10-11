@@ -40,9 +40,9 @@ public:
 	
 	void mutateTroop(CV::MutateTroopType type, int troopIndex, int amount, CV::MutateDirection direction);
 
-	void mutateTroop(int troopIndex, int amount, bool isAdd);
+	void AllUnits::mutateAllTroops(CV::MutateTroopType type, std::array<int, 5> amounts, CV::MutateDirection direction)
+
 	void mutateAllTroops(std::array<int, 5> amounts, bool isAdd);
-	void addInjuredTroop(int troopIndex, int amount);
 	void addInjuredTroops(std::array<int, 5> troops);
 	std::array<int,5> getAllTroopsInjured();
 

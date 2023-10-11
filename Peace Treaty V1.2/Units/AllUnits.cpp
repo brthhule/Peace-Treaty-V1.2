@@ -68,23 +68,31 @@ void AllUnits::mutateTroop(CV::MutateTroopType type, int troopIndex, int amount,
 	return;
 }
 
-void AllUnits::mutateTroop(int troopIndex, int amount, bool isAdd)
+void AllUnits::mutateAllTroops(CV::MutateTroopType type, std::array<int, 5> amounts, CV::MutateDirection direction)
 {
-	if (isAdd) {
-		troopsPresent[troopIndex] += amount;
-		return;
+	std::array<int, 5> *troopsPtr;
+	switch (type) {
+	case REGULAR:
+		troopsPtr = &troopsPresent;
+		break;
+	case INJURED:
+		troopsPtr = &troopsInjured;
+		break;
+	case LOST:
+		troopsPtr = &troopsLost;
+		break;
 	}
 
-	troopsPresent[troopIndex] -= amount;
+	*troopsPtr = OF::modifyArray(*troopsPtr, amounts, direction);
+	delete troopsPtr;
+	return;
 }
+
 //Change all troops at this unit by amounts
 void AllUnits::mutateAllTroops(std::array<int, 5> amounts, bool isAdd) {
 	troopsPresent = OF::modifyArray(troopsPresent, amounts, isAdd);
 }
 
-void AllUnits::addInjuredTroop(int troopIndex, int amount) {
-	troopsInjured[troopIndex] += amount;
-}
 void AllUnits::addInjuredTroops(std::array<int, 5> troops) {
 	troopsInjured = OF::modifyArray(troopsInjured, troops, true);
 }
