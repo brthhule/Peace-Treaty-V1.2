@@ -1,53 +1,97 @@
 #include "AllUnits.h"
 
-//Constructor
-AllUnits::AllUnits(int index)
+//----Constructors----
+//One param overloaded Constructor
+AllUnits::AllUnits(int participantIndexArg)
 {
-	for (int x = 0; x < 5; x++)
-	{
-		resourcesPresent[x] = initialStats[x];
-		troopsPresent[x] = 0;
-		troopsInjured[x] = 0;
+	switch (participantIndexArg) {
+	case -1:
+		canSelectThisUnit = false;
+		break;
+	default:
+		canSelectThisUnit = true;
+		for (int x = 0; x < 5; x++)
+		{
+			resourcesPresent[x] = initialStats[x];
+			troopsPresent[x] = 0;
+			troopsInjured[x] = 0;
+		}
+		break;
 	}
+
+	participantIndex = participantIndexArg;
+	foodConsumption = 0;
+	unitLevel = 0;
 	CP = 0;
 	totalTroops = 0;
-	foodConsumption = 0;
-	canSelectThisUnit = 'N';
-	participantIndex = index;
 }
+//Default Constructor
+AllUnits::AllUnits() {
+	AllUnits(-1);
+};
 
-//Accessor Functions
 
-int AllUnits::getTroopsPresent(int troopTypeIndex){
-	return troopsPresent[troopTypeIndex];
+//--------Troop Functions--------
+//----Accessors----
+//Return troops of type index from this unit. Oldname; getTroopsPresent
+int AllUnits::getTroop(int troopIndex) {
+	return troopsPresent[troopIndex];
 }
-
-std::array<int, 5> AllUnits::getAllTroopsPresent(){
+//Change troops of type index at this unit by amount
+std::array<int, 5> AllUnits::getAllTroops() {
 	return troopsPresent;
 }
 
-void AllUnits::modifyTroops(std::array<int, 5> troopsAdd, bool isAdd){
-	troopsPresent = OF::modifyArray(troopsPresent, troopsAdd, isAdd);
+//----Mutators----
+//Change troops of type index at this unit by amount
+void AllUnits::mutateTroop(CV::MutateTroopType type, int troopIndex, int amount, CV::MutateDirection direction) {
+	int* troopPtr;
+	switch (type) {
+	case REGULAR:
+		troopPtr = &troopsPresent[troopIndex];
+		break;
+	case INJURED:
+		troopPtr = &troopsInjured[troopIndex];
+		break;
+	case LOST:
+		troopPtr = &troopsLost[troopIndex];
+		break;
+	}
+
+	if (direction) {
+		troopPtr += amount;
+		delete troopPtr;
+		return;
+	}
+	troopPtr -= amount;
+	delete troopPtr;
+	return;
 }
 
-void AllUnits::modifySpecificTroop(int index, int amount, bool isAdd)
+void AllUnits::mutateTroop(int troopIndex, int amount, bool isAdd)
 {
-	if (isAdd)
-		troopsPresent[index] += amount;
-	else
-		troopsPresent[index] -= amount;
+	if (isAdd) {
+		troopsPresent[troopIndex] += amount;
+		return;
+	}
+
+	troopsPresent[troopIndex] -= amount;
+}
+//Change all troops at this unit by amounts
+void AllUnits::mutateAllTroops(std::array<int, 5> amounts, bool isAdd) {
+	troopsPresent = OF::modifyArray(troopsPresent, amounts, isAdd);
 }
 
-void AllUnits::addSpecificInjuredTroop(int troopIndex, int amount){
+void AllUnits::addInjuredTroop(int troopIndex, int amount) {
 	troopsInjured[troopIndex] += amount;
 }
-void AllUnits::addInjuredTroops(std::array<int, 5> troops){
+void AllUnits::addInjuredTroops(std::array<int, 5> troops) {
 	troopsInjured = OF::modifyArray(troopsInjured, troops, true);
 }
 
-int AllUnits::getCP(){
+int AllUnits::getCP() {
 	CP = 0;
-	for (int x = 0; x < 5; x++){
+	for (int x = 0; x < 5; x++) {
 		CP += troopsPresent[x] * CV::TROOPS_CP[x];
 	}
 	return CP;
@@ -61,7 +105,7 @@ int AllUnits::getParticipantIndex()
 void AllUnits::printResources()
 {
 	std::cout << "Resources currently present in this " << isCommanderOrProvince << ": \n";
-    std::cout << "\033[;34m";
+	std::cout << "\033[;34m";
 	OF::printResources(resourcesPresent);
 	std::cout << "\033[;0m";
 }
@@ -121,7 +165,7 @@ int AllUnits::translateY(bool isInput)
 
 std::array<int, 2> AllUnits::getCoordinates()
 {
-	return {xCoord, yCoord};
+	return { xCoord, yCoord };
 }
 
 int AllUnits::getCoordinate(char which)
@@ -147,15 +191,15 @@ std::array<int, 5> AllUnits::getAllTroopsLost()
 
 std::string AllUnits::printCoordinates()
 {
-	return OF::printCoordinates({xCoord, yCoord});
+	return OF::printCoordinates({ xCoord, yCoord });
 }
 
-std::array<int,5> AllUnits::getAllResources()
+std::array<int, 5> AllUnits::getAllResources()
 {
-  return resourcesPresent;
+	return resourcesPresent;
 }
 
-std::array<int,5> AllUnits::getAllTroopsInjured()
+std::array<int, 5> AllUnits::getAllTroopsInjured()
 {
 	return troopsInjured;
 }
@@ -163,7 +207,7 @@ std::array<int,5> AllUnits::getAllTroopsInjured()
 int AllUnits::getTotalTroops()
 {
 	int troopsNum = 0;
-	for (int x: troopsPresent)
+	for (int x : troopsPresent)
 		troopsNum += x;
 	return troopsNum;
 }

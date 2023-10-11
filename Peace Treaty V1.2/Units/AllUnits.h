@@ -18,28 +18,31 @@ using namespace CV;
 class AllUnits
 {
 public:
-	//constructor
-	AllUnits() {
-		//Dummy initializations
-		canSelectThisUnit = false;
-		totalTroops = 0;
-		CP = 0;
-		unitLevel = 0;
-		participantIndex = -1;
-		foodConsumption = 0;
-	};
+	//----Constructors----
+	//One param overloaded Constructor
 	AllUnits(int index);
+	//Default Constructor
+	AllUnits();
+
 
 	int getCP();
 	int getParticipantIndex();
 	
-	//Troops Functions
-	int getTroopsPresent(int troopTypeIndex);
-	std::array<int, 5> getAllTroopsPresent();
+	//--------Troop Functions--------
+	
+	//----Accessors----
+	//Return troops of type index from this unit. Oldname; getTroopsPresent
+	int getTroop(int troopIndex);
+	std::array<int, 5> getAllTroops();
+	//Change troops of type index at this unit by amount
+	
+	//----Mutators----
+	
+	void mutateTroop(CV::MutateTroopType type, int troopIndex, int amount, CV::MutateDirection direction);
 
-	void modifySpecificTroop(int index, int amount, bool isAdd);
-	void modifyTroops(std::array<int, 5> troopsAdd, bool isAdd);
-	void addSpecificInjuredTroop(int troopIndex, int amount);
+	void mutateTroop(int troopIndex, int amount, bool isAdd);
+	void mutateAllTroops(std::array<int, 5> amounts, bool isAdd);
+	void addInjuredTroop(int troopIndex, int amount);
 	void addInjuredTroops(std::array<int, 5> troops);
 	std::array<int,5> getAllTroopsInjured();
 
