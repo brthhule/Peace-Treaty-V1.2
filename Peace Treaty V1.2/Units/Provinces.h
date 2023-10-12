@@ -9,6 +9,7 @@
 #include "../Misc/ConstValues.h"
 #include "../Interfaces/Build.h"
 #include "../Input.h"
+#include "../Coordinates.h"
 
 #define print(x) std::cout << x;
 #define println(x) std::cout << x << std::endl;
@@ -16,11 +17,11 @@
 using namespace CV;
 using namespace Input;
 
-extern int continentSize;
 extern const int BARRACKS_PRODUCTION;
 const int LOG_SIZE = 20;
 
-class Provinces : public AllUnits, public Build {
+class Provinces : public AllUnits, public Build
+{
 public:
 	/*Constructors*/
 	Provinces();
@@ -36,7 +37,6 @@ public:
 	/*Province Identity*/
 	int getCoordinate(char identifier);
 	bool deleteStatus();
-	std::string getProvinceName();
 	void setDeleteProvince() { deleteProvince = true; }
 
 	/*Garrisons*/
@@ -99,6 +99,9 @@ public:
 	void setKingdomName(std::string name) { kingdomName = name; }
 	std::string getKingdomName() { return kingdomName; }
 
+	
+	void setOverallIndex(int index);
+	int getOverallIndex();
 
 private:
 	
@@ -127,6 +130,7 @@ private:
 	bool isACapital;//stat
 
 	bool deleteProvince;//conditional
+	int overallIndex;
 
 	std::unordered_map<std::string, CommanderProfile*> commanders;
 	std::unordered_map<std::string, CommanderProfile*>::iterator it;

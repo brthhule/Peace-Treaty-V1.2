@@ -11,7 +11,7 @@
 #include "CommanderPRofile.h"
 #include "../Misc/OF.h"
 #include "../Misc/LinkedList.h"//might need to move Database up, out of Units, so it can have a larger scope
-
+#include "Map.h"
 #define print(x) std::cout << x;
 #define println(x) std::cout << x << std::endl;
 
@@ -21,7 +21,8 @@
 
 //Clase for an object that contians everything in the system/game
 //Purpose: from now on, create 
-class Database {
+class Database : public Map
+{
 public:
 	//Constructor
 	Database();
@@ -35,7 +36,6 @@ public:
 	int getContinentSize();
 	void setMaxCommanders(int num);
 	int getMaxCommanders();
-	void showMap();
 
 	int *getContinentSizePointer() { return &continentSize; }
 	void setCurrentParticipant(Participants *p) {

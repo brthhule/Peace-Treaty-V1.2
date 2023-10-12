@@ -65,3 +65,6 @@ int CV::getStringIndex(std::string arg) {
 CV::PROMPTS CV::stringToPrompts(std::string arg) {
 	return PROMPTS(CV::getStringIndex(arg));
 }
+void CV::setContinentSize(int size) {
+	CV::continentSize = size;
+}

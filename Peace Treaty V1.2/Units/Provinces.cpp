@@ -444,3 +444,11 @@ void Provinces::printInformation(int buildingNumber, std::array<int, 5> required
 	this->printResources();
 	std::cout << "----------End printing informatio----------" << std::endl;
 }
+
+void Provinces::setOverallIndex(int index) {
+	overallIndex = index;
+}
+
+int Provinces::getOverallIndex() {
+	return overallIndex;
+}

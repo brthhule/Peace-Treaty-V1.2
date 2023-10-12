@@ -131,6 +131,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ConstValues.cpp" />
+    <ClCompile Include="Coordinates.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="MA\ArmyOverviewMA.cpp" />
     <ClCompile Include="MA\AttackMA.cpp" />
@@ -187,6 +188,7 @@
     <Text Include="TxtFiles\Synopsis.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Coordinates.h" />
     <ClInclude Include="Structure.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Interfaces\Build.h" />

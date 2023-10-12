@@ -34,6 +34,10 @@ namespace CV
 	int getStringIndex(std::string arg);
 	PROMPTS stringToPrompts(std::string arg);
 	void addColor(COLORS c);
+
+	int continentSize = 0;
+
+	void setContinentSize(int size);
 }
 
-#endif
+#endif		
