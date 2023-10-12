@@ -11,10 +11,7 @@ Provinces::Provinces(int overallIndexArg)
 
 	setOverallIndex(overallIndexArg);
 	//Initialize building levels
-	for (int &x: resourceBuildingsLevels)
-		x = 0;
-	for (int &x: otherBuildingsLevels)
-		x = 0;
+	initializeEmptyBuildings();
 	resourcesPresent = CV::INITIAL_VALUES;
 	participantIndex = -1;
 
@@ -24,47 +21,19 @@ Provinces::Provinces(int overallIndexArg)
 	scoutReportLogLevel = -1;
 
 	unitLevel = 1;
-	maxGarrison = getMaxGarrison();
-	maxInfirmaryCapacity = getMaxInfirmaryCapacity();
-
-	troopsTrainedThisTurn = 0;
 	deleteProvince = false;
 }
 
 
 //Province stats
 
-int Provinces::getMaxGarrison()
-{
-	OF::debugFunction("Provinces, getMaxGarrison");
-	//Wall
-	return *wallLevel * 10;
-}
-int Provinces::getMaxInfirmaryCapacity()
-{
-	OF::debugFunction("Provinces, getMaxInfirmaryCapacity");
-	return *infirmaryLevel * 10;
-}
-
-int Provinces::findProvinceLevel()
-{
-	OF::debugFunction("Provinces, findProvinceLevel");
-	unitLevel = 0;
-	for (int x: resourceBuildingsLevels)
-		unitLevel += resourceBuildingsLevels[x];
-	for (int x: otherBuildingsLevels)
-		unitLevel += x;
-	
-	unitLevel /= (int) resourceBuildingsLevels.size() + (int)otherBuildingsLevels.size();
-	return unitLevel;
-}
 
 //Province stuff
 void Provinces::updateProvinceResources()
 {
 	OF::debugFunction("Provinces, updateProvinceResources");
-	for (int x = 0; x < (int) resourceBuildingsLevels.size(); x++)
-		resourcesPresent[x] += resourceBuildingsProduction[x];
+	std::array<int, 5> resourcesProduced = getResourceProduction(CHURCH, ALL, returnArray);
+	resourcesPresent = OF::modifyArray(resourcesPresent, resourcesProduced, true);
 }
 
 //Other
@@ -76,62 +45,10 @@ void Provinces::makeCapital(int participantIndexArg)
 }
 
 void Provinces::initializeCapitalStats() {
-	for (int& x : resourceBuildingsLevels) {
-		x = 0;
-	}
-	for (int& x : otherBuildingsLevels) {
-		x = 0;
-	}
-}
-void Provinces::resetTroopsTrainedThisTurn()
-{
-	OF::debugFunction("Provinces, resetTroopsTrainedThisTurn");
-	troopsTrainedThisTurn = 0;
+	initiailizeCapitalBuildings();
 }
 
-//Building Stuff
-void Provinces::increaseBuildingLevel(int index, int amount)
-{
-	OF::debugFunction("Provinces, increaseBuildingLevel");
-	resourcesPresent[index] += amount;
-}
-void Provinces::printBuildingStats()
-{
-	OF::debugFunction("Provinces, printBuildingStats");
-	for (int x = 0; x < 5; x++)
-	{
-		resourceBuildingsProduction[x] = resourceBuildingsLevels[x] * CV::INITIAL_VALUES[x];
-	}
-    std::cout << "\033[;34m";
 
-	std::cout << "Building stats of this province: " << std::endl;
-	for (int x = 0; x < 5; x++)
-	{
-		std::cout << "- " << CV::RESOURCE_BUILDING_NAMES[x] << " (" << CV::RESOURCE_BUILDING_NAMES[x].at(0) << ") " << std::endl;
-		std::cout << "    Level: " << resourceBuildingsLevels[x] << std::endl;
-		std::cout << "    " << CV::RESOURCE_NAMES[x] << " production rate : " << resourceBuildingsProduction[x] << std::endl;
-	}
-	//Add implementation
-	std::cout << "Barracks (B) " << std::endl;
-	std::cout << "    Level: " << otherBuildingsLevels[0] << std::endl;
-	std::cout << "    Max training capacity: " << barracksCapacity << "\n\n\033[;0m";
-
-
-}
-//Fix this-- add distintion between resource buildings and other types
-int Provinces::getBuildingLevel(int index)
-{
-	OF::debugFunction("Provinces, getBuildingLevel");
-	return resourceBuildingsLevels[index];
-}
-void Provinces::updateBuildingsProduction()
-{
-	OF::debugFunction("Provinces, updateBuildingsProduction");
-	for (int x = 0; x < 5; x++)
-	{
-		resourceBuildingsProduction[x] = resourceBuildingsLevels[x] * CV::RESOURCE_PRODUCTION[x];
-	}
-}
 
 //Commander Stuff
 void Provinces::removeCommander(CommanderProfile *newCommander)
@@ -148,11 +65,7 @@ void Provinces::addCommander(CommanderProfile* newCommander)
 
 
 
-void Provinces::addTroopsTrainedThisTurn(int amount)
-{
-	OF::debugFunction("Provinces, addTroopsTrainedThisTurn");
-    troopsTrainedThisTurn += amount;
-}
+
 
 
 
@@ -233,20 +146,20 @@ void Provinces::completeProvinceScoutReport(int accuracy, Provinces* targetProvi
 	troopsLost = t->getTroop(LOST, -1, tempArray);
 
 	//totalTroops = t->getTotalTroops();
-	foodConsumption = t->getFoodConsumption();
+	//foodConsumption = t->getFoodConsumption();
 	std::pair<int, int> systemCoords = getSystemCoords();
 	participantIndex = t->getParticipantIndex();
 	unitLevel = t->getLevel();
 	unitName = t->getUnitName();
 	CP = getEstimate((int) newAccuracy, t->getCP());
 
-	maxGarrison = t->getMaxGarrison();
+	/*maxGarrison = t->getMaxGarrison();
 	maxInfirmaryCapacity = t->getMaxInfirmaryCapacity();
 	resourceBuildingsLevels = t->getResourceBuildingLevels();
 	resourceBuildingsProduction = t->getResourceBuildignsProduction();
 	otherBuildingsLevels = t->getOtherBuildingsLevels();
 	barracksCapacity = t->getBarracksCapacity();
-	maxResources = t->getMaxResources();
+	maxResources = t->getMaxResources();*/
 	
 	turn = scoutTurn;
 	accuracy = accuracy;
@@ -264,31 +177,6 @@ int Provinces::getEstimate(int newAccuracy, int quantity)
 	return scoutEstimate;
 }
 
-std::array<int,5> Provinces::getResourceBuildingLevels()
-{
-	OF::debugFunction("Provinces, getResourceBuildingLevels");
-	return resourceBuildingsLevels;
-}
-std::array<int,5> Provinces::getResourceBuildignsProduction()
-{
-	OF::debugFunction("Provinces, getResourceBuildingsProduction");
-	return resourceBuildingsProduction;
-}
-std::array<int,5> Provinces::getOtherBuildingsLevels()
-{
-	OF::debugFunction("Provinces, getOtherBuildingsLevels");
-	return otherBuildingsLevels;
-}
-int Provinces::getBarracksCapacity()
-{
-	OF::debugFunction("Provinces, getBarracksCapacity");
-	return *barracksLevel * 10;
-}
-std::array<int,5> Provinces::getMaxResources()
-{
-	OF::debugFunction("Provinces, getMaxResources");
-	return maxResources;
-}
 
 void Provinces::printCommanders()
 {
@@ -304,6 +192,10 @@ bool Provinces::hasCommander(std::string name)
 		if (it->second->getUnitName() == name)
 			return true;
 	return false;
+}
+
+void Provinces::addTroopsTrainedThisTurn(int amount)
+{
 }
 
 
@@ -337,14 +229,17 @@ void Provinces::playerBuildFunction() {
 }
 
 void Provinces::upgradeBuildings() {
-	std::array<int, 5> requiredResources = { 0, 0, 0, 0, 0 };
-	int buildingNumber = 0;
-	std::vector<std::string> buildingLetterList = { "F", "L", "Q", "M", "C", "B", "H" };
+	std::vector<std::string> buildingLetterList = {"H"};
+	for (int x = 1; x <= 10; x++) {
+		buildingLetterList.push_back(std::to_string(x));
+	}
 
-	char buildingLetter = Input::getInputText("Enter the first letter of the building you want to upgrade (enter 'H' for help): ", buildingLetterList).at(0);
+	displayListOfBuildings();
 
-	if (buildingLetter != 'H') {
-		upgradeBuildings2(buildingLetter, buildingNumber, requiredResources, buildingLetterList);
+	char option = Input::getInputText("Enter the number of the building you want to upgrade (enter 'H' for help): ", buildingLetterList).at(0);
+
+	if (option != 'H') {
+		upgradeBuildings2(option);
 	}
 	else {
 		OF::showHelp(12);
@@ -352,12 +247,12 @@ void Provinces::upgradeBuildings() {
 
 	char upgradeAgain = Input::getInputText("Upgrade another building (Y/N): ", { "Y", "N" }).at(0);
 	if (upgradeAgain == 'Y') {
-		upgradeBuildings2(buildingLetter, buildingNumber, requiredResources, buildingLetterList);
+		upgradeBuildings();
 	}
 	std::cout << "Returning to Build Infrastructure action menu. " << std::endl;
 }
 
-void Provinces::upgradeBuildings2(char buildingLetter, int buildingNumber, std::array<int, 5> requiredResources, std::vector<std::string> buildingLetterList) {
+void Provinces::upgradeBuildings2(char option) {
 	for (int x = 0; x < 6; x++) {
 		if (buildingLetter == buildingLetterList[x].at(0)) {
 			buildingNumber = x;
@@ -377,7 +272,7 @@ void Provinces::upgradeBuildings2(char buildingLetter, int buildingNumber, std::
 		}
 		else {
 			println("Upgrade successful.\n");
-			this->increaseBuildingLevel(buildingNumber, 1);
+			this->mutateLevel(buildingNumber, 1);
 		}
 	}
 }

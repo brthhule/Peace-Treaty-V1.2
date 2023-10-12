@@ -1,11 +1,11 @@
-#ifndef BUILD_H
-#define BUILD_H
+#ifndef BUILDMA_H
+#define BUILDMA_H
 
-class Build
+class BuildMA
 {
 public:
-	Build() {};
-	virtual ~Build() {};
+	BuildMA() {};
+	virtual ~BuildMA() {};
 	virtual void playerBuildFunction() = 0;
 	virtual void upgradeBuildings() = 0;
 	virtual void upgradeBuildings2(char buildingLetter, int buildingNumber, std::array<int, 5> requiredResources, std::vector<std::string> buildingLetterList) = 0;

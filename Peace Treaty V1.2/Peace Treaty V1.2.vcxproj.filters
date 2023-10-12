@@ -108,6 +108,12 @@
     <ClCompile Include="Coordinates.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Buildings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Build.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\AdministrativeDocs\debugQuickAccess.txt">
@@ -244,7 +250,7 @@
     <ClInclude Include="Misc\LinkedList.h">
       <Filter>Header Files\Misc</Filter>
     </ClInclude>
-    <ClInclude Include="Interfaces\Build.h">
+    <ClInclude Include="Interfaces\BuildMA.h">
       <Filter>Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="Units\Provinces.h">
@@ -275,6 +281,12 @@
       <Filter>Header Files\Misc</Filter>
     </ClInclude>
     <ClInclude Include="Coordinates.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Buildings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Build.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

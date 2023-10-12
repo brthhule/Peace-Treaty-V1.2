@@ -130,6 +130,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Build.cpp" />
+    <ClCompile Include="Buildings.cpp" />
     <ClCompile Include="ConstValues.cpp" />
     <ClCompile Include="Coordinates.cpp" />
     <ClCompile Include="Input.cpp" />
@@ -188,10 +190,12 @@
     <Text Include="TxtFiles\Synopsis.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Build.h" />
+    <ClInclude Include="Buildings.h" />
     <ClInclude Include="Coordinates.h" />
     <ClInclude Include="Structure.h" />
     <ClInclude Include="Input.h" />
-    <ClInclude Include="Interfaces\Build.h" />
+    <ClInclude Include="Interfaces\BuildMA.h" />
     <ClInclude Include="MA\ArmyOverviewMA.h" />
     <ClInclude Include="MA\AttackMA.h" />
     <ClInclude Include="MA\MapMA.h" />

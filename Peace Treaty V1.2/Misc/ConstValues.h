@@ -24,7 +24,7 @@ namespace CV
 
 	enum MutateTroopType { REGULAR, INJURED, LOST };
 	enum MutateDirection {DECREASE = 0, INCREASE = 1};
-	enum Quantitiy {SINGLE = 0, ALL = 1};
+	enum Quantity {SINGLE = 0, ALL = 1};
 
 	enum COLORS {BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE, RESET};
 	std::array<std::string, 9> COLORS_STRING = { "BLACK", "RED", "GREEN", "YELLOW", "BLUE", "MAGENTA", "CYAN", "WHITE", "RESET" };

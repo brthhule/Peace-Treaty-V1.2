@@ -48,8 +48,7 @@ void CV::addColor(COLORS c) {
 }
 
 std::string CV::promptsToString(PROMPTS p) {
-	int place = p;
-	return PROMPTS_STRING[place];
+	return PROMPTS_STRING[p];
 }
 
 int CV::getStringIndex(std::string arg) {
