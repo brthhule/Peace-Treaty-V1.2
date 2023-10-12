@@ -4,8 +4,9 @@ AttackMA::AttackMA(Provinces *defendingProvinceArg, Participants* attackingParti
   // Given a province to attack, see if you can attack with anything nearby
 	attackingParticipant = attackingParticipantArg;
   defendingProvince = defendingProvinceArg;
-  int DPX = defendingProvince->getCoordinate('X');
-  int DPY = defendingProvince->getCoordinate('Y');
+  std::pair<int, int> defUserCoords = defendingProvince->getUserCoords();
+  int DPX = defUserCoords.first;
+  int DPY = defUserCoords.second;
   std::vector<CommanderProfile *> commandersCanAttack;
 
   for (int x = -1; x < 2; x++) {
@@ -13,7 +14,7 @@ AttackMA::AttackMA(Provinces *defendingProvinceArg, Participants* attackingParti
       int candidateX = DPX + x;
       int candidateY = DPY + y;
       // check that coordinates are inbound
-      if (DPX >= 0 && DPY >= 0 && DPY < continentSize && DPX < continentSize) {
+      if (DPX >= 0 && DPY >= 0 && DPY < CV::continentSize && DPX < CV::continentSize) {
         Provinces *newProvince = &provincesMap[DPX][DPY];
         std::vector<CommanderProfile*> commanderList = newProvince->getAllCommanders();
         for (CommanderProfile* newCommander: commanderList)
@@ -80,8 +81,8 @@ void AttackMA::playerCommitAttack()
 		injuredTroops[x] = troopsLost[x] / (2 * enemyDifficulty);
 		troopsLost[x] -= injuredTroops[x];
 	}
-	attackingCommander->addInjuredTroops(injuredTroops);
-	attackingCommander->modifyTroops(troopsLost, false);
+	attackingCommander->mutateTroop(INJURED, -1, injuredTroops, INCREASE); 
+	attackingCommander->mutateTroop(LOST, -1, troopsLost, INCREASE);
 	
 	std::cout << "  Results: \n\n";
 	printResourcesGained();
@@ -122,7 +123,7 @@ void AttackMA::playerCommitAttack()
 /*Basically go through each unit type and subtract 16CP worth of troops and keep going (done so that lost troops are distributed evenly among the various ranks, but there is still use to training lower rank troops as meat shields (if all lower troops are used up, then losses start piling up on higher rank troops; it's key to keep a healthy proportion of troops in your army))*/
 void AttackMA::calculateTroopsLost(CommanderProfile* commander, int lostCombatPower, std::array<int,5> &troopsLost, int troopIndex) {
 	
-	int troopPresent = commander -> getTroopsPresent(troopIndex);
+	int troopPresent = commander->getTroop(REGULAR, troopIndex, troopIndex);
 	
 	int troopCP = CV::TROOPS_CP[troopIndex];
 
@@ -171,14 +172,14 @@ void AttackMA::battleCalculationsTwo(int &lostCombatPower, int troopsLost[5], in
   int z = abs(4 - troopIndex);
 
   for (int b = 0; b < CV::TROOPS_CP[z]; b++) {
-    if (attackingCommander->getTroopsPresent(5) > 0) {
+    if (attackingCommander->getTroop(REGULAR, 5, -1) > 0) {
       b = CV::TROOPS_CP[z];
     } else {
       if (lostCombatPower > 0) {
         lostCombatPower -= CV::TROOPS_CP[troopIndex];
         troopsLost[troopIndex]++;
-        attackingCommander->modifySpecificTroop(troopIndex, 1, false);
-        attackingCommander->addSpecificTroopLost(troopIndex, 1);
+		attackingCommander->mutateTroop(REGULAR, troopIndex, 1, DECREASE); 
+		attackingCommander->mutateTroop(LOST, troopIndex, -1, INCREASE); 
       } else
         b = CV::TROOPS_CP[z];
     }

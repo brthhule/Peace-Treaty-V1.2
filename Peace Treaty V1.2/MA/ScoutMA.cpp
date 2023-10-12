@@ -80,8 +80,9 @@ void ScoutMA::playerScoutStepTwo() // Finish this later
 
 void ScoutMA::getCanScout()
 {
-	int targetX = targetProvince->getCoordinate('X');
-	int targetY = targetProvince->getCoordinate('Y');
+	std::pair<int, int> targetUserCoords = targetProvince->getUserCoords();
+	int targetX = targetUserCoords.first;
+	int targetY = targetUserCoords.second;
 	
 	for (int a = -1; a <= 1; a++)
   {
@@ -93,7 +94,7 @@ void ScoutMA::getCanScout()
 void ScoutMA::getCanScoutTwo (int targetX, int targetY, int a, int b)
 {
 	if (/*X coordinates*/ targetX + a >= 0 &&
-			targetX + a < continentSize && /*Y coordinates*/ targetY + b >= 0 && targetY + b < continentSize) 
+			targetX + a < CV::continentSize && /*Y coordinates*/ targetY + b >= 0 && targetY + b < CV::continentSize) 
   {
     Provinces* newProvince = &provincesMap[targetX + a][targetY + b];
 		if (newProvince->getParticipantIndex() == participant->getParticipantIndex()) {
@@ -104,13 +105,13 @@ void ScoutMA::getCanScoutTwo (int targetX, int targetY, int a, int b)
     std::unordered_map<std::string, CommanderProfile*>::iterator it;
 		for (it = newMap.begin(); it != newMap.end(); it++) 
     {
-			if (it->second->getCoordinates() == newProvince->getCoordinates())
+			if (it->second->getUserCoords() == newProvince->getUserCoords())
 				commandersCanScout.push_back(it->second);
 		}
 	}
 }
 
-int ScoutMA::selectUnitToScout(std::string &unitName, bool &isProvince, std::array<int, 2> &coordinates) {
+int ScoutMA::selectUnitToScout(std::string &unitName, bool &isProvince, std::pair<int, int> &coordinates) {
 	int unitLevel = 0;
 	std::cout << "\033[;34m";
  
@@ -118,19 +119,23 @@ int ScoutMA::selectUnitToScout(std::string &unitName, bool &isProvince, std::arr
 
   std::cout << "Provinces that can scout: " << std::endl;
   for (Provinces* province: provincesCanScout) {
-    std::cout<< province->getUnitName() + "; " + province->printOutputCoordinates() + "; Level: " << province->getLevel() << std::endl;
+	  std::cout << province->getUnitName() + "; "; 
+	  province->printUserCoords();
+	  std::cout << "; Level: " << province->getLevel() << std::endl;
   }
 
   std::cout << "Commanders that can scout: \n";
   for (CommanderProfile* commander: commandersCanScout) {
-    std::cout<< commander->getUnitName() << "; " + commander->printOutputCoordinates() + "; Level: " << commander->getLevel() << std::endl;
+	  std::cout << commander->getUnitName() << "; ";
+	  commander->printUserCoords();
+	  std::cout << "; Level: " << commander->getLevel() << std::endl;
   }
   std::cout << "\n\033[;0m";
 
 	return selectUnitToScoutTwo(unitName, isProvince, coordinates);
 }
 
-int ScoutMA::selectUnitToScoutTwo(std::string &unitName, bool &isProvince, std::array<int, 2> &coordinates)
+int ScoutMA::selectUnitToScoutTwo(std::string &unitName, bool &isProvince, std::pair<int, int> coords)
 {
   int unitLevel = 0;
 	print("Enter the name of the province/commander you wish to select to scout: ");
@@ -139,7 +144,7 @@ int ScoutMA::selectUnitToScoutTwo(std::string &unitName, bool &isProvince, std::
 	if (checkHasUnit(unitName) == false)
 	{
 		std::cout << "Invalid name entered; please try again \n";
-		selectUnitToScoutTwo(unitName, isProvince, coordinates);
+		selectUnitToScoutTwo(unitName, isProvince, coords);
 	}
   
 	println(unitName + " selected...");
@@ -150,13 +155,13 @@ int ScoutMA::selectUnitToScoutTwo(std::string &unitName, bool &isProvince, std::
 		if (unitName == province -> getUnitName())
 		{
 			isProvince = true;
-			coordinates = province->getCoordinates();
+			coords = province->getUserCoords();
       unitLevel = province->getLevel();
 		}
 	for (CommanderProfile* commander: commandersCanScout)
 		if (unitName == commander->getUnitName())
     {
-			coordinates = commander->getCoordinates();
+			coords = commander->getUserCoords();
       unitLevel = commander->getLevel();
     }
 	

@@ -75,7 +75,7 @@ if (commanderName != "-1")
 	{
 		std::cout << "Commander " << commanderName << " selected... " << std::endl;
     std::cout << "The coordinates of this Commander: ";
-		participant->getCommander(commanderName)->printCoordinates();
+		participant->getCommander(commanderName)->printUserCoords();
 		std::cout << "\n\n";
 
     participant->getCommander(commanderName)->printCommanderStats();

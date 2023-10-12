@@ -24,24 +24,21 @@ class Provinces : public AllUnits, public Build
 {
 public:
 	/*Constructors*/
-	Provinces();
-	Provinces(int xCoordinate, int yCoordinate, int pIndex);
-	Provinces(int LLNumArg);
-	void basicStats();
+	Provinces(int overallIndexArg);
 
 	/*Initialization*/
 	bool isCapital() { return isACapital; }
-	void setCoordinates(int xCoordinate, int yCoordinate);
-	void initializeCapital(); // provinceIsACapital
+	void makeCapital(int participantIndexArg); // provinceIsACapital
 
 	/*Province Identity*/
-	int getCoordinate(char identifier);
 	bool deleteStatus();
 	void setDeleteProvince() { deleteProvince = true; }
 
 	/*Garrisons*/
 	int getMaxGarrison();
 	int getMaxInfirmaryCapacity();
+	void initializeCapitalStats();
+
 
 
 	//Buildings
@@ -65,8 +62,7 @@ public:
 	void addTroopsTrainedThisTurn(int amount);
 	void resetTroopsTrainedThisTurn();
 
-	int getLinkedListNumber();
-	void assignLinkedListNumber(int number);
+
 
 	/*Resources*/
 	bool subtractCheckResources(std::array<int, 5> resourcesArray);

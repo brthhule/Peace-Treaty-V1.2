@@ -4,49 +4,31 @@
 #define print(x) std::cout << x;
 #define println(x) std::cout << x << std::endl;
 
-//constructors
-Provinces::Provinces() : Build()
-{
-	OF::debugFunction("Provinces, Provinces (1)");
-	participantIndex = -1;
-	basicStats();
-}
-Provinces::Provinces(int sendXCoordinate, int sendYCoordinate, int pIndex) : Build()
+
+Provinces::Provinces(int overallIndexArg)
 {
 	OF::debugFunction("Provinces, Provinces (3)");
+
+	setOverallIndex(overallIndexArg);
 	//Initialize building levels
 	for (int &x: resourceBuildingsLevels)
-		x = 1;
+		x = 0;
 	for (int &x: otherBuildingsLevels)
-		x = 1;
+		x = 0;
 	resourcesPresent = CV::INITIAL_VALUES;
-	xCoord = sendXCoordinate;
-	yCoord = sendYCoordinate;
-	participantIndex = pIndex;
-	basicStats();
-}
+	participantIndex = -1;
 
-Provinces::Provinces (int LLNumArg)
-{
-	OF::debugFunction("Provinces, Provinces (1)");
-	linkedListNumber = LLNumArg;
-	basicStats();
-}
-
-void Provinces::basicStats()
-{
-	OF::debugFunction("Provinces, basicStats");
 	OF::modifyArray(resourcesPresent, CV::INITIAL_VALUES, true);
-	
+
 	scoutReportTurn = -1;
 	scoutReportLogLevel = -1;
-	
+
 	unitLevel = 1;
 	maxGarrison = getMaxGarrison();
 	maxInfirmaryCapacity = getMaxInfirmaryCapacity();
-	
-  troopsTrainedThisTurn = 0;
-  deleteProvince = false;
+
+	troopsTrainedThisTurn = 0;
+	deleteProvince = false;
 }
 
 
@@ -86,16 +68,20 @@ void Provinces::updateProvinceResources()
 }
 
 //Other
-void Provinces::setCoordinates(int xCoordinate, int yCoordinate)
-{
-	OF::debugFunction("Provinces, setCoordinates");
-	xCoord = xCoordinate;
-	yCoord = yCoordinate;
-}
-void Provinces::initializeCapital()
+void Provinces::makeCapital(int participantIndexArg)
 {
 	OF::debugFunction("Provinces, initializeCapital");
+	changeParticipantIndex(participantIndexArg);
 	isACapital = true;
+}
+
+void Provinces::initializeCapitalStats() {
+	for (int& x : resourceBuildingsLevels) {
+		x = 0;
+	}
+	for (int& x : otherBuildingsLevels) {
+		x = 0;
+	}
 }
 void Provinces::resetTroopsTrainedThisTurn()
 {
@@ -168,20 +154,6 @@ void Provinces::addTroopsTrainedThisTurn(int amount)
     troopsTrainedThisTurn += amount;
 }
 
-int Provinces::getCoordinate (char identifier)
-{
-	OF::debugFunction("Provinces, getCoordinate");
-  switch (identifier)
-  {
-    case 'X':
-      return xCoord;
-    case 'Y':
-      return yCoord;
-    default:
-      return -1;//in case something bad happen
-  }
-}
-
 
 
 bool Provinces::deleteStatus()
@@ -251,17 +223,18 @@ void Provinces::completeProvinceScoutReport(int accuracy, Provinces* targetProvi
   is the least accurate*/
 	newAccuracy = (double)accuracy / 100;
 	newAccuracy = (1 - newAccuracy)/2;//The most it will ever be off by is 50%
-
+	std::array<int, 5> tempArray;
 	//AllUnits info
 	unitName = t->getUnitName();
 	resourcesPresent = t->getAllResources();
-	troopsPresent = t->getAllTroopsPresent();
-	troopsInjured = t->getAllTroopsInjured();
-	troopsLost = t->getAllTroopsLost();
-	totalTroops = t->getTotalTroops();
+
+	troopsPresent = t->getTroop(REGULAR, -1, tempArray);
+	troopsInjured = t->getTroop(INJURED, -1, tempArray);
+	troopsLost = t->getTroop(LOST, -1, tempArray);
+
+	//totalTroops = t->getTotalTroops();
 	foodConsumption = t->getFoodConsumption();
-	xCoord = t->getCoordinate('X');
-	yCoord = t->getCoordinate('Y');
+	std::pair<int, int> systemCoords = getSystemCoords();
 	participantIndex = t->getParticipantIndex();
 	unitLevel = t->getLevel();
 	unitName = t->getUnitName();
@@ -333,37 +306,16 @@ bool Provinces::hasCommander(std::string name)
 	return false;
 }
 
-int Provinces::getLinkedListNumber()
-{
-	OF::debugFunction("Provinces, getLinkedListNumber");
-	return linkedListNumber;
-}
-
-void Provinces::assignLinkedListNumber (int number)
-{
-	OF::debugFunction("Provinces, assignLinkiedListNumber");
-	linkedListNumber = number;
-}
-
-std::string Provinces::getLLCoordinates ()
-{
-	OF::debugFunction("Provinces, getLLCoordinates");
-	int x = linkedListNumber % 5;
-	int y = 5 - (int)(linkedListNumber / 5);
-	std::string coordinatesString = "(" + std::to_string(x) + ", " + std::to_string(y) + ")";
-	return coordinatesString;
-}
 
 
 void Provinces::playerBuildFunction() {
 	OF::clearScreen();
 	std::cout<<
-		"---------- Start printing province information ----------\n\033[34m";
+		"---------- Start printing province information ----------";
+	CV::addColor(BLUE);
 	std::cout << "Province of kingdom " + getKingdomName();
-	std::cout << "Coordinates: ("
-		<< OF::translateCoordinate(getCoordinate('X'), 'x', 'O') << ", "
-		<< OF::translateCoordinate(getCoordinate('Y'), 'y', 'O')
-		<< ") \n\n\033[0m";
+	std::cout << "Coordinates: " << getUserCoords << "\n\n";
+	CV::addColor(RESET);
 
 	this->printResources();
 	printBuildingStats();

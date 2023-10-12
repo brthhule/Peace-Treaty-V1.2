@@ -33,7 +33,7 @@ public:
 	//----Troop Stuff----
 	//Return a troop by index or all troops-- done by type. Pass -1 for troopIndex to return all troops of a type
 	template<typename T> 
-	T getTroop(CV::MutateTroopType type, int troopIndex);
+	T getTroop(CV::MutateTroopType type, int troopIndex, T data);
 	//Change a troop by index or all trypes.
 	template<typename T>
 	T mutateTroop(CV::MutateTroopType type, int troopIndex, T amount, CV::MutateDirection direction);
@@ -46,22 +46,12 @@ public:
 	int getFoodConsumption() { return foodConsumption; }
 
 
-	//Coordinate Stuff
-	std::array<int, 2> getCoordinates();
-	int getCoordinate(char which);
-	std::string printOutputCoordinates();
-	int translateX (bool isInput);
-	int translateY (bool isInput);
-
-
   //resources
 	void modifySpecificResource(int index, int amount, bool isAdd);
 	void modifyResources(std::array<int, 5> resourcesArray, bool isAdd);
 	int getResource(int resourceIndex){return resourcesPresent[resourceIndex];}
 	std::array<int,5> getAllResources ();//Add implementation
 	void printResources();
-	std::string printCoordinates();
-	std::string printRawCoordinates();
 
 
 	void changeUnitName(std::string name);

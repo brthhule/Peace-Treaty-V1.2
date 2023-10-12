@@ -34,7 +34,7 @@ AllUnits::AllUnits() {
 //--------Troop Functions--------
 //Return a troop by index or all troops-- done by type. Pass -1 for troopIndex to return all troops of a type
 template<typename T>
-T AllUnits::getTroop(CV::MutateTroopType type, int troopIndex) {
+T AllUnits::getTroop(CV::MutateTroopType type, int troopIndex, T data) {
 	std::array<int*, 3> troop = { &troopsPresent[troopIndex], &troopsInjured[troopIndex], &troopsLost[troopIndex] };
 	std::array<std::array<int, 5>*, 3> allTroops = { &troopsPresent, &troopsInjured, &troopsLost };
 	T *troopPtr;
@@ -110,7 +110,6 @@ void AllUnits::changeUnitName(std::string name)
 
 //Mutator Functions
 
-
 void AllUnits::modifySpecificResource(int index, int amount, bool isAdd)
 {
 	if (isAdd)
@@ -129,55 +128,7 @@ int AllUnits::getLevel()
 	return unitLevel;
 }
 
-std::string AllUnits::printOutputCoordinates()
-{
-	int x = yCoord + 1;
-	int y = continentSize - xCoord - 1;
-	return "(" + std::to_string(x) + ", " + std::to_string(y) + ")";
-}
-
-int AllUnits::translateX(bool isInput)
-{
-	if (isInput)
-		return xCoord - 1;
-	else
-		return xCoord + 1;
-}
-
-int AllUnits::translateY(bool isInput)
-{
-	if (isInput)
-		return abs(yCoord - continentSize);
-
-	return abs(continentSize - yCoord);
-}
-
-std::array<int, 2> AllUnits::getCoordinates()
-{
-	return { xCoord, yCoord };
-}
-
-int AllUnits::getCoordinate(char which)
-{
-	if (which == 'X')
-		return xCoord;
-	return yCoord;
-}
-
-
-
-
-std::string AllUnits::printCoordinates()
-{
-	return OF::printCoordinates({ xCoord, yCoord });
-}
-
 std::array<int, 5> AllUnits::getAllResources()
 {
 	return resourcesPresent;
-}
-
-std::string AllUnits::printRawCoordinates()
-{
-	return "(" + std::to_string(xCoord) + ", " + std::to_string(yCoord) + ")";
 }

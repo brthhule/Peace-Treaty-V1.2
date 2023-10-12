@@ -5,7 +5,7 @@ void Map::setMap() {
 	for (int x = 0; x < CV::continentSize; x++) {
 		std::vector<Provinces> tempVector = {};
 		for (int y = 0; x < CV::continentSize; y++) {
-			Provinces newProvince;
+			Provinces newProvince(-1, overallIndex);
 			newProvince.setOverallIndex(overallIndex);
 			overallIndex++;
 			tempVector.push_back(newProvince);

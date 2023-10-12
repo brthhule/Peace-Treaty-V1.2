@@ -1,6 +1,6 @@
 #include "Coordinates.h"
 
-Coords::Coords(int index) {
+void Coords::setOverallIndex (int index) {
 	overallIndex = index;
 	systemCoords.first = overallIndex / CV::continentSize;
 	systemCoords.second = overallIndex % CV::continentSize;
@@ -15,4 +15,8 @@ std::pair<int, int> Coords::getSystemCoords() {
 
 std::pair<int, int> Coords::getUserCoords() {
 	return userCoords;
+}
+
+void Coords::printUserCoords() {
+	std::cout << "(" << userCoords.first << ", " << userCoords.second << ")";
 }
