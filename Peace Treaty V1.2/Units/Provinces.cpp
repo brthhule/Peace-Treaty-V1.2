@@ -252,14 +252,21 @@ void Provinces::upgradeBuildings() {
 	std::cout << "Returning to Build Infrastructure action menu. " << std::endl;
 }
 
-void Provinces::upgradeBuildings2(char option) {
-	for (int x = 0; x < 6; x++) {
-		if (buildingLetter == buildingLetterList[x].at(0)) {
-			buildingNumber = x;
-			break;
-		}
+void Provinces::upgradeBuildings2(char optionChar) {
+	int option = optionChar - '0';
+	Build::BuildingType type = Build::BuildingType(option >= 6);
+	if (type) {
+		upgradeBuildings3(&otherBuildingsLevels, Build::OtherBuildings(option));
+		return;
 	}
 
+	upgradeBuildings3(&resourceBuildingsLevels, Build::ResourceBuildings(option));
+
+}
+
+
+template<typename T>
+T Provinces::upgradeBuildings3(std::array<int, 5>* arrayArg, T name) {
 	printInformation(buildingNumber, requiredResources, buildingLetterList);
 	char upgradeProceed = Input::getInputText("Proceed with upgrade? (Y/N) ", { "Y", "N" }).at(0);
 
@@ -277,7 +284,6 @@ void Provinces::upgradeBuildings2(char option) {
 	}
 }
 
-//Fix this to differentiate between resource buildings and othe rother buildings; right now, only accounts for resource buildings
 void Provinces::printInformation(int buildingNumber, std::array<int, 5> requiredResources, std::vector<std::string> buildingLetterList) {
 	std::cout << "---------- Start printing information----------\n\n\033[34m";
 	println(CV::RESOURCE_BUILDING_NAMES[buildingNumber] + " selected \n");
@@ -292,10 +298,123 @@ void Provinces::printInformation(int buildingNumber, std::array<int, 5> required
 	std::cout << "----------End printing informatio----------" << std::endl;
 }
 
+
+//Fix this to differentiate between resource buildings and othe rother buildings; right now, only accounts for resource buildings
+
 void Provinces::setOverallIndex(int index) {
 	overallIndex = index;
 }
 
 int Provinces::getOverallIndex() {
 	return overallIndex;
+}
+
+std::array<std::array<int, 5>, 7> Provinces::getLists() {
+	std::array<std::array<int, 5>, 7> tempOverallArray;
+	for (int row = 0; row < 7; row++) {
+		std::array<int, 5> tempRowArray = *Lists[row];
+
+		for (int column = 0; column < 5; column++) {
+			tempOverallArray[row][column] = tempRowArray[column];
+		}
+	}
+}
+std::array<int, 7> Provinces::getListInt()
+{
+	std::array<int, 7> listTemp;
+	for (int column = 0; column < 7; column++) {
+		listTemp[column] = *listInt[column];
+	}
+}
+
+std::array<bool, 3> Provinces::getListBool()
+{
+	std::array<bool, 3> listTemp;
+	for (int column = 0; column < 3; column++) {
+		listTemp[column] = *listBool[column];
+	}
+}
+
+std::array< std::pair<int, int>, 2> Provinces::getListCoords() {
+	return { systemCoords, userCoords };
+}
+
+
+
+
+
+
+Report::Report(int scouterLevelArg, int targetLevelArg, Provinces &province) {
+	scouterLevel = scouterLevelArg;
+	targetLevel = targetLevelArg;
+	computeAccuracy();
+	Lists = province.getLists();
+	listInt = province.getListInt();
+	listBool = province.getListBool();
+	listCoords = province.getListCoords();
+	commandersPtr = province.getAllCommanders();
+	getCommanders();
+	attuneValues();
+}
+
+void Report::getCommanders() {
+	for (int x = 0; x < commandersPtr.size(); x++) {
+		commanders.push_back(*commandersPtr.at(x));
+	}
+}
+
+void Report::computeAccuracy() {
+	int bigger = 0;
+	int smaller = 0;
+
+	switch (scouterLevel > targetLevel)
+	{
+	case 0:
+		bigger = targetLevel;
+		smaller = scouterLevel;
+		break;
+	case 1:
+		bigger = scouterLevel;
+		smaller = targetLevel;
+		break;
+	}
+
+	double divided = double(bigger) / smaller;
+	divided = divided * 10;
+	//Max accuracy: 95, min: 10
+	//Accuracy starts at 50 by default-- same level = 50
+	//If scouting a higher level target
+	if (scouterLevel < targetLevel)
+	{
+		divided *= -1;
+	}
+	accuracy = 50 + int(divided);
+	if (accuracy > 95) {
+		accuracy = 95;
+	}
+	else if (accuracy < 5) {
+		accuracy = 5;
+	}
+}
+
+void Report::attuneValues() {
+	int newAccuracy = 100 - accuracy;
+	int currentValue, mediumValue, upperValue, lowerValue;
+	srand(time(NULL));
+
+	for (int row = 0; row < 7; row++) {
+		for (int col = 0; col < 5; col++) {
+			currentValue = Lists[row][col];
+			mediumValue = currentValue * (newAccuracy / 100);
+			upperValue = currentValue + mediumValue;
+			lowerValue = currentValue - mediumValue;
+			Lists[row][col] = rand() % (upperValue - lowerValue) + lowerValue;
+		}
+
+		currentValue = listInt[row];
+		mediumValue = currentValue * (newAccuracy / 100);
+		upperValue = currentValue + mediumValue;
+		lowerValue = currentValue - mediumValue;
+		Lists[row] = rand() % (upperValue - lowerValue) + lowerValue;
+	}
 }

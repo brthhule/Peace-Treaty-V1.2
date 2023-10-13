@@ -1,5 +1,7 @@
 #include "Buildings.h"
 
+#define print(x) std::cout << x;
+#define println(x) std::cout << x << std::endl;
 Buildings::Buildings() {
 	for (int x : otherBuildingsLevels) {
 		x = 0;
@@ -149,3 +151,6 @@ void Buildings::displayListOfBuildings() {
 		std::cout << x << ") " << CV::OTHER_BUILDING_NAMES[x] << "\n";
 	}
 }
+
+
+

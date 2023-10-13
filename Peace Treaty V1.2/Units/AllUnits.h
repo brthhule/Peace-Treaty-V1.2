@@ -64,16 +64,15 @@ protected:
 	std::array<int, 5> troopsPresent = {0, 0, 0, 0, 0};
 	std::array<int, 5> troopsInjured = {0, 0, 0, 0, 0};
 	std::array<int, 5> troopsLost = {0, 0, 0, 0, 0};
-	int CP;
+	int combatPower;
 	int totalTroops;
 	int foodConsumption;
 
-	const int initialStats[5] = { 5, 4, 3, 2, 1 };
+	std::array<int,5> initialStats = { 5, 4, 3, 2, 1 };
 
   //Coordinates;
-	int xCoord = 0;
-	int yCoord = 0;
-	char canSelectThisUnit;
+
+	bool canSelectThisUnit;
 	int participantIndex;
 	std::string unitName;
 	std::string isCommanderOrProvince;

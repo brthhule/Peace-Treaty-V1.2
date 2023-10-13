@@ -7,12 +7,13 @@
 #include "Misc/ConstValues.h"
 #include "Misc/OF.h"
 #include "Build.h"
+#include "Units/AllUnits.h"
 
 using namespace CV;
 using namespace OF;
 using namespace Build;
 
-class Buildings {
+class Buildings{
 public:
 	Buildings();
 
@@ -43,6 +44,19 @@ public:
 
 	
 
+protected:
+	static std::array<int, 5> returnArray;
+	static int returnInt;
+	//Linked to enum resourceBuildings
+	std::array<int, 5> resourceBuildingsLevels;
+	//Linked to enum OtherBuildings
+	std::array<int, 5> otherBuildingsLevels;
+	int troopsTrainedThisTurn;//variable
+	// foodConsumption;//variable, in AllUnits
+	
+
+	
+
 private:
 	const double requiredResourcesBuildings[6][5] = {
 	{1, 0.5, 0.25, 0.125, 0.0625},
@@ -52,21 +66,15 @@ private:
 	{5, 4, 3, 2, 1},
 	{1, 1, 1, 1, 0.2} };
 
-	//Linked to enum resourceBuildings
-	std::array<int, 5> resourceBuildingsLevels;
-	//Linked to enum OtherBuildings
-	std::array<int, 5> otherBuildingsLevels;
+	
 	//enum OtherBuildings { BARRACKS, INFIRMARY, LIBRARY, WALL, RESIDENCES };
 	std::array<std::array<int, 5>*, 2> levels = { &resourceBuildingsLevels, &otherBuildingsLevels };
 
-	int troopsTrainedThisTurn;//variable
-	int foodConsumption;//variable
+	
 
 	std::array<int, 5> capacityAmounts = { 10,10,10,10,10 };
 	std::array<int, 5> resourceProduction = { 5,4,3,2,1 };
 
-protected:
-	static std::array<int, 5> returnArray;
-	static int returnInt;
+
 };
 #endif
