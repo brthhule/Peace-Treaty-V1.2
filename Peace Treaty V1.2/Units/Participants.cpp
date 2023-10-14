@@ -577,3 +577,6 @@ Provinces* Participants::getErrorProvince() {
 	return this->getCapital();
 }
 
+CommanderProfile* Participants::getSelectedCommander() {
+	return selectedCommander;
+}

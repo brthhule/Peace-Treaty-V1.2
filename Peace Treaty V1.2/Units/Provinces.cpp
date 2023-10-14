@@ -138,12 +138,6 @@ bool Provinces::hasCommander(std::string name)
 	return false;
 }
 
-void Provinces::addTroopsTrainedThisTurn(int amount)
-{
-}
-
-
-
 void Provinces::playerBuildFunction() {
 	OF::clearScreen();
 	std::cout<<
@@ -226,7 +220,7 @@ T Provinces::upgradeBuildings3(Build::BuildingType type, std::array<int, 5>* lis
 	//Multiplies level by base line rate
 	std::array<int, 5> requiredResources = listArg[name] * upgradeRates[x];
 
-	printInformation(buildingNumber, requiredResources, buildingLetterList);
+	printInformation(type, requiredResources, int buildingIndex);
 	char upgradeProceed = Input::getInputText("Proceed with upgrade? (Y/N) ", { "Y", "N" }).at(0);
 
 	if (upgradeProceed == 'Y') {
@@ -243,12 +237,13 @@ T Provinces::upgradeBuildings3(Build::BuildingType type, std::array<int, 5>* lis
 	}
 }
 
-void Provinces::printInformation(int buildingNumber, std::array<int, 5> requiredResources, std::vector<std::string> buildingLetterList) {
+void Provinces::printInformation(BuildingType type, std::array<int, 5> requiredResources, int buildingIndex) {
 	std::cout << "---------- Start printing information----------\n\n\033[34m";
-	println(CV::RESOURCE_BUILDING_NAMES[buildingNumber] + " selected \n");
+	std::cout << CV::RESOURCE_BUILDING_NAMES[buildingIndex] << " selected \n";
+
+
 	println("The following is the cost of the upgrade: ");
 	for (int x = 0; x < 5; x++) {
-		requiredResources[x] = (int)requiredResourcesBuildings[buildingNumber][x] * this->getBuildingLevel(x);
 		std::cout << CV::RESOURCE_NAMES[x] << ": " << requiredResources[x]
 			<< std::endl;
 	}
@@ -303,77 +298,42 @@ std::array< std::pair<int, int>, 2> Provinces::getListCoords() {
 
 
 
-Report::Report(int scouterLevelArg, int targetLevelArg, Provinces &province) {
-	scouterLevel = scouterLevelArg;
-	targetLevel = targetLevelArg;
-	computeAccuracy();
-	Lists = province.getLists();
-	listInt = province.getListInt();
-	listBool = province.getListBool();
-	listCoords = province.getListCoords();
-	commandersPtr = province.getAllCommanders();
-	getCommanders();
-	attuneValues();
+
+
+void Provinces::setKingdomName(std::string name) { kingdomName = name; }
+
+int Provinces::commandersNum() {
+	return (int)commanders.size();
 }
 
-void Report::getCommanders() {
-	for (int x = 0; x < commandersPtr.size(); x++) {
-		commanders.push_back(*commandersPtr.at(x));
-	}
+bool Provinces::isCapital() {
+	return isACapital;
 }
 
-void Report::computeAccuracy() {
-	int bigger = 0;
-	int smaller = 0;
+void Provinces::createReport(int scouterLevelArg, int targetLevelArg) {
 
-	switch (scouterLevel > targetLevel)
-	{
-	case 0:
-		bigger = targetLevel;
-		smaller = scouterLevel;
-		break;
-	case 1:
-		bigger = scouterLevel;
-		smaller = targetLevel;
-		break;
-	}
-
-	double divided = double(bigger) / smaller;
-	divided = divided * 10;
-	//Max accuracy: 95, min: 10
-	//Accuracy starts at 50 by default-- same level = 50
-	//If scouting a higher level target
-	if (scouterLevel < targetLevel)
-	{
-		divided *= -1;
-	}
-	accuracy = 50 + int(divided);
-	if (accuracy > 95) {
-		accuracy = 95;
-	}
-	else if (accuracy < 5) {
-		accuracy = 5;
-	}
-}
-
-void Report::attuneValues() {
-	int newAccuracy = 100 - accuracy;
-	int currentValue, mediumValue, upperValue, lowerValue;
-	srand(time(NULL));
+	std::array<std::array<int, 5>, 7> ListsArg;
+	std::array<int, 7> listIntArg;
+	std::array<bool, 3> listBoolArg;
 
 	for (int row = 0; row < 7; row++) {
+		std::array<int, 5> tempArray = *Lists[row];
 		for (int col = 0; col < 5; col++) {
-			currentValue = Lists[row][col];
-			mediumValue = currentValue * (newAccuracy / 100);
-			upperValue = currentValue + mediumValue;
-			lowerValue = currentValue - mediumValue;
-			Lists[row][col] = rand() % (upperValue - lowerValue) + lowerValue;
+			ListsArg[row][col] = tempArray[col];
 		}
 
-		currentValue = listInt[row];
-		mediumValue = currentValue * (newAccuracy / 100);
-		upperValue = currentValue + mediumValue;
-		lowerValue = currentValue - mediumValue;
-		Lists[row] = rand() % (upperValue - lowerValue) + lowerValue;
+		listIntArg[row] = *listInt[row];
 	}
+
+	for (int x = 0; x < 3; x++) {
+		listBoolArg[x] = *listBool[x];
+	}
+
+	ProvinceReport newReport(scouterLevelArg, 
+		targetLevelArg, 
+		ListsArg, 
+		listIntArg, 
+		listBoolArg, 
+		getSystemCoords());
+	scoutReports.push_back(newReport);
 }

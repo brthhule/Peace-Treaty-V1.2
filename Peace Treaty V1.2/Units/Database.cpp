@@ -90,4 +90,19 @@ int Database::getMaxCommanders() {
 	return maxCommanders;
 }
 
+void Database::setCurrentParticipant(Participants* p) {
+	currentParticipant = p;
+}
+
+Participants *Database::getCurrentParticipant() {
+	return currentParticipant;
+}
+
+bool Participants::isPlayer() {
+	return playerStatus;
+}
+
+void Participants::setPlayerStatus(bool status) {
+	playerStatus = status;
+}
 

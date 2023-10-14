@@ -132,6 +132,7 @@
   <ItemGroup>
     <ClCompile Include="Build.cpp" />
     <ClCompile Include="Buildings.cpp" />
+    <ClCompile Include="CommanderReport.cpp" />
     <ClCompile Include="ConstValues.cpp" />
     <ClCompile Include="Coordinates.cpp" />
     <ClCompile Include="Input.cpp" />
@@ -145,6 +146,7 @@
     <ClCompile Include="Misc\OF.cpp" />
     <ClCompile Include="Peace Treaty V1.2.cpp" />
     <ClCompile Include="PlayerAction.cpp" />
+    <ClCompile Include="ProvinceReport.cpp" />
     <ClCompile Include="Units\AllUnits.cpp" />
     <ClCompile Include="Units\CommanderProfile.cpp" />
     <ClCompile Include="Units\Database.cpp" />
@@ -192,8 +194,8 @@
   <ItemGroup>
     <ClInclude Include="Build.h" />
     <ClInclude Include="Buildings.h" />
+    <ClInclude Include="CommanderReport.h" />
     <ClInclude Include="Coordinates.h" />
-    <ClInclude Include="Structure.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Interfaces\BuildMA.h" />
     <ClInclude Include="MA\ArmyOverviewMA.h" />
@@ -203,9 +205,9 @@
     <ClInclude Include="MA\ScoutMA.h" />
     <ClInclude Include="MA\TrainMA.h" />
     <ClInclude Include="Misc\ConstValues.h" />
-    <ClInclude Include="Misc\LinkedList.h" />
     <ClInclude Include="Misc\OF.h" />
     <ClInclude Include="PlayerAction.h" />
+    <ClInclude Include="ProvinceReport.h" />
     <ClInclude Include="Units\AllUnits.h" />
     <ClInclude Include="Units\CommanderProfile.h" />
     <ClInclude Include="Units\Database.h" />

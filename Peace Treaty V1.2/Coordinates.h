@@ -9,12 +9,17 @@ using namespace CV;
 class Coords
 {
 public:
-	void setOverallIndex(int index);
-	std::pair<int, int> getSystemCoords();
-	std::pair<int, int> getUserCoords();
-	void printUserCoords();
-	std::pair<int, int> systemCoords;//row, column
-	std::pair<int, int> userCoords;//x, y
+	void 
+		setOverallIndex(int index),
+		printUserCoords();
+
+	std::pair<int, int> 
+		getSystemCoords(),
+		getUserCoords();
+
+	std::pair<int, int> 
+		systemCoords,//row, column
+		userCoords;//x, y
 private:
 	int overallIndex;
 };

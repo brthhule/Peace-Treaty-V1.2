@@ -31,18 +31,15 @@ public:
 	//Constructors
 	MapMA();
 
-	void viewPlayerMap();
-
-	void selectUnitOriginal(Provinces *selectedProvince);
-	void selectPlayerProvince();
-	void playerUnitAction(Provinces *newP);
-	void playerUnitActionP(Provinces *newP);
-	void selectEnemyAction();
-	void selectEnemyProvince(Provinces *newP);
-
-	void scoutLogFunction(Provinces* enemyProvince);
-	void provinceReportLog(char whatReportChar, Provinces* enemyProvince);
-
+	void 
+		viewPlayerMap(),
+		selectUnitOriginal(Provinces *selectedProvince),
+		selectPlayerProvince(),
+		
+		playerUnitAction(Provinces *newP),
+		playerUnitActionP(Provinces *newP),
+		selectEnemyAction(),
+		electEnemyProvince(Provinces *newP);
 
   Participants *getParticipant();
 

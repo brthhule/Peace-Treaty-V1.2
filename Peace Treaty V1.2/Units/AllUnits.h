@@ -26,58 +26,69 @@ public:
 	AllUnits();
 
 
-	int getCP();
-	int getParticipantIndex();
-	
+	int
+		getCP(),
+		getParticipantIndex();
+
 
 	//----Troop Stuff----
 	//Return a troop by index or all troops-- done by type. Pass -1 for troopIndex to return all troops of a type
-	template<typename T> 
+	template<typename T>
 	T getTroop(CV::MutateTroopType type, int troopIndex, T data);
 	//Change a troop by index or all trypes.
 	template<typename T>
 	T mutateTroop(CV::MutateTroopType type, int troopIndex, T amount, CV::MutateDirection direction);
-	
+
 
 
 
 	//Provinces & Commanders
-	int getLevel();
-	int getFoodConsumption() { return foodConsumption; }
+	int
+		getLevel(),
+		getFoodConsumption(),
+		getResource(int resourceIndex);
 
 
-  //resources
-	void modifySpecificResource(int index, int amount, bool isAdd);
-	void modifyResources(std::array<int, 5> resourcesArray, bool isAdd);
-	int getResource(int resourceIndex){return resourcesPresent[resourceIndex];}
-	std::array<int,5> getAllResources ();//Add implementation
-	void printResources();
+	//resources
+	void
+		modifySpecificResource(int index, int amount, bool isAdd),
+		modifyResources(std::array<int, 5> resourcesArray, bool isAdd),
+
+		printResources(),
+		changeUnitName(std::string name),
+		changeParticipantIndex(int number);
+
+	std::array<int, 5> getAllResources();//Add implementation
 
 
-	void changeUnitName(std::string name);
-	void changeParticipantIndex (int number) {participantIndex = number;}
-  std::string getUnitName();
+	std::string getUnitName();
 
 
 protected:
-	std::array<int, 5> resourcesPresent = {0, 0, 0, 0, 0};
-	std::array<int, 5> troopsPresent = {0, 0, 0, 0, 0};
-	std::array<int, 5> troopsInjured = {0, 0, 0, 0, 0};
-	std::array<int, 5> troopsLost = {0, 0, 0, 0, 0};
-	int combatPower;
-	int totalTroops;
-	int foodConsumption;
+	std::array<int, 5>
+		resourcesPresent = { 0, 0, 0, 0, 0 },
+		troopsPresent = { 0, 0, 0, 0, 0 },
+		troopsInjured = { 0, 0, 0, 0, 0 },
+		troopsLost = { 0, 0, 0, 0, 0 },
+		initialStats = { 5, 4, 3, 2, 1 };
 
-	std::array<int,5> initialStats = { 5, 4, 3, 2, 1 };
+	int
+		combatPower,
+		totalTroops,
+		foodConsumption,
+		participantIndex,
+		unitLevel;
 
-  //Coordinates;
+
+	//Coordinates;
 
 	bool canSelectThisUnit;
-	int participantIndex;
-	std::string unitName;
-	std::string isCommanderOrProvince;
-	int unitLevel;
-	
+
+	enum UnitType { COMMANDER, PROVINCE };
+	UnitType type;
+
+	std::string
+		unitName;
 };
 
 #endif

@@ -114,6 +114,12 @@
     <ClCompile Include="Build.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ProvinceReport.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CommanderReport.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\AdministrativeDocs\debugQuickAccess.txt">
@@ -247,9 +253,6 @@
     <ClInclude Include="Misc\ConstValues.h">
       <Filter>Header Files\Misc</Filter>
     </ClInclude>
-    <ClInclude Include="Misc\LinkedList.h">
-      <Filter>Header Files\Misc</Filter>
-    </ClInclude>
     <ClInclude Include="Interfaces\BuildMA.h">
       <Filter>Interfaces</Filter>
     </ClInclude>
@@ -277,9 +280,6 @@
     <ClInclude Include="Input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Structure.h">
-      <Filter>Header Files\Misc</Filter>
-    </ClInclude>
     <ClInclude Include="Coordinates.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -287,6 +287,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Build.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ProvinceReport.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CommanderReport.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

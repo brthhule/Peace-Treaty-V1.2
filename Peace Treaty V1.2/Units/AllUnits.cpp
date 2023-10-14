@@ -109,7 +109,12 @@ void AllUnits::changeUnitName(std::string name)
 }
 
 //Mutator Functions
-
+int AllUnits::getFoodConsumption() {
+	return foodConsumption;
+}
+int AllUnits::getResource(int resourceIndex) {
+	return resourcesPresent(resourceIndex);
+}
 void AllUnits::modifySpecificResource(int index, int amount, bool isAdd)
 {
 	if (isAdd)
@@ -131,4 +136,8 @@ int AllUnits::getLevel()
 std::array<int, 5> AllUnits::getAllResources()
 {
 	return resourcesPresent;
+}
+
+void AllUnits::changeParticipantIndex(int number) {
+	participantIndex = number;
 }

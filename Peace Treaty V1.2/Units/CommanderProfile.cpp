@@ -26,18 +26,8 @@ CommanderProfile::CommanderProfile(int level, std::string name) {
   otherCommanderStats[4] = &foodConsumption;
 	otherCommanderStats[6] = &totalMaxResources;
 
-  for (int x = 0; x < 5; x++) {
-    namesOfMANOne[0][x] = CV::RESOURCE_NAMES[x];
-    namesOfMANOne[1][x] =  CV::TROOP_NAMES[x];
-    namesOfMANOne[2][x] = CV::TROOP_NAMES[x];
-		namesOfMANOne[3][x] = CV::TROOP_NAMES[x];
-  }
-  namesOfManTwo[0] = "Total Troops";
-  namesOfManTwo[1] = "Total Army CP";
-  namesOfManTwo[2] = "Commander Level";
-  namesOfManTwo[3] = "Max Troops this army can have";
-  namesOfManTwo[4] = "Army Food consumption";
-	namesOfManTwo[5] = "Max Resources this army can have";
+  
+ 
 	
   maxTroops = unitLevel * 10;
   totalMaxResources = 0;
@@ -124,4 +114,24 @@ void CommanderProfile::setLocation(std::array<int, 2> pCoords){
 void CommanderProfile::calculateCommanderScoutLog()
 {
 
+}
+
+void CommanderProfile::addLevel() {
+    unitLevel++;
+}
+
+void CommanderProfile::setDelete() {
+    deleteCommander = true;
+}
+
+bool CommanderProfile::getDelete() {
+    return deleteCommander;
+}
+
+bool CommanderProfile::hasMovedQuestion() {
+    return hasMoved;
+}
+
+void CommanderProfile::resetCommanderMoved() {
+    hasMoved = false;
 }

@@ -11,10 +11,12 @@ using namespace CV;
 
 class Map {
 public:
-	static void setMap();
-	static void showMap();
-	static void meat(int x, int y);
-	static void printXAxis();
+	static void 
+		setMap(),
+		showMap(),
+		meat(int x, int y),
+		printXAxis();
+
 	Provinces* getProvince(int row, int column);
 private:
 	static std::vector <std::vector<Provinces>> map;

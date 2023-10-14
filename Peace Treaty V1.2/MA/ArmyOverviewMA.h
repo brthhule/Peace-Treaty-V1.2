@@ -21,17 +21,15 @@ public:
 	//constructor
 	ArmyOverviewMA();
 
-	//Accessors
-	void printCosts(std::vector<int>costs, std::string type);
-
-	//Other Function stuff
-	void armyDeploymentMF();
-	void trainCommanders();
-	void proceedWithTraining(std::array <int,5> trainCosts);
-	void upgradeCommandersOne();
-	void upgradeCommandersTwo();
-	void viewArmyOverview();
-	void deployCommanderMF();
+	void 
+		printCosts(std::vector<int>costs, std::string type),
+		armyDeploymentMF(),
+		trainCommanders(),
+		proceedWithTraining(std::array <int,5> trainCosts),
+		upgradeCommandersOne(),
+		upgradeCommandersTwo(),
+		viewArmyOverview(),
+		deployCommanderMF();
 	
 private:
 	Participants *participant;

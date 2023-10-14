@@ -6,17 +6,16 @@
 
 #include "AttackMA.h"
 
+#include "../Input.h"
+
 #include "../Units/Participants.h"
 #include "../Units/Provinces.h"
 #include "../Units/CommanderProfile.h"
-#include "../Input.h"
 
-
+#include "../Misc/ConstValues.h"
 #include "../Misc/OF.h"
 
-
-extern int continentSize;
-extern std::vector<std::vector <Provinces>> provincesMap;
+using namespace CV;
 
 class Mobility
 {

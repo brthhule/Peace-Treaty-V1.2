@@ -41,7 +41,6 @@ public:
 	void
 		addTroopsTrainedThisTurn(int amount),
 		resetTroopsTrainedThisTurn(),
-		addTroopsTrainedThisTurn(int amount),
 		initiailizeCapitalBuildings(),
 		initializeEmptyBuildings();
 
@@ -56,8 +55,9 @@ protected:
 	std::array<int, 5>
 		//Keep track of building levels
 		resourceBuildingsLevels,
-		otherBuildingsLevels,
+		otherBuildingsLevels;
 
+	std::array<double, 5>
 		//For upgrades
 		farmUR = { 1, 0.5, 0.25, 0.125, 0.0625 },
 		millUR = { 2, 1, 0.5, 0.25, 0.125 },
@@ -70,9 +70,18 @@ protected:
 		wallUR = { 1, 1, 1, 1, 0.2 },
 		residencesUR = {};
 
-	const std::array<std::array<int, 5>, 10> upgradeRates =
+	const std::array<std::array<double, 5>, 10> upgradeRates =
 	{
-		farmUR, millUR, quarryUR, mineUR, churchUR, barracksUR, infirmaryUR, libraryUR, wallUR, residencesUR
+		farmUR, 
+		millUR,
+		quarryUR, 
+		mineUR, 
+		churchUR, 
+		barracksUR,
+		infirmaryUR, 
+		libraryUR, 
+		wallUR, 
+		residencesUR
 	};
 
 private:

@@ -12,6 +12,7 @@
 #include "../Input.h"
 #include "../Coordinates.h"
 #include "../Buildings.h"
+#include "../ProvinceReport.h"
 
 
 #define print(x) std::cout << x;
@@ -31,57 +32,50 @@ public:
 
 	/*Initialization*/
 	bool 
-		isCapital() { return isACapital; }
-	void
-		makeCapital(int participantIndexArg),
-		setDeleteProvince(),
-		initializeCapitalStats();
-
-	/*Province Identity*/
-	bool deleteStatus();
-
+		isCapital(),
+		deleteStatus(),
+		hasCommander(std::string name),
+		subtractCheckResources(std::array<int, 5> resourcesArray);
 
 	// Commanders
 	CommanderProfile* getCommander(std::string name);
-	void 
-		addCommander(CommanderProfile* newCommander),
-		removeCommander(CommanderProfile* newCommander),
-		printCommanders();
 	std::vector <CommanderProfile*> getAllCommanders();
-	int commandersNum() { return (int) commanders.size(); }
-	bool hasCommander(std::string name);
 
-	/*Training*/
-	
-	void 
+	int 
+		commandersNum(),
+		getTotalCP(),
+		getOverallIndex();
 		
-
-	/*Resources*/
-	bool subtractCheckResources(std::array<int, 5> resourcesArray);
+	
 	std::array<int, 5> getTotalResources();
 
-	/*Stats*/
-	int getTotalCP();
-	void updateBuildingsProduction();
-	void updateProvinceResources();
+	void
+		makeCapital(int participantIndexArg),
+		setDeleteProvince(),
+		initializeCapitalStats(),
 
-	
+		addCommander(CommanderProfile* newCommander),
+		removeCommander(CommanderProfile* newCommander),
+		printCommanders(),
+
+		updateBuildingsProduction(),
+		updateProvinceResources(),
+		playerBuildFunction(),
+		upgradeBuildings(),
+		upgradeBuildings2(char optionChar),
+		printInformation(Build::BuildingType type, std::array<int, 5> requiredResources, int buildingIndex),
+		setKingdomName(std::string name),
+		setOverallIndex(int index),
 
 
-	void playerBuildFunction();
-	void upgradeBuildings();
-	void upgradeBuildings2(char optionChar);
-	template<typename T>
+		createReport(int scouterLevelArg, int targetLevelArg);
+
 	//type (resource, other), other/resourceLevels, name of object in Levels list
+	template<typename T>
 	T upgradeBuildings3(Build::BuildingType type, std::array<int, 5>* listArg, T name);
-	void printInformation(Build::BuildingType type, std::array<int, 5> requiredResources, std::vector<std::string> buildingLetterList);
 
-	void setKingdomName(std::string name) { kingdomName = name; }
 	std::string getKingdomName() { return kingdomName; }
 	
-	void setOverallIndex(int index);
-	int getOverallIndex();
-
 	std::array<std::array<int, 5>, 7> getLists();
 	std::array<int, 7> getListInt();
 	std::array<bool, 3> getListBool();
@@ -97,23 +91,39 @@ protected:
 	enum LIST_COORDS {SYSTEM_COORDS, USER_COORDS};
 
 	enum REPORT {REPORT_TURN, REPORT_LOG};
-
-	int b;
-	int* a = &b;
-
-
 	
 private:
-	std::array<std::array<int, 5>*, 7> Lists = {&resourceBuildingsLevels, &otherBuildingsLevels,&resourcesPresent, &troopsPresent, &troopsInjured, &troopsLost, &initialStats};
+	std::array<std::array<int, 5>*, 7> Lists = {
+		&resourceBuildingsLevels, 
+		&otherBuildingsLevels,
+		&resourcesPresent,
+		&troopsPresent, 
+		&troopsInjured, 
+		&troopsLost,
+		&initialStats
+	};
 
 	//Have to derive unitLevel
-	std::array<int*, 7> listInt = {&combatPower, &totalTroops, &foodConsumption, &participantIndex, &unitLevel, &troopsTrainedThisTurn, &overallIndex};
+	std::array<int*, 7> listInt = {
+		&combatPower, 
+		&totalTroops,
+		&foodConsumption, 
+		&participantIndex, 
+		&unitLevel, 
+		&troopsTrainedThisTurn, 
+		&overallIndex
+	};
 
-	std::array<bool*, 3> listBool = {&canSelectThisUnit, &isACapital, &deleteProvince};
+	std::array<bool*, 3> listBool = {
+		&canSelectThisUnit, 
+		&isACapital,
+		&deleteProvince
+	};
 
-	bool isACapital;//stat
+	bool 
+		isACapital,
+		deleteProvince;
 
-	bool deleteProvince;//conditional
 	int overallIndex;
 
 	std::unordered_map<std::string, CommanderProfile*> commanders;
@@ -121,39 +131,48 @@ private:
 
 	double newAccuracy;
 	std::string kingdomName;
-	friend class Report;
-	std::vector<Report> scoutReports;
 
-	
-
+	std::vector<ProvinceReport> scoutReports;
 };
 
 class Report {
 public:
-	Report(int scouterLevelArg, int targetLevelArg, Provinces &province);
+	Report(int scouterLevelArg, int targetLevelArg);
 
 	/*Scout Stuff*/
-	int getEstimate(int newAccuracy, int quantity);
-	int getScoutValue(Provinces::REPORT report);
+	int
+		getEstimate(int newAccuracy, int quantity),
+		getScoutValue(Provinces::REPORT report);
 
-	void computeAccuracy();
-	void attuneValues();
-	void getCommanders();
-	
+	void
+		computeAccuracy(),
+		attuneValues(),
+		getCommanders();
+
 
 private:
 	std::array<std::array<int, 5>, 7> Lists;
 	std::array<int, 7> listInt;
 	std::array<bool, 3> listBool;
-	std::array< std::pair<int, int>, 2> listCoords;
+	std::array< std::pair<int, int>, 2> listSystemCoords;
 
 	std::vector<CommanderProfile*> commandersPtr;
 	std::vector<CommanderProfile> commanders;
 
 	std::string kingdomName;
-	int reportTurn;
-	int accuracy;
-	int targetLevel;
-	int scouterLevel;
+
+	int
+		reportTurn,
+		accuracy,
+		targetLevel,
+		scouterLevel;
 };
+
+
+
+
+
+
+
+
 #endif

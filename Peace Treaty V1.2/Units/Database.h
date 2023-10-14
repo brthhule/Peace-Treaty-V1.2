@@ -27,39 +27,34 @@ public:
 	//Constructor
 	Database();
 
-	void createMap();
-	void initializeParticipants(int totalPlayers, int humanPlayers);
-	std::vector<Participants> *getParticipantsList ();
-	void updateTurnResources();
+	void 
+		createMap(),
+		initializeParticipants(int totalPlayers, int humanPlayers),
+		updateTurnResources(),
+		setContinentSize(int num),
+		setMaxCommanders(int num),
+		setCurrentParticipant(Participants* p);
 
-	void setContinentSize(int num);
-	int getContinentSize();
-	void setMaxCommanders(int num);
-	int getMaxCommanders();
+	
+	std::vector<Participants>* getParticipantsList();
+	
+	int
+		getContinentSize(),
+		getMaxCommanders();
 
-	int *getContinentSizePointer() { return &continentSize; }
-	void setCurrentParticipant(Participants *p) {
-		currentParticipant = p;
-	}
-	Participants *getCurrentParticipant() {
-		return currentParticipant;
-	}
+	Participants* getCurrentParticipant();
 
 private:
 	
 	std::vector<Participants> participantsList;
 	std::unordered_map <int, Provinces*> provincesUM;
-	std::vector <std::vector <Provinces>> provincesMap;
-	std::vector<Provinces> provincesList;
 	Participants* currentParticipant;
-	int currentParticipantIndex;
-	
-	int continentSize;
-	//Linked list of provinces
-	LinkedList provincesLL;
-	int maxCommanders;
 
-	int pNum; //have to fix this; current points to nothing
+	int 
+		currentParticipantIndex,
+		continentSize,
+		maxCommanders,
+		pNum; //have to fix this; current points to nothing
 };
 
 #endif

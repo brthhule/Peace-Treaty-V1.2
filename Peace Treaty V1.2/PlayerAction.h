@@ -20,13 +20,12 @@ public:
 	PlayerAction();
 	PlayerAction(Participants *newP);
 	char randomAction();
-	void initialDecision();
-	void pauseGame();
+
+	void 
+		initialDecision(),
+		pauseGame();
 private:
 	Participants *participant;
-	
-	
-
 };
 
 #endif
