@@ -27,7 +27,7 @@ T Buildings::getCapacity(Build::BuildingType type, int name, CV::Quantity amount
 	case ALL:
 		std::array<int, 5> tempArray;
 		for (int x = 0; x < 5; x++) {
-			tempArray[x] = levels[type] * capacityAmounts[x];
+			tempArray[x] = (int)levels[type] * (int)capacityAmounts[x];
 		}
 		return tempArray;
 	}
@@ -44,12 +44,11 @@ T Buildings::getResourceProduction(Build::ResourceBuildings name, CV::Quantity a
 			amounts[0] = resourceBuildingsLevels[x] * resourceProduction[x];
 		}
 		return amounts;
-		return 
 	}
 }
 
 template<typename T>
-T Buildings::mutateLevel(Build::BuildingType type, int name, T amount, CV::Quantity quant, CV::MutateDirection directiom) {
+T Buildings::mutateLevel(Build::BuildingType type, int name, T amount, CV::Quantity quant, CV::MutateDirection direction) {
 	switch (quant) {
 	case SINGLE:
 		switch (direction) {
@@ -150,6 +149,10 @@ void Buildings::displayListOfBuildings() {
 	for (int x = 6; x < 10; x++) {
 		std::cout << x << ") " << CV::OTHER_BUILDING_NAMES[x] << "\n";
 	}
+}
+
+void Buildings::addTroopsTrainedThisTurn(int amount) {
+	troopsTrainedThisTurn += amount;
 }
 
 

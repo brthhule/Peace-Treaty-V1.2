@@ -29,52 +29,57 @@ public:
 	template<typename T> 
 	T mutateLevel(Build::BuildingType type, int name, T amount, CV::Quantity quant, CV::MutateDirection direction);
 
-	int getTroopsTrainedThisTurn();
-	void printBuildingStats();
-
-	int getProvinceLevel();
-	void resetTroopsTrainedThisTurn();
-
-	void addTroopsTrainedThisTurn(int amount);
-
-	void initiailizeCapitalBuildings();
-	void initializeEmptyBuildings();
-
-	void displayListOfBuildings();
-
+	int 
+		getTroopsTrainedThisTurn(),
+		getProvinceLevel();
 	
+	//Void Accessors
+	void 
+		printBuildingStats(),
+		displayListOfBuildings();
+	//Other modifiers
+	void
+		addTroopsTrainedThisTurn(int amount),
+		resetTroopsTrainedThisTurn(),
+		addTroopsTrainedThisTurn(int amount),
+		initiailizeCapitalBuildings(),
+		initializeEmptyBuildings();
 
 protected:
 	static std::array<int, 5> returnArray;
 	static int returnInt;
-	//Linked to enum resourceBuildings
-	std::array<int, 5> resourceBuildingsLevels;
-	//Linked to enum OtherBuildings
-	std::array<int, 5> otherBuildingsLevels;
+
 	int troopsTrainedThisTurn;//variable
 	// foodConsumption;//variable, in AllUnits
-	
 
 	
+	std::array<int, 5>
+		//Keep track of building levels
+		resourceBuildingsLevels,
+		otherBuildingsLevels,
+
+		//For upgrades
+		farmUR = { 1, 0.5, 0.25, 0.125, 0.0625 },
+		millUR = { 2, 1, 0.5, 0.25, 0.125 },
+		quarryUR = { 3, 2, 1, 0.5, 0.25 },
+		mineUR = { 4, 3, 2, 1, 0.5 },
+		churchUR = { 5, 4, 3, 2, 1 },
+		barracksUR = { 1, 1, 1, 1, 0.2 },
+		infirmaryUR = { 1, 1, 1, 1, 0.2 },
+		libraryUR = { 1, 1, 1, 1, 0.2 },
+		wallUR = { 1, 1, 1, 1, 0.2 },
+		residencesUR = {};
+
+	const std::array<std::array<int, 5>, 10> upgradeRates =
+	{
+		farmUR, millUR, quarryUR, mineUR, churchUR, barracksUR, infirmaryUR, libraryUR, wallUR, residencesUR
+	};
 
 private:
-	const double requiredResourcesBuildings[6][5] = {
-	{1, 0.5, 0.25, 0.125, 0.0625},
-	{2, 1, 0.5, 0.25, 0.125},
-	{3, 2, 1, 0.5, 0.25},
-	{4, 3, 2, 1, 0.5},
-	{5, 4, 3, 2, 1},
-	{1, 1, 1, 1, 0.2} };
-
-	
-	//enum OtherBuildings { BARRACKS, INFIRMARY, LIBRARY, WALL, RESIDENCES };
 	std::array<std::array<int, 5>*, 2> levels = { &resourceBuildingsLevels, &otherBuildingsLevels };
 
-	
-
-	std::array<int, 5> capacityAmounts = { 10,10,10,10,10 };
-	std::array<int, 5> resourceProduction = { 5,4,3,2,1 };
-
-
+	std::array<int, 5> 
+		capacityAmounts = { 10,10,10,10,10 },
+		resourceProduction = { 5,4,3,2,1 };
 };
 #endif

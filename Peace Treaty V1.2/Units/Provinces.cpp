@@ -17,9 +17,6 @@ Provinces::Provinces(int overallIndexArg)
 
 	OF::modifyArray(resourcesPresent, CV::INITIAL_VALUES, true);
 
-	scoutReportTurn = -1;
-	scoutReportLogLevel = -1;
-
 	unitLevel = 1;
 	deleteProvince = false;
 }
@@ -125,59 +122,6 @@ bool Provinces::subtractCheckResources(std::array<int, 5> resourcesArray)
 	return true;
 }
 
-
-void Provinces::completeProvinceScoutReport(int accuracy, Provinces* targetProvince, int scoutTurn)
-{
-	OF::debugFunction("Provinces, completeProvinceScoutReport");
-	Provinces* t = targetProvince;
-	/*Higher accuracy = more accurate scout log-- default is 50% accuracy (if
-  there are 10 food resources in a province,
-  the margin is 50%-- 5-15 units. 100 accuracy is the most accurate, 0 accuracy
-  is the least accurate*/
-	newAccuracy = (double)accuracy / 100;
-	newAccuracy = (1 - newAccuracy)/2;//The most it will ever be off by is 50%
-	std::array<int, 5> tempArray;
-	//AllUnits info
-	unitName = t->getUnitName();
-	resourcesPresent = t->getAllResources();
-
-	troopsPresent = t->getTroop(REGULAR, -1, tempArray);
-	troopsInjured = t->getTroop(INJURED, -1, tempArray);
-	troopsLost = t->getTroop(LOST, -1, tempArray);
-
-	//totalTroops = t->getTotalTroops();
-	//foodConsumption = t->getFoodConsumption();
-	std::pair<int, int> systemCoords = getSystemCoords();
-	participantIndex = t->getParticipantIndex();
-	unitLevel = t->getLevel();
-	unitName = t->getUnitName();
-	CP = getEstimate((int) newAccuracy, t->getCP());
-
-	/*maxGarrison = t->getMaxGarrison();
-	maxInfirmaryCapacity = t->getMaxInfirmaryCapacity();
-	resourceBuildingsLevels = t->getResourceBuildingLevels();
-	resourceBuildingsProduction = t->getResourceBuildignsProduction();
-	otherBuildingsLevels = t->getOtherBuildingsLevels();
-	barracksCapacity = t->getBarracksCapacity();
-	maxResources = t->getMaxResources();*/
-	
-	turn = scoutTurn;
-	accuracy = accuracy;
-
-
-}
-
-int Provinces::getEstimate(int newAccuracy, int quantity)
-{
-	OF::debugFunction("Provinces, getEstimate");
-	int margin = (int) (newAccuracy * quantity);
-	int lowerBound = quantity - margin;
-	int upperBound = quantity + margin;
-	int scoutEstimate = rand() % lowerBound + upperBound;
-	return scoutEstimate;
-}
-
-
 void Provinces::printCommanders()
 {
 	OF::debugFunction("Provinces, printCommanders");
@@ -255,18 +199,33 @@ void Provinces::upgradeBuildings() {
 void Provinces::upgradeBuildings2(char optionChar) {
 	int option = optionChar - '0';
 	Build::BuildingType type = Build::BuildingType(option >= 6);
+	//type is other
 	if (type) {
-		upgradeBuildings3(&otherBuildingsLevels, Build::OtherBuildings(option));
+		upgradeBuildings3(type, &otherBuildingsLevels, Build::OtherBuildings(option));
 		return;
 	}
 
-	upgradeBuildings3(&resourceBuildingsLevels, Build::ResourceBuildings(option));
+	//Type is resource
+	upgradeBuildings3(type, &resourceBuildingsLevels, Build::ResourceBuildings(option));
 
 }
 
+void Provinces::setDeleteProvince() {
+	deleteProvince = true;
+}
 
 template<typename T>
-T Provinces::upgradeBuildings3(std::array<int, 5>* arrayArg, T name) {
+T Provinces::upgradeBuildings3(Build::BuildingType type, std::array<int, 5>* listArg, T name) {
+	int index = name;
+	//If other type
+	if (type)
+	{
+		index = name + 5;
+	}
+
+	//Multiplies level by base line rate
+	std::array<int, 5> requiredResources = listArg[name] * upgradeRates[x];
+
 	printInformation(buildingNumber, requiredResources, buildingLetterList);
 	char upgradeProceed = Input::getInputText("Proceed with upgrade? (Y/N) ", { "Y", "N" }).at(0);
 

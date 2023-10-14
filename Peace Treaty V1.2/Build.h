@@ -9,20 +9,19 @@ namespace Build {
 	enum ResourceBuildings { FARM, LUMBER_MILL, QUARRY, MINE, CHURCH };
 	enum BuildingType { RESOURCE, OTHER };
 
-	std::array<std::string, 5> OtherBuildingsString = { "BARRACKS", "INFIRMARY", "LIBRARY", "WALL", "RESIDENCES" };
-	std::array<std::string, 5> ResourceBuildingsString = { "FARM", "LUMBER_MILL", "QUARRY", "MINE", "CHURCH" };
+	std::array<std::string, 5> 
+		OtherBuildingsString = { "BARRACKS", "INFIRMARY", "LIBRARY", "WALL", "RESIDENCES" },
+		ResourceBuildingsString = { "FARM", "LUMBER_MILL", "QUARRY", "MINE", "CHURCH" };
 
 	//Converts from enum to string
-	std::string OtherBuildingsToString(Build::OtherBuildings arg);
+	std::string 
+		OtherBuildingsToString(Build::OtherBuildings arg),
+		ResourceBuildingsToString(Build::ResourceBuildings arg);
 	//Gets index of arg in list
-	int getOtherBuildingsStringIndex(std::string arg);
+	int getOtherBuildingsStringIndex(std::string arg),
+		getResourceBuildingsStringIndex(std::string arg);
 	//Cast the string into enum?
 	OtherBuildings stringToOtherBuildings(std::string arg);
-
-	std::string ResourceBuildingsToString(Build::ResourceBuildings arg);
-	//Gets index of arg in list
-	int getResourceBuildingsStringIndex(std::string arg);
-	//Cast the string into enum?
 	ResourceBuildings stringToResourceBuildings(std::string arg);
 	
 }

@@ -30,29 +30,31 @@ public:
 	Provinces(int overallIndexArg);
 
 	/*Initialization*/
-	bool isCapital() { return isACapital; }
-	void makeCapital(int participantIndexArg); // provinceIsACapital
+	bool 
+		isCapital() { return isACapital; }
+	void
+		makeCapital(int participantIndexArg),
+		setDeleteProvince(),
+		initializeCapitalStats();
 
 	/*Province Identity*/
 	bool deleteStatus();
-	void setDeleteProvince() { deleteProvince = true; }
 
-	/*Garrisons*/
-	void initializeCapitalStats();
 
 	// Commanders
 	CommanderProfile* getCommander(std::string name);
-	void addCommander(CommanderProfile* newCommander);
-	void removeCommander(CommanderProfile* newCommander);
+	void 
+		addCommander(CommanderProfile* newCommander),
+		removeCommander(CommanderProfile* newCommander),
+		printCommanders();
 	std::vector <CommanderProfile*> getAllCommanders();
 	int commandersNum() { return (int) commanders.size(); }
-	void printCommanders();
 	bool hasCommander(std::string name);
 
 	/*Training*/
 	
-	void addTroopsTrainedThisTurn(int amount);
-	void resetTroopsTrainedThisTurn();
+	void 
+		
 
 	/*Resources*/
 	bool subtractCheckResources(std::array<int, 5> resourcesArray);
@@ -70,8 +72,9 @@ public:
 	void upgradeBuildings();
 	void upgradeBuildings2(char optionChar);
 	template<typename T>
-	T upgradeBuildings3(std::array<int, 5>* arrayArg, T name);
-	void printInformation(int buildingNumber, std::array<int, 5> requiredResources, std::vector<std::string> buildingLetterList);
+	//type (resource, other), other/resourceLevels, name of object in Levels list
+	T upgradeBuildings3(Build::BuildingType type, std::array<int, 5>* listArg, T name);
+	void printInformation(Build::BuildingType type, std::array<int, 5> requiredResources, std::vector<std::string> buildingLetterList);
 
 	void setKingdomName(std::string name) { kingdomName = name; }
 	std::string getKingdomName() { return kingdomName; }
@@ -118,9 +121,10 @@ private:
 
 	double newAccuracy;
 	std::string kingdomName;
+	friend class Report;
 	std::vector<Report> scoutReports;
 
-	friend class Report;
+	
 
 };
 
