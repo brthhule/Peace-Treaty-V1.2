@@ -14,6 +14,7 @@ AttackMA::AttackMA(Provinces *defendingProvinceArg, Participants* attackingParti
       int candidateX = DPX + x;
       int candidateY = DPY + y;
       // check that coordinates are inbound
+	  //Attuned for system coords
       if (DPX >= 0 && DPY >= 0 && DPY < CV::continentSize && DPX < CV::continentSize) {
         Provinces *newProvince = &provincesMap[DPX][DPY];
         std::vector<CommanderProfile*> commanderList = newProvince->getAllCommanders();

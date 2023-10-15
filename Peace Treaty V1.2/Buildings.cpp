@@ -20,30 +20,32 @@ T Buildings::getBuildingLevel(Build::BuildingType type, int index, CV::Quantity 
 
 template <typename T>
 T Buildings::getCapacity(Build::BuildingType type, int name, CV::Quantity amount, T returnType) {
+	T returnStatement;
 	switch (amount) {
 	case SINGLE:
-		return levels[type][name];
+		returnStatement =  levels[type][name];
 		break;
 	case ALL:
-		std::array<int, 5> tempArray;
 		for (int x = 0; x < 5; x++) {
-			tempArray[x] = (int)levels[type] * (int)capacityAmounts[x];
+			returnStatement[x] = (int)levels[type] * (int)capacityAmounts[x];
 		}
-		return tempArray;
 	}
+
+	return returnStatement;
 }
 
 template<typename T>
 T Buildings::getResourceProduction(Build::ResourceBuildings name, CV::Quantity amount, T returnType) {
+	T returnStatement;
 	switch (amount){
 	case SINGLE:
-		return resourceBuildingsLevels[name] * resourceProduction[name];
+		returnStatement = (T) resourceBuildingsLevels[name] * resourceProduction[name];
+		return returnStatement;
 	case ALL:
-		std::array<int, 5> amounts;
 		for (int x = 0; x < 5; x++) {
-			amounts[0] = resourceBuildingsLevels[x] * resourceProduction[x];
+			returnStatement[0] = resourceBuildingsLevels[x] * resourceProduction[x];
 		}
-		return amounts;
+		return returnStatement;
 	}
 }
 
@@ -150,10 +152,4 @@ void Buildings::displayListOfBuildings() {
 		std::cout << x << ") " << CV::OTHER_BUILDING_NAMES[x] << "\n";
 	}
 }
-
-void Buildings::addTroopsTrainedThisTurn(int amount) {
-	troopsTrainedThisTurn += amount;
-}
-
-
 

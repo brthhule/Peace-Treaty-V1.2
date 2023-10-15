@@ -139,45 +139,4 @@ private:
 
 	std::vector<std::pair<int, ProvinceReport >> scoutReports;
 };
-
-class Report {
-public:
-	Report(int scouterLevelArg, int targetLevelArg);
-
-	/*Scout Stuff*/
-	int
-		getEstimate(int newAccuracy, int quantity),
-		getScoutValue(Provinces::REPORT report);
-
-	void
-		computeAccuracy(),
-		attuneValues(),
-		getCommanders();
-
-
-private:
-	std::array<std::array<int, 5>, 7> Lists;
-	std::array<int, 7> listInt;
-	std::array<bool, 3> listBool;
-	std::array< std::pair<int, int>, 2> listSystemCoords;
-
-	std::vector<CommanderProfile*> commandersPtr;
-	std::vector<CommanderProfile> commanders;
-
-	std::string kingdomName;
-
-	int
-		reportTurn,
-		accuracy,
-		targetLevel,
-		scouterLevel;
-};
-
-
-
-
-
-
-
-
 #endif

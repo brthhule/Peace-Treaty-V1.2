@@ -14,6 +14,9 @@
 
 #include "../Misc/ConstValues.h"
 
+//Warning: may cause circular dependency
+#include "../Units/Map.h"
+
 using namespace CV;
 
 class AttackMA

@@ -3,9 +3,9 @@
 
 class BuildMA
 {
-public:
-	BuildMA() {};
-	virtual ~BuildMA() {};
+protected:
+	//BuildMA() {};
+	//~BuildMA() {};
 	virtual void playerBuildFunction() = 0,
 		upgradeBuildings() = 0,
 		upgradeBuildings2(char buildingLetter, int buildingNumber, std::array<int, 5> requiredResources, std::vector<std::string> buildingLetterList) = 0,
