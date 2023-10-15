@@ -45,6 +45,12 @@ void CV::addColor(COLORS c) {
 		std::cout << "\033[0m";
 		break;
 	}
+
+	
+}
+
+void CV::printPerson() {
+	std::cout << "Hello!";
 }
 
 std::string CV::promptsToString(PROMPTS p) {

@@ -44,6 +44,8 @@ namespace CV
 	int enemyDifficulty = 0;
 
 	void setContinentSize(int size);
+
+	void printPerson();
 }
 
 #endif		
