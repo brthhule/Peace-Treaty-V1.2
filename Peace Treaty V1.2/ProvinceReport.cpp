@@ -83,3 +83,18 @@ void ProvinceReport::attuneValues() {
 void ProvinceReport::printReport() {
 	//Complete implementation here
 }
+int ProvinceReport::getReportTurn() {
+	return reportTurn;
+}
+
+int ProvinceReport::getAccuracy() {
+	return accuracy;
+}
+
+int ProvinceReport::getTargetLevel() {
+	return targetLevel;
+}
+
+int ProvinceReport::getScouterLevel() {
+	return scouterLevel;
+}

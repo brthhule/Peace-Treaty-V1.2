@@ -11,6 +11,7 @@ public:
 
 	void printReport();
 private:
+	std::array<std::array<int, 5>, 5 > listInt;
 	std::array<int, 5>
 		resourcesPresent = { 0, 0, 0, 0, 0 },
 		troopsPresent = { 0, 0, 0, 0, 0 },
@@ -23,7 +24,10 @@ private:
 		totalTroops,
 		foodConsumption,
 		participantIndex,
-		unitLevel;
+		unitLevel,
+		maxTroops,
+		totalMaxResources,
+		commanderIndex;
 
 
 	//Coordinates;

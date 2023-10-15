@@ -93,14 +93,19 @@ protected:
 	enum REPORT {REPORT_TURN, REPORT_LOG};
 	
 private:
-	std::array<std::array<int, 5>*, 7> Lists = {
+	std::array<std::array<int, 5>*, 12> Lists = {
 		&resourceBuildingsLevels, 
 		&otherBuildingsLevels,
 		&resourcesPresent,
 		&troopsPresent, 
 		&troopsInjured, 
 		&troopsLost,
-		&initialStats
+		&initialStats,
+		&allGuards,
+		&allInfantry,
+		&allArchers,
+		&allCavalry,
+		&allArtillary
 	};
 
 	//Have to derive unitLevel
@@ -132,7 +137,7 @@ private:
 	double newAccuracy;
 	std::string kingdomName;
 
-	std::vector<ProvinceReport> scoutReports;
+	std::vector<std::pair<int, ProvinceReport >> scoutReports;
 };
 
 class Report {

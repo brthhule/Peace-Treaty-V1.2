@@ -335,5 +335,7 @@ void Provinces::createReport(int scouterLevelArg, int targetLevelArg) {
 		listIntArg, 
 		listBoolArg, 
 		getSystemCoords());
-	scoutReports.push_back(newReport);
+	int turn = newReport.getReportTurn();
+	std::pair<int, ProvinceReport> reportPair (turn, newReport);
+	scoutReports.push_back(reportPair);
 }

@@ -13,19 +13,6 @@ CommanderProfile::CommanderProfile() {
 CommanderProfile::CommanderProfile(int level, std::string name) {
   unitLevel = level;
 
-  for (int x = 0; x < 5; x++) {
-    commanderArrays[0][x] = &resourcesPresent[x];
-    commanderArrays[1][x] = &troopsPresent[x];
-    commanderArrays[2][x] = &troopsInjured[x];
-		commanderArrays[3][x] = &troopsLost[x];
-  }
-  otherCommanderStats[0] = &totalTroops;
-  otherCommanderStats[1] = &CP;
-  otherCommanderStats[2] = &unitLevel;
-  otherCommanderStats[3] = &maxTroops;
-  otherCommanderStats[4] = &foodConsumption;
-	otherCommanderStats[6] = &totalMaxResources;
-
   
  
 	
@@ -104,11 +91,6 @@ void CommanderProfile::printCosts(std::array <int, 5> costs)
 	for (int x = 0; x < 5; x++)
 		std::cout << CV::RESOURCE_NAMES[x] << " cost: " << costs[x] << std::endl;
 	std::cout << std::endl;
-}
-
-void CommanderProfile::setLocation(std::array<int, 2> pCoords){
-	xCoord = pCoords[0];
-	yCoord = pCoords[1];
 }
 
 void CommanderProfile::calculateCommanderScoutLog()

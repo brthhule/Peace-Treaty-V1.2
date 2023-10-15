@@ -147,6 +147,7 @@
     <ClCompile Include="Peace Treaty V1.2.cpp" />
     <ClCompile Include="PlayerAction.cpp" />
     <ClCompile Include="ProvinceReport.cpp" />
+    <ClCompile Include="Troops.cpp" />
     <ClCompile Include="Units\AllUnits.cpp" />
     <ClCompile Include="Units\CommanderProfile.cpp" />
     <ClCompile Include="Units\Database.cpp" />
@@ -208,6 +209,7 @@
     <ClInclude Include="Misc\OF.h" />
     <ClInclude Include="PlayerAction.h" />
     <ClInclude Include="ProvinceReport.h" />
+    <ClInclude Include="Troops.h" />
     <ClInclude Include="Units\AllUnits.h" />
     <ClInclude Include="Units\CommanderProfile.h" />
     <ClInclude Include="Units\Database.h" />

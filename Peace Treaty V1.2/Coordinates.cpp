@@ -20,3 +20,9 @@ std::pair<int, int> Coords::getUserCoords() {
 void Coords::printUserCoords() {
 	std::cout << "(" << userCoords.first << ", " << userCoords.second << ")";
 }
+
+void Coords::setCoords(std::pair<int, int> systemCoordsArg,
+	std::pair<int, int> userCoordsArg) {
+	systemCoords = systemCoordsArg;
+	userCoords = userCoordsArg;
+}

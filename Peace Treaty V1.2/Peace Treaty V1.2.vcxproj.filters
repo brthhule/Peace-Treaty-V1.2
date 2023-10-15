@@ -120,6 +120,9 @@
     <ClCompile Include="CommanderReport.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Troops.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\AdministrativeDocs\debugQuickAccess.txt">
@@ -293,6 +296,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CommanderReport.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Troops.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

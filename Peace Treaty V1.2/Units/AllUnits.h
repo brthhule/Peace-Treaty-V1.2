@@ -8,6 +8,7 @@
 #include "../Misc/ConstValues.h"
 #include "../Misc/OF.h"
 #include "../Coordinates.h"
+#include "../Troops.h"
 
 /*int resourcesPresent[5];
 	int troopsPresent[5];
@@ -16,7 +17,7 @@
 using namespace CV;
 
 
-class AllUnits : public Coords
+class AllUnits : public Coords, public Troops
 {
 public:
 	//----Constructors----
@@ -29,18 +30,6 @@ public:
 	int
 		getCP(),
 		getParticipantIndex();
-
-
-	//----Troop Stuff----
-	//Return a troop by index or all troops-- done by type. Pass -1 for troopIndex to return all troops of a type
-	template<typename T>
-	T getTroop(CV::MutateTroopType type, int troopIndex, T data);
-	//Change a troop by index or all trypes.
-	template<typename T>
-	T mutateTroop(CV::MutateTroopType type, int troopIndex, T amount, CV::MutateDirection direction);
-
-
-
 
 	//Provinces & Commanders
 	int
@@ -67,9 +56,6 @@ public:
 protected:
 	std::array<int, 5>
 		resourcesPresent = { 0, 0, 0, 0, 0 },
-		troopsPresent = { 0, 0, 0, 0, 0 },
-		troopsInjured = { 0, 0, 0, 0, 0 },
-		troopsLost = { 0, 0, 0, 0, 0 },
 		initialStats = { 5, 4, 3, 2, 1 };
 
 	int
@@ -89,6 +75,8 @@ protected:
 
 	std::string
 		unitName;
+
+	Troops troops;
 };
 
 #endif

@@ -5,7 +5,7 @@
 #include <array>
 #include <vector>
 
-#include "CommandeReport.h"
+#include "CommanderReport.h"
 
 class ProvinceReport {
 public:
@@ -20,6 +20,12 @@ public:
 		computeAccuracy(),
 		attuneValues(),
 		printReport();
+
+	int
+		getReportTurn(),
+		getAccuracy(),
+		getTargetLevel(),
+		getScouterLevel();
 
 
 private:
