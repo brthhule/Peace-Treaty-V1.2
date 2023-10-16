@@ -15,11 +15,13 @@ public:
 		setMap(),
 		showMap(),
 		meat(int x, int y),
-		printXAxis();
+		printXAxis(),
+		updateTurnResources();
 
 	
 	static Provinces* getProvince(std::pair<int, int> coords);
 protected:
 	static std::vector <std::vector<Provinces>> map;
+	static std::unordered_map <std::string, Provinces*> mapMap;
 };
 #endif

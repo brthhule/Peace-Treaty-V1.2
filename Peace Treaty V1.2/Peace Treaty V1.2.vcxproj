@@ -139,7 +139,6 @@
     <ClCompile Include="MA\ArmyOverviewMA.cpp" />
     <ClCompile Include="MA\AttackMA.cpp" />
     <ClCompile Include="MA\MapMA.cpp" />
-    <ClCompile Include="MA\Mobility.cpp" />
     <ClCompile Include="MA\ScoutMA.cpp" />
     <ClCompile Include="MA\TrainMA.cpp" />
     <ClCompile Include="Misc\LinkedList.cpp" />

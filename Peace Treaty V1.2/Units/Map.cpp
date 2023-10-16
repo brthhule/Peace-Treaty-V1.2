@@ -9,6 +9,7 @@ void Map::setMap() {
 			newProvince.setOverallIndex(overallIndex);
 			overallIndex++;
 			tempVector.push_back(newProvince);
+			mapMap[newProvince.getUnitName()] = &newProvince;
 		}
 		map.push_back(tempVector);
 	}
@@ -86,4 +87,14 @@ void Map::printXAxis() {
 //First int should be row, second int should be column
 Provinces* Map::getProvince(std::pair<int, int> coords) {
 	return &map[coords.first][coords.second];
+}
+
+void Map::updateTurnResources() {
+	OF::debugFunction("main, updateTurnResources");
+	for (int x = 0; x < CV::continentSize; x++) {
+		for (int y = 0; y < CV::continentSize; y++) {
+			map[x][y].updateBuildingsProduction();
+			map[x][y].updateProvinceResources();
+		}
+	}
 }

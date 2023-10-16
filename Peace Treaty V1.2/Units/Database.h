@@ -58,7 +58,6 @@ public:
 private:
 	
 	std::vector<Participants> participantsList;
-	std::unordered_map <int, Provinces*> provincesUM;
 	Participants* currentParticipant;
 
 	int 

@@ -69,9 +69,6 @@
     <ClCompile Include="MA\MapMA.cpp">
       <Filter>Source Files\MA</Filter>
     </ClCompile>
-    <ClCompile Include="MA\Mobility.cpp">
-      <Filter>Source Files\MA</Filter>
-    </ClCompile>
     <ClCompile Include="MA\ScoutMA.cpp">
       <Filter>Source Files\MA</Filter>
     </ClCompile>
