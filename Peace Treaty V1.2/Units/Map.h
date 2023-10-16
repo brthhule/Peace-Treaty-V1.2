@@ -17,8 +17,9 @@ public:
 		meat(int x, int y),
 		printXAxis();
 
-	Provinces* getProvince(int row, int column);
-private:
+	
+	static Provinces* getProvince(std::pair<int, int> coords);
+protected:
 	static std::vector <std::vector<Provinces>> map;
 };
 #endif

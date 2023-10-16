@@ -244,9 +244,6 @@
     <ClInclude Include="MA\MapMA.h">
       <Filter>Header Files\MA</Filter>
     </ClInclude>
-    <ClInclude Include="MA\Mobility.h">
-      <Filter>Header Files\MA</Filter>
-    </ClInclude>
     <ClInclude Include="MA\ScoutMA.h">
       <Filter>Header Files\MA</Filter>
     </ClInclude>

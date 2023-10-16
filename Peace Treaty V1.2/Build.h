@@ -5,13 +5,63 @@
 #include <array>
 
 namespace Build {
-	enum OtherBuildings { BARRACKS, INFIRMARY, LIBRARY, WALL, RESIDENCES };
-	enum ResourceBuildings { FARM, LUMBER_MILL, QUARRY, MINE, CHURCH };
-	enum BuildingType { RESOURCE, OTHER };
+	/*BARRACKS,
+	INFIRMARY,
+	LIBRARY,
+	WALL,
+	RESIDENCES*/
+	enum OtherBuildings { 
+		BARRACKS, 
+		INFIRMARY,
+		LIBRARY,
+		WALL,
+		RESIDENCES 
+	};
+	/*FARM, 
+	LUMBER_MILL,
+	QUARRY, 
+	MINE,
+	CHURCH */
+	enum ResourceBuildings {
+		FARM, 
+		LUMBER_MILL,
+		QUARRY, 
+		MINE,
+		CHURCH 
+	};
+
+	/*RESOURCE, 
+	OTHER */
+	enum BuildingType { 
+		RESOURCE, 
+		OTHER 
+	};
 
 	std::array<std::string, 5> 
-		OtherBuildingsString = { "BARRACKS", "INFIRMARY", "LIBRARY", "WALL", "RESIDENCES" },
-		ResourceBuildingsString = { "FARM", "LUMBER_MILL", "QUARRY", "MINE", "CHURCH" };
+		/*"BARRACKS", 
+		"INFIRMARY", 
+		"LIBRARY", 
+		"WALL", 
+		"RESIDENCES" */
+		OtherBuildingsString = { 
+			"BARRACKS", 
+			"INFIRMARY", 
+			"LIBRARY", 
+			"WALL", 
+			"RESIDENCES" 
+		},
+		/*"FARM", 
+		"LUMBER_MILL", 
+		"QUARRY", 
+		"MINE", 
+		"CHURCH" */
+		ResourceBuildingsString = { 
+			"FARM", 
+			"LUMBER_MILL", 
+			"QUARRY", 
+			"MINE", 
+			"CHURCH" 
+		};
 
 	//Converts from enum to string
 	std::string 

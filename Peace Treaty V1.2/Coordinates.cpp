@@ -26,3 +26,11 @@ void Coords::setCoords(std::pair<int, int> systemCoordsArg,
 	systemCoords = systemCoordsArg;
 	userCoords = userCoordsArg;
 }
+
+//Gets passed user coords, translates them to system coords
+std::pair<int, int> Coords::translateSystemUser(std::pair<int, int> userCoordsArg) {
+	std::pair<int, int> returnSystemCoords;
+	//Add implementation here
+
+	return returnSystemCoords;
+}

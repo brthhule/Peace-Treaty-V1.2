@@ -82,6 +82,8 @@ void Map::printXAxis() {
 	std::cout << "\n\n";
 }
 
-Provinces* Map::getProvince(int row, int column) {
-	return &map[row][column];
+//Only for system coords
+//First int should be row, second int should be column
+Provinces* Map::getProvince(std::pair<int, int> coords) {
+	return &map[coords.first][coords.second];
 }

@@ -20,6 +20,8 @@ public:
 		getSystemCoords(),
 		getUserCoords();
 
+	std::pair<int, int> translateSystemUser(std::pair<int, int> userCoordsArg);
+
 protected:
 	std::pair<int, int>
 		systemCoords,//row, column

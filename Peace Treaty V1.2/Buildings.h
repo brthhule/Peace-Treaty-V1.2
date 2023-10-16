@@ -17,14 +17,15 @@ class Buildings{
 public:
 	Buildings();
 
-	template<typename T>
-	T getBuildingLevel(Build::BuildingType type, int index, CV::Quantity quant, T returnType);
 	
 	template<typename T>
-	T getResourceProduction(Build::ResourceBuildings name, CV::Quantity amount, T returnType);
+	std::array<int, 5> getBuildingLevel(Build::BuildingType type, int index, CV::Quantity quant, std::array<T, 5> arrayArg);
+	
+	template<typename T>
+	std::array<int, 5> getResourceProduction(Build::ResourceBuildings name, CV::Quantity amount, std::array<T, 5> arrayArg);
 
 	template<typename T>
-	T getCapacity(Build::BuildingType type, int name, CV::Quantity amount, T returnType);
+	std::array<int, 5> getCapacity(Build::BuildingType type, int name, CV::Quantity amount, std::array<T, 5> arrayArg);
 
 	template<typename T> 
 	T mutateLevel(Build::BuildingType type, int name, T amount, CV::Quantity quant, CV::MutateDirection direction);
@@ -46,7 +47,7 @@ public:
 
 protected:
 	static std::array<int, 5> returnArray;
-	static int returnInt;
+	static std::array<std::string, 5> returnInt;
 
 	int troopsTrainedThisTurn;//variable
 	// foodConsumption;//variable, in AllUnits

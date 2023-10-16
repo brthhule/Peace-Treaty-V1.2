@@ -15,9 +15,11 @@
 #include "../Misc/ConstValues.h"
 
 //Warning: may cause circular dependency
-#include "../Units/Map.h"
+#include "../Units/Database.h"
 
 using namespace CV;
+
+extern Database db;
 
 class AttackMA
 {

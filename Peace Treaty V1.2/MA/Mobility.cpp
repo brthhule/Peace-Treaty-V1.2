@@ -5,7 +5,7 @@
 Mobility::Mobility(std::string commanderName, Participants *newP)
 {
 	selectedCommander = participant->getCommander(commanderName);
-	selectedCommanderProvince = &provincesMap[selectedCommander->getCoordinate('X')][selectedCommander->getCoordinate('Y')];
+    selectedCommanderProvince = db.getProvince(selectedCommander->getSystemCoords());
 	participant = newP;
 }
 
@@ -17,13 +17,13 @@ std::vector<Provinces *> Mobility::moveUnitTwo() {
     for (int y = -1; y <= 1; y++) {
       // Check to see if the coordinates are in bounds (not outside of the map
       // size)
-      if (/*X coordinate stuff*/ x >= 0 && x < continentSize &&
-          /*Y coordinate stuff*/ y >= 0 && y < continentSize) {
+      if (/*X coordinate stuff*/ x >= 0 && x < CV::continentSize &&
+          /*Y coordinate stuff*/ y >= 0 && y < CV::continentSize) {
         // Make sure province isn't the starting province
         if (x != 0 || y != 0) {
           // Add province to list of provinces can move to
-          vectorThingy.push_back(
-              &provincesMap[x + selectedCommanderProvince->getCoordinate('X')][y + selectedCommanderProvince->getCoordinate('Y')]);
+            vectorThingy.push_back(
+                db.getProvince(selectedCommanderProvince->getSystemCoords()));
         }
       }
     }
@@ -35,8 +35,9 @@ void Mobility::moveUnitOne() {
 	
   std::vector<Provinces *> provincesCanSelect;
   if (selectedCommander->hasMovedQuestion() == false) {
-		std::array<int, 2> newCoordinates = selectedCommander->getCoordinates();
-    std::cout<<"The coordinates of the chosen unit unit are: " << OF::printCoordinates(newCoordinates);
+		std::pair<int, int> newCoordinates = selectedCommander->getSystemCoords();
+        std::cout << "The coordinates of the chosen unit unit are: ";
+        selectedCommander->printUserCoords();
 		println("\n\nYou can only move this unit to one of the provinces adjacent to the province it is in");
 		
     provincesCanSelect = moveUnitTwo();
@@ -55,6 +56,7 @@ void Mobility::moveUnitOne() {
     }
 
     // For display
+    std::pair<int, int> systemCoords = getProvince()
     int moveToX = moveTwo->translateX(false);
     int moveToY = moveTwo->translateY(false);
 

@@ -202,7 +202,6 @@
     <ClInclude Include="MA\ArmyOverviewMA.h" />
     <ClInclude Include="MA\AttackMA.h" />
     <ClInclude Include="MA\MapMA.h" />
-    <ClInclude Include="MA\Mobility.h" />
     <ClInclude Include="MA\ScoutMA.h" />
     <ClInclude Include="MA\TrainMA.h" />
     <ClInclude Include="Misc\ConstValues.h" />

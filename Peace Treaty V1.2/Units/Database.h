@@ -4,6 +4,7 @@
 #include <iostream>
 #include <unordered_map>
 #include <vector>
+#include <string>
 
 //Units
 #include "Participants.h"
@@ -42,7 +43,17 @@ public:
 		getContinentSize(),
 		getMaxCommanders();
 
-	Participants* getCurrentParticipant();
+	Participants
+		*getCurrentParticipant(),
+		*getParticipant(int index);
+
+	class Mobility {
+	public:
+		static void moveUnitOne(CommanderProfile *commander);
+		static std::vector <Provinces*> moveUnitTwo(CommanderProfile *commander);
+	};
+
+	static std::pair<int, int> pickCoords();
 
 private:
 	

@@ -62,10 +62,10 @@ public:
 		updateProvinceResources(),
 		playerBuildFunction(),
 		upgradeBuildings(),
-		upgradeBuildings2(char optionChar),
-		printInformation(Build::BuildingType type, std::array<int, 5> requiredResources, int buildingIndex),
-		setKingdomName(std::string name),
-		setOverallIndex(int index),
+		upgradeBuildings2(char optionchar),
+		printinformation(Build::BuildingType type, std::array<int, 5> requiredresources, int buildingindex),
+		setkingdomname(std::string name),
+		setoverallindex(int index),
 
 
 		createReport(int scouterLevelArg, int targetLevelArg);
