@@ -55,6 +55,8 @@ public:
 
 	static std::pair<int, int> pickCoords();
 
+	Mobility move;
+
 private:
 	
 	std::vector<Participants> participantsList;

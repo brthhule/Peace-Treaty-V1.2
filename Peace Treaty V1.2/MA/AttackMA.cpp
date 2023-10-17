@@ -4,30 +4,54 @@ AttackMA::AttackMA(Provinces* defendingProvinceArg, Participants* attackingParti
 	// Given a province to attack, see if you can attack with anything nearby
 	attackingParticipant = attackingParticipantArg;
 	defendingProvince = defendingProvinceArg;
-	std::pair<int, int> defUserCoords = defendingProvince->getUserCoords();
-	int DPX = defUserCoords.first;
-	int DPY = defUserCoords.second;
-	std::vector<CommanderProfile*> commandersCanAttack;
+	std::pair<int, int> defenderSystemCoords = defendingProvince->getSystemCoords();
 
-	for (int x = -1; x < 2; x++) {
-		for (int y = -1; y < 2; y++) {
-			int candidateX = DPX + x;
-			int candidateY = DPY + y;
-			// check that coordinates are inbound
-			//Attuned for system coords
-			if (DPX >= 0 && DPY >= 0 && DPY < CV::continentSize && DPX < CV::continentSize) {
-				Provinces* newProvince = db.getProvince(DPX, DPY);
-				std::vector<CommanderProfile*> commanderList = newProvince->getAllCommanders();
-				for (CommanderProfile* newCommander : commanderList)
-					commandersCanAttack.push_back(newCommander);
+	std::vector<CommanderProfile*> commandersCanAttack;
+	std::vector<Provinces*> provincesCanAttack;
+
+	//Get list of commanders that can be selected
+	for (int x = -1; x <= 1; x++) {
+		for (int y = -1; y <= 1; y++)
+		{
+			int
+				firstCoordinate = defenderSystemCoords.first + x,
+				secondCoordinate = defenderSystemCoords.second + y;
+			bool
+				checkFirstCoordinate = (
+					firstCoordinate >= 0 &&
+					firstCoordinate < CV::continentSize
+				),
+				checkSecondCoordinate = (
+					secondCoordinate >= 0 &&
+					secondCoordinate < CV::continentSize
+				),
+				//Returns true if the changed coordinates aren't both the same as the original coordinates
+				checkBothCoordinates = (
+					firstCoordinate != defenderSystemCoords.first ||
+					secondCoordinate != defenderSystemCoords.second
+				);
+			if (checkFirstCoordinate && checkSecondCoordinate && checkBothCoordinates) {
+				std::pair<int, int> tempCoords(firstCoordinate, secondCoordinate);
+				Provinces* provincePtr = db.getProvince(tempCoords);
+				if (provincePtr->getParticipantIndex() == attackingParticipantArg->getParticipantIndex()) {
+					for (CommanderProfile* commanderPtr : db.getProvince(tempCoords)->getAllCommanders()) {
+						commandersCanAttack.push_back(commanderPtr);
+					}
+					provincesCanAttack.push_back(provincePtr);
+					delete provincePtr;
+				}
 			}
+			
 		}
 	}
 
-	if (commandersCanAttack.size() == 0)
-		std::cout << "There are no armies available to attack the enemy. Please move an army unit to one of the provinces around the target. \n\n";
-	else
+	if (commandersCanAttack.size() != 0) {
 		findCommander(commandersCanAttack);
+		return;
+	}
+	
+	std::cout << "There are no armies available to attack the enemy. Please move an army unit to one of the provinces around the target. \n\n";
+	return;
 }
 
 AttackMA::AttackMA(Provinces* attackerProvinceArg, Provinces* defenderProvinceArg, Participants* attackingParticipantArg, CommanderProfile* commanderArg) {

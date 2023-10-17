@@ -128,12 +128,7 @@ void MapMA::selectEnemyProvince(Provinces *newP) {
     break;
   }
   case 'V': {
-    if (enemyProvince->getScoutReportTurn() != -1)
-      if (Input::getInputText("View scout log for this province? (Y/N) ", {"Y", "N"}).at(0) ==
-          'Y')
-        scoutLogFunction(enemyProvince);
-		
-		selectEnemyProvince(enemyProvince);
+    //ask whether or not to view scout log
     break;
   }
   case 'M':
@@ -181,8 +176,7 @@ void MapMA::playerUnitActionP(Provinces *newP)
 	}
 	
 	if (participant->getCommander(commanderName)->hasMovedQuestion() == false) {
-		Mobility newMobility (commanderName, participant);
-		newMobility.moveUnitOne(); /*fix this*/
+		db.move.moveUnitOne(participant->getCommander(commanderName));
 		playerUnitAction(newProvince);
 	} 
 	else
@@ -211,18 +205,7 @@ void MapMA::selectEnemyAction() /*Add implementation*/
 	}
 }
 
-void MapMA::scoutLogFunction(Provinces* enemyProvince) {
-  char repeatScoutLog = 'N';
-  char whatReportChar;
-
-  std::cout << "Turn of scout report: " << enemyProvince->getScoutReportTurn() << "; Level of report: " << enemyProvince -> getScoutLogTurnLevel() << "\n\n";
-  do 
-	{
-    whatReportChar = Input::getOptionPrompt(WHAT_REPORT).at(0);//add functionality for WHAT_REPORT
-    provinceReportLog(whatReportChar, enemyProvince);
-  } while (repeatScoutLog == 'Y');
-}
-void MapMA::provinceReportLog(char whatReportChar, Provinces* enemyProvince) {
+/*void MapMA::provinceReportLog(char whatReportChar, Provinces* enemyProvince) {
   int totalGarrisonedCP = 0;
   switch (whatReportChar) {
   case 'G': {
@@ -249,3 +232,4 @@ void MapMA::provinceReportLog(char whatReportChar, Provinces* enemyProvince) {
     break;
   }
 }
+*/

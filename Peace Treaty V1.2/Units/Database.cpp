@@ -1,7 +1,7 @@
 #include "Database.h"
 
 Database::Database() {
-	//provincesUM = provincesLL.createMap();
+	pNum = 0;
 }
 
 void Database::createMap() {
@@ -104,7 +104,7 @@ void Database::Mobility::moveUnitOne(CommanderProfile* commander) {
 		ENEMY_PROVINCE,
 		FRIENDLY_PROVINCE
 	};
-	Scenario situation;
+	Scenario situation = FRIENDLY_PROVINCE;
 	// If province is in the list
 
 	if (provinceSelected->getParticipantIndex() !=
@@ -113,8 +113,10 @@ void Database::Mobility::moveUnitOne(CommanderProfile* commander) {
 		println("This is an enemy province. Moving here will attack the enemy garrison stationed here.");
 	}
 	else {
+		situation = FRIENDLY_PROVINCE;
 		std::cout << "This is a friendly province.\n";
 	}
+
 	std::cout << "Confirm moving your unit to ";
 	provinceSelected->printUserCoords();
 	std::cout << "? (Y / N) ";
@@ -148,8 +150,7 @@ std::vector<Provinces*> Database::Mobility::moveUnitTwo(CommanderProfile* comman
 	std::vector<Provinces*> provincesSelectList;
 	std::pair<int, int> systemCoords = commander->getSystemCoords();
 
-	for (int x = -1; x <= 1;
-		x++) /*Identify all the provinces that the player can move a unit to*/
+	for (int x = -1; x <= 1; x++) /*Identify all the provinces that the player can move a unit to*/
 	{
 		for (int y = -1; y <= 1; y++) {
 			// Check to see if the coordinates are in bounds (not outside of the map

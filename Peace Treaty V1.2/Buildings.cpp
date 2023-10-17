@@ -27,11 +27,12 @@ std::array<int, 5> Buildings::getCapacity(Build::BuildingType type, int name, CV
 
 	switch (amount) {
 	case SINGLE:
-		arrayArg[0] = levels[type][name];
+		std::array<int, 5> tempArray = levels[type];
+		arrayArg[0] = tempArray[name];
 		break;
 	case ALL:
 		for (int x = 0; x < 5; x++) {
-			arrayArg[x] = (int)levels[type] * (int)capacityAmounts[x];
+			arrayArg[x] = levels[type] * (int)capacityAmounts[x];
 		}
 	}
 	return arrayArg;
