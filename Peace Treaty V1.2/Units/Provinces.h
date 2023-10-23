@@ -137,6 +137,9 @@ private:
 	double newAccuracy;
 	std::string kingdomName;
 
-	std::vector<std::pair<int, ProvinceReport >> scoutReports;
+	
+	//Index within reports is the report. Index of report object is the participant the report belongs to
+	typedef std::vector<std::pair<int, ProvinceReport >> reports;
+	std::vector<reports> scoutReports;
 };
 #endif

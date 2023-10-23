@@ -37,7 +37,7 @@ public:
 		getTrainCosts(),
 		calculateEach(int option);
 
-	std::unordered_map<std::string, CommanderProfile*> getCommandersMap() { return commandersList; }
+	std::unordered_map<std::string, CommanderProfile*> getCommandersMap() { return commandersMap; }
 
 	
 
@@ -55,7 +55,6 @@ public:
 	void 
 		setCapital(Provinces* newProvince),
 		showMapOld(),
-		showMapCoordinates(),
 
 		addCommander(),
 		addProvince(Provinces* newProvince),
@@ -68,14 +67,15 @@ public:
 		scoutProvince(Provinces* targetProvince, int accuracy),
 		displayCommanders(),
 		initialCapRSS(),
-		createCapital(),
+		
 		setParticipantIndex(int num),
 		setKingdomName(std::string newName);
 
 
 	bool 
 		isAlive(),
-		isPlayer();
+		isPlayer(),
+		hasUnit (std::string unitName);
 
 	//Stats
 	std::vector<int> calculatePlayerValues(int decision);
@@ -92,14 +92,13 @@ public:
 
 	//Coordinate stuff
 	Provinces 
-		*getCoords(int identifier),
 		*getYourProvince(int identifier),
 		*findProvince(),
 		*getProvinceByName(std::string name),
 		*getErrorProvince(),
-		*findProvince(int x, int y),
+		*findProvince(std::pair<int, int> userCoords),
 		*getProvince(int index),
-		*getCapital();
+		*getCapitalProvince();
 
 
 	CommanderProfile
@@ -111,8 +110,10 @@ private:
 	std::string kingdomName = " ";
 	bool playerStatus;//true = player, false = AI
 
-	std::vector <Provinces*> provincesList;
-	std::unordered_map <std::string, CommanderProfile*> commandersList;
+	std::vector <Provinces*> provincesVector;
+	std::unordered_map <std::string, CommanderProfile*> commandersMap;
+	std::unordered_map <std::string, Provinces*> provincesMap;
+	std::vector <CommanderProfile> commandersVector;
 
 	int 
 		capitalIndex,
@@ -127,6 +128,8 @@ private:
 		troopsLost = { 0,0,0,0,0 };
 
 	std::unordered_map<std::string, CommanderProfile*>::iterator it;
+	Provinces* capitalProvince;
+
 	CommanderProfile* selectedCommander; //For ArmyDeploymentMA
 };
 #endif

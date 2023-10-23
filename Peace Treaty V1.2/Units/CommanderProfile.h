@@ -27,7 +27,6 @@ public:
 		printCommanderScoutReport(int idex);
 	void
 		printCommanderStats(),
-		setLocation(std::array<int, 2> pCoords),
 
 		updateCommanderScoutReport(int index, int value),
 		completeCommanderScoutReport(int accuracy),

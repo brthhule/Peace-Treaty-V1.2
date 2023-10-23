@@ -19,7 +19,9 @@ public:
 		updateTurnResources();
 
 	
-	static Provinces* getProvince(std::pair<int, int> coords);
+	static Provinces
+		*getSystemProvince(std::pair<int, int> systemCoords),
+		*getUserProvince(std::pair<int, int> userCoords);
 protected:
 	static std::vector <std::vector<Provinces>> map;
 	static std::unordered_map <std::string, Provinces*> mapMap;

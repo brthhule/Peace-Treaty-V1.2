@@ -135,14 +135,13 @@ int ScoutMA::selectUnitToScout(std::string &unitName, bool &isProvince, std::pai
 	return selectUnitToScoutTwo(unitName, isProvince, coordinates);
 }
 
-int ScoutMA::selectUnitToScoutTwo(std::string &unitName, bool &isProvince, std::pair<int, int> coords)
+int ScoutMA::selectUnitToScoutTwo(std::string unitName, bool isProvince, std::pair<int, int> coords)
 {
   int unitLevel = 0;
 	print("Enter the name of the province/commander you wish to select to scout: ");
 	std::getline(std::cin, unitName);
 
-	if (checkHasUnit(unitName) == false)
-	{
+	if (participant->hasUnit(unitName) == false) {
 		std::cout << "Invalid name entered; please try again \n";
 		selectUnitToScoutTwo(unitName, isProvince, coords);
 	}

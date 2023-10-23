@@ -22,8 +22,8 @@ public:
 		playerScoutStepTwo();
 
 	int
-		selectUnitToScout(std::string& unitName, bool& isProvince, std::array<int, 2>& coordinates),
-		selectUnitToScoutTwo(std::string& unitName, bool& isProvince, std::array<int, 2>& coordinates);
+		selectUnitToScout(std::string& unitName, bool& isProvince, std::pair<int, int>& coordinates),
+		selectUnitToScoutTwo(std::string unitName, bool isProvince, std::pair<int, int> coordinates);
 
 	void
 		scoutLogCalculationsProvince(int accuracy),

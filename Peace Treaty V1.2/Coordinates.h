@@ -2,6 +2,8 @@
 #define COORDINATES_H
 
 #include <iostream>
+#include <string>
+
 #include "Misc/ConstValues.h"
 
 using namespace CV;
@@ -19,8 +21,11 @@ public:
 	std::pair<int, int> 
 		getSystemCoords(),
 		getUserCoords();
+	std::string
+		getSystemCoordsString(),
+		getUserCoordsString();
 
-	std::pair<int, int> translateSystemUser(std::pair<int, int> userCoordsArg);
+	std::pair<int, int> translateToSystemCoords(std::pair<int, int> userCoordsArg);
 
 protected:
 	std::pair<int, int>

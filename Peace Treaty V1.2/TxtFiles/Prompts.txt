@@ -5,7 +5,8 @@ Options:A,S
 
 PLAYER_UNIT_ACTION
 - Move this unit (P)
-Options:P
+- Capture this province (C)
+Options:P, C
 
 INTRODUCTION
 - Start a new game (S)

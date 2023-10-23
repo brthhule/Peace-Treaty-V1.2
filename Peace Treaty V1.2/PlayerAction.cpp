@@ -21,9 +21,8 @@ void PlayerAction::initialDecision() {
   {
     std::cout << "Turn: " << turn << std::endl;
     std::cout << "Player " << participant->getKingdomName() << "'s move...";
-    std::cout << "\n\nWelcome to the Main Action menu \n\n";
-		participant->showMapCoordinates();
-		std::cout << std::endl;
+    std::cout << "\n\nWelcome to the Main Action menu \n\n\n";
+
     db.showMap();
     
     courseOfAction = Input::getOptionPrompt(PLAYER_ACTION).at(0);

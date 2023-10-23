@@ -28,9 +28,17 @@ void Coords::setCoords(std::pair<int, int> systemCoordsArg,
 }
 
 //Gets passed user coords, translates them to system coords
-std::pair<int, int> Coords::translateSystemUser(std::pair<int, int> userCoordsArg) {
+std::pair<int, int> Coords::translateToSystemCoords(std::pair<int, int> userCoordsArg) {
 	std::pair<int, int> returnSystemCoords;
 	//Add implementation here
 
 	return returnSystemCoords;
+}
+
+std::string Coords::getUserCoordsString() {
+	return "(" + std::to_string(userCoords.first) + ", " + std::to_string(userCoords.second) + ")";
+}
+
+std::string Coords::getSystemCoordsString() {
+	return "(" + std::to_string(systemCoords.first) + ", " + std::to_string(systemCoords.second) + ")";
 }

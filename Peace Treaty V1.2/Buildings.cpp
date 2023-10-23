@@ -32,7 +32,7 @@ std::array<int, 5> Buildings::getCapacity(Build::BuildingType type, int name, CV
 		break;
 	case ALL:
 		for (int x = 0; x < 5; x++) {
-			arrayArg[x] = levels[type] * (int)capacityAmounts[x];
+			arrayArg[x] = levels[type][x] * (int)capacityAmounts[x];
 		}
 	}
 	return arrayArg;

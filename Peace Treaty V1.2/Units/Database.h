@@ -28,24 +28,21 @@ public:
 	//Constructor
 	Database();
 
-	void 
-		createMap(),
-		initializeParticipants(int totalPlayers, int humanPlayers),
-		updateTurnResources(),
-		setContinentSize(int num),
-		setMaxCommanders(int num),
-		setCurrentParticipant(Participants* p);
+	void createMap(),
+		 initializeParticipants(int totalPlayers, int humanPlayers),
+		 updateTurnResources(),
+		 setMaxCommanders(int num),
+		 setCurrentParticipant(Participants* p),
+		 createCapitals();
 
 	
 	std::vector<Participants>* getParticipantsList();
 	
-	int
-		getContinentSize(),
-		getMaxCommanders();
+	int getMaxCommanders();
 
-	Participants
-		*getCurrentParticipant(),
-		*getParticipant(int index);
+	Participants *getCurrentParticipant(),
+				 *getParticipant(int index);
+
 
 	class Mobility {
 	public:
@@ -62,8 +59,7 @@ private:
 	std::vector<Participants> participantsList;
 	Participants* currentParticipant;
 
-	int 
-		currentParticipantIndex,
+	int currentParticipantIndex,
 		continentSize,
 		maxCommanders,
 		pNum; //have to fix this; current points to nothing

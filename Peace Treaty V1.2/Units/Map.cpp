@@ -85,8 +85,20 @@ void Map::printXAxis() {
 
 //Only for system coords
 //First int should be row, second int should be column
-Provinces* Map::getProvince(std::pair<int, int> coords) {
-	return &map[coords.first][coords.second];
+Provinces* Map::getSystemProvince(std::pair<int, int> systemCoords) {
+	return &map[systemCoords.first][systemCoords.second];
+}
+Provinces* Map::getUserProvince(std::pair<int, int> userCoords) {
+	for (int row = 0; row < CV::continentSize; row++) {
+		for (int col = 0; col < CV::continentSize; col++) {
+			if (map[row][col].getUserCoords() == userCoords) {
+				return &map[row][col];
+			}
+		}
+	}
+
+	//This should never occur
+	return NULL;
 }
 
 void Map::updateTurnResources() {

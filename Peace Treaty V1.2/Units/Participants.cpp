@@ -7,8 +7,6 @@
 	// Constructor
 //Constructor
 Participants::Participants(int pIndex) {
-	std::cout << "Create Capital\n";
-	createCapital();
 	std::cout << "Add commander\n";
 	addCommander();
 	std::cout << "Initial cap rss";
@@ -16,103 +14,60 @@ Participants::Participants(int pIndex) {
 	std::cout << "Set kingdom name\n";
 	setKingdomName("-1");
 	participantIndex = pIndex;
-
-	for (int x = 0; x < continentSize; x++)
-	{
-		std::vector<Provinces> provincesVector;
-		for (int y = 0; y < continentSize; y++)
-		{
-			Provinces newProvince;
-			newProvince.setKingdomName(this->getKingdomName());
-			provincesVector.push_back(newProvince);
-		}
-		scoutMap.push_back(provincesVector);
-	}
 }
-void Participants::createCapital() {
-	/*For each participant, generate random x and y values, see if the province
-	 * associated with these values (coordinates) is empty. If it's empty, change
-	 * the province identifier and add it to a partipant's list of provinces. If
-	 * it's not empty, repeatMap is 'Y' and the process repeats*/
 
-	 // int xCoord = getRandomCoordinate();
-	 // int yCoord = getRandomCoordinate();
-	 // Provinces *newProvince = &provincesMap[xCoord][yCoord];
-	 // if (newProvince->getParticipantIndex() == -1) {
-	 //   newProvince->changeParticipantIndex(participantIndex);
-	 //   newProvince->initializeCapital();
-		   // newProvince->changeUnitName(getNewName());
-	 //   addProvince(newProvince);
-	 //   setCapital(newProvince);
-
-	 // } else {
-	 //   createCapital();
-	 // }
-
-	//ParticipantsList Alternative
-	int num = rand() % provincesLL.getProvincesNum();
-	std::cout << "Num: " << num << std::endl;
-	Provinces* newProvince = provincesLL.getProvinceByNum(num);
-	std::cout << "New province participant index: " << newProvince->getParticipantIndex() << std::endl;
-	if (newProvince->getParticipantIndex() == -1)
-	{
-		newProvince->changeParticipantIndex(participantIndex);
-		newProvince->initializeCapital();
-		newProvince->changeUnitName(getNewName());
-		addProvince(newProvince);
-		setCapital(newProvince);
-	}
-	else
-	{
-		createCapital();
-	}
+Participants::createAsPlayer() {
+	OF::debugFunction("main, createMap--review");
+	setMap();
 }
+
 
 // Accessors
-Provinces* Participants::getCapital() { return provincesList[capitalIndex]; }
-Provinces* Participants::findProvince(int x, int y) {
-	for (int a = 0; a < (int)provincesList.size(); a++) {
-		Provinces* newProvince = provincesList[a];
-		if (x == newProvince->getCoordinate(0) &&
-			y == newProvince->getCoordinate(1))
-			return newProvince;
+Provinces* Participants::getCapitalProvince() { return capitalProvince; }
+
+Provinces* Participants::findProvince(std::pair<int, int> userCoords) {
+	for (Provinces* province : provincesVector) {
+		if (province->getUserCoords() == userCoords) {
+			return province;
+		}
 	}
 
 	std::cout << "Error occurred, error path...\n";
-	return this->getErrorProvince();
+	return NULL;
 }
 
-int Participants::provincesNum() { return (int) provincesList.size(); }
-int Participants::commandersNum() { return (int) commandersList.size(); }
+int Participants::provincesNum() { return (int) provincesVector.size(); }
+int Participants::commandersNum() { return (int) commandersVector.size(); }
 
 
 void Participants::initialCapRSS() {
 	//Add functionality so, depending on the difficulty, AI participants get more or less resources to start off with
-	Provinces* newProvince = getCapital();
+	Provinces* newProvince = getCapitalProvince();
 	newProvince->modifyResources(CV::INITIAL_VALUES, true);
 }
 
 // Mutators
 void Participants::setCapital(Provinces* newProvince) {
-	for (int x = 0; x < (int)provincesList.size(); x++) {
-		if (provincesList[x] == newProvince) {
-			capitalIndex = x;
-			x = (int) provincesList.size();
-		}
-	}
+	capitalProvince = newProvince;
 }
 
 void Participants::addProvince(Provinces* newProvince) {
-	provincesList.push_back(newProvince);
+	provincesVector.push_back(newProvince);
+	provincesMap[newProvince->getUnitName()] = provincesVector[provincesVector.size() - 1];
 }
 
 void Participants::addCommander() {
 	CommanderProfile newCommander(1, getNewName());
-	std::array<int, 2> newCoordinates = getCapital()->getCoordinates();
+	std::pair<int, int> systemCoords = getCapitalProvince()->getSystemCoords();
+	std::pair<int, int> userCoords = getCapitalProvince()->getUserCoords();
+
 	newCommander.changeParticipantIndex(participantIndex);
-	newCommander.setLocation(newCoordinates);
-	commandersList.insert({ newCommander.getUnitName(), &newCommander });
-	getCapital()->addCommander(&newCommander);
+	newCommander.setCoords(systemCoords, userCoords);
+
+	commandersVector.push_back(newCommander);
+	CommanderProfile* commanderPtr = &commandersVector[commandersVector.size() - 1];
+	commandersMap[newCommander.getUnitName()] = commanderPtr;
+	getCapitalProvince()->addCommander(commanderPtr);
 }
 
 void Participants::setKingdomName(std::string newName) {
@@ -193,16 +148,16 @@ std::vector<int> Participants::calculatePlayerValues(int decision) {
 	return emptyVector;
 }
 
-Provinces* Participants::getProvince(int index) { return provincesList[index]; }
+Provinces* Participants::getProvince(int index) { return provincesVector[index]; }
 
 std::string Participants::getNewName() {
 	std::string newName = OF::createRandomName();
-	for (Provinces* newProvince : provincesList)
+	for (Provinces* newProvince : provincesVector)
 		if (newName == newProvince->getUnitName())
 			getNewName();
 
 
-	for (it = commandersList.begin(); it != commandersList.end(); it++)
+	for (it = commandersMap.begin(); it != commandersMap.end(); it++)
 		if (newName == it->second->getUnitName())
 			getNewName();
 
@@ -211,7 +166,7 @@ std::string Participants::getNewName() {
 
 // CommanderProfile *Participants::getCommander(int index) {
 //   std::unordered_map<std::string, CommanderProfile*>::iterator it;
-//   for (it = commandersList.begin(); it != commandersList.end(); it++)
+//   for (it = commandersMap.begin(); it != commandersMap.end(); it++)
 //     if ()
 // }
 
@@ -238,13 +193,11 @@ void Participants::viewAllStatsFunction() {
 
 void Participants::printListOfProvinces() {
 	std::cout << "Here is a list of your provinces (Name, Coordinates): \n";
-	for (Provinces* tempProvince : provincesList)
+	for (Provinces* province : provincesVector)
 	{
-		std::cout << "Capital Coords (Output): " + getCapital()->printOutputCoordinates() + "\n";
-		std::cout << "Capital Coords (input): " + getCapital()->printCoordinates() + "\n";
-		std::cout << "XCoord: " << tempProvince->getCoordinate('X') << std::endl;
-		std::cout << "YCoord: " << tempProvince->getCoordinate('Y') << std::endl;
-		std::cout << "- " << tempProvince->getUnitName() << " " + tempProvince->printOutputCoordinates() + "\n";
+		std::cout << "- " << province->getUnitName() << ": ";
+		province->getUserCoords();
+		std::cout << "\n";
 	}
 }
 
@@ -254,8 +207,7 @@ Provinces* Participants::getYourProvince(int identifier) {
 	Provinces* newProvince = getCoords(identifier);
 	if (newProvince->getParticipantIndex() == participantIndex)
 	{
-		std::cout << "This is one of your provinces...\n";
-		std::cout << newProvince->printCoordinates() << std::endl;
+		std::cout << "This is one of your provinces...\n" + newProvince->getUserCoordsString() + "\n";
 		return newProvince;
 	}
 
@@ -266,11 +218,11 @@ Provinces* Participants::getYourProvince(int identifier) {
 	std::cout << "Invalid path... \n";
 	return this->getErrorProvince();
 }
-//Have Map MA do this
+//The participant selects a province. Returns NULL if the user cancels this action
 Provinces* Participants::getCoords(int identifier) {
 	std::vector<std::string> actualCoordinatesAVTwo = { "-1" };
 	//range of possible coordinates
-	for (int x = 1; x <= continentSize; x++)
+	for (int x = 1; x <= CV::continentSize; x++)
 		actualCoordinatesAVTwo.push_back(std::to_string(x));
 
 	//showMap();
@@ -288,47 +240,35 @@ Provinces* Participants::getCoords(int identifier) {
 		phrase = "of the army you want to use to attack the target with";
 	}
 
-	int xCoordinate = std::stoi(Input::getInputText("Enter the x coordinate " + phrase + " (Enter '-1' to go back to previous menu): ", actualCoordinatesAVTwo));
+	std::pair<int, int> userCoords;
+	userCoords.first = std::stoi(Input::getInputText("Enter the x coordinate " + phrase + " (Enter '-1' to go back to previous menu): ", actualCoordinatesAVTwo));
 	// Critical: check to make sure the coordinate checkings are correct
-	int yCoordinate = std::stoi(Input::getInputText("Enter the y coordinate " + phrase + " (Enter '-1' to go back to previous menu): ", actualCoordinatesAVTwo));
+	userCoords.second = std::stoi(Input::getInputText("Enter the y coordinate " + phrase + " (Enter '-1' to go back to previous menu): ", actualCoordinatesAVTwo));
 
-	std::cout << "X Coordinate: " << xCoordinate << std::endl;
-	std::cout << "Y Coordinate: " << yCoordinate << std::endl;
-	if (xCoordinate != -1 && yCoordinate != -1)
+	if (userCoords.first != -1 && userCoords.second != -1)
 	{
-		int replacement = xCoordinate;
-		xCoordinate = OF::translateCoordinate(yCoordinate, 'y', 'I');
-		yCoordinate = OF::translateCoordinate(replacement, 'x', 'I');
-		std::cout << "Translated x: " << xCoordinate << std::endl;
-		std::cout << "Translated y: " << yCoordinate << std::endl;
+		
 		OF::enterAnything();
-		Provinces* newProvince = &provincesMap[xCoordinate][yCoordinate];
+		Provinces* newProvince = ;
 		return newProvince;
 	}
 
-	if (xCoordinate == -1 || yCoordinate == -1) {
-		std::cout << "XCoord: " << xCoordinate << std::endl;
-		std::cout << "YCoord: " << yCoordinate << std::endl;
-		Provinces* newProvince = &provincesMap[xCoordinate][yCoordinate];
-		newProvince->setDeleteProvince();
-		return newProvince;
-	}
-	
-	//Empty path
-	std::cout << "Error path...";
-	return this->getErrorProvince();
+
+	//Selected -1
+	std::cout << "Returning to previous menu...";
+	return NULL;
 }
 
-int Participants::getRandomCoordinate() { return rand() % continentSize; }
+int Participants::getRandomCoordinate() { return rand() % CV::continentSize; }
 
 bool Participants::hasCommander(std::string name) {
-	if (commandersList.find(name) == commandersList.end())
+	if (commandersMap.find(name) == commandersMap.end())
 		return false;
 	return true;
 }
 
 CommanderProfile* Participants::getCommander(std::string name) {
-	return commandersList[name];
+	return commandersMap[name];
 }
 int Participants::calculateTotals(int option)
 {
@@ -344,7 +284,7 @@ std::array<int, 5> Participants::calculateEach(int option)
 {
 	std::array<int, 5> returnArray = { 0, 0, 0, 0, 0 };
 	//Go through all commanders at this province
-	for (it = commandersList.begin(); it != commandersList.end(); it++)
+	for (it = commandersMap.begin(); it != commandersMap.end(); it++)
 	{
 		CommanderProfile* newCommander = it->second;
 		switch (option)
@@ -389,18 +329,18 @@ std::array<int, 5> Participants::calculateEach(int option)
 void Participants::showMapOld() {
 	std::cout << "Map: \n";
 
-	int thingy = continentSize;
-	for (int x = 0; x < continentSize; x++) {
+	int foo = CV::continentSize;
+	for (int x = 0; x < CV::continentSize; x++) {
 		// Y axis stuff
-		if (thingy < 10)
-			std::cout << " " << thingy << "| ";
+		if (foo < 10)
+			std::cout << " " << foo << "| ";
 		else
-			std::cout << thingy << "| ";
+			std::cout << foo << "| ";
 
-		thingy--;
+		foo--;
 		// End y axis stuff
 
-		for (int y = 0; y < continentSize; y++) {
+		for (int y = 0; y < CV::continentSize; y++) {
 			char letter = ' '; // Fix this later
 			Provinces* mapProvince = &provincesMap[x][y];
 
@@ -431,13 +371,13 @@ void Participants::showMapOld() {
 
 	// X axis stuff
 	std::cout << "    ";
-	for (int a = 0; a < continentSize - 1; a++) {
+	for (int a = 0; a < CV::continentSize - 1; a++) {
 		std::cout << "----";
 	}
 	std::cout << "--";
 	std::cout << std::endl;
 	std::cout << "    ";
-	for (int a = 0; a < continentSize; a++) {
+	for (int a = 0; a < CV::continentSize; a++) {
 		if (a < 9)
 			std::cout << a + 1 << "   ";
 		else
@@ -464,10 +404,7 @@ bool Participants::subtractCheckResources(std::string provinceName, std::array<i
 
 Provinces* Participants::getProvinceByName(std::string name)
 {
-	for (Provinces* newProvince : provincesList)
-		if (newProvince->getUnitName() == name)
-			return newProvince;
-	return NULL;
+	return provincesMap[name];
 }
 
 /*Provinces* Participants::selectRandomProvince()
@@ -479,9 +416,10 @@ Provinces* Participants::getProvinceByName(std::string name)
 
 bool Participants::hasProvince(std::string name)
 {
-	for (Provinces* newProvince : provincesList)
-		if (newProvince->getUnitName() == name)
-			return true;
+	if (provincesMap.find(name) != provincesMap.end()) {
+		return true;
+	}
+
 	return false;
 }
 
@@ -517,30 +455,6 @@ void Participants::displayCommanders()
 	}
 }
 
-void Participants::showMapCoordinates()
-{
-	std::cout << "Input: \n";
-	for (int x = 0; x < (int)provincesMap.size(); x++)
-	{
-		for (int y = 0; y < (int)provincesMap[x].size(); y++)
-		{
-			std::cout << provincesMap[x][y].printCoordinates() << " ";
-		}
-		std::cout << std::endl;
-	}
-	std::cout << std::endl;
-
-	std::cout << "Output: \n";
-	for (int x = 0; x < (int)provincesMap.size(); x++)
-	{
-		for (int y = 0; y < (int)provincesMap[x].size(); y++)
-		{
-			std::cout << provincesMap[x][y].printOutputCoordinates() << " ";
-		}
-		std::cout << std::endl;
-	}
-	std::cout << std::endl;
-}
 
 
 
@@ -549,6 +463,7 @@ Provinces* Participants::findProvince() {
 	std::cout << "Welcome to the Player Build menu\n\n";
 	Provinces* province = this->getCoords(1);
 
+	//Make sure the user wants to do this action. A -1 value means that 
 	if (province->getCoordinate('X') != -1) {
 		//If this province belongs to the current participant
 		int participantIndex = this->getParticipantIndex();
@@ -579,4 +494,14 @@ Provinces* Participants::getErrorProvince() {
 
 CommanderProfile* Participants::getSelectedCommander() {
 	return selectedCommander;
+}
+
+bool Participants::hasUnit(std::string unitName) {
+	if (hasCommander(unitName)) {
+		return true;
+	}
+	else if (hasProvince(unitName)) {
+		return true;
+	}
+	return false;
 }

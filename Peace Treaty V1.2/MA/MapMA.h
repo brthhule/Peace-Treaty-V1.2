@@ -34,19 +34,18 @@ public:
 	void 
 		viewPlayerMap(),
 		selectUnitOriginal(Provinces *selectedProvince),
-		selectPlayerProvince(),
+		selectPlayerProvince(Provinces *province),
 		
-		playerUnitAction(Provinces *newP),
-		playerUnitActionP(Provinces *newP),
+		playerUnitAction(Provinces *province),
+		playerUnitActionP(Provinces * province),
 		selectEnemyAction(),
-		electEnemyProvince(Provinces *newP);
+		selectEnemyProvince(Provinces * province);
 
   Participants *getParticipant();
 
 private:
 	Participants *participant;
 	int pIndex;
-	Provinces *prov;
 	
 };
 
