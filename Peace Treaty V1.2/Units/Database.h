@@ -12,7 +12,6 @@
 #include "CommanderPRofile.h"
 #include "../Misc/OF.h"
 #include "../Misc/LinkedList.h"//might need to move Database up, out of Units, so it can have a larger scope
-#include "Map.h"
 #define print(x) std::cout << x;
 #define println(x) std::cout << x << std::endl;
 
@@ -22,7 +21,7 @@
 
 //Clase for an object that contians everything in the system/game
 //Purpose: from now on, create 
-class Database : public Map
+class Database
 {
 public:
 	//Constructor
@@ -54,10 +53,15 @@ public:
 
 	Mobility move;
 
+	static Participants tempParticipant;
+
 private:
 	
 	std::vector<Participants> participantsList;
 	Participants* currentParticipant;
+	Participants* nullParticipant;
+
+	
 
 	int currentParticipantIndex,
 		continentSize,

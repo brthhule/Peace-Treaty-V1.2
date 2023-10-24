@@ -22,7 +22,7 @@ AllUnits::AllUnits(int participantIndexArg)
 	participantIndex = participantIndexArg;
 	foodConsumption = 0;
 	unitLevel = 0;
-	CP = 0;
+	combatPower = 0;
 	totalTroops = 0;
 }
 //Default Constructor
@@ -34,11 +34,11 @@ AllUnits::AllUnits() {
 
 
 int AllUnits::getCP() {
-	CP = 0;
+	combatPower = 0;
 	for (int x = 0; x < 5; x++) {
-		CP += troopsPresent[x] * CV::TROOPS_CP[x];
+		combatPower += troopsPresent[x] * CV::TROOPS_CP[x];
 	}
-	return CP;
+	return combatPower;
 }
 
 int AllUnits::getParticipantIndex()
@@ -48,10 +48,10 @@ int AllUnits::getParticipantIndex()
 
 void AllUnits::printResources()
 {
-	std::cout << "Resources currently present in this " << isCommanderOrProvince << ": \n";
-	std::cout << "\033[;34m";
+	std::cout << "Resources currently present in this " << type << ": \n";
+	addColor(BLUE);
 	OF::printResources(resourcesPresent);
-	std::cout << "\033[;0m";
+	addColor(RESET);
 }
 
 std::string AllUnits::getUnitName()

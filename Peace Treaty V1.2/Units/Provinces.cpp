@@ -21,6 +21,10 @@ Provinces::Provinces(int overallIndexArg)
 	deleteProvince = false;
 }
 
+std::pair<int, int> Provinces::translateToSystemCoords(std::pair<int, int> userCoordsArg) {
+	return Coords::translateToSystemCoords(userCoordsArg);
+}
+
 
 //Province stats
 

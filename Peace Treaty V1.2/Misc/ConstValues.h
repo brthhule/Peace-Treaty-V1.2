@@ -8,12 +8,11 @@
 
 namespace CV
 {
+	/*TROOP_NAMES = Militia, Guards, Cavalry, Knights, Paladins
+	RESOURCE_BUILDING = Farm, Lumber Mill, Quarry, Mine, Church
+	OTHER_BUILDING = Barracks, Infirmary, Library, Wall, Residences
+	RESOURCE = Food, Wood, Ore, Gold, Mana*/
 	const std::array<std::string, UNIT_AMOUNT> 
-		/*"Militia",
-			"Guards",
-			"Cavalry",
-			"Knights",
-			"Paladins"*/
 		TROOP_NAMES = { 
 			"Militia", 
 			"Guards", 
@@ -21,11 +20,7 @@ namespace CV
 			"Knights", 
 			"Paladins"
 		},
-		/*"Farm",
-			"Lumber Mill",
-			"Quarry",
-			"Mine",
-			"Church"*/
+
 		RESOURCE_BUILDING_NAMES = { 
 			"Farm",
 			"Lumber Mill",
@@ -33,11 +28,7 @@ namespace CV
 			"Mine", 
 			"Church" 
 		},
-		/*"Barracks",
-			"Infirmary",
-			"Library",
-			"Wall",
-			"Residences"*/
+
 		OTHER_BUILDING_NAMES = { 
 			"Barracks",
 			"Infirmary",
@@ -45,12 +36,8 @@ namespace CV
 			"Wall",
 			"Residences" 
 		},
-		/*"Food",
-			"Wood",
-			"Ore",
-			"Gold",
-			"Mana"*/
-		RESOURCE_NAMES = {
+		
+		RESOURCE_NAMES = { 
 			"Food",
 			"Wood", 
 			"Ore", 
@@ -58,18 +45,19 @@ namespace CV
 			"Mana" 
 		};
 
-	const std::array<int, UNIT_AMOUNT> 
-		// 5, 4, 3, 2, 1 
-		TROOPS_COST = { 5, 4, 3, 2, 1 },
-		// 5, 4, 3, 2, 1 
-		INITIAL_VALUES = { 5, 4, 3, 2, 1 },
-		// 1,2,4,8,16 
-		TROOPS_CP = { 1,2,4,8,16 },
-		// 5,4,3,2,1 
-		RESOURCE_PRODUCTION = { 5,4,3,2,1 };
+	/*TROOPS_COST = 5, 4, 3, 2, 1 
+	* INITIAL_VALUES = 5, 4, 3, 2, 1 
+	* TROOPS_CP = 1, 2, 4, 8, 16
+	* RESOURCE_PRODUCTION = 5, 4, 3, 2, 1 
+	*/
+	typedef const std::array<int, UNIT_AMOUNT> ConstNumerics;
+	ConstNumerics TROOPS_COST = { 5, 4, 3, 2, 1 },
+				  INITIAL_VALUES = { 5, 4, 3, 2, 1 },
+				  TROOPS_CP = { 1,2,4,8,16 },
+				  RESOURCE_PRODUCTION = { 5,4,3,2,1 };
 
 	const int BARRACKS_PRODUCTION = 2;
-	/*GUARDS,
+	/*	GUARDS,
 		INFANTRY,
 		ARCHERS,
 		CAVALRY,
@@ -81,7 +69,7 @@ namespace CV
 		CAVALRY,
 		ARTILLARY
 	};
-	/*SELECT_ENEMY_ACTION, 
+	/*	SELECT_ENEMY_ACTION, 
 		PLAYER_UNIT_ACTION, 
 		INTRODUCTION, 
 		PLAYER_ACTION, 
@@ -105,7 +93,7 @@ namespace CV
 		SELECT_ENEMY_PROVINCE,
 		WHAT_REPORT
 	};
-	/*"SELECT_ENEMY_ACTION", 
+	/*"	SELECT_ENEMY_ACTION", 
 		"PLAYER_UNIT_ACTION",
 		"INTRODUCTION", 
 		"PLAYER_ACTION",
@@ -196,16 +184,16 @@ namespace CV
 	std::string promptsToString(PROMPTS p);
 	int getStringIndex(std::string arg);
 	PROMPTS stringToPrompts(std::string arg);
-	void addColor(COLORS c);
+	
 
-	int continentSize = 0;
+	int continentSize = 0,
+		//Implement definition of this
+		enemyDifficulty = 0;
 
-	//Implement definition of this
-	int enemyDifficulty = 0;
+	void addColor(COLORS c),
+		 printPerson();
 
-	void setContinentSize(int size);
-
-	void printPerson();
+	std::array<int, 5> randomArray;
 }
 
 #endif		

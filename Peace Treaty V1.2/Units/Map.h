@@ -19,7 +19,7 @@ public:
 		updateTurnResources();
 
 	
-	static Provinces
+	Provinces
 		*getSystemProvince(std::pair<int, int> systemCoords),
 		*getUserProvince(std::pair<int, int> userCoords);
 protected:

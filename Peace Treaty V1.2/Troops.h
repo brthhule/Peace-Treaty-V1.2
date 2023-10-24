@@ -11,13 +11,20 @@ public:
 	Troops();
 
 	std::array<int, 5> getAllOneTroop(CV::TROOPS type);
-
+	
 	void mutateTroop(CV::TROOPS type, int level, CV::MutateDirection);
 
 	//----Troop Stuff----
-//Return a troop by index or all troops-- done by type. Pass -1 for troopIndex to return all troops of a type
+/*Return a troop by index or all troops-- done by type.Pass - 1 for troopIndex to return all troops of a type
+type: REGULAR, INJURED, LOST
+troopIndex: troop level?
+data: 
+use randomArray
+*/
 	template<typename T>
 	T getTroop(CV::MutateTroopType type, int troopIndex, T data);
+
+
 	//Change a troop by index or all trypes.
 	template<typename T>
 	T mutateTroop(CV::MutateTroopType type, int troopIndex, T amount, CV::MutateDirection direction);

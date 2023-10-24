@@ -26,6 +26,9 @@ public:
 	TrainMA();
 	//other functions
 	void TrainMAFunction();
+
+	void TrainMAFunctionDoWhileLoop(int troopTier, int amountOfTroops);
+
 private:
 	Provinces *province;
 	

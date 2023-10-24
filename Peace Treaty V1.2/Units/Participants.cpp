@@ -16,12 +16,6 @@ Participants::Participants(int pIndex) {
 	participantIndex = pIndex;
 }
 
-Participants::createAsPlayer() {
-	OF::debugFunction("main, createMap--review");
-	setMap();
-}
-
-
 // Accessors
 Provinces* Participants::getCapitalProvince() { return capitalProvince; }
 
@@ -218,6 +212,7 @@ Provinces* Participants::getYourProvince(int identifier) {
 	std::cout << "Invalid path... \n";
 	return this->getErrorProvince();
 }
+
 //The participant selects a province. Returns NULL if the user cancels this action
 Provinces* Participants::getCoords(int identifier) {
 	std::vector<std::string> actualCoordinatesAVTwo = { "-1" };
@@ -249,13 +244,12 @@ Provinces* Participants::getCoords(int identifier) {
 	{
 		
 		OF::enterAnything();
-		Provinces* newProvince = ;
+		Provinces* newProvince = getUserProvince(userCoords);
 		return newProvince;
 	}
 
 
 	//Selected -1
-	std::cout << "Returning to previous menu...";
 	return NULL;
 }
 
@@ -456,6 +450,59 @@ void Participants::displayCommanders()
 }
 
 
+Provinces* Participants::getCoords(int identifier) {
+	std::vector<std::string> actualCoordinatesAVTwo = { "-1" };
+	//range of possible coordinates
+	for (int x = 1; x <= continentSize; x++)
+		actualCoordinatesAVTwo.push_back(std::to_string(x));
+
+	showMap();
+	std::string phrase;
+	switch (identifier) {
+	case 1:
+		printListOfProvinces();
+		phrase = "of the province you want to select";
+		break;
+	case 2:
+		printListOfProvinces();
+		phrase = "of the province you want to move to";
+		break;
+	case 3:
+		phrase = "of the army you want to use to attack the target with";
+	}
+
+	int xCoordinate = std::stoi(OF.getInput(false, -1, "Enter the x coordinate " + phrase + " (Enter '-1' to go back to previous menu): ", actualCoordinatesAVTwo, false, false));
+	// Critical: check to make sure the coordinate checkings are correct
+	int yCoordinate = std::stoi(OF.getInput(false, -1, "Enter the y coordinate " + phrase + " (Enter '-1' to go back to previous menu): ", actualCoordinatesAVTwo, false, false));
+
+	std::cout << "X Coordinate: " << xCoordinate << std::endl;
+	std::cout << "Y Coordinate: " << yCoordinate << std::endl;
+	if (xCoordinate != -1 && yCoordinate != -1)
+	{
+		int replacement = xCoordinate;
+		xCoordinate = OF.translateCoordinate(yCoordinate, 'y', 'I');
+		yCoordinate = OF.translateCoordinate(replacement, 'x', 'I');
+		std::cout << "Translated x: " << xCoordinate << std::endl;
+		std::cout << "Translated y: " << yCoordinate << std::endl;
+		OF.enterAnything();
+		Provinces* newProvince = &provincesMap[xCoordinate][yCoordinate];
+		return newProvince;
+	}
+
+	if (xCoordinate == -1 || yCoordinate == -1) {
+		std::cout << "XCoord: " << xCoordinate << std::endl;
+		std::cout << "YCoord: " << yCoordinate << std::endl;
+		Provinces* newProvince = &provincesMap[xCoordinate][yCoordinate];
+		newProvince->setDeleteProvince();
+		return newProvince;
+	}
+
+	//Empty path
+	std::cout << "Error path...";
+	Provinces newProvince;
+	return &newProvince;
+}
+
 
 
 Provinces* Participants::findProvince() {
@@ -488,10 +535,6 @@ Provinces* Participants::findProvince() {
 	return this->getErrorProvince();
 }
 
-Provinces* Participants::getErrorProvince() {
-	return this->getCapital();
-}
-
 CommanderProfile* Participants::getSelectedCommander() {
 	return selectedCommander;
 }
@@ -504,4 +547,12 @@ bool Participants::hasUnit(std::string unitName) {
 		return true;
 	}
 	return false;
+}
+
+Provinces* Participants::getSystemProvince(std::pair<int, int> systemCoords) {
+	return Map::getSystemProvince(systemCoords);
+}
+
+void Participants::showMap() {
+	Map::showMap();
 }

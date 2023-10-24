@@ -81,6 +81,8 @@ public:
 	std::array<bool, 3> getListBool();
 	std::array< std::pair<int, int>, 2> getListCoords();
 
+	std::pair<int, int> translateToSystemCoords(std::pair<int, int> userCoordsArg);
+
 protected:
 	enum LISTS {RESOURCE_BUILDINGS_LEVELS, OTHER_BUILDINGS_LEVELS, RESOURCES_PRESENT, TROOPS_PRESENT, TROOPS_INJURED, TROOPS_LOST, INITIAL_STATS};
 

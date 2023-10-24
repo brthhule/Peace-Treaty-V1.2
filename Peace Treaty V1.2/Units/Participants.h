@@ -24,10 +24,12 @@
 #include "../Misc/ConstValues.h"
 #include "../Misc/LinkedList.h"
 
+#include "Map.h"
+
 
 using namespace CV;
 
-class Participants
+class Participants : Map
 {
 public:
 	//constructors
@@ -52,7 +54,7 @@ public:
 		getNewName();
 
 	//AI
-	void 
+	void
 		setCapital(Provinces* newProvince),
 		showMapOld(),
 
@@ -67,9 +69,11 @@ public:
 		scoutProvince(Provinces* targetProvince, int accuracy),
 		displayCommanders(),
 		initialCapRSS(),
-		
+
 		setParticipantIndex(int num),
-		setKingdomName(std::string newName);
+		setKingdomName(std::string newName),
+		showMap();
+		
 
 
 	bool 
@@ -95,7 +99,6 @@ public:
 		*getYourProvince(int identifier),
 		*findProvince(),
 		*getProvinceByName(std::string name),
-		*getErrorProvince(),
 		*findProvince(std::pair<int, int> userCoords),
 		*getProvince(int index),
 		*getCapitalProvince();
@@ -104,6 +107,9 @@ public:
 	CommanderProfile
 		* getCommander(std::string name),
 		* getSelectedCommander();
+
+	Provinces *getSystemProvince(std::pair<int, int> systemCoords),
+			  *getCoords(int identifer);
 
 
 private:

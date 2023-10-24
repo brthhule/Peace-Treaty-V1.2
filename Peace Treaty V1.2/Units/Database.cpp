@@ -173,7 +173,8 @@ std::vector<Provinces*> Database::Mobility::moveUnitTwo(CommanderProfile* comman
 			if (checkFirstCoordinate && checkSecondCoordinate && checkBothCoordinates)
 			{
 				std::pair<int, int> pushCoords(firstCoordinate, secondCoordinate);
-				provincesSelectList.push_back(getSystemProvince(pushCoords));
+				Provinces* province = tempParticipant.getSystemProvince(pushCoords);
+				provincesSelectList.push_back(province);
 				
 			}
 		}
@@ -182,7 +183,7 @@ std::vector<Provinces*> Database::Mobility::moveUnitTwo(CommanderProfile* comman
 }
 
 std::pair<int, int> Database::pickCoords() {
-	showMap();
+	tempParticipant.showMap();
 	std::string
 		xCoordinateString,
 		yCoordinateString;
@@ -214,7 +215,7 @@ void Database::createCapitals() {
 			systemCoords.first = rand() % CV::continentSize;
 			systemCoords.second = rand() % CV::continentSize;
 
-			Provinces* province = getSystemProvince(systemCoords);
+			Provinces* province = participantsList[0].getSystemProvince(systemCoords);
 
 			if (province->getParticipantIndex() == -1)
 			{
@@ -231,44 +232,3 @@ void Database::createCapitals() {
 	
 }
 
-
-//The participant selects a province. Returns NULL if the user cancels this action
-Provinces* Database::getCoords(int identifier) {
-	std::vector<std::string> actualCoordinatesAVTwo = { "-1" };
-	//range of possible coordinates
-	for (int x = 1; x <= CV::continentSize; x++)
-		actualCoordinatesAVTwo.push_back(std::to_string(x));
-
-	//showMap();
-	std::string phrase;
-	switch (identifier) {
-	case 1:
-		printListOfProvinces();
-		phrase = "of the province you want to select";
-		break;
-	case 2:
-		printListOfProvinces();
-		phrase = "of the province you want to move to";
-		break;
-	case 3:
-		phrase = "of the army you want to use to attack the target with";
-	}
-
-	std::pair<int, int> userCoords;
-	userCoords.first = std::stoi(Input::getInputText("Enter the x coordinate " + phrase + " (Enter '-1' to go back to previous menu): ", actualCoordinatesAVTwo));
-	// Critical: check to make sure the coordinate checkings are correct
-	userCoords.second = std::stoi(Input::getInputText("Enter the y coordinate " + phrase + " (Enter '-1' to go back to previous menu): ", actualCoordinatesAVTwo));
-
-	if (userCoords.first != -1 && userCoords.second != -1)
-	{
-
-		OF::enterAnything();
-		Provinces* newProvince = ;
-		return newProvince;
-	}
-
-
-	//Selected -1
-	std::cout << "Returning to previous menu...";
-	return NULL;
-}
