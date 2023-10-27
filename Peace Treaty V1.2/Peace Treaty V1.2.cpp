@@ -110,21 +110,21 @@ void startGame()
 	std::string text = "What continent size do you want to play on?\n- 5 (Recommended for mobile devices)\n- 10 (Medium-sized map)\n- 15 (Full experienced, recommended for a monitor)\nEnter the number here: ";
 	//"What continent size do you want to play on? (5, 10, 15) "
 	std::string input = Input::getInputText(text, {"5", "10", "15" });
-	continentSize = std::stoi(input);
+	CV::continentSize = std::stoi(input);
 	//int *thing = db.getContinentSizePointer();
 	//continentSize = *thing;
 	OF::clearScreen();
 
-	std::cout << "Continent size " << RED << db.getContinentSize() << WHITE << " created..\n\n";
+	std::cout << "Continent size " << RED << CV::continentSize << WHITE << " created..\n\n";
 
 	int pNum = std::stoi(Input::getInputText("How many AI kingdoms will you fight? (1, 2, 3) ", { "number", "1", "2", "3" }));
 	std::cout << RED << pNum << WHITE << " opponent kingdoms generated... \n\n";
 	OF::clearScreen();
-	db.setMaxCommanders(continentSize);
+	db.setMaxCommanders(CV::continentSize);
 
-	enemyDifficulty = std::stoi(Input::getInputText("What gameplay difficulty do you want (1-3): ", { "number","1","2","3" }));
+	CV::enemyDifficulty = std::stoi(Input::getInputText("What gameplay difficulty do you want (1-3): ", { "number","1","2","3" }));
 	OF::clearScreen();
-	std::cout << "Gameplay difficulty " << RED << enemyDifficulty << WHITE << " selected. \n\n";
+	std::cout << "Gameplay difficulty " << RED << CV::enemyDifficulty << WHITE << " selected. \n\n";
 
 	generateNewContinent(pNum);
 }
@@ -153,9 +153,10 @@ void generateNewContinent(int pNum)
 void endScreen()
 {
 	OF::debugFunction("main, endScreen");
-	for (int x = 0; x <= (int)participantsList.size(); x++)
+	std::vector<Participants>* participantsListCopy = db.getParticipantsList();
+	for (int x = 0; x <= participantsListCopy->size(); x++)
 	{
-		if (participantsList[x].isAlive())
+		if (participantsListCopy[x]->isAlive())
 		{
 			std::cout << "Congratulatios to player " << participantsList[x].getKingdomName() << " for winning. You have successfully conquered your enemies and now reign as the Emperor! \n";
 

@@ -6,6 +6,7 @@
 
 #include "../Units/Participants.h"
 #include "../Units/Provinces.h"
+#include "../Units/AllUnits.h"
 #include "../Input.h"
 
 
@@ -13,28 +14,33 @@
 
 class ScoutMA {
 public:
+
+	typedef std::vector<CommanderProfile*> commanderProfilePtrs;
+	typedef std::vector<Provinces*> provincesPtrs;
+	typedef std::pair<commanderProfilePtrs, provincesPtrs> scoutTypes;
+
 	// Constructors
 	ScoutMA(Participants* newParticipant, Provinces* newProvince);
 
 	// Functions
 	void
 		selectTarget(),
-		playerScoutStepTwo();
+		playerScoutStepTwo(scoutTypes canScout);
 
-	int
-		selectUnitToScout(std::string& unitName, bool& isProvince, std::pair<int, int>& coordinates),
-		selectUnitToScoutTwo(std::string unitName, bool isProvince, std::pair<int, int> coordinates);
+	AllUnits
+		*selectUnitToScout(scoutTypes canScout),
+		*selectUnitToScoutTwo(scoutTypes canScout);
+
+	
+
+	scoutTypes getCanScout();
 
 	void
 		scoutLogCalculationsProvince(int accuracy),
-		getCanScout(),
-		getCanScoutTwo(int targetX, int targetY, int a, int b);
+		getCanScoutTwo(int targetX, int targetY, int a, int b, scoutTypes &canScout);
 
-	bool checkHasUnit(std::string unitName);
 
 private:
-	std::vector<CommanderProfile*> commandersCanScout;
-	std::vector<Provinces*> provincesCanScout;
 	std::vector<int> unitLevels;
 
 	int targetInformation[2]; //[0] is for whether it is a province (1) or

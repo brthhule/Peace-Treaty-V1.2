@@ -57,14 +57,14 @@ void ArmyOverviewMA::upgradeCommandersTwo()
 	if (proceedWithUpgradeQuestion == 'Y') {
 
 		std::array<int, 5> commanderCosts = costsArray;
-		bool commanderUpgradeIsSuccess = participant->getCapital()->subtractCheckResources(commanderCosts);
+		bool commanderUpgradeIsSuccess = participant->getCapitalProvince()->subtractCheckResources(commanderCosts);
 
 		if (commanderUpgradeIsSuccess == true) {
 			participant->getCommander(commanderName)->addLevel();
 			std::cout << "Upgrade successful; Commander " + commanderName + "is now level " << participant->getCommander(commanderName)->getLevel() << std::endl;
 		}
 		else {
-			participant->getCapital()->modifyResources(commanderCosts, true);
+			participant->getCapitalProvince()->modifyResources(commanderCosts, true);
 			std::cout << "Upgrade failed. " << std::endl;
 		}
 	}
@@ -102,7 +102,7 @@ void ArmyOverviewMA::trainCommanders() {
 }
 
 void ArmyOverviewMA::proceedWithTraining(std::array<int, 5> trainCosts) {
-	bool trainingSuccess = participant->getCapital()->subtractCheckResources(trainCosts);
+	bool trainingSuccess = participant->getCapitalProvince()->subtractCheckResources(trainCosts);
 
 	if (trainingSuccess == true)
 	{
@@ -114,7 +114,7 @@ void ArmyOverviewMA::proceedWithTraining(std::array<int, 5> trainCosts) {
 	else
 	{
 		std::cout << "Commander training failed (Not enough resources)... \n\n";
-		participant->getCapital()->modifyResources(trainCosts, true);
+		participant->getCapitalProvince()->modifyResources(trainCosts, true);
 	}
 }
 
@@ -150,6 +150,6 @@ void ArmyOverviewMA::printCosts(std::vector<int> costs, std::string type) {
 		std::cout << CV::RESOURCE_NAMES[x] << ": " << costs[x];
 
 	std::cout << "The following are the resources currently in your capital: \n";
-	participant->getCapital()->printResources();
+	participant->getCapitalProvince()->printResources();
 }
 

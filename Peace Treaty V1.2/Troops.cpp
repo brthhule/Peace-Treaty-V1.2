@@ -14,20 +14,18 @@ void Troops::mutateTroop(CV::TROOPS type, int level, CV::MutateDirection) {
 
 
 //--------Troop Functions--------
-//Return a troop by index or all troops-- done by type. Pass -1 for troopIndex to return all troops of a type
-template<typename T>
-T Troops::getTroop(CV::MutateTroopType type, int troopIndex, T data) {
-	std::array<int*, 3> troop = { &troopsPresent[troopIndex], &troopsInjured[troopIndex], &troopsLost[troopIndex] };
-	std::array<std::array<int, 5>*, 3> allTroops = { &troopsPresent, &troopsInjured, &troopsLost };
-	T* troopPtr;
+//Return a troop by index or all troops-- done by type
+std::array<int, 5> Troops::getTroop(CV::MutateTroopType type, int troopIndex, Quantity amount) {
 
-	if (troopIndex == -1) {
-		troopPtr = allTroops[type];
+	std::array<int, 5> troopCopy;
+
+	if (amount == SINGLE) {
+		troopCopy = *allTroopTypes[type];
+		troopCopy[0] = troopCopy[troopIndex];
+		return troopCopy;
 	}
-	else {
-		troopPtr = troop[type];
-	}
-	return *troopPtr;
+	
+	return *allTroopTypes[type];
 }
 
 //----Mutators----

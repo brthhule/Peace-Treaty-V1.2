@@ -210,7 +210,7 @@ Provinces* Participants::getYourProvince(int identifier) {
 	getYourProvince(identifier);
 
 	std::cout << "Invalid path... \n";
-	return this->getErrorProvince();
+	return NULL;
 }
 
 //The participant selects a province. Returns NULL if the user cancels this action
@@ -299,7 +299,7 @@ std::array<int, 5> Participants::calculateEach(int option)
 		delete newCommander;
 	}
 
-	for (Provinces* newProvince : provincesList)
+	for (Provinces* newProvince : provincesVector)
 	{
 		switch (option)
 		{
@@ -336,20 +336,22 @@ void Participants::showMapOld() {
 
 		for (int y = 0; y < CV::continentSize; y++) {
 			char letter = ' '; // Fix this later
-			Provinces* mapProvince = &provincesMap[x][y];
+			Provinces* mapProvince = getSystemProvince({x,y});
 
-			if (mapProvince->getParticipantIndex() == participantIndex)
-			{
+			if (mapProvince->getParticipantIndex() == participantIndex){
 				std::cout << BLUE;
-				if (mapProvince->isCapital() == true)
+				if (mapProvince->isCapital() == true) {
 					letter = 'C';
-				else
+				}
+				else {
 					letter = 'p';
+				}
+					
 			}
 			else if (mapProvince->getParticipantIndex() != -1)
 			{
 				std::cout << RED;
-				if (provincesMap[x][y].isCapital() == true)
+				if (getSystemProvince({x, y})->isCapital() == true)
 					letter = 'C';
 				else
 					letter = 'p';
@@ -453,7 +455,7 @@ void Participants::displayCommanders()
 Provinces* Participants::getCoords(int identifier) {
 	std::vector<std::string> actualCoordinatesAVTwo = { "-1" };
 	//range of possible coordinates
-	for (int x = 1; x <= continentSize; x++)
+	for (int x = 1; x <= CV::continentSize; x++)
 		actualCoordinatesAVTwo.push_back(std::to_string(x));
 
 	showMap();
@@ -471,36 +473,16 @@ Provinces* Participants::getCoords(int identifier) {
 		phrase = "of the army you want to use to attack the target with";
 	}
 
-	int xCoordinate = std::stoi(OF.getInput(false, -1, "Enter the x coordinate " + phrase + " (Enter '-1' to go back to previous menu): ", actualCoordinatesAVTwo, false, false));
+	int xCoordinate = std::stoi(getInputText("Enter the x coordinate " + phrase + " (Enter '-1' to go back to previous menu): ", actualCoordinatesAVTwo));
 	// Critical: check to make sure the coordinate checkings are correct
-	int yCoordinate = std::stoi(OF.getInput(false, -1, "Enter the y coordinate " + phrase + " (Enter '-1' to go back to previous menu): ", actualCoordinatesAVTwo, false, false));
+	int yCoordinate = std::stoi(getInputText("Enter the y coordinate " + phrase + " (Enter '-1' to go back to previous menu): ", actualCoordinatesAVTwo));
 
-	std::cout << "X Coordinate: " << xCoordinate << std::endl;
-	std::cout << "Y Coordinate: " << yCoordinate << std::endl;
-	if (xCoordinate != -1 && yCoordinate != -1)
-	{
-		int replacement = xCoordinate;
-		xCoordinate = OF.translateCoordinate(yCoordinate, 'y', 'I');
-		yCoordinate = OF.translateCoordinate(replacement, 'x', 'I');
-		std::cout << "Translated x: " << xCoordinate << std::endl;
-		std::cout << "Translated y: " << yCoordinate << std::endl;
-		OF.enterAnything();
-		Provinces* newProvince = &provincesMap[xCoordinate][yCoordinate];
-		return newProvince;
+
+	if (xCoordinate != -1 && yCoordinate != -1) {
+		return getUserProvince({ xCoordinate, yCoordinate });
 	}
 
-	if (xCoordinate == -1 || yCoordinate == -1) {
-		std::cout << "XCoord: " << xCoordinate << std::endl;
-		std::cout << "YCoord: " << yCoordinate << std::endl;
-		Provinces* newProvince = &provincesMap[xCoordinate][yCoordinate];
-		newProvince->setDeleteProvince();
-		return newProvince;
-	}
-
-	//Empty path
-	std::cout << "Error path...";
-	Provinces newProvince;
-	return &newProvince;
+	return NULL;
 }
 
 
@@ -511,7 +493,7 @@ Provinces* Participants::findProvince() {
 	Provinces* province = this->getCoords(1);
 
 	//Make sure the user wants to do this action. A -1 value means that 
-	if (province->getCoordinate('X') != -1) {
+	if (province->getSystemCoords().first != NULL) {
 		//If this province belongs to the current participant
 		int participantIndex = this->getParticipantIndex();
 		if (province->getParticipantIndex() == participantIndex) {
@@ -532,7 +514,7 @@ Provinces* Participants::findProvince() {
 	}
 
 	std::cout << "Error path...\n";
-	return this->getErrorProvince();
+	return NULL;
 }
 
 CommanderProfile* Participants::getSelectedCommander() {

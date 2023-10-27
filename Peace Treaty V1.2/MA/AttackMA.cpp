@@ -32,9 +32,9 @@ AttackMA::AttackMA(Provinces* defendingProvinceArg, Participants* attackingParti
 				);
 			if (checkFirstCoordinate && checkSecondCoordinate && checkBothCoordinates) {
 				std::pair<int, int> tempCoords(firstCoordinate, secondCoordinate);
-				Provinces* provincePtr = db.getProvince(tempCoords);
+				Provinces* provincePtr = db.tempParticipant.getSystemProvince(tempCoords);
 				if (provincePtr->getParticipantIndex() == attackingParticipantArg->getParticipantIndex()) {
-					for (CommanderProfile* commanderPtr : db.getProvince(tempCoords)->getAllCommanders()) {
+					for (CommanderProfile* commanderPtr : db.tempParticipant.getSystemProvince(tempCoords)->getAllCommanders()) {
 						commandersCanAttack.push_back(commanderPtr);
 					}
 					provincesCanAttack.push_back(provincePtr);
@@ -148,7 +148,7 @@ void AttackMA::playerCommitAttack()
 /*Basically go through each unit type and subtract 16CP worth of troops and keep going (done so that lost troops are distributed evenly among the various ranks, but there is still use to training lower rank troops as meat shields (if all lower troops are used up, then losses start piling up on higher rank troops; it's key to keep a healthy proportion of troops in your army))*/
 void AttackMA::calculateTroopsLost(CommanderProfile* commander, int lostCombatPower, std::array<int, 5>& troopsLost, int troopIndex) {
 
-	int troopPresent = commander->getTroop(REGULAR, troopIndex, troopIndex);
+	int troopPresent = commander->getTroop(REGULAR, troopIndex, CV::SINGLE)[0];
 
 	int troopCP = CV::TROOPS_CP[troopIndex];
 
@@ -197,7 +197,7 @@ void AttackMA::battleCalculationsTwo(int& lostCombatPower, int troopsLost[5], in
 	int z = abs(4 - troopIndex);
 
 	for (int b = 0; b < CV::TROOPS_CP[z]; b++) {
-		if (attackingCommander->getTroop(REGULAR, 5, -1) > 0) {
+		if (attackingCommander->getTroop(REGULAR, 5, SINGLE)[0] > 0) {
 			b = CV::TROOPS_CP[z];
 		}
 		else {

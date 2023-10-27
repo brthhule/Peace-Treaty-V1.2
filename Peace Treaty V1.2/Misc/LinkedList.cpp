@@ -47,27 +47,7 @@ void LinkedList::addNode (Provinces &provinceArg)
 	provincesNum ++;
 }
 
-Provinces* LinkedList::getProvinceByNum (int num)
-{
-	OF::debugFunction("LinkedList, getProvinceByNum");
-	std::cout << "GetProvinceByNum\n";
-	std::cout << "Num: " << num << std::endl;
-	
-	node *temp;
-	temp = head;
-	while (temp != NULL)
-	{
-		std::cout << "temp->province->getLLN: " << temp->province->getLinkedListNumber() << std::endl;
-		if (temp->province->getLinkedListNumber() == num)
-		{
-			return temp->province;
-		}
-	}
 
-	std::cout << "Error path... \n";
-	//Let's see if this works
-	return nullptr;
-}
 
 std::vector<Provinces> *LinkedList::createMap (int size)
 {
@@ -78,7 +58,7 @@ std::vector<Provinces> *LinkedList::createMap (int size)
 	for (int x = 0; x < size * size; x++)
 	{
 		Provinces newProvince (x);
-		newProvince.setKingdomName("EMPTY");
+		newProvince.setkingdomname("EMPTY");
 		addNode(newProvince);
 		//std::pair<std::string, Provinces> newValue(newProvince.getProvinceName(), newProvince);
 		provincesList.push_back(newProvince);
@@ -86,18 +66,5 @@ std::vector<Provinces> *LinkedList::createMap (int size)
 	return &provincesList;
 }
 
-void LinkedList::listProvinces()
-{
-	OF::debugFunction("LinkedList, listProvinces");
-	node *temp;
-	temp = head;
-	int a = 1;
-	while (temp != NULL)
-	{
-		std::cout << a << ") ";
-		std::cout << "Province Name: " << temp->province->getUnitName() << std::endl;
-		std::cout << "Province number: " << temp->province->getLinkedListNumber() << std::endl;
-		temp = temp->next;
-		a++;
-	}
+
 }

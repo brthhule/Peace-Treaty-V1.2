@@ -21,8 +21,7 @@ troopIndex: troop level?
 data: 
 use randomArray
 */
-	template<typename T>
-	T getTroop(CV::MutateTroopType type, int troopIndex, T data);
+	std::array<int, 5> getTroop(CV::MutateTroopType type, int troopIndex, Quantity amount);
 
 
 	//Change a troop by index or all trypes.
@@ -41,6 +40,12 @@ protected:
 		troopsPresent = { 0, 0, 0, 0, 0 },
 		troopsInjured = { 0, 0, 0, 0, 0 },
 		troopsLost = { 0, 0, 0, 0, 0 };
+
+		std::array<std::array<int, 5>*, 3> allTroopTypes = {
+			&troopsPresent,
+			&troopsInjured,
+			&troopsLost
+		};
 
 	std::array <std::array<int, 5>*, 5> allTroops = {
 		&allGuards,
