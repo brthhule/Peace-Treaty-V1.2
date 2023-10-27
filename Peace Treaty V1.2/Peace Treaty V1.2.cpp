@@ -149,24 +149,25 @@ void generateNewContinent(int pNum)
 	std::cout << "Created participants";
 }
 
-
+//Call this function when all winning condition has been met
 void endScreen()
 {
 	OF::debugFunction("main, endScreen");
 	std::vector<Participants>* participantsListCopy = db.getParticipantsList();
-	for (int x = 0; x <= participantsListCopy->size(); x++)
-	{
-		if (participantsListCopy[x]->isAlive())
-		{
-			std::cout << "Congratulatios to player " << participantsList[x].getKingdomName() << " for winning. You have successfully conquered your enemies and now reign as the Emperor! \n";
+	Participants* currentParticipant;
 
+	for (int x = 0; x <= participantsListCopy->size(); x++) {
+		if (currentParticipant->isAlive()) {
+			currentParticipant = &participantsListCopy->at(x);
 		}
 	}
+
+	std::cout << "Congratulations to player " << currentParticipant->getKingdomName() << " for winning. You have successfully conquered your enemies and now reign as the Emperor! \n";
+
 	char playAgain = Input::getInputText("Play again? (Y/N) ", { "letter", "Y", "N" }).at(0);
 	
 	
-	if (playAgain == 'Y')
-	{
+	if (playAgain == 'Y') {
 		main();
 	}
 }
@@ -198,11 +199,15 @@ void gamePlay()
 	//Check game end
 	//If there are more than one players, keep playing
 	int participantsAlive = 0;
-	for (Participants newParticipant : participantsList)
-		if (newParticipant.isAlive() == true)
+	for (Participants newParticipant : *db.getParticipantsList()) {
+		if (newParticipant.isAlive() == true) {
 			participantsAlive++;
-
-	//(participantsAlive > 1) ? gamePlay() : OF.nothing();
+		}
+	}
+		
+	if (participantsAlive > 1) {
+		gamePlay();
+	}
 
 	endScreen();
 }

@@ -8,9 +8,6 @@ std::array<int, 5> Troops::getAllOneTroop(CV::TROOPS type) {
 	return *allTroops[type];
 }
 
-void Troops::mutateTroop(CV::TROOPS type, int level, CV::MutateDirection) {
-
-}
 
 
 //--------Troop Functions--------
@@ -30,29 +27,24 @@ std::array<int, 5> Troops::getTroop(CV::MutateTroopType type, int troopIndex, Qu
 
 //----Mutators----
 //Change troops of type index at this unit by amount
-template<typename T>
-T Troops::mutateTroop(CV::MutateTroopType type, int troopIndex, T amount, CV::MutateDirection direction) {
-	T* troopPtr;
-	std::array<int*, 3> troop = { &troopsPresent[troopIndex], &troopsInjured[troopIndex], &troopsLost[troopIndex] };
-	std::array<std::array<int, 5>*, 3> allTroops = { &troopsPresent, &troopsInjured, &troopsLost };
+void Troops::mutateTroop(CV::MutateTroopType type, int troopIndex, std::array<int,5> amount, Quantity quant, CV::MutateDirection direction) {
+	int modifier = -1;
 
-	if constexpr (std::is_same_v<T, int>) {
-		troopPtr = troopTypes[type];
-
-		if (direction) {
-			troopPtr += amount;
-			delete troopPtr;
-			return;
-		}
-		troopPtr -= amount;
-		delete troopPtr;
-		return;
+	if (direction == INCREASE) {
+		modifier = 1;
 	}
-	else if (constexpr (std::is_same_v < T, std::array<int, 5>)) {
-		troopPtr = allTroops[type];
-		*troopPtr = OF::modifyArray(*troopsPtr, amounts, direction);
-		delete troopPtr;
-		return;
+	
+	switch (quant) {
+		case SINGLE: {
+			allTroopTypes[type]->at(troopIndex) += amount[0] * modifier;
+			break;
+		}
+		case ALL: {
+			for (int x = 0; x < 5; x++) {
+				allTroopTypes[type]->at(troopIndex) += amount[x];
+			}
+			break;
+		}
 	}
 }
 

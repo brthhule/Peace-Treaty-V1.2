@@ -23,13 +23,10 @@ public:
 
 	// Stats stuff
 	int
-		getCommanderStat(int index),
-		printCommanderScoutReport(int idex);
+		getCommanderStat(int index);
+
 	void
 		printCommanderStats(),
-
-		updateCommanderScoutReport(int index, int value),
-		completeCommanderScoutReport(int accuracy),
 
 		printCosts(std::array<int, 5> costs),
 		addLevel(),

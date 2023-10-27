@@ -4,8 +4,10 @@
 #include <iostream>
 #include <array>
 #include <vector>
+#include <unordered_map>
 
 #include "CommanderReport.h"
+#include "../Peace Treaty V1.2/Units/CommanderProfile.h"
 
 class ProvinceReport {
 public:

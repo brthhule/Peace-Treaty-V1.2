@@ -3,13 +3,13 @@
 void Map::setMap() {
 	int overallIndex = 0;
 	for (int x = 0; x < CV::continentSize; x++) {
-		std::vector<Provinces> tempVector = {};
+		std::vector<Provinces*> tempVector = {};
 		for (int y = 0; x < CV::continentSize; y++) {
-			Provinces newProvince(-1, overallIndex);
-			newProvince.setOverallIndex(overallIndex);
+			Provinces *newProvince = new Provinces(overallIndex);
+			newProvince->setOverallIndex(overallIndex);
 			overallIndex++;
 			tempVector.push_back(newProvince);
-			mapMap[newProvince.getUnitName()] = &newProvince;
+			mapMap[newProvince->getUnitName()] = newProvince;
 		}
 		map.push_back(tempVector);
 	}
@@ -36,7 +36,7 @@ void Map::showMap() {
 
 void Map::meat(int x, int y) {
 	char letter = ' ';
-	Provinces* currentProvince = &map[x][y];
+	Provinces* currentProvince = map[x][y];
 
 	//Player province
 	if (currentProvince->getParticipantIndex() == currentParticipantIndex)
@@ -86,13 +86,13 @@ void Map::printXAxis() {
 //Only for system coords
 //First int should be row, second int should be column
 Provinces* Map::getSystemProvince(std::pair<int, int> systemCoords) {
-	return &map[systemCoords.first][systemCoords.second];
+	return map[systemCoords.first][systemCoords.second];
 }
 Provinces* Map::getUserProvince(std::pair<int, int> userCoords) {
 	for (int row = 0; row < CV::continentSize; row++) {
 		for (int col = 0; col < CV::continentSize; col++) {
-			if (map[row][col].getUserCoords() == userCoords) {
-				return &map[row][col];
+			if (map[row][col]->getUserCoords() == userCoords) {
+				return map[row][col];
 			}
 		}
 	}
@@ -105,8 +105,8 @@ void Map::updateTurnResources() {
 	OF::debugFunction("main, updateTurnResources");
 	for (int x = 0; x < CV::continentSize; x++) {
 		for (int y = 0; y < CV::continentSize; y++) {
-			map[x][y].updateBuildingsProduction();
-			map[x][y].updateProvinceResources();
+			map[x][y]->updateBuildingsProduction();
+			map[x][y]->updateProvinceResources();
 		}
 	}
 }

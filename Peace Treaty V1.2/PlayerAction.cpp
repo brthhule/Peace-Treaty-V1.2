@@ -23,7 +23,7 @@ void PlayerAction::initialDecision() {
     std::cout << "Player " << participant->getKingdomName() << "'s move...";
     std::cout << "\n\nWelcome to the Main Action menu \n\n\n";
 
-    db.showMap();
+    db.tempParticipant.showMap();
     
     courseOfAction = Input::getOptionPrompt(PLAYER_ACTION).at(0);
   }
@@ -89,11 +89,11 @@ char PlayerAction::randomAction() {
 void PlayerAction::pauseGame() {
 	OF::debugFunction("PlayerAction, pauseGame");
   std::string gameCode;
-  gameCode += continentSize;
+  gameCode += CV::continentSize;
 
-  for (int x = 0; x < continentSize; x++) {
-    for (int y = 0; y < continentSize; y++) {
-      gameCode += provincesMap[x][y].getParticipantIndex();
+  for (int x = 0; x < CV::continentSize; x++) {
+    for (int y = 0; y < CV::continentSize; y++) {
+        //gameCode += participant->getSystemProvince({x, y}).getParticipantIndex();
     }
   }
   std::cout << "Game ended... \nHere is your game code (Copy this code and "

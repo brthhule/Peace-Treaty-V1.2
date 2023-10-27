@@ -122,7 +122,7 @@ void Database::Mobility::moveUnitOne(CommanderProfile* commander) {
 		// If it's peaceful (moving to one of their own provinces)
 		if (situation == FRIENDLY_PROVINCE) {
 			//Remove commander from previous province
-			getSystemProvince(commander->getSystemCoords())->removeCommander(commander);
+			tempParticipant.getSystemProvince(commander->getSystemCoords())->removeCommander(commander);
 			//Change commander coords to province coords
 			commander->setCoords(provinceSelected->getSystemCoords(), provinceSelected->getUserCoords());
 			//Add the commander to the province's list of commanders

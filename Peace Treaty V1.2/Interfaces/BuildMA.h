@@ -1,15 +1,21 @@
 #ifndef BUILDMA_H
 #define BUILDMA_H
 
+#include <iostream>
+#include "../Build.h"
+
+using namespace Build;
+
 class BuildMA
 {
 protected:
 	//BuildMA() {};
 	//~BuildMA() {};
-	virtual void playerBuildFunction() = 0,
+	void virtual
+		playerBuildFunction() = 0,
 		upgradeBuildings() = 0,
-		upgradeBuildings2(char buildingLetter, int buildingNumber, std::array<int, 5> requiredResources, std::vector<std::string> buildingLetterList) = 0,
-		printInformation(int buildingNumber, std::array<int, 5> requiredResources, std::vector<std::string> buildingLetterList) = 0;
+		upgradeBuildings2(char optionChar) = 0,
+		printInformation(Build::BuildingType type, std::array<int, 5> requiredresources, int buildingindex) = 0;
 };
 
 #endif

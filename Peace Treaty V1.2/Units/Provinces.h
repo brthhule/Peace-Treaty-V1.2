@@ -57,18 +57,20 @@ public:
 		addCommander(CommanderProfile* newCommander),
 		removeCommander(CommanderProfile* newCommander),
 		printCommanders(),
-
+		printInformation(Build::BuildingType type, std::array<int, 5> requiredresources, int buildingindex),
 		updateBuildingsProduction(),
 		updateProvinceResources(),
 		playerBuildFunction(),
 		upgradeBuildings(),
 		upgradeBuildings2(char optionchar),
-		printinformation(Build::BuildingType type, std::array<int, 5> requiredresources, int buildingindex),
-		setkingdomname(std::string name),
-		setoverallindex(int index),
+		setKingdomName(std::string name),
+		setOverallIndex(int index),
 
 
 		createReport(int scouterLevelArg, int targetLevelArg);
+
+
+		
 
 	//type (resource, other), other/resourceLevels, name of object in Levels list
 	template<typename T>

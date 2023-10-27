@@ -213,45 +213,7 @@ Provinces* Participants::getYourProvince(int identifier) {
 	return NULL;
 }
 
-//The participant selects a province. Returns NULL if the user cancels this action
-Provinces* Participants::getCoords(int identifier) {
-	std::vector<std::string> actualCoordinatesAVTwo = { "-1" };
-	//range of possible coordinates
-	for (int x = 1; x <= CV::continentSize; x++)
-		actualCoordinatesAVTwo.push_back(std::to_string(x));
 
-	//showMap();
-	std::string phrase;
-	switch (identifier) {
-	case 1:
-		printListOfProvinces();
-		phrase = "of the province you want to select";
-		break;
-	case 2:
-		printListOfProvinces();
-		phrase = "of the province you want to move to";
-		break;
-	case 3:
-		phrase = "of the army you want to use to attack the target with";
-	}
-
-	std::pair<int, int> userCoords;
-	userCoords.first = std::stoi(Input::getInputText("Enter the x coordinate " + phrase + " (Enter '-1' to go back to previous menu): ", actualCoordinatesAVTwo));
-	// Critical: check to make sure the coordinate checkings are correct
-	userCoords.second = std::stoi(Input::getInputText("Enter the y coordinate " + phrase + " (Enter '-1' to go back to previous menu): ", actualCoordinatesAVTwo));
-
-	if (userCoords.first != -1 && userCoords.second != -1)
-	{
-		
-		OF::enterAnything();
-		Provinces* newProvince = getUserProvince(userCoords);
-		return newProvince;
-	}
-
-
-	//Selected -1
-	return NULL;
-}
 
 int Participants::getRandomCoordinate() { return rand() % CV::continentSize; }
 
@@ -284,13 +246,13 @@ std::array<int, 5> Participants::calculateEach(int option)
 		switch (option)
 		{
 		case 1://Calculate each Unit
-			returnArray = OF::modifyArray(returnArray, newCommander->getAllTroopsPresent(), true);
+			returnArray = OF::modifyArray(returnArray, newCommander->getTroop(REGULAR, NULL, ALL), true);
 			break;
 		case 2://Calculate each resource
 			returnArray = OF::modifyArray(returnArray, newCommander->getAllResources(), true);
 			break;
 		case 3://calculate each troop lost
-			returnArray = OF::modifyArray(returnArray, newCommander->getAllTroopsLost(), true);
+			returnArray = OF::modifyArray(returnArray, newCommander->getTroop(LOST, NULL, ALL), true);
 			break;
 		default:
 			break;
@@ -304,13 +266,13 @@ std::array<int, 5> Participants::calculateEach(int option)
 		switch (option)
 		{
 		case 1://Calculate each Unit
-			returnArray = OF::modifyArray(returnArray, newProvince->getAllTroopsPresent(), true);
+			returnArray = OF::modifyArray(returnArray, newProvince->getTroop(REGULAR, NULL, ALL), true);
 			break;
 		case 2://Calculate each resource
 			returnArray = OF::modifyArray(returnArray, newProvince->getAllResources(), true);
 			break;
 		case 3://calculate each troop lost
-			returnArray = OF::modifyArray(returnArray, newProvince->getAllTroopsLost(), true);
+			returnArray = OF::modifyArray(returnArray, newProvince->getTroop(LOST, NULL, ALL), true);
 			break;
 		default:
 			break;
@@ -450,7 +412,6 @@ void Participants::displayCommanders()
 		delete tempCommander;
 	}
 }
-
 
 Provinces* Participants::getCoords(int identifier) {
 	std::vector<std::string> actualCoordinatesAVTwo = { "-1" };

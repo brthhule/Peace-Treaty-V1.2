@@ -106,8 +106,8 @@ void AttackMA::playerCommitAttack()
 		injuredTroops[x] = troopsLost[x] / (2 * enemyDifficulty);
 		troopsLost[x] -= injuredTroops[x];
 	}
-	attackingCommander->mutateTroop(INJURED, -1, injuredTroops, INCREASE);
-	attackingCommander->mutateTroop(LOST, -1, troopsLost, INCREASE);
+	attackingCommander->mutateTroop(INJURED, NULL, injuredTroops, ALL, INCREASE);
+	attackingCommander->mutateTroop(LOST, NULL, troopsLost, ALL, INCREASE);
 
 	std::cout << "  Results: \n\n";
 	printResourcesGained();
@@ -204,8 +204,8 @@ void AttackMA::battleCalculationsTwo(int& lostCombatPower, int troopsLost[5], in
 			if (lostCombatPower > 0) {
 				lostCombatPower -= CV::TROOPS_CP[troopIndex];
 				troopsLost[troopIndex]++;
-				attackingCommander->mutateTroop(REGULAR, troopIndex, 1, DECREASE);
-				attackingCommander->mutateTroop(LOST, troopIndex, -1, INCREASE);
+				attackingCommander->mutateTroop(REGULAR, troopIndex, {1}, SINGLE, DECREASE);
+				attackingCommander->mutateTroop(LOST, troopIndex, {1}, SINGLE, INCREASE);
 			}
 			else
 				b = CV::TROOPS_CP[z];
