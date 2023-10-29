@@ -6,6 +6,10 @@
 
 	// Constructor
 //Constructor
+Participants::Participants() {
+
+}
+
 Participants::Participants(int pIndex) {
 	std::cout << "Add commander\n";
 	addCommander();

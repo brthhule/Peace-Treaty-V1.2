@@ -33,6 +33,7 @@ class Participants : Map
 {
 public:
 	//constructors
+	Participants();
 	Participants(int pIndex);
 	
 	std::array<int, 5> 
@@ -111,7 +112,7 @@ public:
 	Provinces *getSystemProvince(std::pair<int, int> systemCoords),
 			  *getCoords(int identifer);
 
-
+	const Provinces* tempProvince = new Provinces;
 private:
 	std::string kingdomName = " ";
 	bool playerStatus;//true = player, false = AI

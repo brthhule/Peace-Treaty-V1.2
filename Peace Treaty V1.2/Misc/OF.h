@@ -23,12 +23,6 @@ extern int currentParticipantIndex;
 
 namespace OF {
 	static const bool debuggingMode = true;
-	// Map stuff
-	int translateCoordinate(int coordinate, char indicator, char whichWay);
-	int translateCoordinateInput(int coordinate, char indicator);
-	int translateCoordinateOutput(int coordinate, char indicator);
-	std::string printCoordinates(std::array<int, 2> coordinates);
-	int translateCoordinateToLL(int x, int y);
 
 	// Name Functionality
 	std::string createRandomName();
@@ -39,7 +33,6 @@ namespace OF {
 
 	//Manipulate vectors
 	std::array<int, 5> modifyArray(std::array<int, 5> primeArray, std::array<int, 5> secondaryArray, bool isAdd);
-	void printResources(std::array<int, 5> resourcesArray);
 
 	//Debugging
 	void debugFunction(std::string functionName);

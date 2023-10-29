@@ -51,7 +51,7 @@ public:
 
 
 	std::string getUnitName();
-
+	void printResources(std::array<int, 5> resourcesArray);
 
 protected:
 	std::array<int, 5>

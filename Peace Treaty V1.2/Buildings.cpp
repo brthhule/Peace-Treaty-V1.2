@@ -10,84 +10,109 @@ Buildings::Buildings() {
 
 
 //Use struct/class here to pass to template, maybe don't use template??? Use returnArray or returnInt for arrayArg
-template<typename T>
-std::array<int, 5> Buildings::getBuildingLevel(Build::BuildingType type, int index, CV::Quantity quant, std::array<T, 5> arrayArg) {
+std::array<int, 5> Buildings::getBuildingLevel(Build::BuildingType type, int index, CV::Quantity quant) {
+
+	std::array<int, 5> arrayCopy, returnArray;
+	arrayCopy = *levels.first;
+	if (type) {
+		arrayCopy = *levels.second;
+	}
+
 	switch (quant) {
-	case SINGLE:
-		arrayArg[0] = levels[type][index];
-		return arrayArg;
-	case ALL:
-		return *levels[type];
+		case SINGLE:
+			returnArray[0] = arrayCopy[index];
+			break;
+		case ALL:
+			returnArray = arrayCopy;
 	}
+	return returnArray;
 }
 
 /*Use returnArray or returnInt for arrayArg*/
-template <typename T>
-std::array<int, 5> Buildings::getCapacity(Build::BuildingType type, int name, CV::Quantity amount, std::array<T, 5> arrayArg) {
+std::array<int, 5> Buildings::getCapacity(Build::BuildingType type, int name, CV::Quantity amount) {
+
+	std::array<int, 5> arrayCopy, returnArray;
+	arrayCopy = *levels.first;
+	if (type) {
+		arrayCopy = *levels.second;
+	}
 
 	switch (amount) {
-	case SINGLE:
-		std::array<int, 5> tempArray = levels[type];
-		arrayArg[0] = tempArray[name];
-		break;
-	case ALL:
-		for (int x = 0; x < 5; x++) {
-			arrayArg[x] = levels[type][x] * (int)capacityAmounts[x];
-		}
+		case SINGLE:
+			returnArray[0] = arrayCopy[name];
+			break;
+		case ALL:
+			for (int x = 0; x < 5; x++) {
+				returnArray[x] = arrayCopy[x] * (int)capacityAmounts[x];
+			}
 	}
-	return arrayArg;
+	return returnArray;
 }
 
 /*Use returnArray or returnInt for arrayArg*/
-template<typename T>
-std::array<int, 5> Buildings::getResourceProduction(Build::ResourceBuildings name, CV::Quantity amount, std::array<T, 5> arrayArg) {
+std::array<int, 5> Buildings::getResourceProduction(Build::ResourceBuildings name, CV::Quantity amount) {
+	std::array<int, 5> arrayCopy, returnArray;
+	arrayCopy = *levels.first;
+
 
 	switch (amount) {
-	case SINGLE:
-		arrayArg[0] = resourceBuildingsLevels[name] * resourceProduction[name];
-		break;
-	case ALL:
-		for (int x = 0; x < 5; x++) {
-			arrayArg[0] = resourceBuildingsLevels[x] * resourceProduction[x];
-		}
-		break;
+		case SINGLE:
+			returnArray[0] = arrayCopy[name] * resourceProduction[name];
+			break;
+		case ALL:
+			for (int x = 0; x < 5; x++) {
+				returnArray[0] = arrayCopy[x] * resourceProduction[x];
+			}
+			break;
 	}
-	
-	return arrayArg;
+
+	return returnArray;
 }
 
-/*Purpose: Changes the level of a building. 
-*type: determines whether the building is a resource or other building. 
+/*Purpose: Changes the level of a building.
+*type: determines whether the building is a resource or other building.
 *
-*name: is the name of the building withing the resource/other building array. 
+*name: is the name of the building withing the resource/other building array.
 *
-*quant: is whether or not only 1 level or all levels of a type of building is being mutated. 
+*quant: is whether or not only 1 level or all levels of a type of building is being mutated.
 *
 *direction: determines whether the process is addition or subtraction.*/
-template<typename T>
-T Buildings::mutateLevel(Build::BuildingType type, int name, T amount, CV::Quantity quant, CV::MutateDirection direction) {
-	switch (quant) {
-	case SINGLE:
-		switch (direction) {
-		case INCREASE:
-			levels[type][name] += amount;
-			break;
-		case DECREASE:
-			levels[type][name] -= amount;
-			break;
-		}
-		break;
-	case ALL:
-		switch (direction) {
-		case INCREASE:
-			levels[type] = OF::modifyArray(levels[type], amount, true);
-			break;
-		case DECREASE:
-			levels[type] = OF::modifyArray(levels[type], amount, false);
-			break;
-		}
-		break;
+void Buildings::mutateLevel(Build::BuildingType type, int name, std::array<int, 5> amount, CV::Quantity quant, CV::MutateDirection direction) {
+
+	std::array<int, 5> arrayCopy = *levels.first;
+	if (type) {
+		arrayCopy = *levels.second;
 	}
+
+	switch (quant) {
+		case SINGLE:
+			switch (direction) {
+				case INCREASE:
+					arrayCopy[name] += amount[0];
+					break;
+				case DECREASE:
+					arrayCopy[name] -= amount[0];
+					break;
+			}
+			break;
+		case ALL:
+			switch (direction) {
+				case INCREASE:
+					arrayCopy = OF::modifyArray(arrayCopy, amount, true);
+					break;
+				case DECREASE:
+					arrayCopy = OF::modifyArray(arrayCopy, amount, false);
+					break;
+			}
+			break;
+	}
+
+	if (type) {
+		*levels.second = arrayCopy;
+		return;
+	}
+	*levels.first = arrayCopy;
+	return;
 }
 
 /*Return the amount of troops trained this turn - troopsTrainedThisTurn*/
@@ -98,7 +123,7 @@ int Buildings::getTroopsTrainedThisTurn() {
 void Buildings::printBuildingStats()
 {
 	OF::debugFunction("Provinces, printBuildingStats");
-	std::array<int, 5> productionArray = getResourceProduction(Build::CHURCH, CV::ALL, returnArray);
+	std::array<int, 5> productionArray = getResourceProduction(Build::CHURCH, CV::ALL);
 	std::cout << "\033[;34m";
 
 	std::cout << "Building stats of this province: " << std::endl;
@@ -111,7 +136,7 @@ void Buildings::printBuildingStats()
 	//Add implementation
 	std::cout << "Barracks (B) " << std::endl;
 	std::cout << "    Level: " << otherBuildingsLevels[0] << std::endl;
-	std::cout << "    Max training capacity: " << getCapacity(OTHER, BARRACKS, SINGLE, returnInt)[0] << "\n\n\033[;0m";
+	std::cout << "    Max training capacity: " << getCapacity(OTHER, BARRACKS, SINGLE)[0] << "\n\n\033[;0m";
 
 
 }
@@ -128,7 +153,7 @@ int Buildings::getProvinceLevel() {
 
 	unitLevel /= (int)resourceBuildingsLevels.size() + (int)otherBuildingsLevels.size();
 	return unitLevel;
-	
+
 }
 
 void Buildings::resetTroopsTrainedThisTurn()

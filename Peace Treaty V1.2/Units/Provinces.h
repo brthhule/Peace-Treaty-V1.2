@@ -28,6 +28,8 @@ class Provinces : public AllUnits, public BuildMA, public Buildings
 {
 public:
 	/*Constructors*/
+
+	Provinces();
 	Provinces(int overallIndexArg);
 
 	/*Initialization*/
@@ -73,8 +75,7 @@ public:
 		
 
 	//type (resource, other), other/resourceLevels, name of object in Levels list
-	template<typename T>
-	T upgradeBuildings3(Build::BuildingType type, std::array<int, 5>* listArg, T name);
+	void upgradeBuildings3(Build::BuildingType type, std::array<int, 5>* listArg, int name);
 
 	std::string getKingdomName() { return kingdomName; }
 	

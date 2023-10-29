@@ -18,17 +18,13 @@ public:
 	Buildings();
 
 	
-	template<typename T>
-	std::array<int, 5> getBuildingLevel(Build::BuildingType type, int index, CV::Quantity quant, std::array<T, 5> arrayArg);
-	
-	template<typename T>
-	std::array<int, 5> getResourceProduction(Build::ResourceBuildings name, CV::Quantity amount, std::array<T, 5> arrayArg);
+	/*These are functions*/
+	std::array<int, 5> 
+		getBuildingLevel(Build::BuildingType type, int index, CV::Quantity quant),
+		getResourceProduction(Build::ResourceBuildings name, CV::Quantity amount),
+		getCapacity(Build::BuildingType type, int name, CV::Quantity amount);
 
-	template<typename T>
-	std::array<int, 5> getCapacity(Build::BuildingType type, int name, CV::Quantity amount, std::array<T, 5> arrayArg);
-
-	template<typename T> 
-	T mutateLevel(Build::BuildingType type, int name, T amount, CV::Quantity quant, CV::MutateDirection direction);
+	void mutateLevel(Build::BuildingType type, int name, std::array<int,5> amount, CV::Quantity quant, CV::MutateDirection direction);
 
 	int 
 		getTroopsTrainedThisTurn(),
@@ -86,7 +82,8 @@ protected:
 	};
 
 private:
-	std::array<std::array<int, 5>*, 2> levels = { &resourceBuildingsLevels, &otherBuildingsLevels };
+	//First is RESOURCE, second is OTHER
+	std::pair<std::array<int, 5>*, std::array<int, 5>*> levels = { &resourceBuildingsLevels, &otherBuildingsLevels };
 
 	std::array<int, 5> 
 		capacityAmounts = { 10,10,10,10,10 },

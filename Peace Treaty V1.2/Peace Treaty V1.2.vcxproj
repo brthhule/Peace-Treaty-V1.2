@@ -141,7 +141,6 @@
     <ClCompile Include="MA\MapMA.cpp" />
     <ClCompile Include="MA\ScoutMA.cpp" />
     <ClCompile Include="MA\TrainMA.cpp" />
-    <ClCompile Include="Misc\LinkedList.cpp" />
     <ClCompile Include="Misc\OF.cpp" />
     <ClCompile Include="Peace Treaty V1.2.cpp" />
     <ClCompile Include="PlayerAction.cpp" />

@@ -52,8 +52,8 @@ void ScoutMA::playerScoutStepTwo(scoutTypes canScout) // Finish this later
 	std::pair<int, int> systemCoords;
 
 	AllUnits *unit = selectUnitToScout(canScout);
-	Participants tempParticipant(-1000000000000);
-	Provinces tempProvince();
+	Participants tempParticipant(-1000000000);
+	Provinces *tempProvince = new Provinces;
 	std::cout << "Proceed scout action with unit at " << tempParticipant.getSystemProvince(unit->getSystemCoords()) << "? (Y/N) ";
 	char proceedWithScoutChar = Input::getInputText("", { "Y", "N" }).at(0);
 
@@ -95,6 +95,10 @@ ScoutMA::scoutTypes ScoutMA::getCanScout()
 		for (int b = -1; b <= 1; b++)
 			getCanScoutTwo(targetX, targetY, a, b, canScout);
 	}
+
+	//Error case
+	ScoutMA::scoutTypes tempScout (NULL, NULL);
+	return tempScout;
 }
 
 void ScoutMA::getCanScoutTwo(int targetX, int targetY, int a, int b, ScoutMA::scoutTypes &canScout)

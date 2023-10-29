@@ -11,7 +11,7 @@ void TrainMA::TrainMAFunction() {
     db.tempParticipant.showMap();
 
 
-    int barracksLevel = province->getBuildingLevel(OTHER, BARRACKS, SINGLE, randomArray)[0];
+    int barracksLevel = province->getBuildingLevel(OTHER, BARRACKS, SINGLE)[0];
     std::cout << "Start printing province barracks information: \033[34m\n";
     std::cout << "Province of kingdom " << participant->getKingdomName() << " selected\n";
 
@@ -88,7 +88,8 @@ void TrainMA::TrainMAFunctionDoWhileLoop(int troopTier, int amountOfTroops) {
         requiredResources[0] *= amountOfTroops;
     }
     std::cout << "The required amount of resources are as follows: \n";
-    OF::printResources(requiredResources);
+    Provinces* tempProvince = new Provinces; 
+    tempProvince->printResources(requiredResources);
 
     std::cout << std::endl;
     char repeatProceedWithTraining = 'Y';
@@ -105,7 +106,7 @@ void TrainMA::TrainMAFunctionDoWhileLoop(int troopTier, int amountOfTroops) {
             else {
                 std::cout << "Training successful" << std::endl;
                 //This is the old troop system. Check this
-                province->mutateTroop(REGULAR, troopTier, amountOfTroops, INCREASE);
+                province->mutateTroop(REGULAR, troopTier, { amountOfTroops }, SINGLE, INCREASE);
             }
             break;
         }

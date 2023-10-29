@@ -154,7 +154,7 @@ void endScreen()
 {
 	OF::debugFunction("main, endScreen");
 	std::vector<Participants>* participantsListCopy = db.getParticipantsList();
-	Participants* currentParticipant;
+	Participants* currentParticipant = new Participants;
 
 	for (int x = 0; x <= participantsListCopy->size(); x++) {
 		if (currentParticipant->isAlive()) {

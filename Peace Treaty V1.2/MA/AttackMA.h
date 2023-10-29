@@ -40,7 +40,7 @@ public:
 		battleCalculationsTwo(int& lostCombatPower, int troopsLost[5], int troopIndex),
 		casualtyReport(std::array<int,5> troopsLost, std::array<int,5> injuredTroops);
 
-
+	
 private:
 	Provinces 
 		*attackingProvince, 

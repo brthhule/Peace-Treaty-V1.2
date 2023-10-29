@@ -4,7 +4,10 @@
 #define print(x) std::cout << x;
 #define println(x) std::cout << x << std::endl;
 
-
+//Empty constructor, used for temp provinces
+Provinces::Provinces() {
+	//Empty
+}
 Provinces::Provinces(int overallIndexArg)
 {
 	OF::debugFunction("Provinces, Provinces (3)");
@@ -33,7 +36,7 @@ std::pair<int, int> Provinces::translateToSystemCoords(std::pair<int, int> userC
 void Provinces::updateProvinceResources()
 {
 	OF::debugFunction("Provinces, updateProvinceResources");
-	std::array<int, 5> resourcesProduced = getResourceProduction(CHURCH, ALL, returnArray);
+	std::array<int, 5> resourcesProduced = getResourceProduction(CHURCH, ALL);
 	resourcesPresent = OF::modifyArray(resourcesPresent, resourcesProduced, true);
 }
 
@@ -148,7 +151,7 @@ void Provinces::playerBuildFunction() {
 		"---------- Start printing province information ----------";
 	CV::addColor(BLUE);
 	std::cout << "Province of kingdom " + getKingdomName();
-	std::cout << "Coordinates: " << getUserCoords << "\n\n";
+	std::cout << "Coordinates: " << getUserCoordsString() << "\n\n";
 	CV::addColor(RESET);
 
 	this->printResources();
@@ -212,8 +215,7 @@ void Provinces::setDeleteProvince() {
 	deleteProvince = true;
 }
 
-template<typename T>
-T Provinces::upgradeBuildings3(Build::BuildingType type, std::array<int, 5>* listArg, T name) {
+void Provinces::upgradeBuildings3(Build::BuildingType type, std::array<int, 5>* listArg, int name) {
 	int index = name;
 	//If other type
 	if (type)
@@ -222,9 +224,14 @@ T Provinces::upgradeBuildings3(Build::BuildingType type, std::array<int, 5>* lis
 	}
 
 	//Multiplies level by base line rate
-	std::array<int, 5> requiredResources = listArg[name] * upgradeRates[x];
+	std::array<int, 5> requiredResources;
+	for (int x = 0; x < 5; x++) {
+		requiredResources[x] = listArg->at(name) * upgradeRates[0][x];//Fix this later
+	}
 
-	printInformation(type, requiredResources, int buildingIndex);
+
+	int buildingIndex = NULL;//Fix this later
+	printInformation(type, requiredResources, buildingIndex);
 	char upgradeProceed = Input::getInputText("Proceed with upgrade? (Y/N) ", { "Y", "N" }).at(0);
 
 	if (upgradeProceed == 'Y') {
@@ -236,7 +243,7 @@ T Provinces::upgradeBuildings3(Build::BuildingType type, std::array<int, 5>* lis
 		}
 		else {
 			println("Upgrade successful.\n");
-			this->mutateLevel(buildingNumber, 1);
+			//this->mutateLevel(buildingIndex, {1}); fix this later
 		}
 	}
 }
@@ -276,6 +283,8 @@ std::array<std::array<int, 5>, 7> Provinces::getLists() {
 			tempOverallArray[row][column] = tempRowArray[column];
 		}
 	}
+
+	return tempOverallArray;
 }
 std::array<int, 7> Provinces::getListInt()
 {
@@ -283,6 +292,7 @@ std::array<int, 7> Provinces::getListInt()
 	for (int column = 0; column < 7; column++) {
 		listTemp[column] = *listInt[column];
 	}
+	return listTemp;
 }
 
 std::array<bool, 3> Provinces::getListBool()
@@ -291,6 +301,7 @@ std::array<bool, 3> Provinces::getListBool()
 	for (int column = 0; column < 3; column++) {
 		listTemp[column] = *listBool[column];
 	}
+	return listTemp;
 }
 
 std::array< std::pair<int, int>, 2> Provinces::getListCoords() {
@@ -340,6 +351,7 @@ void Provinces::createReport(int scouterLevelArg, int targetLevelArg) {
 		listBoolArg, 
 		getSystemCoords());
 	int turn = newReport.getReportTurn();
-	std::pair<int, ProvinceReport> reportPair (turn, newReport);
-	scoutReports.push_back(reportPair);
+	std::pair<int, ProvinceReport> sendReport(turn, newReport);
+	int index = 0;//Determine how to find this
+	scoutReports[index].push_back(sendReport);
 }

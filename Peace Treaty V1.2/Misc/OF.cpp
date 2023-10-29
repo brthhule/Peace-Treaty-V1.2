@@ -61,27 +61,12 @@ std::array<int, 5> OF::modifyArray(std::array<int, 5> primeArray, std::array<int
 	return primeArray;
 }
 
-void OF::printResources(std::array<int, 5> resourcesArray) {
-	debugFunction("OtherFunctions, printResources");
-	for (int x = 0; x < 5; x++)
-		std::cout << "- " << CV::RESOURCE_NAMES[x] << ": " << resourcesArray[x] << std::endl;
-
-	std::cout << std::endl;
-}
-
 void OF::enterAnything() {
 	debugFunction("OtherFunctions, enterAnything");
 	std::string emptyString = " ";
 	std::cout << "Enter anything to return to the previous menu: \033[31m";
 	getline(std::cin, emptyString);
 	println("\n\033[0m")
-}
-
-int OF::translateCoordinateToLL(int x, int y) {
-	debugFunction("OtherFunctions, translateCoordinateToLL");
-	int LLNumber = 0;
-	LLNumber = 25 - (5 * y) + x;
-	return LLNumber;
 }
 
 void OF::debugFunction(std::string functionName) {

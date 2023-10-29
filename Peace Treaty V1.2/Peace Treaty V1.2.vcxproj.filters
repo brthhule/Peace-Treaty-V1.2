@@ -75,9 +75,6 @@
     <ClCompile Include="Misc\OF.cpp">
       <Filter>Source Files\Misc</Filter>
     </ClCompile>
-    <ClCompile Include="Misc\LinkedList.cpp">
-      <Filter>Source Files\Misc</Filter>
-    </ClCompile>
     <ClCompile Include="Units\Provinces.cpp">
       <Filter>Source Files\Units</Filter>
     </ClCompile>

@@ -10,7 +10,7 @@ void MapMA::viewPlayerMap() {
 
 	//If the participant is a player
 	if (participant->isPlayer()) {
-		db.showMap();
+		db.tempParticipant.showMap();
 		println("Welcome to the View Map action menu");
 		whatToDo = Input::getOptionPrompt(VIEW_PLAYER_MAP).at(0);
 	} 
