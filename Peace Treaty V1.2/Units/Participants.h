@@ -1,61 +1,89 @@
 #ifndef PARTICIPANTS_H
 #define PARTICIPANTS_H
 
+#include <chrono>
+#include <cstdlib>
+#include <ctime>
 #include <iostream>
-#include <vector>
-
+#include <map>
 #include <string.h>
 #include <string>
-#include <cstdlib>
+#include <stdlib.h> 
+
 #include <time.h>
-#include <stdlib.h>  
-#include <ctime>
-#include <chrono>
 #include <thread>
-#include <stdlib.h>
-#include <map>
 #include <unordered_map>
+#include <vector>
+
 
 #include "AllUnits.h"
-#include "Provinces.h"
 #include "CommanderProfile.h"
+#include "Map.h"
+#include "Provinces.h"
 
-#include "../Misc/OF.h"
 #include "../Misc/ConstValues.h"
 #include "../Misc/LinkedList.h"
+#include "../Misc/OF.h"
 
-#include "Map.h"
+
+#define CONSTRUCTOR
 
 
 using namespace CV;
+using namespace OF;
 
 class Participants : Map
 {
 public:
-	//constructors
-	Participants();
-	Participants(int pIndex);
+	CONSTRUCTOR Participants();
+	CONSTRUCTOR Participants(int pIndex);
 	
-	std::array<int, 5> 
+	ARRAY
 		getTrainCosts(),
-		calculateEach(int option);
+		calculateEach(int option),
+		getAllUnitsArray();
 
 	std::unordered_map<std::string, CommanderProfile*> getCommandersMap() { return commandersMap; }
 
-	
-
-	bool 
+	BOOL 
 		subtractCheckResources(std::string provinceName, std::array<int, 5> resourcesArray),
 		hasProvince(std::string name),
-		hasCommander(std::string name);
+		hasCommander(std::string name),
+		isAlive(),
+		isPlayer(),
+		hasUnit(std::string unitName);
 
-	std::string 
+	CommanderProfile
+		* getCommander(std::string name),
+		* getSelectedCommander();
+
+	INT_VECTOR calculatePlayerValues(int decision);
+
+	INTEGER
+		calculateTotals(int option),
+		getRandomCoordinate(),
+		provincesNum(),
+		commandersNum(),
+		getAllUnitsAmount(),//Create funciton
+		getParticipantIndex();
+
+	//Coordinate stuff
+	Provinces
+		* getYourProvince(int identifier),
+		* findProvince(),
+		* getProvinceByName(std::string name),
+		* findProvince(std::pair<int, int> userCoords),
+		* getProvince(int index),
+		* getCapitalProvince(),
+		* getSystemProvince(std::pair<int, int> systemCoords),
+		* getCoords(int identifer);
+
+	STRING
 		getKingdomName(),
 		selectCommander(),
 		getNewName();
 
-	//AI
-	void
+	VOID
 		setCapital(Provinces* newProvince),
 		showMapOld(),
 
@@ -73,70 +101,45 @@ public:
 
 		setParticipantIndex(int num),
 		setKingdomName(std::string newName),
-		showMap();
+		showMap(),
+
+		getAllUnitsArrayCommanders(ARRAY& array),
+		getAllUnitsArrayProvinces(ARRAY& array);
 		
-
-
-	bool 
-		isAlive(),
-		isPlayer(),
-		hasUnit (std::string unitName);
-
-	//Stats
-	std::vector<int> calculatePlayerValues(int decision);
-
-	int 
-		calculateTotals(int option),
-		getRandomCoordinate(),
-		provincesNum(),
-		commandersNum(),
-
-		findAllUnits(),//Create funciton
-		getParticipantIndex();
-
-
-	//Coordinate stuff
-	Provinces 
-		*getYourProvince(int identifier),
-		*findProvince(),
-		*getProvinceByName(std::string name),
-		*findProvince(std::pair<int, int> userCoords),
-		*getProvince(int index),
-		*getCapitalProvince();
-
-
-	CommanderProfile
-		* getCommander(std::string name),
-		* getSelectedCommander();
-
-	Provinces *getSystemProvince(std::pair<int, int> systemCoords),
-			  *getCoords(int identifer);
-
 	const Provinces* tempProvince = new Provinces;
+
 private:
-	std::string kingdomName = " ";
-	bool playerStatus;//true = player, false = AI
-
-	std::vector <Provinces*> provincesVector;
-	std::unordered_map <std::string, CommanderProfile*> commandersMap;
-	std::unordered_map <std::string, Provinces*> provincesMap;
-	std::vector <CommanderProfile> commandersVector;
-
-	int 
-		capitalIndex,
-		participantIndex;
-
-	//Figure out sizes later
-	int AIMainAction[5];
-	int AIBuildMA[2];
-	int AITroopMA[3];
-	std::array <int, 5> 
+	ARRAY
 		trainCosts = { 5, 4, 3, 2, 1 },
 		troopsLost = { 0,0,0,0,0 };
 
-	std::unordered_map<std::string, CommanderProfile*>::iterator it;
-	Provinces* capitalProvince;
+	BOOL playerStatus;//true = player, false = AI
 
 	CommanderProfile* selectedCommander; //For ArmyDeploymentMA
+
+	INTEGER
+		//Figure out sizes later
+		AIMainAction[5],
+		AIBuildMA[2],
+		AITroopMA[3],
+
+		capitalIndex,
+		participantIndex;
+
+	Provinces* capitalProvince;
+
+	STRING kingdomName = " ";
+
+	std::unordered_map <std::string, CommanderProfile*> commandersMap;
+	std::unordered_map <std::string, Provinces*> provincesMap;
+	std::unordered_map<std::string, CommanderProfile*>::iterator it;
+
+	std::vector <Provinces*> provincesVector;
+	std::vector <CommanderProfile> commandersVector;
+	
+
+	
+
+	
 };
 #endif

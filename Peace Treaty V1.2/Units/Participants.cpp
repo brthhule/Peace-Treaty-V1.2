@@ -7,7 +7,14 @@
 	// Constructor
 //Constructor
 Participants::Participants() {
+	playerStatus = false;
+	capitalIndex = 0;
+	participantIndex = 0;
+	capitalProvince = new Provinces;
 
+	AIMainAction[5] = {};
+	AIBuildMA[2] = {};
+	AITroopMA[3] = {};
 }
 
 Participants::Participants(int pIndex) {
@@ -65,6 +72,7 @@ void Participants::addCommander() {
 	commandersVector.push_back(newCommander);
 	CommanderProfile* commanderPtr = &commandersVector[commandersVector.size() - 1];
 	commandersMap[newCommander.getUnitName()] = commanderPtr;
+
 	getCapitalProvince()->addCommander(commanderPtr);
 }
 
@@ -502,4 +510,40 @@ Provinces* Participants::getSystemProvince(std::pair<int, int> systemCoords) {
 
 void Participants::showMap() {
 	Map::showMap();
+}
+
+ARRAY Participants::getAllUnitsArray() {
+	ARRAY returnArray, returnArrayOne, returnArrayTwo;
+	std::thread th1(&Participants::getAllUnitsArrayCommanders, std::ref(returnArrayOne));
+	std::thread th2(&Participants::getAllUnitsArrayProvinces, std::ref(returnArrayTwo));
+
+	th1.join();
+	th2.join();
+
+	returnArray = modifyArray(returnArray, returnArrayOne, true);
+	returnArray = modifyArray(returnArray, returnArrayTwo, true);
+	return returnArray;
+}
+
+VOID Participants::getAllUnitsArrayCommanders(ARRAY &array) {
+	for (CommanderProfile instance : commandersVector) {
+		ARRAY commanderArray = instance.getTroop(REGULAR, -1, ALL);
+		array = OF::modifyArray(array, commanderArray, true);
+	}
+}
+
+VOID Participants::getAllUnitsArrayProvinces(ARRAY &array) {
+	for (Provinces *instance : provincesVector) {
+		ARRAY provincesArray = instance->getTroop(REGULAR, -1, ALL);
+		array = OF::modifyArray(array, provincesArray, true);
+	}
+}
+
+INTEGER Participants::getAllUnitsAmount() {
+	int amount = 0;
+	for (int x : getAllUnitsArray()) {
+		amount += x;
+	}
+
+	return amount;
 }

@@ -13,6 +13,7 @@
 #include <iomanip>
 #include <time.h>
 #include <unordered_map>
+#include <thread>
 
 
 //Player infrastructure
@@ -31,27 +32,11 @@
 //Main Actions
 #include "PlayerAction.h"
 
-
-
-//Linked lsit number, province address
-
-#define UNIT_AMOUNT 5
-
-char introduction();
 void resumeGame();
 void startGame();
 void generateNewContinent(int pNum);
 void gamePlay();
 void endScreen();
-
-void AITurn();
-/*Miscellaneous*/
-
-/*other important stuff*/
-
-int continentSize;
-int enemyDifficulty = 0;
-int turn = 1;
 
 using namespace CV;
 
@@ -62,6 +47,8 @@ Database db;
 
 int main()/*main code*/
 {
+	CV::CPUNum = std::thread::hardware_concurrency();
+
 	OF::debugFunction("main, main");
 	//srand((unsigned int)time(0));
 	OF::printFile("TxtFiles\\Synopsis.txt");
@@ -193,7 +180,7 @@ void gamePlay()
 			newPlayerAction.initialDecision();
 		}
 	}
-	turn++;
+	CV::turn++;
 	db.updateTurnResources();
 
 	//Check game end

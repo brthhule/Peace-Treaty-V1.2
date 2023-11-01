@@ -1,8 +1,9 @@
 #ifndef CONSTVALUES_H
 #define CONSTVALUES_H
 
-#include <iostream>
 #include <array>
+#include <iostream>
+#include <vector>
 
 #define UNIT_AMOUNT 5
 
@@ -188,12 +189,20 @@ namespace CV
 
 	int continentSize = 0,
 		//Implement definition of this
-		enemyDifficulty = 0;
+		enemyDifficulty = 0,
+		CPUNum = 0,
+		turn = 0,
+		UNIT_AMOUNT_CV = UNIT_AMOUNT;
 
 	void addColor(COLORS c),
 		 printPerson();
 
-	std::array<int, 5> randomArray;
+	typedef std::array<int, 5> ARRAY;
+	typedef int INTEGER;
+	typedef std::string STRING;
+	typedef void VOID;
+	typedef std::vector<int> INT_VECTOR;
+	typedef bool BOOL;
 }
 
 #endif		
