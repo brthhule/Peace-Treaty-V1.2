@@ -12,7 +12,7 @@
 #include "../Input.h"
 
 
-#include "../Misc/ConstValues.h"
+#include "../Misc/CV.h"
 
 //Warning: may cause circular dependency
 #include "../Units/Database.h"

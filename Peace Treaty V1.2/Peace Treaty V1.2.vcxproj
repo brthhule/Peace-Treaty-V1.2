@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -145,6 +145,7 @@
     <ClCompile Include="Peace Treaty V1.2.cpp" />
     <ClCompile Include="PlayerAction.cpp" />
     <ClCompile Include="ProvinceReport.cpp" />
+    <ClCompile Include="CV.cpp" />
     <ClCompile Include="Troops.cpp" />
     <ClCompile Include="Units\AllUnits.cpp" />
     <ClCompile Include="Units\CommanderProfile.cpp" />
@@ -202,7 +203,7 @@
     <ClInclude Include="MA\MapMA.h" />
     <ClInclude Include="MA\ScoutMA.h" />
     <ClInclude Include="MA\TrainMA.h" />
-    <ClInclude Include="Misc\ConstValues.h" />
+    <ClInclude Include="Misc\CV.h" />
     <ClInclude Include="Misc\OF.h" />
     <ClInclude Include="PlayerAction.h" />
     <ClInclude Include="ProvinceReport.h" />

@@ -21,7 +21,7 @@
 #include "Map.h"
 #include "Provinces.h"
 
-#include "../Misc/ConstValues.h"
+#include "../Misc/CV.h"
 #include "../Misc/LinkedList.h"
 #include "../Misc/OF.h"
 
@@ -42,6 +42,13 @@ public:
 		getTrainCosts(),
 		calculateEach(int option),
 		getAllUnitsArray();
+
+	static ARRAY
+		allCommandersArray,
+		allProvincesArray;
+
+	std::thread th1Method();
+	std::thread th2Method();
 
 	std::unordered_map<std::string, CommanderProfile*> getCommandersMap() { return commandersMap; }
 
@@ -103,8 +110,11 @@ public:
 		setKingdomName(std::string newName),
 		showMap(),
 
-		getAllUnitsArrayCommanders(ARRAY& array),
-		getAllUnitsArrayProvinces(ARRAY& array);
+		getAllUnitsArrayCommanders(),
+		getAllUnitsArrayProvinces(),
+
+		updateTurnResourcesParticipant(),
+		createMapParticipant();
 		
 	const Provinces* tempProvince = new Provinces;
 
@@ -118,11 +128,6 @@ private:
 	CommanderProfile* selectedCommander; //For ArmyDeploymentMA
 
 	INTEGER
-		//Figure out sizes later
-		AIMainAction[5],
-		AIBuildMA[2],
-		AITroopMA[3],
-
 		capitalIndex,
 		participantIndex;
 

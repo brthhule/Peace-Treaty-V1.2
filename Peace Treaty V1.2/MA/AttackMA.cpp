@@ -6,6 +6,15 @@ AttackMA::AttackMA(Provinces* defendingProvinceArg, Participants* attackingParti
 	defendingProvince = defendingProvinceArg;
 	std::pair<int, int> defenderSystemCoords = defendingProvince->getSystemCoords();
 
+	//Default
+	oldResources = ARRAY{ 1, 2, 3, 4, 5 };
+	defenseCanRetreat = false;
+	defendingParticipant = NULL;
+	attackingParticipant = NULL;
+	attackingCommander = NULL;
+	attackingProvince = NULL;
+	//End Default
+
 	std::vector<CommanderProfile*> commandersCanAttack;
 	std::vector<Provinces*> provincesCanAttack;
 
@@ -32,9 +41,11 @@ AttackMA::AttackMA(Provinces* defendingProvinceArg, Participants* attackingParti
 				);
 			if (checkFirstCoordinate && checkSecondCoordinate && checkBothCoordinates) {
 				std::pair<int, int> tempCoords(firstCoordinate, secondCoordinate);
-				Provinces* provincePtr = db.tempParticipant.getSystemProvince(tempCoords);
+
+				Participants* tempParticipant = new Participants;
+				Provinces* provincePtr = tempParticipant->getSystemProvince(tempCoords);
 				if (provincePtr->getParticipantIndex() == attackingParticipantArg->getParticipantIndex()) {
-					for (CommanderProfile* commanderPtr : db.tempParticipant.getSystemProvince(tempCoords)->getAllCommanders()) {
+					for (CommanderProfile* commanderPtr : tempParticipant->getSystemProvince(tempCoords)->getAllCommanders()) {
 						commandersCanAttack.push_back(commanderPtr);
 					}
 					provincesCanAttack.push_back(provincePtr);

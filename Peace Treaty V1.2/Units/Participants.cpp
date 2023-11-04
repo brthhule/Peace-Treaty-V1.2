@@ -4,6 +4,10 @@
 #define println(x) std::cout << x << std::endl;
 
 
+ARRAY Participants::allCommandersArray = {};
+ARRAY Participants::allProvincesArray = {};
+
+
 	// Constructor
 //Constructor
 Participants::Participants() {
@@ -12,9 +16,17 @@ Participants::Participants() {
 	participantIndex = 0;
 	capitalProvince = new Provinces;
 
-	AIMainAction[5] = {};
-	AIBuildMA[2] = {};
-	AITroopMA[3] = {};
+	//Default
+	selectedCommander = NULL;
+
+
+	//Defaults
+	commandersMap = std::unordered_map<std::string, CommanderProfile*>();
+	provincesMap = std::unordered_map<std::string, Provinces*>();
+	it = std::unordered_map<std::string, CommanderProfile*>::iterator();
+
+	provincesVector = std::vector<Provinces*>();
+	commandersVector = std::vector<CommanderProfile>();
 }
 
 Participants::Participants(int pIndex) {
@@ -25,6 +37,14 @@ Participants::Participants(int pIndex) {
 	std::cout << "Set kingdom name\n";
 	setKingdomName("-1");
 	participantIndex = pIndex;
+
+	//Defaults
+	commandersMap = std::unordered_map<std::string, CommanderProfile*>();
+	provincesMap = std::unordered_map<std::string, Provinces*>();
+	it = std::unordered_map<std::string, CommanderProfile*>::iterator();
+
+	provincesVector = std::vector<Provinces*>();
+	commandersVector = std::vector<CommanderProfile>();
 }
 
 // Accessors
@@ -512,30 +532,38 @@ void Participants::showMap() {
 	Map::showMap();
 }
 
-ARRAY Participants::getAllUnitsArray() {
-	ARRAY returnArray, returnArrayOne, returnArrayTwo;
-	std::thread th1(&Participants::getAllUnitsArrayCommanders, std::ref(returnArrayOne));
-	std::thread th2(&Participants::getAllUnitsArrayProvinces, std::ref(returnArrayTwo));
+ARRAY Participants::getAllUnitsArray() {;
+	ARRAY returnArray = {0,0,0,0,0};
 
-	th1.join();
-	th2.join();
+	Participants* p = new Participants();
+	try {
+		std::thread th1 = p->th1Method();
+		std::thread th2 = p->th2Method();
+		th1.join();
+		th2.join();
+	}
+	catch (...) {
+		getAllUnitsArrayCommanders();
+		getAllUnitsArrayProvinces();
+	}
+	
 
-	returnArray = modifyArray(returnArray, returnArrayOne, true);
-	returnArray = modifyArray(returnArray, returnArrayTwo, true);
+	returnArray = modifyArray(returnArray, allCommandersArray, true);
+	returnArray = modifyArray(returnArray, allProvincesArray, true);
 	return returnArray;
 }
 
-VOID Participants::getAllUnitsArrayCommanders(ARRAY &array) {
+VOID Participants::getAllUnitsArrayCommanders() {
 	for (CommanderProfile instance : commandersVector) {
 		ARRAY commanderArray = instance.getTroop(REGULAR, -1, ALL);
-		array = OF::modifyArray(array, commanderArray, true);
+		OF::modifyArray(allCommandersArray, commanderArray, true);
 	}
 }
 
-VOID Participants::getAllUnitsArrayProvinces(ARRAY &array) {
+VOID Participants::getAllUnitsArrayProvinces() {
 	for (Provinces *instance : provincesVector) {
 		ARRAY provincesArray = instance->getTroop(REGULAR, -1, ALL);
-		array = OF::modifyArray(array, provincesArray, true);
+		OF::modifyArray(allProvincesArray, provincesArray, true);
 	}
 }
 
@@ -546,4 +574,20 @@ INTEGER Participants::getAllUnitsAmount() {
 	}
 
 	return amount;
+}
+
+std::thread Participants::th1Method() {
+	return std::thread([=] {getAllUnitsArrayProvinces(); });
+}
+
+std::thread Participants::th2Method() {
+	return std::thread([=] {getAllUnitsArrayCommanders(); });
+}
+
+void Participants::updateTurnResourcesParticipant() {
+	this->updateTurnResources();
+}
+
+void Participants::createMapParticipant() {
+	setMap();
 }

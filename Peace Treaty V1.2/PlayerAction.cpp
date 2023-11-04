@@ -4,6 +4,9 @@
 
 PlayerAction::PlayerAction() {
 	OF::debugFunction("PlayerAction, PlayerAction (0)");
+
+	//Default
+	participant = NULL;
 }
 
 PlayerAction::PlayerAction(Participants* newP)
@@ -23,7 +26,9 @@ void PlayerAction::initialDecision() {
 		std::cout << "Player " << participant->getKingdomName() << "'s move...";
 		std::cout << "\n\nWelcome to the Main Action menu \n\n\n";
 
-		db.tempParticipant.showMap();
+		Participants* tempParticipant = new Participants();
+		tempParticipant->showMap();
+		delete tempParticipant;
 
 		courseOfAction = Input::getOptionPrompt(PLAYER_ACTION).at(0);
 	}

@@ -117,6 +117,9 @@
     <ClCompile Include="Troops.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CV.cpp">
+      <Filter>Source Files\Misc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\AdministrativeDocs\debugQuickAccess.txt">
@@ -244,7 +247,7 @@
     <ClInclude Include="Misc\OF.h">
       <Filter>Header Files\Misc</Filter>
     </ClInclude>
-    <ClInclude Include="Misc\ConstValues.h">
+    <ClInclude Include="Misc\CV.h">
       <Filter>Header Files\Misc</Filter>
     </ClInclude>
     <ClInclude Include="Interfaces\BuildMA.h">

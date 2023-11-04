@@ -1,4 +1,4 @@
-#include "../Peace Treaty V1.2/Misc/ConstValues.h"
+#include "../Peace Treaty V1.2/Misc/CV.h"
 
 using namespace CV;
 

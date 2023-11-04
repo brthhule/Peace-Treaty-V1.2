@@ -8,7 +8,9 @@ TrainMA::TrainMA()
 }
 
 void TrainMA::TrainMAFunction() {
-    db.tempParticipant.showMap();
+    Participants* tempParticipant = new Participants();
+    tempParticipant->showMap();
+    delete tempParticipant;
 
 
     int barracksLevel = province->getBuildingLevel(OTHER, BARRACKS, SINGLE)[0];

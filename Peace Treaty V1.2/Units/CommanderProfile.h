@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "AllUnits.h"
-#include "../Misc/ConstValues.h"
+#include "../Misc/CV.h"
 
 extern int turn;
 

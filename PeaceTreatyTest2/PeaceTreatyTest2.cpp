@@ -2,7 +2,7 @@
 #include "CppUnitTest.h"
 
 #include "../InfrastructureThing/Infrastructure.h"
-#include "../Peace Treaty V1.2/Misc/ConstValues.h"
+#include "../Peace Treaty V1.2/Misc/CV.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 

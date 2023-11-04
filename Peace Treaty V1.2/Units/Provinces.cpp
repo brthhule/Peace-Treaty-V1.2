@@ -7,6 +7,11 @@
 //Empty constructor, used for temp provinces
 Provinces::Provinces() {
 	//Empty
+	
+	//Defaults
+	isACapital = false;
+	newAccuracy = -1;
+	overallIndex = -1;
 }
 Provinces::Provinces(int overallIndexArg)
 {
@@ -21,7 +26,6 @@ Provinces::Provinces(int overallIndexArg)
 	OF::modifyArray(resourcesPresent, CV::INITIAL_VALUES, true);
 
 	unitLevel = 1;
-	deleteProvince = false;
 }
 
 std::pair<int, int> Provinces::translateToSystemCoords(std::pair<int, int> userCoordsArg) {
@@ -68,16 +72,6 @@ void Provinces::addCommander(CommanderProfile* newCommander)
 }
 
 
-
-
-
-
-
-bool Provinces::deleteStatus()
-{
-	OF::debugFunction("Provinces, deleteStatus");
-  return deleteProvince;
-}
 
 int Provinces::getTotalCP()
 {
@@ -209,10 +203,6 @@ void Provinces::upgradeBuildings2(char optionChar) {
 	//Type is resource
 	upgradeBuildings3(type, &resourceBuildingsLevels, Build::ResourceBuildings(option));
 
-}
-
-void Provinces::setDeleteProvince() {
-	deleteProvince = true;
 }
 
 void Provinces::upgradeBuildings3(Build::BuildingType type, std::array<int, 5>* listArg, int name) {

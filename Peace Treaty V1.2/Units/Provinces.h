@@ -7,7 +7,7 @@
 
 #include "AllUnits.h"
 #include "CommanderProfile.h"
-#include "../Misc/ConstValues.h"
+#include "../Misc/CV.h"
 #include "../Interfaces/BuildMA.h"
 #include "../Input.h"
 #include "../Coordinates.h"
@@ -53,14 +53,12 @@ public:
 
 	void
 		makeCapital(int participantIndexArg),
-		setDeleteProvince(),
 		initializeCapitalStats(),
 
 		addCommander(CommanderProfile* newCommander),
 		removeCommander(CommanderProfile* newCommander),
 		printCommanders(),
 		printInformation(Build::BuildingType type, std::array<int, 5> requiredresources, int buildingindex),
-		updateBuildingsProduction(),
 		updateProvinceResources(),
 		playerBuildFunction(),
 		upgradeBuildings(),
@@ -124,15 +122,12 @@ private:
 		&overallIndex
 	};
 
-	std::array<bool*, 3> listBool = {
+	std::array<bool*, 2> listBool = {
 		&canSelectThisUnit, 
 		&isACapital,
-		&deleteProvince
 	};
 
-	bool 
-		isACapital,
-		deleteProvince;
+	bool isACapital;
 
 	int overallIndex;
 

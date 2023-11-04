@@ -13,12 +13,9 @@
 #include <vector>
 #include <fstream>
 
-#include "ConstValues.h"
+#include "CV.h"
 
 using namespace CV;
-
-extern int continentSize;
-extern int currentParticipantIndex;
 
 
 namespace OF {

@@ -1,5 +1,33 @@
 #include "Build.h"
 
+namespace Build {
+	/*"BARRACKS",
+		"INFIRMARY",
+		"LIBRARY",
+		"WALL",
+		"RESIDENCES" */
+	CV::StringArray OtherBuildingsString = {
+		"BARRACKS",
+		"INFIRMARY",
+		"LIBRARY",
+		"WALL",
+		"RESIDENCES"
+	};
+
+	/*"FARM",
+		"LUMBER_MILL",
+		"QUARRY",
+		"MINE",
+		"CHURCH" */
+	CV::StringArray ResourceBuildingsString = {
+		"FARM",
+		"LUMBER_MILL",
+		"QUARRY",
+		"MINE",
+		"CHURCH"
+	};
+}
+
 std::string Build::OtherBuildingsToString(OtherBuildings arg) {
 	return OtherBuildingsString[arg];
 }

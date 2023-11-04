@@ -28,11 +28,11 @@ public:
 	Database();
 
 	void createMap(),
-		 initializeParticipants(int totalPlayers, int humanPlayers),
-		 updateTurnResources(),
-		 setMaxCommanders(int num),
-		 setCurrentParticipant(Participants* p),
-		 createCapitals();
+		initializeParticipants(int totalPlayers, int humanPlayers),
+		updateTurnResources(),
+		setMaxCommanders(int num),
+		setCurrentParticipant(Participants* p),
+		createCapitals();
 
 	
 	std::vector<Participants>* getParticipantsList();
@@ -53,18 +53,14 @@ public:
 
 	Mobility move;
 
-	static Participants tempParticipant;
-
 private:
 	
 	std::vector<Participants> participantsList;
 	Participants* currentParticipant;
-	Participants* nullParticipant;
 
 	
 
-	int currentParticipantIndex,
-		continentSize,
+	int 
 		maxCommanders,
 		pNum; //have to fix this; current points to nothing
 };

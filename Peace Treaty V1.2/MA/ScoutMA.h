@@ -43,9 +43,12 @@ public:
 private:
 	std::vector<int> unitLevels;
 
-	int targetInformation[2]; //[0] is for whether it is a province (1) or
-	//commander (2); [1] is the index of the unit in its
-	//Participants object
+	enum TargetTypes {PROVINCE, COMMANDER};
+
+	/* [0] is for whether it is a province(1) or
+	commander (2); [1] is the index of the unit in its
+	Participants object*/
+	std::pair<std::pair<TargetTypes, TargetTypes>, int> targetInformation;
 
 	int enemyLevel;
 	Participants

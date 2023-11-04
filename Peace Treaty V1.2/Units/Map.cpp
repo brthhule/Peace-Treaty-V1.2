@@ -1,5 +1,13 @@
 #include "Map.h"
 
+Map::ProvincesVector Map::map = std::vector<std::vector<Provinces*>>{};
+Map::ProvincesMap  Map::mapMap = std::unordered_map<std::string, Provinces*>();
+
+Map::Map() {
+	//Defaults
+	
+}
+
 void Map::setMap() {
 	int overallIndex = 0;
 	for (int x = 0; x < CV::continentSize; x++) {
@@ -105,7 +113,6 @@ void Map::updateTurnResources() {
 	OF::debugFunction("main, updateTurnResources");
 	for (int x = 0; x < CV::continentSize; x++) {
 		for (int y = 0; y < CV::continentSize; y++) {
-			map[x][y]->updateBuildingsProduction();
 			map[x][y]->updateProvinceResources();
 		}
 	}

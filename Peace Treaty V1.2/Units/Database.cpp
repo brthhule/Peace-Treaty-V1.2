@@ -1,7 +1,16 @@
 #include "Database.h"
 
 Database::Database() {
+	//Default
 	pNum = 0;
+	maxCommanders = 0;
+	currentParticipant = NULL;
+
+}
+
+void Database::updateTurnResources() {
+	Participants* tempParticipant = new Participants;
+	tempParticipant->updateTurnResourcesParticipant();
 }
 
 void Database::initializeParticipants(int totalPlayers, int humanPlayers) {
@@ -122,7 +131,9 @@ void Database::Mobility::moveUnitOne(CommanderProfile* commander) {
 		// If it's peaceful (moving to one of their own provinces)
 		if (situation == FRIENDLY_PROVINCE) {
 			//Remove commander from previous province
-			tempParticipant.getSystemProvince(commander->getSystemCoords())->removeCommander(commander);
+
+			Participants* tempParticipant = new Participants;
+			tempParticipant->getSystemProvince(commander->getSystemCoords())->removeCommander(commander);
 			//Change commander coords to province coords
 			commander->setCoords(provinceSelected->getSystemCoords(), provinceSelected->getUserCoords());
 			//Add the commander to the province's list of commanders
@@ -173,8 +184,10 @@ std::vector<Provinces*> Database::Mobility::moveUnitTwo(CommanderProfile* comman
 			if (checkFirstCoordinate && checkSecondCoordinate && checkBothCoordinates)
 			{
 				std::pair<int, int> pushCoords(firstCoordinate, secondCoordinate);
-				Provinces* province = tempParticipant.getSystemProvince(pushCoords);
+				Participants* tempParticipant = new Participants();
+				Provinces* province = tempParticipant->getSystemProvince(pushCoords);
 				provincesSelectList.push_back(province);
+				delete tempParticipant;
 				
 			}
 		}
@@ -183,7 +196,10 @@ std::vector<Provinces*> Database::Mobility::moveUnitTwo(CommanderProfile* comman
 }
 
 std::pair<int, int> Database::pickCoords() {
-	tempParticipant.showMap();
+	Participants* tempParticipant = new Participants();
+	tempParticipant->showMap();
+	delete tempParticipant;
+
 	std::string
 		xCoordinateString,
 		yCoordinateString;
@@ -205,6 +221,10 @@ std::pair<int, int> Database::pickCoords() {
 	std::cout << "Inputed coordinates are out of bounds... please try again.";
 	CV::addColor(RESET);
 	pickCoords();
+
+	//Error path
+	std::pair<int, int> tempPair(-1, -1);
+	return tempPair;
 }
 
 void Database::createCapitals() {
@@ -232,3 +252,8 @@ void Database::createCapitals() {
 	
 }
 
+void Database::createMap() {
+	Participants* tempParticipant = new Participants;
+	tempParticipant->createMapParticipant();
+	delete tempParticipant;
+}

@@ -2,15 +2,16 @@
 #define print(x) std::cout << x;
 #define println(x) std::cout << x << std::endl;
 
-extern std::vector<std::vector<Provinces>> provincesMap;
-extern std::vector<Participants> participantsList;
-extern std::vector<std::vector<CommanderProfile>> allCommanders;
-extern int currentParticipantIndex;
-extern int continentSize;
-
 ScoutMA::ScoutMA(Participants* newParticipant, Provinces* newProvince) {
 	participant = newParticipant;
 	yourProvince = newProvince;
+
+	//Default values
+	targetProvince = NULL;
+	targetParticipant = NULL;
+	std::pair<TargetTypes, TargetTypes> tempTypes(PROVINCE, PROVINCE);
+	targetInformation = std::pair<std::pair<TargetTypes, TargetTypes>, int>(tempTypes, -1);
+	enemyLevel = -1;
 }
 
 void ScoutMA::selectTarget()
@@ -52,9 +53,11 @@ void ScoutMA::playerScoutStepTwo(scoutTypes canScout) // Finish this later
 	std::pair<int, int> systemCoords;
 
 	AllUnits *unit = selectUnitToScout(canScout);
-	Participants tempParticipant(-1000000000);
+	Participants* tempParticipant = new Participants();
 	Provinces *tempProvince = new Provinces;
-	std::cout << "Proceed scout action with unit at " << tempParticipant.getSystemProvince(unit->getSystemCoords()) << "? (Y/N) ";
+	std::cout << "Proceed scout action with unit at " << tempParticipant->getSystemProvince(unit->getSystemCoords()) << "? (Y/N) ";
+	delete tempParticipant;
+
 	char proceedWithScoutChar = Input::getInputText("", { "Y", "N" }).at(0);
 
 	if (proceedWithScoutChar == 'Y')
@@ -77,8 +80,10 @@ void ScoutMA::playerScoutStepTwo(scoutTypes canScout) // Finish this later
 	else if (accuracy < 0) {
 		accuracy = 0;
 	}
-		
-	participant->scoutProvince(tempParticipant.getSystemProvince(unit->getSystemCoords()), accuracy);
+	Participants* tempParticipant1 = new Participants();
+	participant->scoutProvince(tempParticipant1->getSystemProvince(unit->getSystemCoords()), accuracy);
+	delete tempParticipant1;
+
 	OF::enterAnything();
 }
 
@@ -106,7 +111,8 @@ void ScoutMA::getCanScoutTwo(int targetX, int targetY, int a, int b, ScoutMA::sc
 	if (/*X coordinates*/ targetX + a >= 0 &&
 		targetX + a < CV::continentSize && /*Y coordinates*/ targetY + b >= 0 && targetY + b < CV::continentSize)
 	{
-		Provinces* newProvince = &provincesMap[targetX + a][targetY + b];
+		Participants* tempParticipant = new Participants;
+		Provinces* newProvince = tempParticipant->getSystemProvince(std::pair<int, int>(targetX + a, targetY + b));
 		if (newProvince->getParticipantIndex() == participant->getParticipantIndex()) {
 			canScout.second.push_back(newProvince);
 		}

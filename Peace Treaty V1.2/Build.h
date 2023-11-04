@@ -4,6 +4,8 @@
 #include<iostream>
 #include <array>
 
+#include "../Peace Treaty V1.2/Misc/CV.h"
+
 namespace Build {
 	/*BARRACKS,
 	INFIRMARY,
@@ -37,31 +39,9 @@ namespace Build {
 		OTHER 
 	};
 
-	std::array<std::string, 5> 
-		/*"BARRACKS", 
-		"INFIRMARY", 
-		"LIBRARY", 
-		"WALL", 
-		"RESIDENCES" */
-		OtherBuildingsString = { 
-			"BARRACKS", 
-			"INFIRMARY", 
-			"LIBRARY", 
-			"WALL", 
-			"RESIDENCES" 
-		},
-		/*"FARM", 
-		"LUMBER_MILL", 
-		"QUARRY", 
-		"MINE", 
-		"CHURCH" */
-		ResourceBuildingsString = { 
-			"FARM", 
-			"LUMBER_MILL", 
-			"QUARRY", 
-			"MINE", 
-			"CHURCH" 
-		};
+	extern CV::StringArray
+		OtherBuildingsString,
+		ResourceBuildingsString;
 
 	//Converts from enum to string
 	std::string 

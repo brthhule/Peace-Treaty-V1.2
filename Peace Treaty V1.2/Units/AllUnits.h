@@ -5,7 +5,7 @@
 #include <vector>
 #include <iostream>
 #include <array>
-#include "../Misc/ConstValues.h"
+#include "../Misc/CV.h"
 #include "../Misc/OF.h"
 #include "../Coordinates.h"
 #include "../Troops.h"

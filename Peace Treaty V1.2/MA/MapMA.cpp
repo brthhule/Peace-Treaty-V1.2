@@ -2,7 +2,12 @@
 #define print(x) std::cout << x;
 #define println(x) std::cout << x << std::endl;
 
-MapMA::MapMA() { participant = db.getCurrentParticipant(); }
+MapMA::MapMA() { 
+	participant = db.getCurrentParticipant(); 
+	
+	//Default
+	pIndex = -1;
+}
 
 //View the map
 void MapMA::viewPlayerMap() {
@@ -10,9 +15,11 @@ void MapMA::viewPlayerMap() {
 
 	//If the participant is a player
 	if (participant->isPlayer()) {
-		db.tempParticipant.showMap();
+		Participants* tempParticipant = new Participants();
+		tempParticipant->showMap();
 		println("Welcome to the View Map action menu");
 		whatToDo = Input::getOptionPrompt(VIEW_PLAYER_MAP).at(0);
+		delete tempParticipant;
 	} 
 	//If the participant is an AI
 	else {
@@ -28,8 +35,7 @@ void MapMA::viewPlayerMap() {
 			//The user selects a province
 			Provinces* province = participant->getYourProvince(1);
 
-			//If the province is valid, not set to delete, 
-			if (province->deleteStatus() != true) {
+			if (province != NULL){
 				selectUnitOriginal(province);
 			}
 
@@ -70,12 +76,14 @@ void MapMA::selectUnitOriginal(Provinces* province) {
 		{
 			//Add scout information, fog of war
 			//If the commander here is yours
-			if (province->getCommander(0)->getParticipantIndex() == participant->getParticipantIndex()){
-				playerUnitAction(province);
-			}
-			//If the commander here is an enemy
-			else {
-				selectEnemyAction();
+			if (province->commandersNum() > 0) {
+				if (province->getCommander(0)->getParticipantIndex() == participant->getParticipantIndex()) {
+					playerUnitAction(province);
+				}
+				//If the commander here is an enemy
+				else {
+					selectEnemyAction();
+				}
 			}
 		}
 

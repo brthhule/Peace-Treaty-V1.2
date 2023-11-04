@@ -6,6 +6,9 @@ Buildings::Buildings() {
 	for (int x : otherBuildingsLevels) {
 		x = 0;
 	}
+
+	otherBuildingsLevels = CV::ARRAY{};
+	resourceBuildingsLevels = CV::ARRAY{};
 }
 
 

@@ -5,12 +5,12 @@ using namespace Input;
 std::vector<std::string> Input::getShowPrompt(std::string prompt)
 {
 	//For debugging
-	OF::debugFunction("Input, getShowPrompt");
+	OF::debugFunction("Input, showOptions");
 
 	std::fstream newfile;
 
 	//std::cout << "Opening file...\n";
-	newfile.open("..\Prompts.txt", std::ios::in); // open a file to perform read operation using file object
+	newfile.open("Prompts.txt", std::ios::in); // open a file to perform read operation using file object
 	std::vector<std::string> acceptableValues = { "H" };
 	std::cout << "List of options: \n";
 	std::string line;
@@ -57,9 +57,6 @@ std::vector<std::string> Input::getShowPrompt(std::string prompt)
 }
 
 std::string Input::getOptionPromptQuery(std::vector<std::string>AV) {
-	//For debugging
-	OF::debugFunction("Input, getShowPromptQuery");
-
 	std::string input;
 	std::cout << "Enter an option: ";
 
@@ -75,8 +72,6 @@ std::string Input::getOptionPromptQuery(std::vector<std::string>AV) {
 }
 
 std::string Input::getOptionPrompt(CV::PROMPTS p) {
-	//For debugging
-	OF::debugFunction("Input, getOptionPrompt");
 
 	//Print prompt, return acceptable values
 	std::vector<std::string> AV = getShowPrompt(CV::promptsToString(p));
@@ -85,9 +80,6 @@ std::string Input::getOptionPrompt(CV::PROMPTS p) {
 }
 
 std::string Input::getInputQuery(std::vector<std::string>AV) {
-	//For debugging
-	OF::debugFunction("Input, getInputQuery");
-
 	std::cout << "Enter an option: ";
 	std::string input;
 
