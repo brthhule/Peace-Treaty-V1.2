@@ -10,7 +10,7 @@
 #include "../Misc/CV.h"
 #include "../Interfaces/BuildMA.h"
 #include "../Input.h"
-#include "../Coordinates.h"
+#include "../Coords.h"
 #include "../Buildings.h"
 #include "../ProvinceReport.h"
 

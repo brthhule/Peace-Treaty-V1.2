@@ -10,7 +10,7 @@ std::vector<std::string> Input::getShowPrompt(std::string prompt)
 	std::fstream newfile;
 
 	//std::cout << "Opening file...\n";
-	newfile.open("..\Prompts.txt", std::ios::in); // open a file to perform read operation using file object
+	newfile.open("TxtFiles\Prompts.txt", std::ios::in); // open a file to perform read operation using file object
 	std::vector<std::string> acceptableValues = { "H" };
 	std::cout << "List of options: \n";
 	std::string line;
@@ -91,9 +91,9 @@ std::string Input::getInputQuery(std::vector<std::string>AV) {
 	std::cout << "Enter an option: ";
 	std::string input;
 
-	CV::addColor(RED);
+	OF::addColor(RED);
 	getline(std::cin, input);
-	CV::addColor(RESET);
+	OF::addColor(RESET);
 
 	for (std::string value : AV) {
 		if (input == value) {
@@ -107,7 +107,9 @@ std::string Input::getInputQuery(std::vector<std::string>AV) {
 
 std::string Input::getInputText(std::string text, std::vector<std::string> AV)
 {
+	//For debugging
 	OF::debugFunction("Iput, getInputText");
+
 	std::cout << text << "\n";
 	std::string input;
 

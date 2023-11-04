@@ -75,18 +75,7 @@ namespace CV {
 			"WHAT_REPORT" /*Add stuff for this*/
 	};
 
-	std::array<std::string, 9> COLORS_STRING = {
-			"BLACK",
-			"RED",
-			"GREEN",
-			"YELLOW",
-			"BLUE",
-			"MAGENTA",
-			"CYAN",
-			"WHITE",
-			"RESET"
-	};
-
+	
 	int continentSize = 0;
 	int enemyDifficulty = 0;
 	int CPUNum = 0;
@@ -95,4 +84,56 @@ namespace CV {
 	int currentParticipantIndex = 0;
 
 	const int BARRACKS_PRODUCTION = 2;
+
+	bool debuggingMode = true;
+
+
+
+#include "../Peace Treaty V1.2/Misc/CV.h"
+
+	using namespace CV;
+
+	
+
+	void CV::printPerson() {
+		//For debugging
+		CV::debugFunction("CV, printPerson");
+
+		std::cout << "Hello!";
+	}
+
+	std::string CV::promptsToString(PROMPTS p) {
+		//For debugging
+		CV::debugFunction("CV, promptsToString");
+
+		return PROMPTS_STRING[p];
+	}
+
+	int CV::getStringIndex(std::string arg) {
+		//For debugging
+		CV::debugFunction("CV, getStringIndex");
+
+		for (int x = 0; x < PROMPTS_STRING.size(); x++) {
+			if (PROMPTS_STRING[x] == arg) {
+				return x;
+			}
+		}
+		//Error case
+		return -1;
+	}
+
+	CV::PROMPTS CV::stringToPrompts(std::string arg) {
+		//For debugging
+		CV::debugFunction("CV, stringToPrompts");
+
+		return PROMPTS(CV::getStringIndex(arg));
+	}
+
+	void CV::debugFunction(std::string functionName) {
+		if (debuggingMode == true)
+			std::cout << "\033[35mFunction: " << functionName << "\033[0m\n";
+	}
+
 }
+
+

@@ -1,6 +1,9 @@
 #include "AttackMA.h"
 
 AttackMA::AttackMA(Provinces* defendingProvinceArg, Participants* attackingParticipantArg) {
+	//For debugging
+	OF::debugFunction("AttackMA, AttackMA (2 Param)");
+
 	// Given a province to attack, see if you can attack with anything nearby
 	attackingParticipant = attackingParticipantArg;
 	defendingProvince = defendingProvinceArg;
@@ -66,6 +69,9 @@ AttackMA::AttackMA(Provinces* defendingProvinceArg, Participants* attackingParti
 }
 
 AttackMA::AttackMA(Provinces* attackerProvinceArg, Provinces* defenderProvinceArg, Participants* attackingParticipantArg, CommanderProfile* commanderArg) {
+	//For debugging
+	OF::debugFunction("AttackMA, AttackMA (4 Param)");
+	
 	attackingProvince = attackerProvinceArg;
 	defendingProvince = defenderProvinceArg;
 	attackingParticipant = attackingParticipantArg;
@@ -74,6 +80,9 @@ AttackMA::AttackMA(Provinces* attackerProvinceArg, Provinces* defenderProvinceAr
 }
 
 void AttackMA::findCommander(std::vector <CommanderProfile*> commandersCanAttack) {
+	//For debugging
+	OF::debugFunction("AttackMA, findCommander");
+
 	std::string commanderName;
 	std::cout << "The following commanders can attack the target: \n";
 	std::cout << "Amount of commanders: " << commandersCanAttack.size() << std::endl;
@@ -91,6 +100,9 @@ void AttackMA::findCommander(std::vector <CommanderProfile*> commandersCanAttack
 
 void AttackMA::preAttack()
 {
+	//For debugging
+	OF::debugFunction("AttackMA, preAttack");
+
 	defendingParticipant = db.getParticipant(defendingProvince->getParticipantIndex());
 	playerCommitAttack();
 	defendingCommanders = defendingProvince->getAllCommanders();
@@ -100,6 +112,9 @@ void AttackMA::preAttack()
 
 void AttackMA::playerCommitAttack()
 {
+	//For debugging
+	OF::debugFunction("AttackMA, playerCommitAttack");
+
 	CommanderProfile* defendingCommander = defendingCommanders[0];
 	int attackerCP = attackingCommander->getCP();
 	int defendingCP = defendingCommander->getCP();
@@ -158,6 +173,8 @@ void AttackMA::playerCommitAttack()
 
 /*Basically go through each unit type and subtract 16CP worth of troops and keep going (done so that lost troops are distributed evenly among the various ranks, but there is still use to training lower rank troops as meat shields (if all lower troops are used up, then losses start piling up on higher rank troops; it's key to keep a healthy proportion of troops in your army))*/
 void AttackMA::calculateTroopsLost(CommanderProfile* commander, int lostCombatPower, std::array<int, 5>& troopsLost, int troopIndex) {
+	//For debugging
+	OF::debugFunction("AttackMA, calculateTroopsLost");
 
 	int troopPresent = commander->getTroop(REGULAR, troopIndex, CV::SINGLE)[0];
 
@@ -203,6 +220,9 @@ void AttackMA::calculateTroopsLost(CommanderProfile* commander, int lostCombatPo
 
 void AttackMA::battleCalculationsTwo(int& lostCombatPower, int troopsLost[5], int troopIndex) /*fix this*/
 {
+	//For debugging
+	OF::debugFunction("AttackMA, battleCalculationsTwo");
+
 	Participants* playerParticipant = db.getCurrentParticipant();
 
 	int z = abs(4 - troopIndex);
@@ -226,6 +246,9 @@ void AttackMA::battleCalculationsTwo(int& lostCombatPower, int troopsLost[5], in
 
 void AttackMA::printResourcesGained()
 {
+	//For debugging
+	OF::debugFunction("AttackMA, printResourcesGained");
+
 	std::array<int, 5> currentResources = attackingCommander->getAllResources();
 	std::cout << "Resources gained: \n \033[;34m";
 
@@ -235,6 +258,9 @@ void AttackMA::printResourcesGained()
 
 void AttackMA::determineLostCP(int attackerCP, int defendingCP, int& attackerLostCP, int& defenderLostCP)
 {
+	//For debugging
+	OF::debugFunction("AttackMA, determineLostCP");
+
 	int higherCP, lowerCP = 0;
 
 	if (attackerCP > defendingCP)
@@ -263,8 +289,10 @@ void AttackMA::determineLostCP(int attackerCP, int defendingCP, int& attackerLos
 
 void AttackMA::casualtyReport(std::array<int, 5> troopsLost, std::array<int, 5> injuredTroops)
 {
-	std::cout << std::endl;
-	std::cout << "Troops casualties: " << std::endl;
+	//For debugging
+	OF::debugFunction("AttackMA, casualtyReport");
+
+	std::cout << "\nTroops casualties: \n";
 	for (int x = 0; x < 5; x++) /*print out deaths*/
 	{
 		std::cout << CV::TROOP_NAMES[x] << " lost: " << troopsLost[x] << std::endl;

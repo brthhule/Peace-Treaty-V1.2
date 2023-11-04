@@ -3,6 +3,9 @@
 #define println(x) std::cout << x << std::endl;
 
 MapMA::MapMA() { 
+	//For debugging
+	OF::debugFunction("MapMA, MapMA");
+
 	participant = db.getCurrentParticipant(); 
 	
 	//Default
@@ -11,6 +14,9 @@ MapMA::MapMA() {
 
 //View the map
 void MapMA::viewPlayerMap() {
+	//For debugging
+	OF::debugFunction("MapMA, viewPlayerMap");
+
 	char whatToDo = ' ';
 
 	//If the participant is a player
@@ -58,9 +64,17 @@ void MapMA::viewPlayerMap() {
 	}
 }
 
-Participants* MapMA::getParticipant() { return participant; }
+Participants* MapMA::getParticipant() { 
+	//For debugging
+	OF::debugFunction("MapMA, getParticipant");
+
+	return participant; 
+}
 
 void MapMA::selectUnitOriginal(Provinces* province) {
+	//For debugging
+	OF::debugFunction("MapMA, selectUnitOriginal");
+
 	int participantIndex = province->getParticipantIndex();
 
 	// If belongs to current participant
@@ -96,6 +110,9 @@ void MapMA::selectUnitOriginal(Provinces* province) {
 
 //You selected one of your provinces
 void MapMA::selectPlayerProvince(Provinces *province) {
+	//For debugging
+	OF::debugFunction("MapMA, selectPlayerProvince");
+
 	if (province->isCapital()) {
 		print("This is your capital province ");
 	}
@@ -127,6 +144,9 @@ void MapMA::selectPlayerProvince(Provinces *province) {
 
 //You selected an enemy province
 void MapMA::selectEnemyProvince(Provinces* newP) {
+	//For debugging
+	OF::debugFunction("MapMA, selectEnemyProvince");
+
 	Provinces* enemyProvince = newP;
 	if (enemyProvince->isCapital()) {
 		println("This is an enemy capital province ");
@@ -167,6 +187,8 @@ You selected an empty province that your commander is in
 - Move this unit (P)
 - Capture this province (C)*/
 void MapMA::playerUnitAction(Provinces* newP) {
+	//For debugging
+	OF::debugFunction("MapMA, playerUnitAction");
 
 	Provinces* newProvince = newP;
 	println("This is one of your armies ");
@@ -194,6 +216,9 @@ void MapMA::playerUnitAction(Provinces* newP) {
 //Selected 
 void MapMA::playerUnitActionP(Provinces* newP)
 {
+	//For debugging
+	OF::debugFunction("MapMA, playerUnitActionP");
+
 	Provinces* newProvince = newP;
 	std::cout << "The following commanders are at this province: \n";
 	newProvince->printCommanders();
@@ -222,6 +247,9 @@ void MapMA::playerUnitActionP(Provinces* newP)
 
 void MapMA::selectEnemyAction() /*Add implementation*/
 {
+	//For debugging
+	OF::debugFunction("MapMA, selectEnemyAction");
+
 	std::cout << "This is an enmy army. \n";
 
 	switch (Input::getOptionPrompt(SELECT_ENEMY_ACTION).at(0))

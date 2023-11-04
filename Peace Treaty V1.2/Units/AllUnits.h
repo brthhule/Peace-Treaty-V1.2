@@ -7,7 +7,7 @@
 #include <array>
 #include "../Misc/CV.h"
 #include "../Misc/OF.h"
-#include "../Coordinates.h"
+#include "../Coords.h"
 #include "../Troops.h"
 
 /*int resourcesPresent[5];

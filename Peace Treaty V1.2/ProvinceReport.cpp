@@ -8,6 +8,9 @@ ProvinceReport::ProvinceReport(int scouterLevelArg,
 	std::array<bool, 3> listBoolArg,
 	std::pair<int, int> listSystemCoordsArg) {
 
+	//For debugging
+	OF::debugFunction("ProvinceReport, ProvinceReport");
+
 	scouterLevel = scouterLevelArg;
 	targetLevel = targetLevelArg;
 
@@ -24,6 +27,9 @@ ProvinceReport::ProvinceReport(int scouterLevelArg,
 
 
 void ProvinceReport::computeAccuracy() {
+	//For debugging
+	OF::debugFunction("ProvinceReport, computeAccuracy");
+
 	int bigger = 0;
 	int smaller = 0;
 
@@ -58,6 +64,9 @@ void ProvinceReport::computeAccuracy() {
 }
 
 void ProvinceReport::attuneValues() {
+	//For debugging
+	OF::debugFunction("ProvinceReport, attuneValues");
+
 	int newAccuracy = 100 - accuracy;
 	int currentValue, mediumValue, upperValue, lowerValue;
 	srand(time(NULL));
@@ -81,20 +90,35 @@ void ProvinceReport::attuneValues() {
 }
 
 void ProvinceReport::printReport() {
+	//For debugging
+	OF::debugFunction("ProvinceReport, printReport");
+
 	//Complete implementation here
 }
 int ProvinceReport::getReportTurn() {
+	//For debugging
+	OF::debugFunction("ProvinceReport, getReportTurn");
+
 	return reportTurn;
 }
 
 int ProvinceReport::getAccuracy() {
+	//For debugging
+	OF::debugFunction("ProvinceReport, getAccuracy");
+
 	return accuracy;
 }
 
 int ProvinceReport::getTargetLevel() {
+	//For debugging
+	OF::debugFunction("ProvinceReport, getTargetLevel");
+
 	return targetLevel;
 }
 
 int ProvinceReport::getScouterLevel() {
+	//For debugging
+	OF::debugFunction("ProvinceReport, getScouterLevel");
+
 	return scouterLevel;
 }

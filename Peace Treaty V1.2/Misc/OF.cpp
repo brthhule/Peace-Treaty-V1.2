@@ -7,7 +7,9 @@
 //Gets user input and returns a valid response. Parameters: (string text, vector<string> acceptable values, bool isNumber, bool redo)
 
 std::string OF::createRandomName() {
-	debugFunction("OtherFunctions, createRandomName");
+	//For debugging
+	debugFunction("OF, createRandomName");
+
 	std::string name = "";
 	std::string consonants = "bcdfghjklmnpqrstvwxyz";
 	std::string vowels = "aeiou";
@@ -30,7 +32,9 @@ std::string OF::createRandomName() {
 }
 
 void OF::clearScreen() {
-	debugFunction("OtherFunctions, clearScreen");
+	//For debugging
+	debugFunction("OF, clearScreen");
+
 	std::cout << "\033[32mClearing screen. \n";
 	std::cout << "\033[0m";
 	std::chrono::seconds dura(1);
@@ -51,7 +55,9 @@ void OF::clearScreen() {
 // }
 
 std::array<int, 5> OF::modifyArray(std::array<int, 5> primeArray, std::array<int, 5> secondaryArray, bool isAdd) {
-	debugFunction("OtherFunctions, modifyArray");
+	//For debugging
+	debugFunction("OF, modifyArray");
+
 	if (isAdd)
 		for (int& x : primeArray)
 			x += secondaryArray[x];
@@ -71,7 +77,6 @@ void OF::enterAnything() {
 
 /*functionName is styled as "file name, function name*/
 void OF::debugFunction(std::string functionName) {
-	
 	if (debuggingMode == true)
 		std::cout << "\033[35mFunction: " << functionName << "\033[0m\n";
 }
@@ -94,6 +99,9 @@ void OF::debugFunction(std::string functionName) {
 
 //Returns that help prompt that correlates with the specified numerical identifier (caseNum)
 void OF::showHelp(int caseNum) {
+	//For debugging
+	OF::debugFunction("OF, showHelp");
+
 	std::string caseNumString = std::to_string(caseNum);
 
 	std::fstream newfile;//create file
@@ -124,7 +132,9 @@ void OF::showHelp(int caseNum) {
 }
 
 void OF::printFile(std::string filename) {
-	debugFunction("showText, printFile");
+	//For debugging
+	debugFunction("OF, printFile");
+
 	std::cout << "File name: " << filename << std::endl;
 	std::fstream newfile;//create file
 	newfile.open(filename, std::ios::in);//Open file
@@ -175,3 +185,69 @@ void OF::printFile(std::string filename) {
 
 // Options:GRB
 // }
+
+
+namespace OF {
+	void OF::addColor(COLORS c) {
+		//For debugging
+		OF::debugFunction("CV, OtherBuildingsToString");
+
+
+		/*The color definition is a series of numbers, separated by semicolons. In order to make the text color red (number 31), you can write "\033[31m" which will make any following output red. If you want yellow text (33) on blue background (44), you write "\033[31;44m". To reset everything back to the default colors, you write "\033[0m".
+
+		foreground background
+		black        30         40
+		red          31         41
+		green        32         42
+		yellow       33         43
+		blue         34         44
+		magenta      35         45
+		cyan         36         46
+		white        37         47*/
+
+		switch (c) {
+			case BLACK:
+				std::cout << "\033[30m";
+				break;
+			case RED:
+				std::cout << "\033[31m";
+				break;
+			case GREEN:
+				std::cout << "\033[32m";
+				break;
+			case YELLOW:
+				std::cout << "\033[33m";
+				break;
+			case BLUE:
+				std::cout << "\033[34m";
+				break;
+			case MAGENTA:
+				std::cout << "\033[35m";
+				break;
+			case CYAN:
+				std::cout << "\033[36m";
+				break;
+			case WHITE:
+				std::cout << "\033[37m";
+				break;
+			case RESET:
+				std::cout << "\033[0m";
+				break;
+		}
+
+
+	}
+
+	std::array<std::string, 9> COLORS_STRING = {
+			"BLACK",
+			"RED",
+			"GREEN",
+			"YELLOW",
+			"BLUE",
+			"MAGENTA",
+			"CYAN",
+			"WHITE",
+			"RESET"
+	};
+
+}

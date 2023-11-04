@@ -1,6 +1,9 @@
 #include "Database.h"
 
 Database::Database() {
+	//For debugging
+	OF::debugFunction("Database, Database");
+
 	//Default
 	pNum = 0;
 	maxCommanders = 0;
@@ -9,11 +12,17 @@ Database::Database() {
 }
 
 void Database::updateTurnResources() {
+	//For debugging
+	OF::debugFunction("Database, updateTurnResources");
+
 	Participants* tempParticipant = new Participants;
 	tempParticipant->updateTurnResourcesParticipant();
 }
 
 void Database::initializeParticipants(int totalPlayers, int humanPlayers) {
+	//For debugging
+	OF::debugFunction("Database, initializeParticipant");
+
 	for (int x = 0; x < pNum; x++)
 	{
 		std::cout << "Creating participant " << x + 1 << ": " << std::endl;
@@ -33,38 +42,65 @@ void Database::initializeParticipants(int totalPlayers, int humanPlayers) {
 }
 
 std::vector <Participants> *Database::getParticipantsList() {
+	//For debugging
+	OF::debugFunction("Database, getParticipantsList");
+
 	return &participantsList;
 }
 
 void Database::setMaxCommanders(int num) {
+	//For debugging
+	OF::debugFunction("Database, setMaxCommanders");
+
 	maxCommanders = num;
 }
 int Database::getMaxCommanders() {
+	//For debugging
+	OF::debugFunction("Database, getMaxCommanders");
+
 	return maxCommanders;
 }
 
 void Database::setCurrentParticipant(Participants* p) {
+	//For debugging
+	OF::debugFunction("Database, setCurrentParticipant");
+
 	currentParticipant = p;
 }
 
 Participants *Database::getCurrentParticipant() {
+	//For debugging
+	OF::debugFunction("Database, getCurrentParticipant");
+
 	return currentParticipant;
 }
 
 bool Participants::isPlayer() {
+	//For debugging
+	OF::debugFunction("Database, isPlayer");
+
 	return playerStatus;
 }
 
 void Participants::setPlayerStatus(bool status) {
+	//For debugging
+	OF::debugFunction("Database, setPlayerStatus");
+
 	playerStatus = status;
 }
 
 Participants *Database::getParticipant(int index) {
+	//For debugging
+	OF::debugFunction("Database, getParticipant");
+
 	return &participantsList[index];
 }
 
 
 void Database::Mobility::moveUnitOne(CommanderProfile* commander) {
+	//For debugging
+	OF::debugFunction("Database, moveUnitOne");
+
 	//This will have the list of provinces that can be moved to
 	std::vector<Provinces*> provincesCanSelect;
 
@@ -154,6 +190,9 @@ void Database::Mobility::moveUnitOne(CommanderProfile* commander) {
 
 
 std::vector<Provinces*> Database::Mobility::moveUnitTwo(CommanderProfile* commander) {
+	//For debugging
+	OF::debugFunction("Database, moveUnitTwo");
+
 	std::vector<Provinces*> provincesSelectList;
 	std::pair<int, int> systemCoords = commander->getSystemCoords();
 
@@ -196,6 +235,9 @@ std::vector<Provinces*> Database::Mobility::moveUnitTwo(CommanderProfile* comman
 }
 
 std::pair<int, int> Database::pickCoords() {
+	//For debugging
+	OF::debugFunction("Database, pickCoords");
+
 	Participants* tempParticipant = new Participants();
 	tempParticipant->showMap();
 	delete tempParticipant;
@@ -217,9 +259,9 @@ std::pair<int, int> Database::pickCoords() {
 		return { xCoordinate, yCoordinate };
 	}
 
-	CV::addColor(RED);
+	OF::addColor(RED);
 	std::cout << "Inputed coordinates are out of bounds... please try again.";
-	CV::addColor(RESET);
+	OF::addColor(RESET);
 	pickCoords();
 
 	//Error path
@@ -228,6 +270,8 @@ std::pair<int, int> Database::pickCoords() {
 }
 
 void Database::createCapitals() {
+	//For debugging
+	OF::debugFunction("Database, createCapitals()");
 
 	for (Participants participant : participantsList) {
 		start:
@@ -253,6 +297,9 @@ void Database::createCapitals() {
 }
 
 void Database::createMap() {
+	//For debugging
+	OF::debugFunction("Database, createMap");
+
 	Participants* tempParticipant = new Participants;
 	tempParticipant->createMapParticipant();
 	delete tempParticipant;

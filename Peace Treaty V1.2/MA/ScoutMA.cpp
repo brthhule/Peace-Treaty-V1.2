@@ -3,6 +3,9 @@
 #define println(x) std::cout << x << std::endl;
 
 ScoutMA::ScoutMA(Participants* newParticipant, Provinces* newProvince) {
+	//For debugging
+	OF::debugFunction("ScoutMA, ScoutMA");
+
 	participant = newParticipant;
 	yourProvince = newProvince;
 
@@ -16,6 +19,9 @@ ScoutMA::ScoutMA(Participants* newParticipant, Provinces* newProvince) {
 
 void ScoutMA::selectTarget()
 {
+	//For debugging
+	OF::debugFunction("ScoutMA, selectTarget");
+
 	//The participant selects a province
 	Provinces* targetProvince = participant->getCoords(1);
 
@@ -44,6 +50,9 @@ void ScoutMA::selectTarget()
 
 void ScoutMA::playerScoutStepTwo(scoutTypes canScout) // Finish this later
 {
+	//For debugging
+	OF::debugFunction("ScoutMA, playerScoutStepTwo");
+
 	int accuracy = 0;
 	std::vector<int> unitsCanScoutWith;
 
@@ -89,6 +98,9 @@ void ScoutMA::playerScoutStepTwo(scoutTypes canScout) // Finish this later
 
 ScoutMA::scoutTypes ScoutMA::getCanScout()
 {
+	//For debugging
+	OF::debugFunction("ScoutMA, getCanScout");
+
 	std::pair<int, int> targetUserCoords = targetProvince->getUserCoords();
 	int targetX = targetUserCoords.first;
 	int targetY = targetUserCoords.second;
@@ -108,6 +120,9 @@ ScoutMA::scoutTypes ScoutMA::getCanScout()
 
 void ScoutMA::getCanScoutTwo(int targetX, int targetY, int a, int b, ScoutMA::scoutTypes &canScout)
 {
+	//For debugging
+	OF::debugFunction("ScoutMA, getCanScoutTwo");
+
 	if (/*X coordinates*/ targetX + a >= 0 &&
 		targetX + a < CV::continentSize && /*Y coordinates*/ targetY + b >= 0 && targetY + b < CV::continentSize)
 	{
@@ -128,6 +143,9 @@ void ScoutMA::getCanScoutTwo(int targetX, int targetY, int a, int b, ScoutMA::sc
 }
 
 AllUnits *ScoutMA::selectUnitToScout(ScoutMA::scoutTypes canScout) {
+	//For debugging
+	OF::debugFunction("ScoutMA, selectUnitToScout");
+
 	int unitLevel = 0;
 	std::cout << "\033[;34m";
 
@@ -153,6 +171,9 @@ AllUnits *ScoutMA::selectUnitToScout(ScoutMA::scoutTypes canScout) {
 
 AllUnits *ScoutMA::selectUnitToScoutTwo(ScoutMA::scoutTypes canScout)
 {
+	//For debugging
+	OF::debugFunction("ScoutMA, selectUnitToScoutTwo");
+
 	std::string unitName;
 	print("Enter the name of the province/commander you wish to select to scout: ");
 	std::getline(std::cin, unitName);

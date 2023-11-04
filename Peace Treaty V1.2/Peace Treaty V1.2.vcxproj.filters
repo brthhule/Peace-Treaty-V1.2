@@ -93,13 +93,10 @@
     <ClCompile Include="Units\Participants.cpp">
       <Filter>Source Files\Units</Filter>
     </ClCompile>
-    <ClCompile Include="ConstValues.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Coordinates.cpp">
+    <ClCompile Include="Coords.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Buildings.cpp">
@@ -277,7 +274,7 @@
     <ClInclude Include="Input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Coordinates.h">
+    <ClInclude Include="Coords.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Buildings.h">

@@ -3,11 +3,17 @@
 #define println(x) std::cout << x << std::endl;
 
 ArmyOverviewMA::ArmyOverviewMA() {
+	//For debugging
+	OF::debugFunction("ArmyOverview, ArmyOverviewMA");
+
 	participant = db.getCurrentParticipant();
 	commandersNum = participant->commandersNum();
 }
 
 void ArmyOverviewMA::armyDeploymentMF() {
+	//For debugging
+	OF::debugFunction("ArmyOverview, armyDeploymentMF");
+
 	println("Welcome to the Army Deployment action menun\n");
 	switch (Input::getOptionPrompt(ARMY_DEPLOYMENT).at(0)) {
 	case 'T':
@@ -36,6 +42,9 @@ void ArmyOverviewMA::armyDeploymentMF() {
 
 void ArmyOverviewMA::upgradeCommandersOne() /*fix this-- finish making it*/
 {
+	//For debugging
+	OF::debugFunction("ArmyOverview, upgradeCommandersOne");
+
 	if (commandersNum > 0)
 	{
 		if (participant->selectCommander() != "-1")
@@ -46,8 +55,12 @@ void ArmyOverviewMA::upgradeCommandersOne() /*fix this-- finish making it*/
 
 	OF::enterAnything();
 }
+
 void ArmyOverviewMA::upgradeCommandersTwo()
 {
+	//For debugging
+	OF::debugFunction("ArmyOverview, upgradeCommandersTwo");
+
 	std::array<int, 5> costsArray = participant->getCommander(commanderName)->getUpgradeCosts();
 
 	participant->getCommander(commanderName)->printCosts(costsArray);
@@ -71,6 +84,9 @@ void ArmyOverviewMA::upgradeCommandersTwo()
 }
 
 void ArmyOverviewMA::viewArmyOverview() {
+	//For debugging
+	OF::debugFunction("ArmyOverview, viewArmyOverview");
+
 	commanderName = participant->selectCommander();
 	if (commanderName != "-1")
 	{
@@ -85,6 +101,9 @@ void ArmyOverviewMA::viewArmyOverview() {
 }
 
 void ArmyOverviewMA::trainCommanders() {
+	//For debugging
+	OF::debugFunction("ArmyOverview, trainCommanders");
+
 	std::string yesOrNoString;
 	std::cout << "You have " << commandersNum << "/" << db.getMaxCommanders() << " total army commanders. \n";
 	std::cout << "Do you want to train a commander? (Y/N) ";
@@ -102,6 +121,9 @@ void ArmyOverviewMA::trainCommanders() {
 }
 
 void ArmyOverviewMA::proceedWithTraining(std::array<int, 5> trainCosts) {
+	//For debugging
+	OF::debugFunction("ArmyOverview, proceedWithTraining");
+
 	bool trainingSuccess = participant->getCapitalProvince()->subtractCheckResources(trainCosts);
 
 	if (trainingSuccess == true)
@@ -120,6 +142,9 @@ void ArmyOverviewMA::proceedWithTraining(std::array<int, 5> trainCosts) {
 
 void ArmyOverviewMA::deployCommanderMF()
 {
+	//For debugging
+	OF::debugFunction("ArmyOverview, deployCommanderMF");
+
 	commanderName = participant->selectCommander();
 	if (commanderName != "-1")
 		return;
@@ -145,6 +170,9 @@ void ArmyOverviewMA::deployCommanderMF()
 }
 
 void ArmyOverviewMA::printCosts(std::vector<int> costs, std::string type) {
+	//For debugging
+	OF::debugFunction("ArmyOverview, printCosts");
+
 	std::cout << "The following are the " << type << " costs: \n";
 	for (int x = 0; x < 5; x++)
 		std::cout << CV::RESOURCE_NAMES[x] << ": " << costs[x];

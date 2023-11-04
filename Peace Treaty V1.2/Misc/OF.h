@@ -13,9 +13,8 @@
 #include <vector>
 #include <fstream>
 
-#include "CV.h"
+#include "../Misc/CV.h"
 
-using namespace CV;
 
 
 namespace OF {
@@ -40,6 +39,42 @@ namespace OF {
 	//Text stuff
 	void showHelp(int caseNum);
 	void printFile(std::string fileName);
+
+
+
+
+	/*BLACK,
+		RED,
+		GREEN,
+		YELLOW,
+		BLUE,
+		MAGENTA,
+		CYAN,
+		WHITE,
+		RESET*/
+	enum COLORS {
+		BLACK,
+		RED,
+		GREEN,
+		YELLOW,
+		BLUE,
+		MAGENTA,
+		CYAN,
+		WHITE,
+		RESET
+	};
+	/*"BLACK",
+		"RED",
+		"GREEN",
+		"YELLOW",
+		"BLUE",
+		"MAGENTA",
+		"CYAN",
+		"WHITE",
+		"RESET" */
+	extern std::array<std::string, 9> COLORS_STRING;
+
+	void addColor(COLORS c);
 
 	
 }

@@ -4,7 +4,10 @@
 #include<iostream>
 #include <array>
 
+#include "../Peace Treaty V1.2/Misc/OF.h"
 #include "../Peace Treaty V1.2/Misc/CV.h"
+
+using namespace OF;
 
 namespace Build {
 	/*BARRACKS,

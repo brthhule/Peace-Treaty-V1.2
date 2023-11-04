@@ -133,8 +133,7 @@
     <ClCompile Include="Build.cpp" />
     <ClCompile Include="Buildings.cpp" />
     <ClCompile Include="CommanderReport.cpp" />
-    <ClCompile Include="ConstValues.cpp" />
-    <ClCompile Include="Coordinates.cpp" />
+    <ClCompile Include="Coords.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="MA\ArmyOverviewMA.cpp" />
     <ClCompile Include="MA\AttackMA.cpp" />
@@ -195,7 +194,7 @@
     <ClInclude Include="Build.h" />
     <ClInclude Include="Buildings.h" />
     <ClInclude Include="CommanderReport.h" />
-    <ClInclude Include="Coordinates.h" />
+    <ClInclude Include="Coords.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Interfaces\BuildMA.h" />
     <ClInclude Include="MA\ArmyOverviewMA.h" />

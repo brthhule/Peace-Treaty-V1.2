@@ -5,6 +5,8 @@
 #include <iostream>
 #include <vector>
 
+#include "OF.h"
+
 #define UNIT_AMOUNT 5
 
 namespace CV
@@ -90,41 +92,13 @@ namespace CV
 		ALL = 1
 	};
 
-	/*BLACK,
-		RED, 
-		GREEN, 
-		YELLOW, 
-		BLUE,
-		MAGENTA, 
-		CYAN, 
-		WHITE, 
-		RESET*/
-	enum COLORS {
-		BLACK,
-		RED, 
-		GREEN, 
-		YELLOW, 
-		BLUE,
-		MAGENTA, 
-		CYAN, 
-		WHITE, 
-		RESET
-	};
-	/*"BLACK", 
-		"RED", 
-		"GREEN", 
-		"YELLOW", 
-		"BLUE", 
-		"MAGENTA", 
-		"CYAN", 
-		"WHITE", 
-		"RESET" */
-	extern std::array<std::string, 9> COLORS_STRING;
+	
 
 	std::string promptsToString(PROMPTS p);
 	int getStringIndex(std::string arg);
 	PROMPTS stringToPrompts(std::string arg);
 	
+	void debugFunction(std::string functionName);
 
 	extern int 
 		continentSize,
@@ -133,9 +107,9 @@ namespace CV
 		turn,
 		UNIT_AMOUNT_CV,
 		currentParticipantIndex;
+	extern bool debuggingMode;;
 
-	void addColor(COLORS c),
-		 printPerson();
+	void printPerson();
 
 	typedef std::array<int, 5> ARRAY;
 	typedef int INTEGER;

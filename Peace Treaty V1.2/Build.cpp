@@ -29,10 +29,16 @@ namespace Build {
 }
 
 std::string Build::OtherBuildingsToString(OtherBuildings arg) {
+	//For debugging
+	OF::debugFunction("Build, OtherBuildingsToString");
+
 	return OtherBuildingsString[arg];
 }
 
 int Build::getOtherBuildingsStringIndex(std::string arg) {
+	//For debugging
+	OF::debugFunction("Build, getOtherBuildingsStringIndex");
+
 	for (int x = 0; x < OtherBuildingsString.size(); x++) {
 		if (OtherBuildingsString[x] == arg) {
 			return x;
@@ -43,15 +49,24 @@ int Build::getOtherBuildingsStringIndex(std::string arg) {
 }
 
 Build::OtherBuildings Build::stringToOtherBuildings(std::string arg) {
+	//For debugging
+	OF::debugFunction("Build, stringToOthersBuilding");
+
 	return OtherBuildings(Build::getOtherBuildingsStringIndex(arg));
 }
 
 
 std::string Build::ResourceBuildingsToString(Build::ResourceBuildings arg) {
+	//For debugging
+	OF::debugFunction("Build, ResourceBuildingToString");
+
 	return OtherBuildingsString[arg];
 }
 
 int Build::getResourceBuildingsStringIndex(std::string arg) {
+	//For debugging
+	OF::debugFunction("Build, getResourceBuildingsStringIndex");
+
 	for (int x = 0; x < OtherBuildingsString.size(); x++) {
 		if (OtherBuildingsString[x] == arg) {
 			return x;
@@ -62,6 +77,9 @@ int Build::getResourceBuildingsStringIndex(std::string arg) {
 }
 
 Build::ResourceBuildings Build::stringToResourceBuildings(std::string arg) {
+	//For debugging
+	OF::debugFunction("Build, stringToResourceBuildings");
+
 	return Build::ResourceBuildings(Build::getOtherBuildingsStringIndex(arg));
 }
 

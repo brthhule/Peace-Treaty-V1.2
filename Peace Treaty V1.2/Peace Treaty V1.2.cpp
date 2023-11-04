@@ -46,9 +46,11 @@ Database db;
 
 int main()/*main code*/
 {
+	//For debugging
+	OF::debugFunction("main, main");
+
 	CV::CPUNum = std::thread::hardware_concurrency();
 
-	OF::debugFunction("main, main");
 	//srand((unsigned int)time(0));
 	OF::printFile("TxtFiles\\Synopsis.txt");
 	char startOrResume = Input::getOptionPrompt(INTRODUCTION).at(0);
@@ -83,7 +85,9 @@ int main()/*main code*/
 }
 void resumeGame() /*download data from previous game fix this*/
 {
+	//For debugging
 	OF::debugFunction("main, resumeGame");
+
 	std::string gameCode;
 	std::cout << "Please enter the game code of your previous game: \033[31m";
 	std::getline(std::cin, gameCode);
@@ -92,7 +96,9 @@ void resumeGame() /*download data from previous game fix this*/
 }
 void startGame()
 {
+	//For debugging
 	OF::debugFunction("main, startGame");
+
 	std::string text = "What continent size do you want to play on?\n- 5 (Recommended for mobile devices)\n- 10 (Medium-sized map)\n- 15 (Full experienced, recommended for a monitor)\nEnter the number here: ";
 	//"What continent size do you want to play on? (5, 10, 15) "
 	std::string input = Input::getInputText(text, {"5", "10", "15" });
@@ -114,9 +120,12 @@ void startGame()
 
 	generateNewContinent(pNum);
 }
+
 void generateNewContinent(int pNum)
 {
+	//For debugging
 	OF::debugFunction("main, generateNewContinent");
+
 	std::cout << "Create map...\n";
 	db.createMap();
 
@@ -138,7 +147,9 @@ void generateNewContinent(int pNum)
 //Call this function when all winning condition has been met
 void endScreen()
 {
+	//For debugging
 	OF::debugFunction("main, endScreen");
+
 	std::vector<Participants>* participantsListCopy = db.getParticipantsList();
 	Participants* currentParticipant = new Participants;
 
@@ -160,7 +171,9 @@ void endScreen()
 
 void gamePlay()
 {
+	//For debugging
 	OF::debugFunction("main, gamePlay");
+
 	bool gameEnd = false;
 
 	//Create vector to copy the list of participants from the database

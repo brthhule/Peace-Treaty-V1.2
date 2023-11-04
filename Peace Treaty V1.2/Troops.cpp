@@ -1,10 +1,16 @@
 #include "Troops.h"
 
 Troops::Troops() {
+	//For debugging
+	OF::debugFunction("Troops, Troops");
+
 	//Empty
 }
 
 std::array<int, 5> Troops::getAllOneTroop(CV::TROOPS type) {
+	//For debugging
+	OF::debugFunction("Troops, getAllOneTroop");
+
 	return *allTroops[type];
 }
 
@@ -13,6 +19,8 @@ std::array<int, 5> Troops::getAllOneTroop(CV::TROOPS type) {
 //--------Troop Functions--------
 //Return a troop by index or all troops-- done by type
 std::array<int, 5> Troops::getTroop(CV::MutateTroopType type, int troopIndex, Quantity amount) {
+	//For debugging
+	OF::debugFunction("Troops, getTroop");
 
 	std::array<int, 5> troopCopy;
 
@@ -28,6 +36,9 @@ std::array<int, 5> Troops::getTroop(CV::MutateTroopType type, int troopIndex, Qu
 //----Mutators----
 //Change troops of type index at this unit by amount
 void Troops::mutateTroop(CV::MutateTroopType type, int troopIndex, std::array<int,5> amount, Quantity quant, CV::MutateDirection direction) {
+	//For debugging
+	OF::debugFunction("Troops, mutateTroop");
+
 	int modifier = -1;
 
 	if (direction == INCREASE) {

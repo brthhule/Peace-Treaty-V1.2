@@ -5,6 +5,10 @@
 #include <array>
 #include <vector>
 
+#include "../Peace Treaty V1.2/Misc/OF.h"
+
+using namespace OF;
+
 class CommanderReport {
 public:
 	CommanderReport();

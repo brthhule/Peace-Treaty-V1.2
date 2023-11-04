@@ -3,6 +3,7 @@
 //Fix this
 
 PlayerAction::PlayerAction() {
+	//For debugging
 	OF::debugFunction("PlayerAction, PlayerAction (0)");
 
 	//Default
@@ -11,12 +12,16 @@ PlayerAction::PlayerAction() {
 
 PlayerAction::PlayerAction(Participants* newP)
 {
+	//For debugging
 	OF::debugFunction("PlayerAction, PlayerAction (1)");
+
 	participant = newP;
 }
 
 void PlayerAction::initialDecision() {
+	//For debugging
 	OF::debugFunction("PlayerAction, initialDecision");
+
 	bool goToNextTurn = false;
 	OF::clearScreen();
 	char courseOfAction = ' ';
@@ -84,7 +89,9 @@ void PlayerAction::initialDecision() {
 }
 
 char PlayerAction::randomAction() {
+	//For debugging
 	OF::debugFunction("PlayerAction, randomAction");
+
 	int randomNumber = rand() % 6; // Random number 0 to 5 (inclusive)
 	std::vector<char> newVector = { 'B', 'T', 'S', 'U', 'D', 'N' };
 	return newVector[randomNumber];
@@ -92,7 +99,9 @@ char PlayerAction::randomAction() {
 
 
 void PlayerAction::pauseGame() {
+	//For debugging
 	OF::debugFunction("PlayerAction, pauseGame");
+
 	std::string gameCode;
 	gameCode += CV::continentSize;
 

@@ -6,6 +6,9 @@
 
 //Empty constructor, used for temp provinces
 Provinces::Provinces() {
+	//For debugging
+	OF::debugFunction("Provinces, Provinces (0 Param)");
+
 	//Empty
 	
 	//Defaults
@@ -15,7 +18,8 @@ Provinces::Provinces() {
 }
 Provinces::Provinces(int overallIndexArg)
 {
-	OF::debugFunction("Provinces, Provinces (3)");
+	//For debugging
+	OF::debugFunction("Provinces, Provinces (1 Param)");
 
 	setOverallIndex(overallIndexArg);
 	//Initialize building levels
@@ -29,6 +33,9 @@ Provinces::Provinces(int overallIndexArg)
 }
 
 std::pair<int, int> Provinces::translateToSystemCoords(std::pair<int, int> userCoordsArg) {
+	//For debugging
+	OF::debugFunction("Provinces, translateToSystemCoords");
+
 	return Coords::translateToSystemCoords(userCoordsArg);
 }
 
@@ -39,7 +46,9 @@ std::pair<int, int> Provinces::translateToSystemCoords(std::pair<int, int> userC
 //Province stuff
 void Provinces::updateProvinceResources()
 {
+	//For debugging
 	OF::debugFunction("Provinces, updateProvinceResources");
+
 	std::array<int, 5> resourcesProduced = getResourceProduction(CHURCH, ALL);
 	resourcesPresent = OF::modifyArray(resourcesPresent, resourcesProduced, true);
 }
@@ -47,12 +56,17 @@ void Provinces::updateProvinceResources()
 //Other
 void Provinces::makeCapital(int participantIndexArg)
 {
-	OF::debugFunction("Provinces, initializeCapital");
+	//For debugging
+	OF::debugFunction("Provinces, makeCapital");
+
 	changeParticipantIndex(participantIndexArg);
 	isACapital = true;
 }
 
 void Provinces::initializeCapitalStats() {
+	//For debugging
+	OF::debugFunction("Provinces, initializeCapitalStats");
+
 	initiailizeCapitalBuildings();
 }
 
@@ -61,12 +75,15 @@ void Provinces::initializeCapitalStats() {
 //Commander Stuff
 void Provinces::removeCommander(CommanderProfile *newCommander)
 {
+	//For debugging
 	OF::debugFunction("Provinces, removeCommander");
+
 	commanders.erase(newCommander->getUnitName());
 }
 
 void Provinces::addCommander(CommanderProfile* newCommander)
 {
+	//For debugging
 	OF::debugFunction("Provinces, addCommander");
   commanders[newCommander->getUnitName()] = newCommander;
 }
@@ -75,7 +92,9 @@ void Provinces::addCommander(CommanderProfile* newCommander)
 
 int Provinces::getTotalCP()
 {
+	//For debugging
 	OF::debugFunction("Provinces, getTotalCP");
+
 	int totalCP = 0;
 	totalCP += getCP();
 	for (it = commanders.begin(); it != commanders.end(); it++)
@@ -85,7 +104,9 @@ int Provinces::getTotalCP()
 
 std::array<int,5> Provinces::getTotalResources()
 {
+	//For debugging
 	OF::debugFunction("Provinces, getTotalResources");
+
 	std::array<int,5> totalResources = resourcesPresent;
   std::unordered_map<std::string, CommanderProfile*>::iterator it;
 	for (it = commanders.begin(); it != commanders.end(); it++)
@@ -98,7 +119,9 @@ std::array<int,5> Provinces::getTotalResources()
 //Convert unordered_map to vector for easy understanding
 std::vector <CommanderProfile*> Provinces::getAllCommanders()
 {
+	//For debugging
 	OF::debugFunction("Provinces, getAllCommanders");
+
 		std::vector<CommanderProfile*> commandersList;
 		std::unordered_map<std::string, CommanderProfile*>::iterator it;
 		for (it = commanders.begin(); it != commanders.end(); it++)
@@ -108,13 +131,17 @@ std::vector <CommanderProfile*> Provinces::getAllCommanders()
 
 CommanderProfile* Provinces::getCommander(std::string name)
 {
+	//For debugging
 	OF::debugFunction("Provinces, getCommander");	
+
 		return commanders[name];
 }
 
 bool Provinces::subtractCheckResources(std::array<int, 5> resourcesArray)
 {
+	//For debugging
 	OF::debugFunction("Provinces, subtractCheckResources");
+
 	//returns false if resources dip into negatives
 	modifyResources(resourcesArray, false);
 	for (int x: resourcesPresent)
@@ -125,28 +152,39 @@ bool Provinces::subtractCheckResources(std::array<int, 5> resourcesArray)
 
 void Provinces::printCommanders()
 {
+	//For debugging
 	OF::debugFunction("Provinces, printCommanders");
+
 	for (it = commanders.begin(); it != commanders.end(); it++)
 		std::cout << "- " << it->second->getUnitName();
 }
 
 bool Provinces::hasCommander(std::string name)
 {
+	//For debugging
 	OF::debugFunction("Provinces, hasCommander");
-	for (it = commanders.begin(); it != commanders.end(); it++)
-		if (it->second->getUnitName() == name)
+
+	for (it = commanders.begin(); it != commanders.end(); it++) {
+		if (it->second->getUnitName() == name) {
 			return true;
+		}
+	}
+		
+			
 	return false;
 }
 
 void Provinces::playerBuildFunction() {
+	//For debugging
+	OF::debugFunction("Provinces, playerBuildFunction");
+
 	OF::clearScreen();
 	std::cout<<
 		"---------- Start printing province information ----------";
-	CV::addColor(BLUE);
+	OF::addColor(BLUE);
 	std::cout << "Province of kingdom " + getKingdomName();
 	std::cout << "Coordinates: " << getUserCoordsString() << "\n\n";
-	CV::addColor(RESET);
+	OF::addColor(RESET);
 
 	this->printResources();
 	printBuildingStats();
@@ -168,6 +206,9 @@ void Provinces::playerBuildFunction() {
 }
 
 void Provinces::upgradeBuildings() {
+	//For debugging
+	OF::debugFunction("Provinces, upgradeBuildings");
+
 	std::vector<std::string> buildingLetterList = {"H"};
 	for (int x = 1; x <= 10; x++) {
 		buildingLetterList.push_back(std::to_string(x));
@@ -192,6 +233,9 @@ void Provinces::upgradeBuildings() {
 }
 
 void Provinces::upgradeBuildings2(char optionChar) {
+	//For debugging
+	OF::debugFunction("Provinces, upgradeBuildings2");
+
 	int option = optionChar - '0';
 	Build::BuildingType type = Build::BuildingType(option >= 6);
 	//type is other
@@ -206,6 +250,9 @@ void Provinces::upgradeBuildings2(char optionChar) {
 }
 
 void Provinces::upgradeBuildings3(Build::BuildingType type, std::array<int, 5>* listArg, int name) {
+	//For debugging
+	OF::debugFunction("Provinces, upgradeBuildings3");
+
 	int index = name;
 	//If other type
 	if (type)
@@ -239,6 +286,9 @@ void Provinces::upgradeBuildings3(Build::BuildingType type, std::array<int, 5>* 
 }
 
 void Provinces::printInformation(BuildingType type, std::array<int, 5> requiredResources, int buildingIndex) {
+	//For debugging
+	OF::debugFunction("Provinces, printInformation");
+
 	std::cout << "---------- Start printing information----------\n\n\033[34m";
 	std::cout << CV::RESOURCE_BUILDING_NAMES[buildingIndex] << " selected \n";
 
@@ -257,14 +307,23 @@ void Provinces::printInformation(BuildingType type, std::array<int, 5> requiredR
 //Fix this to differentiate between resource buildings and othe rother buildings; right now, only accounts for resource buildings
 
 void Provinces::setOverallIndex(int index) {
+	//For debugging
+	OF::debugFunction("Provinces, setOverallIndex");
+
 	overallIndex = index;
 }
 
 int Provinces::getOverallIndex() {
+	//For debugging
+	OF::debugFunction("Provinces, getOverallIndex");
+
 	return overallIndex;
 }
 
 std::array<std::array<int, 5>, 7> Provinces::getLists() {
+	//For debugging
+	OF::debugFunction("Provinces, getLists");
+
 	std::array<std::array<int, 5>, 7> tempOverallArray;
 	for (int row = 0; row < 7; row++) {
 		std::array<int, 5> tempRowArray = *Lists[row];
@@ -278,6 +337,9 @@ std::array<std::array<int, 5>, 7> Provinces::getLists() {
 }
 std::array<int, 7> Provinces::getListInt()
 {
+	//For debugging
+	OF::debugFunction("Provinces, getListInt");
+
 	std::array<int, 7> listTemp;
 	for (int column = 0; column < 7; column++) {
 		listTemp[column] = *listInt[column];
@@ -287,6 +349,9 @@ std::array<int, 7> Provinces::getListInt()
 
 std::array<bool, 3> Provinces::getListBool()
 {
+	//For debugging
+	OF::debugFunction("Provinces, getListBool");
+
 	std::array<bool, 3> listTemp;
 	for (int column = 0; column < 3; column++) {
 		listTemp[column] = *listBool[column];
@@ -295,6 +360,9 @@ std::array<bool, 3> Provinces::getListBool()
 }
 
 std::array< std::pair<int, int>, 2> Provinces::getListCoords() {
+	//For debugging
+	OF::debugFunction("Provinces, getListCoords");
+
 	return { systemCoords, userCoords };
 }
 
@@ -305,17 +373,30 @@ std::array< std::pair<int, int>, 2> Provinces::getListCoords() {
 
 
 
-void Provinces::setKingdomName(std::string name) { kingdomName = name; }
+void Provinces::setKingdomName(std::string name) { 
+	//For debugging
+	OF::debugFunction("Provinces, setKingdomName");
+
+	kingdomName = name;
+}
 
 int Provinces::commandersNum() {
+	//For debugging
+	OF::debugFunction("Provinces, commandersNum");
+
 	return (int)commanders.size();
 }
 
 bool Provinces::isCapital() {
+	//For debugging
+	OF::debugFunction("Provinces, isCapital");
+
 	return isACapital;
 }
 
 void Provinces::createReport(int scouterLevelArg, int targetLevelArg) {
+	//For debugging
+	OF::debugFunction("Provinces, createReport");
 
 	std::array<std::array<int, 5>, 7> ListsArg;
 	std::array<int, 7> listIntArg;
