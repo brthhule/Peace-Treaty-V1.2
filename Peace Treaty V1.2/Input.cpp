@@ -10,7 +10,7 @@ std::vector<std::string> Input::getShowPrompt(std::string prompt)
 	std::fstream newfile;
 
 	//std::cout << "Opening file...\n";
-	newfile.open("TxtFiles\Prompts.txt", std::ios::in); // open a file to perform read operation using file object
+	newfile.open("TxtFiles\\Prompts.txt", std::ios::in); // open a file to perform read operation using file object
 	std::vector<std::string> acceptableValues = { "H" };
 	std::cout << "List of options: \n";
 	std::string line;

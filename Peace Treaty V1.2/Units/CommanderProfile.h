@@ -6,8 +6,6 @@
 #include "AllUnits.h"
 #include "../Misc/CV.h"
 
-extern int turn;
-
 using namespace CV;
 
 

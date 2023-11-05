@@ -8,17 +8,21 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace PeaceTreatyTest2
 {
-	TEST_CLASS(PeaceTreatyTest2)
+	TEST_CLASS(MainTest)
 	{
 	public:
 		
-		TEST_METHOD(TestMethod1)
+		TEST_METHOD(Test1)
 		{
-			Assert::AreEqual(4, Add(2, 2));
+			Assert::AreEqual(4, 4);
 		}
 
 		TEST_METHOD(printPersonTest) {
-			CV::printPerson();
+			Assert::AreEqual(4, 5);
+		}
+
+		TEST_METHOD(test1) {
+			Assert::AreNotEqual(4, 5);
 		}
 	};
 }

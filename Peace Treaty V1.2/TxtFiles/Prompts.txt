@@ -8,9 +8,9 @@ PLAYER_UNIT_ACTION
 - Capture this province (C)
 Options:P, C
 
-INTRODUCTION
-- Start a new game (S)
-- Resume a previous game (R)
+INTRODUCTION \n
+- Start a new game (S) \n
+- Resume a previous game (R) 
 Options:S,R
 
 PLAYER_ACTION

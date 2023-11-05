@@ -186,10 +186,17 @@ void gamePlay()
 		//If the current participant is alive
 		if (newParticipant.isAlive())
 		{
-			//Create new PlayerAction object
-			PlayerAction newPlayerAction;
-			//Run through PlayerAction
-			newPlayerAction.initialDecision();
+			try {
+				//Create new PlayerAction object
+				PlayerAction newPlayerAction;
+				//Run through PlayerAction
+				newPlayerAction.initialDecision();
+			}
+			catch (...) {
+				std::cout << "Something went wrong, error occurred. Restarting player turn.";
+				x--;
+			}
+			
 		}
 	}
 	CV::turn++;
