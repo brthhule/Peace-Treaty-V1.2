@@ -538,18 +538,17 @@ std::string Participants::selectCommander() {
 	println("Enter the name of the commander you wish to select (Enter -1 to cancel selection): ");
 	getline(std::cin, commanderName);
 
-	if (hasCommander(commanderName) == false && commanderName != "-1") {
-		println("Invalid character entered. Please try again... (Enter any character to continue)");
+	if (hasCommander(commanderName)) {
+		std::cout << "Commander " << commanderName << " selected...\n";
+		return commanderName;
+	} else if (commanderName != "-1") {
+		println("Invalid name entered. Please try again... (Enter any character to continue)");
+		OF::enterAnything();
 		selectCommander();
 	}
 
-	if (commanderName == "-1")
-	{
-		std::cout << "Cancelling selection\n";
-	}
-	else
-		std::cout << "Commander " << commanderName << " selected...\n";
-
+	std::cout << "Cancelling selection\n";
+		
 	return commanderName;
 }
 
@@ -755,4 +754,39 @@ void Participants::createMapParticipant() {
 	OF::debugFunction("Participants, createMapParticipant");
 
 	setMap();
+}
+
+std::pair<int, int> Participants::pickCoords() {
+	//For debugging
+	OF::debugFunction("Database, pickCoords");
+
+	Participants* tempParticipant = new Participants();
+	tempParticipant->showMap();
+	delete tempParticipant;
+
+	std::string
+		xCoordinateString,
+		yCoordinateString;
+
+	std::cout << "Enter an x coordinate: ";
+	getline(std::cin, xCoordinateString);
+	std::cout << "Enter a y coordinate: ";
+	getline(std::cin, yCoordinateString);
+
+	int
+		xCoordinate = std::stoi(xCoordinateString),
+		yCoordinate = std::stoi(yCoordinateString);
+
+	if (xCoordinate > 0 && xCoordinate <= CV::continentSize && yCoordinate > 0 && yCoordinate <= CV::continentSize) {
+		return { xCoordinate, yCoordinate };
+	}
+
+	OF::addColor(RED);
+	std::cout << "Inputed coordinates are out of bounds... please try again.";
+	OF::addColor(RESET);
+	pickCoords();
+
+	//Error path
+	std::pair<int, int> tempPair(-1, -1);
+	return tempPair;
 }

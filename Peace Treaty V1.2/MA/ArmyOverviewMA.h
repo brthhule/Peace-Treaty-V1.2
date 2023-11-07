@@ -18,24 +18,15 @@ extern Database db;
 class ArmyOverviewMA
 {
 public:
-	//constructor
-	ArmyOverviewMA();
-
-	void 
-		printCosts(std::vector<int>costs, std::string type),
-		armyDeploymentMF(),
-		trainCommanders(),
-		proceedWithTraining(std::array <int,5> trainCosts),
-		upgradeCommandersOne(),
-		upgradeCommandersTwo(),
-		viewArmyOverview(),
-		deployCommanderMF();
-	
-private:
-	Participants *participant;
-	int commandersNum;
-	
-	std::string commanderName;
+	virtual void 
+		printCosts(std::vector<int>costs, std::string type) = 0,
+		armyDeploymentMF() = 0,
+		trainCommanders() = 0,
+		proceedWithTraining(std::array <int,5> trainCosts) = 0,
+		upgradeCommandersOne() = 0,
+		upgradeCommandersTwo() = 0,
+		viewArmyOverview() = 0,
+		deployCommanderMF() = 0;
 };
 
 #endif

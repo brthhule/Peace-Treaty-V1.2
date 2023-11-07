@@ -43,16 +43,6 @@ public:
 				 *getParticipant(int index);
 
 
-	class Mobility {
-	public:
-		static void moveUnitOne(CommanderProfile *commander);
-		static std::vector <Provinces*> moveUnitTwo(CommanderProfile *commander);
-	};
-
-	static std::pair<int, int> pickCoords();
-
-	Mobility move;
-
 private:
 	
 	std::vector<Participants> participantsList;

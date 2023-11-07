@@ -263,7 +263,7 @@ void Provinces::upgradeBuildings3(Build::BuildingType type, std::array<int, 5>* 
 	//Multiplies level by base line rate
 	std::array<int, 5> requiredResources;
 	for (int x = 0; x < 5; x++) {
-		requiredResources[x] = listArg->at(name) * upgradeRates[0][x];//Fix this later
+		requiredResources[x] = (int) listArg->at(name) * (int) upgradeRates[0][x];//Fix this later
 	}
 
 

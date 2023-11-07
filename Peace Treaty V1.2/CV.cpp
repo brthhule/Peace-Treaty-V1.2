@@ -82,6 +82,7 @@ namespace CV {
 	int turn = 0;
 	int UNIT_AMOUNT_CV = UNIT_AMOUNT;
 	int currentParticipantIndex = 0;
+	int maxCommanders = 0;
 
 	const int BARRACKS_PRODUCTION = 2;
 
@@ -113,7 +114,7 @@ namespace CV {
 		//For debugging
 		CV::debugFunction("CV, getStringIndex");
 
-		for (int x = 0; x < PROMPTS_STRING.size(); x++) {
+		for (int x = 0; x < (signed) PROMPTS_STRING.size(); x++) {
 			if (PROMPTS_STRING[x] == arg) {
 				return x;
 			}

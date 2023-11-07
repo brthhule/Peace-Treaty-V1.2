@@ -33,16 +33,13 @@ void ProvinceReport::computeAccuracy() {
 	int bigger = 0;
 	int smaller = 0;
 
-	switch (scouterLevel > targetLevel)
-	{
-	case 0:
-		bigger = targetLevel;
-		smaller = scouterLevel;
-		break;
-	case 1:
+
+	if (scouterLevel > targetLevel) {
 		bigger = scouterLevel;
 		smaller = targetLevel;
-		break;
+	} else {
+		bigger = targetLevel;
+		smaller = scouterLevel;
 	}
 
 	double divided = double(bigger) / smaller;
@@ -50,15 +47,14 @@ void ProvinceReport::computeAccuracy() {
 	//Max accuracy: 95, min: 10
 	//Accuracy starts at 50 by default-- same level = 50
 	//If scouting a higher level target
-	if (scouterLevel < targetLevel)
-	{
+	if (scouterLevel < targetLevel) {
 		divided *= -1;
 	}
+
 	accuracy = 50 + int(divided);
 	if (accuracy > 95) {
 		accuracy = 95;
-	}
-	else if (accuracy < 5) {
+	} else if (accuracy < 5) {
 		accuracy = 5;
 	}
 }
@@ -69,7 +65,7 @@ void ProvinceReport::attuneValues() {
 
 	int newAccuracy = 100 - accuracy;
 	int currentValue, mediumValue, upperValue, lowerValue;
-	srand(time(NULL));
+	srand((unsigned) time(NULL));
 
 	for (int row = 0; row < 7; row++) {
 		for (int col = 0; col < 5; col++) {

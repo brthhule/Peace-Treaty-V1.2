@@ -24,6 +24,7 @@
 #include "../Misc/CV.h"
 #include "../Misc/LinkedList.h"
 #include "../Misc/OF.h"
+#include "../Mobility.h"
 
 
 #define CONSTRUCTOR
@@ -32,7 +33,7 @@
 using namespace CV;
 using namespace OF;
 
-class Participants : Map
+class Participants : Map, Mobility
 {
 public:
 	CONSTRUCTOR Participants();
@@ -117,6 +118,22 @@ public:
 		createMapParticipant();
 		
 	const Provinces* tempProvince = new Provinces;
+
+	void
+		printCosts(std::vector<int>costs, std::string type) = 0,
+		armyDeploymentMF() = 0,
+		trainCommanders() = 0,
+		proceedWithTraining(std::array <int, 5> trainCosts) = 0,
+		upgradeCommandersOne() = 0,
+		upgradeCommandersTwo() = 0,
+		viewArmyOverview() = 0,
+		deployCommanderMF() = 0;
+
+
+	void moveUnitOne(CommanderProfile* commander);
+	std::vector <Provinces*> moveUnitTwo(CommanderProfile* commander);
+	static std::pair<int, int> pickCoords();
+
 
 private:
 	ARRAY

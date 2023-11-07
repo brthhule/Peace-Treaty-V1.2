@@ -18,7 +18,6 @@ std::vector<std::string> Input::getShowPrompt(std::string prompt)
 	bool startReading = false;
 	if (newfile.is_open())
 	{
-		std::cout << "File open";
 		while (getline(newfile, line)) {
 			if (line.substr(0, 7) == "Options") {
 				startReading = false;
@@ -26,7 +25,7 @@ std::vector<std::string> Input::getShowPrompt(std::string prompt)
 			}
 
 			if (startReading == true) {
-				std::cout << line;
+				std::cout << line << "\n";
 			}
 
 			if (line.substr(0, line.find(" ")) == prompt) {
@@ -34,9 +33,7 @@ std::vector<std::string> Input::getShowPrompt(std::string prompt)
 			}
 		}
 	}
-	else {
-		std::cout << "File closed";
-	}
+
 	
 	newfile.close(); // close the file object.
 	std::cout << "Return to previous menu (M)\n";

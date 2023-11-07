@@ -133,6 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="aliases.txt" />
     <ClCompile Include="Build.cpp" />
     <ClCompile Include="Buildings.cpp" />
     <ClCompile Include="CommanderReport.cpp" />
@@ -144,6 +145,7 @@
     <ClCompile Include="MA\ScoutMA.cpp" />
     <ClCompile Include="MA\TrainMA.cpp" />
     <ClCompile Include="Misc\OF.cpp" />
+    <ClCompile Include="Mobility.cpp" />
     <ClCompile Include="Peace Treaty V1.2.cpp" />
     <ClCompile Include="PlayerAction.cpp" />
     <ClCompile Include="ProvinceReport.cpp" />
@@ -189,6 +191,7 @@
     <Text Include="AdministrativeDocs\needToDo.txt" />
     <Text Include="AdministrativeDocs\notes.txt.txt" />
     <Text Include="AdministrativeDocs\tips.txt.txt" />
+    <Text Include="color.txt" />
     <Text Include="TxtFiles\Help.txt" />
     <Text Include="TxtFiles\Prompts.txt" />
     <Text Include="TxtFiles\Synopsis.txt" />
@@ -207,6 +210,7 @@
     <ClInclude Include="MA\TrainMA.h" />
     <ClInclude Include="Misc\CV.h" />
     <ClInclude Include="Misc\OF.h" />
+    <ClInclude Include="Mobility.h" />
     <ClInclude Include="PlayerAction.h" />
     <ClInclude Include="ProvinceReport.h" />
     <ClInclude Include="Troops.h" />

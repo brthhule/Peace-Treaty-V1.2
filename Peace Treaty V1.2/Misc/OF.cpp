@@ -4,8 +4,7 @@
 
 
 
-//Gets user input and returns a valid response. Parameters: (string text, vector<string> acceptable values, bool isNumber, bool redo)
-
+//Generates a random name by randomly selecting consonants and vowels
 std::string OF::createRandomName() {
 	//For debugging
 	debugFunction("OF, createRandomName");
@@ -31,6 +30,7 @@ std::string OF::createRandomName() {
 	return name;
 }
 
+//Clears the screen
 void OF::clearScreen() {
 	//For debugging
 	debugFunction("OF, clearScreen");
@@ -54,6 +54,7 @@ void OF::clearScreen() {
 // 	return primeVector;
 // }
 
+//Takes two arrays and a boolean expression. Adds the elemnts of the second array to the elements of the first array and returns the product.
 std::array<int, 5> OF::modifyArray(std::array<int, 5> primeArray, std::array<int, 5> secondaryArray, bool isAdd) {
 	//For debugging
 	debugFunction("OF, modifyArray");
@@ -67,6 +68,7 @@ std::array<int, 5> OF::modifyArray(std::array<int, 5> primeArray, std::array<int
 	return primeArray;
 }
 
+//The user is prompted to enter anything.
 void OF::enterAnything() {
 	debugFunction("OtherFunctions, enterAnything");
 	std::string emptyString = " ";
@@ -94,7 +96,6 @@ void OF::debugFunction(std::string functionName) {
 11 - scoutLogFunction
 12 - upgradeBuildings
 */
-
 
 
 //Returns that help prompt that correlates with the specified numerical identifier (caseNum)
@@ -131,14 +132,17 @@ void OF::showHelp(int caseNum) {
 	}
 }
 
+//Print a text file
 void OF::printFile(std::string filename) {
 	//For debugging
 	debugFunction("OF, printFile");
 
-	std::cout << "File name: " << filename << std::endl;
-	std::fstream newfile;//create file
-	newfile.open(filename, std::ios::in);//Open file
-	if (newfile.is_open())//If the file opens successfully
+	//Create file
+	std::fstream newfile;
+	//Open file
+	newfile.open(filename, std::ios::in);
+	//If the file opens successfully
+	if (newfile.is_open())
 	{
 		std::string line;
 		while (getline(newfile, line)) //Iterate through file

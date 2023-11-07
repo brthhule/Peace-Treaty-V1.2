@@ -153,7 +153,7 @@ void endScreen()
 	std::vector<Participants>* participantsListCopy = db.getParticipantsList();
 	Participants* currentParticipant = new Participants;
 
-	for (int x = 0; x <= participantsListCopy->size(); x++) {
+	for (int x = 0; x <= (signed) participantsListCopy->size(); x++) {
 		if (currentParticipant->isAlive()) {
 			currentParticipant = &participantsListCopy->at(x);
 		}
@@ -180,7 +180,7 @@ void gamePlay()
 	std::vector<Participants> *copyVector = db.getParticipantsList();
 
 	//Iterate through partiicpants by reference
-	for (int x = 0; x < copyVector->size(); x++)
+	for (int x = 0; x < (signed) copyVector->size(); x++)
 	{
 		Participants newParticipant = copyVector->at(x);
 		//If the current participant is alive

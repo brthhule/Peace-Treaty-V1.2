@@ -7,12 +7,15 @@
 
 #include "OF.h"
 
-#define UNIT_AMOUNT 5
+#define UNIT_AMOUNT
+
+#define print(x) std::cout << x;
+#define println(x) std::cout << x << std::endl;
 
 namespace CV
 {
-	typedef const std::array<std::string, UNIT_AMOUNT> StringArray;
-	typedef const std::array<int, UNIT_AMOUNT> ConstNumerics;
+	using StringArray = const std::array<std::string, UNIT_AMOUNT>;
+	using ConstNumerics = const std::array<int, UNIT_AMOUNT>;
 	
 	
 	extern StringArray
@@ -100,23 +103,24 @@ namespace CV
 	
 	void debugFunction(std::string functionName);
 
-	extern int 
+	extern int
 		continentSize,
 		enemyDifficulty,
 		CPUNum,
 		turn,
 		UNIT_AMOUNT_CV,
-		currentParticipantIndex;
+		currentParticipantIndex,
+		maxCommanders;
 	extern bool debuggingMode;;
 
 	void printPerson();
 
-	typedef std::array<int, 5> ARRAY;
-	typedef int INTEGER;
-	typedef std::string STRING;
-	typedef void VOID;
-	typedef std::vector<int> INT_VECTOR;
-	typedef bool BOOL;
+	using ARRAY = std::array<int, 5>;
+	using INTEGER = int;
+	using STRING = std::string;
+	using VOID = void;
+	using INT_VECTOR = std::vector<int>;
+	using BOOL = bool;
 }
 
 #endif		

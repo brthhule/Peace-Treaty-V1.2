@@ -39,7 +39,7 @@ int Build::getOtherBuildingsStringIndex(std::string arg) {
 	//For debugging
 	OF::debugFunction("Build, getOtherBuildingsStringIndex");
 
-	for (int x = 0; x < OtherBuildingsString.size(); x++) {
+	for (int x = 0; x < (signed) OtherBuildingsString.size(); x++) {
 		if (OtherBuildingsString[x] == arg) {
 			return x;
 		}
@@ -67,7 +67,7 @@ int Build::getResourceBuildingsStringIndex(std::string arg) {
 	//For debugging
 	OF::debugFunction("Build, getResourceBuildingsStringIndex");
 
-	for (int x = 0; x < OtherBuildingsString.size(); x++) {
+	for (int x = 0; x < (signed) OtherBuildingsString.size(); x++) {
 		if (OtherBuildingsString[x] == arg) {
 			return x;
 		}
