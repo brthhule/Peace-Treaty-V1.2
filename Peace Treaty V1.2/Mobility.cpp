@@ -69,19 +69,19 @@ void Participants::moveUnitOne(CommanderProfile* commander) {
 			//Remove commander from previous province
 
 			Participants* tempParticipant = new Participants;
-			tempParticipant->getSystemProvince(commander->getSystemCoords())->removeCommander(commander);
+			Provinces* formerProvince = tempParticipant->getSystemProvince(commander->getSystemCoords());
+			formerProvince->removeCommander(commander);
+
 			//Change commander coords to province coords
 			commander->setCoords(provinceSelected->getSystemCoords(), provinceSelected->getUserCoords());
 			//Add the commander to the province's list of commanders
 			provinceSelected->addCommander(commander);
-		}
+
 		// If scenario is attack
-		else
-		{
+		} else {
 			//Have to work this out
 			//AttackMA newAttackMA(selectedCommanderProvince, attackProvince, participant, selectedCommander);
 		}
-
 	}
 
 	std::cout << "Returning to previous menu... \n\n";
@@ -96,32 +96,30 @@ std::vector<Provinces*> Participants::moveUnitTwo(CommanderProfile* commander) {
 	std::vector<Provinces*> provincesSelectList;
 	std::pair<int, int> systemCoords = commander->getSystemCoords();
 
-	for (int x = -1; x <= 1; x++) /*Identify all the provinces that the player can move a unit to*/
-	{
+
+	/*Identify all the provinces that the player can move a unit to*/
+	for (int x = -1; x <= 1; x++) {
 		for (int y = -1; y <= 1; y++) {
 			// Check to see if the coordinates are in bounds (not outside of the map
 			// size)
 			int
 				firstCoordinate = systemCoords.first + x,
 				secondCoordinate = systemCoords.second + y;
+
 			bool
 				checkFirstCoordinate = (
 					firstCoordinate >= 0 &&
-					firstCoordinate < CV::continentSize
-					),
+					firstCoordinate < CV::continentSize),
 				checkSecondCoordinate = (
 					secondCoordinate >= 0 &&
-					secondCoordinate < CV::continentSize
-					),
+					secondCoordinate < CV::continentSize),
 					//Returns true if the changed coordinates aren't both the same as the original coordinates
 				checkBothCoordinates = (
 					firstCoordinate != systemCoords.first ||
-					secondCoordinate != systemCoords.second
-					);
+					secondCoordinate != systemCoords.second);
 
 
-			if (checkFirstCoordinate && checkSecondCoordinate && checkBothCoordinates)
-			{
+			if (checkFirstCoordinate && checkSecondCoordinate && checkBothCoordinates){
 				std::pair<int, int> pushCoords(firstCoordinate, secondCoordinate);
 				Participants* tempParticipant = new Participants();
 				Provinces* province = tempParticipant->getSystemProvince(pushCoords);
