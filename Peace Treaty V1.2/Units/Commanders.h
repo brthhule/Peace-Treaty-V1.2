@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "AllUnits.h"
-#include "../Misc/CV.h"
+#include "Misc/CV.h"
 
 using namespace CV;
 

@@ -9,9 +9,10 @@
 //Units
 #include "Participants.h"
 #include "Provinces.h"
-#include "CommanderPRofile.h"
-#include "../Misc/OF.h"
-#include "../Misc/LinkedList.h"//might need to move Database up, out of Units, so it can have a larger scope
+#include "Commanders.h"
+#include "../Units/Misc/OF.h"
+#include "../Units/Misc/LinkedList.h"//might need to move Database up, out of Units, so it can have a larger scope
+
 #define print(x) std::cout << x;
 #define println(x) std::cout << x << std::endl;
 

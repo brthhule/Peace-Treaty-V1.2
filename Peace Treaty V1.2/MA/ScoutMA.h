@@ -7,10 +7,9 @@
 #include "../Units/Participants.h"
 #include "../Units/Provinces.h"
 #include "../Units/AllUnits.h"
-#include "../Input.h"
 
-
-#include "../Misc/OF.h"
+#include "../Units/Misc/Input.h"
+#include "../Units/Misc/OF.h"
 
 class ScoutMA {
 public:

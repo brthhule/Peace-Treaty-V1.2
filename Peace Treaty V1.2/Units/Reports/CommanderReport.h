@@ -5,7 +5,7 @@
 #include <array>
 #include <vector>
 
-#include "../Peace Treaty V1.2/Misc/OF.h"
+#include "Misc/OF.h"
 
 using namespace OF;
 

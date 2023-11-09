@@ -17,14 +17,14 @@
 
 
 #include "AllUnits.h"
-#include "CommanderProfile.h"
+#include "Commanders.h"
 #include "Map.h"
 #include "Provinces.h"
 
-#include "../Misc/CV.h"
-#include "../Misc/LinkedList.h"
-#include "../Misc/OF.h"
-#include "../Mobility.h"
+#include "Misc/CV.h"
+#include "Misc/LinkedList.h"
+#include "Misc/OF.h"
+#include "CommandersAttributes/Mobility.h"
 
 
 #define CONSTRUCTOR
@@ -120,14 +120,14 @@ public:
 	const Provinces* tempProvince = new Provinces;
 
 	void
-		printCosts(std::vector<int>costs, std::string type) = 0,
-		armyDeploymentMF() = 0,
-		trainCommanders() = 0,
-		proceedWithTraining(std::array <int, 5> trainCosts) = 0,
-		upgradeCommandersOne() = 0,
-		upgradeCommandersTwo() = 0,
-		viewArmyOverview() = 0,
-		deployCommanderMF() = 0;
+		printCosts(std::vector<int>costs, std::string type),
+		armyDeploymentMF(),
+		trainCommanders(),
+		proceedWithTraining(std::array <int, 5> trainCosts),
+		upgradeCommandersOne(),
+		upgradeCommandersTwo(),
+		viewArmyOverview(),
+		deployCommanderMF();
 
 
 	void moveUnitOne(CommanderProfile* commander);

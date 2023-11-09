@@ -4,10 +4,11 @@
 #include <array>
 #include <iostream>
 #include <vector>
+#include <array>
 
 #include "OF.h"
 
-#define UNIT_AMOUNT
+#define UNIT_AMOUNT 5
 
 #define print(x) std::cout << x;
 #define println(x) std::cout << x << std::endl;

@@ -5,17 +5,17 @@
 #include <string>
 #include <vector>
 
-#include "../Units/Participants.h"
-#include "../Units/CommanderProfile.h"
-#include "../Units/Provinces.h"
-#include "../Units/AllUnits.h"
-#include "../Input.h"
-
-
-#include "../Misc/CV.h"
-
 //Warning: may cause circular dependency
 #include "../Units/Database.h"
+#include "../Units/Participants.h"
+#include "../Units/Commanders.h"
+#include "../Units/Provinces.h"
+#include "../Units/AllUnits.h"
+
+#include "../Units/Misc/Input.h"
+#include "../Units/Misc/CV.h"
+
+
 
 using namespace CV;
 

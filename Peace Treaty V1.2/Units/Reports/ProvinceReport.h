@@ -6,8 +6,8 @@
 #include <vector>
 #include <unordered_map>
 
-#include "CommanderReport.h"
-#include "../Peace Treaty V1.2/Units/CommanderProfile.h"
+#include "../Reports/CommanderReport.h"
+#include "../Commanders.h"
 
 class ProvinceReport {
 public:

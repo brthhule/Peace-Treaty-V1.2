@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 
-#include "Misc/CV.h"
+#include "../Misc/CV.h"
 
 using namespace CV;
 

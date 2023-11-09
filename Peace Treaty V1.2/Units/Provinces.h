@@ -6,13 +6,13 @@
 #include <random>
 
 #include "AllUnits.h"
-#include "CommanderProfile.h"
-#include "../Misc/CV.h"
-#include "../Interfaces/BuildMA.h"
-#include "../Input.h"
-#include "../Coords.h"
-#include "../Buildings.h"
-#include "../ProvinceReport.h"
+#include "Commanders.h"
+#include "Misc/CV.h"
+#include "ProvincesAttributes/BuildMA.h"
+#include "Misc/Input.h"
+#include "AllUnitsAttributes/Coords.h"
+#include "ProvincesAttributes/Buildings.h"
+#include "Reports/ProvinceReport.h"
 
 
 #define print(x) std::cout << x;

@@ -2,7 +2,7 @@
 #define BUILDMA_H
 
 #include <iostream>
-#include "../Build.h"
+#include "Build.h"
 
 using namespace Build;
 

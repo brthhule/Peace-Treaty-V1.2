@@ -5,10 +5,10 @@
 #include <vector>
 #include <iostream>
 #include <array>
-#include "../Misc/CV.h"
-#include "../Misc/OF.h"
-#include "../Coords.h"
-#include "../Troops.h"
+#include "Misc/CV.h"
+#include "Misc/OF.h"
+#include "AllUnitsAttributes/Coords.h"
+#include "AllUnitsAttributes/Troops.h"
 
 /*int resourcesPresent[5];
 	int troopsPresent[5];

@@ -18,14 +18,14 @@
 //Player infrastructure
 #include "Units/Provinces.h"
 #include "Units/Participants.h"
-#include "Units/CommanderProfile.h"
+#include "Units/Commanders.h"
 #include "Units/Database.h"
 
 //Miscellaneous
-#include "Misc/OF.h"
-#include "Misc/CV.h"
-#include "Misc/LinkedList.h"
-#include "Input.h"
+#include "Units/Misc/OF.h"
+#include "Units/Misc/CV.h"
+#include "Units/Misc/LinkedList.h"
+#include "Units/Misc/Input.h"
 
 
 //Main Actions

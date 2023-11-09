@@ -10,8 +10,8 @@
 #include "../Units/Database.h"
 
 #include "../Units/Participants.h"
-#include "../Misc/OF.h"
-#include "../Input.h"
+#include "../Units/Misc/OF.h"
+#include "../Units/Misc/Input.h"
 
 extern Database db;
 

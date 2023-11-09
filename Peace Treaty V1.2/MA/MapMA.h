@@ -11,11 +11,11 @@
 
 #include "../Units/Participants.h"
 #include "../Units/Provinces.h"
-
-#include "../Misc/CV.h"
-#include "../Misc/OF.h"
 #include "../Units/Database.h"
-#include "../Input.h"
+
+#include "../Units/Misc/CV.h"
+#include "../Units/Misc/OF.h"
+#include "../Units/Misc/Input.h"
 
 
 //extern std::vector<std::vector<Provinces>> provincesMap;
