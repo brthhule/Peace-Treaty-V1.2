@@ -6,7 +6,7 @@ MapMA::MapMA() {
 	//For debugging
 	OF::debugFunction("MapMA, MapMA");
 
-	participant = db.getCurrentParticipant(); 
+	participant = db.getCurrentParticipant();
 	
 	//Default
 	pIndex = -1;

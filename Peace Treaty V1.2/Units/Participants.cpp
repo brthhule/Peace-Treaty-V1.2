@@ -790,3 +790,4 @@ std::pair<int, int> Participants::pickCoords() {
 	std::pair<int, int> tempPair(-1, -1);
 	return tempPair;
 }
+

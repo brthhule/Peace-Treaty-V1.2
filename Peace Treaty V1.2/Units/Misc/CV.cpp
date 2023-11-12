@@ -1,4 +1,4 @@
-#include "../Peace Treaty V1.2/Misc/CV.h"
+#include "CV.h"
 
 namespace CV {
 	/*TROOP_NAMES = Militia, Guards, Cavalry, Knights, Paladins*/
@@ -90,7 +90,7 @@ namespace CV {
 
 
 
-#include "../Peace Treaty V1.2/Misc/CV.h"
+#include "CV.h"
 
 	using namespace CV;
 

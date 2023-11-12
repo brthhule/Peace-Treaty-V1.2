@@ -1,4 +1,4 @@
-#include "CommanderProfile.h"
+#include "Commanders.h"
 
 /*Constructors*/
 CommanderProfile::CommanderProfile() {

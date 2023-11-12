@@ -40,8 +40,8 @@ public:
 	
 	int getMaxCommanders();
 
-	Participants *getCurrentParticipant(),
-				 *getParticipant(int index);
+	Participants* getCurrentParticipant();
+	Participants* getParticipant(int index);
 
 
 private:

@@ -9,18 +9,13 @@
 #include <vector>
 #include <unordered_map>
 
-
-#include "../Units/Database.h"
-
-#include "../Units/Participants.h"
 #include "../Units/Misc/OF.h"
 #include "../Units/Misc/Input.h"
 
-extern Database db;
 
 class ArmyOverviewMA
 {
-public:
+protected:
 	virtual void 
 		printCosts(std::vector<int>costs, std::string type) = 0,
 		armyDeploymentMF() = 0,

@@ -32,8 +32,7 @@ void Participants::armyDeploymentMF() {
 }
 
 /*fix this-- finish making it*/
-void Participants::upgradeCommandersOne() 
-{
+void Participants::upgradeCommandersOne() {
 	//For debugging
 	OF::debugFunction("ArmyOverview, upgradeCommandersOne");
 
@@ -95,23 +94,23 @@ void Participants::trainCommanders() {
 	OF::debugFunction("ArmyOverview, trainCommanders");
 
 	std::string yesOrNoString;
-	std::cout << "You have " << commandersNum << "/" << CV::maxCommanders << " total army commanders. \n";
+	std::cout << "You have " << this->commandersNum() << "/" << CV::maxCommanders << " total army commanders. \n";
 	std::cout << "Do you want to train a commander? (Y/N) ";
 
 	ARRAY trainCosts = getTrainCosts();
 
 	if (Input::getInputText("Proceed with training", { "Y", "N" }).at(0) == 'Y') {
 		/*if amount of commanders is less than max (not at max capacity)*/
-		if (commandersNum < db.getMaxCommanders()) {
+		if (this->commandersNum() < CV::maxCommanders) {
 			proceedWithTraining(trainCosts);
 		} else {
 			std::cout << "At maximum army commander amount. Training failed, returning to menu \n";
 		}
-			
+
 	} else {
 		OF::enterAnything();
 	}
-		
+
 }
 
 void Participants::proceedWithTraining(std::array<int, 5> trainCosts) {
@@ -124,7 +123,7 @@ void Participants::proceedWithTraining(std::array<int, 5> trainCosts) {
 		addCommander();
 
 		println("Commander training successful ");
-		std::cout << "Current commanders: " << commandersNum << std::endl;
+		std::cout << "Current commanders: " << this->commandersNum() << std::endl;
 	} else {
 		std::cout << "Commander training failed (Not enough resources)... \n\n";
 		getCapitalProvince()->modifyResources(trainCosts, true);
@@ -139,7 +138,7 @@ void Participants::deployCommanderMF() {
 	if (commanderName == "-1") {
 		return;
 	}
-		;
+	;
 
 	CommanderProfile* commander = getCommander(commanderName);
 
@@ -151,7 +150,7 @@ void Participants::deployCommanderMF() {
 	if (confirmDeploy == 'Y')
 	{
 		if (commander->hasMovedQuestion() == false) {
-			db.move.moveUnitOne(getCommander(commanderName));
+			this->moveUnitOne(getCommander(commanderName));
 		} else {
 			std::cout << "This unit has already moved... please pick another unit \n";
 			deployCommanderMF();
@@ -169,7 +168,7 @@ void Participants::printCosts(std::vector<int> costs, std::string type) {
 	for (int x = 0; x < 5; x++) {
 		std::cout << CV::RESOURCE_NAMES[x] << ": " << costs[x];
 	}
-		
+
 	std::cout << "The following are the resources currently in your capital: \n";
 	getCapitalProvince()->printResources();
 }

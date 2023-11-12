@@ -3,8 +3,8 @@
 
 #include <iostream>
 
-#include "Misc/CV.h"
-#include "Misc/OF.h"
+#include "CV.h"
+#include "OF.h"
 
 using namespace CV;
 using namespace OF;

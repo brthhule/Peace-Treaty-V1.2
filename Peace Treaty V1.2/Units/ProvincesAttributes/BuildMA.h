@@ -9,8 +9,6 @@ using namespace Build;
 class BuildMA
 {
 protected:
-	//BuildMA() {};
-	//~BuildMA() {};
 	void virtual
 		playerBuildFunction() = 0,
 		upgradeBuildings() = 0,

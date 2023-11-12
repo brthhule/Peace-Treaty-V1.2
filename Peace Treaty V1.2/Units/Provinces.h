@@ -38,7 +38,6 @@ public:
 	/*Initialization*/
 	bool 
 		isCapital(),
-		deleteStatus(),
 		hasCommander(std::string name),
 		subtractCheckResources(std::array<int, 5> resourcesArray);
 

@@ -133,10 +133,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AdministrativeDocs\aliases.txt" />
-    <ClCompile Include="Units\ProvinceAttributes\Build.cpp" />
-    <ClCompile Include="Units\ProvinceAttributes\Buildings.cpp" />
-    <ClCompile Include="Units\ReportsCommanderReport.cpp" />
+    <ClCompile Include="Units\ProvincesAttributes\Build.cpp" />
+    <ClCompile Include="Units\ProvincesAttributes\Buildings.cpp" />
+    <ClCompile Include="Units\Reports\CommanderReport.cpp" />
     <ClCompile Include="Units\AllUnitsAttributes\Coords.cpp" />
     <ClCompile Include="Units\Misc\Input.cpp" />
     <ClCompile Include="MA\ArmyOverviewMA.cpp" />
@@ -144,15 +143,15 @@
     <ClCompile Include="MA\MapMA.cpp" />
     <ClCompile Include="MA\ScoutMA.cpp" />
     <ClCompile Include="MA\TrainMA.cpp" />
-    <ClCompile Include="Misc\OF.cpp" />
-    <ClCompile Include="Mobility.cpp" />
+    <ClCompile Include="Units\Misc\OF.cpp" />
+    <ClCompile Include="Units\CommandersAttributes\Mobility.cpp" />
     <ClCompile Include="Peace Treaty V1.2.cpp" />
     <ClCompile Include="PlayerAction.cpp" />
-    <ClCompile Include="ProvinceReport.cpp" />
-    <ClCompile Include="CV.cpp" />
-    <ClCompile Include="Troops.cpp" />
+    <ClCompile Include="Units\Reports\ProvinceReport.cpp" />
+    <ClCompile Include="Units\Misc\CV.cpp" />
+    <ClCompile Include="Units\AllUnitsAttributes\Troops.cpp" />
     <ClCompile Include="Units\AllUnits.cpp" />
-    <ClCompile Include="Units\CommanderProfile.cpp" />
+    <ClCompile Include="Units\Commanders.cpp" />
     <ClCompile Include="Units\Database.cpp" />
     <ClCompile Include="Units\Map.cpp" />
     <ClCompile Include="Units\Participants.cpp" />
@@ -191,7 +190,8 @@
     <Text Include="AdministrativeDocs\needToDo.txt" />
     <Text Include="AdministrativeDocs\notes.txt.txt" />
     <Text Include="AdministrativeDocs\tips.txt.txt" />
-    <Text Include="color.txt" />
+	<Text Include="AdministrativeDocs\aliases.txt" />
+	<Text Include="color.txt" />
     <Text Include="TxtFiles\Help.txt" />
     <Text Include="TxtFiles\Prompts.txt" />
     <Text Include="TxtFiles\Synopsis.txt" />

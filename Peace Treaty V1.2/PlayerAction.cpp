@@ -64,8 +64,7 @@ void PlayerAction::initialDecision() {
 			break;
 		}
 		case 'D': {
-			ArmyOverviewMA newArmyOverview;
-			newArmyOverview.armyDeploymentMF();
+			participant->armyDeploymentMF();
 			break;
 		}
 		case 'N':

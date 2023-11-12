@@ -1,4 +1,4 @@
-#include "../Peace Treaty V1.2/Units/Participants.h"
+#include "../Participants.h"
 
 void Participants::moveUnitOne(CommanderProfile* commander) {
 	//For debugging

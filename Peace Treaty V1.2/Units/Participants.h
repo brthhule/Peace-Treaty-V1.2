@@ -38,7 +38,7 @@
 using namespace CV;
 using namespace OF;
 
-class Participants : Map, Mobility, ArmyOverviewMA
+class Participants : public Map, public Mobility, public ArmyOverviewMA
 {
 public:
 	CONSTRUCTOR Participants();
@@ -124,6 +124,7 @@ public:
 		
 	const Provinces* tempProvince = new Provinces;
 
+	//ArmyOverviewMA.h
 	void
 		printCosts(std::vector<int>costs, std::string type),
 		armyDeploymentMF(),

@@ -4,9 +4,9 @@
 #include <iostream>
 #include <array>
 
-#include "Misc/CV.h"
-#include "Misc/OF.h"
-#include "Build.h"
+#include "../Misc/CV.h"
+#include "../Misc/OF.h"
+#include "../ProvincesAttributes/Build.h"
 
 #include "../AllUnits.h"
 
