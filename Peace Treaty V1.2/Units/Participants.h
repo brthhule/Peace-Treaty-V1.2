@@ -1,3 +1,7 @@
+//Participants.h
+
+//Implements: Map, Mobility, ArmyOverviewMA
+
 #ifndef PARTICIPANTS_H
 #define PARTICIPANTS_H
 
@@ -25,6 +29,7 @@
 #include "Misc/LinkedList.h"
 #include "Misc/OF.h"
 #include "CommandersAttributes/Mobility.h"
+#include "../MA/ArmyOverviewMA.h"
 
 
 #define CONSTRUCTOR
@@ -33,7 +38,7 @@
 using namespace CV;
 using namespace OF;
 
-class Participants : Map, Mobility
+class Participants : Map, Mobility, ArmyOverviewMA
 {
 public:
 	CONSTRUCTOR Participants();

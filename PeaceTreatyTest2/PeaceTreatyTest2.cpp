@@ -1,8 +1,7 @@
 #include "pch.h"
 #include "CppUnitTest.h"
 
-#include "../InfrastructureThing/Infrastructure.h"
-#include "../Peace Treaty V1.2/Misc/CV.h"
+#include "../Peace Treaty V1.2/Units/Misc/CV.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 

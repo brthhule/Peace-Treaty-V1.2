@@ -133,12 +133,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="aliases.txt" />
-    <ClCompile Include="Build.cpp" />
-    <ClCompile Include="Buildings.cpp" />
-    <ClCompile Include="CommanderReport.cpp" />
-    <ClCompile Include="Coords.cpp" />
-    <ClCompile Include="Input.cpp" />
+    <ClCompile Include="AdministrativeDocs\aliases.txt" />
+    <ClCompile Include="Units\ProvinceAttributes\Build.cpp" />
+    <ClCompile Include="Units\ProvinceAttributes\Buildings.cpp" />
+    <ClCompile Include="Units\ReportsCommanderReport.cpp" />
+    <ClCompile Include="Units\AllUnitsAttributes\Coords.cpp" />
+    <ClCompile Include="Units\Misc\Input.cpp" />
     <ClCompile Include="MA\ArmyOverviewMA.cpp" />
     <ClCompile Include="MA\AttackMA.cpp" />
     <ClCompile Include="MA\MapMA.cpp" />

@@ -233,7 +233,7 @@ void MapMA::playerUnitActionP(Provinces* newP)
 	}
 
 	if (participant->getCommander(commanderName)->hasMovedQuestion() == false) {
-		db.move.moveUnitOne(participant->getCommander(commanderName));
+		participant->moveUnitOne(participant->getCommander(commanderName));
 		playerUnitAction(newProvince);
 	}
 	else

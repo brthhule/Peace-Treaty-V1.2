@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "../Peace Treaty V1.2/Units/Provinces.h"
+#include "../Provinces.h"
 
 class Mobility {
 public:

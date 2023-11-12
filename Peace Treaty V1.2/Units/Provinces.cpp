@@ -1,5 +1,5 @@
 #include "Provinces.h"
-#include "../Input.h"
+#include "../Units/Misc/Input.h"
 
 #define print(x) std::cout << x;
 #define println(x) std::cout << x << std::endl;

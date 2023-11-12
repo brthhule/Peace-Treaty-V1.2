@@ -1,3 +1,6 @@
+//Provinces.h
+//Inherits: AllUnits, BuildMA, Buildings
+
 #ifndef PROVINCES_H
 #define PROVINCES_H
 
