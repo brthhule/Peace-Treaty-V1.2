@@ -1,6 +1,7 @@
 //Participants.h
 
-//Implements: Map, Mobility, ArmyOverviewMA
+//Inherits: Map, Mobility, ArmyOverviewMA
+//Composition: Provinces, Commanders
 
 #ifndef PARTICIPANTS_H
 #define PARTICIPANTS_H
