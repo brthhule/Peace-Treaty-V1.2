@@ -13,10 +13,22 @@
 #define print(x) std::cout << x;
 #define println(x) std::cout << x << std::endl;
 
+#include <vector>
+
 namespace CV
 {
 	using StringArray = const std::array<std::string, UNIT_AMOUNT>;
 	using ConstNumerics = const std::array<int, UNIT_AMOUNT>;
+
+
+	//Creating my own vector version to enable vector element addition
+	class myvector : std::vector<int> {
+	public:
+		void addVector
+	private:
+	};
+
+	myvector<int> = { 1,2,3,4 };
 	
 	
 	extern StringArray
