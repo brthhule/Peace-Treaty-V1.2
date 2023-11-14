@@ -3,20 +3,20 @@
 namespace CV {
 	////////////////////////////////////////////////Start Variables///////////////////////////////////////
 	/*TROOPS_COST = 5, 4, 3, 2, 1 */
-	ConstNumerics TROOPS_COST = { 5, 4, 3, 2, 1 };
+	i5array TROOPS_COST = { 5, 4, 3, 2, 1 };
 
 	/*INITIAL_VALUES = 5, 4, 3, 2, 1 */
-	ConstNumerics INITIAL_VALUES = { 5, 4, 3, 2, 1 };
+	i5array INITIAL_VALUES = { 5, 4, 3, 2, 1 };
 
 	/*TROOPS_CP = 1, 2, 4, 8, 16*/
-	ConstNumerics TROOPS_CP = { 1,2,4,8,16 };
+	i5array TROOPS_CP = { 1,2,4,8,16 };
 
 	/*RESOURCE_PRODUCTION = 5, 4, 3, 2, 1 */
-	ConstNumerics RESOURCE_PRODUCTION = { 5,4,3,2,1 };
+	i5array RESOURCE_PRODUCTION = { 5,4,3,2,1 };
 
 
 	/*TROOP_NAMES = Militia, Guards, Cavalry, Knights, Paladins*/
-	StringArray TROOP_NAMES = {
+	s5array TROOP_NAMES = {
 		"Militia",
 		"Guards",
 		"Cavalry",
@@ -25,7 +25,7 @@ namespace CV {
 	};
 
 	/*RESOURCE_BUILDING = Farm, Lumber Mill, Quarry, Mine, Church*/
-	StringArray RESOURCE_BUILDING_NAMES = {
+	s5array RESOURCE_BUILDING_NAMES = {
 		"Farm",
 		"Lumber Mill",
 		"Quarry",
@@ -34,7 +34,7 @@ namespace CV {
 	};
 
 	/*OTHER_BUILDING = Barracks, Infirmary, Library, Wall, Residences*/
-	StringArray OTHER_BUILDING_NAMES = {
+	s5array OTHER_BUILDING_NAMES = {
 				"Barracks",
 				"Infirmary",
 				"Library",
@@ -43,7 +43,7 @@ namespace CV {
 	};
 
 	/*RESOURCE = Food, Wood, Ore, Gold, Mana*/
-	StringArray RESOURCE_NAMES = {
+	s5array RESOURCE_NAMES = {
 				"Food",
 				"Wood",
 				"Ore",
@@ -118,12 +118,6 @@ namespace CV {
 	}
 
 
-	void CV::printPerson() {
-		//For debugging
-		CV::debugFunction("CV, printPerson");
-
-		std::cout << "Hello!";
-	}
 	void CV::addColor(COLORS c) {
 		//For debugging
 		CV::debugFunction("CV, addColor");
@@ -172,6 +166,22 @@ namespace CV {
 		}
 
 
+	}
+
+	std::string CV::getColor(COLORS color) {
+		std::array<std::string, 9> sequences = {
+			"\033[30m", //Black
+			"\033[31m", //Red
+			"\033[32m", //Green
+			"\033[33m", //Yellow
+			"\033[34m", //Blue
+			"\033[35m", //Magenta
+			"\033[36m", //Cyan
+			"\033[37m", //White
+			"\033[0m" //Reset
+		};
+
+		return sequences[color];
 	}
 
 	std::string CV::promptsToString(PROMPTS p) {
@@ -231,7 +241,7 @@ namespace CV {
 		vector(vectorArg.begin(), vectorArg.end());
 	}
 	void CV::myvector<int>::addVectorElements(CV::myvector<int> vectorInstance) {
-		for (int x = 0; x < this->size(); x++) {
+		for (int x = 0; x < (int) this->size(); x++) {
 			at(x) += vectorInstance.at(x);
 		}
 	}
@@ -247,7 +257,7 @@ namespace CV {
 			at(x) += arrayArg[x];
 		}
 	}
-}
+};
 
 
 
@@ -266,17 +276,30 @@ void CV::clearScreen() {
 }
 
 void CV::clearScreenCommand() {
+	//For debugging
+	debugFunction("OF, clearScreenCommand");
 	std::cout << "\033[2J\033[1;1H";
 }
 
 
-//The user is prompted to enter anything.
-void CV::enterAnything() {
+/*The user is prompeted to enter anything
+option = 1, says enter anything to proceed
+option = 2, says enter anything to return to previous menu*/
+void CV::enterAnything(int option) {
+	std::string line;
+	switch (option) {
+		case 1:
+			line = "proceed";
+			break;
+		case 2:
+			line = "return to the previous menu";
+			break;
+	}
 	debugFunction("OtherFunctions, enterAnything");
 	std::string emptyString = " ";
-	std::cout << "Enter anything to return to the previous menu: \033[31m";
+	std::cout << "Enter anything to " << line << " (screen will clear): " << CV::getColor(BLUE);
 	getline(std::cin, emptyString);
-	println("\n\033[0m")
+	CV::addColor(BLUE);
 }
 
 /*functionName is styled as "file name, function name*/

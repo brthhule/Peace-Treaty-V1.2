@@ -10,8 +10,8 @@ Buildings::Buildings() {
 		x = 0;
 	}
 
-	otherBuildingsLevels = CV::ARRAY{};
-	resourceBuildingsLevels = CV::ARRAY{};
+	otherBuildingsLevels = CV::i5array{};
+	resourceBuildingsLevels = CV::i5array{};
 }
 
 

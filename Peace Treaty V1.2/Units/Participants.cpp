@@ -4,8 +4,8 @@
 #define println(x) std::cout << x << std::endl;
 
 
-ARRAY Participants::allCommandersArray = {};
-ARRAY Participants::allProvincesArray = {};
+i5array Participants::allCommandersArray = {};
+i5array Participants::allProvincesArray = {};
 
 
 	// Constructor
@@ -292,7 +292,7 @@ void Participants::viewAllStatsFunction() {
 	std::cout << "Total troops lost: ";
 	calculatePlayerValues(2);
 	std::cout << "\n\n\033[;0m"; // NW
-	CV::enterAnything();
+	CV::enterAnything(1);
 }
 
 void Participants::printListOfProvinces() {
@@ -543,7 +543,7 @@ std::string Participants::selectCommander() {
 		return commanderName;
 	} else if (commanderName != "-1") {
 		println("Invalid name entered. Please try again... (Enter any character to continue)");
-		CV::enterAnything();
+		CV::enterAnything(1);
 		selectCommander();
 	}
 
@@ -625,7 +625,7 @@ Provinces* Participants::findProvince() {
 		else {//If does not belong to the current participant
 			print("Invalid province elected. Please try again. \nEnter anything to "
 				"proceed back to the Player Build menu (Screen will clear) ");
-			CV::enterAnything();
+			CV::enterAnything(1);
 		}
 		std::cout << std::endl;
 	}
@@ -672,11 +672,11 @@ void Participants::showMap() {
 	Map::showMap();
 }
 
-ARRAY Participants::getAllUnitsArray() {
+i5array Participants::getAllUnitsArray() {
 	//For debugging
 	CV::debugFunction("Participants, getAllUnitsArray");
 
-	ARRAY returnArray = {0,0,0,0,0};
+	i5array returnArray = {0,0,0,0,0};
 
 	Participants* p = new Participants();
 	try {
@@ -701,7 +701,7 @@ VOID Participants::getAllUnitsArrayCommanders() {
 	CV::debugFunction("Participants, getAllUnitsArrayCommanders");
 
 	for (CommanderProfile instance : commandersVector) {
-		ARRAY commanderArray = instance.getTroop(REGULAR, -1, ALL);
+		i5array commanderArray = instance.getTroop(REGULAR, -1, ALL);
 		CV::modifyArray(allCommandersArray, commanderArray, true);
 	}
 }
@@ -711,7 +711,7 @@ VOID Participants::getAllUnitsArrayProvinces() {
 	CV::debugFunction("Participants, getAllUnitsArrayProvinces");
 
 	for (Provinces *instance : provincesVector) {
-		ARRAY provincesArray = instance->getTroop(REGULAR, -1, ALL);
+		i5array provincesArray = instance->getTroop(REGULAR, -1, ALL);
 		CV::modifyArray(allProvincesArray, provincesArray, true);
 	}
 }

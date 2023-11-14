@@ -42,7 +42,7 @@ namespace Build {
 		OTHER 
 	};
 
-	extern CV::StringArray
+	extern CV::s5array
 		OtherBuildingsString,
 		ResourceBuildingsString;
 

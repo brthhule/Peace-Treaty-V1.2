@@ -8,8 +8,9 @@ std::vector<std::string> Input::getShowPrompt(std::string prompt)
 	CV::debugFunction("Input, getShowPrompt");
 
 	std::fstream newfile;
-	"C:\\Users\\Brennen\\Source\\Repos\\brthhule\\Peace-Treaty-V1.2\\Peace Treaty V1.2\\Units\\Misc\\TxtFiles\\Synopsis.txt";
-	std::string path = "C:\\Users\\Brennen\\Source\\Repos\\brthhule\\Peace-Treaty-V1.2\\Peace Treaty V1.2\\Units\\Misc\TxtFiles\\Prompts.txt";
+						"C:\\Users\\Brennen\\Source\\Repos\\brthhule\\Peace-Treaty-V1.2\\Peace Treaty V1.2\\Units\\Misc\\TxtFiles\\Synopsis.txt";
+	
+	std::string path = "C:\\Users\\Brennen\\Source\\Repos\\brthhule\\Peace-Treaty-V1.2\\Peace Treaty V1.2\\Units\\Misc\\TxtFiles\\Prompts.txt";
 
 	std::vector<std::string> acceptableValues = { "H" };
 	std::cout << "List of options: \n";
@@ -45,7 +46,7 @@ std::vector<std::string> Input::getShowPrompt(std::string prompt)
 
 	
 	newfile.close(); // close the file object.
-	std::cout << "Return to previous menu (M)\n";
+	std::cout << "- Return to previous menu (M)\n";
 
 	//Options:S,R	
 	try {
@@ -72,11 +73,11 @@ std::string Input::getOptionPromptQuery(std::vector<std::string>AV) {
 	CV::debugFunction("Input, getShowPromptQuery");
 
 	std::string input;
-	std::cout << "Enter an option: ";
-
+	std::cout << "Enter an option: " << getColor(BLUE);
 	getline(std::cin, input);
+	addColor(RESET);
 
-	for (int x = 0; x < input.size(); x++) {
+	for (int x = 0; x < (int) input.size(); x++) {
 		input.at(x) = toupper(input.at(x));
 	}
 
@@ -104,10 +105,8 @@ std::string Input::getInputQuery(std::vector<std::string>AV) {
 	//For debugging
 	CV::debugFunction("Input, getInputQuery");
 
-	std::cout << "Enter an option: ";
+	std::cout << "Enter an option: " << getColor(BLUE);
 	std::string input;
-
-	CV::addColor(RED);
 	getline(std::cin, input);
 	CV::addColor(RESET);
 

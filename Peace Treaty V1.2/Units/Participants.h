@@ -45,12 +45,12 @@ public:
 	CONSTRUCTOR Participants();
 	CONSTRUCTOR Participants(int pIndex);
 	
-	ARRAY
+	i5array
 		getTrainCosts(),
 		calculateEach(int option),
 		getAllUnitsArray();
 
-	static ARRAY
+	static i5array
 		allCommandersArray,
 		allProvincesArray;
 
@@ -71,7 +71,7 @@ public:
 		* getCommander(std::string name),
 		* getSelectedCommander();
 
-	INT_VECTOR calculatePlayerValues(int decision);
+	ivector calculatePlayerValues(int decision);
 
 	INTEGER
 		calculateTotals(int option),
@@ -143,7 +143,7 @@ public:
 
 
 private:
-	ARRAY
+	i5array
 		trainCosts = { 5, 4, 3, 2, 1 },
 		troopsLost = { 0,0,0,0,0 };
 

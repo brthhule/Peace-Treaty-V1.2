@@ -43,7 +43,7 @@ void Participants::upgradeCommandersOne() {
 	} else
 		std::cout << "No commanders available, can not upgrade\n";
 
-	CV::enterAnything();
+	CV::enterAnything(1);
 }
 
 void Participants::upgradeCommandersTwo() {
@@ -51,7 +51,7 @@ void Participants::upgradeCommandersTwo() {
 	CV::debugFunction("ArmyOverview, upgradeCommandersTwo");
 
 	STRING commanderName;//Implement this stuff
-	ARRAY costsArray = getCommander(commanderName)->getUpgradeCosts();
+	i5array costsArray = getCommander(commanderName)->getUpgradeCosts();
 
 	getCommander(commanderName)->printCosts(costsArray);
 
@@ -86,7 +86,7 @@ void Participants::viewArmyOverview() {
 		std::cout << "\n\n";
 		getCommander(commanderName)->printCommanderStats();
 	}
-	CV::enterAnything();
+	CV::enterAnything(1);
 }
 
 void Participants::trainCommanders() {
@@ -97,7 +97,7 @@ void Participants::trainCommanders() {
 	std::cout << "You have " << this->commandersNum() << "/" << CV::maxCommanders << " total army commanders. \n";
 	std::cout << "Do you want to train a commander? (Y/N) ";
 
-	ARRAY trainCosts = getTrainCosts();
+	i5array trainCosts = getTrainCosts();
 
 	if (Input::getInputText("Proceed with training", { "Y", "N" }).at(0) == 'Y') {
 		/*if amount of commanders is less than max (not at max capacity)*/
@@ -108,7 +108,7 @@ void Participants::trainCommanders() {
 		}
 
 	} else {
-		CV::enterAnything();
+		CV::enterAnything(1);
 	}
 
 }
@@ -156,7 +156,7 @@ void Participants::deployCommanderMF() {
 			deployCommanderMF();
 		}
 
-		CV::enterAnything();
+		CV::enterAnything(1);
 	}
 }
 

@@ -93,7 +93,7 @@ void ScoutMA::playerScoutStepTwo(scoutTypes canScout) // Finish this later
 	participant->scoutProvince(tempParticipant1->getSystemProvince(unit->getSystemCoords()), accuracy);
 	delete tempParticipant1;
 
-	CV::enterAnything();
+	CV::enterAnything(1);
 }
 
 ScoutMA::scoutTypes ScoutMA::getCanScout()

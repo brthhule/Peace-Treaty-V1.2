@@ -85,4 +85,4 @@ case 12:
 End
 -------------- End Help ---------------- \033[;0m\n\n
   
-	CV::enterAnything();
+	CV::enterAnything(1);

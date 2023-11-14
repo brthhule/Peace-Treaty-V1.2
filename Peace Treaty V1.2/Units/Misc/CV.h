@@ -20,16 +20,21 @@
 
 #define print(x) std::cout << x;
 #define println(x) std::cout << x << std::endl;
-
-
-
+#define Systemoutprintln(x) std::cout << x;
 
 namespace CV
 {
-	using StringArray = const std::array<std::string, UNIT_AMOUNT>;
-	using ConstNumerics = const std::array<int, UNIT_AMOUNT>;
+	////////////////////////////////////////Aliases///////////////////////////////
+	using s5array = std::array<std::string, UNIT_AMOUNT>;
+	using i5array = std::array<int, UNIT_AMOUNT>;
+	using ivector = std::vector<int>;
 
+	using INTEGER = int;
+	using STRING = std::string;
+	using VOID = void;
+	using BOOL = bool;
 
+	//////////////////////////////////////Templates///////////////////////////////
 	//Creating my own vector version to enable vector element addition
 	template <typename T>
 	class myvector : std::vector<int> {
@@ -47,23 +52,45 @@ namespace CV
 	};
 
 	
-	
-	extern StringArray
+	////////////////////////////////////Variables/////////////////////////////////
+	extern s5array
 		TROOP_NAMES,
 		RESOURCE_BUILDING_NAMES,
 		OTHER_BUILDING_NAMES,
 		RESOURCE_NAMES;
 
-	
-
-	extern ConstNumerics
+	extern i5array
 		TROOPS_COST,
 		INITIAL_VALUES,
 		TROOPS_CP,
 		RESOURCE_PRODUCTION;
 
 	extern const int BARRACKS_PRODUCTION;
+	extern std::array<std::string, 11> PROMPTS_STRING;
 
+	extern int 
+		continentSize, 
+		enemyDifficulty,
+		CPUNum,
+		turn,
+		UNIT_AMOUNT_CV,
+		currentParticipantIndex,
+		maxCommanders;
+
+	extern bool debuggingMode;
+
+	/*"BLACK",
+		"RED",
+		"GREEN",
+		"YELLOW",
+		"BLUE",
+		"MAGENTA",
+		"CYAN",
+		"WHITE",
+		"RESET" */
+	extern std::array<std::string, 9> COLORS_STRING;
+
+	////////////////////////////////////////Enums/////////////////////////////////
 	/*	GUARDS,
 		INFANTRY,
 		ARCHERS,
@@ -100,8 +127,6 @@ namespace CV
 		SELECT_ENEMY_PROVINCE,
 		WHAT_REPORT
 	};
-	
-	extern std::array<std::string, 11> PROMPTS_STRING;
 
 	/*REGULAR, 
 		INJURED,
@@ -126,55 +151,6 @@ namespace CV
 	};
 
 	
-
-	std::string promptsToString(PROMPTS p);
-	int getStringIndex(std::string arg);
-	PROMPTS stringToPrompts(std::string arg);
-	
-	extern int
-		continentSize,
-		enemyDifficulty,
-		CPUNum,
-		turn,
-		UNIT_AMOUNT_CV,
-		currentParticipantIndex,
-		maxCommanders;
-
-	extern bool debuggingMode;
-
-	void printPerson();
-
-	using ARRAY = std::array<int, 5>;
-	using INTEGER = int;
-	using STRING = std::string;
-	using VOID = void;
-	using INT_VECTOR = std::vector<int>;
-	using BOOL = bool;
-
-	// Name Functionality
-	std::string createRandomName();
-
-	// Other stuff
-	void clearScreen();
-	void enterAnything();
-
-	//Manipulate vectors
-	std::array<int, 5> modifyArray(std::array<int, 5> primeArray, std::array<int, 5> secondaryArray, bool isAdd);
-
-	//Debugging
-	void debugFunction(std::string functionName);
-
-	//For if/ternary statements with no "else"
-	static void nothing() {};
-
-	//Text stuff
-	void showHelp(int caseNum);
-	void printFile(std::string path);
-	void clearScreenCommand();
-
-
-
-
 	/*BLACK,
 		RED,
 		GREEN,
@@ -195,19 +171,45 @@ namespace CV
 		WHITE,
 		RESET
 	};
-	/*"BLACK",
-		"RED",
-		"GREEN",
-		"YELLOW",
-		"BLUE",
-		"MAGENTA",
-		"CYAN",
-		"WHITE",
-		"RESET" */
-	extern std::array<std::string, 9> COLORS_STRING;
 
+	
+	/////////////////////////////////Functions/////////////////////////////////
+	
+	//////////////string///////////////
+	std::string promptsToString(PROMPTS p);
+	//Get command to print certain color to console
+	std::string getColor(COLORS color);
+
+	std::string createRandomName();
+
+	int getStringIndex(std::string arg);
+	PROMPTS stringToPrompts(std::string arg);
+	
+	
+	//////////////void/////////////////
+	//CLears the screen
+	void clearScreen();
+	//Prompts the user to enter anything
+	void enterAnything(int option);
+	//Debugging purposes
+	void debugFunction(std::string functionName);
+	//Text stuff
+	void showHelp(int caseNum);
+	void printFile(std::string path);
+	//More text stuff
+	void clearScreenCommand();
+
+	//Adds color to console
 	void addColor(COLORS c);
+	
+	
 
+	//Manipulate vectors
+	i5array modifyArray(i5array primeArray, i5array secondaryArray, bool isAdd);
+
+	//For if/ternary statements with no "else"
+	static void nothing() {};
+	
 }
 
 #endif		

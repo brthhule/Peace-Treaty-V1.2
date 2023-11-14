@@ -10,7 +10,7 @@ AttackMA::AttackMA(Provinces* defendingProvinceArg, Participants* attackingParti
 	std::pair<int, int> defenderSystemCoords = defendingProvince->getSystemCoords();
 
 	//Default
-	oldResources = ARRAY{ 1, 2, 3, 4, 5 };
+	oldResources = i5array{ 1, 2, 3, 4, 5 };
 	defenseCanRetreat = false;
 	defendingParticipant = NULL;
 	attackingParticipant = NULL;

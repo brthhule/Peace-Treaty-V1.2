@@ -6,7 +6,7 @@ namespace Build {
 		"LIBRARY",
 		"WALL",
 		"RESIDENCES" */
-	CV::StringArray OtherBuildingsString = {
+	CV::s5array OtherBuildingsString = {
 		"BARRACKS",
 		"INFIRMARY",
 		"LIBRARY",
@@ -19,7 +19,7 @@ namespace Build {
 		"QUARRY",
 		"MINE",
 		"CHURCH" */
-	CV::StringArray ResourceBuildingsString = {
+	CV::s5array ResourceBuildingsString = {
 		"FARM",
 		"LUMBER_MILL",
 		"QUARRY",
