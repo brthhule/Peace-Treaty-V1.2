@@ -10,7 +10,7 @@
 
 #include "AllUnits.h"
 #include "Commanders.h"
-#include "Misc/CV.h"
+#include "Misc/INF.h"
 #include "ProvincesAttributes/BuildMA.h"
 #include "Misc/Input.h"
 #include "AllUnitsAttributes/Coords.h"
@@ -21,7 +21,7 @@
 #define print(x) std::cout << x;
 #define println(x) std::cout << x << std::endl;
 
-using namespace CV;
+using namespace INF;
 using namespace Input;
 
 extern const int BARRACKS_PRODUCTION;

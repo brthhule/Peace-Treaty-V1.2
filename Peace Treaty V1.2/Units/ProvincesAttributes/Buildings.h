@@ -4,13 +4,13 @@
 #include <iostream>
 #include <array>
 
-#include "../Misc/CV.h"
-#include "../Misc/CV.h"
+#include "../Misc/INF.h"
+#include "../Misc/INF.h"
 #include "../ProvincesAttributes/Build.h"
 
 #include "../AllUnits.h"
 
-using namespace CV;
+using namespace INF;
 
 using namespace Build;
 
@@ -21,11 +21,11 @@ public:
 	
 	/*These are functions*/
 	std::array<int, 5> 
-		getBuildingLevel(Build::BuildingType type, int index, CV::Quantity quant),
-		getResourceProduction(Build::ResourceBuildings name, CV::Quantity amount),
-		getCapacity(Build::BuildingType type, int name, CV::Quantity amount);
+		getBuildingLevel(Build::BuildingType type, int index, INF::Quantity quant),
+		getResourceProduction(Build::ResourceBuildings name, INF::Quantity amount),
+		getCapacity(Build::BuildingType type, int name, INF::Quantity amount);
 
-	void mutateLevel(Build::BuildingType type, int name, std::array<int,5> amount, CV::Quantity quant, CV::MutateDirection direction);
+	void mutateLevel(Build::BuildingType type, int name, std::array<int,5> amount, INF::Quantity quant, INF::MutateDirection direction);
 
 	int 
 		getTroopsTrainedThisTurn(),

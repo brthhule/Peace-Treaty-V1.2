@@ -1,6 +1,6 @@
-#include "CV.h"
+#include "INF.h"
 
-namespace CV {
+namespace INF {
 	////////////////////////////////////////////////Start Variables///////////////////////////////////////
 	/*TROOPS_COST = 5, 4, 3, 2, 1 */
 	i5array TROOPS_COST = { 5, 4, 3, 2, 1 };
@@ -104,9 +104,9 @@ namespace CV {
 
 	/// //////////////////////////////////////////////////////End Variables///////////////////////////////////////////
 
-	int CV::getStringIndex(std::string arg) {
+	int INF::getStringIndex(std::string arg) {
 		//For debugging
-		CV::debugFunction("CV, getStringIndex");
+		INF::debugFunction("CV, getStringIndex");
 
 		for (int x = 0; x < (signed)PROMPTS_STRING.size(); x++) {
 			if (PROMPTS_STRING[x] == arg) {
@@ -118,9 +118,9 @@ namespace CV {
 	}
 
 
-	void CV::addColor(COLORS c) {
+	void INF::addColor(COLORS c) {
 		//For debugging
-		CV::debugFunction("CV, addColor");
+		INF::debugFunction("CV, addColor");
 
 
 		/*The color definition is a series of numbers, separated by semicolons. In order to make the text color red (number 31), you can write "\033[31m" which will make any following output red. If you want yellow text (33) on blue background (44), you write "\033[31;44m". To reset everything back to the default colors, you write "\033[0m".
@@ -168,7 +168,7 @@ namespace CV {
 
 	}
 
-	std::string CV::getColor(COLORS color) {
+	std::string INF::getColor(COLORS color) {
 		std::array<std::string, 9> sequences = {
 			"\033[30m", //Black
 			"\033[31m", //Red
@@ -184,14 +184,14 @@ namespace CV {
 		return sequences[color];
 	}
 
-	std::string CV::promptsToString(PROMPTS p) {
+	std::string INF::promptsToString(PROMPTS p) {
 		//For debugging
-		CV::debugFunction("CV, promptsToString");
+		INF::debugFunction("CV, promptsToString");
 
 		return PROMPTS_STRING[p];
 	}
 	//Generates a random name by randomly selecting consonants and vowels
-	std::string CV::createRandomName() {
+	std::string INF::createRandomName() {
 		//For debugging
 		debugFunction("OF, createRandomName");
 
@@ -217,14 +217,14 @@ namespace CV {
 	}
 	
 
-	CV::PROMPTS CV::stringToPrompts(std::string arg) {
+	INF::PROMPTS INF::stringToPrompts(std::string arg) {
 		//For debugging
-		CV::debugFunction("CV, stringToPrompts");
+		INF::debugFunction("CV, stringToPrompts");
 
-		return PROMPTS(CV::getStringIndex(arg));
+		return PROMPTS(INF::getStringIndex(arg));
 	}
 
-	std::array<int, 5> CV::modifyArray(std::array<int, 5> primeArray, std::array<int, 5> secondaryArray, bool isAdd) {
+	std::array<int, 5> INF::modifyArray(std::array<int, 5> primeArray, std::array<int, 5> secondaryArray, bool isAdd) {
 		//For debugging
 		debugFunction("OF, modifyArray");
 
@@ -237,22 +237,22 @@ namespace CV {
 		return primeArray;
 	}
 
-	CV::myvector<int>::myvector(std::vector<int> vectorArg) {
+	INF::myvector<int>::myvector(std::vector<int> vectorArg) {
 		vector(vectorArg.begin(), vectorArg.end());
 	}
-	void CV::myvector<int>::addVectorElements(CV::myvector<int> vectorInstance) {
+	void INF::myvector<int>::addVectorElements(INF::myvector<int> vectorInstance) {
 		for (int x = 0; x < (int) this->size(); x++) {
 			at(x) += vectorInstance.at(x);
 		}
 	}
 
-	void CV::myarray<std::array<int,5>>::createArray(std::array<int, 5> arrayArg) {
+	void INF::myarray<std::array<int,5>>::createArray(std::array<int, 5> arrayArg) {
 		for (int x = 0; x < 5; x++) {
 			this->at(x) = arrayArg.at(x);
 		}
 	}
 
-	void CV::myarray<std::array<int,5>>::addArrayElements(CV::myarray<std::array<int,5>> arrayArg) {
+	void INF::myarray<std::array<int,5>>::addArrayElements(INF::myarray<std::array<int,5>> arrayArg) {
 		for (int x = 0; x < 5; x++) {
 			at(x) += arrayArg[x];
 		}
@@ -262,7 +262,7 @@ namespace CV {
 
 
 //Clears the screen
-void CV::clearScreen() {
+void INF::clearScreen() {
 	//For debugging
 	debugFunction("OF, clearScreen");
 
@@ -275,7 +275,7 @@ void CV::clearScreen() {
 	clearScreenCommand();
 }
 
-void CV::clearScreenCommand() {
+void INF::clearScreenCommand() {
 	//For debugging
 	debugFunction("OF, clearScreenCommand");
 	std::cout << "\033[2J\033[1;1H";
@@ -285,7 +285,7 @@ void CV::clearScreenCommand() {
 /*The user is prompeted to enter anything
 option = 1, says enter anything to proceed
 option = 2, says enter anything to return to previous menu*/
-void CV::enterAnything(int option) {
+void INF::enterAnything(int option) {
 	std::string line;
 	switch (option) {
 		case 1:
@@ -297,15 +297,17 @@ void CV::enterAnything(int option) {
 	}
 	debugFunction("OtherFunctions, enterAnything");
 	std::string emptyString = " ";
-	std::cout << "Enter anything to " << line << " (screen will clear): " << CV::getColor(BLUE);
+	std::cout << "Enter anything to " << line << " (screen will clear): " << INF::getColor(BLUE);
 	getline(std::cin, emptyString);
-	CV::addColor(BLUE);
+	INF::addColor(BLUE);
 }
 
 /*functionName is styled as "file name, function name*/
-void CV::debugFunction(std::string functionName) {
-	if (debuggingMode == true)
+void INF::debugFunction(std::string functionName) {
+	if (debuggingMode == true) {
 		std::cout << "\033[35mFunction: " << functionName << "\033[0m\n";
+	}
+		
 }
 
 /*
@@ -324,9 +326,9 @@ void CV::debugFunction(std::string functionName) {
 
 
 //Returns that help prompt that correlates with the specified numerical identifier (caseNum)
-void CV::showHelp(int caseNum) {
+void INF::showHelp(int caseNum) {
 	//For debugging
-	CV::debugFunction("OF, showHelp");
+	INF::debugFunction("OF, showHelp");
 
 	std::string caseNumString = std::to_string(caseNum);
 
@@ -358,7 +360,7 @@ void CV::showHelp(int caseNum) {
 }
 
 //Print a text file
-void CV::printFile(std::string path) {
+void INF::printFile(std::string path) {
 	//For debugging
 	debugFunction("OF, printFile");
 

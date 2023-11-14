@@ -6,7 +6,7 @@ namespace Build {
 		"LIBRARY",
 		"WALL",
 		"RESIDENCES" */
-	CV::s5array OtherBuildingsString = {
+	INF::s5array OtherBuildingsString = {
 		"BARRACKS",
 		"INFIRMARY",
 		"LIBRARY",
@@ -19,7 +19,7 @@ namespace Build {
 		"QUARRY",
 		"MINE",
 		"CHURCH" */
-	CV::s5array ResourceBuildingsString = {
+	INF::s5array ResourceBuildingsString = {
 		"FARM",
 		"LUMBER_MILL",
 		"QUARRY",
@@ -30,14 +30,14 @@ namespace Build {
 
 std::string Build::OtherBuildingsToString(OtherBuildings arg) {
 	//For debugging
-	CV::debugFunction("Build, OtherBuildingsToString");
+	INF::debugFunction("Build, OtherBuildingsToString");
 
 	return OtherBuildingsString[arg];
 }
 
 int Build::getOtherBuildingsStringIndex(std::string arg) {
 	//For debugging
-	CV::debugFunction("Build, getOtherBuildingsStringIndex");
+	INF::debugFunction("Build, getOtherBuildingsStringIndex");
 
 	for (int x = 0; x < (signed) OtherBuildingsString.size(); x++) {
 		if (OtherBuildingsString[x] == arg) {
@@ -50,7 +50,7 @@ int Build::getOtherBuildingsStringIndex(std::string arg) {
 
 Build::OtherBuildings Build::stringToOtherBuildings(std::string arg) {
 	//For debugging
-	CV::debugFunction("Build, stringToOthersBuilding");
+	INF::debugFunction("Build, stringToOthersBuilding");
 
 	return OtherBuildings(Build::getOtherBuildingsStringIndex(arg));
 }
@@ -58,14 +58,14 @@ Build::OtherBuildings Build::stringToOtherBuildings(std::string arg) {
 
 std::string Build::ResourceBuildingsToString(Build::ResourceBuildings arg) {
 	//For debugging
-	CV::debugFunction("Build, ResourceBuildingToString");
+	INF::debugFunction("Build, ResourceBuildingToString");
 
 	return OtherBuildingsString[arg];
 }
 
 int Build::getResourceBuildingsStringIndex(std::string arg) {
 	//For debugging
-	CV::debugFunction("Build, getResourceBuildingsStringIndex");
+	INF::debugFunction("Build, getResourceBuildingsStringIndex");
 
 	for (int x = 0; x < (signed) OtherBuildingsString.size(); x++) {
 		if (OtherBuildingsString[x] == arg) {
@@ -78,7 +78,7 @@ int Build::getResourceBuildingsStringIndex(std::string arg) {
 
 Build::ResourceBuildings Build::stringToResourceBuildings(std::string arg) {
 	//For debugging
-	CV::debugFunction("Build, stringToResourceBuildings");
+	INF::debugFunction("Build, stringToResourceBuildings");
 
 	return Build::ResourceBuildings(Build::getOtherBuildingsStringIndex(arg));
 }

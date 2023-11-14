@@ -3,7 +3,7 @@
 TrainMA::TrainMA()
 {
     //For debugging
-    CV::debugFunction("TrainMA, TrainMA");
+    INF::debugFunction("TrainMA, TrainMA");
 
     participant = db.getCurrentParticipant();
     province = participant->getCapitalProvince();
@@ -12,7 +12,7 @@ TrainMA::TrainMA()
 
 void TrainMA::TrainMAFunction() {
     //For debugging
-    CV::debugFunction("TrainMA, TrainMAFunction");
+    INF::debugFunction("TrainMA, TrainMAFunction");
 
     Participants* tempParticipant = new Participants();
     tempParticipant->showMap();
@@ -32,7 +32,7 @@ void TrainMA::TrainMAFunction() {
     if (troopTier > 5)
         troopTier = 5;
 
-    std::cout << "The max tier troop you can train: " << troopTier << ", " << CV::TROOP_NAMES[troopTier - 1] << std::endl;
+    std::cout << "The max tier troop you can train: " << troopTier << ", " << INF::TROOP_NAMES[troopTier - 1] << std::endl;
 
     //Change this later
     int maxTroopsCanTrain = barracksLevel * 2;
@@ -88,7 +88,7 @@ void TrainMA::TrainMAFunction() {
 
 void TrainMA::TrainMAFunctionDoWhileLoop(int troopTier, int amountOfTroops) {
     //For debugging
-    CV::debugFunction("TrainMA, TrainMAFunctionDoWhileLoop");
+    INF::debugFunction("TrainMA, TrainMAFunctionDoWhileLoop");
 
     std::array<int, 5> 
         troopCost = { 5, 4, 3, 2, 1 },

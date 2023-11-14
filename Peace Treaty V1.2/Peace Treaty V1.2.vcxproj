@@ -147,7 +147,7 @@
     <ClCompile Include="Peace Treaty V1.2.cpp" />
     <ClCompile Include="PlayerAction.cpp" />
     <ClCompile Include="Units\Reports\ProvinceReport.cpp" />
-    <ClCompile Include="Units\Misc\CV.cpp" />
+    <ClCompile Include="Units\Misc\INF.cpp" />
     <ClCompile Include="Units\AllUnitsAttributes\Troops.cpp" />
     <ClCompile Include="Units\AllUnits.cpp" />
     <ClCompile Include="Units\Commanders.cpp" />
@@ -207,8 +207,8 @@
     <ClInclude Include="MA\MapMA.h" />
     <ClInclude Include="MA\ScoutMA.h" />
     <ClInclude Include="MA\TrainMA.h" />
-    <ClInclude Include="Misc\CV.h" />
-    <ClInclude Include="Misc\CV.h" />
+    <ClInclude Include="Misc\INF.h" />
+    <ClInclude Include="Misc\INF.h" />
     <ClInclude Include="Mobility.h" />
     <ClInclude Include="PlayerAction.h" />
     <ClInclude Include="ProvinceReport.h" />

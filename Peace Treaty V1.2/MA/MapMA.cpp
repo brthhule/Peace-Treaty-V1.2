@@ -4,7 +4,7 @@
 
 MapMA::MapMA() { 
 	//For debugging
-	CV::debugFunction("MapMA, MapMA");
+	INF::debugFunction("MapMA, MapMA");
 
 	participant = db.getCurrentParticipant();
 	
@@ -15,7 +15,7 @@ MapMA::MapMA() {
 //View the map
 void MapMA::viewPlayerMap() {
 	//For debugging
-	CV::debugFunction("MapMA, viewPlayerMap");
+	INF::debugFunction("MapMA, viewPlayerMap");
 
 	char whatToDo = ' ';
 
@@ -36,7 +36,7 @@ void MapMA::viewPlayerMap() {
 	Options:P*/
 	switch (whatToDo) {
 		case 'P': {
-			CV::clearScreen();
+			INF::clearScreen();
 			std::cout << "Selecting a province...\n";
 			//The user selects a province
 			Provinces* province = participant->getYourProvince(1);
@@ -50,7 +50,7 @@ void MapMA::viewPlayerMap() {
 			break;
 		}
 		case 'H': {
-			CV::showHelp(8);
+			INF::showHelp(8);
 
 			//Recurse
 			viewPlayerMap();
@@ -66,14 +66,14 @@ void MapMA::viewPlayerMap() {
 
 Participants* MapMA::getParticipant() { 
 	//For debugging
-	CV::debugFunction("MapMA, getParticipant");
+	INF::debugFunction("MapMA, getParticipant");
 
 	return participant; 
 }
 
 void MapMA::selectUnitOriginal(Provinces* province) {
 	//For debugging
-	CV::debugFunction("MapMA, selectUnitOriginal");
+	INF::debugFunction("MapMA, selectUnitOriginal");
 
 	int participantIndex = province->getParticipantIndex();
 
@@ -111,7 +111,7 @@ void MapMA::selectUnitOriginal(Provinces* province) {
 //You selected one of your provinces
 void MapMA::selectPlayerProvince(Provinces *province) {
 	//For debugging
-	CV::debugFunction("MapMA, selectPlayerProvince");
+	INF::debugFunction("MapMA, selectPlayerProvince");
 
 	if (province->isCapital()) {
 		print("This is your capital province ");
@@ -145,7 +145,7 @@ void MapMA::selectPlayerProvince(Provinces *province) {
 //You selected an enemy province
 void MapMA::selectEnemyProvince(Provinces* newP) {
 	//For debugging
-	CV::debugFunction("MapMA, selectEnemyProvince");
+	INF::debugFunction("MapMA, selectEnemyProvince");
 
 	Provinces* enemyProvince = newP;
 	if (enemyProvince->isCapital()) {
@@ -188,7 +188,7 @@ You selected an empty province that your commander is in
 - Capture this province (C)*/
 void MapMA::playerUnitAction(Provinces* newP) {
 	//For debugging
-	CV::debugFunction("MapMA, playerUnitAction");
+	INF::debugFunction("MapMA, playerUnitAction");
 
 	Provinces* newProvince = newP;
 	println("This is one of your armies ");
@@ -203,7 +203,7 @@ void MapMA::playerUnitAction(Provinces* newP) {
 		//Add implementation
 	}
 	case 'H': {
-		CV::showHelp(2);
+		INF::showHelp(2);
 		playerUnitAction(newProvince);
 		break;
 	}
@@ -217,7 +217,7 @@ void MapMA::playerUnitAction(Provinces* newP) {
 void MapMA::playerUnitActionP(Provinces* newP)
 {
 	//For debugging
-	CV::debugFunction("MapMA, playerUnitActionP");
+	INF::debugFunction("MapMA, playerUnitActionP");
 
 	Provinces* newProvince = newP;
 	std::cout << "The following commanders are at this province: \n";
@@ -248,7 +248,7 @@ void MapMA::playerUnitActionP(Provinces* newP)
 void MapMA::selectEnemyAction() /*Add implementation*/
 {
 	//For debugging
-	CV::debugFunction("MapMA, selectEnemyAction");
+	INF::debugFunction("MapMA, selectEnemyAction");
 
 	std::cout << "This is an enmy army. \n";
 
@@ -271,12 +271,12 @@ void MapMA::selectEnemyAction() /*Add implementation*/
   case 'G': {
 	std::cout << "Garrisoned troops: " << std::endl;
 	for (int x = 0; x < 5; x++) {
-		std::cout << "-" << CV::TROOP_NAMES[x] << ": "
+		std::cout << "-" << INF::TROOP_NAMES[x] << ": "
 			<< enemyProvince->getTroop(REGULAR, x, -1)
 				<< std::endl;
 	  totalGarrisonedCP +=
 		  (enemyProvince-> getTroop(REGULAR, x, -1) *
-		   CV::TROOPS_CP[x]);
+		   INF::TROOPS_CP[x]);
 	}
 	std::cout << "Total Garrison Combat Power: " << totalGarrisonedCP << std::endl
 			  << std::endl;

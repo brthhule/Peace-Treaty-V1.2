@@ -2,7 +2,7 @@
 
 AttackMA::AttackMA(Provinces* defendingProvinceArg, Participants* attackingParticipantArg) {
 	//For debugging
-	CV::debugFunction("AttackMA, AttackMA (2 Param)");
+	INF::debugFunction("AttackMA, AttackMA (2 Param)");
 
 	// Given a province to attack, see if you can attack with anything nearby
 	attackingParticipant = attackingParticipantArg;
@@ -31,11 +31,11 @@ AttackMA::AttackMA(Provinces* defendingProvinceArg, Participants* attackingParti
 			bool
 				checkFirstCoordinate = (
 					firstCoordinate >= 0 &&
-					firstCoordinate < CV::continentSize
+					firstCoordinate < INF::continentSize
 				),
 				checkSecondCoordinate = (
 					secondCoordinate >= 0 &&
-					secondCoordinate < CV::continentSize
+					secondCoordinate < INF::continentSize
 				),
 				//Returns true if the changed coordinates aren't both the same as the original coordinates
 				checkBothCoordinates = (
@@ -70,7 +70,7 @@ AttackMA::AttackMA(Provinces* defendingProvinceArg, Participants* attackingParti
 
 AttackMA::AttackMA(Provinces* attackerProvinceArg, Provinces* defenderProvinceArg, Participants* attackingParticipantArg, CommanderProfile* commanderArg) {
 	//For debugging
-	CV::debugFunction("AttackMA, AttackMA (4 Param)");
+	INF::debugFunction("AttackMA, AttackMA (4 Param)");
 	
 	attackingProvince = attackerProvinceArg;
 	defendingProvince = defenderProvinceArg;
@@ -81,7 +81,7 @@ AttackMA::AttackMA(Provinces* attackerProvinceArg, Provinces* defenderProvinceAr
 
 void AttackMA::findCommander(std::vector <CommanderProfile*> commandersCanAttack) {
 	//For debugging
-	CV::debugFunction("AttackMA, findCommander");
+	INF::debugFunction("AttackMA, findCommander");
 
 	std::string commanderName;
 	std::cout << "The following commanders can attack the target: \n";
@@ -101,7 +101,7 @@ void AttackMA::findCommander(std::vector <CommanderProfile*> commandersCanAttack
 void AttackMA::preAttack()
 {
 	//For debugging
-	CV::debugFunction("AttackMA, preAttack");
+	INF::debugFunction("AttackMA, preAttack");
 
 	defendingParticipant = db.getParticipant(defendingProvince->getParticipantIndex());
 	playerCommitAttack();
@@ -113,7 +113,7 @@ void AttackMA::preAttack()
 void AttackMA::playerCommitAttack()
 {
 	//For debugging
-	CV::debugFunction("AttackMA, playerCommitAttack");
+	INF::debugFunction("AttackMA, playerCommitAttack");
 
 	CommanderProfile* defendingCommander = defendingCommanders[0];
 	int attackerCP = attackingCommander->getCP();
@@ -174,11 +174,11 @@ void AttackMA::playerCommitAttack()
 /*Basically go through each unit type and subtract 16CP worth of troops and keep going (done so that lost troops are distributed evenly among the various ranks, but there is still use to training lower rank troops as meat shields (if all lower troops are used up, then losses start piling up on higher rank troops; it's key to keep a healthy proportion of troops in your army))*/
 void AttackMA::calculateTroopsLost(CommanderProfile* commander, int lostCombatPower, std::array<int, 5>& troopsLost, int troopIndex) {
 	//For debugging
-	CV::debugFunction("AttackMA, calculateTroopsLost");
+	INF::debugFunction("AttackMA, calculateTroopsLost");
 
-	int troopPresent = commander->getTroop(REGULAR, troopIndex, CV::SINGLE)[0];
+	int troopPresent = commander->getTroop(REGULAR, troopIndex, INF::SINGLE)[0];
 
-	int troopCP = CV::TROOPS_CP[troopIndex];
+	int troopCP = INF::TROOPS_CP[troopIndex];
 
 	//If lostCP > 16
 	if (lostCombatPower - 16 > 0)
@@ -221,25 +221,25 @@ void AttackMA::calculateTroopsLost(CommanderProfile* commander, int lostCombatPo
 void AttackMA::battleCalculationsTwo(int& lostCombatPower, int troopsLost[5], int troopIndex) /*fix this*/
 {
 	//For debugging
-	CV::debugFunction("AttackMA, battleCalculationsTwo");
+	INF::debugFunction("AttackMA, battleCalculationsTwo");
 
 	Participants* playerParticipant = db.getCurrentParticipant();
 
 	int z = abs(4 - troopIndex);
 
-	for (int b = 0; b < CV::TROOPS_CP[z]; b++) {
+	for (int b = 0; b < INF::TROOPS_CP[z]; b++) {
 		if (attackingCommander->getTroop(REGULAR, 5, SINGLE)[0] > 0) {
-			b = CV::TROOPS_CP[z];
+			b = INF::TROOPS_CP[z];
 		}
 		else {
 			if (lostCombatPower > 0) {
-				lostCombatPower -= CV::TROOPS_CP[troopIndex];
+				lostCombatPower -= INF::TROOPS_CP[troopIndex];
 				troopsLost[troopIndex]++;
 				attackingCommander->mutateTroop(REGULAR, troopIndex, {1}, SINGLE, DECREASE);
 				attackingCommander->mutateTroop(LOST, troopIndex, {1}, SINGLE, INCREASE);
 			}
 			else
-				b = CV::TROOPS_CP[z];
+				b = INF::TROOPS_CP[z];
 		}
 	}
 }
@@ -247,19 +247,19 @@ void AttackMA::battleCalculationsTwo(int& lostCombatPower, int troopsLost[5], in
 void AttackMA::printResourcesGained()
 {
 	//For debugging
-	CV::debugFunction("AttackMA, printResourcesGained");
+	INF::debugFunction("AttackMA, printResourcesGained");
 
 	std::array<int, 5> currentResources = attackingCommander->getAllResources();
 	std::cout << "Resources gained: \n \033[;34m";
 
 	for (int x = 0; x < 5; x++)
-		std::cout << "- " << CV::RESOURCE_NAMES[x] << ": " << currentResources[x] - oldResources[x] << "\n\n\033[;0m";
+		std::cout << "- " << INF::RESOURCE_NAMES[x] << ": " << currentResources[x] - oldResources[x] << "\n\n\033[;0m";
 }
 
 void AttackMA::determineLostCP(int attackerCP, int defendingCP, int& attackerLostCP, int& defenderLostCP)
 {
 	//For debugging
-	CV::debugFunction("AttackMA, determineLostCP");
+	INF::debugFunction("AttackMA, determineLostCP");
 
 	int higherCP, lowerCP = 0;
 
@@ -290,17 +290,17 @@ void AttackMA::determineLostCP(int attackerCP, int defendingCP, int& attackerLos
 void AttackMA::casualtyReport(std::array<int, 5> troopsLost, std::array<int, 5> injuredTroops)
 {
 	//For debugging
-	CV::debugFunction("AttackMA, casualtyReport");
+	INF::debugFunction("AttackMA, casualtyReport");
 
 	std::cout << "\nTroops casualties: \n";
 	for (int x = 0; x < 5; x++) /*print out deaths*/
 	{
-		std::cout << CV::TROOP_NAMES[x] << " lost: " << troopsLost[x] << std::endl;
+		std::cout << INF::TROOP_NAMES[x] << " lost: " << troopsLost[x] << std::endl;
 	}
 	std::cout << std::endl;
 	for (int x = 0; x < 5; x++) /*print out deaths*/
 	{
-		std::cout << CV::TROOP_NAMES[x] << " injured: " << injuredTroops[x] << std::endl;
+		std::cout << INF::TROOP_NAMES[x] << " injured: " << injuredTroops[x] << std::endl;
 	}
 	std::cout << std::endl;
 }

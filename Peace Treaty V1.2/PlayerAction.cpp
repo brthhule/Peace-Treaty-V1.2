@@ -4,7 +4,7 @@
 
 PlayerAction::PlayerAction() {
 	//For debugging
-	CV::debugFunction("PlayerAction, PlayerAction (0)");
+	INF::debugFunction("PlayerAction, PlayerAction (0)");
 
 	//Default
 	participant = NULL;
@@ -13,21 +13,21 @@ PlayerAction::PlayerAction() {
 PlayerAction::PlayerAction(Participants* newP)
 {
 	//For debugging
-	CV::debugFunction("PlayerAction, PlayerAction (1)");
+	INF::debugFunction("PlayerAction, PlayerAction (1)");
 
 	participant = newP;
 }
 
 void PlayerAction::initialDecision() {
 	//For debugging
-	CV::debugFunction("PlayerAction, initialDecision");
+	INF::debugFunction("PlayerAction, initialDecision");
 
 	bool goToNextTurn = false;
-	CV::clearScreen();
+	INF::clearScreen();
 	char courseOfAction = ' ';
 	if (participant->isPlayer() == true)
 	{
-		std::cout << "Turn: " << CV::turn << std::endl;
+		std::cout << "Turn: " << INF::turn << std::endl;
 		std::cout << "Player " << participant->getKingdomName() << "'s move...";
 		std::cout << "\n\nWelcome to the Main Action menu \n\n\n";
 
@@ -43,7 +43,7 @@ void PlayerAction::initialDecision() {
 	}
 
 	std::cout << std::endl;
-	CV::clearScreen();
+	INF::clearScreen();
 
 	switch (courseOfAction) {
 		case 'B': {
@@ -71,7 +71,7 @@ void PlayerAction::initialDecision() {
 			goToNextTurn = true;
 			break;
 		case 'H': {
-			CV::showHelp(4);
+			INF::showHelp(4);
 			break;
 		}
 		case 'P': {
@@ -89,7 +89,7 @@ void PlayerAction::initialDecision() {
 
 char PlayerAction::randomAction() {
 	//For debugging
-	CV::debugFunction("PlayerAction, randomAction");
+	INF::debugFunction("PlayerAction, randomAction");
 
 	int randomNumber = rand() % 6; // Random number 0 to 5 (inclusive)
 	std::vector<char> newVector = { 'B', 'T', 'S', 'U', 'D', 'N' };
@@ -99,13 +99,13 @@ char PlayerAction::randomAction() {
 
 void PlayerAction::pauseGame() {
 	//For debugging
-	CV::debugFunction("PlayerAction, pauseGame");
+	INF::debugFunction("PlayerAction, pauseGame");
 
 	std::string gameCode;
-	gameCode += CV::continentSize;
+	gameCode += INF::continentSize;
 
-	for (int x = 0; x < CV::continentSize; x++) {
-		for (int y = 0; y < CV::continentSize; y++) {
+	for (int x = 0; x < INF::continentSize; x++) {
+		for (int y = 0; y < INF::continentSize; y++) {
 			//gameCode += participant->getSystemProvince({x, y}).getParticipantIndex();
 		}
 	}

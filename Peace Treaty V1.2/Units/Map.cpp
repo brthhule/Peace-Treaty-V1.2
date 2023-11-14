@@ -5,18 +5,18 @@ Map::ProvincesMap  Map::mapMap = std::unordered_map<std::string, Provinces*>();
 
 Map::Map() {
 	//For debugging
-	CV::debugFunction("Map, Map");
+	INF::debugFunction("Map, Map");
 
 }
 
 void Map::setMap() {
 	//For debugging
-	CV::debugFunction("Map, setMap");
+	INF::debugFunction("Map, setMap");
 
 	int overallIndex = 0;
-	for (int x = 0; x < CV::continentSize; x++) {
+	for (int x = 0; x < INF::continentSize; x++) {
 		std::vector<Provinces*> tempVector = {};
-		for (int y = 0; x < CV::continentSize; y++) {
+		for (int y = 0; x < INF::continentSize; y++) {
 			Provinces *newProvince = new Provinces(overallIndex);
 			newProvince->setOverallIndex(overallIndex);
 			overallIndex++;
@@ -29,10 +29,10 @@ void Map::setMap() {
 
 void Map::showMap() {
 	//For debugging
-	CV::debugFunction("Map, showMap");
+	INF::debugFunction("Map, showMap");
 
-	int yAxis = CV::continentSize;
-	for (int x = 0; x < CV::continentSize; x++) {
+	int yAxis = INF::continentSize;
+	for (int x = 0; x < INF::continentSize; x++) {
 		// Y axis stuff
 		if (yAxis < 10)
 			std::cout << " " << yAxis << "| ";
@@ -42,7 +42,7 @@ void Map::showMap() {
 		yAxis--;
 		// End y axis stuff
 
-		for (int y = 0; y < CV::continentSize; y++) {
+		for (int y = 0; y < INF::continentSize; y++) {
 			meat(x, y);
 		}
 		std::cout << std::endl;
@@ -51,7 +51,7 @@ void Map::showMap() {
 
 void Map::meat(int x, int y) {
 	//For debugging
-	CV::debugFunction("Map, meat");
+	INF::debugFunction("Map, meat");
 
 	char letter = ' ';
 	Provinces* currentProvince = map[x][y];
@@ -59,7 +59,7 @@ void Map::meat(int x, int y) {
 	//Player province
 	if (currentProvince->getParticipantIndex() == currentParticipantIndex)
 	{
-		CV::addColor(BLUE);
+		INF::addColor(BLUE);
 		if (currentProvince->isCapital() == true)
 			letter = 'C';
 		else
@@ -68,7 +68,7 @@ void Map::meat(int x, int y) {
 	//Enemy province
 	else if (currentProvince->getParticipantIndex() != -1)
 	{
-		CV::addColor(RED);
+		INF::addColor(RED);
 		if (currentProvince->isCapital() == true)
 			letter = 'C';
 		else
@@ -81,21 +81,21 @@ void Map::meat(int x, int y) {
 
 	std::cout << letter << currentProvince->commandersNum();
 	//std::cout << "  ";
-	CV::addColor(RESET);
+	INF::addColor(RESET);
 }
 
 void Map::printXAxis() {
 	//For debugging
-	CV::debugFunction("Map, printXAxis");
+	INF::debugFunction("Map, printXAxis");
 
 	std::cout << "    ";//4 spaces
-	for (int a = 0; a < CV::continentSize - 1; a++) {
+	for (int a = 0; a < INF::continentSize - 1; a++) {
 		std::cout << "----";
 	}
 	std::cout << "--";
 	std::cout << std::endl;
 	std::cout << "    ";
-	for (int a = 0; a < CV::continentSize; a++) {
+	for (int a = 0; a < INF::continentSize; a++) {
 		if (a < 9)
 			std::cout << a + 1 << "   ";// 3 spaces
 		else
@@ -108,7 +108,7 @@ void Map::printXAxis() {
 //First int should be row, second int should be column
 Provinces* Map::getSystemProvince(std::pair<int, int> systemCoords) {
 	//For debugging
-	CV::debugFunction("Map, getSystemProvince");
+	INF::debugFunction("Map, getSystemProvince");
 
 	return map[systemCoords.first][systemCoords.second];
 }
@@ -116,10 +116,10 @@ Provinces* Map::getSystemProvince(std::pair<int, int> systemCoords) {
 
 Provinces* Map::getUserProvince(std::pair<int, int> userCoords) {
 	//For debugging
-	CV::debugFunction("Map, getUserProvince");
+	INF::debugFunction("Map, getUserProvince");
 
-	for (int row = 0; row < CV::continentSize; row++) {
-		for (int col = 0; col < CV::continentSize; col++) {
+	for (int row = 0; row < INF::continentSize; row++) {
+		for (int col = 0; col < INF::continentSize; col++) {
 			if (map[row][col]->getUserCoords() == userCoords) {
 				return map[row][col];
 			}
@@ -132,11 +132,11 @@ Provinces* Map::getUserProvince(std::pair<int, int> userCoords) {
 
 void Map::updateTurnResources() {
 	//For debugging
-	CV::debugFunction("Map, updateTurnResources");
+	INF::debugFunction("Map, updateTurnResources");
 
-	CV::debugFunction("main, updateTurnResources");
-	for (int x = 0; x < CV::continentSize; x++) {
-		for (int y = 0; y < CV::continentSize; y++) {
+	INF::debugFunction("main, updateTurnResources");
+	for (int x = 0; x < INF::continentSize; x++) {
+		for (int y = 0; y < INF::continentSize; y++) {
 			map[x][y]->updateProvinceResources();
 		}
 	}

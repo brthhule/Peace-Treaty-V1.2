@@ -9,7 +9,7 @@
 #include "../Units/AllUnits.h"
 
 #include "../Units/Misc/Input.h"
-#include "../Units/Misc/CV.h"
+#include "../Units/Misc/INF.h"
 
 class ScoutMA {
 public:

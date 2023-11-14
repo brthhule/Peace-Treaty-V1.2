@@ -2,7 +2,7 @@
 
 void Participants::armyDeploymentMF() {
 	//For debugging
-	CV::debugFunction("ArmyOverview, armyDeploymentMF");
+	INF::debugFunction("ArmyOverview, armyDeploymentMF");
 	using func = void(Participants::*)();
 
 	println("Welcome to the Army Deployment action menun\n");
@@ -21,7 +21,7 @@ void Participants::armyDeploymentMF() {
 			break;
 		}
 		case 'H': {
-			CV::showHelp(5);
+			INF::showHelp(5);
 			break;
 		}
 		case 'M': {
@@ -34,7 +34,7 @@ void Participants::armyDeploymentMF() {
 /*fix this-- finish making it*/
 void Participants::upgradeCommandersOne() {
 	//For debugging
-	CV::debugFunction("ArmyOverview, upgradeCommandersOne");
+	INF::debugFunction("ArmyOverview, upgradeCommandersOne");
 
 	if (commandersNum() > 0)
 	{
@@ -43,12 +43,12 @@ void Participants::upgradeCommandersOne() {
 	} else
 		std::cout << "No commanders available, can not upgrade\n";
 
-	CV::enterAnything(1);
+	INF::enterAnything(1);
 }
 
 void Participants::upgradeCommandersTwo() {
 	//For debugging
-	CV::debugFunction("ArmyOverview, upgradeCommandersTwo");
+	INF::debugFunction("ArmyOverview, upgradeCommandersTwo");
 
 	STRING commanderName;//Implement this stuff
 	i5array costsArray = getCommander(commanderName)->getUpgradeCosts();
@@ -74,7 +74,7 @@ void Participants::upgradeCommandersTwo() {
 
 void Participants::viewArmyOverview() {
 	//For debugging
-	CV::debugFunction("ArmyOverview, viewArmyOverview");
+	INF::debugFunction("ArmyOverview, viewArmyOverview");
 
 	std::string commanderName = selectCommander();
 
@@ -86,36 +86,36 @@ void Participants::viewArmyOverview() {
 		std::cout << "\n\n";
 		getCommander(commanderName)->printCommanderStats();
 	}
-	CV::enterAnything(1);
+	INF::enterAnything(1);
 }
 
 void Participants::trainCommanders() {
 	//For debugging
-	CV::debugFunction("ArmyOverview, trainCommanders");
+	INF::debugFunction("ArmyOverview, trainCommanders");
 
 	std::string yesOrNoString;
-	std::cout << "You have " << this->commandersNum() << "/" << CV::maxCommanders << " total army commanders. \n";
+	std::cout << "You have " << this->commandersNum() << "/" << INF::maxCommanders << " total army commanders. \n";
 	std::cout << "Do you want to train a commander? (Y/N) ";
 
 	i5array trainCosts = getTrainCosts();
 
 	if (Input::getInputText("Proceed with training", { "Y", "N" }).at(0) == 'Y') {
 		/*if amount of commanders is less than max (not at max capacity)*/
-		if (this->commandersNum() < CV::maxCommanders) {
+		if (this->commandersNum() < INF::maxCommanders) {
 			proceedWithTraining(trainCosts);
 		} else {
 			std::cout << "At maximum army commander amount. Training failed, returning to menu \n";
 		}
 
 	} else {
-		CV::enterAnything(1);
+		INF::enterAnything(1);
 	}
 
 }
 
 void Participants::proceedWithTraining(std::array<int, 5> trainCosts) {
 	//For debugging
-	CV::debugFunction("ArmyOverview, proceedWithTraining");
+	INF::debugFunction("ArmyOverview, proceedWithTraining");
 
 	bool trainingSuccess = getCapitalProvince()->subtractCheckResources(trainCosts);
 
@@ -132,7 +132,7 @@ void Participants::proceedWithTraining(std::array<int, 5> trainCosts) {
 
 void Participants::deployCommanderMF() {
 	//For debugging
-	CV::debugFunction("ArmyOverview, deployCommanderMF");
+	INF::debugFunction("ArmyOverview, deployCommanderMF");
 
 	std::string commanderName = selectCommander();
 	if (commanderName == "-1") {
@@ -156,17 +156,17 @@ void Participants::deployCommanderMF() {
 			deployCommanderMF();
 		}
 
-		CV::enterAnything(1);
+		INF::enterAnything(1);
 	}
 }
 
 void Participants::printCosts(std::vector<int> costs, std::string type) {
 	//For debugging
-	CV::debugFunction("ArmyOverview, printCosts");
+	INF::debugFunction("ArmyOverview, printCosts");
 
 	std::cout << "The following are the " << type << " costs: \n";
 	for (int x = 0; x < 5; x++) {
-		std::cout << CV::RESOURCE_NAMES[x] << ": " << costs[x];
+		std::cout << INF::RESOURCE_NAMES[x] << ": " << costs[x];
 	}
 
 	std::cout << "The following are the resources currently in your capital: \n";

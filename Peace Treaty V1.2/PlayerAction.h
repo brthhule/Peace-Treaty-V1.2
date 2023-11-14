@@ -9,7 +9,7 @@
 #include "MA/MapMA.h"
 
 
-#include "Units/Misc/CV.h"
+#include "Units/Misc/INF.h"
 #include "Units/Participants.h"
 
 extern int turn;

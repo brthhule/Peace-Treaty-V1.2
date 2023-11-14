@@ -4,9 +4,9 @@
 #include <iostream>
 #include <string>
 
-#include "../Misc/CV.h"
+#include "../Misc/INF.h"
 
-using namespace CV;
+using namespace INF;
 
 class Coords
 {

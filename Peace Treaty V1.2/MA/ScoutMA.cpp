@@ -4,7 +4,7 @@
 
 ScoutMA::ScoutMA(Participants* newParticipant, Provinces* newProvince) {
 	//For debugging
-	CV::debugFunction("ScoutMA, ScoutMA");
+	INF::debugFunction("ScoutMA, ScoutMA");
 
 	participant = newParticipant;
 	yourProvince = newProvince;
@@ -20,7 +20,7 @@ ScoutMA::ScoutMA(Participants* newParticipant, Provinces* newProvince) {
 void ScoutMA::selectTarget()
 {
 	//For debugging
-	CV::debugFunction("ScoutMA, selectTarget");
+	INF::debugFunction("ScoutMA, selectTarget");
 
 	//The participant selects a province
 	Provinces* targetProvince = participant->getCoords(1);
@@ -51,7 +51,7 @@ void ScoutMA::selectTarget()
 void ScoutMA::playerScoutStepTwo(scoutTypes canScout) // Finish this later
 {
 	//For debugging
-	CV::debugFunction("ScoutMA, playerScoutStepTwo");
+	INF::debugFunction("ScoutMA, playerScoutStepTwo");
 
 	int accuracy = 0;
 	std::vector<int> unitsCanScoutWith;
@@ -93,13 +93,13 @@ void ScoutMA::playerScoutStepTwo(scoutTypes canScout) // Finish this later
 	participant->scoutProvince(tempParticipant1->getSystemProvince(unit->getSystemCoords()), accuracy);
 	delete tempParticipant1;
 
-	CV::enterAnything(1);
+	INF::enterAnything(1);
 }
 
 ScoutMA::scoutTypes ScoutMA::getCanScout()
 {
 	//For debugging
-	CV::debugFunction("ScoutMA, getCanScout");
+	INF::debugFunction("ScoutMA, getCanScout");
 
 	std::pair<int, int> targetUserCoords = targetProvince->getUserCoords();
 	int targetX = targetUserCoords.first;
@@ -121,10 +121,10 @@ ScoutMA::scoutTypes ScoutMA::getCanScout()
 void ScoutMA::getCanScoutTwo(int targetX, int targetY, int a, int b, ScoutMA::scoutTypes &canScout)
 {
 	//For debugging
-	CV::debugFunction("ScoutMA, getCanScoutTwo");
+	INF::debugFunction("ScoutMA, getCanScoutTwo");
 
 	if (/*X coordinates*/ targetX + a >= 0 &&
-		targetX + a < CV::continentSize && /*Y coordinates*/ targetY + b >= 0 && targetY + b < CV::continentSize)
+		targetX + a < INF::continentSize && /*Y coordinates*/ targetY + b >= 0 && targetY + b < INF::continentSize)
 	{
 		Participants* tempParticipant = new Participants;
 		Provinces* newProvince = tempParticipant->getSystemProvince(std::pair<int, int>(targetX + a, targetY + b));
@@ -144,7 +144,7 @@ void ScoutMA::getCanScoutTwo(int targetX, int targetY, int a, int b, ScoutMA::sc
 
 AllUnits *ScoutMA::selectUnitToScout(ScoutMA::scoutTypes canScout) {
 	//For debugging
-	CV::debugFunction("ScoutMA, selectUnitToScout");
+	INF::debugFunction("ScoutMA, selectUnitToScout");
 
 	int unitLevel = 0;
 	std::cout << "\033[;34m";
@@ -172,7 +172,7 @@ AllUnits *ScoutMA::selectUnitToScout(ScoutMA::scoutTypes canScout) {
 AllUnits *ScoutMA::selectUnitToScoutTwo(ScoutMA::scoutTypes canScout)
 {
 	//For debugging
-	CV::debugFunction("ScoutMA, selectUnitToScoutTwo");
+	INF::debugFunction("ScoutMA, selectUnitToScoutTwo");
 
 	std::string unitName;
 	print("Enter the name of the province/commander you wish to select to scout: ");

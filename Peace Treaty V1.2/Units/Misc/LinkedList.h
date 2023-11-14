@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <unordered_map>
-#include "CV.h"
+#include "INF.h"
 #include "../Units/Provinces.h"
 
 struct node

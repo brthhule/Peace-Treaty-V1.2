@@ -26,9 +26,9 @@
 #include "Map.h"
 #include "Provinces.h"
 
-#include "Misc/CV.h"
+#include "Misc/INF.h"
 #include "Misc/LinkedList.h"
-#include "Misc/CV.h"
+#include "Misc/INF.h"
 #include "CommandersAttributes/Mobility.h"
 #include "../MA/ArmyOverviewMA.h"
 
@@ -36,7 +36,7 @@
 #define CONSTRUCTOR
 
 
-using namespace CV;
+using namespace INF;
 
 
 class Participants : public Map, public Mobility, public ArmyOverviewMA

@@ -3,10 +3,10 @@
 
 #include <iostream>
 
-#include "CV.h"
-#include "CV.h"
+#include "INF.h"
+#include "INF.h"
 
-using namespace CV;
+using namespace INF;
 
 
 namespace Input 
@@ -16,7 +16,7 @@ namespace Input
 
 	std::string 
 		getOptionPromptQuery(std::vector<std::string>AV),
-		getOptionPrompt(CV::PROMPTS p),
+		getOptionPrompt(INF::PROMPTS p),
 		getInputQuery(std::vector<std::string>AV),
 		getInputText(std::string text, std::vector<std::string> AV);
 };

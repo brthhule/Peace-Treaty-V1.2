@@ -6,9 +6,9 @@
 
 #include "../Units/Provinces.h"
 
-#include "Misc/CV.h"
+#include "Misc/INF.h"
 
-using namespace CV;
+using namespace INF;
 
 class Map {
 public:

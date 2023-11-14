@@ -2,7 +2,7 @@
 
 void Participants::moveUnitOne(CommanderProfile* commander) {
 	//For debugging
-	CV::debugFunction("Database, moveUnitOne");
+	INF::debugFunction("Database, moveUnitOne");
 
 	//This will have the list of provinces that can be moved to
 	std::vector<Provinces*> provincesCanSelect;
@@ -91,7 +91,7 @@ void Participants::moveUnitOne(CommanderProfile* commander) {
 
 std::vector<Provinces*> Participants::moveUnitTwo(CommanderProfile* commander) {
 	//For debugging
-	CV::debugFunction("Database, moveUnitTwo");
+	INF::debugFunction("Database, moveUnitTwo");
 
 	std::vector<Provinces*> provincesSelectList;
 	std::pair<int, int> systemCoords = commander->getSystemCoords();
@@ -109,10 +109,10 @@ std::vector<Provinces*> Participants::moveUnitTwo(CommanderProfile* commander) {
 			bool
 				checkFirstCoordinate = (
 					firstCoordinate >= 0 &&
-					firstCoordinate < CV::continentSize),
+					firstCoordinate < INF::continentSize),
 				checkSecondCoordinate = (
 					secondCoordinate >= 0 &&
-					secondCoordinate < CV::continentSize),
+					secondCoordinate < INF::continentSize),
 					//Returns true if the changed coordinates aren't both the same as the original coordinates
 				checkBothCoordinates = (
 					firstCoordinate != systemCoords.first ||

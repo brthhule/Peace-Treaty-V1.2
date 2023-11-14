@@ -1,5 +1,5 @@
-#ifndef CV_H
-#define CV_H
+#ifndef INF_H
+#define INF_H
 
 #include <array>
 #include <chrono>
@@ -14,7 +14,7 @@
 #include <vector>
 #include <fstream>
 
-#include "CV.h"
+#include "INF.h"
 
 #define UNIT_AMOUNT 5
 
@@ -22,7 +22,7 @@
 #define println(x) std::cout << x << std::endl;
 #define Systemoutprintln(x) std::cout << x;
 
-namespace CV
+namespace INF
 {
 	////////////////////////////////////////Aliases///////////////////////////////
 	using s5array = std::array<std::string, UNIT_AMOUNT>;

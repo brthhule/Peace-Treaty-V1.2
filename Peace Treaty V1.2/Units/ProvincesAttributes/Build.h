@@ -4,8 +4,8 @@
 #include<iostream>
 #include <array>
 
-#include "../Misc/CV.h"
-#include "../Misc/CV.h"
+#include "../Misc/INF.h"
+#include "../Misc/INF.h"
 
 
 
@@ -42,7 +42,7 @@ namespace Build {
 		OTHER 
 	};
 
-	extern CV::s5array
+	extern INF::s5array
 		OtherBuildingsString,
 		ResourceBuildingsString;
 

@@ -9,7 +9,7 @@ ProvinceReport::ProvinceReport(int scouterLevelArg,
 	std::pair<int, int> listSystemCoordsArg) {
 
 	//For debugging
-	CV::debugFunction("ProvinceReport, ProvinceReport");
+	INF::debugFunction("ProvinceReport, ProvinceReport");
 
 	scouterLevel = scouterLevelArg;
 	targetLevel = targetLevelArg;
@@ -28,7 +28,7 @@ ProvinceReport::ProvinceReport(int scouterLevelArg,
 
 void ProvinceReport::computeAccuracy() {
 	//For debugging
-	CV::debugFunction("ProvinceReport, computeAccuracy");
+	INF::debugFunction("ProvinceReport, computeAccuracy");
 
 	int bigger = 0;
 	int smaller = 0;
@@ -61,7 +61,7 @@ void ProvinceReport::computeAccuracy() {
 
 void ProvinceReport::attuneValues() {
 	//For debugging
-	CV::debugFunction("ProvinceReport, attuneValues");
+	INF::debugFunction("ProvinceReport, attuneValues");
 
 	int newAccuracy = 100 - accuracy;
 	int currentValue, mediumValue, upperValue, lowerValue;
@@ -87,34 +87,34 @@ void ProvinceReport::attuneValues() {
 
 void ProvinceReport::printReport() {
 	//For debugging
-	CV::debugFunction("ProvinceReport, printReport");
+	INF::debugFunction("ProvinceReport, printReport");
 
 	//Complete implementation here
 }
 int ProvinceReport::getReportTurn() {
 	//For debugging
-	CV::debugFunction("ProvinceReport, getReportTurn");
+	INF::debugFunction("ProvinceReport, getReportTurn");
 
 	return reportTurn;
 }
 
 int ProvinceReport::getAccuracy() {
 	//For debugging
-	CV::debugFunction("ProvinceReport, getAccuracy");
+	INF::debugFunction("ProvinceReport, getAccuracy");
 
 	return accuracy;
 }
 
 int ProvinceReport::getTargetLevel() {
 	//For debugging
-	CV::debugFunction("ProvinceReport, getTargetLevel");
+	INF::debugFunction("ProvinceReport, getTargetLevel");
 
 	return targetLevel;
 }
 
 int ProvinceReport::getScouterLevel() {
 	//For debugging
-	CV::debugFunction("ProvinceReport, getScouterLevel");
+	INF::debugFunction("ProvinceReport, getScouterLevel");
 
 	return scouterLevel;
 }

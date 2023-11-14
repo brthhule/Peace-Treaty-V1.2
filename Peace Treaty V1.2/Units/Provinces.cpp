@@ -7,7 +7,7 @@
 //Empty constructor, used for temp provinces
 Provinces::Provinces() {
 	//For debugging
-	CV::debugFunction("Provinces, Provinces (0 Param)");
+	INF::debugFunction("Provinces, Provinces (0 Param)");
 
 	//Empty
 	
@@ -19,22 +19,22 @@ Provinces::Provinces() {
 Provinces::Provinces(int overallIndexArg)
 {
 	//For debugging
-	CV::debugFunction("Provinces, Provinces (1 Param)");
+	INF::debugFunction("Provinces, Provinces (1 Param)");
 
 	setOverallIndex(overallIndexArg);
 	//Initialize building levels
 	initializeEmptyBuildings();
-	resourcesPresent = CV::INITIAL_VALUES;
+	resourcesPresent = INF::INITIAL_VALUES;
 	participantIndex = -1;
 
-	CV::modifyArray(resourcesPresent, CV::INITIAL_VALUES, true);
+	INF::modifyArray(resourcesPresent, INF::INITIAL_VALUES, true);
 
 	unitLevel = 1;
 }
 
 std::pair<int, int> Provinces::translateToSystemCoords(std::pair<int, int> userCoordsArg) {
 	//For debugging
-	CV::debugFunction("Provinces, translateToSystemCoords");
+	INF::debugFunction("Provinces, translateToSystemCoords");
 
 	return Coords::translateToSystemCoords(userCoordsArg);
 }
@@ -47,17 +47,17 @@ std::pair<int, int> Provinces::translateToSystemCoords(std::pair<int, int> userC
 void Provinces::updateProvinceResources()
 {
 	//For debugging
-	CV::debugFunction("Provinces, updateProvinceResources");
+	INF::debugFunction("Provinces, updateProvinceResources");
 
 	std::array<int, 5> resourcesProduced = getResourceProduction(CHURCH, ALL);
-	resourcesPresent = CV::modifyArray(resourcesPresent, resourcesProduced, true);
+	resourcesPresent = INF::modifyArray(resourcesPresent, resourcesProduced, true);
 }
 
 //Other
 void Provinces::makeCapital(int participantIndexArg)
 {
 	//For debugging
-	CV::debugFunction("Provinces, makeCapital");
+	INF::debugFunction("Provinces, makeCapital");
 
 	changeParticipantIndex(participantIndexArg);
 	isACapital = true;
@@ -65,7 +65,7 @@ void Provinces::makeCapital(int participantIndexArg)
 
 void Provinces::initializeCapitalStats() {
 	//For debugging
-	CV::debugFunction("Provinces, initializeCapitalStats");
+	INF::debugFunction("Provinces, initializeCapitalStats");
 
 	initiailizeCapitalBuildings();
 }
@@ -76,7 +76,7 @@ void Provinces::initializeCapitalStats() {
 void Provinces::removeCommander(CommanderProfile *newCommander)
 {
 	//For debugging
-	CV::debugFunction("Provinces, removeCommander");
+	INF::debugFunction("Provinces, removeCommander");
 
 	commanders.erase(newCommander->getUnitName());
 }
@@ -84,7 +84,7 @@ void Provinces::removeCommander(CommanderProfile *newCommander)
 void Provinces::addCommander(CommanderProfile* newCommander)
 {
 	//For debugging
-	CV::debugFunction("Provinces, addCommander");
+	INF::debugFunction("Provinces, addCommander");
   commanders[newCommander->getUnitName()] = newCommander;
 }
 
@@ -93,7 +93,7 @@ void Provinces::addCommander(CommanderProfile* newCommander)
 int Provinces::getTotalCP()
 {
 	//For debugging
-	CV::debugFunction("Provinces, getTotalCP");
+	INF::debugFunction("Provinces, getTotalCP");
 
 	int totalCP = 0;
 	totalCP += getCP();
@@ -105,7 +105,7 @@ int Provinces::getTotalCP()
 std::array<int,5> Provinces::getTotalResources()
 {
 	//For debugging
-	CV::debugFunction("Provinces, getTotalResources");
+	INF::debugFunction("Provinces, getTotalResources");
 
 	std::array<int,5> totalResources = resourcesPresent;
   std::unordered_map<std::string, CommanderProfile*>::iterator it;
@@ -120,7 +120,7 @@ std::array<int,5> Provinces::getTotalResources()
 std::vector <CommanderProfile*> Provinces::getAllCommanders()
 {
 	//For debugging
-	CV::debugFunction("Provinces, getAllCommanders");
+	INF::debugFunction("Provinces, getAllCommanders");
 
 		std::vector<CommanderProfile*> commandersList;
 		std::unordered_map<std::string, CommanderProfile*>::iterator it;
@@ -132,7 +132,7 @@ std::vector <CommanderProfile*> Provinces::getAllCommanders()
 CommanderProfile* Provinces::getCommander(std::string name)
 {
 	//For debugging
-	CV::debugFunction("Provinces, getCommander");	
+	INF::debugFunction("Provinces, getCommander");	
 
 		return commanders[name];
 }
@@ -140,7 +140,7 @@ CommanderProfile* Provinces::getCommander(std::string name)
 bool Provinces::subtractCheckResources(std::array<int, 5> resourcesArray)
 {
 	//For debugging
-	CV::debugFunction("Provinces, subtractCheckResources");
+	INF::debugFunction("Provinces, subtractCheckResources");
 
 	//returns false if resources dip into negatives
 	modifyResources(resourcesArray, false);
@@ -153,7 +153,7 @@ bool Provinces::subtractCheckResources(std::array<int, 5> resourcesArray)
 void Provinces::printCommanders()
 {
 	//For debugging
-	CV::debugFunction("Provinces, printCommanders");
+	INF::debugFunction("Provinces, printCommanders");
 
 	for (it = commanders.begin(); it != commanders.end(); it++)
 		std::cout << "- " << it->second->getUnitName();
@@ -162,7 +162,7 @@ void Provinces::printCommanders()
 bool Provinces::hasCommander(std::string name)
 {
 	//For debugging
-	CV::debugFunction("Provinces, hasCommander");
+	INF::debugFunction("Provinces, hasCommander");
 
 	for (it = commanders.begin(); it != commanders.end(); it++) {
 		if (it->second->getUnitName() == name) {
@@ -176,15 +176,15 @@ bool Provinces::hasCommander(std::string name)
 
 void Provinces::playerBuildFunction() {
 	//For debugging
-	CV::debugFunction("Provinces, playerBuildFunction");
+	INF::debugFunction("Provinces, playerBuildFunction");
 
-	CV::clearScreen();
+	INF::clearScreen();
 	std::cout<<
 		"---------- Start printing province information ----------";
-	CV::addColor(BLUE);
+	INF::addColor(BLUE);
 	std::cout << "Province of kingdom " + getKingdomName();
 	std::cout << "Coordinates: " << getUserCoordsString() << "\n\n";
-	CV::addColor(RESET);
+	INF::addColor(RESET);
 
 	this->printResources();
 	printBuildingStats();
@@ -201,13 +201,13 @@ void Provinces::playerBuildFunction() {
 	}
 	else {
 		std::cout << "Returning to previous menu... " << std::endl;
-		CV::clearScreen();
+		INF::clearScreen();
 	}
 }
 
 void Provinces::upgradeBuildings() {
 	//For debugging
-	CV::debugFunction("Provinces, upgradeBuildings");
+	INF::debugFunction("Provinces, upgradeBuildings");
 
 	std::vector<std::string> buildingLetterList = {"H"};
 	for (int x = 1; x <= 10; x++) {
@@ -222,7 +222,7 @@ void Provinces::upgradeBuildings() {
 		upgradeBuildings2(option);
 	}
 	else {
-		CV::showHelp(12);
+		INF::showHelp(12);
 	}
 
 	char upgradeAgain = Input::getInputText("Upgrade another building (Y/N): ", { "Y", "N" }).at(0);
@@ -234,7 +234,7 @@ void Provinces::upgradeBuildings() {
 
 void Provinces::upgradeBuildings2(char optionChar) {
 	//For debugging
-	CV::debugFunction("Provinces, upgradeBuildings2");
+	INF::debugFunction("Provinces, upgradeBuildings2");
 
 	int option = optionChar - '0';
 	Build::BuildingType type = Build::BuildingType(option >= 6);
@@ -251,7 +251,7 @@ void Provinces::upgradeBuildings2(char optionChar) {
 
 void Provinces::upgradeBuildings3(Build::BuildingType type, std::array<int, 5>* listArg, int name) {
 	//For debugging
-	CV::debugFunction("Provinces, upgradeBuildings3");
+	INF::debugFunction("Provinces, upgradeBuildings3");
 
 	int index = name;
 	//If other type
@@ -287,15 +287,15 @@ void Provinces::upgradeBuildings3(Build::BuildingType type, std::array<int, 5>* 
 
 void Provinces::printInformation(BuildingType type, std::array<int, 5> requiredResources, int buildingIndex) {
 	//For debugging
-	CV::debugFunction("Provinces, printInformation");
+	INF::debugFunction("Provinces, printInformation");
 
 	std::cout << "---------- Start printing information----------\n\n\033[34m";
-	std::cout << CV::RESOURCE_BUILDING_NAMES[buildingIndex] << " selected \n";
+	std::cout << INF::RESOURCE_BUILDING_NAMES[buildingIndex] << " selected \n";
 
 
 	println("The following is the cost of the upgrade: ");
 	for (int x = 0; x < 5; x++) {
-		std::cout << CV::RESOURCE_NAMES[x] << ": " << requiredResources[x]
+		std::cout << INF::RESOURCE_NAMES[x] << ": " << requiredResources[x]
 			<< std::endl;
 	}
 	println("\nThe following are how many resources are in this province: ");
@@ -308,21 +308,21 @@ void Provinces::printInformation(BuildingType type, std::array<int, 5> requiredR
 
 void Provinces::setOverallIndex(int index) {
 	//For debugging
-	CV::debugFunction("Provinces, setOverallIndex");
+	INF::debugFunction("Provinces, setOverallIndex");
 
 	overallIndex = index;
 }
 
 int Provinces::getOverallIndex() {
 	//For debugging
-	CV::debugFunction("Provinces, getOverallIndex");
+	INF::debugFunction("Provinces, getOverallIndex");
 
 	return overallIndex;
 }
 
 std::array<std::array<int, 5>, 7> Provinces::getLists() {
 	//For debugging
-	CV::debugFunction("Provinces, getLists");
+	INF::debugFunction("Provinces, getLists");
 
 	std::array<std::array<int, 5>, 7> tempOverallArray;
 	for (int row = 0; row < 7; row++) {
@@ -338,7 +338,7 @@ std::array<std::array<int, 5>, 7> Provinces::getLists() {
 std::array<int, 7> Provinces::getListInt()
 {
 	//For debugging
-	CV::debugFunction("Provinces, getListInt");
+	INF::debugFunction("Provinces, getListInt");
 
 	std::array<int, 7> listTemp;
 	for (int column = 0; column < 7; column++) {
@@ -350,7 +350,7 @@ std::array<int, 7> Provinces::getListInt()
 std::array<bool, 3> Provinces::getListBool()
 {
 	//For debugging
-	CV::debugFunction("Provinces, getListBool");
+	INF::debugFunction("Provinces, getListBool");
 
 	std::array<bool, 3> listTemp;
 	for (int column = 0; column < 3; column++) {
@@ -361,7 +361,7 @@ std::array<bool, 3> Provinces::getListBool()
 
 std::array< std::pair<int, int>, 2> Provinces::getListCoords() {
 	//For debugging
-	CV::debugFunction("Provinces, getListCoords");
+	INF::debugFunction("Provinces, getListCoords");
 
 	return { systemCoords, userCoords };
 }
@@ -375,28 +375,28 @@ std::array< std::pair<int, int>, 2> Provinces::getListCoords() {
 
 void Provinces::setKingdomName(std::string name) { 
 	//For debugging
-	CV::debugFunction("Provinces, setKingdomName");
+	INF::debugFunction("Provinces, setKingdomName");
 
 	kingdomName = name;
 }
 
 int Provinces::commandersNum() {
 	//For debugging
-	CV::debugFunction("Provinces, commandersNum");
+	INF::debugFunction("Provinces, commandersNum");
 
 	return (int)commanders.size();
 }
 
 bool Provinces::isCapital() {
 	//For debugging
-	CV::debugFunction("Provinces, isCapital");
+	INF::debugFunction("Provinces, isCapital");
 
 	return isACapital;
 }
 
 void Provinces::createReport(int scouterLevelArg, int targetLevelArg) {
 	//For debugging
-	CV::debugFunction("Provinces, createReport");
+	INF::debugFunction("Provinces, createReport");
 
 	std::array<std::array<int, 5>, 7> ListsArg;
 	std::array<int, 7> listIntArg;

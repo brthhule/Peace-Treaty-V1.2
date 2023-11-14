@@ -5,8 +5,8 @@
 #include <vector>
 #include <iostream>
 #include <array>
-#include "Misc/CV.h"
-#include "Misc/CV.h"
+#include "Misc/INF.h"
+#include "Misc/INF.h"
 #include "AllUnitsAttributes/Coords.h"
 #include "AllUnitsAttributes/Troops.h"
 
@@ -14,7 +14,7 @@
 	int troopsPresent[5];
 	int troopsInjured[5];
 	int totalCP;*/
-using namespace CV;
+using namespace INF;
 
 
 class AllUnits : public Coords, public Troops

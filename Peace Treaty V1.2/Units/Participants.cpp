@@ -12,7 +12,7 @@ i5array Participants::allProvincesArray = {};
 //Constructor
 Participants::Participants() {
 	//For debugging
-	CV::debugFunction("Participants, Participants (1 Param)");
+	INF::debugFunction("Participants, Participants (1 Param)");
 
 	playerStatus = false;
 	capitalIndex = 0;
@@ -34,7 +34,7 @@ Participants::Participants() {
 
 Participants::Participants(int pIndex) {
 	//For debugging
-	CV::debugFunction("Participants, Participants (1 Param)");
+	INF::debugFunction("Participants, Participants (1 Param)");
 
 	std::cout << "Add commander\n";
 	addCommander();
@@ -56,14 +56,14 @@ Participants::Participants(int pIndex) {
 // Accessors
 Provinces* Participants::getCapitalProvince() { 
 	//For debugging
-	CV::debugFunction("Participants, getCapitalProvince");
+	INF::debugFunction("Participants, getCapitalProvince");
 	
 	return capitalProvince; 
 }
 
 Provinces* Participants::findProvince(std::pair<int, int> userCoords) {
 	//For debugging
-	CV::debugFunction("Participants, findProvince");
+	INF::debugFunction("Participants, findProvince");
 	
 	for (Provinces* province : provincesVector) {
 		if (province->getUserCoords() == userCoords) {
@@ -77,13 +77,13 @@ Provinces* Participants::findProvince(std::pair<int, int> userCoords) {
 
 int Participants::provincesNum() { 
 	//For debugging
-	CV::debugFunction("Participants, provincesNum");
+	INF::debugFunction("Participants, provincesNum");
 
 	return (int) provincesVector.size(); 
 }
 int Participants::commandersNum() { 
 	//For debugging
-	CV::debugFunction("Participants, commandersNum");
+	INF::debugFunction("Participants, commandersNum");
 	
 	return (int) commandersVector.size();
 }
@@ -91,24 +91,24 @@ int Participants::commandersNum() {
 
 void Participants::initialCapRSS() {
 	//For debugging
-	CV::debugFunction("Participants, initialCaRSS");
+	INF::debugFunction("Participants, initialCaRSS");
 
 	//Add functionality so, depending on the difficulty, AI participants get more or less resources to start off with
 	Provinces* newProvince = getCapitalProvince();
-	newProvince->modifyResources(CV::INITIAL_VALUES, true);
+	newProvince->modifyResources(INF::INITIAL_VALUES, true);
 }
 
 // Mutators
 void Participants::setCapital(Provinces* newProvince) {
 	//For debugging
-	CV::debugFunction("Participants, setCapital");
+	INF::debugFunction("Participants, setCapital");
 
 	capitalProvince = newProvince;
 }
 
 void Participants::addProvince(Provinces* newProvince) {
 	//For debugging
-	CV::debugFunction("Participants, addProvince");
+	INF::debugFunction("Participants, addProvince");
 
 	provincesVector.push_back(newProvince);
 	provincesMap[newProvince->getUnitName()] = provincesVector[provincesVector.size() - 1];
@@ -117,7 +117,7 @@ void Participants::addProvince(Provinces* newProvince) {
 
 void Participants::addCommander() {
 	//For debugging
-	CV::debugFunction("Participants, addCommander");
+	INF::debugFunction("Participants, addCommander");
 
 	CommanderProfile newCommander(1, getNewName());
 	std::pair<int, int> systemCoords = getCapitalProvince()->getSystemCoords();
@@ -135,7 +135,7 @@ void Participants::addCommander() {
 
 void Participants::setKingdomName(std::string newName) {
 	//For debugging
-	CV::debugFunction("Participants, setKingdomName");
+	INF::debugFunction("Participants, setKingdomName");
 
 	if (newName == "-1")
 		newName = getNewName();
@@ -146,7 +146,7 @@ std::string Participants::getKingdomName() { return kingdomName; }
 
 bool Participants::isAlive() {
 	//For debugging
-	CV::debugFunction("Participants, isAlive");
+	INF::debugFunction("Participants, isAlive");
 
 	if (provincesNum() > 0 && commandersNum() > 0)
 		return true;
@@ -157,7 +157,7 @@ bool Participants::isAlive() {
 void Participants::createAsPlayer(bool status)
 {
 	//For debugging
-	CV::debugFunction("Participants, createAsPlayer");
+	INF::debugFunction("Participants, createAsPlayer");
 
 	std::cout << "This is a human player...\n";
 	playerStatus = status;
@@ -178,7 +178,7 @@ void Participants::createAsPlayer(bool status)
 
 void Participants::viewStats() {
 	//For debugging
-	CV::debugFunction("Participants, viewStats");
+	INF::debugFunction("Participants, viewStats");
 
 	std::array<int, 5> eachUnit = calculateEach(1);
 	std::array<int, 5> totalResources = calculateEach(2);
@@ -186,11 +186,11 @@ void Participants::viewStats() {
 	std::cout << "Kingdom name: " << kingdomName << "\n\n";
 
 	for (int x = 0; x < 5; x++) {
-		std::cout << "Total " << CV::RESOURCE_NAMES[x] << ": " << totalResources[x] << std::endl;
+		std::cout << "Total " << INF::RESOURCE_NAMES[x] << ": " << totalResources[x] << std::endl;
 	}
 
 	for (int x = 0; x < 5; x++)
-		std::cout << "Total " << CV::TROOP_NAMES[x] << " alive: " << eachUnit[x] << std::endl;
+		std::cout << "Total " << INF::TROOP_NAMES[x] << " alive: " << eachUnit[x] << std::endl;
 
 	std::cout << "Your total army combat power: " << calculatePlayerValues(1).at(0);
 	std::cout << "\nYour numnber of provinces: " << provincesNum() << "\n\n";
@@ -203,14 +203,14 @@ void Participants::viewStats() {
 
 std::vector<int> Participants::calculatePlayerValues(int decision) {
 	//For debugging
-	CV::debugFunction("Participants, calculatePlayerValues");
+	INF::debugFunction("Participants, calculatePlayerValues");
 
 	std::array<int, 5> newArray = calculateEach(decision);
 	switch (decision) {
 	case 1: { // Return total CP
 		int totalCPThingy = 0;
 		for (int x = 0; x < 5; x++)
-			totalCPThingy += newArray[x] * CV::TROOPS_CP[x];
+			totalCPThingy += newArray[x] * INF::TROOPS_CP[x];
 		return { totalCPThingy };
 	}
 	case 2: {
@@ -228,16 +228,16 @@ std::vector<int> Participants::calculatePlayerValues(int decision) {
 
 Provinces* Participants::getProvince(int index) { 
 	//For debugging
-	CV::debugFunction("Participants, getProvince");
+	INF::debugFunction("Participants, getProvince");
 
 	return provincesVector[index]; 
 }
 
 std::string Participants::getNewName() {
 	//For debugging
-	CV::debugFunction("Participants, getNewName");
+	INF::debugFunction("Participants, getNewName");
 
-	std::string newName = CV::createRandomName();
+	std::string newName = INF::createRandomName();
 	for (Provinces* newProvince : provincesVector)
 		if (newName == newProvince->getUnitName())
 			getNewName();
@@ -258,46 +258,46 @@ std::string Participants::getNewName() {
 
 std::array<int, 5> Participants::getTrainCosts() { 
 	//For debugging
-	CV::debugFunction("Participants, getTrainCosts");
+	INF::debugFunction("Participants, getTrainCosts");
 
 	return trainCosts; 
 }
 
 void Participants::setParticipantIndex(int num) { 
 	//For debugging
-	CV::debugFunction("Participants, setParticipantIndex");
+	INF::debugFunction("Participants, setParticipantIndex");
 
 	participantIndex = num; 
 }
 
 int Participants::getParticipantIndex() { 
 	//For debugging
-	CV::debugFunction("Participants, getParticipantIndex");
+	INF::debugFunction("Participants, getParticipantIndex");
 
 	return participantIndex; 
 }
 
 void Participants::viewAllStatsFunction() {
 	//For debugging
-	CV::debugFunction("Participants, viewAllStatsFunction");
+	INF::debugFunction("Participants, viewAllStatsFunction");
 
 	std::string literallyAnyRandomCharacter;
 	std::cout << BLUE; // NW
 	std::array<int, 5> troopsLost = calculateEach(3);
 	for (int x = 0; x < 5; x++) {
-		std::cout << CV::TROOP_NAMES[x] << " lost: "
+		std::cout << INF::TROOP_NAMES[x] << " lost: "
 			<< troopsLost[x]
 			<< std::endl;
 	}
 	std::cout << "Total troops lost: ";
 	calculatePlayerValues(2);
 	std::cout << "\n\n\033[;0m"; // NW
-	CV::enterAnything(1);
+	INF::enterAnything(1);
 }
 
 void Participants::printListOfProvinces() {
 	//For debugging
-	CV::debugFunction("Participants, printListOfProvinces");
+	INF::debugFunction("Participants, printListOfProvinces");
 
 	std::cout << "Here is a list of your provinces (Name, Coordinates): \n";
 	for (Provinces* province : provincesVector)
@@ -311,9 +311,9 @@ void Participants::printListOfProvinces() {
 //Shows the list of provinces, prompts user to select a province, checks if the province belongs to the participant. If it does, return that province. If it doesn't, call method again
 Provinces* Participants::getYourProvince(int identifier) {
 	//For debugging
-	CV::debugFunction("Participants, getYourProvince");
+	INF::debugFunction("Participants, getYourProvince");
 
-	CV::debugFunction("Participants, getYourProvince-- revise to make it an array??");
+	INF::debugFunction("Participants, getYourProvince-- revise to make it an array??");
 	Provinces* newProvince = getCoords(identifier);
 	if (newProvince->getParticipantIndex() == participantIndex)
 	{
@@ -322,7 +322,7 @@ Provinces* Participants::getYourProvince(int identifier) {
 	}
 
 	std::cout << "This province does not belong to you. Please try again \n";
-	CV::clearScreen();
+	INF::clearScreen();
 	getYourProvince(identifier);
 
 	std::cout << "Invalid path... \n";
@@ -333,14 +333,14 @@ Provinces* Participants::getYourProvince(int identifier) {
 
 int Participants::getRandomCoordinate() {
 	//For debugging
-	CV::debugFunction("Participants, getRandomCoordinate");
+	INF::debugFunction("Participants, getRandomCoordinate");
 
-	return rand() % CV::continentSize; 
+	return rand() % INF::continentSize; 
 }
 
 bool Participants::hasCommander(std::string name) {
 	//For debugging
-	CV::debugFunction("Participants, hasCommander");
+	INF::debugFunction("Participants, hasCommander");
 
 	if (commandersMap.find(name) == commandersMap.end())
 		return false;
@@ -349,7 +349,7 @@ bool Participants::hasCommander(std::string name) {
 
 CommanderProfile* Participants::getCommander(std::string name) {
 	//For debugging
-	CV::debugFunction("Participants, getCommander");
+	INF::debugFunction("Participants, getCommander");
 
 	return commandersMap[name];
 }
@@ -357,7 +357,7 @@ CommanderProfile* Participants::getCommander(std::string name) {
 int Participants::calculateTotals(int option)
 {
 	//For debugging
-	CV::debugFunction("Participants, calculateTotals");
+	INF::debugFunction("Participants, calculateTotals");
 
 	int sum = 0;
 	std::array <int, 5> totals = calculateEach(option);
@@ -370,7 +370,7 @@ int Participants::calculateTotals(int option)
 std::array<int, 5> Participants::calculateEach(int option)
 {
 	//For debugging
-	CV::debugFunction("Participants, calculateEach");
+	INF::debugFunction("Participants, calculateEach");
 
 	std::array<int, 5> returnArray = { 0, 0, 0, 0, 0 };
 	//Go through all commanders at this province
@@ -380,13 +380,13 @@ std::array<int, 5> Participants::calculateEach(int option)
 		switch (option)
 		{
 		case 1://Calculate each Unit
-			returnArray = CV::modifyArray(returnArray, newCommander->getTroop(REGULAR, NULL, ALL), true);
+			returnArray = INF::modifyArray(returnArray, newCommander->getTroop(REGULAR, NULL, ALL), true);
 			break;
 		case 2://Calculate each resource
-			returnArray = CV::modifyArray(returnArray, newCommander->getAllResources(), true);
+			returnArray = INF::modifyArray(returnArray, newCommander->getAllResources(), true);
 			break;
 		case 3://calculate each troop lost
-			returnArray = CV::modifyArray(returnArray, newCommander->getTroop(LOST, NULL, ALL), true);
+			returnArray = INF::modifyArray(returnArray, newCommander->getTroop(LOST, NULL, ALL), true);
 			break;
 		default:
 			break;
@@ -400,13 +400,13 @@ std::array<int, 5> Participants::calculateEach(int option)
 		switch (option)
 		{
 		case 1://Calculate each Unit
-			returnArray = CV::modifyArray(returnArray, newProvince->getTroop(REGULAR, NULL, ALL), true);
+			returnArray = INF::modifyArray(returnArray, newProvince->getTroop(REGULAR, NULL, ALL), true);
 			break;
 		case 2://Calculate each resource
-			returnArray = CV::modifyArray(returnArray, newProvince->getAllResources(), true);
+			returnArray = INF::modifyArray(returnArray, newProvince->getAllResources(), true);
 			break;
 		case 3://calculate each troop lost
-			returnArray = CV::modifyArray(returnArray, newProvince->getTroop(LOST, NULL, ALL), true);
+			returnArray = INF::modifyArray(returnArray, newProvince->getTroop(LOST, NULL, ALL), true);
 			break;
 		default:
 			break;
@@ -418,12 +418,12 @@ std::array<int, 5> Participants::calculateEach(int option)
 
 void Participants::showMapOld() {
 	//For debugging
-	CV::debugFunction("Participants, showMapOld");
+	INF::debugFunction("Participants, showMapOld");
 
 	std::cout << "Map: \n";
 
-	int foo = CV::continentSize;
-	for (int x = 0; x < CV::continentSize; x++) {
+	int foo = INF::continentSize;
+	for (int x = 0; x < INF::continentSize; x++) {
 		// Y axis stuff
 		if (foo < 10)
 			std::cout << " " << foo << "| ";
@@ -433,7 +433,7 @@ void Participants::showMapOld() {
 		foo--;
 		// End y axis stuff
 
-		for (int y = 0; y < CV::continentSize; y++) {
+		for (int y = 0; y < INF::continentSize; y++) {
 			char letter = ' '; // Fix this later
 			Provinces* mapProvince = getSystemProvince({x,y});
 
@@ -466,13 +466,13 @@ void Participants::showMapOld() {
 
 	// X axis stuff
 	std::cout << "    ";
-	for (int a = 0; a < CV::continentSize - 1; a++) {
+	for (int a = 0; a < INF::continentSize - 1; a++) {
 		std::cout << "----";
 	}
 	std::cout << "--";
 	std::cout << std::endl;
 	std::cout << "    ";
-	for (int a = 0; a < CV::continentSize; a++) {
+	for (int a = 0; a < INF::continentSize; a++) {
 		if (a < 9)
 			std::cout << a + 1 << "   ";
 		else
@@ -484,14 +484,14 @@ void Participants::showMapOld() {
 void Participants::scoutProvince(Provinces* targetProvince, int accuracy) /*Add implementation later*/
 {
 	//For debugging
-	CV::debugFunction("Participants, scoutProvince");
+	INF::debugFunction("Participants, scoutProvince");
 
 }
 
 bool Participants::subtractCheckResources(std::string provinceName, std::array<int, 5> resourcesArray)
 {
 	//For debugging
-	CV::debugFunction("Participants, subtractCheckResources");
+	INF::debugFunction("Participants, subtractCheckResources");
 
 	Provinces* newProvince = getProvinceByName(provinceName);
 	//returns false if resources dip into negatives
@@ -505,7 +505,7 @@ bool Participants::subtractCheckResources(std::string provinceName, std::array<i
 Provinces* Participants::getProvinceByName(std::string name)
 {
 	//For debugging
-	CV::debugFunction("Participants, getProvinceByName");
+	INF::debugFunction("Participants, getProvinceByName");
 
 	return provincesMap[name];
 }
@@ -520,7 +520,7 @@ Provinces* Participants::getProvinceByName(std::string name)
 bool Participants::hasProvince(std::string name)
 {
 	//For debugging
-	CV::debugFunction("Participants, hasProvince");
+	INF::debugFunction("Participants, hasProvince");
 
 	if (provincesMap.find(name) != provincesMap.end()) {
 		return true;
@@ -531,7 +531,7 @@ bool Participants::hasProvince(std::string name)
 
 std::string Participants::selectCommander() {
 	//For debugging
-	CV::debugFunction("Participants, selectCommander");
+	INF::debugFunction("Participants, selectCommander");
 
 	displayCommanders();
 	std::string commanderName = " ";
@@ -543,7 +543,7 @@ std::string Participants::selectCommander() {
 		return commanderName;
 	} else if (commanderName != "-1") {
 		println("Invalid name entered. Please try again... (Enter any character to continue)");
-		CV::enterAnything(1);
+		INF::enterAnything(1);
 		selectCommander();
 	}
 
@@ -555,7 +555,7 @@ std::string Participants::selectCommander() {
 void Participants::displayCommanders()
 {
 	//For debugging
-	CV::debugFunction("Participants, displayCommanders");
+	INF::debugFunction("Participants, displayCommanders");
 
 	std::cout << "Here is list of your commanders: \n";
 	std::unordered_map<std::string, CommanderProfile*> commandersMap = getCommandersMap();
@@ -569,11 +569,11 @@ void Participants::displayCommanders()
 
 Provinces* Participants::getCoords(int identifier) {
 	//For debugging
-	CV::debugFunction("Participants, getCoords");
+	INF::debugFunction("Participants, getCoords");
 
 	std::vector<std::string> actualCoordinatesAVTwo = { "-1" };
 	//range of possible coordinates
-	for (int x = 1; x <= CV::continentSize; x++)
+	for (int x = 1; x <= INF::continentSize; x++)
 		actualCoordinatesAVTwo.push_back(std::to_string(x));
 
 	showMap();
@@ -607,9 +607,9 @@ Provinces* Participants::getCoords(int identifier) {
 
 Provinces* Participants::findProvince() {
 	//For debugging
-	CV::debugFunction("Participants, findProvince");
+	INF::debugFunction("Participants, findProvince");
 
-	CV::debugFunction("Participants, findProvince--revise");
+	INF::debugFunction("Participants, findProvince--revise");
 	std::cout << "Welcome to the Player Build menu\n\n";
 	Provinces* province = this->getCoords(1);
 
@@ -625,7 +625,7 @@ Provinces* Participants::findProvince() {
 		else {//If does not belong to the current participant
 			print("Invalid province elected. Please try again. \nEnter anything to "
 				"proceed back to the Player Build menu (Screen will clear) ");
-			CV::enterAnything(1);
+			INF::enterAnything(1);
 		}
 		std::cout << std::endl;
 	}
@@ -640,14 +640,14 @@ Provinces* Participants::findProvince() {
 
 CommanderProfile* Participants::getSelectedCommander() {
 	//For debugging
-	CV::debugFunction("Participants, getSelectedCommander");
+	INF::debugFunction("Participants, getSelectedCommander");
 
 	return selectedCommander;
 }
 
 bool Participants::hasUnit(std::string unitName) {
 	//For debugging
-	CV::debugFunction("Participants, hasUnit");
+	INF::debugFunction("Participants, hasUnit");
 
 	if (hasCommander(unitName)) {
 		return true;
@@ -660,21 +660,21 @@ bool Participants::hasUnit(std::string unitName) {
 
 Provinces* Participants::getSystemProvince(std::pair<int, int> systemCoords) {
 	//For debugging
-	CV::debugFunction("Participants, getSystemProvince");
+	INF::debugFunction("Participants, getSystemProvince");
 
 	return Map::getSystemProvince(systemCoords);
 }
 
 void Participants::showMap() {
 	//For debugging
-	CV::debugFunction("Participants, showMap");
+	INF::debugFunction("Participants, showMap");
 
 	Map::showMap();
 }
 
 i5array Participants::getAllUnitsArray() {
 	//For debugging
-	CV::debugFunction("Participants, getAllUnitsArray");
+	INF::debugFunction("Participants, getAllUnitsArray");
 
 	i5array returnArray = {0,0,0,0,0};
 
@@ -698,27 +698,27 @@ i5array Participants::getAllUnitsArray() {
 
 VOID Participants::getAllUnitsArrayCommanders() {
 	//For debugging
-	CV::debugFunction("Participants, getAllUnitsArrayCommanders");
+	INF::debugFunction("Participants, getAllUnitsArrayCommanders");
 
 	for (CommanderProfile instance : commandersVector) {
 		i5array commanderArray = instance.getTroop(REGULAR, -1, ALL);
-		CV::modifyArray(allCommandersArray, commanderArray, true);
+		INF::modifyArray(allCommandersArray, commanderArray, true);
 	}
 }
 
 VOID Participants::getAllUnitsArrayProvinces() {
 	//For debugging
-	CV::debugFunction("Participants, getAllUnitsArrayProvinces");
+	INF::debugFunction("Participants, getAllUnitsArrayProvinces");
 
 	for (Provinces *instance : provincesVector) {
 		i5array provincesArray = instance->getTroop(REGULAR, -1, ALL);
-		CV::modifyArray(allProvincesArray, provincesArray, true);
+		INF::modifyArray(allProvincesArray, provincesArray, true);
 	}
 }
 
 INTEGER Participants::getAllUnitsAmount() {
 	//For debugging
-	CV::debugFunction("Participants, getAllUnitsAmount");
+	INF::debugFunction("Participants, getAllUnitsAmount");
 
 	int amount = 0;
 	for (int x : getAllUnitsArray()) {
@@ -730,35 +730,35 @@ INTEGER Participants::getAllUnitsAmount() {
 
 std::thread Participants::th1Method() {
 	//For debugging
-	CV::debugFunction("Participants, th1Method");
+	INF::debugFunction("Participants, th1Method");
 
 	return std::thread([=] {getAllUnitsArrayProvinces(); });
 }
 
 std::thread Participants::th2Method() {
 	//For debugging
-	CV::debugFunction("Participants, the2Method");
+	INF::debugFunction("Participants, the2Method");
 
 	return std::thread([=] {getAllUnitsArrayCommanders(); });
 }
 
 void Participants::updateTurnResourcesParticipant() {
 	//For debugging
-	CV::debugFunction("Participants, updateTurnResourcesParticipant");
+	INF::debugFunction("Participants, updateTurnResourcesParticipant");
 
 	this->updateTurnResources();
 }
 
 void Participants::createMapParticipant() {
 	//For debugging
-	CV::debugFunction("Participants, createMapParticipant");
+	INF::debugFunction("Participants, createMapParticipant");
 
 	setMap();
 }
 
 std::pair<int, int> Participants::pickCoords() {
 	//For debugging
-	CV::debugFunction("Database, pickCoords");
+	INF::debugFunction("Database, pickCoords");
 
 	Participants* tempParticipant = new Participants();
 	tempParticipant->showMap();
@@ -777,13 +777,13 @@ std::pair<int, int> Participants::pickCoords() {
 		xCoordinate = std::stoi(xCoordinateString),
 		yCoordinate = std::stoi(yCoordinateString);
 
-	if (xCoordinate > 0 && xCoordinate <= CV::continentSize && yCoordinate > 0 && yCoordinate <= CV::continentSize) {
+	if (xCoordinate > 0 && xCoordinate <= INF::continentSize && yCoordinate > 0 && yCoordinate <= INF::continentSize) {
 		return { xCoordinate, yCoordinate };
 	}
 
-	CV::addColor(RED);
+	INF::addColor(RED);
 	std::cout << "Inputed coordinates are out of bounds... please try again.";
-	CV::addColor(RESET);
+	INF::addColor(RESET);
 	pickCoords();
 
 	//Error path

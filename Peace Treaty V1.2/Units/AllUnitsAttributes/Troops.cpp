@@ -2,14 +2,14 @@
 
 Troops::Troops() {
 	//For debugging
-	CV::debugFunction("Troops, Troops");
+	INF::debugFunction("Troops, Troops");
 
 	//Empty
 }
 
-std::array<int, 5> Troops::getAllOneTroop(CV::TROOPS type) {
+std::array<int, 5> Troops::getAllOneTroop(INF::TROOPS type) {
 	//For debugging
-	CV::debugFunction("Troops, getAllOneTroop");
+	INF::debugFunction("Troops, getAllOneTroop");
 
 	return *allTroops[type];
 }
@@ -18,9 +18,9 @@ std::array<int, 5> Troops::getAllOneTroop(CV::TROOPS type) {
 
 //--------Troop Functions--------
 //Return a troop by index or all troops-- done by type
-std::array<int, 5> Troops::getTroop(CV::MutateTroopType type, int troopIndex, Quantity amount) {
+std::array<int, 5> Troops::getTroop(INF::MutateTroopType type, int troopIndex, Quantity amount) {
 	//For debugging
-	CV::debugFunction("Troops, getTroop");
+	INF::debugFunction("Troops, getTroop");
 
 	std::array<int, 5> troopCopy;
 
@@ -35,9 +35,9 @@ std::array<int, 5> Troops::getTroop(CV::MutateTroopType type, int troopIndex, Qu
 
 //----Mutators----
 //Change troops of type index at this unit by amount
-void Troops::mutateTroop(CV::MutateTroopType type, int troopIndex, std::array<int,5> amount, Quantity quant, CV::MutateDirection direction) {
+void Troops::mutateTroop(INF::MutateTroopType type, int troopIndex, std::array<int,5> amount, Quantity quant, INF::MutateDirection direction) {
 	//For debugging
-	CV::debugFunction("Troops, mutateTroop");
+	INF::debugFunction("Troops, mutateTroop");
 
 	int modifier = -1;
 

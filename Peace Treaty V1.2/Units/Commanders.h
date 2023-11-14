@@ -4,9 +4,9 @@
 #include <vector>
 
 #include "AllUnits.h"
-#include "Misc/CV.h"
+#include "Misc/INF.h"
 
-using namespace CV;
+using namespace INF;
 
 
 class CommanderProfile : public AllUnits {
@@ -59,8 +59,8 @@ private:
 
 	//Check this
 	std::array<std::array<std::string, 5>, 4> namesOfManOne = {
-		CV::RESOURCE_NAMES, 
-		CV::TROOP_NAMES
+		INF::RESOURCE_NAMES, 
+		INF::TROOP_NAMES
 	};
 
 	std::array<std::string, 6> namesOfManTwo{

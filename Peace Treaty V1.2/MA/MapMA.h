@@ -13,8 +13,8 @@
 #include "../Units/Provinces.h"
 #include "../Units/Database.h"
 
-#include "../Units/Misc/CV.h"
-#include "../Units/Misc/CV.h"
+#include "../Units/Misc/INF.h"
+#include "../Units/Misc/INF.h"
 #include "../Units/Misc/Input.h"
 
 
@@ -23,7 +23,7 @@
 
 extern Database db;
 
-using namespace CV;
+using namespace INF;
 
 class MapMA
 {

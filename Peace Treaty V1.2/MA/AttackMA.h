@@ -13,11 +13,11 @@
 #include "../Units/AllUnits.h"
 
 #include "../Units/Misc/Input.h"
-#include "../Units/Misc/CV.h"
+#include "../Units/Misc/INF.h"
 
 
 
-using namespace CV;
+using namespace INF;
 
 extern Database db;
 

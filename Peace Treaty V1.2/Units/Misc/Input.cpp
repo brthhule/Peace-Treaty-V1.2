@@ -5,7 +5,7 @@ using namespace Input;
 std::vector<std::string> Input::getShowPrompt(std::string prompt)
 {
 	//For debugging
-	CV::debugFunction("Input, getShowPrompt");
+	INF::debugFunction("Input, getShowPrompt");
 
 	std::fstream newfile;
 						"C:\\Users\\Brennen\\Source\\Repos\\brthhule\\Peace-Treaty-V1.2\\Peace Treaty V1.2\\Units\\Misc\\TxtFiles\\Synopsis.txt";
@@ -70,7 +70,7 @@ std::vector<std::string> Input::getShowPrompt(std::string prompt)
 
 std::string Input::getOptionPromptQuery(std::vector<std::string>AV) {
 	//For debugging
-	CV::debugFunction("Input, getShowPromptQuery");
+	INF::debugFunction("Input, getShowPromptQuery");
 
 	std::string input;
 	std::cout << "Enter an option: " << getColor(BLUE);
@@ -91,24 +91,24 @@ std::string Input::getOptionPromptQuery(std::vector<std::string>AV) {
 	return getOptionPromptQuery(AV);
 }
 
-std::string Input::getOptionPrompt(CV::PROMPTS p) {
+std::string Input::getOptionPrompt(INF::PROMPTS p) {
 	//For debugging
-	CV::debugFunction("Input, getOptionPrompt");
+	INF::debugFunction("Input, getOptionPrompt");
 
 	//Print prompt, return acceptable values
-	std::vector<std::string> AV = getShowPrompt(CV::promptsToString(p));
+	std::vector<std::string> AV = getShowPrompt(INF::promptsToString(p));
 
 	return getOptionPromptQuery(AV);
 }
 
 std::string Input::getInputQuery(std::vector<std::string>AV) {
 	//For debugging
-	CV::debugFunction("Input, getInputQuery");
+	INF::debugFunction("Input, getInputQuery");
 
 	std::cout << "Enter an option: " << getColor(BLUE);
 	std::string input;
 	getline(std::cin, input);
-	CV::addColor(RESET);
+	INF::addColor(RESET);
 
 	for (std::string value : AV) {
 		if (input == value) {
@@ -123,7 +123,7 @@ std::string Input::getInputQuery(std::vector<std::string>AV) {
 std::string Input::getInputText(std::string text, std::vector<std::string> AV)
 {
 	//For debugging
-	CV::debugFunction("Iput, getInputText");
+	INF::debugFunction("Iput, getInputText");
 
 	std::cout << text << "\n";
 	std::string input;

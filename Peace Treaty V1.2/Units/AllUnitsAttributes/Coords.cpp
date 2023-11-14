@@ -2,40 +2,40 @@
 
 void Coords::setOverallIndex (int index) {
 	//For debugging
-	CV::debugFunction("Coords, OtherBuildingsToString");
+	INF::debugFunction("Coords, OtherBuildingsToString");
 
 	overallIndex = index;
-	systemCoords.first = overallIndex / CV::continentSize;
-	systemCoords.second = overallIndex % CV::continentSize;
+	systemCoords.first = overallIndex / INF::continentSize;
+	systemCoords.second = overallIndex % INF::continentSize;
 
-	userCoords.first = (overallIndex % CV::continentSize) + 1;
-	userCoords.second = CV::continentSize - (overallIndex / CV::continentSize);
+	userCoords.first = (overallIndex % INF::continentSize) + 1;
+	userCoords.second = INF::continentSize - (overallIndex / INF::continentSize);
 }
 
 std::pair<int, int> Coords::getSystemCoords() {
 	//For debugging
-	CV::debugFunction("Coords, getSystemCoords");
+	INF::debugFunction("Coords, getSystemCoords");
 
 	return systemCoords;
 }
 
 std::pair<int, int> Coords::getUserCoords() {
 	//For debugging
-	CV::debugFunction("Coords, getUserCoords");
+	INF::debugFunction("Coords, getUserCoords");
 
 	return userCoords;
 }
 
 void Coords::printUserCoords() {
 	//For debugging
-	CV::debugFunction("Coords, printUserCoords");
+	INF::debugFunction("Coords, printUserCoords");
 
 	std::cout << "(" << userCoords.first << ", " << userCoords.second << ")";
 }
 
 void Coords::setCoords(std::pair<int, int> systemCoordsArg, std::pair<int, int> userCoordsArg) {
 	//For debugging
-	CV::debugFunction("Coords, setCoords");
+	INF::debugFunction("Coords, setCoords");
 
 	systemCoords = systemCoordsArg;
 	userCoords = userCoordsArg;
@@ -44,7 +44,7 @@ void Coords::setCoords(std::pair<int, int> systemCoordsArg, std::pair<int, int> 
 //Gets passed user coords, translates them to system coords
 std::pair<int, int> Coords::translateToSystemCoords(std::pair<int, int> userCoordsArg) {
 	//For debugging
-	CV::debugFunction("Coords, translateToSystemCoords");
+	INF::debugFunction("Coords, translateToSystemCoords");
 
 	std::pair<int, int> returnSystemCoords;
 	//Add implementation here
@@ -54,14 +54,14 @@ std::pair<int, int> Coords::translateToSystemCoords(std::pair<int, int> userCoor
 
 std::string Coords::getUserCoordsString() {
 	//For debugging
-	CV::debugFunction("Coords, getUserCoordsString");
+	INF::debugFunction("Coords, getUserCoordsString");
 
 	return "(" + std::to_string(userCoords.first) + ", " + std::to_string(userCoords.second) + ")";
 }
 
 std::string Coords::getSystemCoordsString() {
 	//For debugging
-	CV::debugFunction("Coords, getSystemCoordsString");
+	INF::debugFunction("Coords, getSystemCoordsString");
 
 	return "(" + std::to_string(systemCoords.first) + ", " + std::to_string(systemCoords.second) + ")";
 }
