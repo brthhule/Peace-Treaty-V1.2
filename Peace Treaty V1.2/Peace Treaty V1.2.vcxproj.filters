@@ -250,7 +250,7 @@
     <ClInclude Include="MA\ScoutMA.h">
       <Filter>Header Files\MA</Filter>
     </ClInclude>
-    <ClInclude Include="Misc\OF.h">
+    <ClInclude Include="Misc\CV.h">
       <Filter>Header Files\Misc</Filter>
     </ClInclude>
     <ClInclude Include="Misc\CV.h">

@@ -3,7 +3,7 @@
 TrainMA::TrainMA()
 {
     //For debugging
-    OF::debugFunction("TrainMA, TrainMA");
+    CV::debugFunction("TrainMA, TrainMA");
 
     participant = db.getCurrentParticipant();
     province = participant->getCapitalProvince();
@@ -12,7 +12,7 @@ TrainMA::TrainMA()
 
 void TrainMA::TrainMAFunction() {
     //For debugging
-    OF::debugFunction("TrainMA, TrainMAFunction");
+    CV::debugFunction("TrainMA, TrainMAFunction");
 
     Participants* tempParticipant = new Participants();
     tempParticipant->showMap();
@@ -88,7 +88,7 @@ void TrainMA::TrainMAFunction() {
 
 void TrainMA::TrainMAFunctionDoWhileLoop(int troopTier, int amountOfTroops) {
     //For debugging
-    OF::debugFunction("TrainMA, TrainMAFunctionDoWhileLoop");
+    CV::debugFunction("TrainMA, TrainMAFunctionDoWhileLoop");
 
     std::array<int, 5> 
         troopCost = { 5, 4, 3, 2, 1 },

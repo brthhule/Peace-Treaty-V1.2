@@ -28,7 +28,7 @@
 
 #include "Misc/CV.h"
 #include "Misc/LinkedList.h"
-#include "Misc/OF.h"
+#include "Misc/CV.h"
 #include "CommandersAttributes/Mobility.h"
 #include "../MA/ArmyOverviewMA.h"
 
@@ -37,7 +37,7 @@
 
 
 using namespace CV;
-using namespace OF;
+
 
 class Participants : public Map, public Mobility, public ArmyOverviewMA
 {

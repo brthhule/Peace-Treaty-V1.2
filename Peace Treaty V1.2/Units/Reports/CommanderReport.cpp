@@ -2,14 +2,14 @@
 
 CommanderReport::CommanderReport() {
 	//For debugging
-	OF::debugFunction("CommanderReport, CommanderReport");
+	CV::debugFunction("CommanderReport, CommanderReport");
 
 	//Implement this
 }
 
 void CommanderReport::printReport() {
 	//For debugging
-	OF::debugFunction("CommanderReport, printReport");
+	CV::debugFunction("CommanderReport, printReport");
 
 	//Implement this
 

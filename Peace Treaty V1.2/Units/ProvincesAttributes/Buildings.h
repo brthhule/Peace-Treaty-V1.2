@@ -5,13 +5,13 @@
 #include <array>
 
 #include "../Misc/CV.h"
-#include "../Misc/OF.h"
+#include "../Misc/CV.h"
 #include "../ProvincesAttributes/Build.h"
 
 #include "../AllUnits.h"
 
 using namespace CV;
-using namespace OF;
+
 using namespace Build;
 
 class Buildings{

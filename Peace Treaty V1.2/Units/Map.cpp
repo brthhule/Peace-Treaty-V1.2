@@ -5,13 +5,13 @@ Map::ProvincesMap  Map::mapMap = std::unordered_map<std::string, Provinces*>();
 
 Map::Map() {
 	//For debugging
-	OF::debugFunction("Map, Map");
+	CV::debugFunction("Map, Map");
 
 }
 
 void Map::setMap() {
 	//For debugging
-	OF::debugFunction("Map, setMap");
+	CV::debugFunction("Map, setMap");
 
 	int overallIndex = 0;
 	for (int x = 0; x < CV::continentSize; x++) {
@@ -29,7 +29,7 @@ void Map::setMap() {
 
 void Map::showMap() {
 	//For debugging
-	OF::debugFunction("Map, showMap");
+	CV::debugFunction("Map, showMap");
 
 	int yAxis = CV::continentSize;
 	for (int x = 0; x < CV::continentSize; x++) {
@@ -51,7 +51,7 @@ void Map::showMap() {
 
 void Map::meat(int x, int y) {
 	//For debugging
-	OF::debugFunction("Map, meat");
+	CV::debugFunction("Map, meat");
 
 	char letter = ' ';
 	Provinces* currentProvince = map[x][y];
@@ -59,7 +59,7 @@ void Map::meat(int x, int y) {
 	//Player province
 	if (currentProvince->getParticipantIndex() == currentParticipantIndex)
 	{
-		OF::addColor(BLUE);
+		CV::addColor(BLUE);
 		if (currentProvince->isCapital() == true)
 			letter = 'C';
 		else
@@ -68,7 +68,7 @@ void Map::meat(int x, int y) {
 	//Enemy province
 	else if (currentProvince->getParticipantIndex() != -1)
 	{
-		OF::addColor(RED);
+		CV::addColor(RED);
 		if (currentProvince->isCapital() == true)
 			letter = 'C';
 		else
@@ -81,12 +81,12 @@ void Map::meat(int x, int y) {
 
 	std::cout << letter << currentProvince->commandersNum();
 	//std::cout << "  ";
-	OF::addColor(RESET);
+	CV::addColor(RESET);
 }
 
 void Map::printXAxis() {
 	//For debugging
-	OF::debugFunction("Map, printXAxis");
+	CV::debugFunction("Map, printXAxis");
 
 	std::cout << "    ";//4 spaces
 	for (int a = 0; a < CV::continentSize - 1; a++) {
@@ -108,7 +108,7 @@ void Map::printXAxis() {
 //First int should be row, second int should be column
 Provinces* Map::getSystemProvince(std::pair<int, int> systemCoords) {
 	//For debugging
-	OF::debugFunction("Map, getSystemProvince");
+	CV::debugFunction("Map, getSystemProvince");
 
 	return map[systemCoords.first][systemCoords.second];
 }
@@ -116,7 +116,7 @@ Provinces* Map::getSystemProvince(std::pair<int, int> systemCoords) {
 
 Provinces* Map::getUserProvince(std::pair<int, int> userCoords) {
 	//For debugging
-	OF::debugFunction("Map, getUserProvince");
+	CV::debugFunction("Map, getUserProvince");
 
 	for (int row = 0; row < CV::continentSize; row++) {
 		for (int col = 0; col < CV::continentSize; col++) {
@@ -132,9 +132,9 @@ Provinces* Map::getUserProvince(std::pair<int, int> userCoords) {
 
 void Map::updateTurnResources() {
 	//For debugging
-	OF::debugFunction("Map, updateTurnResources");
+	CV::debugFunction("Map, updateTurnResources");
 
-	OF::debugFunction("main, updateTurnResources");
+	CV::debugFunction("main, updateTurnResources");
 	for (int x = 0; x < CV::continentSize; x++) {
 		for (int y = 0; y < CV::continentSize; y++) {
 			map[x][y]->updateProvinceResources();

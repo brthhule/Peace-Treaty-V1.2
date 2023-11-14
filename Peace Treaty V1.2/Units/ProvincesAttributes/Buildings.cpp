@@ -4,7 +4,7 @@
 #define println(x) std::cout << x << std::endl;
 Buildings::Buildings() {
 	//For debugging
-	OF::debugFunction("Buildings, OtherBuildingsToString");
+	CV::debugFunction("Buildings, OtherBuildingsToString");
 
 	for (int x : otherBuildingsLevels) {
 		x = 0;
@@ -18,7 +18,7 @@ Buildings::Buildings() {
 //Use struct/class here to pass to template, maybe don't use template??? Use returnArray or returnInt for arrayArg
 std::array<int, 5> Buildings::getBuildingLevel(Build::BuildingType type, int index, CV::Quantity quant) {
 	//For debugging
-	OF::debugFunction("Buildings, getBuildingLevel");
+	CV::debugFunction("Buildings, getBuildingLevel");
 
 	std::array<int, 5> arrayCopy, returnArray;
 	arrayCopy = *levels.first;
@@ -39,7 +39,7 @@ std::array<int, 5> Buildings::getBuildingLevel(Build::BuildingType type, int ind
 /*Use returnArray or returnInt for arrayArg*/
 std::array<int, 5> Buildings::getCapacity(Build::BuildingType type, int name, CV::Quantity amount) {
 	//For debugging
-	OF::debugFunction("Buildings, getCapacity");
+	CV::debugFunction("Buildings, getCapacity");
 
 	std::array<int, 5> arrayCopy, returnArray;
 	arrayCopy = *levels.first;
@@ -62,7 +62,7 @@ std::array<int, 5> Buildings::getCapacity(Build::BuildingType type, int name, CV
 /*Use returnArray or returnInt for arrayArg*/
 std::array<int, 5> Buildings::getResourceProduction(Build::ResourceBuildings name, CV::Quantity amount) {
 	//For debugging
-	OF::debugFunction("Buildings, getResourceProduction");
+	CV::debugFunction("Buildings, getResourceProduction");
 
 	std::array<int, 5> arrayCopy, returnArray;
 	arrayCopy = *levels.first;
@@ -92,7 +92,7 @@ std::array<int, 5> Buildings::getResourceProduction(Build::ResourceBuildings nam
 *direction: determines whether the process is addition or subtraction.*/
 void Buildings::mutateLevel(Build::BuildingType type, int name, std::array<int, 5> amount, CV::Quantity quant, CV::MutateDirection direction) {
 	//For debugging
-	OF::debugFunction("Buildings, mutateLevel");
+	CV::debugFunction("Buildings, mutateLevel");
 
 	std::array<int, 5> arrayCopy = *levels.first;
 	if (type) {
@@ -113,10 +113,10 @@ void Buildings::mutateLevel(Build::BuildingType type, int name, std::array<int, 
 		case ALL:
 			switch (direction) {
 				case INCREASE:
-					arrayCopy = OF::modifyArray(arrayCopy, amount, true);
+					arrayCopy = CV::modifyArray(arrayCopy, amount, true);
 					break;
 				case DECREASE:
-					arrayCopy = OF::modifyArray(arrayCopy, amount, false);
+					arrayCopy = CV::modifyArray(arrayCopy, amount, false);
 					break;
 			}
 			break;
@@ -133,7 +133,7 @@ void Buildings::mutateLevel(Build::BuildingType type, int name, std::array<int, 
 /*Return the amount of troops trained this turn - troopsTrainedThisTurn*/
 int Buildings::getTroopsTrainedThisTurn() {
 	//For debugging
-	OF::debugFunction("Buildings, getTroopsTrainedThisTurn");
+	CV::debugFunction("Buildings, getTroopsTrainedThisTurn");
 
 	return troopsTrainedThisTurn;
 }
@@ -141,7 +141,7 @@ int Buildings::getTroopsTrainedThisTurn() {
 void Buildings::printBuildingStats()
 {
 	//For debugging
-	OF::debugFunction("Provinces, printBuildingStats");
+	CV::debugFunction("Provinces, printBuildingStats");
 
 	std::array<int, 5> productionArray = getResourceProduction(Build::CHURCH, CV::ALL);
 	std::cout << "\033[;34m";
@@ -164,7 +164,7 @@ void Buildings::printBuildingStats()
 //Returns average of all buildings, rounded down to nearest int
 int Buildings::getProvinceLevel() {
 	//For debugging
-	OF::debugFunction("Provinces, getProvinceLevel");
+	CV::debugFunction("Provinces, getProvinceLevel");
 
 	int unitLevel = 0;
 
@@ -182,7 +182,7 @@ void Buildings::resetTroopsTrainedThisTurn()
 
 {
 	//For debugging
-	OF::debugFunction("Buildings, resetTroopsTrainedThisTurn");
+	CV::debugFunction("Buildings, resetTroopsTrainedThisTurn");
 
 	troopsTrainedThisTurn = 0;
 }
@@ -190,14 +190,14 @@ void Buildings::resetTroopsTrainedThisTurn()
 void Buildings::addTroopsTrainedThisTurn(int amount)
 {
 	//For debugging
-	OF::debugFunction("Buildings, addTroopsTrainedThisTurn");
+	CV::debugFunction("Buildings, addTroopsTrainedThisTurn");
 
 	troopsTrainedThisTurn += amount;
 }
 
 void Buildings::initiailizeCapitalBuildings() {
 	//For debugging
-	OF::debugFunction("Buildings, initializeCapitalBuildings");
+	CV::debugFunction("Buildings, initializeCapitalBuildings");
 
 	for (int& x : resourceBuildingsLevels) {
 		x = 1;
@@ -209,7 +209,7 @@ void Buildings::initiailizeCapitalBuildings() {
 
 void Buildings::initializeEmptyBuildings() {
 	//For debugging
-	OF::debugFunction("Buildings, initializeEmptyBuildings");
+	CV::debugFunction("Buildings, initializeEmptyBuildings");
 
 	for (int& x : resourceBuildingsLevels) {
 		x = 0;
@@ -221,7 +221,7 @@ void Buildings::initializeEmptyBuildings() {
 
 void Buildings::displayListOfBuildings() {
 	//For debugging
-	OF::debugFunction("Buildings, displayListOfBuildings");
+	CV::debugFunction("Buildings, displayListOfBuildings");
 
 	std::cout << "List of buildings: ";
 	for (int x = 1; x <= 5; x++) {

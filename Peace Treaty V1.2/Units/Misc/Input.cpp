@@ -5,7 +5,7 @@ using namespace Input;
 std::vector<std::string> Input::getShowPrompt(std::string prompt)
 {
 	//For debugging
-	OF::debugFunction("Input, getShowPrompt");
+	CV::debugFunction("Input, getShowPrompt");
 
 	std::fstream newfile;
 
@@ -39,7 +39,12 @@ std::vector<std::string> Input::getShowPrompt(std::string prompt)
 	std::cout << "Return to previous menu (M)\n";
 
 	//Options:S,R	
-	optionsLine = optionsLine.substr(8);//S,R
+	try {
+		optionsLine = optionsLine.substr(8);//S,R
+	} catch (...) {
+		std::cout << "Error occurred in Input file\n";
+	}
+
 	//While there are more than one values
 	while (optionsLine.find(",") != std::string::npos) {
 		//Push back the first value
@@ -55,7 +60,7 @@ std::vector<std::string> Input::getShowPrompt(std::string prompt)
 
 std::string Input::getOptionPromptQuery(std::vector<std::string>AV) {
 	//For debugging
-	OF::debugFunction("Input, getShowPromptQuery");
+	CV::debugFunction("Input, getShowPromptQuery");
 
 	std::string input;
 	std::cout << "Enter an option: ";
@@ -73,7 +78,7 @@ std::string Input::getOptionPromptQuery(std::vector<std::string>AV) {
 
 std::string Input::getOptionPrompt(CV::PROMPTS p) {
 	//For debugging
-	OF::debugFunction("Input, getOptionPrompt");
+	CV::debugFunction("Input, getOptionPrompt");
 
 	//Print prompt, return acceptable values
 	std::vector<std::string> AV = getShowPrompt(CV::promptsToString(p));
@@ -83,14 +88,14 @@ std::string Input::getOptionPrompt(CV::PROMPTS p) {
 
 std::string Input::getInputQuery(std::vector<std::string>AV) {
 	//For debugging
-	OF::debugFunction("Input, getInputQuery");
+	CV::debugFunction("Input, getInputQuery");
 
 	std::cout << "Enter an option: ";
 	std::string input;
 
-	OF::addColor(RED);
+	CV::addColor(RED);
 	getline(std::cin, input);
-	OF::addColor(RESET);
+	CV::addColor(RESET);
 
 	for (std::string value : AV) {
 		if (input == value) {
@@ -105,7 +110,7 @@ std::string Input::getInputQuery(std::vector<std::string>AV) {
 std::string Input::getInputText(std::string text, std::vector<std::string> AV)
 {
 	//For debugging
-	OF::debugFunction("Iput, getInputText");
+	CV::debugFunction("Iput, getInputText");
 
 	std::cout << text << "\n";
 	std::string input;

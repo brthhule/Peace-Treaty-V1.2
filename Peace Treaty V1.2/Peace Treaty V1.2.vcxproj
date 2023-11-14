@@ -192,9 +192,9 @@
     <Text Include="AdministrativeDocs\tips.txt.txt" />
 	<Text Include="AdministrativeDocs\aliases.txt" />
 	<Text Include="color.txt" />
-    <Text Include="TxtFiles\Help.txt" />
-    <Text Include="TxtFiles\Prompts.txt" />
-    <Text Include="TxtFiles\Synopsis.txt" />
+    <Text Include="Units\Misc\TxtFiles\Help.txt" />
+    <Text Include="Units\Misc\TxtFiles\Prompts.txt" />
+    <Text Include="Units\Misc\TxtFiles\Synopsis.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Build.h" />
@@ -209,7 +209,7 @@
     <ClInclude Include="MA\ScoutMA.h" />
     <ClInclude Include="MA\TrainMA.h" />
     <ClInclude Include="Misc\CV.h" />
-    <ClInclude Include="Misc\OF.h" />
+    <ClInclude Include="Misc\CV.h" />
     <ClInclude Include="Mobility.h" />
     <ClInclude Include="PlayerAction.h" />
     <ClInclude Include="ProvinceReport.h" />

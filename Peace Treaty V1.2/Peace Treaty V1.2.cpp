@@ -22,11 +22,10 @@
 #include "Units/Database.h"
 
 //Miscellaneous
-#include "Units/Misc/OF.h"
+#include "Units/Misc/CV.h"
 #include "Units/Misc/CV.h"
 #include "Units/Misc/LinkedList.h"
 #include "Units/Misc/Input.h"
-
 
 //Main Actions
 #include "PlayerAction.h"
@@ -47,14 +46,16 @@ Database db;
 int main()/*main code*/
 {
 	//For debugging
-	OF::debugFunction("main, main");
+	CV::debugFunction("main, main");
 
 	CV::CPUNum = std::thread::hardware_concurrency();
 
-	//srand((unsigned int)time(0));
-	OF::printFile("TxtFiles\\Synopsis.txt");
-	char startOrResume = Input::getOptionPrompt(INTRODUCTION).at(0);
+	std::string path = "C:\\Users\\Brennen\\Source\\Repos\\brthhule\\Peace-Treaty-V1.2\\Peace Treaty V1.2\\Units\\Misc\\TxtFiles\\Synopsis.txt";
 
+	//srand((unsigned int)time(0));
+	CV::printFile(path);
+	char startOrResume = Input::getOptionPrompt(INTRODUCTION).at(0);
+	
 	switch (startOrResume)
 	{
 	case 'R':
@@ -62,7 +63,7 @@ int main()/*main code*/
 		break;
 	case 'S':
 	{
-		OF::clearScreen();
+		CV::clearScreen();
 		std::cout << "New game started...\n\n";
 		// std::cout << "What is your kingdom name? " << RED;
 		// std::getline(std::cin, kingdomName);
@@ -72,21 +73,21 @@ int main()/*main code*/
 	}
 	case 'H':
 	{
-		OF::showHelp(3);
+		CV::showHelp(3);
 		main();
 		break;
 	}
 	}
 
-	OF::enterAnything();
-	OF::clearScreen();
+	CV::enterAnything();
+	CV::clearScreen();
 
 	gamePlay();
 }
 void resumeGame() /*download data from previous game fix this*/
 {
 	//For debugging
-	OF::debugFunction("main, resumeGame");
+	CV::debugFunction("main, resumeGame");
 
 	std::string gameCode;
 	std::cout << "Please enter the game code of your previous game: \033[31m";
@@ -97,7 +98,7 @@ void resumeGame() /*download data from previous game fix this*/
 void startGame()
 {
 	//For debugging
-	OF::debugFunction("main, startGame");
+	CV::debugFunction("main, startGame");
 
 	std::string text = "What continent size do you want to play on?\n- 5 (Recommended for mobile devices)\n- 10 (Medium-sized map)\n- 15 (Full experienced, recommended for a monitor)\nEnter the number here: ";
 	//"What continent size do you want to play on? (5, 10, 15) "
@@ -105,17 +106,17 @@ void startGame()
 	CV::continentSize = std::stoi(input);
 	//int *thing = db.getContinentSizePointer();
 	//continentSize = *thing;
-	OF::clearScreen();
+	CV::clearScreen();
 
 	std::cout << "Continent size " << RED << CV::continentSize << WHITE << " created..\n\n";
 
 	int pNum = std::stoi(Input::getInputText("How many AI kingdoms will you fight? (1, 2, 3) ", { "number", "1", "2", "3" }));
 	std::cout << RED << pNum << WHITE << " opponent kingdoms generated... \n\n";
-	OF::clearScreen();
+	CV::clearScreen();
 	db.setMaxCommanders(CV::continentSize);
 
 	CV::enemyDifficulty = std::stoi(Input::getInputText("What gameplay difficulty do you want (1-3): ", { "number","1","2","3" }));
-	OF::clearScreen();
+	CV::clearScreen();
 	std::cout << "Gameplay difficulty " << RED << CV::enemyDifficulty << WHITE << " selected. \n\n";
 
 	generateNewContinent(pNum);
@@ -124,7 +125,7 @@ void startGame()
 void generateNewContinent(int pNum)
 {
 	//For debugging
-	OF::debugFunction("main, generateNewContinent");
+	CV::debugFunction("main, generateNewContinent");
 
 	std::cout << "Create map...\n";
 	db.createMap();
@@ -134,7 +135,7 @@ void generateNewContinent(int pNum)
 		howManyPlayers.push_back(std::to_string(x));
 
 	int players = std::stoi(Input::getInputText("How many human players are there (1/2/3; 1 is recommended for single player experience): ", howManyPlayers));
-	OF::clearScreen();
+	CV::clearScreen();
 
 	std::cout << RED << players << WHITE << " players initialized...\n\n";
 	pNum += players;
@@ -148,7 +149,7 @@ void generateNewContinent(int pNum)
 void endScreen()
 {
 	//For debugging
-	OF::debugFunction("main, endScreen");
+	CV::debugFunction("main, endScreen");
 
 	std::vector<Participants>* participantsListCopy = db.getParticipantsList();
 	Participants* currentParticipant = new Participants;
@@ -172,7 +173,7 @@ void endScreen()
 void gamePlay()
 {
 	//For debugging
-	OF::debugFunction("main, gamePlay");
+	CV::debugFunction("main, gamePlay");
 
 	bool gameEnd = false;
 

@@ -2,18 +2,27 @@
 #define CV_H
 
 #include <array>
+#include <chrono>
+#include <cstdlib>
+#include <ctime>
 #include <iostream>
+#include <stdlib.h>
+#include <string.h>
+#include <string>
+#include <thread>
+#include <time.h>
 #include <vector>
-#include <array>
+#include <fstream>
 
-#include "OF.h"
+#include "CV.h"
 
 #define UNIT_AMOUNT 5
 
 #define print(x) std::cout << x;
 #define println(x) std::cout << x << std::endl;
 
-#include <vector>
+
+
 
 namespace CV
 {
@@ -22,13 +31,19 @@ namespace CV
 
 
 	//Creating my own vector version to enable vector element addition
+	template <typename T>
 	class myvector : std::vector<int> {
 	public:
-		void addVector
+		void addVectorElements(myvector vectorArg);
 	private:
 	};
 
-	myvector<int> = { 1,2,3,4 };
+	template <typename T>
+	class myarray : std::array<int, 5> {
+	public:
+		void addArrayElements(myarray arrayArg);
+	};
+
 	
 	
 	extern StringArray
@@ -114,8 +129,6 @@ namespace CV
 	int getStringIndex(std::string arg);
 	PROMPTS stringToPrompts(std::string arg);
 	
-	void debugFunction(std::string functionName);
-
 	extern int
 		continentSize,
 		enemyDifficulty,
@@ -124,7 +137,8 @@ namespace CV
 		UNIT_AMOUNT_CV,
 		currentParticipantIndex,
 		maxCommanders;
-	extern bool debuggingMode;;
+
+	extern bool debuggingMode;
 
 	void printPerson();
 
@@ -134,6 +148,63 @@ namespace CV
 	using VOID = void;
 	using INT_VECTOR = std::vector<int>;
 	using BOOL = bool;
+
+	// Name Functionality
+	std::string createRandomName();
+
+	// Other stuff
+	void clearScreen();
+	void enterAnything();
+
+	//Manipulate vectors
+	std::array<int, 5> modifyArray(std::array<int, 5> primeArray, std::array<int, 5> secondaryArray, bool isAdd);
+
+	//Debugging
+	void debugFunction(std::string functionName);
+
+	//For if/ternary statements with no "else"
+	static void nothing() {};
+
+	//Text stuff
+	void showHelp(int caseNum);
+	void printFile(std::string path);
+
+
+
+
+	/*BLACK,
+		RED,
+		GREEN,
+		YELLOW,
+		BLUE,
+		MAGENTA,
+		CYAN,
+		WHITE,
+		RESET*/
+	enum COLORS {
+		BLACK,
+		RED,
+		GREEN,
+		YELLOW,
+		BLUE,
+		MAGENTA,
+		CYAN,
+		WHITE,
+		RESET
+	};
+	/*"BLACK",
+		"RED",
+		"GREEN",
+		"YELLOW",
+		"BLUE",
+		"MAGENTA",
+		"CYAN",
+		"WHITE",
+		"RESET" */
+	extern std::array<std::string, 9> COLORS_STRING;
+
+	void addColor(COLORS c);
+
 }
 
 #endif		

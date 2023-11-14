@@ -4,10 +4,10 @@
 #include <iostream>
 
 #include "CV.h"
-#include "OF.h"
+#include "CV.h"
 
 using namespace CV;
-using namespace OF;
+
 
 namespace Input 
 {

@@ -2,7 +2,7 @@
 
 void Participants::moveUnitOne(CommanderProfile* commander) {
 	//For debugging
-	OF::debugFunction("Database, moveUnitOne");
+	CV::debugFunction("Database, moveUnitOne");
 
 	//This will have the list of provinces that can be moved to
 	std::vector<Provinces*> provincesCanSelect;
@@ -91,7 +91,7 @@ void Participants::moveUnitOne(CommanderProfile* commander) {
 
 std::vector<Provinces*> Participants::moveUnitTwo(CommanderProfile* commander) {
 	//For debugging
-	OF::debugFunction("Database, moveUnitTwo");
+	CV::debugFunction("Database, moveUnitTwo");
 
 	std::vector<Provinces*> provincesSelectList;
 	std::pair<int, int> systemCoords = commander->getSystemCoords();

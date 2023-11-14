@@ -2,7 +2,7 @@
 
 void Coords::setOverallIndex (int index) {
 	//For debugging
-	OF::debugFunction("Coords, OtherBuildingsToString");
+	CV::debugFunction("Coords, OtherBuildingsToString");
 
 	overallIndex = index;
 	systemCoords.first = overallIndex / CV::continentSize;
@@ -14,28 +14,28 @@ void Coords::setOverallIndex (int index) {
 
 std::pair<int, int> Coords::getSystemCoords() {
 	//For debugging
-	OF::debugFunction("Coords, getSystemCoords");
+	CV::debugFunction("Coords, getSystemCoords");
 
 	return systemCoords;
 }
 
 std::pair<int, int> Coords::getUserCoords() {
 	//For debugging
-	OF::debugFunction("Coords, getUserCoords");
+	CV::debugFunction("Coords, getUserCoords");
 
 	return userCoords;
 }
 
 void Coords::printUserCoords() {
 	//For debugging
-	OF::debugFunction("Coords, printUserCoords");
+	CV::debugFunction("Coords, printUserCoords");
 
 	std::cout << "(" << userCoords.first << ", " << userCoords.second << ")";
 }
 
 void Coords::setCoords(std::pair<int, int> systemCoordsArg, std::pair<int, int> userCoordsArg) {
 	//For debugging
-	OF::debugFunction("Coords, setCoords");
+	CV::debugFunction("Coords, setCoords");
 
 	systemCoords = systemCoordsArg;
 	userCoords = userCoordsArg;
@@ -44,7 +44,7 @@ void Coords::setCoords(std::pair<int, int> systemCoordsArg, std::pair<int, int> 
 //Gets passed user coords, translates them to system coords
 std::pair<int, int> Coords::translateToSystemCoords(std::pair<int, int> userCoordsArg) {
 	//For debugging
-	OF::debugFunction("Coords, translateToSystemCoords");
+	CV::debugFunction("Coords, translateToSystemCoords");
 
 	std::pair<int, int> returnSystemCoords;
 	//Add implementation here
@@ -54,14 +54,14 @@ std::pair<int, int> Coords::translateToSystemCoords(std::pair<int, int> userCoor
 
 std::string Coords::getUserCoordsString() {
 	//For debugging
-	OF::debugFunction("Coords, getUserCoordsString");
+	CV::debugFunction("Coords, getUserCoordsString");
 
 	return "(" + std::to_string(userCoords.first) + ", " + std::to_string(userCoords.second) + ")";
 }
 
 std::string Coords::getSystemCoordsString() {
 	//For debugging
-	OF::debugFunction("Coords, getSystemCoordsString");
+	CV::debugFunction("Coords, getSystemCoordsString");
 
 	return "(" + std::to_string(systemCoords.first) + ", " + std::to_string(systemCoords.second) + ")";
 }

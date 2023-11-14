@@ -2,7 +2,7 @@
 
 Database::Database() {
 	//For debugging
-	OF::debugFunction("Database, Database");
+	CV::debugFunction("Database, Database");
 
 	//Default
 	pNum = 0;
@@ -13,7 +13,7 @@ Database::Database() {
 
 void Database::updateTurnResources() {
 	//For debugging
-	OF::debugFunction("Database, updateTurnResources");
+	CV::debugFunction("Database, updateTurnResources");
 
 	Participants* tempParticipant = new Participants;
 	tempParticipant->updateTurnResourcesParticipant();
@@ -21,7 +21,7 @@ void Database::updateTurnResources() {
 
 void Database::initializeParticipants(int totalPlayers, int humanPlayers) {
 	//For debugging
-	OF::debugFunction("Database, initializeParticipant");
+	CV::debugFunction("Database, initializeParticipant");
 
 	for (int x = 0; x < pNum; x++)
 	{
@@ -43,55 +43,55 @@ void Database::initializeParticipants(int totalPlayers, int humanPlayers) {
 
 std::vector <Participants> *Database::getParticipantsList() {
 	//For debugging
-	OF::debugFunction("Database, getParticipantsList");
+	CV::debugFunction("Database, getParticipantsList");
 
 	return &participantsList;
 }
 
 void Database::setMaxCommanders(int num) {
 	//For debugging
-	OF::debugFunction("Database, setMaxCommanders");
+	CV::debugFunction("Database, setMaxCommanders");
 
 	maxCommanders = num;
 }
 int Database::getMaxCommanders() {
 	//For debugging
-	OF::debugFunction("Database, getMaxCommanders");
+	CV::debugFunction("Database, getMaxCommanders");
 
 	return maxCommanders;
 }
 
 void Database::setCurrentParticipant(Participants* p) {
 	//For debugging
-	OF::debugFunction("Database, setCurrentParticipant");
+	CV::debugFunction("Database, setCurrentParticipant");
 
 	currentParticipant = p;
 }
 
 Participants *Database::getCurrentParticipant() {
 	//For debugging
-	OF::debugFunction("Database, getCurrentParticipant");
+	CV::debugFunction("Database, getCurrentParticipant");
 
 	return currentParticipant;
 }
 
 bool Participants::isPlayer() {
 	//For debugging
-	OF::debugFunction("Database, isPlayer");
+	CV::debugFunction("Database, isPlayer");
 
 	return playerStatus;
 }
 
 void Participants::setPlayerStatus(bool status) {
 	//For debugging
-	OF::debugFunction("Database, setPlayerStatus");
+	CV::debugFunction("Database, setPlayerStatus");
 
 	playerStatus = status;
 }
 
 Participants *Database::getParticipant(int index) {
 	//For debugging
-	OF::debugFunction("Database, getParticipant");
+	CV::debugFunction("Database, getParticipant");
 
 	return &participantsList[index];
 }
@@ -101,7 +101,7 @@ Participants *Database::getParticipant(int index) {
 
 void Database::createCapitals() {
 	//For debugging
-	OF::debugFunction("Database, createCapitals()");
+	CV::debugFunction("Database, createCapitals()");
 
 	for (Participants participant : participantsList) {
 		start:
@@ -128,7 +128,7 @@ void Database::createCapitals() {
 
 void Database::createMap() {
 	//For debugging
-	OF::debugFunction("Database, createMap");
+	CV::debugFunction("Database, createMap");
 
 	Participants* tempParticipant = new Participants;
 	tempParticipant->createMapParticipant();
