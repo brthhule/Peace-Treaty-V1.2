@@ -8,7 +8,7 @@ std::vector<std::string> Input::getShowPrompt(std::string prompt)
 	CV::debugFunction("Input, getShowPrompt");
 
 	std::fstream newfile;
-	"C:\\Users\\Brennen\\Source\\Repos\\brthhule\\Peace-Treaty-V1.2\\Peace Treaty V1.2\\Units\\Misc\\TxtFiles\\Synopsis.txt";
+
 	std::string path = "C:\\Users\\Brennen\\Source\\Repos\\brthhule\\Peace-Treaty-V1.2\\Peace Treaty V1.2\\Units\\Misc\TxtFiles\\Prompts.txt";
 
 	std::vector<std::string> acceptableValues = { "H" };
@@ -21,9 +21,7 @@ std::vector<std::string> Input::getShowPrompt(std::string prompt)
 	newfile.open(path, std::ios::in);
 	
 	if (!newfile.is_open()) {
-		addColor(GREEN);
 		std::cout << "Error occurred opening file...\n";
-		addColor(RESET);
 		return {};
 	}
 

@@ -126,7 +126,7 @@ namespace CV {
 	}
 	void CV::addColor(COLORS c) {
 		//For debugging
-		CV::debugFunction("CV, OtherBuildingsToString");
+		CV::debugFunction("CV, addColor");
 
 
 		/*The color definition is a series of numbers, separated by semicolons. In order to make the text color red (number 31), you can write "\033[31m" which will make any following output red. If you want yellow text (33) on blue background (44), you write "\033[31;44m". To reset everything back to the default colors, you write "\033[0m".
@@ -256,13 +256,18 @@ void CV::clearScreen() {
 	//For debugging
 	debugFunction("OF, clearScreen");
 
-	std::cout << "\033[32mClearing screen. \n";
-	std::cout << "\033[0m";
+	addColor(RED);
+	std::cout << "Clearing screen. \n";
+	addColor(RESET);
+
 	std::chrono::seconds dura(1);
 	std::this_thread::sleep_for(dura);
-	system("clear"); /*Non-Windows*/
+	clearScreenCommand();
 }
 
+void CV::clearScreenCommand() {
+	std::cout << "\033[2J\033[1;1H";
+}
 
 
 //The user is prompted to enter anything.

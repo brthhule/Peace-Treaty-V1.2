@@ -170,6 +170,7 @@ namespace CV
 	//Text stuff
 	void showHelp(int caseNum);
 	void printFile(std::string path);
+	void clearScreenCommand();
 
 
 
