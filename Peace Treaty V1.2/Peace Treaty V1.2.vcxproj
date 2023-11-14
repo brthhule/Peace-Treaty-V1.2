@@ -143,7 +143,6 @@
     <ClCompile Include="MA\MapMA.cpp" />
     <ClCompile Include="MA\ScoutMA.cpp" />
     <ClCompile Include="MA\TrainMA.cpp" />
-    <ClCompile Include="Units\Misc\OF.cpp" />
     <ClCompile Include="Units\CommandersAttributes\Mobility.cpp" />
     <ClCompile Include="Peace Treaty V1.2.cpp" />
     <ClCompile Include="PlayerAction.cpp" />

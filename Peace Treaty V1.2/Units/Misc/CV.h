@@ -34,6 +34,7 @@ namespace CV
 	template <typename T>
 	class myvector : std::vector<int> {
 	public:
+		myvector(std::vector<int> vectorArg);
 		void addVectorElements(myvector vectorArg);
 	private:
 	};
@@ -41,6 +42,7 @@ namespace CV
 	template <typename T>
 	class myarray : std::array<int, 5> {
 	public:
+		void createArray(std::array<int,5> arrayArg);
 		void addArrayElements(myarray arrayArg);
 	};
 
