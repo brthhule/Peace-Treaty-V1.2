@@ -1,3 +1,7 @@
+//PlayeAction.h
+//Interface
+//Implemented by Participants.h
+
 #ifndef PLAYERACTION_H
 #define PLAYERACTION_H
 
@@ -17,15 +21,11 @@ extern int turn;
 class PlayerAction
 {
 public:
-	PlayerAction();
-	PlayerAction(Participants *newP);
-	char randomAction();
+	char virtual randomAction() = 0;
+	void virtual
+		initialDecision() = 0,
+		pauseGame() = 0;
 
-	void 
-		initialDecision(),
-		pauseGame();
-private:
-	Participants *participant;
 };
 
 #endif

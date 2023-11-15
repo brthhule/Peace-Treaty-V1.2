@@ -1,25 +1,14 @@
-#include "TrainMA.h"
+#include "Participants.h"
 
-TrainMA::TrainMA()
-{
+void Participants::TrainMAFunction() {
     //For debugging
-    INF::debugFunction("TrainMA, TrainMA");
-
-    participant = db.getCurrentParticipant();
-    province = participant->getCapitalProvince();
-    TrainMAFunction();
-}
-
-void TrainMA::TrainMAFunction() {
-    //For debugging
+    Provinces* capitalProvince = this->getCapitalProvince();
     INF::debugFunction("TrainMA, TrainMAFunction");
 
-    Participants* tempParticipant = new Participants();
-    tempParticipant->showMap();
-    delete tempParticipant;
+    this->showMap();
 
 
-    int barracksLevel = province->getBuildingLevel(OTHER, BARRACKS, SINGLE)[0];
+    int barracksLevel = capitalProvince->getBuildingLevel(OTHER, BARRACKS, SINGLE)[0];
     std::cout << "Start printing province barracks information: \033[34m\n";
     std::cout << "Province of kingdom " << participant->getKingdomName() << " selected\n";
 
@@ -61,7 +50,7 @@ void TrainMA::TrainMAFunction() {
     std::string amountOfTrops = " ";
     std::vector<std::string> amountOfTroopsAV = {};
     /*fix this*/
-    for (int x = 0; x <= maxTroopsCanTrain - province->getTroopsTrainedThisTurn(); x++) {
+    for (int x = 0; x <= maxTroopsCanTrain - capitalProvince->getTroopsTrainedThisTurn(); x++) {
         amountOfTroopsAV.push_back(std::to_string(x));
     }
 
@@ -69,12 +58,12 @@ void TrainMA::TrainMAFunction() {
         repeatOuterDoLoop = 'N';
         std::cout << "How many tier " << troopTier
             << " troops do you want to train (troops trained in this barracks: "
-            << province->getTroopsTrainedThisTurn() << "/"
+            << capitalProvince->getTroopsTrainedThisTurn() << "/"
             << maxTroopsCanTrain << ")? ";
         
         amountOfTroops = std::stoi(Input::getInputText( "", amountOfTroopsAV));
 
-        if (amountOfTroops > maxTroopsCanTrain - province->getTroopsTrainedThisTurn()) {
+        if (amountOfTroops > maxTroopsCanTrain - capitalProvince->getTroopsTrainedThisTurn()) {
             repeatOuterDoLoop = 'Y';
             std::cout << "Amount of troops selected exceeds the training capacity "
                 "of the barracks... please try again\n";
@@ -86,9 +75,11 @@ void TrainMA::TrainMAFunction() {
     
 }
 
-void TrainMA::TrainMAFunctionDoWhileLoop(int troopTier, int amountOfTroops) {
+void Participants::TrainMAFunctionDoWhileLoop(int troopTier, int amountOfTroops) {
     //For debugging
     INF::debugFunction("TrainMA, TrainMAFunctionDoWhileLoop");
+
+    Provinces* capitalProvince = this->getCapitalProvince();
 
     std::array<int, 5> 
         troopCost = { 5, 4, 3, 2, 1 },
@@ -99,8 +90,7 @@ void TrainMA::TrainMAFunctionDoWhileLoop(int troopTier, int amountOfTroops) {
         requiredResources[0] *= amountOfTroops;
     }
     std::cout << "The required amount of resources are as follows: \n";
-    Provinces* tempProvince = new Provinces; 
-    tempProvince->printResources(requiredResources);
+    capitalProvince->printResources(requiredResources);
 
     std::cout << std::endl;
     char repeatProceedWithTraining = 'Y';
@@ -108,26 +98,26 @@ void TrainMA::TrainMAFunctionDoWhileLoop(int troopTier, int amountOfTroops) {
     do {
         switch (Input::getOptionPrompt(TRAIN_MA_FUNCTION).at(0)) {
         case 'P': {
-            bool trainingIsSuccess = province->subtractCheckResources(requiredResources);
+            bool trainingIsSuccess = capitalProvince->subtractCheckResources(requiredResources);
 
             if (trainingIsSuccess == false) {
                 std::cout << "Training failed" << std::endl;
-                province->modifyResources(requiredResources, true);
+                capitalProvince->modifyResources(requiredResources, true);
             }
             else {
                 std::cout << "Training successful" << std::endl;
                 //This is the old troop system. Check this
-                province->mutateTroop(REGULAR, troopTier, { amountOfTroops }, SINGLE, INCREASE);
+                capitalProvince->mutateTroop(REGULAR, troopTier, { amountOfTroops }, SINGLE, INCREASE);
             }
             break;
         }
         case 'S': {
-            province->printResources();
+            capitalProvince->printResources();
             break;
         }
         case 'M': {
             repeatProceedWithTraining = 'N';
-            province->addTroopsTrainedThisTurn(amountOfTroops);
+            capitalProvince->addTroopsTrainedThisTurn(amountOfTroops);
             std::cout << "Returning to menu... " << std::endl;
         }
         }

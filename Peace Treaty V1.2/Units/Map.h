@@ -1,3 +1,7 @@
+//Map.h
+//Class
+//Inherited by Participants
+
 #ifndef MAP_H
 #define MAP_H
 
@@ -22,7 +26,7 @@ public:
 		updateTurnResources();
 
 	
-	Provinces
+	static Provinces
 		*getSystemProvince(std::pair<int, int> systemCoords),
 		*getUserProvince(std::pair<int, int> userCoords);
 

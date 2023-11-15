@@ -1,3 +1,7 @@
+//TrainMA.h
+//Interface
+//Implemented by Participants.h
+
 #ifndef TRAINMA_H
 #define TRAINMA_H
 
@@ -13,8 +17,6 @@
 #include "../Units/Misc/Input.h"
 #include "../Units/Misc/INF.h"
 
-
-
 extern Database db;
 
 using namespace INF;
@@ -22,17 +24,9 @@ using namespace INF;
 class TrainMA
 {
 public:
-	//constructor
-	TrainMA();
-	//other functions
-	void TrainMAFunction();
-
-	void TrainMAFunctionDoWhileLoop(int troopTier, int amountOfTroops);
-
-private:
-	Provinces *province;
-	
-	Participants *participant;
+	void virtual 
+		TrainMAFunction() = 0,
+		TrainMAFunctionDoWhileLoop(int troopTier, int amountOfTroops) = 0;
 };
 
 #endif

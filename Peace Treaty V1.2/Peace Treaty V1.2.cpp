@@ -30,11 +30,14 @@
 //Main Actions
 #include "PlayerAction.h"
 
+void startOrResumeGame();
 void resumeGame();
 void startGame();
-void generateNewContinent(int pNum);
+int generateNewContinent(int pNum);
 void gamePlay();
 void endScreen();
+
+int getContinentInformation();
 
 using namespace INF;
 
@@ -50,6 +53,10 @@ int main()/*main code*/
 
 	INF::CPUNum = std::thread::hardware_concurrency();
 
+	startOrResumeGame();
+	gamePlay();
+}
+void startOrResumeGame() {
 	std::string path = "C:\\Users\\Brennen\\Source\\Repos\\brthhule\\Peace-Treaty-V1.2\\Peace Treaty V1.2\\Units\\Misc\\TxtFiles\\Synopsis.txt";
 
 	//srand((unsigned int)time(0));
@@ -81,8 +88,6 @@ int main()/*main code*/
 
 	INF::enterAnything(1);
 	INF::clearScreen();
-
-	gamePlay();
 }
 void resumeGame() /*download data from previous game fix this*/
 {
@@ -98,6 +103,14 @@ void resumeGame() /*download data from previous game fix this*/
 void startGame() {
 	//For debugging
 	INF::debugFunction("main, startGame");
+	int pNum = getContinentInformation();
+	int players = generateNewContinent(pNum);
+	db.initializeParticipants(pNum, players);
+	std::cout << "Created participants";
+}
+int getContinentInformation() {
+	//For debugging
+	debugFunction("main, getContinentInformation");
 
 	std::string text = "What continent size do you want to play on?\n- 5 (Recommended for mobile devices)\n- 10 (Medium-sized map)\n- 15 (Full experienced, recommended for a monitor)";
 	//"What continent size do you want to play on? (5, 10, 15) "
@@ -122,10 +135,9 @@ void startGame() {
 	INF::clearScreen();
 	std::cout << "Gameplay difficulty " << getColor(RED) << INF::enemyDifficulty << getColor(WHITE) << " selected. \n\n";
 
-	generateNewContinent(pNum);
+	return pNum;
 }
-
-void generateNewContinent(int pNum) {
+int generateNewContinent(int pNum) {
 	//For debugging
 	INF::debugFunction("main, generateNewContinent");
 
@@ -145,34 +157,8 @@ void generateNewContinent(int pNum) {
 	std::cout << getColor(RED) << players << getColor(WHITE) << " players initialized...\n\n";
 	pNum += players;
 	std::cout << "pNum: " << pNum << std::endl;
-
-	db.initializeParticipants(pNum, players);
-	std::cout << "Created participants";
 }
 
-//Call this function when all winning condition has been met
-void endScreen() {
-	//For debugging
-	INF::debugFunction("main, endScreen");
-
-	std::vector<Participants>* participantsListCopy = db.getParticipantsList();
-	Participants* currentParticipant = new Participants;
-
-	for (int x = 0; x <= (signed)participantsListCopy->size(); x++) {
-		if (currentParticipant->isAlive()) {
-			currentParticipant = &participantsListCopy->at(x);
-		}
-	}
-
-	std::cout << "Congratulations to player " << currentParticipant->getKingdomName() << " for winning. You have successfully conquered your enemies and now reign as the Emperor! \n";
-
-	char playAgain = Input::getInputText("Play again? (Y/N) ", { "letter", "Y", "N" }).at(0);
-
-
-	if (playAgain == 'Y') {
-		main();
-	}
-}
 
 void gamePlay() {
 	//For debugging
@@ -181,12 +167,12 @@ void gamePlay() {
 	bool gameEnd = false;
 
 	//Create vector to copy the list of participants from the database
-	std::vector<Participants>* copyVector = db.getParticipantsList();
+	std::vector<Participants>* participantsPtr = db.getParticipantsList();
 
 	//Iterate through partiicpants by reference
-	for (int x = 0; x < (signed)copyVector->size(); x++)
+	for (int x = 0; x < (signed)participantsPtr->size(); x++)
 	{
-		Participants newParticipant = copyVector->at(x);
+		Participants newParticipant = participantsPtr->at(x);
 		//If the current participant is alive
 		if (newParticipant.isAlive())
 		{
@@ -219,5 +205,29 @@ void gamePlay() {
 	}
 
 	endScreen();
+}
+
+//Call this function when all winning condition has been met
+void endScreen() {
+	//For debugging
+	INF::debugFunction("main, endScreen");
+
+	std::vector<Participants>* participantsListCopy = db.getParticipantsList();
+	Participants* currentParticipant = new Participants;
+
+	for (int x = 0; x <= (signed)participantsListCopy->size(); x++) {
+		if (currentParticipant->isAlive()) {
+			currentParticipant = &participantsListCopy->at(x);
+		}
+	}
+
+	std::cout << "Congratulations to player " << currentParticipant->getKingdomName() << " for winning. You have successfully conquered your enemies and now reign as the Emperor! \n";
+
+	char playAgain = Input::getInputText("Play again? (Y/N) ", { "letter", "Y", "N" }).at(0);
+
+
+	if (playAgain == 'Y') {
+		main();
+	}
 }
 

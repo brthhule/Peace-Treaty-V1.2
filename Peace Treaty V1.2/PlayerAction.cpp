@@ -1,48 +1,31 @@
-#include "PlayerAction.h"
+#include "Participants.h"
 
-//Fix this
-
-PlayerAction::PlayerAction() {
-	//For debugging
-	INF::debugFunction("PlayerAction, PlayerAction (0)");
-
-	//Default
-	participant = NULL;
-}
-
-PlayerAction::PlayerAction(Participants* newP)
-{
-	//For debugging
-	INF::debugFunction("PlayerAction, PlayerAction (1)");
-
-	participant = newP;
-}
-
-void PlayerAction::initialDecision() {
+void Participants::initialDecision() {
 	//For debugging
 	INF::debugFunction("PlayerAction, initialDecision");
 
 	bool goToNextTurn = false;
+
+	INF::enterAnything(1);
 	INF::clearScreen();
+
 	char courseOfAction = ' ';
-	if (participant->isPlayer() == true)
+
+	if (this->isPlayer() == true)
 	{
 		std::cout << "Turn: " << INF::turn << std::endl;
 		std::cout << "Player " << participant->getKingdomName() << "'s move...";
 		std::cout << "\n\nWelcome to the Main Action menu \n\n\n";
 
-		Participants* tempParticipant = new Participants();
-		tempParticipant->showMap();
-		delete tempParticipant;
+		this->showMap();
 
 		courseOfAction = Input::getOptionPrompt(PLAYER_ACTION).at(0);
-	}
-	else // If the participant is the AI
-	{
+	} else {
+		// If the participant is the AI
 		courseOfAction = randomAction();
 	}
 
-	std::cout << std::endl;
+	INF::enterAnything(1);
 	INF::clearScreen();
 
 	switch (courseOfAction) {
@@ -52,11 +35,11 @@ void PlayerAction::initialDecision() {
 			break;
 		}
 		case 'T': {
-			TrainMA newTrainMA;
+			this->TrainMAFunction();
 			break;
 		}
 		case 'S':
-			participant->viewStats();
+			this->viewStats();
 			break;
 		case 'U': {
 			MapMA newMap;
@@ -87,7 +70,7 @@ void PlayerAction::initialDecision() {
 		initialDecision();
 }
 
-char PlayerAction::randomAction() {
+char Participants::randomAction() {
 	//For debugging
 	INF::debugFunction("PlayerAction, randomAction");
 
@@ -97,7 +80,7 @@ char PlayerAction::randomAction() {
 }
 
 
-void PlayerAction::pauseGame() {
+void Participants::pauseGame() {
 	//For debugging
 	INF::debugFunction("PlayerAction, pauseGame");
 

@@ -1,6 +1,6 @@
 //Participants.h
 
-//Inherits: Map, Mobility, ArmyOverviewMA
+//Interfaces/Inheritance: Map, Mobility, ArmyOverviewMA, TrainMA, PlayerAction
 //Composition: Provinces, Commanders
 
 #ifndef PARTICIPANTS_H
@@ -39,7 +39,7 @@
 using namespace INF;
 
 
-class Participants : public Map, public Mobility, public ArmyOverviewMA
+class Participants : public Map, public Mobility, public ArmyOverviewMA, public TrainMA, public PlayerAction
 {
 public:
 	CONSTRUCTOR Participants();
@@ -136,6 +136,16 @@ public:
 		viewArmyOverview(),
 		deployCommanderMF();
 
+	//PlayerAction.h
+	
+	char randomAction();
+	void 
+		initialDecision(),
+		pauseGame();
+
+	//TrainMA.h
+	void TrainMAFunction();
+	void TrainMAFunctionDoWhileLoop(int troopTier, int amountOfTroops);
 
 	void moveUnitOne(CommanderProfile* commander);
 	std::vector <Provinces*> moveUnitTwo(CommanderProfile* commander);
