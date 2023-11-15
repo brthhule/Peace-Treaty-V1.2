@@ -1,19 +1,9 @@
-#include "MapMA.h"
+#include "../Peace Treaty V1.2/Units/Participants.h"
 #define print(x) std::cout << x;
 #define println(x) std::cout << x << std::endl;
 
-MapMA::MapMA() { 
-	//For debugging
-	INF::debugFunction("MapMA, MapMA");
-
-	participant = db.getCurrentParticipant();
-	
-	//Default
-	pIndex = -1;
-}
-
 //View the map
-void MapMA::viewPlayerMap() {
+void Participants::viewPlayerMap() {
 	//For debugging
 	INF::debugFunction("MapMA, viewPlayerMap");
 
@@ -64,14 +54,8 @@ void MapMA::viewPlayerMap() {
 	}
 }
 
-Participants* MapMA::getParticipant() { 
-	//For debugging
-	INF::debugFunction("MapMA, getParticipant");
 
-	return participant; 
-}
-
-void MapMA::selectUnitOriginal(Provinces* province) {
+void Participants::selectUnitOriginal(Provinces* province) {
 	//For debugging
 	INF::debugFunction("MapMA, selectUnitOriginal");
 
@@ -109,7 +93,7 @@ void MapMA::selectUnitOriginal(Provinces* province) {
 }
 
 //You selected one of your provinces
-void MapMA::selectPlayerProvince(Provinces *province) {
+void Participants::selectPlayerProvince(Provinces *province) {
 	//For debugging
 	INF::debugFunction("MapMA, selectPlayerProvince");
 
@@ -143,7 +127,7 @@ void MapMA::selectPlayerProvince(Provinces *province) {
 }
 
 //You selected an enemy province
-void MapMA::selectEnemyProvince(Provinces* newP) {
+void Participants::selectEnemyProvince(Provinces* newP) {
 	//For debugging
 	INF::debugFunction("MapMA, selectEnemyProvince");
 
@@ -186,7 +170,7 @@ void MapMA::selectEnemyProvince(Provinces* newP) {
 You selected an empty province that your commander is in
 - Move this unit (P)
 - Capture this province (C)*/
-void MapMA::playerUnitAction(Provinces* newP) {
+void Participants::playerUnitAction(Provinces* newP) {
 	//For debugging
 	INF::debugFunction("MapMA, playerUnitAction");
 
@@ -214,7 +198,7 @@ void MapMA::playerUnitAction(Provinces* newP) {
 }
 
 //Selected 
-void MapMA::playerUnitActionP(Provinces* newP)
+void Participants::playerUnitActionP(Provinces* newP)
 {
 	//For debugging
 	INF::debugFunction("MapMA, playerUnitActionP");
@@ -245,7 +229,7 @@ void MapMA::playerUnitActionP(Provinces* newP)
 
 
 
-void MapMA::selectEnemyAction() /*Add implementation*/
+void Participants::selectEnemyAction() /*Add implementation*/
 {
 	//For debugging
 	INF::debugFunction("MapMA, selectEnemyAction");
@@ -265,31 +249,3 @@ void MapMA::selectEnemyAction() /*Add implementation*/
 	}
 }
 
-/*void MapMA::provinceReportLog(char whatReportChar, Provinces* enemyProvince) {
-  int totalGarrisonedCP = 0;
-  switch (whatReportChar) {
-  case 'G': {
-	std::cout << "Garrisoned troops: " << std::endl;
-	for (int x = 0; x < 5; x++) {
-		std::cout << "-" << INF::TROOP_NAMES[x] << ": "
-			<< enemyProvince->getTroop(REGULAR, x, -1)
-				<< std::endl;
-	  totalGarrisonedCP +=
-		  (enemyProvince-> getTroop(REGULAR, x, -1) *
-		   INF::TROOPS_CP[x]);
-	}
-	std::cout << "Total Garrison Combat Power: " << totalGarrisonedCP << std::endl
-			  << std::endl;
-	break;
-  }
-  case 'R':
-	enemyProvince->printResources();
-	break;
-  case 'B':
-	enemyProvince->printBuildingStats();
-	break;
-  case 'M':
-	break;
-  }
-}
-*/

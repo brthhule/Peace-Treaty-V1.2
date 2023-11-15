@@ -1,4 +1,4 @@
-#include "Participants.h"
+#include "../Peace Treaty V1.2/Units/Participants.h"
 
 void Participants::initialDecision() {
 	//For debugging
@@ -42,12 +42,11 @@ void Participants::initialDecision() {
 			this->viewStats();
 			break;
 		case 'U': {
-			MapMA newMap;
-			newMap.viewPlayerMap();
+			this->viewPlayerMap();
 			break;
 		}
 		case 'D': {
-			participant->armyDeploymentMF();
+			this->armyDeploymentMF();
 			break;
 		}
 		case 'N':

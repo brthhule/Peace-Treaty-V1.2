@@ -9,7 +9,6 @@
 #include "TrainMA.h"
 
 
-#include "../Units/Participants.h"
 #include "../Units/Provinces.h"
 #include "../Units/Database.h"
 
@@ -21,32 +20,20 @@
 //extern std::vector<std::vector<Provinces>> provincesMap;
 //extern std::vector<Participants> participantsList;
 
-extern Database db;
-
 using namespace INF;
 
 class MapMA
 {
 public:
-	//Constructors
-	MapMA();
-
-	void 
-		viewPlayerMap(),
-		selectUnitOriginal(Provinces *selectedProvince),
-		selectPlayerProvince(Provinces *province),
+	void virtual
+		viewPlayerMap() = 0,
+		selectUnitOriginal(Provinces *selectedProvince) = 0,
+		selectPlayerProvince(Provinces *province) = 0,
 		
-		playerUnitAction(Provinces *province),
-		playerUnitActionP(Provinces * province),
-		selectEnemyAction(),
-		selectEnemyProvince(Provinces * province);
-
-  Participants *getParticipant();
-
-private:
-	Participants *participant;
-	int pIndex;
-	
+		playerUnitAction(Provinces *province) = 0,
+		playerUnitActionP(Provinces * province) = 0,
+		selectEnemyAction() = 0,
+		selectEnemyProvince(Provinces * province) = 0;
 };
 
 #endif

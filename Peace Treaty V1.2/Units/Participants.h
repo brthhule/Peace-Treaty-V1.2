@@ -31,6 +31,8 @@
 #include "Misc/INF.h"
 #include "CommandersAttributes/Mobility.h"
 #include "../MA/ArmyOverviewMA.h"
+#include "../MA/MapMA.h"
+#include "../PlayerAction.h"
 
 
 #define CONSTRUCTOR
@@ -39,7 +41,7 @@
 using namespace INF;
 
 
-class Participants : public Map, public Mobility, public ArmyOverviewMA, public TrainMA, public PlayerAction
+class Participants : public Map, public Mobility, public ArmyOverviewMA, public TrainMA, public PlayerAction, public MapMA
 {
 public:
 	CONSTRUCTOR Participants();
@@ -150,6 +152,18 @@ public:
 	void moveUnitOne(CommanderProfile* commander);
 	std::vector <Provinces*> moveUnitTwo(CommanderProfile* commander);
 	static std::pair<int, int> pickCoords();
+
+
+	//MapMA.h
+	void
+		viewPlayerMap(),
+		selectUnitOriginal(Provinces* selectedProvince),
+		selectPlayerProvince(Provinces* province),
+
+		playerUnitAction(Provinces* province),
+		playerUnitActionP(Provinces* province),
+		selectEnemyAction(),
+		selectEnemyProvince(Provinces* province);
 
 
 private:
