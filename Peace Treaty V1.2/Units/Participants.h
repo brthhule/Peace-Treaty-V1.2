@@ -33,6 +33,7 @@
 #include "../MA/ArmyOverviewMA.h"
 #include "../MA/MapMA.h"
 #include "../PlayerAction.h"
+#include "../MA/ScoutMA.h"
 
 
 #define CONSTRUCTOR
@@ -41,7 +42,7 @@
 using namespace INF;
 
 
-class Participants : public Map, public Mobility, public ArmyOverviewMA, public TrainMA, public PlayerAction, public MapMA
+class Participants : public Map, public Mobility, public ArmyOverviewMA, public TrainMA, public PlayerAction, public MapMA, public ScoutMA
 {
 public:
 	CONSTRUCTOR Participants();

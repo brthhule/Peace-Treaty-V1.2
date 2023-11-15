@@ -7,7 +7,7 @@
 
 //Warning: may cause circular dependency
 #include "../Units/Database.h"
-#include "../Units/Participants.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Participants.h"
 #include "../Units/Commanders.h"
 #include "../Units/Provinces.h"
 #include "../Units/AllUnits.h"
@@ -46,11 +46,11 @@ private:
 		*attackingProvince, 
 		*defendingProvince;
 
-	Participants 
-		//Player
-		* attackingParticipant, 
-		//Enemt
-		* defendingParticipant;//enemy
+	//Player
+	Participants* attackingParticipant;
+	//Enemy
+	Participants* defendingParticipant;
+
 
 	CommanderProfile * attackingCommander;
 	std::vector <CommanderProfile*> defendingCommanders;

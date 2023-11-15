@@ -1,4 +1,4 @@
-#include "../Peace Treaty V1.2/Units/Participants.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Participants.h"
 #define print(x) std::cout << x;
 #define println(x) std::cout << x << std::endl;
 
@@ -11,11 +11,9 @@ void Participants::viewPlayerMap() {
 
 	//If the participant is a player
 	if (participant->isPlayer()) {
-		Participants* tempParticipant = new Participants();
-		tempParticipant->showMap();
+		this->showMap();
 		println("Welcome to the View Map action menu");
 		whatToDo = Input::getOptionPrompt(VIEW_PLAYER_MAP).at(0);
-		delete tempParticipant;
 	} 
 	//If the participant is an AI
 	else {
@@ -216,8 +214,8 @@ void Participants::playerUnitActionP(Provinces* newP)
 		playerUnitAction(newProvince);
 	}
 
-	if (participant->getCommander(commanderName)->hasMovedQuestion() == false) {
-		participant->moveUnitOne(participant->getCommander(commanderName));
+	if (this->getCommander(commanderName)->hasMovedQuestion() == false) {
+		this->moveUnitOne(this->getCommander(commanderName));
 		playerUnitAction(newProvince);
 	}
 	else

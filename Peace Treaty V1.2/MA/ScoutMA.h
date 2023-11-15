@@ -1,10 +1,14 @@
+//ScoutMA.h
+//Base class
+//Derived by Participants
+
 #ifndef SCOUTMA_H
 #define SCOUTMA_H
 
 #include <iostream>
 #include <vector>
 
-#include "../Units/Participants.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Participants.h"
 #include "../Units/Provinces.h"
 #include "../Units/AllUnits.h"
 
@@ -57,7 +61,6 @@ private:
 	Provinces
 		*yourProvince,
 		*targetProvince;
-
 };
 
 #endif

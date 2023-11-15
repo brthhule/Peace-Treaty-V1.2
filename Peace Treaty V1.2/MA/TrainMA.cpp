@@ -1,4 +1,4 @@
-#include "../Peace Treaty V1.2/Units/Participants.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Participants.h"
 
 void Participants::TrainMAFunction() {
     //For debugging
