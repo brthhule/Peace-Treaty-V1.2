@@ -214,7 +214,7 @@
     <ClInclude Include="ProvinceReport.h" />
     <ClInclude Include="Troops.h" />
     <ClInclude Include="Units\AllUnits.h" />
-    <ClInclude Include="Units\CommanderProfile.h" />
+    <ClInclude Include="Units\Commanders.h" />
     <ClInclude Include="Units\Database.h" />
     <ClInclude Include="Units\Map.h" />
     <ClInclude Include="Units\Participants.h" />

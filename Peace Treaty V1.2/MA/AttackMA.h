@@ -15,8 +15,6 @@
 #include "../Units/Misc/Input.h"
 #include "../Units/Misc/INF.h"
 
-
-
 using namespace INF;
 
 extern Database db;
@@ -26,17 +24,17 @@ class AttackMA
 public:
 	//constructor
 	AttackMA(Provinces *defendingProvinceArg, Participants* attackingParticipantArg);
-	AttackMA(Provinces* attackerProvinceArg, Provinces* defenderProvinceArg, Participants * attackingParticipantArg, CommanderProfile* commanderArg);
+	AttackMA(Provinces* attackerProvinceArg, Provinces* defenderProvinceArg, Participants * attackingParticipantArg, Commanders* commanderArg);
 
 	void 
-		findCommander (std::vector<CommanderProfile*> commandersCanAttack),
+		findCommander (std::vector<Commanders*> commandersCanAttack),
 		printResourcesGained(),
 		determineLostCP(int attackerCP, int defendingCP, int& attackerLostCP, int& defenderLostCP),
 		
 		preAttack(),
 		playerCommitAttack(),
 		
-		calculateTroopsLost(CommanderProfile* commander, int lostCombatPower, std::array<int,5> &troopsLost, int troopIndex),
+		calculateTroopsLost(Commanders* commander, int lostCombatPower, std::array<int,5> &troopsLost, int troopIndex),
 		battleCalculationsTwo(int& lostCombatPower, int troopsLost[5], int troopIndex),
 		casualtyReport(std::array<int,5> troopsLost, std::array<int,5> injuredTroops);
 
@@ -52,8 +50,8 @@ private:
 	Participants* defendingParticipant;
 
 
-	CommanderProfile * attackingCommander;
-	std::vector <CommanderProfile*> defendingCommanders;
+	Commanders * attackingCommander;
+	std::vector <Commanders*> defendingCommanders;
 	bool defenseCanRetreat;
 	std::array<int,5> oldResources;
 };

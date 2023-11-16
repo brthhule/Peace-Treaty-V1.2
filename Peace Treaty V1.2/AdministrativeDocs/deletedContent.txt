@@ -578,18 +578,18 @@ equal to this identifier, this one, or this one, remove it; go through playerCom
     }
 }
 
-void CommanderProfile::changeCommanderIdentifier(char identifier)
+void Commanders::changeCommanderIdentifier(char identifier)
 {
     commanderIdentifier = identifier;
 }
-char CommanderProfile::getCommanderIdentifier()
+char Commanders::getCommanderIdentifier()
 {
     return commanderIdentifier;
 }
 
 char Participants::returnGetProvinceIdentifier(int xCoordinate, int yCoordinate)
 {
-    int provinceIndex = findProvinceIndexWithCoordinates(xCoordinate, yCoordinate);
+    int provinceIndex = pickProvince(1)IndexWithCoordinates(xCoordinate, yCoordinate);
     return listOfProvinces[provinceIndex].getProvinceIdentifier();
 }
 
@@ -616,7 +616,7 @@ char Participants::confirmNameNoRepeat(string name)
 int Participants::findUnitLevel(int xCoordinate, int yCoordinate, int unitIndex)//Fix this--- it's a mess
 {
     //unit index is the index of the commander 
-    Provinces* targetProvince = returnProvince(findProvinceIndexWithCoordinates(xCoordinate, yCoordinate));
+    Provinces* targetProvince = returnProvince(pickProvince(1)IndexWithCoordinates(xCoordinate, yCoordinate));
     int unitLevel = 0;
     char commanderChar = ' ';
 
@@ -644,7 +644,7 @@ int Participants::findUnitLevel(int xCoordinate, int yCoordinate, int unitIndex)
     {
         if (provincesMap[xCoordinate][yCoordinate].getCommandersPresent() == 0)
         {
-            return provincesMap[xCoordinate][yCoordinate].findProvinceLevel();
+            return provincesMap[xCoordinate][yCoordinate].pickProvince(1)Level();
         }
     }
     default:
@@ -665,7 +665,7 @@ void Participants::clearCanSelectThisUnit()
     }
 }
 
-CommanderProfile& Provinces::getCommander(int index)
+Commanders& Provinces::getCommander(int index)
 {
 	return commandersPresent[index];
 }
@@ -675,7 +675,7 @@ int Provinces::getCommandersPresent()
 	return commandersPresentIndex.size();
 }
 
-int findProvinceIndex(int xCoordinate, int yCoordinate)
+int pickProvince(1)Index(int xCoordinate, int yCoordinate)
 {
     Participants* newParticipant;
     newParticipant = &participantsList[*pAParticipantIndex];
@@ -906,7 +906,7 @@ int OtherFunctions::checkInt(std::vector<int> &acceptableValuesTwo, std::string 
 }
 
 
-attackingProvince = attackingParticipant->getCoords(3);
+attackingProvince = attackingParticipant->pickProvince(3);
     std::cout << std::endl;
     if (attackingProvince->getCoordinate('X') == -1) {
       std::cout << "Returning to previous menu... " << std::endl << std::endl;
@@ -925,7 +925,7 @@ attackingProvince = attackingParticipant->getCoords(3);
 
       if (canAttack) {
         for (int playerCommanderIndex = 0;
-             playerCommanderIndex < newParticipant->commandersNum();
+             playerCommanderIndex < newParticipant->getCommandersNum();
              playerCommanderIndex++) {
           Provinces *newProvince =
               &provincesMap[attackingCommander->returnCoordinate('X')]
@@ -943,7 +943,7 @@ attackingProvince = attackingParticipant->getCoords(3);
 
 
   for (int b = 0; b < targetProvince->commanders.size(); b++) {
-    CommanderProfile *newCommander =
+    Commanders *newCommander =
         participantsList[targetParticipantIndex].getCommander(
             enemyProvince->returnCommanderIndex(b));
 
@@ -961,17 +961,17 @@ attackingProvince = attackingParticipant->getCoords(3);
     targetInformation[0] = 0;
     Provinces *target targetInformation[1] =
         participantsList[targetParticipantIndex]
-            .findProvinceIndexWithCoordinates(targetXCoordinate,
+            .pickProvince(1)IndexWithCoordinates(targetXCoordinate,
                                               targetYCoordinate);
     unitType = "Province ";
     unitName = enemyProvince->getUnitName();
-    enemyLevel = enemyProvince->findProvinceLevel();
+    enemyLevel = enemyProvince->pickProvince(1)Level();
   } else {
     targetInformation[0] = 1; // Identify target as a commander
     targetInformation[1] =
         numberSelected - 2; // Have to check if this is right later
     unitType = "Commander";
-    CommanderProfile *newCommander =
+    Commanders *newCommander =
         &allCommanders[targetParticipantIndex][targetInformation[1]];
     unitName = newCommander->getUnitName();
     enemyLevel = newCommander->getCommanderLevel();
@@ -1036,7 +1036,7 @@ std::vector<Provinces *> TrainMA::getTrainProvince() {
 	provinceStats[17] = &maxInfirmaryCapacity;
 	provinceStats[26] = &foodConsumption;
 
-void Provinces::compileProvinceStats (std::array<std::array<int, 5>, 7> &provinceStatsArray, bool &isACapitalArg, std::array<std::vector<int>, 7> &otherStats, std::string &unitNameArg, std::unordered_map<std::string, CommanderProfile*> &commandersArg)
+void Provinces::compileProvinceStats (std::array<std::array<int, 5>, 7> &provinceStatsArray, bool &isACapitalArg, std::array<std::vector<int>, 7> &otherStats, std::string &unitNameArg, std::unordered_map<std::string, Commanders*> &commandersArg)
 {
 	unitNameArg = unitName;
 	isACapitalArg = isACapital;

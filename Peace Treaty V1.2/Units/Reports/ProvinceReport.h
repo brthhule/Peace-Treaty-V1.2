@@ -46,6 +46,6 @@ private:
 		scouterLevel;
 
 	std::vector<CommanderReport> commandersVector;
-	std::unordered_map<std::string, CommanderProfile*> commandersMap;
+	std::unordered_map<std::string, Commanders*> commandersMap;
 };
 #endif

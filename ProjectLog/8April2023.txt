@@ -9,7 +9,7 @@ April 12: 20 min
 	20 min: Looked into fixing the coordinates problem. It looks like the actual coordinates of the province at hand belongs to an enemy capital. The ouput coordinates are wrong too. Trying to figure out where along the process it's wrong. Made printOutputCoordinates return a string instead of being void, working on changing instances of that to string throughout the program.
 ---------------------------
 April 14: 30 min
-	30 min: took ArmyDeployment stuff out of participants, worked on participants getCoords and stuff-- took out some if statemetns (safeties are built into getInput)
+	30 min: took ArmyDeployment stuff out of participants, worked on participants pickProvince and stuff-- took out some if statemetns (safeties are built into getInput)
 ------------------------------------------
 April 23: 1 hour
 	9:00 - 10:00 pm (1 hour): Worked on a flowchart to help visualize the program. 

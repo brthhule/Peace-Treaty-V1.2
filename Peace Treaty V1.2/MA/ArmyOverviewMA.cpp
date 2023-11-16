@@ -36,7 +36,7 @@ void Participants::upgradeCommandersOne() {
 	//For debugging
 	INF::debugFunction("ArmyOverview, upgradeCommandersOne");
 
-	if (commandersNum() > 0)
+	if (getCommandersNum() > 0)
 	{
 		if (this->selectCommander() != "-1")
 			upgradeCommandersTwo();
@@ -94,14 +94,14 @@ void Participants::trainCommanders() {
 	INF::debugFunction("ArmyOverview, trainCommanders");
 
 	std::string yesOrNoString;
-	std::cout << "You have " << this->commandersNum() << "/" << INF::maxCommanders << " total army commanders. \n";
+	std::cout << "You have " << this->getCommandersNum() << "/" << INF::maxCommanders << " total army commanders. \n";
 	std::cout << "Do you want to train a commander? (Y/N) ";
 
 	i5array trainCosts = getTrainCosts();
 
 	if (Input::getInputText("Proceed with training", { "Y", "N" }).at(0) == 'Y') {
 		/*if amount of commanders is less than max (not at max capacity)*/
-		if (this->commandersNum() < INF::maxCommanders) {
+		if (this->getCommandersNum() < INF::maxCommanders) {
 			proceedWithTraining(trainCosts);
 		} else {
 			std::cout << "At maximum army commander amount. Training failed, returning to menu \n";
@@ -123,7 +123,7 @@ void Participants::proceedWithTraining(std::array<int, 5> trainCosts) {
 		addCommander();
 
 		println("Commander training successful ");
-		std::cout << "Current commanders: " << this->commandersNum() << std::endl;
+		std::cout << "Current commanders: " << this->getCommandersNum() << std::endl;
 	} else {
 		std::cout << "Commander training failed (Not enough resources)... \n\n";
 		getCapitalProvince()->modifyResources(trainCosts, true);
@@ -140,7 +140,7 @@ void Participants::deployCommanderMF() {
 	}
 	;
 
-	CommanderProfile* commander = getCommander(commanderName);
+	Commanders* commander = getCommander(commanderName);
 
 	commander->printCommanderStats();
 

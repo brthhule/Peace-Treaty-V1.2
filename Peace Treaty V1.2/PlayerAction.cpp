@@ -30,7 +30,7 @@ void Participants::initialDecision() {
 
 	switch (courseOfAction) {
 		case 'B': {
-			Provinces* newProvince = participant->getYourProvince(1);
+			Provinces* newProvince = participant->pickYourProvince(1);
 			newProvince->playerBuildFunction();
 			break;
 		}

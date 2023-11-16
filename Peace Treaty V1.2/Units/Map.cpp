@@ -79,7 +79,7 @@ void Map::meat(int x, int y) {
 		letter = '0';
 	}
 
-	std::cout << letter << currentProvince->commandersNum();
+	std::cout << letter << currentProvince->getCommandersNum();
 	//std::cout << "  ";
 	INF::addColor(RESET);
 }

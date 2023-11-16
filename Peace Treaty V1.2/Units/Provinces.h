@@ -42,11 +42,11 @@ public:
 		subtractCheckResources(std::array<int, 5> resourcesArray);
 
 	// Commanders
-	CommanderProfile* getCommander(std::string name);
-	std::vector <CommanderProfile*> getAllCommanders();
+	Commanders* getCommander(std::string name);
+	std::vector <Commanders*> getAllCommanders();
 
 	int 
-		commandersNum(),
+		getCommandersNum(),
 		getTotalCP(),
 		getOverallIndex();
 		
@@ -57,8 +57,8 @@ public:
 		makeCapital(int participantIndexArg),
 		initializeCapitalStats(),
 
-		addCommander(CommanderProfile* newCommander),
-		removeCommander(CommanderProfile* newCommander),
+		addCommander(Commanders* newCommander),
+		removeCommander(Commanders* newCommander),
 		printCommanders(),
 		printInformation(Build::BuildingType type, std::array<int, 5> requiredresources, int buildingindex),
 		updateProvinceResources(),
@@ -133,8 +133,8 @@ private:
 
 	int overallIndex;
 
-	std::unordered_map<std::string, CommanderProfile*> commanders;
-	std::unordered_map<std::string, CommanderProfile*>::iterator it;
+	std::unordered_map<std::string, Commanders*> commanders;
+	std::unordered_map<std::string, Commanders*>::iterator it;
 
 	double newAccuracy;
 	std::string kingdomName;

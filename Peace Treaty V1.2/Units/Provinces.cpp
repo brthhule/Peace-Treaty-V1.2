@@ -73,7 +73,7 @@ void Provinces::initializeCapitalStats() {
 
 
 //Commander Stuff
-void Provinces::removeCommander(CommanderProfile *newCommander)
+void Provinces::removeCommander(Commanders *newCommander)
 {
 	//For debugging
 	INF::debugFunction("Provinces, removeCommander");
@@ -81,7 +81,7 @@ void Provinces::removeCommander(CommanderProfile *newCommander)
 	commanders.erase(newCommander->getUnitName());
 }
 
-void Provinces::addCommander(CommanderProfile* newCommander)
+void Provinces::addCommander(Commanders* newCommander)
 {
 	//For debugging
 	INF::debugFunction("Provinces, addCommander");
@@ -108,7 +108,7 @@ std::array<int,5> Provinces::getTotalResources()
 	INF::debugFunction("Provinces, getTotalResources");
 
 	std::array<int,5> totalResources = resourcesPresent;
-  std::unordered_map<std::string, CommanderProfile*>::iterator it;
+  std::unordered_map<std::string, Commanders*>::iterator it;
 	for (it = commanders.begin(); it != commanders.end(); it++)
 		for (int y = 0; y < 5; y++)
 			totalResources[y] += it->second->getResource(y);
@@ -117,19 +117,19 @@ std::array<int,5> Provinces::getTotalResources()
 }
 
 //Convert unordered_map to vector for easy understanding
-std::vector <CommanderProfile*> Provinces::getAllCommanders()
+std::vector <Commanders*> Provinces::getAllCommanders()
 {
 	//For debugging
 	INF::debugFunction("Provinces, getAllCommanders");
 
-		std::vector<CommanderProfile*> commandersList;
-		std::unordered_map<std::string, CommanderProfile*>::iterator it;
+		std::vector<Commanders*> commandersList;
+		std::unordered_map<std::string, Commanders*>::iterator it;
 		for (it = commanders.begin(); it != commanders.end(); it++)
 			commandersList.push_back(it->second);
 		return commandersList;
 }
 
-CommanderProfile* Provinces::getCommander(std::string name)
+Commanders* Provinces::getCommander(std::string name)
 {
 	//For debugging
 	INF::debugFunction("Provinces, getCommander");	
@@ -380,9 +380,9 @@ void Provinces::setKingdomName(std::string name) {
 	kingdomName = name;
 }
 
-int Provinces::commandersNum() {
+int Provinces::getCommandersNum() {
 	//For debugging
-	INF::debugFunction("Provinces, commandersNum");
+	INF::debugFunction("Provinces, getCommandersNum");
 
 	return (int)commanders.size();
 }

@@ -4,9 +4,9 @@ August 1: 1 hour, 40 min
 August 2: 2 hours, 5 min
 	5:45 pm - 6:25 pm (40 min): Plan is working, getting less errors (100 something instead of 200 something), gonna keep going
 
-	8:15 pm - 8:35 pm (20 min): Have so much work to do.... having problems with the program handling CommanderProfile, gonna have to do something similar to provincesMap for commanders
+	8:15 pm - 8:35 pm (20 min): Have so much work to do.... having problems with the program handling Commanders, gonna have to do something similar to provincesMap for commanders
 
-	9:40 pm - 9:50 pm (10 min): Ironed out all the errors... It seems like I can only use CommanderProfile and Provinces in the main file, had to modify Participants to accomodate this (Participants objects store information like commander index and province x/y coordinates to identify which
+	9:40 pm - 9:50 pm (10 min): Ironed out all the errors... It seems like I can only use Commanders and Provinces in the main file, had to modify Participants to accomodate this (Participants objects store information like commander index and province x/y coordinates to identify which
 element in allCommanders or provincesMap (2D vectors storing all provinces and commanders) need to be accessed). Basically, I went back in time to before
 I implemented the use of objects to simplify things (for the most part, still use objects to streamline informaiton and stuff). Program now runs again.
 However, still getting vector out of range error thingy--- ?????????
@@ -19,14 +19,14 @@ cannot open the file thingy
 	10:30 pm - 10:50 pm (20 min): Got showMap to work, still getting error with create map functionality though
 -----------------------------------------
 August 3: 1 hour, 20 min
-	5:20 - 5:40 pm (20 min): Deleted findProvinceIndex (from main) function because is redundant of findProvinceIndexWithCoordinates in Provinces, moved addNewCommander from main to Participants. Having problems with create capitals loop in generateNewContinent-- same coordinates keep getting generated?????
+	5:20 - 5:40 pm (20 min): Deleted pickProvince(1)Index (from main) function because is redundant of pickProvince(1)IndexWithCoordinates in Provinces, moved addNewCommander from main to Participants. Having problems with create capitals loop in generateNewContinent-- same coordinates keep getting generated?????
 
-	9:20 pm - 10:20 pm (1 hour): did some more work consolidating information and stuff. Main thing I did: moved the map main action stuff to the newly created MapMA class. Main file went down from ~2000 lines to ~300 lines... found a lot of issues (especially in AllUnits and CommanderProfile-- how to initialize and
+	9:20 pm - 10:20 pm (1 hour): did some more work consolidating information and stuff. Main thing I did: moved the map main action stuff to the newly created MapMA class. Main file went down from ~2000 lines to ~300 lines... found a lot of issues (especially in AllUnits and Commanders-- how to initialize and
 keep track of indexInList and other stuff)
 ---------------------------------------------
 August 4: 50 min
-	9:45 pm - 10:35 pm (50 min): Figured out what was wrong with rand-- called srand multiple times each time I had to get a random number (just had to call it once, in main). Figured out create commanders-- error was because added CommanderProfile objects to allCommanders[participantIndexTemp], didn't push 
-CommanderProfile vectors to allCommanders yet though.  Something was wrong with BuildMA in which trying to enter the x coordinate would result in
+	9:45 pm - 10:35 pm (50 min): Figured out what was wrong with rand-- called srand multiple times each time I had to get a random number (just had to call it once, in main). Figured out create commanders-- error was because added Commanders objects to allCommanders[participantIndexTemp], didn't push 
+Commanders vectors to allCommanders yet though.  Something was wrong with BuildMA in which trying to enter the x coordinate would result in
 a vector subscript out of range error, fixed it by making getCoordinates work by taking parameters passed by reference rather than returning a vector.
 Modified listOfActions so that when picking something to do, help would also be included (stringToSend += 'H';). Made the text color in printBuildingStats and printResources brighter by using 1m. Getting LNK1168 error (cannot open... exe for writing). Works some times, not other times...
 no idea why
@@ -55,7 +55,7 @@ August 7: 20 min
     8:40 pm - 9:00 pm (20 min): Did some aesthetic stuff -- user input now comes up as red text in the console. Started working on developing framework for AI action stuff
 -----------------------------------------
 August 11: 1 hour, 45 min
-    12:40 am - 1:35 am (55 min): Working on BuildMA, created coordinateFunctions.h to keep track of coordinate-related functions and organize otherFunctions.h. Working on getTrainBuildCoordinates to return the right coordinates. Fixec it for the most part, program ends when I enter (5, 1), but it translates everything else (I think it's a problem with the range or something). Figured it out (I think): added the following code to BuildMA in findProvinceCoordinates function
+    12:40 am - 1:35 am (55 min): Working on BuildMA, created coordinateFunctions.h to keep track of coordinate-related functions and organize otherFunctions.h. Working on getTrainBuildCoordinates to return the right coordinates. Fixec it for the most part, program ends when I enter (5, 1), but it translates everything else (I think it's a problem with the range or something). Figured it out (I think): added the following code to BuildMA in pickProvince(1)Coordinates function
 
 if (provinceXCoordinate == continentSize && provinceYCoordinate == 1)
 {

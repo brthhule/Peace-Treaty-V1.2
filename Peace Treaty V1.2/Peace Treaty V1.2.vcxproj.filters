@@ -81,7 +81,7 @@
     <ClCompile Include="Units\AllUnits.cpp">
       <Filter>Source Files\Units</Filter>
     </ClCompile>
-    <ClCompile Include="Units\CommanderProfile.cpp">
+    <ClCompile Include="Units\Commanders.cpp">
       <Filter>Source Files\Units</Filter>
     </ClCompile>
     <ClCompile Include="Units\Database.cpp">
@@ -265,7 +265,7 @@
     <ClInclude Include="Units\AllUnits.h">
       <Filter>Header Files\Units H</Filter>
     </ClInclude>
-    <ClInclude Include="Units\CommanderProfile.h">
+    <ClInclude Include="Units\Commanders.h">
       <Filter>Header Files\Units H</Filter>
     </ClInclude>
     <ClInclude Include="Units\Database.h">

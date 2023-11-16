@@ -4,16 +4,16 @@
 
 Participants::ScoutInfo::ScoutInfo(Provinces* newProvince) {
 	Participants::ScoutInfo::participant = this;
-	Participants::ScoutInfo::targetParticipant = null;
+	Participants::ScoutInfo::targetParticipant = NULL;
 	Participants::ScoutInfo::yourProvince = newProvince;
-	Participants::ScoutInfo::targetProvince = null;
+	Participants::ScoutInfo::targetProvince = NULL;
 }
 /*Constructor*/
 Participants::mainScoutMA() {
 	//For debugging
 	INF::debugFunction("ScoutMA, mainScoutmA");
 	ScoutMA::scoutTypes canScout = selectTarget();
-	if (canScout != null) {
+	if (canScout != NULL) {
 		playerScoutStepTwo(canScout);
 	}
 }
@@ -25,7 +25,7 @@ ScoutMA::scoutTypes Participants::selectTarget()
 	INF::debugFunction("ScoutMA, selectTarget");
 
 	//The participant selects a province
-	Provinces* targetProvince = participant->getCoords(1);
+	ScoutInfo::targetProvince = this->pickProvince(1);
 
 	//Make sure the province being scouted is not the current participant's 
 	if (this->hasProvince(targetProvince)) {
@@ -62,6 +62,9 @@ void Participants::playerScoutStepTwo(scoutTypes canScout)
 	int accuracy = 0;
 	std::vector<int> unitsCanScoutWith;
 
+	int enemyLevel = ScoutInfo::targetParticipant->getLevel();//Fix this later
+
+
 	std::cout << "You have " << canScout.second.size() << " provinces and " << canScout.first.size() << "armies next to the target. Below is a list of units that can scout the target.";
 	std::cout << " Please note that the higher the level of the scouting unit, the more accurate the results of the scout report are (The level of the target unit is " << enemyLevel << "). \n\n";
 
@@ -79,7 +82,6 @@ void Participants::playerScoutStepTwo(scoutTypes canScout)
 	{
 		int accuracy = 50;
 		int unitLevel = unit->getLevel();
-		int enemyLevel = targetProvince->getLevel();//Fix this later
 
 		//Greater level comapred to target = greater accuracy
 		if (unitLevel > enemyLevel)
@@ -107,7 +109,7 @@ ScoutMA::scoutTypes Participants::getCanScout()
 	//For debugging
 	INF::debugFunction("ScoutMA, getCanScout");
 
-	std::pair<int, int> targetUserCoords = targetProvince->getUserCoords();
+	std::pair<int, int> targetUserCoords = ScoutInfo::targetProvince->getUserCoords();
 	int targetX = targetUserCoords.first;
 	int targetY = targetUserCoords.second;
 
@@ -129,23 +131,32 @@ void Participants::getCanScoutTwo(int targetX, int targetY, int a, int b, ScoutM
 	//For debugging
 	INF::debugFunction("ScoutMA, getCanScoutTwo");
 
-	if (/*X coordinates*/ targetX + a >= 0 &&
-		targetX + a < INF::continentSize && /*Y coordinates*/ targetY + b >= 0 && targetY + b < INF::continentSize)
-	{
-		Participants* tempParticipant = new Participants;
-		Provinces* newProvince = tempParticipant->getSystemProvince(std::pair<int, int>(targetX + a, targetY + b));
-		if (newProvince->getParticipantIndex() == participant->getParticipantIndex()) {
-			canScout.second.push_back(newProvince);
-		}
-
-		std::unordered_map<std::string, CommanderProfile*> newMap = participant->getCommandersMap();
-		std::unordered_map<std::string, CommanderProfile*>::iterator it;
-		for (it = newMap.begin(); it != newMap.end(); it++)
-		{
-			if (it->second->getUserCoords() == newProvince->getUserCoords())
-				canScout.first.push_back(it->second);
-		}
+	bool xCoordsCondition = targetX + a >= 0 && targetX + a < INF::continentSize;
+	bool yCoordsCondition = targetY + b >= 0 && targetY + b < INF::continentSize;
+	if (!xCoordsCondition || !yCoordsCondition) {
+		//Check this later
+		std::cout << "Cannot scout...\n";
 	}
+	
+	std::pair<int, int> tempPair(targetX + a, targetY + b);
+	Provinces* newProvince = this->getSystemProvince(tempPair);
+	if (newProvince->getParticipantIndex() == participant->getParticipantIndex()) {
+		canScout.second.push_back(newProvince);
+	}
+
+	typedef std::unordered_map<std::string, Commanders
+	std::unordered_map<std::string, Commanders*> newMap = participant->getCommandersMap();
+	std::unordered_map<std::string, Commanders*>::iterator it;
+	for (it = newMap.begin(); it != newMap.end(); it++)
+	{
+		if (it->second->getUserCoords() == newProvince->getUserCoords())
+			canScout.first.push_back(it->second);
+	}
+
+	for (Commanders c : commandersVector) {
+		if ()
+	}
+	
 }
 
 AllUnits * Participants::selectUnitToScout(ScoutMA::scoutTypes canScout) {
@@ -165,7 +176,7 @@ AllUnits * Participants::selectUnitToScout(ScoutMA::scoutTypes canScout) {
 	}
 
 	std::cout << "Commanders that can scout: \n";
-	for (CommanderProfile* commander : canScout.first) {
+	for (Commanders* commander : canScout.first) {
 		std::cout << commander->getUnitName() << "; ";
 		commander->printUserCoords();
 		std::cout << "; Level: " << commander->getLevel() << std::endl;
@@ -197,7 +208,7 @@ AllUnits * Participants::selectUnitToScoutTwo(ScoutMA::scoutTypes canScout)
 			return province;
 		}
 	}
-	for (CommanderProfile* commander : canScout.first) {
+	for (Commanders* commander : canScout.first) {
 		if (unitName == commander->getUnitName()) {
 			return commander;
 		}

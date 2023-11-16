@@ -22,7 +22,7 @@
 
 
 #include "AllUnits.h"
-#include "Commanders.h"
+#include "C:\Users\Brennen\source\repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Commanders.h"
 #include "Map.h"
 #include "Provinces.h"
 
@@ -37,8 +37,13 @@
 
 
 #define CONSTRUCTOR
+#define VARIABLE
+#define SETTER
+#define GETTER
+#define CHECK
+#define CALCULATE
 
-
+Provinces* newProv;
 using namespace INF;
 
 
@@ -48,22 +53,24 @@ public:
 	CONSTRUCTOR Participants();
 	CONSTRUCTOR Participants(int pIndex);
 	
-	i5array
+	VARIABLE i5array
 		getTrainCosts(),
 		calculateEach(int option),
 		getAllUnitsArray();
 
-	static i5array
+	VARIABLE static i5array
 		allCommandersArray,
 		allProvincesArray;
 
 	std::thread th1Method();
 	std::thread th2Method();
 
-	std::unordered_map<std::string, CommanderProfile*> getCommandersMap() { return commandersMap; }
+	GETTER std::unordered_map<std::string, Commanders*> getCommandersMap() { return commandersMap; }
 
 	BOOL
-		subtractCheckResources(std::string provinceName, std::array<int, 5> resourcesArray),
+		subtractCheckResources(std::string provinceName, std::array<int, 5> resourcesArray);
+
+	CHECK BOOL
 		hasProvince(std::string name),
 		//Overloading
 		hasProvince(int pIndex),
@@ -74,30 +81,30 @@ public:
 		hasUnit(std::string unitName),
 		hasUnit(AllUnits unit);
 
-	CommanderProfile
+	GETTER Commanders
 		* getCommander(std::string name),
 		* getSelectedCommander();
 
 	ivector calculatePlayerValues(int decision);
 
-	INTEGER
-		calculateTotals(int option),
+	INTEGER calculateTotals(int option);
+
+	GETTER INTEGER
 		getRandomCoordinate(),
-		provincesNum(),
-		commandersNum(),
+		getProvincesNum(),
+		getCommandersNum(),
 		getAllUnitsAmount(),//Create funciton
 		getParticipantIndex();
 
 	//Coordinate stuff
 	Provinces
-		* getYourProvince(int identifier),
-		* findProvince(),
+		* pickYourProvince(int identifier),
 		* getProvinceByName(std::string name),
-		* findProvince(std::pair<int, int> userCoords),
+		* pickProvince(1)(std::pair<int, int> userCoords),
 		* getProvince(int index),
 		* getCapitalProvince(),
 		* getSystemProvince(std::pair<int, int> systemCoords),
-		* getCoords(int identifer);
+		* pickProvince(int identifer);
 
 	STRING
 		getKingdomName(),
@@ -154,8 +161,8 @@ public:
 	void TrainMAFunction();
 	void TrainMAFunctionDoWhileLoop(int troopTier, int amountOfTroops);
 
-	void moveUnitOne(CommanderProfile* commander);
-	std::vector <Provinces*> moveUnitTwo(CommanderProfile* commander);
+	void moveUnitOne(Commanders* commander);
+	std::vector <Provinces*> moveUnitTwo(Commanders* commander);
 	static std::pair<int, int> pickCoords();
 
 
@@ -200,7 +207,7 @@ private:
 
 	BOOL playerStatus;//true = player, false = AI
 
-	CommanderProfile* selectedCommander; //For ArmyDeploymentMA
+	Commanders* selectedCommander; //For ArmyDeploymentMA
 
 	INTEGER
 		capitalIndex,
@@ -210,12 +217,12 @@ private:
 
 	STRING kingdomName = " ";
 
-	std::unordered_map <std::string, CommanderProfile*> commandersMap;
+	std::unordered_map <std::string, Commanders*> commandersMap;
 	std::unordered_map <std::string, Provinces*> provincesMap;
-	std::unordered_map<std::string, CommanderProfile*>::iterator commIt;
+	std::unordered_map<std::string, Commanders*>::iterator commIt;
 
 	std::vector <Provinces*> provincesVector;
-	std::vector <CommanderProfile> commandersVector;
+	std::vector <Commanders> commandersVector;
 	
 
 	

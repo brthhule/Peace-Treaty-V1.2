@@ -9,13 +9,13 @@
 using namespace INF;
 
 
-class CommanderProfile : public AllUnits {
+class Commanders : public AllUnits {
 public:
 	// Constructors
-	CommanderProfile();
-	CommanderProfile(int commanderLevel, std::string name);
+	Commanders();
+	Commanders(int commanderLevel, std::string name);
 	// Destructor
-	~CommanderProfile();
+	~Commanders();
 
 
 

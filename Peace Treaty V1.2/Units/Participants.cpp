@@ -24,12 +24,12 @@ Participants::Participants() {
 
 
 	//Defaults
-	commandersMap = std::unordered_map<std::string, CommanderProfile*>();
+	commandersMap = std::unordered_map<std::string, Commanders*>();
 	provincesMap = std::unordered_map<std::string, Provinces*>();
-	it = std::unordered_map<std::string, CommanderProfile*>::iterator();
+	it = std::unordered_map<std::string, Commanders*>::iterator();
 
 	provincesVector = std::vector<Provinces*>();
-	commandersVector = std::vector<CommanderProfile>();
+	commandersVector = std::vector<Commanders>();
 }
 
 Participants::Participants(int pIndex) {
@@ -45,12 +45,12 @@ Participants::Participants(int pIndex) {
 	participantIndex = pIndex;
 
 	//Defaults
-	commandersMap = std::unordered_map<std::string, CommanderProfile*>();
+	commandersMap = std::unordered_map<std::string, Commanders*>();
 	provincesMap = std::unordered_map<std::string, Provinces*>();
-	it = std::unordered_map<std::string, CommanderProfile*>::iterator();
+	it = std::unordered_map<std::string, Commanders*>::iterator();
 
 	provincesVector = std::vector<Provinces*>();
-	commandersVector = std::vector<CommanderProfile>();
+	commandersVector = std::vector<Commanders>();
 }
 
 // Accessors
@@ -61,9 +61,9 @@ Provinces* Participants::getCapitalProvince() {
 	return capitalProvince; 
 }
 
-Provinces* Participants::findProvince(std::pair<int, int> userCoords) {
+Provinces* Participants::pickProvince(1)(std::pair<int, int> userCoords) {
 	//For debugging
-	INF::debugFunction("Participants, findProvince");
+	INF::debugFunction("Participants, pickProvince(1)");
 	
 	for (Provinces* province : provincesVector) {
 		if (province->getUserCoords() == userCoords) {
@@ -75,15 +75,15 @@ Provinces* Participants::findProvince(std::pair<int, int> userCoords) {
 	return NULL;
 }
 
-int Participants::provincesNum() { 
+int Participants::getProvincesNum() { 
 	//For debugging
-	INF::debugFunction("Participants, provincesNum");
+	INF::debugFunction("Participants, getProvincesNum");
 
 	return (int) provincesVector.size(); 
 }
-int Participants::commandersNum() { 
+int Participants::getCommandersNum() { 
 	//For debugging
-	INF::debugFunction("Participants, commandersNum");
+	INF::debugFunction("Participants, getCommandersNum");
 	
 	return (int) commandersVector.size();
 }
@@ -119,7 +119,7 @@ void Participants::addCommander() {
 	//For debugging
 	INF::debugFunction("Participants, addCommander");
 
-	CommanderProfile newCommander(1, getNewName());
+	Commanders newCommander(1, getNewName());
 	std::pair<int, int> systemCoords = getCapitalProvince()->getSystemCoords();
 	std::pair<int, int> userCoords = getCapitalProvince()->getUserCoords();
 
@@ -127,7 +127,7 @@ void Participants::addCommander() {
 	newCommander.setCoords(systemCoords, userCoords);
 
 	commandersVector.push_back(newCommander);
-	CommanderProfile* commanderPtr = &commandersVector[commandersVector.size() - 1];
+	Commanders* commanderPtr = &commandersVector[commandersVector.size() - 1];
 	commandersMap[newCommander.getUnitName()] = commanderPtr;
 
 	getCapitalProvince()->addCommander(commanderPtr);
@@ -148,7 +148,7 @@ bool Participants::isAlive() {
 	//For debugging
 	INF::debugFunction("Participants, isAlive");
 
-	if (provincesNum() > 0 && commandersNum() > 0)
+	if (getProvincesNum() > 0 && getCommandersNum() > 0)
 		return true;
 
 	return false;
@@ -193,7 +193,7 @@ void Participants::viewStats() {
 		std::cout << "Total " << INF::TROOP_NAMES[x] << " alive: " << eachUnit[x] << std::endl;
 
 	std::cout << "Your total army combat power: " << calculatePlayerValues(1).at(0);
-	std::cout << "\nYour numnber of provinces: " << provincesNum() << "\n\n";
+	std::cout << "\nYour numnber of provinces: " << getProvincesNum() << "\n\n";
 
 	if (Input::getInputText("View all stats? (Y/N) ", { "Y", "N" }).at(0) == 'Y')
 		viewAllStatsFunction();
@@ -250,8 +250,8 @@ std::string Participants::getNewName() {
 	return newName;
 }
 
-// CommanderProfile *Participants::getCommander(int index) {
-//   std::unordered_map<std::string, CommanderProfile*>::iterator it;
+// Commanders *Participants::getCommander(int index) {
+//   std::unordered_map<std::string, Commanders*>::iterator it;
 //   for (it = commandersMap.begin(); it != commandersMap.end(); it++)
 //     if ()
 // }
@@ -308,13 +308,16 @@ void Participants::printListOfProvinces() {
 	}
 }
 
-//Shows the list of provinces, prompts user to select a province, checks if the province belongs to the participant. If it does, return that province. If it doesn't, call method again
-Provinces* Participants::getYourProvince(int identifier) {
-	//For debugging
-	INF::debugFunction("Participants, getYourProvince");
+/*Calls pickProvince(the current participant picks a province).Makes sure the province picked belongs to this participant.If not, call pickProvince again.
 
-	INF::debugFunction("Participants, getYourProvince-- revise to make it an array??");
-	Provinces* newProvince = getCoords(identifier);
+add functionality to potentially break out of the process-- enter -1 to leave the function and not be forced to pick a province??
+
+-- revise to make it an array??*/
+Provinces* Participants::pickYourProvince(int identifier) {
+	//For debugging
+	INF::debugFunction("Participants, pickYourProvince");
+
+	Provinces* newProvince = pickProvince(identifier);
 	if (newProvince->getParticipantIndex() == participantIndex)
 	{
 		std::cout << "This is one of your provinces...\n" + newProvince->getUserCoordsString() + "\n";
@@ -323,9 +326,10 @@ Provinces* Participants::getYourProvince(int identifier) {
 
 	std::cout << "This province does not belong to you. Please try again \n";
 	INF::clearScreen();
-	getYourProvince(identifier);
 
-	std::cout << "Invalid path... \n";
+	pickYourProvince(identifier);
+
+	//Invalid path
 	return NULL;
 }
 
@@ -347,7 +351,7 @@ bool Participants::hasCommander(std::string name) {
 	return true;
 }
 
-CommanderProfile* Participants::getCommander(std::string name) {
+Commanders* Participants::getCommander(std::string name) {
 	//For debugging
 	INF::debugFunction("Participants, getCommander");
 
@@ -376,7 +380,7 @@ std::array<int, 5> Participants::calculateEach(int option)
 	//Go through all commanders at this province
 	for (it = commandersMap.begin(); it != commandersMap.end(); it++)
 	{
-		CommanderProfile* newCommander = it->second;
+		Commanders* newCommander = it->second;
 		switch (option)
 		{
 		case 1://Calculate each Unit
@@ -459,7 +463,7 @@ void Participants::showMapOld() {
 				letter = '0';
 			}
 
-			std::cout << letter << mapProvince->commandersNum() << "  " << WHITE;
+			std::cout << letter << mapProvince->getCommandersNum() << "  " << WHITE;
 		}
 		std::cout << std::endl;
 	}
@@ -566,18 +570,27 @@ void Participants::displayCommanders()
 	INF::debugFunction("Participants, displayCommanders");
 
 	std::cout << "Here is list of your commanders: \n";
-	std::unordered_map<std::string, CommanderProfile*> commandersMap = getCommandersMap();
-	std::unordered_map<std::string, CommanderProfile*>::iterator it;
+	std::unordered_map<std::string, Commanders*> commandersMap = getCommandersMap();
+	std::unordered_map<std::string, Commanders*>::iterator it;
 	for (it = commandersMap.begin(); it != commandersMap.end(); it++) {
-		CommanderProfile* tempCommander = it->second;
+		Commanders* tempCommander = it->second;
 		std::cout << "- Commander " << tempCommander->getUnitName() << "; Level: " << tempCommander->getLevel() << std::endl;
 		delete tempCommander;
 	}
 }
 
-Provinces* Participants::getCoords(int identifier) {
+/*
+Prompt the user to enter coordinates for a province
+
+Prompt: pick the coords...
+switch(phrase)
+1: of the province you want to select
+2: of the province you want to move to
+3: of the army you want to use to attack the target with"
+*/
+Provinces* Participants::pickProvince(int phrase) {
 	//For debugging
-	INF::debugFunction("Participants, getCoords");
+	INF::debugFunction("Participants, pickProvince");
 
 	std::vector<std::string> actualCoordinatesAVTwo = { "-1" };
 	//range of possible coordinates
@@ -585,68 +598,38 @@ Provinces* Participants::getCoords(int identifier) {
 		actualCoordinatesAVTwo.push_back(std::to_string(x));
 
 	showMap();
-	std::string phrase;
-	switch (identifier) {
-	case 1:
+	std::array<std::string, 3> phrases{ 
+		"of the province you want to select" , 
+		"of the province you want to move to", 
+		"of the army you want to use to attack the target with" 
+	};
+
+	//Prints list of provinces if prompted
+	if (identifier == 1 || identifier == 2) {
 		printListOfProvinces();
-		phrase = "of the province you want to select";
-		break;
-	case 2:
-		printListOfProvinces();
-		phrase = "of the province you want to move to";
-		break;
-	case 3:
-		phrase = "of the army you want to use to attack the target with";
 	}
 
-	int xCoordinate = std::stoi(getInputText("Enter the x coordinate " + phrase + " (Enter '-1' to go back to previous menu): ", actualCoordinatesAVTwo));
+	std::string xCoordPrompt = "Enter the x coordinate " + phrases.at(phrase - 1) +
+		" (Enter '-1' to go back to previous menu): ";
+	std::string yCoordPrompt = xCoordPrompt;
+	yCoordPrompt.at(10) = 'y';
+
 	// Critical: check to make sure the coordinate checkings are correct
-	int yCoordinate = std::stoi(getInputText("Enter the y coordinate " + phrase + " (Enter '-1' to go back to previous menu): ", actualCoordinatesAVTwo));
+	std::pair<int, int> tempUserCoords(
+		std::stoi(getInputText(xCoordPrompt, actualCoordinatesAVTwo),
+		std::stoi(getInputText(yCoordPrompt, actualCoordinatesAVTwo)
+	);
 
-
-	if (xCoordinate != -1 && yCoordinate != -1) {
-		return getUserProvince({ xCoordinate, yCoordinate });
+	//Cancel action
+	if (tempUserCoords.first == -1 || tempUserCoords.second == -1) {
+		return NULL;
 	}
 
-	return NULL;
+	return getUserProvince(tempUserCoords);
 }
 
 
-
-Provinces* Participants::findProvince() {
-	//For debugging
-	INF::debugFunction("Participants, findProvince");
-
-	INF::debugFunction("Participants, findProvince--revise");
-	std::cout << "Welcome to the Player Build menu\n\n";
-	Provinces* province = this->getCoords(1);
-
-	//Make sure the user wants to do this action. A -1 value means that 
-	if (province->getSystemCoords().first != NULL) {
-		//If this province belongs to the current participant
-		int participantIndex = this->getParticipantIndex();
-		if (province->getParticipantIndex() == participantIndex) {
-			return province;
-			//What does this do???
-			province->playerBuildFunction();
-		}
-		else {//If does not belong to the current participant
-			print("Invalid province elected. Please try again. \nEnter anything to "
-				"proceed back to the Player Build menu (Screen will clear) ");
-			INF::enterAnything(1);
-		}
-		std::cout << std::endl;
-	}
-	else
-	{
-		std::cout << "Returning to player action menu...\n";
-	}
-
-	std::cout << "Error path...\n";
-	return NULL;
-}
-
-CommanderProfile* Participants::getSelectedCommander() {
+Commanders* Participants::getSelectedCommander() {
 	//For debugging
 	INF::debugFunction("Participants, getSelectedCommander");
 
@@ -668,7 +651,7 @@ bool Participants::hasUnit(std::string unitName) {
 
 bool Participants::hasUnit(AllUnits unit) {
 	for (commIt = commandersMap.begin(); commIt != commandersMap.end(); commIt++) {
-		CommanderProfile* commander = commIt->second();
+		Commanders* commander = commIt->second();
 		if (&commander == unit) {
 			return true;
 		}
@@ -717,7 +700,7 @@ VOID Participants::getAllUnitsArrayCommanders() {
 	//For debugging
 	INF::debugFunction("Participants, getAllUnitsArrayCommanders");
 
-	for (CommanderProfile instance : commandersVector) {
+	for (Commanders instance : commandersVector) {
 		i5array commanderArray = instance.getTroop(REGULAR, -1, ALL);
 		INF::modifyArray(allCommandersArray, commanderArray, true);
 	}

@@ -1,6 +1,6 @@
 #include "../Participants.h"
 
-void Participants::moveUnitOne(CommanderProfile* commander) {
+void Participants::moveUnitOne(Commanders* commander) {
 	//For debugging
 	INF::debugFunction("Database, moveUnitOne");
 
@@ -89,7 +89,7 @@ void Participants::moveUnitOne(CommanderProfile* commander) {
 } /* unfinished*/
 
 
-std::vector<Provinces*> Participants::moveUnitTwo(CommanderProfile* commander) {
+std::vector<Provinces*> Participants::moveUnitTwo(Commanders* commander) {
 	//For debugging
 	INF::debugFunction("Database, moveUnitTwo");
 

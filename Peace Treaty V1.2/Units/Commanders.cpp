@@ -1,9 +1,9 @@
 #include "Commanders.h"
 
 /*Constructors*/
-CommanderProfile::CommanderProfile() {
+Commanders::Commanders() {
 	//For debugging
-	INF::debugFunction("CommanderProfile, CommanderProfile (0 Param)");
+	INF::debugFunction("Commanders, Commanders (0 Param)");
 
 	unitLevel = 1;
 	hasMoved = false;
@@ -13,9 +13,9 @@ CommanderProfile::CommanderProfile() {
 	changeUnitName("Unnamed");
 	deleteCommander = false;
 }
-CommanderProfile::CommanderProfile(int level, std::string name) {
+Commanders::Commanders(int level, std::string name) {
 	//For debugging
-	INF::debugFunction("CommanderProfile, CommanderProfile (1 Param)");
+	INF::debugFunction("Commanders, Commanders (1 Param)");
 
 	
 	unitLevel = level;
@@ -26,15 +26,15 @@ CommanderProfile::CommanderProfile(int level, std::string name) {
 	changeUnitName(name);
 }
 /*Destructor*/
-CommanderProfile::~CommanderProfile() {
+Commanders::~Commanders() {
 	//For debugging
-	INF::debugFunction("CommanderProfile, ~CommanderProfile");
+	INF::debugFunction("Commanders, ~Commanders");
 }
 
 /*Accessor Functions*/
-void CommanderProfile::printCommanderStats() {
+void Commanders::printCommanderStats() {
 	//For debugging
-	INF::debugFunction("CommanderProfile, printCommanderStats");
+	INF::debugFunction("Commanders, printCommanderStats");
 
 	// print out stats
 	INF::addColor(INF::BLUE);
@@ -43,18 +43,18 @@ void CommanderProfile::printCommanderStats() {
 	std::cout << MANDescriptions[5] << ": \n";
 	INF::addColor(INF::RESET);
 }
-int CommanderProfile::getCommanderStat(int index) {
+int Commanders::getCommanderStat(int index) {
 	//For debugging
-	INF::debugFunction("CommanderProfile, getCommanderStat");
+	INF::debugFunction("Commanders, getCommanderStat");
 
 	//placeholder
 	return -1;
 	//return *commanderArmyStats[index];
 }
 
-std::array<int, 5> CommanderProfile::getUpgradeCosts() {
+std::array<int, 5> Commanders::getUpgradeCosts() {
 	//For debugging
-	INF::debugFunction("CommanderProfile, getUpgradeCosts");
+	INF::debugFunction("Commanders, getUpgradeCosts");
 
 	std::array<int, 5> costsArray;
 	for (int& x : costsArray) x = 0;
@@ -63,55 +63,55 @@ std::array<int, 5> CommanderProfile::getUpgradeCosts() {
 	return costsArray;
 }
 
-void CommanderProfile::printCosts(std::array <int, 5> costs)
+void Commanders::printCosts(std::array <int, 5> costs)
 {
 	//For debugging
-	INF::debugFunction("CommanderProfile, printCosts");
+	INF::debugFunction("Commanders, printCosts");
 
 	for (int x = 0; x < 5; x++)
 		std::cout << INF::RESOURCE_NAMES[x] << " cost: " << costs[x] << std::endl;
 	std::cout << std::endl;
 }
 
-void CommanderProfile::calculateCommanderScoutLog()
+void Commanders::calculateCommanderScoutLog()
 {
 	//For debugging
-	INF::debugFunction("CommanderProfile, calculateCommanderScoutLog");
+	INF::debugFunction("Commanders, calculateCommanderScoutLog");
 
 	//Implement this
 }
 
-void CommanderProfile::addLevel() {
+void Commanders::addLevel() {
 	//For debugging
-	INF::debugFunction("CommanderProfile, addLevel");
+	INF::debugFunction("Commanders, addLevel");
 
 	unitLevel++;
 }
 
-void CommanderProfile::setDelete() {
+void Commanders::setDelete() {
 	//For debugging
-	INF::debugFunction("CommanderProfile, setDelete");
+	INF::debugFunction("Commanders, setDelete");
 
 	deleteCommander = true;
 }
 
-bool CommanderProfile::getDelete() {
+bool Commanders::getDelete() {
 	//For debugging
-	INF::debugFunction("CommanderProfile, getDelete");
+	INF::debugFunction("Commanders, getDelete");
 
 	return deleteCommander;
 }
 
-bool CommanderProfile::hasMovedQuestion() {
+bool Commanders::hasMovedQuestion() {
 	//For debugging
-	INF::debugFunction("CommanderProfile, hasMovedQuestion");
+	INF::debugFunction("Commanders, hasMovedQuestion");
 
 	return hasMoved;
 }
 
-void CommanderProfile::resetCommanderMoved() {
+void Commanders::resetCommanderMoved() {
 	//For debugging
-	INF::debugFunction("CommanderProfile, resetCommanderHasMoved");
+	INF::debugFunction("Commanders, resetCommanderHasMoved");
 
 	hasMoved = false;
 }

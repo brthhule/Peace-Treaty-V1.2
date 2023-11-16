@@ -8,10 +8,9 @@
 
 //Units
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Participants.h"
-#include "Provinces.h"
-#include "Commanders.h"
+
 #include "../Units/Misc/INF.h"
-#include "../Units/Misc/LinkedList.h"//might need to move Database up, out of Units, so it can have a larger scope
+
 
 #define print(x) std::cout << x;
 #define println(x) std::cout << x << std::endl;
@@ -38,8 +37,6 @@ public:
 	
 	std::vector<Participants>* getParticipantsList();
 	
-	int getMaxCommanders();
-
 	Participants* getCurrentParticipant();
 	Participants* getParticipant(int index);
 
@@ -48,12 +45,6 @@ private:
 	
 	std::vector<Participants> participantsList;
 	Participants* currentParticipant;
-
-	
-
-	int 
-		maxCommanders,
-		pNum; //have to fix this; current points to nothing
 };
 
 #endif

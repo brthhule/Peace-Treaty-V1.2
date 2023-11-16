@@ -3,7 +3,7 @@ AllUnits
 
 
 AttackMA
-- CommanderProfile.h
+- Commanders.h
 BuildMA
 
 ArmyDeployment
@@ -12,11 +12,11 @@ ArmyDeployment
 - Participants
 - Provinces
 - Lists
-- CommanderProfile
+- Commanders
 - Mobility
 - AllUnits
 
-CommanderProfile
+Commanders
 - AllUnits
 - Provinces
 - textFunctions
@@ -42,7 +42,7 @@ OtherFunctions
 
 Participants
 - Provinces
-- CommanderProfile
+- Commanders
 - AllUnits
 
 PlayerAction
@@ -55,7 +55,7 @@ PlayerAction
 - MapMA
 
 Provinces
-- CommanderProfile
+- Commanders
 - AllUnits
 - Participants
 
@@ -77,7 +77,7 @@ TrainMA
 
 ArmyDeployment
 - Provinces
-- CommanderProfile
+- Commanders
 - Mobility
 - AllUnits
 

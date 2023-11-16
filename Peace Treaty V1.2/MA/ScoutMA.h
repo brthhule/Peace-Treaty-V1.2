@@ -9,6 +9,7 @@
 #include <vector>
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Participants.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\AllUnits.h"
 
 
 #include "../Units/Misc/Input.h"
@@ -17,12 +18,12 @@
 class ScoutMA {
 public:
 
-	typedef std::vector<CommanderProfile*> commanderProfilePtrs;
+	typedef std::vector<Commanders*> commanderProfilePtrs;
 	typedef std::vector<Provinces*> provincesPtrs;
 	typedef std::pair<commanderProfilePtrs, provincesPtrs> scoutTypes;
 
 	// Constructors
-	void mainScoutMA (Participants* newParticipant, Provinces* newProvince) = 0;
+	void mainScoutMA (Provinces* newProvince) = 0;
 
 	// Functions
 	void playerScoutStepTwo(scoutTypes canScout) = 0;

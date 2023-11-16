@@ -18,7 +18,7 @@ AttackMA::AttackMA(Provinces* defendingProvinceArg, Participants* attackingParti
 	attackingProvince = NULL;
 	//End Default
 
-	std::vector<CommanderProfile*> commandersCanAttack;
+	std::vector<Commanders*> commandersCanAttack;
 	std::vector<Provinces*> provincesCanAttack;
 
 	//Get list of commanders that can be selected
@@ -48,7 +48,7 @@ AttackMA::AttackMA(Provinces* defendingProvinceArg, Participants* attackingParti
 				Participants* tempParticipant = new Participants;
 				Provinces* provincePtr = tempParticipant->getSystemProvince(tempCoords);
 				if (provincePtr->getParticipantIndex() == attackingParticipantArg->getParticipantIndex()) {
-					for (CommanderProfile* commanderPtr : tempParticipant->getSystemProvince(tempCoords)->getAllCommanders()) {
+					for (Commanders* commanderPtr : tempParticipant->getSystemProvince(tempCoords)->getAllCommanders()) {
 						commandersCanAttack.push_back(commanderPtr);
 					}
 					provincesCanAttack.push_back(provincePtr);
@@ -68,7 +68,7 @@ AttackMA::AttackMA(Provinces* defendingProvinceArg, Participants* attackingParti
 	return;
 }
 
-AttackMA::AttackMA(Provinces* attackerProvinceArg, Provinces* defenderProvinceArg, Participants* attackingParticipantArg, CommanderProfile* commanderArg) {
+AttackMA::AttackMA(Provinces* attackerProvinceArg, Provinces* defenderProvinceArg, Participants* attackingParticipantArg, Commanders* commanderArg) {
 	//For debugging
 	INF::debugFunction("AttackMA, AttackMA (4 Param)");
 	
@@ -79,7 +79,7 @@ AttackMA::AttackMA(Provinces* attackerProvinceArg, Provinces* defenderProvinceAr
 	preAttack();
 }
 
-void AttackMA::findCommander(std::vector <CommanderProfile*> commandersCanAttack) {
+void AttackMA::findCommander(std::vector <Commanders*> commandersCanAttack) {
 	//For debugging
 	INF::debugFunction("AttackMA, findCommander");
 
@@ -115,7 +115,7 @@ void AttackMA::playerCommitAttack()
 	//For debugging
 	INF::debugFunction("AttackMA, playerCommitAttack");
 
-	CommanderProfile* defendingCommander = defendingCommanders[0];
+	Commanders* defendingCommander = defendingCommanders[0];
 	int attackerCP = attackingCommander->getCP();
 	int defendingCP = defendingCommander->getCP();
 	int attackerLostCP = 0;
@@ -172,7 +172,7 @@ void AttackMA::playerCommitAttack()
 
 
 /*Basically go through each unit type and subtract 16CP worth of troops and keep going (done so that lost troops are distributed evenly among the various ranks, but there is still use to training lower rank troops as meat shields (if all lower troops are used up, then losses start piling up on higher rank troops; it's key to keep a healthy proportion of troops in your army))*/
-void AttackMA::calculateTroopsLost(CommanderProfile* commander, int lostCombatPower, std::array<int, 5>& troopsLost, int troopIndex) {
+void AttackMA::calculateTroopsLost(Commanders* commander, int lostCombatPower, std::array<int, 5>& troopsLost, int troopIndex) {
 	//For debugging
 	INF::debugFunction("AttackMA, calculateTroopsLost");
 

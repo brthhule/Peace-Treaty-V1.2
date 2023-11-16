@@ -1,5 +1,4 @@
 Need to do:
-- set up gameplay-- build, train, attack, scout functionality
 - set up enemy gameplay-- use random number system to build, train, attack, or scout
 - scout functionality-- fog of war, can only explore areas of the map that are on the continent, 
 - can only scout territories bordering player's kingdom
@@ -24,3 +23,4 @@ Key words to look out for (ctrl f)
 - Add functionality for training province garrisons
 - Fix battleCalculations functionality
 - Implement Class for army units (militia, guards, knights, paladins, etc...)
+- Implement text-based window function for better readilbity

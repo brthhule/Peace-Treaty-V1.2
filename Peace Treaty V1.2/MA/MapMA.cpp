@@ -27,7 +27,7 @@ void Participants::viewPlayerMap() {
 			INF::clearScreen();
 			std::cout << "Selecting a province...\n";
 			//The user selects a province
-			Provinces* province = participant->getYourProvince(1);
+			Provinces* province = participant->pickYourProvince(1);
 
 			if (province != NULL){
 				selectUnitOriginal(province);
@@ -68,11 +68,11 @@ void Participants::selectUnitOriginal(Provinces* province) {
 		// If there are more than 0 commnaders
 
 		//if (province->fogofWar) Add implementation
-		if (province->commandersNum() > 0) 
+		if (province->getCommandersNum() > 0) 
 		{
 			//Add scout information, fog of war
 			//If the commander here is yours
-			if (province->commandersNum() > 0) {
+			if (province->getCommandersNum() > 0) {
 				if (province->getCommander(0)->getParticipantIndex() == participant->getParticipantIndex()) {
 					playerUnitAction(province);
 				}

@@ -57,12 +57,12 @@ July 16: 3 hours, 30 min
 wrong-- the index is 0 and the size of the vector is 1). Tried seeing if I can make a vector object so that I can use a class to store the values of 
 the various armies.
 
-	8:35 pm - 11:15 pm (2 hours, 40 min): Made CommanderProfile class, made it so that instead of tracking the various commanders by their coordinates, I would identify them as objects instead. This means that the object's stats and values carry on with them, so I don't have to keep changing the values of the objects according to wear they are (in the coordinate-based system, each time a unit (commander)'s coordinates changed, I had to update all their coordinates to move too). It's becoming more streamlined now, started doing the same for provinces as well.
+	8:35 pm - 11:15 pm (2 hours, 40 min): Made Commanders class, made it so that instead of tracking the various commanders by their coordinates, I would identify them as objects instead. This means that the object's stats and values carry on with them, so I don't have to keep changing the values of the objects according to wear they are (in the coordinate-based system, each time a unit (commander)'s coordinates changed, I had to update all their coordinates to move too). It's becoming more streamlined now, started doing the same for provinces as well.
 
 	11:25 pm - 11:45 pm (20 min): Worked on Provinces class
 ----------------------------------------
 July 17: 2 hours, 15 min
-	9:20 pm - 11:00 pm (1 hour, 40 min): Worked on the various classes, created AllUnits class as a parent to Provinces and CommanderProfile, running into errors
+	9:20 pm - 11:00 pm (1 hour, 40 min): Worked on the various classes, created AllUnits class as a parent to Provinces and Commanders, running into errors
 trying to convert the code to OOP
 
 	11:15 pm - 11:50 pm (35 min): Worked on Provinces class, did more updating between the main cpp file and the classes
@@ -87,7 +87,7 @@ July 20: 2 hours, 5 min
 	2:40 pm - 3:05 pm (25 min): It's all broken, getting a lot of errors regarding the classes 
 (Like "'addSpecificTroop': is not a member of 'Provinces")
 
-	5:35 pm - 5:45 pm (10 min): Don't know what's wrong; I think there's something wrong with the inheritance. Basically just added the AllUnits stuff to Provinces and made it so that Provinces wasn't a child of AllUnits anymore. AllUnits works for CommanderProfile though (?????). Getting link error message thingy
+	5:35 pm - 5:45 pm (10 min): Don't know what's wrong; I think there's something wrong with the inheritance. Basically just added the AllUnits stuff to Provinces and made it so that Provinces wasn't a child of AllUnits anymore. AllUnits works for Commanders though (?????). Getting link error message thingy
 
 	6:05 pm - 6:55 pm (50 min): Made armyDeployment its own class, working on making playerAttack a class (AttackMA)
 
@@ -116,7 +116,7 @@ July 25: 2 hours, 20 min
 	9:45 pm - 10:20 (35 min): Sorted out errors, getting "'&' requires I-value error" now ??????
 ---------------------------------------------
 July 27: 2 hours, 5 min
-	5:40 pm - 6:55 pm (1 hour, 15 min): Fixed the I-value errors by just deleting the CommanderProfile pointers and just using
+	5:40 pm - 6:55 pm (1 hour, 15 min): Fixed the I-value errors by just deleting the Commanders pointers and just using
 Participants objects)... still getting errors (tried using template to merge checkChar and checkInt into one)
 
 	10:50 pm - 10:55 pm (5 min): Got rid of getValue, caused too many errors, not worth it
@@ -124,7 +124,7 @@ Participants objects)... still getting errors (tried using template to merge che
 	10:55 pm - 11:40 pm (45 min): Made it so that addCommander in Participants returns value by reference rather than by value... This way, data that has to be mutated/modified can be
 ---------------------------------------------
 July 28: 55 min
-    11:15 pm - 12:10 pm (55 min): Working on ScoutMA class... everything is messed up-- have to figure out how scoutLogCalculations is gonna work, differentiating between Provinces and CommanderProfile scout reports
+    11:15 pm - 12:10 pm (55 min): Working on ScoutMA class... everything is messed up-- have to figure out how scoutLogCalculations is gonna work, differentiating between Provinces and Commanders scout reports
 ------------------------------------------
 July 29: 35 min
 	10:00 pm - 10:15 pm (15 min): Working on ScoutMA-- wondering how I'm gonna keep track of the provinces and commanders
@@ -132,6 +132,6 @@ July 29: 35 min
 	11:30 pm - 11:50 pm (20 min): Worked on ScoutMA (playerScout function-- figured out how to differentiate between picking a province or commander target)
 ------------------------------------------
 July 30: 2 hours, 25 min
-	10:00 pm - 11:30 pm (1 hour, 30 min): Finished working on ScoutMA (I think), now getting errors about Provinces and CommanderProfile.h (stuff like "missing type specificer - int assumed. Note: C++ does not support default-int", don't know where these errors are coming from... the text editor doesn't show anything red as incorrect, maybe I just have to do some restructuring ??????)
+	10:00 pm - 11:30 pm (1 hour, 30 min): Finished working on ScoutMA (I think), now getting errors about Provinces and Commanders.h (stuff like "missing type specificer - int assumed. Note: C++ does not support default-int", don't know where these errors are coming from... the text editor doesn't show anything red as incorrect, maybe I just have to do some restructuring ??????)
 
 	8:45 pm - 9:40 pm (55 min): Worked on debugging code, need to do some work regarding Commander info (like which participants it belongs to)

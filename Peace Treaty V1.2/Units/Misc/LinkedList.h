@@ -51,7 +51,7 @@ private:
 	node *tail;
 
 	//Amount of provinces in linkedlist
-	int provincesNum;
+	int getProvincesNum;
 
 	//Infrastructure stuff
 	

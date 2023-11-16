@@ -7,7 +7,7 @@
 
 class Mobility {
 public:
-	void moveUnitOne(CommanderProfile* commander);
-	std::vector <Provinces*> moveUnitTwo(CommanderProfile *commander);
+	void moveUnitOne(Commanders* commander);
+	std::vector <Provinces*> moveUnitTwo(Commanders *commander);
 };
 #endif
