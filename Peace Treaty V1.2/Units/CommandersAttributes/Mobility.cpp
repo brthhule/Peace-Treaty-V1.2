@@ -7,7 +7,7 @@ void Participants::moveUnitOne(Commanders* commander) {
 	//This will have the list of provinces that can be moved to
 	std::vector<Provinces*> provincesCanSelect;
 
-	if (commander->hasMovedQuestion() == true) {
+	if (commander->hasMoved() == true) {
 		std::cout << "This unit has already moved this turn. Please pick another unit. \nReturning to previous menu... \n\n";
 	}
 	//If this commander has not moved yet

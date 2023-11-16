@@ -91,7 +91,7 @@ std::string Input::getOptionPromptQuery(std::vector<std::string>AV) {
 	return getOptionPromptQuery(AV);
 }
 
-std::string Input::getOptionPrompt(INF::PROMPTS p) {
+std::string Input::getOptionPrompt(INF::Prompts p) {
 	//For debugging
 	INF::debugFunction("Input, getOptionPrompt");
 

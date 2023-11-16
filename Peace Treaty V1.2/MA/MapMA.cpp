@@ -214,7 +214,7 @@ void Participants::playerUnitActionP(Provinces* newP)
 		playerUnitAction(newProvince);
 	}
 
-	if (this->getCommander(commanderName)->hasMovedQuestion() == false) {
+	if (this->getCommander(commanderName)->hasMoved() == false) {
 		this->moveUnitOne(this->getCommander(commanderName));
 		playerUnitAction(newProvince);
 	}

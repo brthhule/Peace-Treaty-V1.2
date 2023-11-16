@@ -60,9 +60,9 @@ namespace INF
 		RESOURCE_NAMES;
 
 	extern i5array
-		TROOPS_COST,
+		Troops_COST,
 		INITIAL_VALUES,
-		TROOPS_CP,
+		Troops_CP,
 		RESOURCE_PRODUCTION;
 
 	extern const int BARRACKS_PRODUCTION;
@@ -96,7 +96,7 @@ namespace INF
 		ARCHERS,
 		CAVALRY,
 		ARTILLARY*/
-	enum TROOPS {
+	enum TroopTypes {
 		GUARDS,
 		INFANTRY,
 		ARCHERS,
@@ -114,7 +114,7 @@ namespace INF
 		SELECT_PLAYER_PROVINCE,
 		SELECT_ENEMY_PROVINCE,
 		WHAT_REPORT*/
-	enum PROMPTS { 
+	enum Prompts { 
 		SELECT_ENEMY_ACTION, 
 		PLAYER_UNIT_ACTION, 
 		INTRODUCTION, 
@@ -131,7 +131,7 @@ namespace INF
 	/*REGULAR, 
 		INJURED,
 		LOST */
-	enum MutateTroopType { 
+	enum TroopCondition { 
 		REGULAR, 
 		INJURED,
 		LOST 
@@ -176,14 +176,14 @@ namespace INF
 	/////////////////////////////////Functions/////////////////////////////////
 	
 	//////////////string///////////////
-	std::string promptsToString(PROMPTS p);
+	std::string promptsToString(Prompts p);
 	//Get command to print certain color to console
 	std::string getColor(COLORS color);
 
 	std::string createRandomName();
 
 	int getStringIndex(std::string arg);
-	PROMPTS stringToPrompts(std::string arg);
+	Prompts stringToPrompts(std::string arg);
 	
 	
 	//////////////void/////////////////

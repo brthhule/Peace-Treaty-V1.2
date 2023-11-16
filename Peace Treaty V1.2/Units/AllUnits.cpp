@@ -134,8 +134,10 @@ void AllUnits::printResources(std::array<int, 5> resourcesArray) {
 	//For debugging
 	INF::debugFunction("AllUnits, printResources");
 
-	for (int x = 0; x < 5; x++)
-		std::cout << "- " << INF::RESOURCE_NAMES[x] << ": " << resourcesArray[x] << std::endl;
+	for (int x = 0; x < 5; x++) {
+		std::cout << "- " << INF::RESOURCE_NAMES.at(x) << ": " << resourcesArray.at(x) << std::endl;
+	}
+		
 
 	std::cout << std::endl;
 }

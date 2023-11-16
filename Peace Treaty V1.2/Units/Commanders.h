@@ -28,37 +28,39 @@ public:
 
 		printCosts(std::array<int, 5> costs),
 		addLevel(),
-		setDelete();
+		resetCommanderMoved(),
+		calculateCommanderScoutLog();
 
 	std::array<int, 5> getUpgradeCosts();
 	
 	bool
 		getDelete(),
-		hasMovedQuestion();
-
-	// Moving
-	void 
-		resetCommanderMoved(),
-		calculateCommanderScoutLog();
+		hasMoved();
 
 private:
-	int 
+	INTEGER 
 		maxTroops,
 		totalMaxResources, 
-		commanderIndex;
 
-	bool hasMoved;
+	bool moved;
 
-	std::array<std::string, 5> MANDescriptions = {
-		"Resources in",
-		"Troops present in",
-		"Troops injured in",
-		"Troops lost in",
-		"Other stats of"
+	/*
+		"Resources:      ",
+		"Troops present: ",
+		"Troops injured: ",
+		"Troops lost:    ",
+		"Other stats:    "
+	*/
+	s5array statsOne = {
+		"Resources:      ",
+		"Troops present: ",
+		"Troops injured: ",
+		"Troops lost:    ",
+		"Other stats:    "
 	};
 
 	//Check this
-	std::array<std::array<std::string, 5>, 4> namesOfManOne = {
+	std::array<s5array, 4> namesOfManOne = {
 		INF::RESOURCE_NAMES, 
 		INF::TROOP_NAMES
 	};
@@ -73,7 +75,7 @@ private:
 	};
 
 	// check
-	int costToUpgrade[5] = { 5, 4, 3, 2, 1 };
+	i5array costToUpgrade = { 5, 4, 3, 2, 1 };
 	bool deleteCommander;
 };
 

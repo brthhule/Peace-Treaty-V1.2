@@ -38,7 +38,7 @@ void Participants::upgradeCommandersOne() {
 
 	if (getCommandersNum() > 0)
 	{
-		if (this->selectCommander() != "-1")
+		if (this->pickCommander() != "-1")
 			upgradeCommandersTwo();
 	} else
 		std::cout << "No commanders available, can not upgrade\n";
@@ -76,7 +76,7 @@ void Participants::viewArmyOverview() {
 	//For debugging
 	INF::debugFunction("ArmyOverview, viewArmyOverview");
 
-	std::string commanderName = selectCommander();
+	std::string commanderName = pickCommander();
 
 	//Check that the user wants to proceed
 	if (commanderName != "-1") {
@@ -134,7 +134,7 @@ void Participants::deployCommanderMF() {
 	//For debugging
 	INF::debugFunction("ArmyOverview, deployCommanderMF");
 
-	std::string commanderName = selectCommander();
+	std::string commanderName = pickCommander();
 	if (commanderName == "-1") {
 		return;
 	}
@@ -149,7 +149,7 @@ void Participants::deployCommanderMF() {
 
 	if (confirmDeploy == 'Y')
 	{
-		if (commander->hasMovedQuestion() == false) {
+		if (commander->hasMoved() == false) {
 			this->moveUnitOne(getCommander(commanderName));
 		} else {
 			std::cout << "This unit has already moved... please pick another unit \n";

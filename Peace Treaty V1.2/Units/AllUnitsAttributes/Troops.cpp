@@ -7,18 +7,39 @@ Troops::Troops() {
 	//Empty
 }
 
-std::array<int, 5> Troops::getAllOneTroop(INF::TROOPS type) {
+std::array<int, 5> Troops::getAllOneTroop(INF::TroopCondition troopCondition, INF::TroopTypes type) {
 	//For debugging
 	INF::debugFunction("Troops, getAllOneTroop");
 
-	return *allTroops[type];
+	return allTroopConditions.at(troopCondition.at(type));
 }
 
+int Troops::getAllOneTroop(INF::TroopCondition troopCondition, INF::TroopTypes type) {
+	i5array tempArray = getAllOneTroop(troopCondition, type);
+
+	int total = 0;
+	for (int x : tempArray) {
+		total += x;
+	}
+
+	return total;
+}
+
+i5array Troops::getGenericTroops(TroopCondition troopCondition) {
+	i5array troopTotals = { 0,0,0,0,0 };
+
+	for (int x = 0; x < 5; x++) {
+		TroopTypes troopType = (TroopTypes)x;
+		troopTotals.at(x) = Troops::getAllOneTroop(troopCondition, troopType);
+	}
+
+	return troopTotals;
+}
 
 
 //--------Troop Functions--------
 //Return a troop by index or all troops-- done by type
-std::array<int, 5> Troops::getTroop(INF::MutateTroopType type, int troopIndex, Quantity amount) {
+std::array<int, 5> Troops::getTroop(INF::TroopCondition type, int troopIndex, Quantity amount) {
 	//For debugging
 	INF::debugFunction("Troops, getTroop");
 
@@ -35,9 +56,12 @@ std::array<int, 5> Troops::getTroop(INF::MutateTroopType type, int troopIndex, Q
 
 //----Mutators----
 //Change troops of type index at this unit by amount
-void Troops::mutateTroop(INF::MutateTroopType type, int troopIndex, std::array<int,5> amount, Quantity quant, INF::MutateDirection direction) {
+void Troops::mutateTroop(INF::TroopCondition troopCondition, TroopTypes troopType, std::array<int,5> amount, Quantity quant, INF::MutateDirection direction, int troopTier) {
 	//For debugging
 	INF::debugFunction("Troops, mutateTroop");
+
+	std::array<i5array, 5> *troopConditionArray = allTroopConditions.at(troopCondition);
+	i5array* troopTiers = troopConditionArray->at(troopType);
 
 	int modifier = -1;
 
@@ -47,15 +71,17 @@ void Troops::mutateTroop(INF::MutateTroopType type, int troopIndex, std::array<i
 	
 	switch (quant) {
 		case SINGLE: {
-			allTroopTypes[type]->at(troopIndex) += amount[0] * modifier;
+			troopTiers->at(troopTier) += amount[0] * modifier;
 			break;
 		}
 		case ALL: {
 			for (int x = 0; x < 5; x++) {
-				allTroopTypes[type]->at(troopIndex) += amount[x];
+				troopTiers->at(x) += amount.at(x);
 			}
 			break;
 		}
 	}
+
+	return;
 }
 

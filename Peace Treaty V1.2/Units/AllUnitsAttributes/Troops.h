@@ -10,47 +10,56 @@ class Troops {
 public:
 	Troops();
 
-	std::array<int, 5> getAllOneTroop(INF::TROOPS type);
+	/*Return all the tiers for one troop type for a particular condition
+	Example: returns all tiers for guards present*/
+	i5array getAllOneTroop(TroopCondition troopCondition, INF::TroopTypes troopType);
 
-	//----Troop Stuff----
-/*Return a troop by index or all troops-- done by type.Pass - 1 for troopIndex to return all troops of a type
-type: REGULAR, INJURED, LOST
-troopIndex: troop level?
-data: 
-use randomArray
-*/
-	std::array<int, 5> getTroop(INF::MutateTroopType type, int troopIndex, Quantity amount);
+	/*Returns the total of all of a particular troop type's tiers for a particular condition
+	Example: returns the total of all tiers for guards present*/
+	int getAllOneTroop(TroopCondition troopCondition, INF::TroopTypes troopType);
+
+	/*Returns the tier totals for all troop types for a particular condition
+	Example: returns the total of all tiers of all troops presnet, as in the totals for guards, infantry, archers, etc.*/
+	i5array getGenericTroops(TroopCondition type);
 
 
 	//Change a troop by index or all trypes.
-	void mutateTroop(INF::MutateTroopType type, int troopIndex, std::array<int,5> amount, Quantity quant, INF::MutateDirection direction);
+	void mutateTroop(
+		INF::TroopCondition troopCondition, 
+		TroopTypes troopType, 
+		std::array<int,5> amount, 
+		Quantity quant, 
+		INF::MutateDirection direction, 
+		int troopTier);
 
 protected:
-	//Keeps tracks of how much of each unit, each index is a higher level
-	std::array<int, 5> 
-		allGuards,
-		allInfantry,
-		allArchers,
-		allCavalry,
-		allArtillary,
 
-		troopsPresent = { 0, 0, 0, 0, 0 },
-		troopsInjured = { 0, 0, 0, 0, 0 },
-		troopsLost = { 0, 0, 0, 0, 0 };
+	/*Each row is a different troop type, each column is a different tier
+	
+	Rows:
+	0 = guardsTiers,
+	1 = infantryTiers,
+	2 = archersTiers,
+	3 = cavalryTiers,
+	4 = artillaryTiers;
 
-		std::array<std::array<int, 5>*, 3> allTroopTypes = {
-			&troopsPresent,
-			&troopsInjured,
-			&troopsLost
-		};
+	Cols:
+	0 = tier 1
+	1 = tier 2
+	2 = tier 3
+	3 = tier 4
+	4 = tier 5
+		*/
+	std::array<i5array, 5> 
+		troopsPresent,
+		troopsInjured,
+		troopsLost;
 
-	std::array <std::array<int, 5>*, 5> allTroops = {
-		&allGuards,
-		&allInfantry,
-		&allArchers,
-		&allCavalry,
-		&allArtillary
+
+	std::array<std::array<i5array, 5>*, 3> allTroopConditions = {
+		&troopsPresent,
+		&troopsInjured,
+		&troopsLost
 	};
-
 };
 #endif

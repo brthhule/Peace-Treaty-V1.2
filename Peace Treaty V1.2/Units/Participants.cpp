@@ -120,11 +120,11 @@ void Participants::addCommander() {
 	INF::debugFunction("Participants, addCommander");
 
 	Commanders newCommander(1, getNewName());
-	std::pair<int, int> systemCoords = getCapitalProvince()->getSystemCoords();
-	std::pair<int, int> userCoords = getCapitalProvince()->getUserCoords();
+	std::pair<int, int> tempSystemCoords = getCapitalProvince()->getSystemCoords();
+	std::pair<int, int> tempUserCoords = getCapitalProvince()->getUserCoords();
 
 	newCommander.changeParticipantIndex(participantIndex);
-	newCommander.setCoords(systemCoords, userCoords);
+	newCommander.setCoords(tempSystemCoords, tempUserCoords);
 
 	commandersVector.push_back(newCommander);
 	Commanders* commanderPtr = &commandersVector[commandersVector.size() - 1];
@@ -137,8 +137,10 @@ void Participants::setKingdomName(std::string newName) {
 	//For debugging
 	INF::debugFunction("Participants, setKingdomName");
 
-	if (newName == "-1")
+	if (newName == "-1") {
 		newName = getNewName();
+	}
+		
 	kingdomName = newName;
 }
 
@@ -148,8 +150,9 @@ bool Participants::isAlive() {
 	//For debugging
 	INF::debugFunction("Participants, isAlive");
 
-	if (getProvincesNum() > 0 && getCommandersNum() > 0)
+	if (getProvincesNum() > 0 || getCommandersNum() > 0) {
 		return true;
+	}
 
 	return false;
 }
@@ -541,40 +544,41 @@ bool Participants::hasProvince(Provinces* province) {
 	return province->getParticipantIndex() == participantIndex;
 }
 
-std::string Participants::selectCommander() {
+Commanders *Participants::pickCommander() {
 	//For debugging
-	INF::debugFunction("Participants, selectCommander");
+	INF::debugFunction("Participants, pickCommander");
 
-	displayCommanders();
-	std::string commanderName = " ";
+	this->displayCommanders();
+	std::string name = " ";
 	println("Enter the name of the commander you wish to select (Enter -1 to cancel selection): ");
-	getline(std::cin, commanderName);
+	getline(std::cin, name);
 
-	if (hasCommander(commanderName)) {
-		std::cout << "Commander " << commanderName << " selected...\n";
-		return commanderName;
-	} else if (commanderName != "-1") {
+	if (hasCommander(name)) {
+		std::cout << "Commander " << name << " selected...\n";
+		return commandersMap.at(name);
+	} else if (name != "-1") {
 		println("Invalid name entered. Please try again... (Enter any character to continue)");
 		INF::enterAnything(1);
-		selectCommander();
+		pickCommander();
 	}
 
 	std::cout << "Cancelling selection\n";
 		
-	return commanderName;
+	return nullptr;
 }
 
-void Participants::displayCommanders()
-{
+void Participants::displayCommanders() {
 	//For debugging
 	INF::debugFunction("Participants, displayCommanders");
 
 	std::cout << "Here is list of your commanders: \n";
 	std::unordered_map<std::string, Commanders*> commandersMap = getCommandersMap();
 	std::unordered_map<std::string, Commanders*>::iterator it;
+	commandersMap.
 	for (it = commandersMap.begin(); it != commandersMap.end(); it++) {
 		Commanders* tempCommander = it->second;
-		std::cout << "- Commander " << tempCommander->getUnitName() << "; Level: " << tempCommander->getLevel() << std::endl;
+		std::cout << "- Commander " << tempCommander->getUnitName() + 
+			"; Level: " << tempCommander->getLevel() << std::endl;
 		delete tempCommander;
 	}
 }

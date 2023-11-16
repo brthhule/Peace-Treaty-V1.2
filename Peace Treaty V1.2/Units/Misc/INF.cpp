@@ -2,14 +2,14 @@
 
 namespace INF {
 	////////////////////////////////////////////////Start Variables///////////////////////////////////////
-	/*TROOPS_COST = 5, 4, 3, 2, 1 */
-	i5array TROOPS_COST = { 5, 4, 3, 2, 1 };
+	/*Troops_COST = 5, 4, 3, 2, 1 */
+	i5array Troops_COST = { 5, 4, 3, 2, 1 };
 
 	/*INITIAL_VALUES = 5, 4, 3, 2, 1 */
 	i5array INITIAL_VALUES = { 5, 4, 3, 2, 1 };
 
-	/*TROOPS_CP = 1, 2, 4, 8, 16*/
-	i5array TROOPS_CP = { 1,2,4,8,16 };
+	/*Troops_CP = 1, 2, 4, 8, 16*/
+	i5array Troops_CP = { 1,2,4,8,16 };
 
 	/*RESOURCE_PRODUCTION = 5, 4, 3, 2, 1 */
 	i5array RESOURCE_PRODUCTION = { 5,4,3,2,1 };
@@ -184,7 +184,7 @@ namespace INF {
 		return sequences[color];
 	}
 
-	std::string INF::promptsToString(PROMPTS p) {
+	std::string INF::promptsToString(Prompts p) {
 		//For debugging
 		INF::debugFunction("CV, promptsToString");
 
@@ -217,7 +217,7 @@ namespace INF {
 	}
 	
 
-	INF::PROMPTS INF::stringToPrompts(std::string arg) {
+	INF::Prompts INF::stringToPrompts(std::string arg) {
 		//For debugging
 		INF::debugFunction("CV, stringToPrompts");
 

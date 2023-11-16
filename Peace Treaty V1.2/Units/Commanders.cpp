@@ -5,20 +5,15 @@ Commanders::Commanders() {
 	//For debugging
 	INF::debugFunction("Commanders, Commanders (0 Param)");
 
-	unitLevel = 1;
-	hasMoved = false;
-	maxTroops = 0;
-	totalMaxResources = 0;
-	commanderIndex = 0;
-	changeUnitName("Unnamed");
-	deleteCommander = false;
+	Commanders(1, "Unnamed");
 }
+
 Commanders::Commanders(int level, std::string name) {
 	//For debugging
 	INF::debugFunction("Commanders, Commanders (1 Param)");
 
-	
 	unitLevel = level;
+	moved = false;
 
 
 	maxTroops = unitLevel * 10;
@@ -31,7 +26,7 @@ Commanders::~Commanders() {
 	INF::debugFunction("Commanders, ~Commanders");
 }
 
-/*Accessor Functions*/
+/////////////////////Display///////////
 void Commanders::printCommanderStats() {
 	//For debugging
 	INF::debugFunction("Commanders, printCommanderStats");
@@ -40,9 +35,15 @@ void Commanders::printCommanderStats() {
 	INF::addColor(INF::BLUE);
 	//Add implementation
 
-	std::cout << MANDescriptions[5] << ": \n";
+	std::cout << statsOne.at(0) << std::endl;
+	this->printResources();
+
+	std::cout << statsOne.at(0) << std::endl;
+	this->printTroopsPresent
 	INF::addColor(INF::RESET);
 }
+
+////////////Accessors//////////////////
 int Commanders::getCommanderStat(int index) {
 	//For debugging
 	INF::debugFunction("Commanders, getCommanderStat");
@@ -52,14 +53,18 @@ int Commanders::getCommanderStat(int index) {
 	//return *commanderArmyStats[index];
 }
 
-std::array<int, 5> Commanders::getUpgradeCosts() {
+INF::i5array Commanders::getUpgradeCosts() {
 	//For debugging
 	INF::debugFunction("Commanders, getUpgradeCosts");
 
-	std::array<int, 5> costsArray;
-	for (int& x : costsArray) x = 0;
-	for (int x = 0; x < 5; x++)
-		costsArray[x] = costToUpgrade[x] * unitLevel;
+	i5array costsArray;
+	costsArray.fill(0);
+
+
+	for (int x = 0; x < 5; x++) {
+		costsArray[x] = costToUpgrade.at(x) * unitLevel;
+	}
+		
 	return costsArray;
 }
 
@@ -68,8 +73,10 @@ void Commanders::printCosts(std::array <int, 5> costs)
 	//For debugging
 	INF::debugFunction("Commanders, printCosts");
 
-	for (int x = 0; x < 5; x++)
+	for (int x = 0; x < 5; x++) {
 		std::cout << INF::RESOURCE_NAMES[x] << " cost: " << costs[x] << std::endl;
+	}
+		
 	std::cout << std::endl;
 }
 
@@ -88,12 +95,6 @@ void Commanders::addLevel() {
 	unitLevel++;
 }
 
-void Commanders::setDelete() {
-	//For debugging
-	INF::debugFunction("Commanders, setDelete");
-
-	deleteCommander = true;
-}
 
 bool Commanders::getDelete() {
 	//For debugging
@@ -102,16 +103,16 @@ bool Commanders::getDelete() {
 	return deleteCommander;
 }
 
-bool Commanders::hasMovedQuestion() {
+bool Commanders::hasMoved() {
 	//For debugging
-	INF::debugFunction("Commanders, hasMovedQuestion");
+	INF::debugFunction("Commanders, hasMoved");
 
-	return hasMoved;
+	return moved;
 }
 
 void Commanders::resetCommanderMoved() {
 	//For debugging
 	INF::debugFunction("Commanders, resetCommanderHasMoved");
 
-	hasMoved = false;
+	moved = false;
 }
