@@ -43,6 +43,17 @@
 #define CHECK
 #define CALCULATE
 
+//Interface stuff
+#define INTERFACE
+#define TRAIN_MA
+#define PLAYER_ACTION
+#define MAP_MA
+#define SCOUT_MA
+
+#define BASE_CLASS
+#define MAP
+#define MOBILITY
+
 Provinces* newProv;
 using namespace INF;
 
@@ -99,17 +110,20 @@ public:
 	//Coordinate stuff
 	Provinces
 		* pickYourProvince(int identifier),
-		* getProvinceByName(std::string name),
-		* pickProvince(1)(std::pair<int, int> userCoords),
+		* pickProvince(int identifer),
+
+		* getProvince(std::string name),
 		* getProvince(int index),
+
 		* getCapitalProvince(),
-		* getSystemProvince(std::pair<int, int> systemCoords),
-		* pickProvince(int identifer);
+		* getSystemProvince(std::pair<int, int> systemCoords);
+		
 
 	STRING
 		getKingdomName(),
-		selectCommander(),
 		getNewName();
+
+	Commanders *pickCommander();
 
 	VOID
 		setCapital(Provinces* newProvince),

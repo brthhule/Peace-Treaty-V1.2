@@ -497,7 +497,7 @@ bool Participants::subtractCheckResources(std::string provinceName, std::array<i
 	//For debugging
 	INF::debugFunction("Participants, subtractCheckResources");
 
-	Provinces* newProvince = getProvinceByName(provinceName);
+	Provinces* newProvince = getProvince(provinceName);
 	//returns false if resources dip into negatives
 	newProvince->modifyResources(resourcesArray, false);
 	for (int x : newProvince->getAllResources())
@@ -506,10 +506,10 @@ bool Participants::subtractCheckResources(std::string provinceName, std::array<i
 	return true;
 }
 
-Provinces* Participants::getProvinceByName(std::string name)
+Provinces* Participants::getProvince(std::string name)
 {
 	//For debugging
-	INF::debugFunction("Participants, getProvinceByName");
+	INF::debugFunction("Participants, getProvince");
 
 	return provincesMap[name];
 }
