@@ -1,6 +1,6 @@
 //ScoutMA.h
-//Base class
-//Derived by Participants
+//Interface
+//Implemented by Participants
 
 #ifndef SCOUTMA_H
 #define SCOUTMA_H
@@ -9,8 +9,7 @@
 #include <vector>
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Participants.h"
-#include "../Units/Provinces.h"
-#include "../Units/AllUnits.h"
+
 
 #include "../Units/Misc/Input.h"
 #include "../Units/Misc/INF.h"
@@ -23,44 +22,22 @@ public:
 	typedef std::pair<commanderProfilePtrs, provincesPtrs> scoutTypes;
 
 	// Constructors
-	ScoutMA(Participants* newParticipant, Provinces* newProvince);
+	void mainScoutMA (Participants* newParticipant, Provinces* newProvince) = 0;
 
 	// Functions
-	void
-		selectTarget(),
-		playerScoutStepTwo(scoutTypes canScout);
+	void playerScoutStepTwo(scoutTypes canScout) = 0;
+	scoutTypes selectTarget() = 0,
 
 	AllUnits
-		*selectUnitToScout(scoutTypes canScout),
-		*selectUnitToScoutTwo(scoutTypes canScout);
+		*selectUnitToScout(scoutTypes canScout) = 0,
+		*selectUnitToScoutTwo(scoutTypes canScout) = 0;
 
-	
-
-	scoutTypes getCanScout();
+	scoutTypes getCanScout() = 0;
 
 	void
-		scoutLogCalculationsProvince(int accuracy),
-		getCanScoutTwo(int targetX, int targetY, int a, int b, scoutTypes &canScout);
+		scoutLogCalculationsProvince(int accuracy) = 0,
+		getCanScoutTwo(int targetX, int targetY, int a, int b, scoutTypes &canScout) = 0;
 
-
-private:
-	std::vector<int> unitLevels;
-
-	enum TargetTypes {PROVINCE, COMMANDER};
-
-	/* [0] is for whether it is a province(1) or
-	commander (2); [1] is the index of the unit in its
-	Participants object*/
-	std::pair<std::pair<TargetTypes, TargetTypes>, int> targetInformation;
-
-	int enemyLevel;
-	Participants
-		*participant,
-		*targetParticipant;
-
-	Provinces
-		*yourProvince,
-		*targetProvince;
 };
 
 #endif

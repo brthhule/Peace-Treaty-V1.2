@@ -529,6 +529,14 @@ bool Participants::hasProvince(std::string name)
 	return false;
 }
 
+bool Participants::hasProvince(int participantNumberArg) {
+	return participantNumberArg == participantIndex;
+}
+
+bool Participants::hasProvince(Provinces* province) {
+	return province->getParticipantIndex() == participantIndex;
+}
+
 std::string Participants::selectCommander() {
 	//For debugging
 	INF::debugFunction("Participants, selectCommander");
@@ -656,6 +664,15 @@ bool Participants::hasUnit(std::string unitName) {
 		return true;
 	}
 	return false;
+}
+
+bool Participants::hasUnit(AllUnits unit) {
+	for (commIt = commandersMap.begin(); commIt != commandersMap.end(); commIt++) {
+		CommanderProfile* commander = commIt->second();
+		if (&commander == unit) {
+			return true;
+		}
+	}
 }
 
 Provinces* Participants::getSystemProvince(std::pair<int, int> systemCoords) {

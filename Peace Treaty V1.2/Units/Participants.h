@@ -62,13 +62,17 @@ public:
 
 	std::unordered_map<std::string, CommanderProfile*> getCommandersMap() { return commandersMap; }
 
-	BOOL 
+	BOOL
 		subtractCheckResources(std::string provinceName, std::array<int, 5> resourcesArray),
 		hasProvince(std::string name),
+		//Overloading
+		hasProvince(int pIndex),
+		hasProvince(Provinces* province),
 		hasCommander(std::string name),
 		isAlive(),
 		isPlayer(),
-		hasUnit(std::string unitName);
+		hasUnit(std::string unitName),
+		hasUnit(AllUnits unit);
 
 	CommanderProfile
 		* getCommander(std::string name),
@@ -166,7 +170,29 @@ public:
 		selectEnemyAction(),
 		selectEnemyProvince(Provinces* province);
 
+	//ScoutMA.h
+	void mainScoutMA (Participants* newParticipant, Provinces* newProvince);
 
+	class ScoutInfo {
+	public:
+		ScoutInfo(Provinces *provinceArg);
+		Participants* participant, * targetParticipant;
+		Provinces* yourProvince, * targetProvince;
+		enum TargetTypes { PROVINCE, COMMANDER };
+	};
+	void
+		playerScoutStepTwo(scoutTypes canScout),
+		scoutLogCalculationsProvince(int accuracy),
+		getCanScoutTwo(int targetX, int targetY, int a, int b, scoutTypes& canScout);
+
+	AllUnits
+		* selectUnitToScout(scoutTypes canScout),
+		* selectUnitToScoutTwo(scoutTypes canScout);
+	scoutTypes
+		selectTarget(), 
+		getCanScout();
+
+		
 private:
 	i5array
 		trainCosts = { 5, 4, 3, 2, 1 },
@@ -186,7 +212,7 @@ private:
 
 	std::unordered_map <std::string, CommanderProfile*> commandersMap;
 	std::unordered_map <std::string, Provinces*> provincesMap;
-	std::unordered_map<std::string, CommanderProfile*>::iterator it;
+	std::unordered_map<std::string, CommanderProfile*>::iterator commIt;
 
 	std::vector <Provinces*> provincesVector;
 	std::vector <CommanderProfile> commandersVector;

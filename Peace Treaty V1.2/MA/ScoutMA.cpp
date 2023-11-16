@@ -1,23 +1,25 @@
-#include "ScoutMA.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Participants.h"
 #define print(x) std::cout << x;
 #define println(x) std::cout << x << std::endl;
 
-ScoutMA::ScoutMA(Participants* newParticipant, Provinces* newProvince) {
+Participants::ScoutInfo::ScoutInfo(Provinces* newProvince) {
+	Participants::ScoutInfo::participant = this;
+	Participants::ScoutInfo::targetParticipant = null;
+	Participants::ScoutInfo::yourProvince = newProvince;
+	Participants::ScoutInfo::targetProvince = null;
+}
+/*Constructor*/
+Participants::mainScoutMA() {
 	//For debugging
-	INF::debugFunction("ScoutMA, ScoutMA");
-
-	participant = newParticipant;
-	yourProvince = newProvince;
-
-	//Default values
-	targetProvince = NULL;
-	targetParticipant = NULL;
-	std::pair<TargetTypes, TargetTypes> tempTypes(PROVINCE, PROVINCE);
-	targetInformation = std::pair<std::pair<TargetTypes, TargetTypes>, int>(tempTypes, -1);
-	enemyLevel = -1;
+	INF::debugFunction("ScoutMA, mainScoutmA");
+	ScoutMA::scoutTypes canScout = selectTarget();
+	if (canScout != null) {
+		playerScoutStepTwo(canScout);
+	}
 }
 
-void ScoutMA::selectTarget()
+/*Selects a target to scout*/
+ScoutMA::scoutTypes Participants::selectTarget()
 {
 	//For debugging
 	INF::debugFunction("ScoutMA, selectTarget");
@@ -25,8 +27,8 @@ void ScoutMA::selectTarget()
 	//The participant selects a province
 	Provinces* targetProvince = participant->getCoords(1);
 
-	//If the province belongs to the participant
-	if (targetProvince->getParticipantIndex() == participant->getParticipantIndex()) {
+	//Make sure the province being scouted is not the current participant's 
+	if (this->hasProvince(targetProvince)) {
 		std::cout << "This province belongs to you; please select a different province";
 		selectTarget();
 	}
@@ -39,16 +41,20 @@ void ScoutMA::selectTarget()
 	ScoutMA::scoutTypes canScout = getCanScout();
 	// If there are commanders or provinces that can scout the target
 	if (canScout.first.size() > 0 || canScout.second.size() > 0) {
-		playerScoutStepTwo(canScout);
+		return canScout;
 	}
 	else {
 		std::cout << "No player provinces or armies are around the target... \n";
+		canScout = NULL;
 	}
 	std::cout << "Returning to previous menu\n\n";
+
+	return canScout;
 } /*fix this-- needs to be reviewed*/
 
 
-void ScoutMA::playerScoutStepTwo(scoutTypes canScout) // Finish this later
+// Finish this later
+void Participants::playerScoutStepTwo(scoutTypes canScout) 
 {
 	//For debugging
 	INF::debugFunction("ScoutMA, playerScoutStepTwo");
@@ -73,6 +79,7 @@ void ScoutMA::playerScoutStepTwo(scoutTypes canScout) // Finish this later
 	{
 		int accuracy = 50;
 		int unitLevel = unit->getLevel();
+		int enemyLevel = targetProvince->getLevel();//Fix this later
 
 		//Greater level comapred to target = greater accuracy
 		if (unitLevel > enemyLevel)
@@ -89,14 +96,13 @@ void ScoutMA::playerScoutStepTwo(scoutTypes canScout) // Finish this later
 	else if (accuracy < 0) {
 		accuracy = 0;
 	}
-	Participants* tempParticipant1 = new Participants();
-	participant->scoutProvince(tempParticipant1->getSystemProvince(unit->getSystemCoords()), accuracy);
-	delete tempParticipant1;
+
+	this->scoutProvince(this->getSystemProvince(unit->getSystemCoords()), accuracy);
 
 	INF::enterAnything(1);
 }
 
-ScoutMA::scoutTypes ScoutMA::getCanScout()
+ScoutMA::scoutTypes Participants::getCanScout()
 {
 	//For debugging
 	INF::debugFunction("ScoutMA, getCanScout");
@@ -118,7 +124,7 @@ ScoutMA::scoutTypes ScoutMA::getCanScout()
 	return tempScout;
 }
 
-void ScoutMA::getCanScoutTwo(int targetX, int targetY, int a, int b, ScoutMA::scoutTypes &canScout)
+void Participants::getCanScoutTwo(int targetX, int targetY, int a, int b, ScoutMA::scoutTypes &canScout)
 {
 	//For debugging
 	INF::debugFunction("ScoutMA, getCanScoutTwo");
@@ -142,7 +148,7 @@ void ScoutMA::getCanScoutTwo(int targetX, int targetY, int a, int b, ScoutMA::sc
 	}
 }
 
-AllUnits *ScoutMA::selectUnitToScout(ScoutMA::scoutTypes canScout) {
+AllUnits * Participants::selectUnitToScout(ScoutMA::scoutTypes canScout) {
 	//For debugging
 	INF::debugFunction("ScoutMA, selectUnitToScout");
 
@@ -169,7 +175,7 @@ AllUnits *ScoutMA::selectUnitToScout(ScoutMA::scoutTypes canScout) {
 	return selectUnitToScoutTwo(canScout);
 }
 
-AllUnits *ScoutMA::selectUnitToScoutTwo(ScoutMA::scoutTypes canScout)
+AllUnits * Participants::selectUnitToScoutTwo(ScoutMA::scoutTypes canScout)
 {
 	//For debugging
 	INF::debugFunction("ScoutMA, selectUnitToScoutTwo");
