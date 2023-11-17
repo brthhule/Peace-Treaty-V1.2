@@ -30,6 +30,29 @@ Provinces::Provinces(int overallIndexArg)
 	INF::modifyArray(resourcesPresent, INF::INITIAL_VALUES, true);
 
 	unitLevel = 1;
+
+	Lists = {
+		&resourceBuildingsLevels,
+		&otherBuildingsLevels,
+		&resourcesPresent,
+		&troopsPresent,
+		&troopsInjured,
+		&troopsLost,
+		&initialStats };
+	troopLists = {
+		&troopsPresent,
+		&troopsInjured,
+		&troopsLost
+	};
+	listINt = {
+		&combatPower,
+		&totalTroops,
+		&foodConsumption,
+		&participantIndex,
+		&unitLevel,
+		&troopsTrainedThisTurn,
+		&overallIndex
+	};
 }
 
 std::pair<int, int> Provinces::translateToSystemCoords(std::pair<int, int> userCoordsArg) {

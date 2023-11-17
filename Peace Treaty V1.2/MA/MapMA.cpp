@@ -115,7 +115,7 @@ void Participants::selectPlayerProvince(Provinces *province) {
 		break;
 	}
 	case 'T': {
-		TrainMA newTrainMA;
+		this->TrainMAFunction();
 		break;
 	}
 	case 'M':
@@ -148,8 +148,7 @@ void Participants::selectEnemyProvince(Provinces* newP) {
 		break;
 	}
 	case 'S': {
-		ScoutMA newScout(participant, enemyProvince);
-		newScout.selectTarget();
+		this->selectTarget();
 		//selectEnemyProvince(enemyProvince);
 		break;
 	}

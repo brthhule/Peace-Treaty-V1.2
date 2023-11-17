@@ -11,7 +11,7 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Participants.h"
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\AllUnits.h"
 
-
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\AllUnits.h"
 #include "../Units/Misc/Input.h"
 #include "../Units/Misc/INF.h"
 
@@ -23,19 +23,19 @@ public:
 	typedef std::pair<commanderProfilePtrs, provincesPtrs> scoutTypes;
 
 	// Constructors
-	void mainScoutMA (Provinces* newProvince) = 0;
+	virtual void mainScoutMA (Provinces* newProvince) = 0;
 
 	// Functions
-	void playerScoutStepTwo(scoutTypes canScout) = 0;
+	virtual void playerScoutStepTwo(scoutTypes canScout) = 0;
 	scoutTypes selectTarget() = 0,
 
-	AllUnits
+	virtual AllUnits
 		*selectUnitToScout(scoutTypes canScout) = 0,
 		*selectUnitToScoutTwo(scoutTypes canScout) = 0;
 
 	scoutTypes getCanScout() = 0;
 
-	void
+	virtual void
 		scoutLogCalculationsProvince(int accuracy) = 0,
 		getCanScoutTwo(int targetX, int targetY, int a, int b, scoutTypes &canScout) = 0;
 

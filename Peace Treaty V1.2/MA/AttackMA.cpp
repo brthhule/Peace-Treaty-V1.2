@@ -5,8 +5,7 @@ AttackMA::AttackMA(Provinces* defendingProvinceArg, Participants* attackingParti
 	INF::debugFunction("AttackMA, AttackMA (2 Param)");
 
 	// Given a province to attack, see if you can attack with anything nearby
-	attackingParticipant = attackingParticipantArg;
-	defendingProvince = defendingProvinceArg;
+
 	std::pair<int, int> defenderSystemCoords = defendingProvince->getSystemCoords();
 
 	//Default
@@ -17,6 +16,7 @@ AttackMA::AttackMA(Provinces* defendingProvinceArg, Participants* attackingParti
 	attackingCommander = NULL;
 	attackingProvince = NULL;
 	//End Default
+
 
 	std::vector<Commanders*> commandersCanAttack;
 	std::vector<Provinces*> provincesCanAttack;
@@ -66,17 +66,6 @@ AttackMA::AttackMA(Provinces* defendingProvinceArg, Participants* attackingParti
 	
 	std::cout << "There are no armies available to attack the enemy. Please move an army unit to one of the provinces around the target. \n\n";
 	return;
-}
-
-AttackMA::AttackMA(Provinces* attackerProvinceArg, Provinces* defenderProvinceArg, Participants* attackingParticipantArg, Commanders* commanderArg) {
-	//For debugging
-	INF::debugFunction("AttackMA, AttackMA (4 Param)");
-	
-	attackingProvince = attackerProvinceArg;
-	defendingProvince = defenderProvinceArg;
-	attackingParticipant = attackingParticipantArg;
-	attackingCommander = commanderArg;
-	preAttack();
 }
 
 void AttackMA::findCommander(std::vector <Commanders*> commandersCanAttack) {
@@ -178,7 +167,7 @@ void AttackMA::calculateTroopsLost(Commanders* commander, int lostCombatPower, s
 
 	int troopPresent = commander->getTroop(REGULAR, troopIndex, INF::SINGLE)[0];
 
-	int troopCP = INF::TROOPS_CP[troopIndex];
+	int troopCP = INF::Troops_CP[troopIndex];
 
 	//If lostCP > 16
 	if (lostCombatPower - 16 > 0)
@@ -227,19 +216,19 @@ void AttackMA::battleCalculationsTwo(int& lostCombatPower, int troopsLost[5], in
 
 	int z = abs(4 - troopIndex);
 
-	for (int b = 0; b < INF::TROOPS_CP[z]; b++) {
+	for (int b = 0; b < INF::Troops_CP[z]; b++) {
 		if (attackingCommander->getTroop(REGULAR, 5, SINGLE)[0] > 0) {
-			b = INF::TROOPS_CP[z];
+			b = INF::Troops_CP[z];
 		}
 		else {
 			if (lostCombatPower > 0) {
-				lostCombatPower -= INF::TROOPS_CP[troopIndex];
+				lostCombatPower -= INF::Troops_CP[troopIndex];
 				troopsLost[troopIndex]++;
 				attackingCommander->mutateTroop(REGULAR, troopIndex, {1}, SINGLE, DECREASE);
 				attackingCommander->mutateTroop(LOST, troopIndex, {1}, SINGLE, INCREASE);
 			}
 			else
-				b = INF::TROOPS_CP[z];
+				b = INF::Troops_CP[z];
 		}
 	}
 }

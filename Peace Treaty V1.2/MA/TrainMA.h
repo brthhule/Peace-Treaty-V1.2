@@ -17,8 +17,6 @@
 #include "../Units/Misc/Input.h"
 #include "../Units/Misc/INF.h"
 
-extern Database db;
-
 using namespace INF;
 
 class TrainMA

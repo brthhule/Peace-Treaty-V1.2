@@ -5,9 +5,6 @@
 #include <string>
 #include <vector>
 
-//Warning: may cause circular dependency
-#include "../Units/Database.h"
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Participants.h"
 #include "../Units/Commanders.h"
 #include "../Units/Provinces.h"
 #include "../Units/AllUnits.h"
@@ -16,8 +13,6 @@
 #include "../Units/Misc/INF.h"
 
 using namespace INF;
-
-extern Database db;
 
 class AttackMA
 {

@@ -21,15 +21,15 @@
 #include <vector>
 
 
-#include "AllUnits.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\AllUnits.h"
 #include "C:\Users\Brennen\source\repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Commanders.h"
 #include "Map.h"
 #include "Provinces.h"
 
 #include "Misc/INF.h"
-#include "Misc/LinkedList.h"
-#include "Misc/INF.h"
 #include "CommandersAttributes/Mobility.h"
+
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\MA\AttackMA.h"
 #include "../MA/ArmyOverviewMA.h"
 #include "../MA/MapMA.h"
 #include "../PlayerAction.h"
@@ -58,7 +58,15 @@ Provinces* newProv;
 using namespace INF;
 
 
-class Participants : public Map, public Mobility, public ArmyOverviewMA, public TrainMA, public PlayerAction, public MapMA, public ScoutMA
+class Participants :
+	BASE_CLASS public Map,
+	BASE_CLASS public Mobility,
+	INTERFACE public ArmyOverviewMA,
+	INTERFACE public TrainMA,
+	INTERFACE public PlayerAction,
+	INTERFACE public MapMA,
+	INTERFACE public ScoutMA,
+	INTERFACE public AttackMA
 {
 public:
 	CONSTRUCTOR Participants();
@@ -76,10 +84,10 @@ public:
 	std::thread th1Method();
 	std::thread th2Method();
 
-	GETTER std::unordered_map<std::string, Commanders*> getCommandersMap() { return commandersMap; }
+	GETTER std::unordered_map<std::string, Commanders*> getCommandersMap();
 
 	BOOL
-		subtractCheckResources(std::string provinceName, std::array<int, 5> resourcesArray);
+		subtractCheckResources(String provinceName, i5array resourcesArray);
 
 	CHECK BOOL
 		hasProvince(std::string name),
@@ -158,7 +166,7 @@ public:
 		printCosts(std::vector<int>costs, std::string type),
 		armyDeploymentMF(),
 		trainCommanders(),
-		proceedWithTraining(std::array <int, 5> trainCosts),
+		proceedWithTraining(i5array trainCosts),
 		upgradeCommandersOne(),
 		upgradeCommandersTwo(),
 		viewArmyOverview(),
@@ -201,10 +209,17 @@ public:
 		Provinces* yourProvince, * targetProvince;
 		enum TargetTypes { PROVINCE, COMMANDER };
 	};
+	ScoutInfo scoutInfo;
+
 	void
 		playerScoutStepTwo(scoutTypes canScout),
 		scoutLogCalculationsProvince(int accuracy),
-		getCanScoutTwo(int targetX, int targetY, int a, int b, scoutTypes& canScout);
+		getCanScoutTwo(
+			int targetX, 
+			int targetY, 
+			int a, 
+			int b, 
+			scoutTypes& canScout);
 
 	AllUnits
 		* selectUnitToScout(scoutTypes canScout),
@@ -213,8 +228,27 @@ public:
 		selectTarget(), 
 		getCanScout();
 
-		
+	/////////AttackMA.h///////////////////
+	class AttackMAInfo {
+		AttackMAInfo(
+			Provinces* defendingProvinceArg,
+			Participants* attackingParticipantArg);
+		AttackMAInfo(
+			Provinces* attackerProvinceArg, 
+			Provinces* defenderProvinceArg, 
+			Participants* attackingParticipantArg, 
+			Commanders* commanderArg);
+
+		Provinces* defendingProvince;
+		Participants* attackingParticipant;
+		Provinces* attackerProvinceArg;
+		Participants* defenderParticipant;
+		Commanders* commander;
+	};
+	//////////End AttackMA.h//////////////
 private:
+	using CommandersPtrMap = std::unordered_map<std::string, Commanders*>;
+
 	i5array
 		trainCosts = { 5, 4, 3, 2, 1 },
 		troopsLost = { 0,0,0,0,0 };

@@ -5,7 +5,7 @@
 #include <vector>
 #include <iostream>
 #include <array>
-#include "Misc/INF.h"
+
 #include "Misc/INF.h"
 #include "AllUnitsAttributes/Coords.h"
 #include "AllUnitsAttributes/Troops.h"
@@ -45,7 +45,8 @@ public:
 
 		printResources(),
 		changeUnitName(std::string name),
-		changeParticipantIndex(int number);
+		changeParticipantIndex(int number),
+		printTroopsPresent();
 
 	std::array<int, 5> getAllResources();//Add implementation
 

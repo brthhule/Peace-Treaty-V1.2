@@ -76,15 +76,15 @@ void Participants::viewArmyOverview() {
 	//For debugging
 	INF::debugFunction("ArmyOverview, viewArmyOverview");
 
-	std::string commanderName = pickCommander();
+	Commanders* commander = pickCommander();
 
 	//Check that the user wants to proceed
-	if (commanderName != "-1") {
-		std::cout << "Commander " + commanderName + " selected... \n" +
+	if (commander != nullptr) {
+		std::cout << "Commander " + commander->getUnitName() +" selected... \n" +
 			"The coordinates of this Commander: ";
-		getCommander(commanderName)->printUserCoords();
+		commander->printUserCoords();
 		std::cout << "\n\n";
-		getCommander(commanderName)->printCommanderStats();
+		commander->printCommanderStats();
 	}
 	INF::enterAnything(1);
 }

@@ -38,9 +38,9 @@ public:
 		hasMoved();
 
 private:
-	INTEGER 
+	INTEGER
 		maxTroops,
-		totalMaxResources, 
+		totalMaxResources;
 
 	bool moved;
 

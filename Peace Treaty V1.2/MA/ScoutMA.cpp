@@ -145,7 +145,7 @@ void Participants::getCanScoutTwo(int targetX, int targetY, int a, int b, ScoutM
 	}
 
 	typedef std::unordered_map<std::string, Commanders
-	std::unordered_map<std::string, Commanders*> newMap = participant->getCommandersMap();
+	std::unordered_map<std::string, Commanders*> newMap = this->getCommandersMap();
 	std::unordered_map<std::string, Commanders*>::iterator it;
 	for (it = newMap.begin(); it != newMap.end(); it++)
 	{

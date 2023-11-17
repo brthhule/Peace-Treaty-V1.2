@@ -102,7 +102,7 @@ namespace INF {
 
 	bool debuggingMode = true;
 
-	/// //////////////////////////////////////////////////////End Variables///////////////////////////////////////////
+	//////////////////////////////////////End Variables////////////////////////
 
 	int INF::getStringIndex(std::string arg) {
 		//For debugging
@@ -123,7 +123,11 @@ namespace INF {
 		INF::debugFunction("CV, addColor");
 
 
-		/*The color definition is a series of numbers, separated by semicolons. In order to make the text color red (number 31), you can write "\033[31m" which will make any following output red. If you want yellow text (33) on blue background (44), you write "\033[31;44m". To reset everything back to the default colors, you write "\033[0m".
+		/*The color definition is a series of numbers, separated by semicolons.
+		In order to make the text color red (number 31), you can write 
+		"\033[31m" which will make any following output red. If you want yellow
+		text (33) on blue background (44), you write "\033[31;44m". To reset 
+		everything back to the default colors, you write "\033[0m".
 
 		foreground background
 		black        30         40
@@ -224,7 +228,9 @@ namespace INF {
 		return PROMPTS(INF::getStringIndex(arg));
 	}
 
-	std::array<int, 5> INF::modifyArray(std::array<int, 5> primeArray, std::array<int, 5> secondaryArray, bool isAdd) {
+	std::array<int, 5> INF::modifyArray(i5array primeArray, 
+										i5array secondaryArray, 
+										bool isAdd) {
 		//For debugging
 		debugFunction("OF, modifyArray");
 
@@ -240,19 +246,19 @@ namespace INF {
 	INF::myvector<int>::myvector(std::vector<int> vectorArg) {
 		vector(vectorArg.begin(), vectorArg.end());
 	}
-	void INF::myvector<int>::addVectorElements(INF::myvector<int> vectorInstance) {
+	void INF::myvectorI::addVectorElements(INF::myvectorI vectorInstance) {
 		for (int x = 0; x < (int) this->size(); x++) {
 			at(x) += vectorInstance.at(x);
 		}
 	}
 
-	void INF::myarray<std::array<int,5>>::createArray(std::array<int, 5> arrayArg) {
+	void INF::myarray<i5array>::createArray(i5array arrayArg) {
 		for (int x = 0; x < 5; x++) {
 			this->at(x) = arrayArg.at(x);
 		}
 	}
 
-	void INF::myarray<std::array<int,5>>::addArrayElements(INF::myarray<std::array<int,5>> arrayArg) {
+	void INF::myarrayI5A::addArrayElements(INF::myarrayI5A arrayArg) {
 		for (int x = 0; x < 5; x++) {
 			at(x) += arrayArg[x];
 		}
@@ -297,7 +303,8 @@ void INF::enterAnything(int option) {
 	}
 	debugFunction("OtherFunctions, enterAnything");
 	std::string emptyString = " ";
-	std::cout << "Enter anything to " << line << " (screen will clear): " << INF::getColor(BLUE);
+	std::cout << "Enter anything to " << line +
+		" (screen will clear): " << INF::getColor(BLUE);
 	getline(std::cin, emptyString);
 	INF::addColor(BLUE);
 }
@@ -325,7 +332,8 @@ void INF::debugFunction(std::string functionName) {
 */
 
 
-//Returns that help prompt that correlates with the specified numerical identifier (caseNum)
+/*Returns help prompt that correlates with the specified numerical 
+identifier(caseNum)*/
 void INF::showHelp(int caseNum) {
 	//For debugging
 	INF::debugFunction("OF, showHelp");

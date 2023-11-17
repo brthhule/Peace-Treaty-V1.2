@@ -39,7 +39,9 @@ void Commanders::printCommanderStats() {
 	this->printResources();
 
 	std::cout << statsOne.at(0) << std::endl;
-	this->printTroopsPresent
+	this->printTroopsPresent();
+
+	//Continue implementing here
 	INF::addColor(INF::RESET);
 }
 

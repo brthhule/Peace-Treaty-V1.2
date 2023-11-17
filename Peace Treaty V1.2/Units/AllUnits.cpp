@@ -36,7 +36,12 @@ AllUnits::AllUnits() {
 };
 
 
-
+void AllUnits::printTroopsPresent() {
+	i5array troopsPresent = this->getGenericTroops(REGULAR);
+	for (int x = 0; x < 5; x++) {
+		std::cout << TROOP_NAMES.at(x) << ": " << troopsPresent.at(x) << std::endl;
+	}
+}
 
 int AllUnits::getCP() {
 	//For debugging

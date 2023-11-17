@@ -177,10 +177,7 @@ void gamePlay() {
 		if (newParticipant.isAlive())
 		{
 			try {
-				//Create new PlayerAction object
-				PlayerAction newPlayerAction;
-				//Run through PlayerAction
-				newPlayerAction.initialDecision();
+				newParticipant->initialDecision();
 			} catch (...) {
 				std::cout << "Something went wrong, error occurred. Restarting player turn.";
 				x--;

@@ -98,31 +98,12 @@ protected:
 	enum REPORT {REPORT_TURN, REPORT_LOG};
 	
 private:
-	std::array<std::array<int, 5>*, 12> Lists = {
-		&resourceBuildingsLevels, 
-		&otherBuildingsLevels,
-		&resourcesPresent,
-		&troopsPresent, 
-		&troopsInjured, 
-		&troopsLost,
-		&initialStats,
-		&allGuards,
-		&allInfantry,
-		&allArchers,
-		&allCavalry,
-		&allArtillary
-	};
+	std::array<std::array<int, 5>*, 7> Lists;
+
+	std::array<std::array<i5array, 5>, 3> troopsLists;
 
 	//Have to derive unitLevel
-	std::array<int*, 7> listInt = {
-		&combatPower, 
-		&totalTroops,
-		&foodConsumption, 
-		&participantIndex, 
-		&unitLevel, 
-		&troopsTrainedThisTurn, 
-		&overallIndex
-	};
+	std::array<int*, 7> listInt;
 
 	std::array<bool*, 2> listBool = {
 		&canSelectThisUnit, 

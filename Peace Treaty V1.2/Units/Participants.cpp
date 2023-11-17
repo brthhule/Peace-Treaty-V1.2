@@ -61,9 +61,9 @@ Provinces* Participants::getCapitalProvince() {
 	return capitalProvince; 
 }
 
-Provinces* Participants::pickProvince(1)(std::pair<int, int> userCoords) {
+Provinces* Participants::getProvince(1)(std::pair<int, int> userCoords) {
 	//For debugging
-	INF::debugFunction("Participants, pickProvince(1)");
+	INF::debugFunction("Participants, getProvince");
 	
 	for (Provinces* province : provincesVector) {
 		if (province->getUserCoords() == userCoords) {
@@ -81,6 +81,7 @@ int Participants::getProvincesNum() {
 
 	return (int) provincesVector.size(); 
 }
+
 int Participants::getCommandersNum() { 
 	//For debugging
 	INF::debugFunction("Participants, getCommandersNum");
@@ -380,45 +381,32 @@ std::array<int, 5> Participants::calculateEach(int option)
 	INF::debugFunction("Participants, calculateEach");
 
 	std::array<int, 5> returnArray = { 0, 0, 0, 0, 0 };
-	//Go through all commanders at this province
-	for (it = commandersMap.begin(); it != commandersMap.end(); it++)
-	{
-		Commanders* newCommander = it->second;
-		switch (option)
-		{
-		case 1://Calculate each Unit
-			returnArray = INF::modifyArray(returnArray, newCommander->getTroop(REGULAR, NULL, ALL), true);
-			break;
-		case 2://Calculate each resource
-			returnArray = INF::modifyArray(returnArray, newCommander->getAllResources(), true);
-			break;
-		case 3://calculate each troop lost
-			returnArray = INF::modifyArray(returnArray, newCommander->getTroop(LOST, NULL, ALL), true);
-			break;
-		default:
-			break;
-			//do nothing
-		}
-		delete newCommander;
-	}
 
-	for (Provinces* newProvince : provincesVector)
-	{
-		switch (option)
-		{
-		case 1://Calculate each Unit
-			returnArray = INF::modifyArray(returnArray, newProvince->getTroop(REGULAR, NULL, ALL), true);
-			break;
-		case 2://Calculate each resource
-			returnArray = INF::modifyArray(returnArray, newProvince->getAllResources(), true);
-			break;
-		case 3://calculate each troop lost
-			returnArray = INF::modifyArray(returnArray, newProvince->getTroop(LOST, NULL, ALL), true);
-			break;
-		default:
-			break;
+	std::array<std::vector<AllUnits>, 2> provincesCommandersArray = {
+		provincesVector,
+		commandersVector
+	};
+
+	//Iterate through all Provinces and Commanders
+	for (std::vector<AllUnits> tempVector : provincesCommandersArray) {
+		for (AllUnits unit : tempVector) {
+			i5array modifyArrayAmount;
+			switch (option) {
+				case 1://Calculate each Unit
+					modifyArrayAmount = unit.getGenericTroops(REGULAR);
+					break;
+				case 2://Calculate each resource
+					modifyArrayAmount = unit.getAllResources();
+					break;
+				case 3://calculate each troop lost
+					modifyArrayAmount = unit.getGenericTroops(LOST);
+					break;
+			}
+
+			returnArray = modifyArray(returnArray, modifyArrayAmount, true);
 		}
 	}
+	
 	return returnArray;
 }
 
@@ -432,10 +420,13 @@ void Participants::showMapOld() {
 	int foo = INF::continentSize;
 	for (int x = 0; x < INF::continentSize; x++) {
 		// Y axis stuff
-		if (foo < 10)
+		if (foo < 10) {
 			std::cout << " " << foo << "| ";
-		else
+		}
+		else {
 			std::cout << foo << "| ";
+		}
+			
 
 		foo--;
 		// End y axis stuff
@@ -444,7 +435,7 @@ void Participants::showMapOld() {
 			char letter = ' '; // Fix this later
 			Provinces* mapProvince = getSystemProvince({x,y});
 
-			if (mapProvince->getParticipantIndex() == participantIndex){
+			if (mapProvince->getParticipantIndex() == participantIndex) {
 				std::cout << BLUE;
 				if (mapProvince->isCapital() == true) {
 					letter = 'C';
@@ -454,13 +445,14 @@ void Participants::showMapOld() {
 				}
 					
 			}
-			else if (mapProvince->getParticipantIndex() != -1)
-			{
-				std::cout << RED;
-				if (getSystemProvince({x, y})->isCapital() == true)
+			else if (mapProvince->getParticipantIndex() != -1) {
+				addColor(RED);
+				if (getSystemProvince({ x, y })->isCapital() == true) {
 					letter = 'C';
-				else
+				}
+				else {
 					letter = 'p';
+				}
 			}
 			else {
 				letter = '0';
@@ -488,15 +480,16 @@ void Participants::showMapOld() {
 	std::cout << "\n\n";
 }
 
-void Participants::scoutProvince(Provinces* targetProvince, int accuracy) /*Add implementation later*/
+/*Add implementation later*/
+void Participants::scoutProvince(Provinces* targetProvince, int accuracy) 
 {
 	//For debugging
 	INF::debugFunction("Participants, scoutProvince");
 
 }
 
-bool Participants::subtractCheckResources(std::string provinceName, std::array<int, 5> resourcesArray)
-{
+bool Participants::subtractCheckResources(String provinceName, 
+										i5array resourcesArray) {
 	//For debugging
 	INF::debugFunction("Participants, subtractCheckResources");
 
@@ -550,14 +543,18 @@ Commanders *Participants::pickCommander() {
 
 	this->displayCommanders();
 	std::string name = " ";
-	println("Enter the name of the commander you wish to select (Enter -1 to cancel selection): ");
+	println("Enter the name of the commander you wish to select " + 
+		"(Enter - 1 to cancel selection) : ");
+
 	getline(std::cin, name);
 
 	if (hasCommander(name)) {
 		std::cout << "Commander " << name << " selected...\n";
 		return commandersMap.at(name);
 	} else if (name != "-1") {
-		println("Invalid name entered. Please try again... (Enter any character to continue)");
+		println("Invalid name entered. Please try again... " + 
+			"(Enter any character to continue)");
+
 		INF::enterAnything(1);
 		pickCommander();
 	}
@@ -572,9 +569,9 @@ void Participants::displayCommanders() {
 	INF::debugFunction("Participants, displayCommanders");
 
 	std::cout << "Here is list of your commanders: \n";
-	std::unordered_map<std::string, Commanders*> commandersMap = getCommandersMap();
-	std::unordered_map<std::string, Commanders*>::iterator it;
-	commandersMap.
+	CommandersPtrMap commandersMap = getCommandersMap();
+	CommandersPtrMap::iterator it;
+
 	for (it = commandersMap.begin(); it != commandersMap.end(); it++) {
 		Commanders* tempCommander = it->second;
 		std::cout << "- Commander " << tempCommander->getUnitName() + 
@@ -613,7 +610,8 @@ Provinces* Participants::pickProvince(int phrase) {
 		printListOfProvinces();
 	}
 
-	std::string xCoordPrompt = "Enter the x coordinate " + phrases.at(phrase - 1) +
+	std::string xCoordPrompt = 
+		"Enter the x coordinate " + phrases.at(phrase - 1) +
 		" (Enter '-1' to go back to previous menu): ";
 	std::string yCoordPrompt = xCoordPrompt;
 	yCoordPrompt.at(10) = 'y';
@@ -654,7 +652,10 @@ bool Participants::hasUnit(std::string unitName) {
 }
 
 bool Participants::hasUnit(AllUnits unit) {
-	for (commIt = commandersMap.begin(); commIt != commandersMap.end(); commIt++) {
+	for (commIt = commandersMap.begin(); 
+		commIt != commandersMap.end(); 
+		commIt++) {
+
 		Commanders* commander = commIt->second();
 		if (&commander == unit) {
 			return true;
@@ -781,7 +782,9 @@ std::pair<int, int> Participants::pickCoords() {
 		xCoordinate = std::stoi(xCoordinateString),
 		yCoordinate = std::stoi(yCoordinateString);
 
-	if (xCoordinate > 0 && xCoordinate <= INF::continentSize && yCoordinate > 0 && yCoordinate <= INF::continentSize) {
+	bool xCoordCondition = xCoordinate > 0 && xCoordinate <= INF::continentSize;
+	bool yCoordCondition = yCoordinate > 0 && yCoordinate <= INF::continentSize;
+	if (xCoordCondition && yCoordCondition) {
 		return { xCoordinate, yCoordinate };
 	}
 
@@ -795,3 +798,24 @@ std::pair<int, int> Participants::pickCoords() {
 	return tempPair;
 }
 
+std::unordered_map<std::string, Commanders*> Participants::getCommandersMap() {
+	return commandersMap;
+}
+
+Participants::AttackMAInfo::AttackMAInfo(Provinces* defendingProvinceArg, Participants* attackingParticipantArg) {
+	INF::debugFunction("Participants, AttackMAInfo");
+
+	AttackMAInfo::attackingParticipantArg = attackingParticipantArg;
+	AttackMAInfo::defendingProvince = defendingProvinceArg;
+}
+
+Participants::AttackMAInfo::AttackMAInfo(Provinces* attackerProvinceArg, Provinces* defenderProvinceArg, Participants* attackingParticipantArg, Commanders* commanderArg) {
+	//For debugging
+	INF::debugFunction("AttackMA, AttackMA (4 Param)");
+
+	attackingProvince = attackerProvinceArg;
+	defendingProvince = defenderProvinceArg;
+	attackingParticipant = attackingParticipantArg;
+	attackingCommander = commanderArg;
+	preAttack();
+}

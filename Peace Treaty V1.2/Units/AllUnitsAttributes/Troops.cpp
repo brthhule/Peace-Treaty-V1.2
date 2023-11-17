@@ -7,15 +7,16 @@ Troops::Troops() {
 	//Empty
 }
 
-std::array<int, 5> Troops::getAllOneTroop(INF::TroopCondition troopCondition, INF::TroopTypes type) {
+std::array<int, 5> Troops::getAllOneTroopArray(INF::TroopCondition troopCondition, INF::TroopTypes type) {
 	//For debugging
-	INF::debugFunction("Troops, getAllOneTroop");
+	INF::debugFunction("Troops, getAllOneTroopArray");
 
 	return allTroopConditions.at(troopCondition.at(type));
 }
 
-int Troops::getAllOneTroop(INF::TroopCondition troopCondition, INF::TroopTypes type) {
-	i5array tempArray = getAllOneTroop(troopCondition, type);
+int Troops::getAllOneTroopInt(INF::TroopCondition troopCondition, INF::TroopTypes type) {
+	i5array tempArray = getAllOneTroopArray(troopCondition, type);
+	INF::debugFunction("Troops, getAllOneTroopInt");
 
 	int total = 0;
 	for (int x : tempArray) {
@@ -30,7 +31,7 @@ i5array Troops::getGenericTroops(TroopCondition troopCondition) {
 
 	for (int x = 0; x < 5; x++) {
 		TroopTypes troopType = (TroopTypes)x;
-		troopTotals.at(x) = Troops::getAllOneTroop(troopCondition, troopType);
+		troopTotals.at(x) = Troops::getAllOneTroopInt(troopCondition, troopType);
 	}
 
 	return troopTotals;
