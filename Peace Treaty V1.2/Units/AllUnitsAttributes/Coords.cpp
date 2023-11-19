@@ -57,15 +57,21 @@ void Coords::setCoords(ipair systemCoords, ipair userCoords) {
 	this->userCoords = userCoords;
 }
 
-//Gets user coords, translates them to system coords
-ipair Coords::translateToSystemCoords(ipair userCoordsArg) {
+//Translate coords of currentType to other type
+ipair Coords::translateCoords(ipair coords, CoordsType currentType) {
 	//For debugging
-	INF::debugFunction("Coords, translateToSystemCoords");
+	INF::debugFunction("Coords, translateCoords");
 
-	ipair returnSystemCoords;
-	//Add implementation here
+	int index = coordsToIndex(coords, currentType);
 
-	return returnSystemCoords;
+	switch (currentType) {
+		case SYSTEM:
+			return indexToCoords(index, USER);
+		case USER:
+		default:
+			return indexToCoords(index, SYSTEM);
+	}
+	
 }
 
 std::string Coords::getUserCoordsString() {
@@ -80,4 +86,31 @@ std::string Coords::getSystemCoordsString() {
 	INF::debugFunction("Coords, getSystemCoordsString");
 
 	return "(" + std::to_string(systemCoords.first) + ", " + std::to_string(systemCoords.second) + ")";
+}
+
+ipair Coords::indexToCoords(int index, CoordsType type) {
+	INF::debugFunction("Coords, indexToCoords");
+	switch (type) {
+		case SYSTEM:
+			int row = index / continentSize;
+			int col = index % continentSize;
+			return std::make_pair(row, col);
+		case USER:
+		default:
+			int x = (index % continentSize) + 1;
+			int y = continentSize - (index / continentSize);
+			return std::make_pair(x, y);
+	}
+}
+
+int Coords::coordsToIndex(ipair coords, CoordsType type) {
+	INF::debugFunction("Coords, coordsToIndex");
+	switch (type) {
+		case SYSTEM:
+			return (coords.first * continentSize) + coords.second;
+		case USER:
+		default:
+			return (continentSize * (continentSize - coords.second)) +
+				(coords.first-1)
+	}
 }

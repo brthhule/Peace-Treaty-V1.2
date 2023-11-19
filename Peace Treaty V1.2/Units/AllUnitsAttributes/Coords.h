@@ -21,13 +21,16 @@ public:
 		printCoords(CoordsType type);
 
 	ipair
-		getCoords(CoordsType type);
+		getCoords(CoordsType type),
+		indexToCoords(int index, CoordsType type),
+		translateCoords(ipair coords, CoordsType currentType);
+
+	int coordsToIndex(ipair coords, CoordsType type);
 
 	String
 		getSystemCoordsString(),
 		getUserCoordsString();
 
-	ipair translateToSystemCoords(ipair userCoordsArg);
 
 protected:
 	ipair
