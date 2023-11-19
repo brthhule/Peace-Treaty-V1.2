@@ -8,14 +8,14 @@ Game experience:
 - Users can choose from a variety of options such as building infrastructure, developing armies, training troops, and attacking others
 - Users expand across the map and may attak or develop diplomatic relations with other users/bots
 - Win conditions:
-    a) Defeat all other kingdoms (a kingdom dies when it has no provinces and no commanders)
-    b) Make peace with all other kingdoms (establish diplomatic superiority)
-    c) Defeat some kingdoms and make peace with all others (mixed approach)
+-     a) Defeat all other kingdoms (a kingdom dies when it has no provinces and no commanders)
+-     b) Make peace with all other kingdoms (establish diplomatic superiority)
+-     c) Defeat some kingdoms and make peace with all others (mixed approach)
 - Attack functionaltiy: Train commanders (in charge of armies) and troops (basic army units) and use them to attack/defend provinces
 - Diplomacy functionality: Defend other players' provinces with your troops, develop alliances, send resources, and send workers to help develop infrastruture in other kingdoms
-    a) The more involved with other kingdoms, the more diplomatic influence you have over them. If 50% + 1 of something came from you, you have diplomatic superiority over that kingdom
-    b) Example 1 - If a kingdom has 10 commanders and 1 or 5 were sent by you, you have diplomatic influence over them
-    c) Example 2 - If a kingdom has 10 commanders and 6 or more were sent by you, you have diplomatic influence
+-     a) The more involved with other kingdoms, the more diplomatic influence you have over them. If 50% + 1 of something came from you, you have diplomatic superiority over that kingdom
+-     b) Example 1 - If a kingdom has 10 commanders and 1 or 5 were sent by you, you have diplomatic influence over them
+-     c) Example 2 - If a kingdom has 10 commanders and 6 or more were sent by you, you have diplomatic influence
   
 Graphics:
 This is a console application and uses text for all game prompts and input.
