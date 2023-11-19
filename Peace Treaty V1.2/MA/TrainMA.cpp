@@ -10,10 +10,10 @@ void Participants::TrainMAFunction() {
 
     int barracksLevel = capitalProvince->getBuildingLevel(OTHER, BARRACKS, SINGLE)[0];
     std::cout << "Start printing province barracks information: \033[34m\n";
-    std::cout << "Province of kingdom " << participant->getKingdomName() << " selected\n";
+    std::cout << "Province of kingdom " << this->getKingdomName() << " selected\n";
 
     std::cout << "Coordinates: " +
-        participant->getCapitalProvince()->getUserCoordsString() + "\n\nThe barracks level of this province: " + 
+        capitalProvince->getUserCoordsString() + "\n\nThe barracks level of this province: " + 
           std::to_string(barracksLevel) + "\n";
 
     int troopTier = barracksLevel / 5;

@@ -36,29 +36,27 @@ public:
 	
 
 
-	int
-		getCP(),
-		getParticipantIndex(),
-		getLevel(),
-		getFoodConsumption(),
-		getResource(int resourceIndex);
+	int getCP();
+	int getParticipantIndex();
+	int getLevel();
+	int getFoodConsumption();
+	int getResource(int resourceIndex);
 
 
 	//resources
-	void
-		modifySpecificResource(int index, int amount, bool isAdd),
-		modifyResources(std::array<int, 5> resourcesArray, bool isAdd),
+	void modifySpecificResource(int index, int amount, bool isAdd);
+	void modifyResources(i5array resourcesArray, bool isAdd);
 
-		printResources(),
-		changeUnitName(std::string name),
-		changeParticipantIndex(int number),
-		printTroopsPresent();
+	void printResources();
+	void changeUnitName(std::string name);
+	void changeParticipantIndex(int number);
+	void printTroopsPresent();
 
 	i5array getAllResources();//Add implementation
 
 
 	std::string getUnitName();
-	void printResources(std::array<int, 5> resourcesArray);
+	void printResources(i5array resourcesArray);
 
 	/*Return all the tiers for one troop type for a particular condition
 	Example: returns all tiers for guards present*/
@@ -83,23 +81,22 @@ public:
 	void mutateTroop(
 		INF::TroopCondition troopCondition,
 		TroopTypes troopType,
-		std::array<int, 5> amount,
+		i5array amount,
 		Quantity quant,
 		INF::MutateDirection direction,
 		int troopTier);
 
-	void setBattleFormation(std::array<);
+	void setBattleFormation(troopConditionArray troopArray);
 
 protected:
 	i5array resourcesPresent;
 	i5array initialStats;
 
-	int
-		combatPower,
-		totalTroops,
-		foodConsumption,
-		participantIndex,
-		unitLevel;
+	int combatPower;
+	int totalTroops;
+	int foodConsumption;
+	int participantIndex;
+	int unitLevel;
 
 	
 	troopConditionArray troopsPresent;

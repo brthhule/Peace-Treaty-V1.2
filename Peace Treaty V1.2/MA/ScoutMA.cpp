@@ -2,30 +2,39 @@
 #define print(x) std::cout << x;
 #define println(x) std::cout << x << std::endl;
 
-Participants::ScoutInfo::ScoutInfo(Provinces* newProvince) {
-	Participants::ScoutInfo::participant = this;
-	Participants::ScoutInfo::targetParticipant = NULL;
-	Participants::ScoutInfo::yourProvince = newProvince;
-	Participants::ScoutInfo::targetProvince = NULL;
-}
+
 /*Constructor*/
-Participants::mainScoutMA() {
+Participants::mainScoutMA(Provinces* provinceArg) {
 	//For debugging
 	INF::debugFunction("ScoutMA, mainScoutmA");
+
+	Provinces* yourProvince = provinceArg;
+	Provinces* targetProvince = this->pickProvince(1);
+	
 	ScoutMA::scoutTypes canScout = selectTarget();
-	if (canScout != NULL) {
-		playerScoutStepTwo(canScout);
+	AllUnits scoutUnit = nullptr;
+	int accuracy = 0;
+	if (canScout != nullptr) {
+		std::pair<AllUnits, int> tempPair = playerScoutStepTwo(canScout);
+		scoutUnit = tempPair.first;
+		accuracy = tempPair.second;
 	}
+
+	std::pair<int, int> scoutUnitSystemCoords = scoutUnit->getCords(Coords::SYSTEM);
+
+	scoutProvince(getSystemProvince(scoutUnitSystemCoords, accuracy);
+
+	INF::enterAnything(1);
 }
 
 /*Selects a target to scout*/
-ScoutMA::scoutTypes Participants::selectTarget()
+ScoutMA::scoutTypes Participants::selectTarget(Provinces* targetProvince)
 {
 	//For debugging
 	INF::debugFunction("ScoutMA, selectTarget");
 
 	//The participant selects a province
-	ScoutInfo::targetProvince = this->pickProvince(1);
+	
 
 	//Make sure the province being scouted is not the current participant's 
 	if (this->hasProvince(targetProvince)) {
@@ -54,7 +63,7 @@ ScoutMA::scoutTypes Participants::selectTarget()
 
 
 // Finish this later
-void Participants::playerScoutStepTwo(scoutTypes canScout) 
+AllUnits Participants::playerScoutStepTwo(scoutTypes canScout, Provinces* targetProvince) 
 {
 	//For debugging
 	INF::debugFunction("ScoutMA, playerScoutStepTwo");
@@ -62,7 +71,15 @@ void Participants::playerScoutStepTwo(scoutTypes canScout)
 	int accuracy = 0;
 	std::vector<int> unitsCanScoutWith;
 
-	int enemyLevel = ScoutInfo::targetParticipant->getLevel();//Fix this later
+	Participants* targetParticipant = nullptr;
+	int index = targetProvince->getParticipantIndex();
+	if (index >= 0) {
+		targetParticipant = playersList.at(index);
+	} else {
+		targetParticipant = botsList.at(index);
+	}
+
+	int enemyLevel = targetParticipant->getLevel();//Fix this later
 
 
 	std::cout << "You have " << canScout.second.size() << " provinces and " << canScout.first.size() << "armies next to the target. Below is a list of units that can scout the target.";
@@ -71,15 +88,13 @@ void Participants::playerScoutStepTwo(scoutTypes canScout)
 	std::pair<int, int> systemCoords;
 
 	AllUnits *unit = selectUnitToScout(canScout);
-	Participants* tempParticipant = new Participants();
-	Provinces *tempProvince = new Provinces;
-	std::cout << "Proceed scout action with unit at " << tempParticipant->getSystemProvince(unit->getCoords(SYSTEM)) << "? (Y/N) ";
-	delete tempParticipant;
+
+
+	std::cout << "Proceed scout action with unit at " << tempParticipant->getSystemProvince(unit->getCoords(Coords::SYSTEM)) << "? (Y/N) ";
 
 	char proceedWithScoutChar = Input::getInputText("", { "Y", "N" }).at(0);
 
-	if (proceedWithScoutChar == 'Y')
-	{
+	if (proceedWithScoutChar == 'Y'){
 		int accuracy = 50;
 		int unitLevel = unit->getLevel();
 
@@ -99,9 +114,7 @@ void Participants::playerScoutStepTwo(scoutTypes canScout)
 		accuracy = 0;
 	}
 
-	this->scoutProvince(this->getSystemProvince(unit->getCoords(SYSTEM)), accuracy);
-
-	INF::enterAnything(1);
+	return std::make_pair(unit, accuracy);
 }
 
 ScoutMA::scoutTypes Participants::getCanScout()
@@ -144,17 +157,16 @@ void Participants::getCanScoutTwo(int targetX, int targetY, int a, int b, ScoutM
 		canScout.second.push_back(newProvince);
 	}
 
-	typedef std::unordered_map<std::string, Commanders
-	std::unordered_map<std::string, Commanders*> newMap = this->getCommandersMap();
-	std::unordered_map<std::string, Commanders*>::iterator it;
-	for (it = newMap.begin(); it != newMap.end(); it++)
-	{
+	typedef std::unordered_map<std::string, Commanders*> commandersPtrMap;
+	commandersPtrMap newMap = this->getCommandersMap();
+	commandersPtrMap::iterator it;
+	for (it = newMap.begin(); it != newMap.end(); it++){
 		if (it->second->getCoords(USER) == newProvince->getCoords(USER))
 			canScout.first.push_back(it->second);
 	}
 
 	for (Commanders c : commandersVector) {
-		if ()
+		//Add implementation
 	}
 	
 }
@@ -218,3 +230,9 @@ AllUnits * Participants::selectUnitToScoutTwo(ScoutMA::scoutTypes canScout)
 }
 
 
+/*Add implementation later*/
+void Participants::scoutProvince(Provinces* targetProvince, int accuracy) {
+	//For debugging
+	INF::debugFunction("Participants, scoutProvince");
+
+}

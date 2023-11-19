@@ -17,8 +17,6 @@
 
 //constexpr int size = 10; // modern C++ same thing as #define SIZE 10
 
-
-
 //Clase for an object that contians everything in the system/game
 //Purpose: from now on, create 
 class Database
@@ -27,12 +25,12 @@ public:
 	//Constructor
 	Database();
 
-	void createMap(),
-		initializeParticipants(int totalPlayers, int humanPlayers),
-		updateTurnResources(),
-		setMaxCommanders(int num),
-		setCurrentParticipant(Participants* p),
-		createCapitals();
+	void createMap();
+	void initializeParticipants(int totalPlayers, int humanPlayers);
+	void updateTurnResources();
+	void setMaxCommanders(int num);
+	void setCurrentParticipant(Participants* p);
+	void createCapitals();
 
 	
 	std::vector<Participants>* getParticipantsList();

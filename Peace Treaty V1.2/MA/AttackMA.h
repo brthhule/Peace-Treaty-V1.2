@@ -17,39 +17,20 @@ using namespace INF;
 class AttackMA
 {
 public:
-	//constructor
-	AttackMA(Provinces *defendingProvinceArg, Participants* attackingParticipantArg);
-	AttackMA(Provinces* attackerProvinceArg, Provinces* defenderProvinceArg, Participants * attackingParticipantArg, Commanders* commanderArg);
+	virtual Commanders* pickCommanderAttack(std::vector<Commanders*> commandersCanAttack) = 0;
 
-	Commanders* pickCommanderAttack(std::vector<Commanders*> commandersCanAttack) = 0;
-	void virtual
-		mainAttackMA(Provinces* defendingProvince, Commanders* attackingCommander) = 0,
-		
-		printResourcesGained(),
-		determineLostCP(int attackerCP, int defendingCP, int& attackerLostCP, int& defenderLostCP),
-		
-		playerCommitAttack(Provinces* defendingProvince,  Commanders* attackingCommander),
-		
-		calculateTroopsLost(Commanders* commander, int lostCombatPower, std::array<int,5> &troopsLost, int troopIndex),
-		battleCalculationsTwo(int& lostCombatPower, int troopsLost[5], int troopIndex),
-		casualtyReport(std::array<int,5> troopsLost, std::array<int,5> injuredTroops);
+	virtual void mainAttackMA(Provinces* defendingProvince, Commanders* attackingCommander) = 0;
+
+	virtual void printResourcesGained() = 0;
+	virtual void determineLostCP(int attackerCP, int defendingCP, int& attackerLostCP, int& defenderLostCP) = 0;
+
+	virtual void playerCommitAttack(Provinces * defendingProvince, Commanders * attackingCommander) = 0;
+
+	virtual void calculateTroopsLost(Commanders * commander, int lostCombatPower, std::array<int, 5> &troopsLost, int troopIndex) = 0;
+	virtual void battleCalculationsTwo(int& lostCombatPower, int troopsLost[5], int troopIndex) = 0;
+	virtual void casualtyReport(std::array<int, 5> troopsLost, std::array<int, 5> injuredTroops) = 0;
 
 	virtual std::vector<Commanders*> getCommandersCanAttack(std::pair<int, int> defenderSystemCoords) = 0;
-private:
-	Provinces 
-		*attackingProvince, 
-		*defendingProvince;
-
-	//Player
-	Participants* attackingParticipant;
-	//Enemy
-	Participants* defendingParticipant;
-
-
-	Commanders * attackingCommander;
-	std::vector <Commanders*> defendingCommanders;
-	bool defenseCanRetreat;
-	std::array<int,5> oldResources;
 };
 
 #endif

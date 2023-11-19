@@ -57,7 +57,7 @@
 Provinces* newProv;
 using namespace INF;
 
-
+//Players
 class Participants :
 	BASE_CLASS public Map,
 	BASE_CLASS public Mobility,
@@ -69,7 +69,8 @@ class Participants :
 	INTERFACE public AttackMA
 {
 public:
-	static std::vector<Participants*> participantsList;
+	static std::vector<Participants*> playersList;
+	static std::vector<Participants*> botsList;
 	CONSTRUCTOR Participants();
 	CONSTRUCTOR Participants(int pIndex);
 	
@@ -134,51 +135,47 @@ public:
 
 	Commanders *pickCommander();
 
-	VOID
-		setCapital(Provinces* newProvince),
-		showMapOld(),
+	VOID setCapital(Provinces* newProvince);
+	VOID showMapOld();
 
-		addCommander(),
-		addProvince(Provinces* newProvince),
-		printListOfProvinces(),
+	VOID addCommander();
+	VOID addProvince(Provinces* newProvince);
+	VOID printListOfProvinces();
 
-		createAsPlayer(bool status),
-		setPlayerStatus(bool status),
-		viewAllStatsFunction(),
-		viewStats(),
-		scoutProvince(Provinces* targetProvince, int accuracy),
-		displayCommanders(),
-		initialCapRSS(),
+	VOID createAsPlayer(bool status);
+	VOID viewAllStatsFunction();
+	VOID viewStats();
+	VOID scoutProvince(Provinces* targetProvince, int accuracy);
+	VOID displayCommanders();
+	VOID initialCapRSS();
 
-		setParticipantIndex(int num),
-		setKingdomName(std::string newName),
-		showMap(),
+	VOID setParticipantIndex(int num);
+	VOID setKingdomName(std::string newName);
+	VOID showMap();
 
-		getAllUnitsArrayCommanders(),
-		getAllUnitsArrayProvinces(),
+	VOID getAllUnitsArrayCommanders();
+	VOID getAllUnitsArrayProvinces();
 
-		updateTurnResourcesParticipant(),
-		createMapParticipant();
+	VOID updateTurnResourcesParticipant();
+	VOID createMapParticipant();
 		
 	const Provinces* tempProvince = new Provinces;
 
 	//ArmyOverviewMA.h
-	void
-		printCosts(std::vector<int>costs, std::string type),
-		armyDeploymentMF(),
-		trainCommanders(),
-		proceedWithTraining(i5array trainCosts),
-		upgradeCommandersOne(),
-		upgradeCommandersTwo(),
-		viewArmyOverview(),
-		deployCommanderMF();
+	void printCosts(std::vector<int>costs, std::string type);
+	void armyDeploymentMF();
+	void trainCommanders();
+	void proceedWithTraining(i5array trainCosts);
+	void upgradeCommandersOne();
+	void upgradeCommandersTwo();
+	void viewArmyOverview();
+	void deployCommanderMF();
 
 	//PlayerAction.h
 	
 	char randomAction();
-	void 
-		initialDecision(),
-		pauseGame();
+	void initialDecision();
+	void pauseGame();
 
 	//TrainMA.h
 	void TrainMAFunction();
@@ -190,78 +187,69 @@ public:
 
 
 	//MapMA.h
-	void
-		viewPlayerMap(),
-		selectUnitOriginal(Provinces* selectedProvince),
-		selectPlayerProvince(Provinces* province),
+	void viewPlayerMap();
+	void selectUnitOriginal(Provinces* selectedProvince);
+	void selectPlayerProvince(Provinces* province);
 
-		playerUnitAction(Provinces* province),
-		playerUnitActionP(Provinces* province),
-		selectEnemyAction(),
-		selectEnemyProvince(Provinces* province);
+	void playerUnitAction(Provinces* province);
+	void playerUnitActionP(Provinces* province);
+	void selectEnemyAction();
+	void selectEnemyProvince(Provinces* province);
 
 	//ScoutMA.h
-	void mainScoutMA (Participants* newParticipant, Provinces* newProvince);
+	void mainScoutMA (Provinces* provinceArg);
 
-	class ScoutInfo {
-	public:
-		ScoutInfo(Provinces *provinceArg);
-		Participants* participant, * targetParticipant;
-		Provinces* yourProvince, * targetProvince;
-		enum TargetTypes { PROVINCE, COMMANDER };
-	};
-	ScoutInfo scoutInfo;
-
-	void
-		playerScoutStepTwo(scoutTypes canScout),
-		scoutLogCalculationsProvince(int accuracy),
-		getCanScoutTwo(
+	std::pair<AllUnits, int> playerScoutStepTwo(scoutTypes canScout, Provinces* targetProvince);
+	void scoutLogCalculationsProvince(int accuracy);
+	void getCanScoutTwo(
 			int targetX, 
 			int targetY, 
 			int a, 
 			int b, 
 			scoutTypes& canScout);
 
-	AllUnits
-		* selectUnitToScout(scoutTypes canScout),
-		* selectUnitToScoutTwo(scoutTypes canScout);
-	scoutTypes
-		selectTarget(), 
-		getCanScout();
+	AllUnits* selectUnitToScout(scoutTypes canScout);
+	AllUnits* *selectUnitToScoutTwo(scoutTypes canScout);
+
+	scoutTypes selectTarget(Provinces* targetProvince);
+	scoutTypes getCanScout();
 
 	/////////AttackMA.h///////////////////
 	class AttackMAInfo {
-		AttackMAInfo(
-			Provinces* defendingProvinceArg,
-			Participants* attackingParticipantArg);
-		AttackMAInfo(
-			Provinces* attackerProvinceArg, 
-			Provinces* defenderProvinceArg, 
-			Participants* attackingParticipantArg, 
-			Commanders* commanderArg);
+		AttackMAInfo();
+		AttackMAInfo(Provinces* defendingProvinceArg);
+		AttackMAInfo(Provinces* defenderProvinceArg, Commanders* commanderArg);
 
 		Provinces* defendingProvince;
-		Participants* attackingParticipant;
-		Provinces* attackerProvinceArg;
-		Participants* defenderParticipant;
+		//Participants* attackingParticipant; is this object
 		Commanders* commander;
+		bool defenseCanRetreat;
 	};
 	void mainAttackMA(
 		Provinces* defendingProvince,
 		Commanders* attackingCommander);
+
 	std::vector<Commanders*> getCommandersCanAttack(std::pair<int, int> defenderSYstemCoords);
 	Commanders* pickCommanderAttack(std::vector<Commanders*>);
 	void playerCommitAttack(Provinces* defendingProvince, Commanders* attackingCommander);
+
+
+	Commanders* pickCommanderAttack(std::vector<Commanders*> commandersCanAttack);
+
+
+	void printResourcesGained();
+	void determineLostCP(int attackerCP, int defendingCP, int& attackerLostCP, int& defenderLostCP);
+
+	void calculateTroopsLost(Commanders* commander, int lostCombatPower, i5array& troopsLost, int troopIndex);
+	void battleCalculationsTwo(int& lostCombatPower, int troopsLost[5], int troopIndex);
+	void casualtyReport(i5array troopsLost, i5array injuredTroops);
+
 	//////////End AttackMA.h//////////////
 
 private:
 	using CommandersPtrMap = std::unordered_map<std::string, Commanders*>;
 
-	i5array
-		trainCosts = { 5, 4, 3, 2, 1 },
-		troopsLost = { 0,0,0,0,0 };
-
-	BOOL playerStatus;//true = player, false = AI
+	static i5array trainCosts;
 
 	Commanders* selectedCommander; //For ArmyDeploymentMA
 

@@ -6,6 +6,10 @@
 
 i5array Participants::allCommandersArray = {};
 i5array Participants::allProvincesArray = {};
+i5array trainCosts = { 5, 4, 3, 2, 1 };
+
+std::vector<Participants*> Participants::playersList = {};
+std::vector<Participants*> Participants::botsList = {};
 
 
 	// Constructor
@@ -14,7 +18,6 @@ Participants::Participants() {
 	//For debugging
 	INF::debugFunction("Participants, Participants (1 Param)");
 
-	playerStatus = false;
 	capitalIndex = 0;
 	participantIndex = 0;
 	capitalProvince = new Provinces;
@@ -121,7 +124,7 @@ void Participants::addCommander() {
 	INF::debugFunction("Participants, addCommander");
 
 	Commanders newCommander(1, getNewName());
-	std::pair<int, int> tempSystemCoords = getCapitalProvince()->getCoords(SYSTEM);
+	std::pair<int, int> tempSystemCoords = getCapitalProvince()->getCoords(Coords::SYSTEM);
 	std::pair<int, int> tempUserCoords = getCapitalProvince()->getCoords(USER);
 
 	newCommander.changeParticipantIndex(participantIndex);
@@ -164,7 +167,6 @@ void Participants::createAsPlayer(bool status)
 	INF::debugFunction("Participants, createAsPlayer");
 
 	std::cout << "This is a human player...\n";
-	playerStatus = status;
 	//If player
 	if (status == true)
 	{
@@ -172,7 +174,6 @@ void Participants::createAsPlayer(bool status)
 		std::cout << "Enter a name for this participant: " << RED;
 		getline(std::cin, name);
 		this->setKingdomName(name);
-		this->setPlayerStatus(true);
 		std::cout << WHITE << "Participant " << RED << kingdomName << WHITE << " created... \n\n";
 		return;
 	}
@@ -480,13 +481,7 @@ void Participants::showMapOld() {
 	std::cout << "\n\n";
 }
 
-/*Add implementation later*/
-void Participants::scoutProvince(Provinces* targetProvince, int accuracy) 
-{
-	//For debugging
-	INF::debugFunction("Participants, scoutProvince");
 
-}
 
 bool Participants::subtractCheckResources(String provinceName, 
 										i5array resourcesArray) {
@@ -802,20 +797,20 @@ std::unordered_map<std::string, Commanders*> Participants::getCommandersMap() {
 	return commandersMap;
 }
 
-Participants::AttackMAInfo::AttackMAInfo(Provinces* defendingProvinceArg, Participants* attackingParticipantArg) {
+Participants::AttackMAInfo::AttackMAInfo(Provinces* defendingProvinceArg) {
 	INF::debugFunction("Participants, AttackMAInfo");
-
-	AttackMAInfo::attackingParticipantArg = attackingParticipantArg;
 	AttackMAInfo::defendingProvince = defendingProvinceArg;
 }
 
-Participants::AttackMAInfo::AttackMAInfo(Provinces* attackerProvinceArg, Provinces* defenderProvinceArg, Participants* attackingParticipantArg, Commanders* commanderArg) {
+Participants::AttackMAInfo::AttackMAInfo(Provinces* defenderProvinceArg, Commanders* commanderArg) {
 	//For debugging
 	INF::debugFunction("AttackMA, AttackMA (4 Param)");
 
-	attackingProvince = attackerProvinceArg;
 	defendingProvince = defenderProvinceArg;
-	attackingParticipant = attackingParticipantArg;
 	attackingCommander = commanderArg;
-	preAttack();
+}
+
+Participants::AttackMAInfo::AttackMAInfo() {
+	defendingProvince = nullptr;
+	attackingCommander = nullptr;
 }

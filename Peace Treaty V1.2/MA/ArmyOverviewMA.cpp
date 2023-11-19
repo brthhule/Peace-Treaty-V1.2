@@ -82,7 +82,7 @@ void Participants::viewArmyOverview() {
 	if (commander != nullptr) {
 		std::cout << "Commander " + commander->getUnitName() +" selected... \n" +
 			"The coordinates of this Commander: ";
-		commander->printCoords(USER);
+		commander->printCoords(Coords::USER);
 		std::cout << "\n\n";
 		commander->printCommanderStats();
 	}
@@ -134,13 +134,10 @@ void Participants::deployCommanderMF() {
 	//For debugging
 	INF::debugFunction("ArmyOverview, deployCommanderMF");
 
-	std::string commanderName = pickCommander();
-	if (commanderName == "-1") {
+	Commanders* commander = pickCommander();
+	if (commanderName == nullptr) {
 		return;
 	}
-	;
-
-	Commanders* commander = getCommander(commanderName);
 
 	commander->printCommanderStats();
 

@@ -22,22 +22,20 @@ public:
 	typedef std::vector<Provinces*> provincesPtrs;
 	typedef std::pair<commanderProfilePtrs, provincesPtrs> scoutTypes;
 
-	// Constructors
-	virtual void mainScoutMA (Provinces* newProvince) = 0;
+	virtual void mainScoutMA (Provinces* provinceArg) = 0;
+	virtual scoutTypes selectTarget(Provinces* targetProvince) = 0;
 
 	// Functions
-	virtual void playerScoutStepTwo(scoutTypes canScout) = 0;
-	scoutTypes selectTarget() = 0,
+	virtual void playerScoutStepTwo(scoutTypes canScout, Provinces* targetProvince) = 0;
+	
 
-	virtual AllUnits
-		*selectUnitToScout(scoutTypes canScout) = 0,
-		*selectUnitToScoutTwo(scoutTypes canScout) = 0;
+	virtual AllUnits* selectUnitToScout(scoutTypes canScout) = 0;
+	virtual AllUnits *selectUnitToScoutTwo(scoutTypes canScout) = 0;
 
-	scoutTypes getCanScout() = 0;
+	virtual scoutTypes getCanScout() = 0;
 
-	virtual void
-		scoutLogCalculationsProvince(int accuracy) = 0,
-		getCanScoutTwo(int targetX, int targetY, int a, int b, scoutTypes &canScout) = 0;
+	virtual void scoutLogCalculationsProvince(int accuracy) = 0;
+	virtual void getCanScoutTwo(int targetX, int targetY, int a, int b, scoutTypes & canScout) = 0;
 
 };
 

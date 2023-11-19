@@ -22,7 +22,7 @@ using namespace INF;
 class TrainMA
 {
 public:
-	void virtual 
+	virtual void 
 		TrainMAFunction() = 0,
 		TrainMAFunctionDoWhileLoop(int troopTier, int amountOfTroops) = 0;
 };

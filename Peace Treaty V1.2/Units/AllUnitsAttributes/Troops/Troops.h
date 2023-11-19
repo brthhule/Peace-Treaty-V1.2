@@ -8,6 +8,7 @@ using namespace INF;
 
 class Troops {
 public:
+	/*Constructor*/
 	Troops(
 		int level, 
 		int baseHalth,
@@ -38,7 +39,7 @@ public:
 	void setTier(int num);
 	void increaseTier(int amount);
 
-	TroopTypes getThisType():
+	INF::TroopTypes getThisType();
 
 
 	void applyBoosts(int healthBoost, int damageBoost);

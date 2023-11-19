@@ -11,7 +11,7 @@ void Participants::mainAttackMA(
 
 	//Find commander to attack with
 	if (attackingCommander == nullptr) {
-		std::vector<Commanders*> commandersCanAttack = getCommandersCanAttack(defendingProvince->getCoords(SYSTEM));
+		std::vector<Commanders*> commandersCanAttack = getCommandersCanAttack(defendingProvince->getCoords(Coords::SYSTEM));
 		if (commandersCanAttack.size() == 0) {
 			std::cout << "There are no armies available to attack the enemy. Please move an army unit to one of the provinces around the target. \n\n";
 			return;
@@ -57,7 +57,7 @@ std::vector<Commanders*> Participants::getCommandersCanAttack(std::pair<int, int
 		if (checkFirstCoordinate && checkSecondCoordinate) {
 			std::pair<int, int> tempCoords(firstCoordinate, secondCoordinate);
 
-			Provinces* provincePtr = this->getSystemProvince(tempCoords);
+			Provinces* provincePtr = getSystemProvince(tempCoords);
 
 			//Get all Commanders at this province
 			std::vector<Commanders*> provinceCommanders = provincePtr->getAllCommanders();
@@ -98,15 +98,6 @@ Commanders* Participants::pickCommanderAttack(std::vector <Commanders*> commande
 	}
 		
 	return getCommander(commanderName);
-}
-
-void AttackMA::preAttack()
-{
-	//For debugging
-	INF::debugFunction("AttackMA, preAttack");
-
-	oldResources = attackingCommander->getAllResources();
-	playerCommitAttack();
 }
 
 void Participants::playerCommitAttack(Provinces* defendingProvince,  Commanders* attackingCommander) {
@@ -177,7 +168,7 @@ void Participants::playerCommitAttack(Provinces* defendingProvince,  Commanders*
 
 
 /*Basically go through each unit type and subtract 16CP worth of troops and keep going (done so that lost troops are distributed evenly among the various ranks, but there is still use to training lower rank troops as meat shields (if all lower troops are used up, then losses start piling up on higher rank troops; it's key to keep a healthy proportion of troops in your army))*/
-void AttackMA::calculateTroopsLost(Commanders* commander, int lostCombatPower, std::array<int, 5>& troopsLost, int troopIndex) {
+void Participants::calculateTroopsLost(Commanders* commander, int lostCombatPower, std::array<int, 5>& troopsLost, int troopIndex) {
 	//For debugging
 	INF::debugFunction("AttackMA, calculateTroopsLost");
 
@@ -223,7 +214,7 @@ void AttackMA::calculateTroopsLost(Commanders* commander, int lostCombatPower, s
 }
 
 
-void AttackMA::battleCalculationsTwo(int& lostCombatPower, int troopsLost[5], int troopIndex) /*fix this*/
+void Participants::battleCalculationsTwo(int& lostCombatPower, int troopsLost[5], int troopIndex) /*fix this*/
 {
 	//For debugging
 	INF::debugFunction("AttackMA, battleCalculationsTwo");
@@ -249,7 +240,7 @@ void AttackMA::battleCalculationsTwo(int& lostCombatPower, int troopsLost[5], in
 	}
 }
 
-void AttackMA::printResourcesGained()
+void Participants::printResourcesGained()
 {
 	//For debugging
 	INF::debugFunction("AttackMA, printResourcesGained");
@@ -261,7 +252,7 @@ void AttackMA::printResourcesGained()
 		std::cout << "- " << INF::RESOURCE_NAMES[x] << ": " << currentResources[x] - oldResources[x] << "\n\n\033[;0m";
 }
 
-void AttackMA::determineLostCP(int attackerCP, int defendingCP, int& attackerLostCP, int& defenderLostCP)
+void Participants::determineLostCP(int attackerCP, int defendingCP, int& attackerLostCP, int& defenderLostCP)
 {
 	//For debugging
 	INF::debugFunction("AttackMA, determineLostCP");
@@ -292,7 +283,7 @@ void AttackMA::determineLostCP(int attackerCP, int defendingCP, int& attackerLos
 		defendingCP = 1;
 }
 
-void AttackMA::casualtyReport(std::array<int, 5> troopsLost, std::array<int, 5> injuredTroops)
+void Participants::casualtyReport(std::array<int, 5> troopsLost, std::array<int, 5> injuredTroops)
 {
 	//For debugging
 	INF::debugFunction("AttackMA, casualtyReport");

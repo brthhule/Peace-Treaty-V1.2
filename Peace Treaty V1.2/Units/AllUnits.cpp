@@ -114,7 +114,7 @@ void AllUnits::modifySpecificResource(int index, int amount, bool isAdd) {
 		resourcesPresent[index] -= amount;
 }
 
-void AllUnits::modifyResources(std::array<int, 5> resourcesArray, bool isAdd) {
+void AllUnits::modifyResources(i5array resourcesArray, bool isAdd) {
 	//For debugging
 	INF::debugFunction("AllUnits, mdofiyResources");
 
@@ -128,7 +128,7 @@ int AllUnits::getLevel() {
 	return unitLevel;
 }
 
-std::array<int, 5> AllUnits::getAllResources() {
+i5array AllUnits::getAllResources() {
 	//For debugging
 	INF::debugFunction("AllUnits, getAllResources");
 
@@ -142,7 +142,7 @@ void AllUnits::changeParticipantIndex(int number) {
 	participantIndex = number;
 }
 
-void AllUnits::printResources(std::array<int, 5> resourcesArray) {
+void AllUnits::printResources(i5array resourcesArray) {
 	//For debugging
 	INF::debugFunction("AllUnits, printResources");
 
@@ -155,7 +155,7 @@ void AllUnits::printResources(std::array<int, 5> resourcesArray) {
 }
 
 
-std::array<int, 5> AllUnits::getAllOneTroopArray(INF::TroopCondition troopCondition, INF::TroopTypes type) {
+i5array AllUnits::getAllOneTroopArray(INF::TroopCondition troopCondition, INF::TroopTypes type) {
 	//For debugging
 	INF::debugFunction("Troops, getAllOneTroopArray");
 
@@ -188,11 +188,11 @@ i5array AllUnits::getGenericTroops(TroopCondition troopCondition) {
 
 //--------Troop Functions--------
 //Return a troop by index or all troops-- done by type
-std::array<int, 5> AllUnits::getTroop(INF::TroopCondition type, int troopIndex, Quantity amount) {
+i5array AllUnits::getTroop(INF::TroopCondition type, int troopIndex, Quantity amount) {
 	//For debugging
 	INF::debugFunction("Troops, getTroop");
 
-	std::array<int, 5> troopCopy;
+	i5array troopCopy;
 
 	if (amount == SINGLE) {
 		troopCopy = *allTroopTypes[type];
@@ -205,7 +205,7 @@ std::array<int, 5> AllUnits::getTroop(INF::TroopCondition type, int troopIndex, 
 
 //----Mutators----
 //Change troops of type index at this unit by amount
-void AllUnits::mutateTroop(INF::TroopCondition troopCondition, TroopTypes troopType, std::array<int, 5> amount, Quantity quant, INF::MutateDirection direction, int troopTier) {
+void AllUnits::mutateTroop(INF::TroopCondition troopCondition, TroopTypes troopType, i5array amount, Quantity quant, INF::MutateDirection direction, int troopTier) {
 	//For debugging
 	INF::debugFunction("Troops, mutateTroop");
 
@@ -236,7 +236,7 @@ void AllUnits::mutateTroop(INF::TroopCondition troopCondition, TroopTypes troopT
 	return;
 }
 
-void AllUnits::setBattleFormation(std::array<) {
+void AllUnits::setBattleFormation(troopConditionArray troopArray) {
 	std::cout << "Welcome to the Battle Formation menu.\n";
 	std::cout << "Please select a battle formation option: ";
 	std::cout << ""

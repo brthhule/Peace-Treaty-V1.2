@@ -20,7 +20,7 @@ void Coords::setIndex (int index) {
 ipair Coords::getCoords(CoordsType type) {
 	INF::debugFunction("Coords, getCoords");
 
-	c
+	std::pair<int, int> tempPair;
 	switch (type) {
 	case SYSTEM:
 		tempPair = systemCoords;
@@ -36,7 +36,7 @@ ipair Coords::getCoords(CoordsType type) {
 void Coords::printCoords(CoordsType type) {
 	INF::debugFunction("Coords, printCoords");
 
-	ipair tempPair = NULL;
+	ipair tempPair;
 	switch (type) {
 	case SYSTEM:
 		tempPair = systemCoords;
@@ -95,11 +95,15 @@ ipair Coords::indexToCoords(int index, CoordsType type) {
 			int row = index / continentSize;
 			int col = index % continentSize;
 			return std::make_pair(row, col);
+
+			//Use this for "initialization of 'row' is skipped by 'case' label" error
+			break;
 		case USER:
 		default:
 			int x = (index % continentSize) + 1;
 			int y = continentSize - (index / continentSize);
 			return std::make_pair(x, y);
+			break;
 	}
 }
 
@@ -111,6 +115,6 @@ int Coords::coordsToIndex(ipair coords, CoordsType type) {
 		case USER:
 		default:
 			return (continentSize * (continentSize - coords.second)) +
-				(coords.first-1)
+				(coords.first - 1);
 	}
 }

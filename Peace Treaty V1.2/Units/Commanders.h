@@ -8,7 +8,7 @@
 
 using namespace INF;
 
-
+//Control army units
 class Commanders : public AllUnits {
 public:
 	// Constructors

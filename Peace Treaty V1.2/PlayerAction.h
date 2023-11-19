@@ -22,7 +22,7 @@ class PlayerAction
 {
 public:
 	char virtual randomAction() = 0;
-	void virtual
+	virtual void
 		initialDecision() = 0,
 		pauseGame() = 0;
 

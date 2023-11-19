@@ -21,7 +21,7 @@ using namespace INF;
 class MapMA
 {
 public:
-	void virtual
+	virtual void
 		viewPlayerMap() = 0,
 		selectUnitOriginal(Provinces *selectedProvince) = 0,
 		selectPlayerProvince(Provinces *province) = 0,

@@ -1,7 +1,35 @@
-#include "Buildings.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\ProvincesAttributes\Buildings.h"
 
 #define print(x) std::cout << x;
 #define println(x) std::cout << x << std::endl;
+
+d5array Buildings::farmUR = { 1, 0.5, 0.25, 0.125, 0.0625 };
+d5array Buildings::millUR = { 2, 1, 0.5, 0.25, 0.125 };
+d5array Buildings::quarryUR = { 3, 2, 1, 0.5, 0.25 };
+d5array Buildings::mineUR = { 4, 3, 2, 1, 0.5 };
+d5array Buildings::churchUR = { 5, 4, 3, 2, 1 };
+d5array Buildings::barracksUR = { 1, 1, 1, 1, 0.2 };
+d5array Buildings::infirmaryUR = { 1, 1, 1, 1, 0.2 };
+d5array Buildings::libraryUR = { 1, 1, 1, 1, 0.2 };
+d5array Buildings::wallUR = { 1, 1, 1, 1, 0.2 };
+d5array Buildings::residencesUR = {};
+
+std::array<d5array, 10> Buildings::upgradeRates = {
+		&farmUR,
+		&millUR,
+		&quarryUR,
+		&mineUR,
+		&churchUR,
+		&barracksUR,
+		&infirmaryUR,
+		&libraryUR,
+		&wallUR,
+		&residencesUR
+};
+
+i5array Buildings::capacityAmounts = { 10,10,10,10,10 };
+i5array Buildings::resourceProduction = { 5,4,3,2,1 };
+
 Buildings::Buildings() {
 	//For debugging
 	INF::debugFunction("Buildings, OtherBuildingsToString");

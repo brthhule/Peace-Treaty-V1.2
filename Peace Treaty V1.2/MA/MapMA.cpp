@@ -10,7 +10,7 @@ void Participants::viewPlayerMap() {
 	char whatToDo = ' ';
 
 	//If the participant is a player
-	if (participant->isPlayer()) {
+	if (this->isPlayer()) {
 		this->showMap();
 		println("Welcome to the View Map action menu");
 		whatToDo = Input::getOptionPrompt(VIEW_PLAYER_MAP).at(0);
@@ -27,7 +27,7 @@ void Participants::viewPlayerMap() {
 			INF::clearScreen();
 			std::cout << "Selecting a province...\n";
 			//The user selects a province
-			Provinces* province = participant->pickYourProvince(1);
+			Provinces* province = this->pickYourProvince(1);
 
 			if (province != NULL){
 				selectUnitOriginal(province);
@@ -60,7 +60,7 @@ void Participants::selectUnitOriginal(Provinces* province) {
 	int participantIndex = province->getParticipantIndex();
 
 	// If belongs to current participant
-	if (participantIndex == participant->getParticipantIndex()) {
+	if (participantIndex == this->getParticipantIndex()) {
 		selectPlayerProvince(province);
 	}
 	// If empty province
@@ -68,19 +68,16 @@ void Participants::selectUnitOriginal(Provinces* province) {
 		// If there are more than 0 commnaders
 
 		//if (province->fogofWar) Add implementation
-		if (province->getCommandersNum() > 0) 
-		{
-			//Add scout information, fog of war
+		if (province->getCommandersNum() > 0) {
 			//If the commander here is yours
-			if (province->getCommandersNum() > 0) {
-				if (province->getCommander(0)->getParticipantIndex() == participant->getParticipantIndex()) {
-					playerUnitAction(province);
-				}
-				//If the commander here is an enemy
-				else {
-					selectEnemyAction();
-				}
+			if (province->getCommander(0)->getParticipantIndex() == this->getParticipantIndex()) {
+				playerUnitAction(province);
 			}
+			//If the commander here is an enemy
+			else {
+				selectEnemyAction();
+			}
+			
 		}
 
 	}

@@ -51,35 +51,24 @@ protected:
 	i5array otherBuildingsLevels;
 
 	//For upgrades
-	static d5array farmUR = { 1, 0.5, 0.25, 0.125, 0.0625 };
-	static d5array millUR = { 2, 1, 0.5, 0.25, 0.125 };
-	static d5array quarryUR = { 3, 2, 1, 0.5, 0.25 };
-	static d5array mineUR = { 4, 3, 2, 1, 0.5 };
-	static d5array churchUR = { 5, 4, 3, 2, 1 };
-	static d5array barracksUR = { 1, 1, 1, 1, 0.2 };
-	static d5array infirmaryUR = { 1, 1, 1, 1, 0.2 };
-	static d5array libraryUR = { 1, 1, 1, 1, 0.2 };
-	static d5array wallUR = { 1, 1, 1, 1, 0.2 };
-	static d5array residencesUR = {};
+	static d5array farmUR;
+	static d5array millUR;
+	static d5array quarryUR;
+	static d5array mineUR;
+	static d5array churchUR;
+	static d5array barracksUR;
+	static d5array infirmaryUR;
+	static d5array libraryUR;
+	static d5array wallUR;
+	static d5array residencesUR;
 
-	static const std::array<d5array, 10> upgradeRates = {
-		farmUR, 
-		millUR,
-		quarryUR, 
-		mineUR, 
-		churchUR, 
-		barracksUR,
-		infirmaryUR, 
-		libraryUR, 
-		wallUR, 
-		residencesUR
-	};
+	static std::array<d5array, 10> upgradeRates;
 
 private:
 	//First is RESOURCE, second is OTHER
 	std::pair<i5array*, i5array*> levels;
 
-	static i5array capacityAmounts = { 10,10,10,10,10 };
-	static i5array resourceProduction = { 5,4,3,2,1 };
+	static i5array capacityAmounts;
+	static i5array resourceProduction;
 };
 #endif
