@@ -12,15 +12,19 @@ Buildings::Buildings() {
 
 	otherBuildingsLevels = INF::i5array{};
 	resourceBuildingsLevels = INF::i5array{};
+
+	levels = std::make_pair(
+		&resourceBuildingsLevels,
+		&otherBuildingsLevels);
 }
 
 
 //Use struct/class here to pass to template, maybe don't use template??? Use returnArray or returnInt for arrayArg
-std::array<int, 5> Buildings::getBuildingLevel(Build::BuildingType type, int index, INF::Quantity quant) {
+i5array Buildings::getBuildingLevel(Build::BuildingType type, int index, INF::Quantity quant) {
 	//For debugging
 	INF::debugFunction("Buildings, getBuildingLevel");
 
-	std::array<int, 5> arrayCopy, returnArray;
+	i5array arrayCopy, returnArray;
 	arrayCopy = *levels.first;
 	if (type) {
 		arrayCopy = *levels.second;
@@ -37,11 +41,11 @@ std::array<int, 5> Buildings::getBuildingLevel(Build::BuildingType type, int ind
 }
 
 /*Use returnArray or returnInt for arrayArg*/
-std::array<int, 5> Buildings::getCapacity(Build::BuildingType type, int name, INF::Quantity amount) {
+i5array Buildings::getCapacity(Build::BuildingType type, int name, INF::Quantity amount) {
 	//For debugging
 	INF::debugFunction("Buildings, getCapacity");
 
-	std::array<int, 5> arrayCopy, returnArray;
+	i5array arrayCopy, returnArray;
 	arrayCopy = *levels.first;
 	if (type) {
 		arrayCopy = *levels.second;
@@ -60,11 +64,11 @@ std::array<int, 5> Buildings::getCapacity(Build::BuildingType type, int name, IN
 }
 
 /*Use returnArray or returnInt for arrayArg*/
-std::array<int, 5> Buildings::getResourceProduction(Build::ResourceBuildings name, INF::Quantity amount) {
+i5array Buildings::getResourceProduction(Build::ResourceBuildings name, INF::Quantity amount) {
 	//For debugging
 	INF::debugFunction("Buildings, getResourceProduction");
 
-	std::array<int, 5> arrayCopy, returnArray;
+	i5array arrayCopy, returnArray;
 	arrayCopy = *levels.first;
 
 
@@ -90,11 +94,11 @@ std::array<int, 5> Buildings::getResourceProduction(Build::ResourceBuildings nam
 *quant: is whether or not only 1 level or all levels of a type of building is being mutated.
 *
 *direction: determines whether the process is addition or subtraction.*/
-void Buildings::mutateLevel(Build::BuildingType type, int name, std::array<int, 5> amount, INF::Quantity quant, INF::MutateDirection direction) {
+void Buildings::mutateLevel(Build::BuildingType type, int name, i5array amount, INF::Quantity quant, INF::MutateDirection direction) {
 	//For debugging
 	INF::debugFunction("Buildings, mutateLevel");
 
-	std::array<int, 5> arrayCopy = *levels.first;
+	i5array arrayCopy = *levels.first;
 	if (type) {
 		arrayCopy = *levels.second;
 	}
@@ -143,7 +147,7 @@ void Buildings::printBuildingStats()
 	//For debugging
 	INF::debugFunction("Provinces, printBuildingStats");
 
-	std::array<int, 5> productionArray = getResourceProduction(Build::CHURCH, INF::ALL);
+	i5array productionArray = getResourceProduction(Build::CHURCH, INF::ALL);
 	std::cout << "\033[;34m";
 
 	std::cout << "Building stats of this province: " << std::endl;

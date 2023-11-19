@@ -14,25 +14,31 @@
 	int troopsPresent[5];
 	int troopsInjured[5];
 	int totalCP;*/
+
 using namespace INF;
 
 
 class AllUnits : public Coords
 {
 public:
+	enum UnitType { COMMANDER, PROVINCE };
+	using T5array = std::array<Troops, 5>;
+	/* T5array = std::array<Troops, 5>
+	troopConditionArray = std::array<T5array, 5> */
+	using troopConditionArray = std::array<T5array, 5>;
+	
 	//----Constructors----
 	//One param overloaded Constructor
 	AllUnits(int index);
 	//Default Constructor
 	AllUnits();
 
+	
+
 
 	int
 		getCP(),
-		getParticipantIndex();
-
-	//Provinces & Commanders
-	int
+		getParticipantIndex(),
 		getLevel(),
 		getFoodConsumption(),
 		getResource(int resourceIndex);
@@ -48,13 +54,13 @@ public:
 		changeParticipantIndex(int number),
 		printTroopsPresent();
 
-	std::array<int, 5> getAllResources();//Add implementation
+	i5array getAllResources();//Add implementation
 
 
 	std::string getUnitName();
 	void printResources(std::array<int, 5> resourcesArray);
 
-		/*Return all the tiers for one troop type for a particular condition
+	/*Return all the tiers for one troop type for a particular condition
 	Example: returns all tiers for guards present*/
 	i5array getAllOneTroopArray(TroopCondition troopCondition, INF::TroopTypes troopType);
 
@@ -67,15 +73,13 @@ public:
 	i5array getGenericTroops(TroopCondition type);
 
 
-	/*
-	Change a troop by index or all trypes.
+	/*Change a troop by index or all trypes.
 	TroopCondition: REGULAR, INJURED, LOST
 	TroopTypes: GUARDS, INFANTRY, ARCHERS, CAVALRY, ARTILLARY
 	amount: {a,b,c,d,e} or {a}
 	Quantitiy: SINGLE, ALL
 	MutateDirection: DECREASE, INCREASE
-	troopTier: 1/2/3/3/4/5
-	*/
+	troopTier: 1/2/3/3/4/5*/
 	void mutateTroop(
 		INF::TroopCondition troopCondition,
 		TroopTypes troopType,
@@ -87,9 +91,8 @@ public:
 	void setBattleFormation(std::array<);
 
 protected:
-	std::array<int, 5>
-		resourcesPresent = { 0, 0, 0, 0, 0 },
-		initialStats = { 5, 4, 3, 2, 1 };
+	i5array resourcesPresent;
+	i5array initialStats;
 
 	int
 		combatPower,
@@ -98,18 +101,13 @@ protected:
 		participantIndex,
 		unitLevel;
 
-	using T5array = std::array<Troops, 5>;
-	std::array<T5array, 5>
-		troopsPresent,
-		troopsInjured,
-		troopsLost;
+	
+	troopConditionArray troopsPresent;
+	troopConditionArray troopsInjured;
+	troopConditionArray troopsLost;
 
 
-	std::array<std::array<T5array, 5>*, 3> allTroopConditions = {
-		&troopsPresent,
-		&troopsInjured,
-		&troopsLost
-	};
+	std::array<troopConditionArray*, 3> allTroopConditions;
 
 	std::array<std::vector<Troops>, 5> battleFormation;
 
@@ -118,12 +116,10 @@ protected:
 
 	bool canSelectThisUnit;
 
-	enum UnitType { COMMANDER, PROVINCE };
+	
+
 	UnitType type;
-
-	std::string
-		unitName;
-
+	std::string unitName;
 	Troops troops;
 };
 

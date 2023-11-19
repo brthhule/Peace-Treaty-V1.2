@@ -25,6 +25,13 @@ AllUnits::AllUnits(int participantIndexArg) {
 	unitLevel = 0;
 	combatPower = 0;
 	totalTroops = 0;
+	resourcesPresent = { 0,0,0,0,0 };
+	initialStats = { 5,4,3,2,1 };
+	allTroopConditions = { 
+		&troopsPresent,
+		&troopsInjured,
+		&troopsLost 
+	}
 }
 
 //Default Constructor

@@ -27,6 +27,7 @@ namespace INF
 	/////////////////////////////////////Aliases///////////////////////////////
 	using s5array = std::array<std::string, UNIT_AMOUNT>;
 	using i5array = std::array<int, UNIT_AMOUNT>;
+	using d5array = std::array<double, UNIT_AMOUNT>;
 	using ivector = std::vector<int>;
 	using String = std::string;
 	using ipair = std::pair<int, int>;

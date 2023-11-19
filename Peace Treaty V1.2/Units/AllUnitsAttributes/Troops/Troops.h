@@ -34,7 +34,6 @@ public:
 	void updateHealth(int newHealth);
 	void updateCurrentDamage();
 	void resetStats();
-	void getLevel();
 	void resetLevel();
 	void setTier(int num);
 	void increaseTier(int amount);
@@ -43,6 +42,7 @@ public:
 
 
 	void applyBoosts(int healthBoost, int damageBoost);
+
 private:
 	int level, tier, baseHealth, currentHealth;
 	std::array<int, 3> baseDamage, currentDamage;

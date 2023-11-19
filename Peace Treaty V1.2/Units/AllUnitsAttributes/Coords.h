@@ -16,7 +16,6 @@ public:
 
 	void
 		setIndex(int index),
-		printCoords(USER),
 		setCoords(ipair systemCoords, ipair userCoords),
 		printCoords(CoordsType type);
 
