@@ -8,12 +8,19 @@ using namespace INF;
 
 class Troops {
 public:
-	Troops(int level, int baseHalth, std::array<int, 3> baseDamage);
+	Troops(
+		int level, 
+		int baseHalth,
+		int tier,
+		std::array<int, 3> baseDamage, 
+		INF::TroopTypes thisType);
 
 	int
 		getLevel(),
-		getHealth(),
-		getDamage();
+		getCurrentHealth(),
+		getTier();
+
+	std::array<int,3> getCurrentDamage();
 
 	/*DEFENSE,
 		FIELD,
@@ -24,10 +31,22 @@ public:
 		ATTACK = 2
 	};
 
+	void updateHealth(int newHealth);
+	void updateCurrentDamage();
+	void resetStats();
+	void getLevel();
+	void resetLevel();
+	void setTier(int num);
+	void increaseTier(int amount);
+
+	TroopTypes getThisType():
+
+
 	void applyBoosts(int healthBoost, int damageBoost);
 private:
-	int level, baseHealth, currentHealth, currentDamage;
-	std::array<int, 3> baseDamage;
+	int level, tier, baseHealth, currentHealth;
+	std::array<int, 3> baseDamage, currentDamage;
+	INF::TroopTypes thisType;
 	
 };
 #endif

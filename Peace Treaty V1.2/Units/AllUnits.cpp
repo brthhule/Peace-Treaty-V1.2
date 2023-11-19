@@ -212,10 +212,12 @@ void AllUnits::mutateTroop(INF::TroopCondition troopCondition, TroopTypes troopT
 	}
 
 	switch (quant) {
+		//Change one tier of specific troop type
 		case SINGLE: {
 			troopTiers->at(troopTier) += amount[0] * modifier;
 			break;
 		}
+		//Change all tiers of a specific troop type
 		case ALL: {
 			for (int x = 0; x < 5; x++) {
 				troopTiers->at(x) += amount.at(x);
@@ -225,4 +227,10 @@ void AllUnits::mutateTroop(INF::TroopCondition troopCondition, TroopTypes troopT
 	}
 
 	return;
+}
+
+void AllUnits::setBattleFormation(std::array<) {
+	std::cout << "Welcome to the Battle Formation menu.\n";
+	std::cout << "Please select a battle formation option: ";
+	std::cout << ""
 }

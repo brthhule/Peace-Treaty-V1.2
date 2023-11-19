@@ -67,7 +67,15 @@ public:
 	i5array getGenericTroops(TroopCondition type);
 
 
-	//Change a troop by index or all trypes.
+	/*
+	Change a troop by index or all trypes.
+	TroopCondition: REGULAR, INJURED, LOST
+	TroopTypes: GUARDS, INFANTRY, ARCHERS, CAVALRY, ARTILLARY
+	amount: {a,b,c,d,e} or {a}
+	Quantitiy: SINGLE, ALL
+	MutateDirection: DECREASE, INCREASE
+	troopTier: 1/2/3/3/4/5
+	*/
 	void mutateTroop(
 		INF::TroopCondition troopCondition,
 		TroopTypes troopType,
@@ -75,6 +83,8 @@ public:
 		Quantity quant,
 		INF::MutateDirection direction,
 		int troopTier);
+
+	void setBattleFormation(std::array<);
 
 protected:
 	std::array<int, 5>
@@ -100,6 +110,8 @@ protected:
 		&troopsInjured,
 		&troopsLost
 	};
+
+	std::array<std::vector<Troops>, 5> battleFormation;
 
 
 	//Coordinates;

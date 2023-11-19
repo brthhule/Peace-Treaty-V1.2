@@ -86,7 +86,8 @@ namespace INF {
 			"VIEW_PLAYER_MAP",
 			"SELECT_PLAYER_PROVINCE",
 			"SELECT_ENEMY_PROVINCE",
-			"WHAT_REPORT" /*Add stuff for this*/
+			"WHAT_REPORT" /*Add stuff for this*/,
+			"BATTLE_FORMATION" /*May not be used*/
 	};
 
 	
