@@ -120,7 +120,7 @@ Provinces* Map::getUserProvince(std::pair<int, int> userCoords) {
 
 	for (int row = 0; row < INF::continentSize; row++) {
 		for (int col = 0; col < INF::continentSize; col++) {
-			if (map[row][col]->getUserCoords() == userCoords) {
+			if (map[row][col]->getCoords(USER) == userCoords) {
 				return map[row][col];
 			}
 		}

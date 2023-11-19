@@ -66,7 +66,7 @@ Provinces* Participants::getProvince(1)(std::pair<int, int> userCoords) {
 	INF::debugFunction("Participants, getProvince");
 	
 	for (Provinces* province : provincesVector) {
-		if (province->getUserCoords() == userCoords) {
+		if (province->getCoords(USER) == userCoords) {
 			return province;
 		}
 	}
@@ -121,8 +121,8 @@ void Participants::addCommander() {
 	INF::debugFunction("Participants, addCommander");
 
 	Commanders newCommander(1, getNewName());
-	std::pair<int, int> tempSystemCoords = getCapitalProvince()->getSystemCoords();
-	std::pair<int, int> tempUserCoords = getCapitalProvince()->getUserCoords();
+	std::pair<int, int> tempSystemCoords = getCapitalProvince()->getCoords(SYSTEM);
+	std::pair<int, int> tempUserCoords = getCapitalProvince()->getCoords(USER);
 
 	newCommander.changeParticipantIndex(participantIndex);
 	newCommander.setCoords(tempSystemCoords, tempUserCoords);
@@ -307,7 +307,7 @@ void Participants::printListOfProvinces() {
 	for (Provinces* province : provincesVector)
 	{
 		std::cout << "- " << province->getUnitName() << ": ";
-		province->getUserCoords();
+		province->getCoords(USER);
 		std::cout << "\n";
 	}
 }

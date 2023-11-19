@@ -11,15 +11,19 @@ using namespace INF;
 class Coords
 {
 public:
+	/*SYSTEM, USER*/
+	static enum CoordsType { SYSTEM, USER };
+
 	void
-		setOverallIndex(int index),
-		printUserCoords(),
-		setCoords(ipair systemCoords, ipair userCoords);
+		setIndex(int index),
+		printCoords(USER),
+		setCoords(ipair systemCoords, ipair userCoords),
+		printCoords(CoordsType type);
 
 	ipair
-		getSystemCoords(),
-		getUserCoords();
-	std::string
+		getCoords(CoordsType type);
+
+	String
 		getSystemCoordsString(),
 		getUserCoordsString();
 
@@ -31,7 +35,7 @@ protected:
 		userCoords;//x, y
 
 private:
-	int overallIndex;
+	int index;
 };
 
 #endif COORDINATES_H

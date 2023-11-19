@@ -82,7 +82,7 @@ void Participants::viewArmyOverview() {
 	if (commander != nullptr) {
 		std::cout << "Commander " + commander->getUnitName() +" selected... \n" +
 			"The coordinates of this Commander: ";
-		commander->printUserCoords();
+		commander->printCoords(USER);
 		std::cout << "\n\n";
 		commander->printCommanderStats();
 	}

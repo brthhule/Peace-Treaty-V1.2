@@ -1,47 +1,63 @@
 #include "Coords.h"
 
-void Coords::setOverallIndex (int index) {
+void Coords::setIndex (int index) {
 	//For debugging
 	INF::debugFunction("Coords, OtherBuildingsToString");
 
-	overallIndex = index;
-	systemCoords.first = overallIndex / INF::continentSize;
-	systemCoords.second = overallIndex % INF::continentSize;
+	this->index = index;
 
-	userCoords.first = (overallIndex % INF::continentSize) + 1;
-	userCoords.second = INF::continentSize - (overallIndex / INF::continentSize);
+	//Set systemCoords
+	systemCoords = std::make_pair(
+		index / INF::continentSize, 
+		index % INF::continentSize);
+
+	//Set userCoords
+	userCoords = std::make_pair(
+		(index % INF::continentSize) + 1,
+		INF::continentSize - (index / INF::continentSize));
 }
 
-ipair Coords::getSystemCoords() {
-	//For debugging
-	INF::debugFunction("Coords, getSystemCoords");
+ipair Coords::getCoords(CoordsType type) {
+	INF::debugFunction("Coords, getCoords");
 
-	return systemCoords;
+	c
+	switch (type) {
+	case SYSTEM:
+		tempPair = systemCoords;
+		break;
+	case USER:
+		tempPair = userCoords;
+		break;
+	}
+
+	return tempPair;
 }
 
-ipair Coords::getUserCoords() {
-	//For debugging
-	INF::debugFunction("Coords, getUserCoords");
+void Coords::printCoords(CoordsType type) {
+	INF::debugFunction("Coords, printCoords");
 
-	return userCoords;
-}
+	ipair tempPair = NULL;
+	switch (type) {
+	case SYSTEM:
+		tempPair = systemCoords;
+		break;
+	case USER:
+		tempPair = userCoords;
+		break;
+	}
 
-void Coords::printUserCoords() {
-	//For debugging
-	INF::debugFunction("Coords, printUserCoords");
-
-	std::cout << "(" << userCoords.first << ", " << userCoords.second << ")";
+	std::cout << "(" << tempPair.first << ", " << tempPair.second << ")";
 }
 
 void Coords::setCoords(ipair systemCoords, ipair userCoords) {
 	//For debugging
 	INF::debugFunction("Coords, setCoords");
 
-	this->systemCoords = systemCoordsArg;
-	this->userCoords = userCoordsArg;
+	this->systemCoords = systemCoords;
+	this->userCoords = userCoords;
 }
 
-//Gets passed user coords, translates them to system coords
+//Gets user coords, translates them to system coords
 ipair Coords::translateToSystemCoords(ipair userCoordsArg) {
 	//For debugging
 	INF::debugFunction("Coords, translateToSystemCoords");

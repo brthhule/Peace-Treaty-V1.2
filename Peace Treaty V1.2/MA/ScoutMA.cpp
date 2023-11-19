@@ -73,7 +73,7 @@ void Participants::playerScoutStepTwo(scoutTypes canScout)
 	AllUnits *unit = selectUnitToScout(canScout);
 	Participants* tempParticipant = new Participants();
 	Provinces *tempProvince = new Provinces;
-	std::cout << "Proceed scout action with unit at " << tempParticipant->getSystemProvince(unit->getSystemCoords()) << "? (Y/N) ";
+	std::cout << "Proceed scout action with unit at " << tempParticipant->getSystemProvince(unit->getCoords(SYSTEM)) << "? (Y/N) ";
 	delete tempParticipant;
 
 	char proceedWithScoutChar = Input::getInputText("", { "Y", "N" }).at(0);
@@ -99,7 +99,7 @@ void Participants::playerScoutStepTwo(scoutTypes canScout)
 		accuracy = 0;
 	}
 
-	this->scoutProvince(this->getSystemProvince(unit->getSystemCoords()), accuracy);
+	this->scoutProvince(this->getSystemProvince(unit->getCoords(SYSTEM)), accuracy);
 
 	INF::enterAnything(1);
 }
@@ -109,7 +109,7 @@ ScoutMA::scoutTypes Participants::getCanScout()
 	//For debugging
 	INF::debugFunction("ScoutMA, getCanScout");
 
-	std::pair<int, int> targetUserCoords = ScoutInfo::targetProvince->getUserCoords();
+	std::pair<int, int> targetUserCoords = ScoutInfo::targetProvince->getCoords(USER);
 	int targetX = targetUserCoords.first;
 	int targetY = targetUserCoords.second;
 
@@ -149,7 +149,7 @@ void Participants::getCanScoutTwo(int targetX, int targetY, int a, int b, ScoutM
 	std::unordered_map<std::string, Commanders*>::iterator it;
 	for (it = newMap.begin(); it != newMap.end(); it++)
 	{
-		if (it->second->getUserCoords() == newProvince->getUserCoords())
+		if (it->second->getCoords(USER) == newProvince->getCoords(USER))
 			canScout.first.push_back(it->second);
 	}
 
@@ -171,14 +171,14 @@ AllUnits * Participants::selectUnitToScout(ScoutMA::scoutTypes canScout) {
 	std::cout << "Provinces that can scout: " << std::endl;
 	for (Provinces* province : canScout.second) {
 		std::cout << province->getUnitName() + "; ";
-		province->printUserCoords();
+		province->printCoords(USER);
 		std::cout << "; Level: " << province->getLevel() << std::endl;
 	}
 
 	std::cout << "Commanders that can scout: \n";
 	for (Commanders* commander : canScout.first) {
 		std::cout << commander->getUnitName() << "; ";
-		commander->printUserCoords();
+		commander->printCoords(USER);
 		std::cout << "; Level: " << commander->getLevel() << std::endl;
 	}
 	std::cout << "\n\033[;0m";

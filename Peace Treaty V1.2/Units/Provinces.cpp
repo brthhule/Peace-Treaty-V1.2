@@ -443,7 +443,7 @@ void Provinces::createReport(int scouterLevelArg, int targetLevelArg) {
 		ListsArg, 
 		listIntArg, 
 		listBoolArg, 
-		getSystemCoords());
+		getCoords(SYSTEM));
 	int turn = newReport.getReportTurn();
 	std::pair<int, ProvinceReport> sendReport(turn, newReport);
 	int index = 0;//Determine how to find this

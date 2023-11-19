@@ -11,7 +11,7 @@ void Participants::mainAttackMA(
 
 	//Find commander to attack with
 	if (attackingCommander == nullptr) {
-		std::vector<Commanders*> commandersCanAttack = getCommandersCanAttack(defendingProvince->getSystemCoords());
+		std::vector<Commanders*> commandersCanAttack = getCommandersCanAttack(defendingProvince->getCoords(SYSTEM));
 		if (commandersCanAttack.size() == 0) {
 			std::cout << "There are no armies available to attack the enemy. Please move an army unit to one of the provinces around the target. \n\n";
 			return;
