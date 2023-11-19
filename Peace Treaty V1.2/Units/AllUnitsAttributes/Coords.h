@@ -14,21 +14,19 @@ public:
 	void
 		setOverallIndex(int index),
 		printUserCoords(),
-		setCoords(
-			std::pair<int, int> systemCoordsArg,
-			std::pair<int, int> userCoordsArg);
+		setCoords(ipair systemCoords, ipair userCoords);
 
-	std::pair<int, int> 
+	ipair
 		getSystemCoords(),
 		getUserCoords();
 	std::string
 		getSystemCoordsString(),
 		getUserCoordsString();
 
-	std::pair<int, int> translateToSystemCoords(std::pair<int, int> userCoordsArg);
+	ipair translateToSystemCoords(ipair userCoordsArg);
 
 protected:
-	std::pair<int, int>
+	ipair
 		systemCoords,//row, column
 		userCoords;//x, y
 

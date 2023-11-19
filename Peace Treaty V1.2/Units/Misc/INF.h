@@ -29,6 +29,7 @@ namespace INF
 	using i5array = std::array<int, UNIT_AMOUNT>;
 	using ivector = std::vector<int>;
 	using String = std::string;
+	using ipair = std::pair<int, int>;
 
 	using INTEGER = int;
 	using STRING = std::string;
