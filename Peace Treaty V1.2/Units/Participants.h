@@ -69,6 +69,7 @@ class Participants :
 	INTERFACE public AttackMA
 {
 public:
+	static std::vector<Participants*> participantsList;
 	CONSTRUCTOR Participants();
 	CONSTRUCTOR Participants(int pIndex);
 	
@@ -245,7 +246,14 @@ public:
 		Participants* defenderParticipant;
 		Commanders* commander;
 	};
+	void mainAttackMA(
+		Provinces* defendingProvince,
+		Commanders* attackingCommander);
+	std::vector<Commanders*> getCommandersCanAttack(std::pair<int, int> defenderSYstemCoords);
+	Commanders* pickCommanderAttack(std::vector<Commanders*>);
+	void playerCommitAttack(Provinces* defendingProvince, Commanders* attackingCommander);
 	//////////End AttackMA.h//////////////
+
 private:
 	using CommandersPtrMap = std::unordered_map<std::string, Commanders*>;
 

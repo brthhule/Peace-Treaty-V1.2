@@ -33,14 +33,30 @@ public:
 
 	std::array<int, 5> getUpgradeCosts();
 	
-	bool
-		getDelete(),
-		hasMoved();
+	bool hasMoved();
 
 private:
 	INTEGER
 		maxTroops,
 		totalMaxResources;
+
+	/*Each row is a different troop type, each column is a different tier
+
+	Rows:
+	0 = guardsTiers,
+	1 = infantryTiers,
+	2 = archersTiers,
+	3 = cavalryTiers,
+	4 = artillaryTiers;
+
+	Cols:
+	0 = tier 1
+	1 = tier 2
+	2 = tier 3
+	3 = tier 4
+	4 = tier 5
+		*/
+	
 
 	bool moved;
 

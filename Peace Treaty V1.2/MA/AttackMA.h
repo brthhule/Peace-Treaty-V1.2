@@ -21,19 +21,20 @@ public:
 	AttackMA(Provinces *defendingProvinceArg, Participants* attackingParticipantArg);
 	AttackMA(Provinces* attackerProvinceArg, Provinces* defenderProvinceArg, Participants * attackingParticipantArg, Commanders* commanderArg);
 
-	void 
-		findCommander (std::vector<Commanders*> commandersCanAttack),
+	Commanders* pickCommanderAttack(std::vector<Commanders*> commandersCanAttack) = 0;
+	void virtual
+		mainAttackMA(Provinces* defendingProvince, Commanders* attackingCommander) = 0,
+		
 		printResourcesGained(),
 		determineLostCP(int attackerCP, int defendingCP, int& attackerLostCP, int& defenderLostCP),
 		
-		preAttack(),
-		playerCommitAttack(),
+		playerCommitAttack(Provinces* defendingProvince,  Commanders* attackingCommander),
 		
 		calculateTroopsLost(Commanders* commander, int lostCombatPower, std::array<int,5> &troopsLost, int troopIndex),
 		battleCalculationsTwo(int& lostCombatPower, int troopsLost[5], int troopIndex),
 		casualtyReport(std::array<int,5> troopsLost, std::array<int,5> injuredTroops);
 
-	
+	virtual std::vector<Commanders*> getCommandersCanAttack(std::pair<int, int> defenderSystemCoords) = 0;
 private:
 	Provinces 
 		*attackingProvince, 

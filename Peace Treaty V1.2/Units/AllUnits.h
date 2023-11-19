@@ -8,7 +8,7 @@
 
 #include "Misc/INF.h"
 #include "AllUnitsAttributes/Coords.h"
-#include "AllUnitsAttributes/Troops.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\AllUnitsAttributes\Troops\Troops.h"
 
 /*int resourcesPresent[5];
 	int troopsPresent[5];
@@ -17,7 +17,7 @@
 using namespace INF;
 
 
-class AllUnits : public Coords, public Troops
+class AllUnits : public Coords
 {
 public:
 	//----Constructors----
@@ -54,6 +54,28 @@ public:
 	std::string getUnitName();
 	void printResources(std::array<int, 5> resourcesArray);
 
+		/*Return all the tiers for one troop type for a particular condition
+	Example: returns all tiers for guards present*/
+	i5array getAllOneTroopArray(TroopCondition troopCondition, INF::TroopTypes troopType);
+
+	/*Returns the total of all of a particular troop type's tiers for a particular condition
+	Example: returns the total of all tiers for guards present*/
+	int getAllOneTroopInt(TroopCondition troopCondition, INF::TroopTypes troopType);
+
+	/*Returns the tier totals for all troop types for a particular condition
+	Example: returns the total of all tiers of all troops presnet, as in the totals for guards, infantry, archers, etc.*/
+	i5array getGenericTroops(TroopCondition type);
+
+
+	//Change a troop by index or all trypes.
+	void mutateTroop(
+		INF::TroopCondition troopCondition,
+		TroopTypes troopType,
+		std::array<int, 5> amount,
+		Quantity quant,
+		INF::MutateDirection direction,
+		int troopTier);
+
 protected:
 	std::array<int, 5>
 		resourcesPresent = { 0, 0, 0, 0, 0 },
@@ -65,6 +87,19 @@ protected:
 		foodConsumption,
 		participantIndex,
 		unitLevel;
+
+	using T5array = std::array<Troops, 5>;
+	std::array<T5array, 5>
+		troopsPresent,
+		troopsInjured,
+		troopsLost;
+
+
+	std::array<std::array<T5array, 5>*, 3> allTroopConditions = {
+		&troopsPresent,
+		&troopsInjured,
+		&troopsLost
+	};
 
 
 	//Coordinates;

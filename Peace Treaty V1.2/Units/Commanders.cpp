@@ -118,3 +118,5 @@ void Commanders::resetCommanderMoved() {
 
 	moved = false;
 }
+
+

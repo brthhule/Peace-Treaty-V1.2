@@ -1,90 +1,103 @@
-#include "AttackMA.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Participants.h"
 
-AttackMA::AttackMA(Provinces* defendingProvinceArg, Participants* attackingParticipantArg) {
-	//For debugging
-	INF::debugFunction("AttackMA, AttackMA (2 Param)");
+void Participants::mainAttackMA(
+	Provinces* defendingProvinceArg, 
+	Commanders* attackingCommanderArg) {
 
-	// Given a province to attack, see if you can attack with anything nearby
+	INF::debugFunction("AttackMA, mainAttackMA");
 
-	std::pair<int, int> defenderSystemCoords = defendingProvince->getSystemCoords();
+	Provinces* defendingProvince = defendingProvinceArg;
+	Commanders* attackingCommander = attackingCommanderArg;
 
-	//Default
-	oldResources = i5array{ 1, 2, 3, 4, 5 };
-	defenseCanRetreat = false;
-	defendingParticipant = NULL;
-	attackingParticipant = NULL;
-	attackingCommander = NULL;
-	attackingProvince = NULL;
-	//End Default
+	//Find commander to attack with
+	if (attackingCommander == nullptr) {
+		std::vector<Commanders*> commandersCanAttack = getCommandersCanAttack(defendingProvince->getSystemCoords());
+		if (commandersCanAttack.size() == 0) {
+			std::cout << "There are no armies available to attack the enemy. Please move an army unit to one of the provinces around the target. \n\n";
+			return;
+		}
+
+		attackingCommander = pickCommanderAttack(commandersCanAttack);
+	}
+	
+	playerCommitAttack(defendingProvince);
+}
 
 
-	std::vector<Commanders*> commandersCanAttack;
-	std::vector<Provinces*> provincesCanAttack;
+std::vector<Commanders*> Participants::getCommandersCanAttack(std::pair<int, int> defenderSystemCoords) {
+	std::vector<Commanders*> commandersCanAttack = {};
 
-	//Get list of commanders that can be selected
+	std::array<std::pair<int, int>, 8> surroundingProvinces;
+	int currentElements = 0;
 	for (int x = -1; x <= 1; x++) {
 		for (int y = -1; y <= 1; y++)
 		{
-			int
-				firstCoordinate = defenderSystemCoords.first + x,
-				secondCoordinate = defenderSystemCoords.second + y;
-			bool
-				checkFirstCoordinate = (
-					firstCoordinate >= 0 &&
-					firstCoordinate < INF::continentSize
-				),
-				checkSecondCoordinate = (
-					secondCoordinate >= 0 &&
-					secondCoordinate < INF::continentSize
-				),
-				//Returns true if the changed coordinates aren't both the same as the original coordinates
-				checkBothCoordinates = (
-					firstCoordinate != defenderSystemCoords.first ||
-					secondCoordinate != defenderSystemCoords.second
-				);
-			if (checkFirstCoordinate && checkSecondCoordinate && checkBothCoordinates) {
-				std::pair<int, int> tempCoords(firstCoordinate, secondCoordinate);
-
-				Participants* tempParticipant = new Participants;
-				Provinces* provincePtr = tempParticipant->getSystemProvince(tempCoords);
-				if (provincePtr->getParticipantIndex() == attackingParticipantArg->getParticipantIndex()) {
-					for (Commanders* commanderPtr : tempParticipant->getSystemProvince(tempCoords)->getAllCommanders()) {
-						commandersCanAttack.push_back(commanderPtr);
-					}
-					provincesCanAttack.push_back(provincePtr);
-					delete provincePtr;
-				}
+			//Make sure the changed provinces aren't the same as the unchanged province
+			if (x != 0 || y != 0) {
+				std::pair<int, int> tempPair(x, y);
+				surroundingProvinces[currentElements] = tempPair;
+				currentElements++;
 			}
-			
 		}
 	}
 
-	if (commandersCanAttack.size() != 0) {
-		findCommander(commandersCanAttack);
-		return;
+	for (std::pair<int, int> currentPair : surroundingProvinces) {
+		int
+			firstCoordinate = defenderSystemCoords.first + x,
+			secondCoordinate = defenderSystemCoords.second + y;
+
+		bool
+			checkFirstCoordinate = (
+				firstCoordinate >= 0 &&
+				firstCoordinate < INF::continentSize),
+			checkSecondCoordinate = (
+				secondCoordinate >= 0 &&
+				secondCoordinate < INF::continentSize);
+
+		if (checkFirstCoordinate && checkSecondCoordinate) {
+			std::pair<int, int> tempCoords(firstCoordinate, secondCoordinate);
+
+			Provinces* provincePtr = this->getSystemProvince(tempCoords);
+
+			//Get all Commanders at this province
+			std::vector<Commanders*> provinceCommanders = provincePtr->getAllCommanders();
+
+			//Add this participant's commanders the vector of commanders that can attack
+			for (Commanders* element : provinceCommanders) {
+				if (element->getParticipantIndex() == participantIndex) {
+					commandersCanAttack.push_back(element);
+				}
+			}
+		}
 	}
-	
-	std::cout << "There are no armies available to attack the enemy. Please move an army unit to one of the provinces around the target. \n\n";
-	return;
+			
+	return commandersCanAttack;
 }
 
-void AttackMA::findCommander(std::vector <Commanders*> commandersCanAttack) {
+Commanders* Participants::pickCommanderAttack(std::vector <Commanders*> commandersCanAttack) {
 	//For debugging
 	INF::debugFunction("AttackMA, findCommander");
 
-	std::string commanderName;
 	std::cout << "The following commanders can attack the target: \n";
 	std::cout << "Amount of commanders: " << commandersCanAttack.size() << std::endl;
-	for (int x = 0; x < (int)commandersCanAttack.size(); x++) {
-		std::cout << "Commander " << commandersCanAttack[x]->getUnitName() << ", Level: " << commandersCanAttack[x]->getLevel();
-	}
-	std::cout << "Enter the name of the commander you would like to select: ";
-	getline(std::cin, commanderName);
-	if (attackingParticipant->hasCommander(commanderName) == false)
-		findCommander(commandersCanAttack);
 
-	attackingCommander = attackingParticipant->getCommander(commanderName);
-	preAttack();
+
+	for (Commanders* commander : commandersCanAttack) {
+		std::cout << "Commander " << commander->getUnitName() +
+			", Level: " << commander->getLevel();
+	}
+	
+	std::cout << "Enter the name of the commander you would like to select: ";
+	std::string commanderName;
+	getline(std::cin, commanderName);
+
+	//If participant doesn't have commander, recurse until it does
+	if (this->hasCommander(commanderName) == false) {
+		std::cout << "Invalid commander selected... please try again.\n";
+		pickCommanderAttack(commandersCanAttack);
+	}
+		
+	return getCommander(commanderName);
 }
 
 void AttackMA::preAttack()
@@ -92,18 +105,21 @@ void AttackMA::preAttack()
 	//For debugging
 	INF::debugFunction("AttackMA, preAttack");
 
-	defendingParticipant = db.getParticipant(defendingProvince->getParticipantIndex());
-	playerCommitAttack();
-	defendingCommanders = defendingProvince->getAllCommanders();
 	oldResources = attackingCommander->getAllResources();
 	playerCommitAttack();
 }
 
-void AttackMA::playerCommitAttack()
-{
+void Participants::playerCommitAttack(Provinces* defendingProvince,  Commanders* attackingCommander) {
 	//For debugging
 	INF::debugFunction("AttackMA, playerCommitAttack");
 
+	std::vector<Commanders*> defendingCommanders = defendingProvince->getAllCommanders();
+
+	i5array preAttackResources = attackingCommander->getAllResources();
+
+	for (Commanders* defendingCommander : defendingCommanders) {
+
+	}
 	Commanders* defendingCommander = defendingCommanders[0];
 	int attackerCP = attackingCommander->getCP();
 	int defendingCP = defendingCommander->getCP();
