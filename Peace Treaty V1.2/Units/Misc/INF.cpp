@@ -75,7 +75,7 @@ namespace INF {
 			"SELECT_PLAYER_PROVINCE",
 			"SELECT_ENEMY_PROVINCE",
 			"WHAT_REPORT"*/
-	std::array<std::string, 11> PROMPTS_STRING = {
+	std::array<std::string, 12> PROMPTS_STRING = {
 			"SELECT_ENEMY_ACTION",
 			"PLAYER_UNIT_ACTION",
 			"INTRODUCTION",
@@ -226,7 +226,7 @@ namespace INF {
 		//For debugging
 		INF::debugFunction("CV, stringToPrompts");
 
-		return PROMPTS(INF::getStringIndex(arg));
+		return Prompts(INF::getStringIndex(arg));
 	}
 
 	std::array<int, 5> INF::modifyArray(i5array primeArray, 

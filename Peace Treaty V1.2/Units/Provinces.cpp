@@ -39,12 +39,12 @@ Provinces::Provinces(int overallIndexArg)
 		&troopsInjured,
 		&troopsLost,
 		&initialStats };
-	troopLists = {
+	troopsLists = {
 		&troopsPresent,
 		&troopsInjured,
 		&troopsLost
 	};
-	listINt = {
+	listInt = {
 		&combatPower,
 		&totalTroops,
 		&foodConsumption,
@@ -55,12 +55,6 @@ Provinces::Provinces(int overallIndexArg)
 	};
 }
 
-std::pair<int, int> Provinces::translateToSystemCoords(std::pair<int, int> userCoordsArg) {
-	//For debugging
-	INF::debugFunction("Provinces, translateToSystemCoords");
-
-	return Coords::translateToSystemCoords(userCoordsArg);
-}
 
 
 //Province stats
@@ -93,8 +87,6 @@ void Provinces::initializeCapitalStats() {
 	initiailizeCapitalBuildings();
 }
 
-
-
 //Commander Stuff
 void Provinces::removeCommander(Commanders *newCommander)
 {
@@ -125,12 +117,12 @@ int Provinces::getTotalCP()
 	return totalCP;
 }
 
-std::array<int,5> Provinces::getTotalResources()
+INF::i5array Provinces::getTotalResources()
 {
 	//For debugging
 	INF::debugFunction("Provinces, getTotalResources");
 
-	std::array<int,5> totalResources = resourcesPresent;
+	INF::i5array totalResources = resourcesPresent;
   std::unordered_map<std::string, Commanders*>::iterator it;
 	for (it = commanders.begin(); it != commanders.end(); it++)
 		for (int y = 0; y < 5; y++)

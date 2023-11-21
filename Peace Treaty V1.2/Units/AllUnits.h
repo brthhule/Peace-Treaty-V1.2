@@ -88,6 +88,9 @@ public:
 
 	void setBattleFormation(troopConditionArray troopArray);
 
+	//Override?
+	INF::ipair translateCoords(INF::ipair coords, CoordsType type);
+
 protected:
 	i5array resourcesPresent;
 	i5array initialStats;

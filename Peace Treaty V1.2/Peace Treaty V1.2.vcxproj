@@ -148,7 +148,7 @@
     <ClCompile Include="PlayerAction.cpp" />
     <ClCompile Include="Units\Reports\ProvinceReport.cpp" />
     <ClCompile Include="Units\Misc\INF.cpp" />
-    <ClCompile Include="Units\AllUnitsAttributes\Troops.cpp" />
+    <ClCompile Include="Units\AllUnitsAttributes\Troops\Troops.cpp" />
     <ClCompile Include="Units\AllUnits.cpp" />
     <ClCompile Include="Units\Commanders.cpp" />
     <ClCompile Include="Units\Database.cpp" />

@@ -14,6 +14,9 @@ d5array Buildings::libraryUR = { 1, 1, 1, 1, 0.2 };
 d5array Buildings::wallUR = { 1, 1, 1, 1, 0.2 };
 d5array Buildings::residencesUR = {};
 
+i5array Buildings::capacityAmounts = { 10,10,10,10,10 };
+i5array Buildings::resourceProduction = { 5,4,3,2,1 };
+
 std::array<d5array, 10> Buildings::upgradeRates = {
 		&farmUR,
 		&millUR,
@@ -26,9 +29,6 @@ std::array<d5array, 10> Buildings::upgradeRates = {
 		&wallUR,
 		&residencesUR
 };
-
-i5array Buildings::capacityAmounts = { 10,10,10,10,10 };
-i5array Buildings::resourceProduction = { 5,4,3,2,1 };
 
 Buildings::Buildings() {
 	//For debugging

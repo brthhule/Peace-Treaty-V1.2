@@ -97,14 +97,6 @@ void Commanders::addLevel() {
 	unitLevel++;
 }
 
-
-bool Commanders::getDelete() {
-	//For debugging
-	INF::debugFunction("Commanders, getDelete");
-
-	return deleteCommander;
-}
-
 bool Commanders::hasMoved() {
 	//For debugging
 	INF::debugFunction("Commanders, hasMoved");

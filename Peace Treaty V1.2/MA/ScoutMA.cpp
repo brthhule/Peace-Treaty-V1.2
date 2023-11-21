@@ -122,7 +122,7 @@ ScoutMA::scoutTypes Participants::getCanScout()
 	//For debugging
 	INF::debugFunction("ScoutMA, getCanScout");
 
-	std::pair<int, int> targetUserCoords = ScoutInfo::targetProvince->getCoords(USER);
+	std::pair<int, int> targetUserCoords = ScoutInfo::targetProvince->getCoords(INF::USER);
 	int targetX = targetUserCoords.first;
 	int targetY = targetUserCoords.second;
 
@@ -161,7 +161,7 @@ void Participants::getCanScoutTwo(int targetX, int targetY, int a, int b, ScoutM
 	commandersPtrMap newMap = this->getCommandersMap();
 	commandersPtrMap::iterator it;
 	for (it = newMap.begin(); it != newMap.end(); it++){
-		if (it->second->getCoords(USER) == newProvince->getCoords(USER))
+		if (it->second->getCoords(INF::USER) == newProvince->getCoords(INF::USER))
 			canScout.first.push_back(it->second);
 	}
 

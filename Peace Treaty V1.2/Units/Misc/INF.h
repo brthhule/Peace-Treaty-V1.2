@@ -28,6 +28,7 @@ namespace INF
 	using s5array = std::array<std::string, UNIT_AMOUNT>;
 	using i5array = std::array<int, UNIT_AMOUNT>;
 	using d5array = std::array<double, UNIT_AMOUNT>;
+
 	using ivector = std::vector<int>;
 	using String = std::string;
 	using ipair = std::pair<int, int>;
@@ -50,7 +51,7 @@ namespace INF
 	template <typename T>
 	class myarray : std::array<int, 5> {
 	public:
-		void createArray(std::array<int,5> arrayArg);
+		void createArray(INF::i5array arrayArg);
 		void addArrayElements(myarray arrayArg);
 	};
 
@@ -71,7 +72,7 @@ namespace INF
 		RESOURCE_PRODUCTION;
 
 	extern const int BARRACKS_PRODUCTION;
-	extern std::array<std::string, 11> PROMPTS_STRING;
+	extern std::array<std::string, 12> PROMPTS_STRING;
 
 	extern int 
 		continentSize, 

@@ -26,7 +26,7 @@ public:
 
 	void mutateLevel(
 		Build::BuildingType type, 
-		int name, std::array<int,5> amount, 
+		int name, INF::i5array amount, 
 		INF::Quantity quant, 
 		INF::MutateDirection direction);
 

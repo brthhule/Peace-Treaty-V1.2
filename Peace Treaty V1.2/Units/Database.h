@@ -1,8 +1,6 @@
 #ifndef DATABASE_H
 #define DATABASE_H
 
-#include "stdafx.h"
-
 #include <iostream>
 #include <unordered_map>
 #include <vector>

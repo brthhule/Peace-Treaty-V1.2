@@ -34,10 +34,10 @@ int Troops::getLevel() {
 }
 
 int Troops::getCurrentHealth() {
-	return health;
+	return currentHealth;
 }
 
-std::array<int, 3> getCurrentDamage() {
+std::array<int, 3> Troops::getCurrentDamage() {
 	return currentDamage;
 }
 
@@ -47,7 +47,7 @@ void Troops::updateHealth(int newHealth) {
 
 //Current damage is proportional to current health / base health
 void Troops::updateCurrentDamage() {
-	for (int x = 0 x < 3; x++) {
+	for (int x = 0; x < 3; x++) {
 		currentDamage.at(x) = baseDamage.at(x) * (currentHealth / baseHealth);
 	}
 }

@@ -56,7 +56,7 @@ int AllUnits::getCP() {
 
 	combatPower = 0;
 	for (int x = 0; x < 5; x++) {
-		combatPower += troopsPresent[x] * INF::TROOPS_CP[x];
+		combatPower += troopsPresent[x] * INF::Troops_CP[x];
 	}
 	return combatPower;
 }
@@ -179,28 +179,10 @@ i5array AllUnits::getGenericTroops(TroopCondition troopCondition) {
 
 	for (int x = 0; x < 5; x++) {
 		TroopTypes troopType = (TroopTypes)x;
-		troopTotals.at(x) = Troops::getAllOneTroopInt(troopCondition, troopType);
+		troopTotals.at(x) = getAllOneTroopInt(troopCondition, troopType);
 	}
 
 	return troopTotals;
-}
-
-
-//--------Troop Functions--------
-//Return a troop by index or all troops-- done by type
-i5array AllUnits::getTroop(INF::TroopCondition type, int troopIndex, Quantity amount) {
-	//For debugging
-	INF::debugFunction("Troops, getTroop");
-
-	i5array troopCopy;
-
-	if (amount == SINGLE) {
-		troopCopy = *allTroopTypes[type];
-		troopCopy[0] = troopCopy[troopIndex];
-		return troopCopy;
-	}
-
-	return *allTroopTypes[type];
 }
 
 //----Mutators----
@@ -240,4 +222,9 @@ void AllUnits::setBattleFormation(troopConditionArray troopArray) {
 	std::cout << "Welcome to the Battle Formation menu.\n";
 	std::cout << "Please select a battle formation option: ";
 	std::cout << ""
+}
+
+
+INF::ipair AllUnits::translateCoords(INF::ipair coords, CoordsType type) {
+	return Coords::translateCoords(coords, type);
 }

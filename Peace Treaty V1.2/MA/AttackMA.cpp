@@ -20,7 +20,7 @@ void Participants::mainAttackMA(
 		attackingCommander = pickCommanderAttack(commandersCanAttack);
 	}
 	
-	playerCommitAttack(defendingProvince);
+	playerCommitAttack(defendingProvince, attackingCommander);
 }
 
 
@@ -124,12 +124,16 @@ void Participants::playerCommitAttack(Provinces* defendingProvince,  Commanders*
 
 	calculateTroopsLost(attackingCommander, attackerLostCP, troopsLost, 0);
 
+	//Fix this later
+	TroopTypes type = TroopTypes::GUARDS;
+	int troopTier = 1;
+
 	for (int x = 0; x < 5; x++) {
 		injuredTroops[x] = troopsLost[x] / (2 * enemyDifficulty);
 		troopsLost[x] -= injuredTroops[x];
 	}
-	attackingCommander->mutateTroop(INJURED, NULL, injuredTroops, ALL, INCREASE);
-	attackingCommander->mutateTroop(LOST, NULL, troopsLost, ALL, INCREASE);
+	attackingCommander->mutateTroop(INJURED, type, injuredTroops, ALL, INCREASE, NULL);
+	attackingCommander->mutateTroop(LOST, type, troopsLost, ALL, INCREASE, NULL);
 
 	std::cout << "  Results: \n\n";
 	printResourcesGained();
