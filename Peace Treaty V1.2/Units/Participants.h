@@ -6,6 +6,8 @@
 #ifndef PARTICIPANTS_H
 #define PARTICIPANTS_H
 
+#include "stdafx.h"
+
 #include <chrono>
 #include <cstdlib>
 #include <ctime>

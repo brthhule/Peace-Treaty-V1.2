@@ -90,18 +90,20 @@ std::string Coords::getSystemCoordsString() {
 
 ipair Coords::indexToCoords(int index, CoordsType type) {
 	INF::debugFunction("Coords, indexToCoords");
+	int row = 0, col = 0, x = 0, y = 0;
+
 	switch (type) {
 		case SYSTEM:
-			int row = index / continentSize;
-			int col = index % continentSize;
+			row = index / continentSize;
+			col = index % continentSize;
 			return std::make_pair(row, col);
 
 			//Use this for "initialization of 'row' is skipped by 'case' label" error
 			break;
 		case USER:
 		default:
-			int x = (index % continentSize) + 1;
-			int y = continentSize - (index / continentSize);
+			x = (index % continentSize) + 1;
+			y = continentSize - (index / continentSize);
 			return std::make_pair(x, y);
 			break;
 	}

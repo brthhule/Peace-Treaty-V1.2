@@ -135,19 +135,19 @@ void Participants::deployCommanderMF() {
 	INF::debugFunction("ArmyOverview, deployCommanderMF");
 
 	Commanders* commander = pickCommander();
-	if (commanderName == nullptr) {
+	if (commander == nullptr) {
 		return;
 	}
 
 	commander->printCommanderStats();
 
-	std::cout << "Deploy commander " + commanderName + "? (Y/N) ";
+	std::cout << "Deploy commander " + commander->getUnitName() + "? (Y/N) ";
 	char confirmDeploy = Input::getInputText("Replacement", { "Y", "N" }).at(0);
 
 	if (confirmDeploy == 'Y')
 	{
 		if (commander->hasMoved() == false) {
-			this->moveUnitOne(getCommander(commanderName));
+			this->moveUnitOne(commander);
 		} else {
 			std::cout << "This unit has already moved... please pick another unit \n";
 			deployCommanderMF();

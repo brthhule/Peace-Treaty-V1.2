@@ -1,6 +1,8 @@
 #ifndef DATABASE_H
 #define DATABASE_H
 
+#include "stdafx.h"
+
 #include <iostream>
 #include <unordered_map>
 #include <vector>
@@ -9,11 +11,10 @@
 //Units
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Participants.h"
 
-#include "../Units/Misc/INF.h"
-
-
 #define print(x) std::cout << x;
 #define println(x) std::cout << x << std::endl;
+
+using namespace INF;
 
 //constexpr int size = 10; // modern C++ same thing as #define SIZE 10
 
