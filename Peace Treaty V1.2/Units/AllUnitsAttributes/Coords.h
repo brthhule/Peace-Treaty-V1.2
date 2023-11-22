@@ -12,7 +12,7 @@ class Coords
 {
 public:
 	/*SYSTEM, USER*/
-	static enum CoordsType { SYSTEM, USER };
+	enum CoordsType { SYSTEM, USER };
 
 	void
 		setIndex(int index),

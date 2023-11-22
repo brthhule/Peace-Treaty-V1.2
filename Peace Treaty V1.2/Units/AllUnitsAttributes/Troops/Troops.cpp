@@ -59,10 +59,6 @@ void Troops::resetStats() {
 	}
 }
 
-void Troops::getLevel() {
-	return level;
-}
-
 void Troops::resetLevel() {
 	level = 0;
 }

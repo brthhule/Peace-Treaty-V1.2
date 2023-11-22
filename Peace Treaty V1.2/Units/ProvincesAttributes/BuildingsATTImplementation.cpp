@@ -43,7 +43,7 @@ Buildings::Buildings() {
 
 
 //Use struct/class here to pass to template, maybe don't use template??? Use returnArray or returnInt for arrayArg
-i5array Buildings::getBuildingLevel(Build::BuildingType type, int index, INF::Quantity quant) {
+i5array Buildings::getBuildingLevel(BUILD::BuildingType type, int index, INF::Quantity quant) {
 	//For debugging
 	INF::debugFunction("Buildings, getBuildingLevel");
 
@@ -64,7 +64,7 @@ i5array Buildings::getBuildingLevel(Build::BuildingType type, int index, INF::Qu
 }
 
 /*Use returnArray or returnInt for arrayArg*/
-i5array Buildings::getCapacity(Build::BuildingType type, int name, INF::Quantity amount) {
+i5array Buildings::getCapacity(BUILD::BuildingType type, int name, INF::Quantity amount) {
 	//For debugging
 	INF::debugFunction("Buildings, getCapacity");
 
@@ -87,7 +87,7 @@ i5array Buildings::getCapacity(Build::BuildingType type, int name, INF::Quantity
 }
 
 /*Use returnArray or returnInt for arrayArg*/
-i5array Buildings::getResourceProduction(Build::ResourceBuildings name, INF::Quantity amount) {
+i5array Buildings::getResourceProduction(BUILD::ResourceBuildings name, INF::Quantity amount) {
 	//For debugging
 	INF::debugFunction("Buildings, getResourceProduction");
 
@@ -117,7 +117,7 @@ i5array Buildings::getResourceProduction(Build::ResourceBuildings name, INF::Qua
 *quant: is whether or not only 1 level or all levels of a type of building is being mutated.
 *
 *direction: determines whether the process is addition or subtraction.*/
-void Buildings::mutateLevel(Build::BuildingType type, int name, i5array amount, INF::Quantity quant, INF::MutateDirection direction) {
+void Buildings::mutateLevel(BUILD::BuildingType type, int name, i5array amount, INF::Quantity quant, INF::MutateDirection direction) {
 	//For debugging
 	INF::debugFunction("Buildings, mutateLevel");
 
@@ -163,7 +163,7 @@ void Buildings::printBuildingStats()
 	//For debugging
 	INF::debugFunction("Provinces, printBuildingStats");
 
-	i5array productionArray = getResourceProduction(Build::CHURCH, INF::ALL);
+	i5array productionArray = getResourceProduction(BUILD::CHURCH, INF::ALL);
 	std::cout << "\033[;34m";
 
 	std::cout << "Building stats of this province: " << std::endl;

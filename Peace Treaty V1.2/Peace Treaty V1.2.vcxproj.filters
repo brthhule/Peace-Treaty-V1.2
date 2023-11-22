@@ -256,7 +256,7 @@
     <ClInclude Include="Misc\INF.h">
       <Filter>Header Files\Misc</Filter>
     </ClInclude>
-    <ClInclude Include="Interfaces\BuildMA.h">
+    <ClInclude Include="Interfaces\BuildMAInterface.h">
       <Filter>Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="Units\Provinces.h">

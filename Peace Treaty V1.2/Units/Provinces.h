@@ -11,7 +11,7 @@
 #include "AllUnits.h"
 #include "Commanders.h"
 #include "Misc/INF.h"
-#include "ProvincesAttributes/BuildMA.h"
+#include "ProvincesAttributes/BuildMAInterface.h"
 #include "Misc/Input.h"
 #include "AllUnitsAttributes/Coords.h"
 #include "ProvincesAttributes/Buildings.h"
@@ -27,7 +27,7 @@ using namespace Input;
 extern const int BARRACKS_PRODUCTION;
 const int LOG_SIZE = 20;
 
-class Provinces : public AllUnits, public BuildMA, public Buildings
+class Provinces : public AllUnits, public BuildMAInterface, public Buildings
 {
 public:
 	/*Constructors*/
@@ -60,22 +60,25 @@ public:
 		addCommander(Commanders* newCommander),
 		removeCommander(Commanders* newCommander),
 		printCommanders(),
-		printInformation(Build::BuildingType type, std::array<int, 5> requiredresources, int buildingindex),
 		updateProvinceResources(),
-		playerBuildFunction(),
-		upgradeBuildings(),
-		upgradeBuildings2(char optionchar),
+		
 		setKingdomName(std::string name),
 		setOverallIndex(int index),
 
 
 		createReport(int scouterLevelArg, int targetLevelArg);
 
+	////////////////BuildMAInterface///
+	void printInformation(BUILD::BuildingType type, i5array requiredresources, int buildingindex),
+		playerBuildFunction(),
+		upgradeBuildings(),
+		upgradeBuildings2(char optionchar);
 
+	void upgradeBuildings3(BUILD::BuildingType type, INF::i5array* listArg, int name);
 		
-
+	//////////////End BuildMAInterface///
 	//type (resource, other), other/resourceLevels, name of object in Levels list
-	void upgradeBuildings3(Build::BuildingType type, std::array<int, 5>* listArg, int name);
+	
 
 	std::string getKingdomName() { return kingdomName; }
 	

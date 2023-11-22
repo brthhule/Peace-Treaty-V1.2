@@ -12,7 +12,7 @@
 
 using namespace INF;
 
-using namespace Build;
+using namespace BUILD;
 
 class Buildings{
 public:
@@ -20,12 +20,12 @@ public:
 
 	
 	/*These are functions*/
-	i5array getBuildingLevel(Build::BuildingType type, int index, INF::Quantity quant);
-	i5array getResourceProduction(Build::ResourceBuildings name, INF::Quantity amount);
-	i5array getCapacity(Build::BuildingType type, int name, INF::Quantity amount);
+	i5array getBuildingLevel(BUILD::BuildingType type, int index, INF::Quantity quant);
+	i5array getResourceProduction(BUILD::ResourceBuildings name, INF::Quantity amount);
+	i5array getCapacity(BUILD::BuildingType type, int name, INF::Quantity amount);
 
 	void mutateLevel(
-		Build::BuildingType type, 
+		BUILD::BuildingType type, 
 		int name, INF::i5array amount, 
 		INF::Quantity quant, 
 		INF::MutateDirection direction);

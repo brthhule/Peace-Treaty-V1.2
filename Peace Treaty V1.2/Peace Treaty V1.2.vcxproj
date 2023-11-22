@@ -133,9 +133,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Units\ProvincesAttributes\Build.cpp" />
-    <ClCompile Include="Units\ProvincesAttributes\Buildings.cpp" />
-    <ClCompile Include="Units\Reports\CommanderReport.cpp" />
+    <ClCompile Include="Units\ProvincesAttributes\BUILD.cpp" />
+	<ClCompile Include="Units\ProvincesAttributes\BuildingsATTImplementation.cpp" />
+    <ClCompile Include="Units\ProvincesAttributes\BuildMAImplementation.cpp" />
+	<ClCompile Include="Units\ProvincesAttributes\BuildingEntities\BuildingEntitiesBase.cpp" />
+	 
+
+	<ClCompile Include="Units\Reports\CommanderReport.cpp" />
     <ClCompile Include="Units\AllUnitsAttributes\Coords.cpp" />
     <ClCompile Include="Units\Misc\Input.cpp" />
     <ClCompile Include="MA\ArmyOverviewMA.cpp" />
@@ -201,7 +205,7 @@
     <ClInclude Include="CommanderReport.h" />
     <ClInclude Include="Coords.h" />
     <ClInclude Include="Input.h" />
-    <ClInclude Include="Interfaces\BuildMA.h" />
+    <ClInclude Include="Interfaces\BuildMAInterface.h" />
     <ClInclude Include="MA\ArmyOverviewMA.h" />
     <ClInclude Include="MA\AttackMA.h" />
     <ClInclude Include="MA\MapMA.h" />

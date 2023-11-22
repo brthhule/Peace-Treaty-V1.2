@@ -9,30 +9,29 @@
 
 
 
-namespace Build {
-	/*BARRACKS,
-	INFIRMARY,
-	LIBRARY,
-	WALL,
-	RESIDENCES*/
-	enum OtherBuildings { 
-		BARRACKS, 
-		INFIRMARY,
-		LIBRARY,
-		WALL,
-		RESIDENCES 
-	};
+namespace BUILD {
 	/*FARM, 
 	LUMBER_MILL,
 	QUARRY, 
 	MINE,
-	CHURCH */
-	enum ResourceBuildings {
+	CHURCH 
+	
+	BARRACKS,
+	INFIRMARY,
+	LIBRARY,
+	WALL,
+	RESIDENCES*/
+	enum BuildingsEnum {
 		FARM, 
 		LUMBER_MILL,
 		QUARRY, 
 		MINE,
-		CHURCH 
+		CHURCH,
+		BARRACKS,
+		INFIRMARY,
+		LIBRARY,
+		WALL,
+		RESIDENCES
 	};
 
 	/*RESOURCE, 
@@ -42,20 +41,9 @@ namespace Build {
 		OTHER 
 	};
 
-	extern INF::s5array
-		OtherBuildingsString,
-		ResourceBuildingsString;
 
-	//Converts from enum to string
-	std::string 
-		OtherBuildingsToString(Build::OtherBuildings arg),
-		ResourceBuildingsToString(Build::ResourceBuildings arg);
-	//Gets index of arg in list
-	int getOtherBuildingsStringIndex(std::string arg),
-		getResourceBuildingsStringIndex(std::string arg);
-	//Cast the string into enum?
-	OtherBuildings stringToOtherBuildings(std::string arg);
-	ResourceBuildings stringToResourceBuildings(std::string arg);
+	//Conversions
+	std::pair<std::string, BuildingsEnum> translateEnumString(std::string stringArg, BuildingsEnum enumArg);
 	
 }
 #endif
