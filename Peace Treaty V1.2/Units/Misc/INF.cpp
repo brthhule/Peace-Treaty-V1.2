@@ -229,18 +229,28 @@ namespace INF {
 		return Prompts(INF::getStringIndex(arg));
 	}
 
-	std::array<int, 5> INF::modifyArray(i5array primeArray, 
-										i5array secondaryArray, 
-										bool isAdd) {
+	i5array INF::mutateArray(
+		i5array primeArray, 
+		i5array secondaryArray, 
+		MutateDirection direction) 
+	{
 		//For debugging
-		debugFunction("OF, modifyArray");
+		debugFunction("OF, mutateArray");
 
-		if (isAdd)
-			for (int& x : primeArray)
-				x += secondaryArray[x];
-		else
-			for (int& x : primeArray)
-				x -= secondaryArray[x];
+		switch (direction) {
+			case INCREASE:
+				for (int index = 0; index < 5; index++) {
+					primeArray.at(index) += secondaryArray.at(index);
+				}
+				break;
+			case DECREASE:
+			default:
+				for (int index = 0; index < 5; index++) {
+					primeArray.at(index) -= secondaryArray.at(index);
+				}
+				break;
+		}
+			
 		return primeArray;
 	}
 

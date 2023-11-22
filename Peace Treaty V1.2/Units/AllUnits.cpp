@@ -114,11 +114,11 @@ void AllUnits::modifySpecificResource(int index, int amount, bool isAdd) {
 		resourcesPresent[index] -= amount;
 }
 
-void AllUnits::modifyResources(i5array resourcesArray, bool isAdd) {
+void AllUnits::modifyResources(i5array resourcesArray, INF::MutateDirection direction) {
 	//For debugging
 	INF::debugFunction("AllUnits, mdofiyResources");
 
-	INF::modifyArray(resourcesPresent, resourcesArray, isAdd);
+	INF::modifyArray(resourcesPresent, resourcesArray, direction);
 }
 
 int AllUnits::getLevel() {

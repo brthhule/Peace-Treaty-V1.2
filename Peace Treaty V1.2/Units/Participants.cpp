@@ -385,11 +385,12 @@ std::array<int, 5> Participants::calculateEach(int option)
 
 	std::vector<std::shared_ptr<AllUnits>> unitsVector = {};
 
-	unitsVector = [&](std::vector < std::shared_ptr<AllUnits>> unitsVector, std::vector<Provinces*> provincesVector) {
+	/*unitsVector = [&](std::vector < std::shared_ptr<AllUnits>> unitsVector, std::vector<Provinces*> provincesVector) {
 		for (std::shared_ptr<AllUnits> ptr : provincesVector) {
 			unitsVector.push_back(ptr);
 		}
-	}
+	}*/
+
 	for (std::shared_ptr<AllUnits> ptr : provincesVector){
 		unitsVector.push_back(ptr);
 	}
@@ -398,26 +399,23 @@ std::array<int, 5> Participants::calculateEach(int option)
 		unitsVector.push_back(ptr);
 	}
 
-	provincesVector,
-		commandersVector
 	//Iterate through all Provinces and Commanders
-	for (std::vector<AllUnits> tempVector : provincesCommandersArray) {
-		for (AllUnits unit : tempVector) {
-			i5array modifyArrayAmount;
-			switch (option) {
-				case 1://Calculate each Unit
-					modifyArrayAmount = unit.getGenericTroops(REGULAR);
-					break;
-				case 2://Calculate each resource
-					modifyArrayAmount = unit.getAllResources();
-					break;
-				case 3://calculate each troop lost
-					modifyArrayAmount = unit.getGenericTroops(LOST);
-					break;
-			}
-
-			returnArray = modifyArray(returnArray, modifyArrayAmount, true);
+	for (std::shared_ptr<AllUnits> unit : unitsVector) {
+		i5array secondaryArray;
+		switch (option) {
+			case 1://Calculate each Unit
+				secondaryArray = unit->getGenericTroops(REGULAR);
+				break;
+			case 2://Calculate each resource
+				secondaryArray = unit->getAllResources();
+				break;
+			case 3://calculate each troop lost
+				secondaryArray = unit->getGenericTroops(LOST);
+				break;
 		}
+
+		returnArray = modifyArray(returnArray, modifyArrayAmount, INF::INCREASE);
+		
 	}
 	
 	return returnArray;
@@ -495,8 +493,7 @@ void Participants::showMapOld() {
 
 
 
-bool Participants::subtractCheckResources(String provinceName, 
-										i5array resourcesArray) {
+bool Participants::subtractCheckResources(AllUnits unit, i5array costs) {
 	//For debugging
 	INF::debugFunction("Participants, subtractCheckResources");
 

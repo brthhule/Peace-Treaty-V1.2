@@ -45,7 +45,7 @@ public:
 
 	//resources
 	void modifySpecificResource(int index, int amount, bool isAdd);
-	void modifyResources(i5array resourcesArray, bool isAdd);
+	void modifyResources(i5array resourcesArray, INF::MutateDirection direction);
 
 	void printResources();
 	void changeUnitName(std::string name);

@@ -34,16 +34,11 @@ Buildings::Buildings() {
 	//For debugging
 	INF::debugFunction("Buildings, OtherBuildingsToString");
 
-	for (int x : otherBuildingsLevels) {
-		x = 0;
-	}
 
 	otherBuildingsLevels = INF::i5array{};
 	resourceBuildingsLevels = INF::i5array{};
 
-	levels = std::make_pair(
-		&resourceBuildingsLevels,
-		&otherBuildingsLevels);
+	levels = std::make_pair(&resourceBuildingsLevels, &otherBuildingsLevels);
 }
 
 
@@ -143,14 +138,7 @@ void Buildings::mutateLevel(Build::BuildingType type, int name, i5array amount, 
 			}
 			break;
 		case ALL:
-			switch (direction) {
-				case INCREASE:
-					arrayCopy = INF::modifyArray(arrayCopy, amount, true);
-					break;
-				case DECREASE:
-					arrayCopy = INF::modifyArray(arrayCopy, amount, false);
-					break;
-			}
+			arrayCopy = INF::modifyArray(arrayCopy, amount, direction);
 			break;
 	}
 
@@ -236,18 +224,6 @@ void Buildings::initiailizeCapitalBuildings() {
 	}
 	for (int& x : otherBuildingsLevels) {
 		x = 1;
-	}
-}
-
-void Buildings::initializeEmptyBuildings() {
-	//For debugging
-	INF::debugFunction("Buildings, initializeEmptyBuildings");
-
-	for (int& x : resourceBuildingsLevels) {
-		x = 0;
-	}
-	for (int& x : otherBuildingsLevels) {
-		x = 0;
 	}
 }
 

@@ -9,24 +9,22 @@ Provinces::Provinces() {
 	//For debugging
 	INF::debugFunction("Provinces, Provinces (0 Param)");
 
-	//Empty
-	
-	//Defaults
-	isACapital = false;
-	newAccuracy = -1;
-	overallIndex = -1;
+	Provinces(-1);
 }
+
 Provinces::Provinces(int overallIndexArg)
 {
 	//For debugging
 	INF::debugFunction("Provinces, Provinces (1 Param)");
 
-	setOverallIndex(overallIndexArg);
+	overallIndex = overallIndexArg;
 	//Initialize building levels
 	initializeEmptyBuildings();
 	resourcesPresent = INF::INITIAL_VALUES;
-	participantIndex = -1;
+	participantIndex = 0;
 
+	isACapital = false;
+	newAccuracy = -1;
 	INF::modifyArray(resourcesPresent, INF::INITIAL_VALUES, true);
 
 	unitLevel = 1;
@@ -57,17 +55,14 @@ Provinces::Provinces(int overallIndexArg)
 
 
 
-//Province stats
-
-
 //Province stuff
 void Provinces::updateProvinceResources()
 {
 	//For debugging
 	INF::debugFunction("Provinces, updateProvinceResources");
 
-	std::array<int, 5> resourcesProduced = getResourceProduction(CHURCH, ALL);
-	resourcesPresent = INF::modifyArray(resourcesPresent, resourcesProduced, true);
+	i5array resourcesProduced = getResourceProduction(NULL, ALL);
+	resourcesPresent = INF::modifyArray(resourcesPresent, resourcesProduced, INCREASE);
 }
 
 //Other
