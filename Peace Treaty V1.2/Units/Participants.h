@@ -166,8 +166,8 @@ public:
 	void armyDeploymentMF();
 	void trainCommanders();
 	void proceedWithTraining(i5array trainCosts);
-	void upgradeCommandersOne();
-	void upgradeCommandersTwo();
+	void upgradeCommander();
+	void upgradeCommander();
 	void viewArmyOverview();
 	void deployCommanderMF();
 

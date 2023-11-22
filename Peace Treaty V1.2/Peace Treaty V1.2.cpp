@@ -24,7 +24,6 @@
 //Miscellaneous
 #include "Units/Misc/INF.h"
 #include "Units/Misc/INF.h"
-#include "Units/Misc/LinkedList.h"
 #include "Units/Misc/Input.h"
 
 //Main Actions
@@ -168,6 +167,7 @@ void gamePlay() {
 
 	//Create vector to copy the list of participants from the database
 	std::vector<Participants>* participantsPtr = db.getParticipantsList();
+	std::vector <std::shared_ptr<Participants>> participantsPtr = db.getParticipantsList();
 
 	//Iterate through partiicpants by reference
 	for (int x = 0; x < (signed)participantsPtr->size(); x++)

@@ -1,5 +1,6 @@
 #include "../Units/Participants.h"
 
+/*ArmyDeploymentMA main function*/
 void Participants::armyDeploymentMF() {
 	//For debugging
 	INF::debugFunction("ArmyOverview, armyDeploymentMF");
@@ -11,7 +12,7 @@ void Participants::armyDeploymentMF() {
 			trainCommanders();
 			break;
 		case 'U':
-			upgradeCommandersOne();
+			upgradeCommander();
 			break;
 		case 'V':
 			viewArmyOverview();
@@ -28,65 +29,76 @@ void Participants::armyDeploymentMF() {
 			return;
 		}
 	}
+
 	armyDeploymentMF();
 }
 
-/*fix this-- finish making it*/
-void Participants::upgradeCommandersOne() {
+void Participants::upgradeCommander() {
 	//For debugging
-	INF::debugFunction("ArmyOverview, upgradeCommandersOne");
+	INF::debugFunction("ArmyOverview, upgradeCommander");
 
-	if (getCommandersNum() > 0)
-	{
-		if (this->pickCommander() != "-1")
-			upgradeCommandersTwo();
-	} else
+	if (getCommandersNum == 0) {
 		std::cout << "No commanders available, can not upgrade\n";
+		enterAnything(1);
+		return;
+	}
 
-	INF::enterAnything(1);
-}
+	std::shared_ptr<Commanders> commander = this->pickCommander();
 
-void Participants::upgradeCommandersTwo() {
-	//For debugging
-	INF::debugFunction("ArmyOverview, upgradeCommandersTwo");
+	if (commander == nullptr) {
+		std::cout << "Cancelling upgrade...\n";
+		enterAnything(1);
+		return;
+	}
 
-	STRING commanderName;//Implement this stuff
-	i5array costsArray = getCommander(commanderName)->getUpgradeCosts();
-
-	getCommander(commanderName)->printCosts(costsArray);
+	i5array costsArray = commander->getUpgradeCosts();
+	commander->printCosts(costsArray);
 
 	char proceedWithUpgradeQuestion =
 		Input::getInputText("\nProceed with upgrade? ", { "Y", "N" }).at(0);
-	if (proceedWithUpgradeQuestion == 'Y') {
 
-		std::array<int, 5> commanderCosts = costsArray;
-		bool commanderUpgradeIsSuccess = getCapitalProvince()->subtractCheckResources(commanderCosts);
-
-		if (commanderUpgradeIsSuccess == true) {
-			getCommander(commanderName)->addLevel();
-			std::cout << "Upgrade successful; Commander " + commanderName + "is now level " << getCommander(commanderName)->getLevel() << std::endl;
-		} else {
-			getCapitalProvince()->modifyResources(commanderCosts, true);
-			std::cout << "Upgrade failed. " << std::endl;
-		}
+	if (proceedWithUpgradeQuestion == 'N') {
+		std::cout << "Cancelling upgrade...\n";
+		INF::enterAnything(1);
+		return;
 	}
+
+	/*Subtracts the necessary resources from capital province. If resources left over are all positive (there were enough resources), return true. If any resources are negative, return false*/
+
+	bool resourcesPositive = getCapitalProvince()->subtractCheckResources(costsArray);
+
+	if (resourcesPositive == true) {
+		getCommander(commanderName)->addLevel();
+		std::cout << "Upgrade successful; Commander " + commanderName + "is now level " << getCommander(commanderName)->getLevel() << std::endl;
+	} else {
+		//Add subtracted resources back to province resources
+		getCapitalProvince()->modifyResources(costsArray, true);
+		std::cout << "Upgrade failed. " << std::endl;
+	}
+
+	INF::enterAnything();
+	return;
 }
 
+//Currently shows one commander information by selection. Need to update to show all commander information
 void Participants::viewArmyOverview() {
 	//For debugging
 	INF::debugFunction("ArmyOverview, viewArmyOverview");
 
-	Commanders* commander = pickCommander();
+	std::shared_ptr<Commanders> commander = pickCommander();
 
 	//Check that the user wants to proceed
-	if (commander != nullptr) {
-		std::cout << "Commander " + commander->getUnitName() +" selected... \n" +
-			"The coordinates of this Commander: ";
-		commander->printCoords(Coords::USER);
-		std::cout << "\n\n";
-		commander->printCommanderStats();
+	if (commander == nullptr) {
+		INF::enterAnything(1);
+		return;
 	}
-	INF::enterAnything(1);
+
+	std::cout << "Commander " + commander->getUnitName() +" selected... \n" +
+		"The coordinates of this Commander: ";
+	commander->printCoords(Coords::USER);
+	std::cout << "\n\n";
+	commander->printCommanderStats();
+
 }
 
 void Participants::trainCommanders() {
@@ -99,18 +111,19 @@ void Participants::trainCommanders() {
 
 	i5array trainCosts = getTrainCosts();
 
-	if (Input::getInputText("Proceed with training", { "Y", "N" }).at(0) == 'Y') {
-		/*if amount of commanders is less than max (not at max capacity)*/
-		if (this->getCommandersNum() < INF::maxCommanders) {
-			proceedWithTraining(trainCosts);
-		} else {
-			std::cout << "At maximum army commander amount. Training failed, returning to menu \n";
-		}
-
-	} else {
+	if (Input::getInputText("Proceed with training", { "Y", "N" }).at(0) == 'N') {
 		INF::enterAnything(1);
+		return;
 	}
 
+	/*if amount of commanders is less than max (not at max capacity)*/
+	if (this->getCommandersNum() < INF::maxCommanders) {
+		proceedWithTraining(trainCosts);
+	} else {
+		std::cout << "At maximum army commander amount. Training failed, returning to menu \n";
+	}
+
+	INF::enterAnything(1);
 }
 
 void Participants::proceedWithTraining(std::array<int, 5> trainCosts) {

@@ -3,7 +3,10 @@
 #define println(x) std::cout << x << std::endl;
 
 
-/*Constructor*/
+/*Main ScoutMA function. Takes a target province pointer as a parameter
+
+
+If the target */
 Participants::mainScoutMA(Provinces* provinceArg) {
 	//For debugging
 	INF::debugFunction("ScoutMA, mainScoutmA");
@@ -12,7 +15,8 @@ Participants::mainScoutMA(Provinces* provinceArg) {
 	Provinces* targetProvince = this->pickProvince(1);
 	
 	ScoutMA::scoutTypes canScout = selectTarget();
-	AllUnits scoutUnit = nullptr;
+	AllUnits *scoutUnit = nullptr;
+
 	int accuracy = 0;
 	if (canScout != nullptr) {
 		std::pair<AllUnits, int> tempPair = playerScoutStepTwo(canScout);
@@ -20,7 +24,7 @@ Participants::mainScoutMA(Provinces* provinceArg) {
 		accuracy = tempPair.second;
 	}
 
-	std::pair<int, int> scoutUnitSystemCoords = scoutUnit->getCords(Coords::SYSTEM);
+	std::pair<int, int> scoutUnitSystemCoords = scoutUnit->getCoords(Coords::SYSTEM);
 
 	scoutProvince(getSystemProvince(scoutUnitSystemCoords, accuracy);
 

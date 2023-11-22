@@ -383,11 +383,23 @@ std::array<int, 5> Participants::calculateEach(int option)
 
 	std::array<int, 5> returnArray = { 0, 0, 0, 0, 0 };
 
-	std::array<std::vector<AllUnits>, 2> provincesCommandersArray = {
-		provincesVector,
-		commandersVector
-	};
+	std::vector<std::shared_ptr<AllUnits>> unitsVector = {};
 
+	unitsVector = [&](std::vector < std::shared_ptr<AllUnits>> unitsVector, std::vector<Provinces*> provincesVector) {
+		for (std::shared_ptr<AllUnits> ptr : provincesVector) {
+			unitsVector.push_back(ptr);
+		}
+	}
+	for (std::shared_ptr<AllUnits> ptr : provincesVector){
+		unitsVector.push_back(ptr);
+	}
+
+	for (std::shared_ptr<AllUnits> ptr : commandersVector) {
+		unitsVector.push_back(ptr);
+	}
+
+	provincesVector,
+		commandersVector
 	//Iterate through all Provinces and Commanders
 	for (std::vector<AllUnits> tempVector : provincesCommandersArray) {
 		for (AllUnits unit : tempVector) {

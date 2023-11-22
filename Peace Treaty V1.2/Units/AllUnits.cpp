@@ -191,8 +191,8 @@ void AllUnits::mutateTroop(INF::TroopCondition troopCondition, TroopTypes troopT
 	//For debugging
 	INF::debugFunction("Troops, mutateTroop");
 
-	std::array<i5array, 5>* troopConditionArray = allTroopConditions.at(troopCondition);
-	i5array* troopTiers = troopConditionArray->at(troopType);
+	std::shared_ptr<troopConditionArray> troopArray = allTroopConditions.at(troopCondition);
+	i5array* troopTiers = troopArray->at(troopType);
 
 	int modifier = -1;
 
