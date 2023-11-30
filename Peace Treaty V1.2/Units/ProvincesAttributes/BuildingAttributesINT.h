@@ -1,5 +1,5 @@
-#ifndef BUILDINGS_H
-#define BUILDINGS_H
+#ifndef BUILDINGATTRIBUTES_H
+#define BUILDINGATTRIBUTES_H
 
 #include <iostream>
 #include <array>
@@ -14,13 +14,13 @@ using namespace INF;
 
 using namespace BUILD;
 
-class Buildings{
+class BuildingAttributesINT{
 public:
-	Buildings();
+	BuildingAttributesINT();
 
 	
 	/*These are functions*/
-	i5array getBuildingLevel(BUILD::BuildingType type, int index, INF::Quantity quant);
+	i5array getBuildingLevel(BUILD::BuildingsEnum type, int index, INF::Quantity quant);
 	i5array getResourceProduction(BUILD::ResourceBuildings name, INF::Quantity amount);
 	i5array getCapacity(BUILD::BuildingType type, int name, INF::Quantity amount);
 

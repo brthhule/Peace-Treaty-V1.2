@@ -1,11 +1,11 @@
-#ifndef BUILDINGENTITIESBASE_H
-#define BUILDINGENTITIESBASE_H
+#ifndef BUILDINGSBASE_H
+#define BUILDINGSBASE_H
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Misc\INF.h"
 
-class BuildingEntitiesBase {
+class BuildingsBASE {
 public:
-	BuildingEntitiesBase(INF::i5array baseUpgradeRatesArg);
+	BuildingsBASE(INF::i5array baseUpgradeRatesArg);
 
 	void increaseLevel(int amount);
 	int getLevel();
@@ -14,5 +14,6 @@ public:
 private:
 	int level;
 	INF::i5array baseUpgradeRates;
+
 };
 #endif

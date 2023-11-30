@@ -11,10 +11,10 @@
 #include "AllUnits.h"
 #include "Commanders.h"
 #include "Misc/INF.h"
-#include "ProvincesAttributes/BuildMAInterface.h"
+#include "ProvincesAttributes/MABuildINT.h"
 #include "Misc/Input.h"
 #include "AllUnitsAttributes/Coords.h"
-#include "ProvincesAttributes/Buildings.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\ProvincesAttributes\BuildingAttributesINT.h"
 #include "Reports/ProvinceReport.h"
 
 
@@ -27,7 +27,7 @@ using namespace Input;
 extern const int BARRACKS_PRODUCTION;
 const int LOG_SIZE = 20;
 
-class Provinces : public AllUnits, public BuildMAInterface, public Buildings
+class Provinces : public AllUnits, public MABuildINT, public Buildings
 {
 public:
 	/*Constructors*/
@@ -68,7 +68,7 @@ public:
 
 		createReport(int scouterLevelArg, int targetLevelArg);
 
-	////////////////BuildMAInterface///
+	////////////////MABuildINT///
 	void printInformation(BUILD::BuildingType type, i5array requiredresources, int buildingindex),
 		playerBuildFunction(),
 		upgradeBuildings(),
@@ -76,7 +76,7 @@ public:
 
 	void upgradeBuildings3(BUILD::BuildingType type, INF::i5array* listArg, int name);
 		
-	//////////////End BuildMAInterface///
+	//////////////End MABuildINT///
 	//type (resource, other), other/resourceLevels, name of object in Levels list
 	
 

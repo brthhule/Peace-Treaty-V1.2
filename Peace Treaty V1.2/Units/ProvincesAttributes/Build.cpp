@@ -18,16 +18,16 @@ namespace BUILD {
 		if (stringArg == NULL) {
 			return std::make_pair(BuildingStrings.at(enumArg), enumArg);
 		}
-		if (enumArg == NULL) {
-			int index = 0;
-			for (int x = 0; x < 10; x++) {
-				if (stringArg == BuildingStrings.at(x)) {
-					index = x;
-					break;
-				}
-			}
 
-			return std::make_pair(stringArg, BuildingsEnum(index));
+		if (enumArg != NULL) {
+			return;
+		}
+
+		for (int index = 0; index < 10; index++) {
+			if (stringArg == BuildingStrings.at(x)) {
+				return std::make_pair(stringArg, BuildingsEnum(index));
+				break;
+			}
 		}
 	}
 }

@@ -6,7 +6,7 @@
 
 using namespace BUILD;
 
-class BuildMAInterface
+class MABuildINT
 {
 protected:
 	virtual void playerBuildFunction() = 0;

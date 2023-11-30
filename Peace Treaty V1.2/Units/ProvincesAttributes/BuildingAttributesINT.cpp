@@ -1,4 +1,4 @@
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\ProvincesAttributes\Buildings.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\ProvincesAttributes\BuildingAttributesINT.h"
 
 #define print(x) std::cout << x;
 #define println(x) std::cout << x << std::endl;

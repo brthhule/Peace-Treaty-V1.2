@@ -136,7 +136,7 @@
     <ClCompile Include="Units\ProvincesAttributes\BUILD.cpp" />
 	<ClCompile Include="Units\ProvincesAttributes\BuildingsATTImplementation.cpp" />
     <ClCompile Include="Units\ProvincesAttributes\BuildMAImplementation.cpp" />
-	<ClCompile Include="Units\ProvincesAttributes\BuildingEntities\BuildingEntitiesBase.cpp" />
+	<ClCompile Include="Units\ProvincesAttributes\BuildingEntities\BuildingsBase.cpp" />
 	 
 
 	<ClCompile Include="Units\Reports\CommanderReport.cpp" />
