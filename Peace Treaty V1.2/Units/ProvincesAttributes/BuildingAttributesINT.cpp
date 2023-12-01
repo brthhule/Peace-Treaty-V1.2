@@ -1,23 +1,23 @@
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\ProvincesAttributes\BuildingAttributesINT.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Provinces.h"
 
 #define print(x) std::cout << x;
 #define println(x) std::cout << x << std::endl;
 
-d5array Buildings::farmUR = { 1, 0.5, 0.25, 0.125, 0.0625 };
-d5array Buildings::millUR = { 2, 1, 0.5, 0.25, 0.125 };
-d5array Buildings::quarryUR = { 3, 2, 1, 0.5, 0.25 };
-d5array Buildings::mineUR = { 4, 3, 2, 1, 0.5 };
-d5array Buildings::churchUR = { 5, 4, 3, 2, 1 };
-d5array Buildings::barracksUR = { 1, 1, 1, 1, 0.2 };
-d5array Buildings::infirmaryUR = { 1, 1, 1, 1, 0.2 };
-d5array Buildings::libraryUR = { 1, 1, 1, 1, 0.2 };
-d5array Buildings::wallUR = { 1, 1, 1, 1, 0.2 };
-d5array Buildings::residencesUR = {};
+d5array Provinces::farmUR = { 1, 0.5, 0.25, 0.125, 0.0625 };
+d5array Provinces::millUR = { 2, 1, 0.5, 0.25, 0.125 };
+d5array Provinces::quarryUR = { 3, 2, 1, 0.5, 0.25 };
+d5array Provinces::mineUR = { 4, 3, 2, 1, 0.5 };
+d5array Provinces::churchUR = { 5, 4, 3, 2, 1 };
+d5array Provinces::barracksUR = { 1, 1, 1, 1, 0.2 };
+d5array Provinces::infirmaryUR = { 1, 1, 1, 1, 0.2 };
+d5array Provinces::libraryUR = { 1, 1, 1, 1, 0.2 };
+d5array Provinces::wallUR = { 1, 1, 1, 1, 0.2 };
+d5array Provinces::residencesUR = {};
 
-i5array Buildings::capacityAmounts = { 10,10,10,10,10 };
-i5array Buildings::resourceProduction = { 5,4,3,2,1 };
+i5array Provinces::capacityAmounts = { 10,10,10,10,10 };
+i5array Provinces::resourceProduction = { 5,4,3,2,1 };
 
-std::array<d5array, 10> Buildings::upgradeRates = {
+std::array<d5array, 10> Provinces::upgradeRates = {
 		&farmUR,
 		&millUR,
 		&quarryUR,
@@ -30,7 +30,7 @@ std::array<d5array, 10> Buildings::upgradeRates = {
 		&residencesUR
 };
 
-Buildings::Buildings() {
+Provinces::Buildings() {
 	//For debugging
 	INF::debugFunction("Buildings, OtherBuildingsToString");
 
@@ -43,7 +43,7 @@ Buildings::Buildings() {
 
 
 //Use struct/class here to pass to template, maybe don't use template??? Use returnArray or returnInt for arrayArg
-i5array Buildings::getBuildingLevel(BUILD::BuildingType type, int index, INF::Quantity quant) {
+i5array Provinces::getBuildingLevel(BUILD::BuildingType type, int index, INF::Quantity quant) {
 	//For debugging
 	INF::debugFunction("Buildings, getBuildingLevel");
 
@@ -53,6 +53,9 @@ i5array Buildings::getBuildingLevel(BUILD::BuildingType type, int index, INF::Qu
 		arrayCopy = *levels.second;
 	}
 
+	(quant == SINGLE) ? returnArray[0] = arrayCopy[index] : returnArray = arrayCopy;
+
+	/*
 	switch (quant) {
 		case SINGLE:
 			returnArray[0] = arrayCopy[index];
@@ -61,10 +64,11 @@ i5array Buildings::getBuildingLevel(BUILD::BuildingType type, int index, INF::Qu
 			returnArray = arrayCopy;
 	}
 	return returnArray;
+	*/
 }
 
 /*Use returnArray or returnInt for arrayArg*/
-i5array Buildings::getCapacity(BUILD::BuildingType type, int name, INF::Quantity amount) {
+i5array Provinces::getCapacity(BUILD::BuildingType type, int name, INF::Quantity amount) {
 	//For debugging
 	INF::debugFunction("Buildings, getCapacity");
 
@@ -87,7 +91,7 @@ i5array Buildings::getCapacity(BUILD::BuildingType type, int name, INF::Quantity
 }
 
 /*Use returnArray or returnInt for arrayArg*/
-i5array Buildings::getResourceProduction(BUILD::ResourceBuildings name, INF::Quantity amount) {
+i5array Provinces::getResourceProduction(BUILD::ResourceBuildings name, INF::Quantity amount) {
 	//For debugging
 	INF::debugFunction("Buildings, getResourceProduction");
 
@@ -117,7 +121,7 @@ i5array Buildings::getResourceProduction(BUILD::ResourceBuildings name, INF::Qua
 *quant: is whether or not only 1 level or all levels of a type of building is being mutated.
 *
 *direction: determines whether the process is addition or subtraction.*/
-void Buildings::mutateLevel(BUILD::BuildingType type, int name, i5array amount, INF::Quantity quant, INF::MutateDirection direction) {
+void Provinces::mutateLevel(BUILD::BuildingType type, int name, i5array amount, INF::Quantity quant, INF::MutateDirection direction) {
 	//For debugging
 	INF::debugFunction("Buildings, mutateLevel");
 
@@ -151,14 +155,14 @@ void Buildings::mutateLevel(BUILD::BuildingType type, int name, i5array amount, 
 }
 
 /*Return the amount of troops trained this turn - troopsTrainedThisTurn*/
-int Buildings::getTroopsTrainedThisTurn() {
+int Provinces::getTroopsTrainedThisTurn() {
 	//For debugging
 	INF::debugFunction("Buildings, getTroopsTrainedThisTurn");
 
 	return troopsTrainedThisTurn;
 }
 
-void Buildings::printBuildingStats()
+void Provinces::printBuildingStats()
 {
 	//For debugging
 	INF::debugFunction("Provinces, printBuildingStats");
@@ -182,7 +186,7 @@ void Buildings::printBuildingStats()
 }
 
 //Returns average of all buildings, rounded down to nearest int
-int Buildings::getProvinceLevel() {
+int Provinces::getProvinceLevel() {
 	//For debugging
 	INF::debugFunction("Provinces, getProvinceLevel");
 
@@ -198,7 +202,7 @@ int Buildings::getProvinceLevel() {
 
 }
 
-void Buildings::resetTroopsTrainedThisTurn()
+void Provinces::resetTroopsTrainedThisTurn()
 
 {
 	//For debugging
@@ -207,7 +211,7 @@ void Buildings::resetTroopsTrainedThisTurn()
 	troopsTrainedThisTurn = 0;
 }
 
-void Buildings::addTroopsTrainedThisTurn(int amount)
+void Provinces::addTroopsTrainedThisTurn(int amount)
 {
 	//For debugging
 	INF::debugFunction("Buildings, addTroopsTrainedThisTurn");
@@ -215,7 +219,7 @@ void Buildings::addTroopsTrainedThisTurn(int amount)
 	troopsTrainedThisTurn += amount;
 }
 
-void Buildings::initiailizeCapitalBuildings() {
+void Provinces::initiailizeCapitalBuildings() {
 	//For debugging
 	INF::debugFunction("Buildings, initializeCapitalBuildings");
 
@@ -227,7 +231,7 @@ void Buildings::initiailizeCapitalBuildings() {
 	}
 }
 
-void Buildings::displayListOfBuildings() {
+void Provinces::displayListOfBuildings() {
 	//For debugging
 	INF::debugFunction("Buildings, displayListOfBuildings");
 

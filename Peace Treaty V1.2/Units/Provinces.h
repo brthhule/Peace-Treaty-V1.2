@@ -27,7 +27,7 @@ using namespace Input;
 extern const int BARRACKS_PRODUCTION;
 const int LOG_SIZE = 20;
 
-class Provinces : public AllUnits, public MABuildINT, public Buildings
+class Provinces : public AllUnits, public MABuildINT, public BuildingAttributesINT
 {
 public:
 	/*Constructors*/
