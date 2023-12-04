@@ -1,8 +1,7 @@
 #include "Build.h"
 
 namespace BUILD {
-	std::pair<std::string, BuildingsEnum> translateEnumString(std::string stringArg, BuildingsEnum enumArg) {
-		std::array<std::string, 10> BuildingStrings = {
+	std::array<std::string, 10> BuildingStrings = {
 			"FARM",
 			"LUMBER_MILL",
 			"QUARRY",
@@ -13,8 +12,9 @@ namespace BUILD {
 			"LIBRARY",
 			"WALL",
 			"RESIDENCES"
-		};
+	};
 
+	std::pair<std::string, BuildingsEnum> translateEnumString(std::string stringArg, BuildingsEnum enumArg) {
 		if (stringArg == NULL) {
 			return std::make_pair(BuildingStrings.at(enumArg), enumArg);
 		}

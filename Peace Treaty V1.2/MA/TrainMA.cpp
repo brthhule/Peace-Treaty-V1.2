@@ -9,12 +9,12 @@ void Participants::TrainMAFunction() {
     this->showMap();
 
     //Barracks level determins how 
-    int barracksLevel = province->getBuildingLevel(BARRACKS);
+    int barracksLevel = province->getBuilding(BARRACKS).getLevel();
     std::cout << "Start printing province barracks information: \033[34m\n";
     std::cout << "Province of kingdom " << this->getKingdomName() << " selected\n";
 
     std::cout << "Coordinates: " +
-        capitalProvince->getUserCoordsString() + 
+        province->getUserCoordsString() + 
         "\n\nThe barracks level of this province: " + 
           std::to_string(barracksLevel) + "\n";
 

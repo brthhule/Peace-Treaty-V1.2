@@ -184,13 +184,8 @@ void Provinces::initiailizeCapitalBuildings() {
 void Provinces::displayListOfBuildings() {
 	//For debugging
 	INF::debugFunction("Buildings, displayListOfBuildings");
-
-	std::cout << "List of buildings: ";
-	for (int x = 1; x <= 5; x++) {
-		std::cout << x << ") " << INF::RESOURCE_BUILDING_NAMES[x] << "\n";
-	}
-	for (int x = 6; x < 10; x++) {
-		std::cout << x << ") " << INF::OTHER_BUILDING_NAMES[x] << "\n";
+	for (int x = 0; x < 10; x++) {
+		std::cout << x << ") " << BUILD::BuildingStrings.at(x) << ", level: " << buildings.at(x).getLevel();
 	}
 }
 

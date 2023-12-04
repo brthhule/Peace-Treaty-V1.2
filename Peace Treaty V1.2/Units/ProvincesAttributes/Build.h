@@ -34,6 +34,8 @@ namespace BUILD {
 		RESIDENCES
 	};
 
+	extern std::array<std::string, 10> BuildingStrings;
+
 	/*RESOURCE, 
 	OTHER */
 	enum BuildingType { 
