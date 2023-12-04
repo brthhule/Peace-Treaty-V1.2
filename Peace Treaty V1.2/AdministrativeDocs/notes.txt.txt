@@ -1,0 +1,10 @@
+#include <iostream>
+#include <typeinfo>
+
+using namespace std;
+
+int main() {
+  int i = 10;
+  typeid(i) == typeid(int) // true
+  return 0;
+}

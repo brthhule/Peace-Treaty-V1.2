@@ -5,7 +5,6 @@ Database::Database() {
 	INF::debugFunction("Database, Database");
 
 	//Default
-	pNum = 0;
 	maxCommanders = 0;
 	currentParticipant = NULL;
 
@@ -23,7 +22,7 @@ void Database::initializeParticipants(int totalPlayers, int humanPlayers) {
 	//For debugging
 	INF::debugFunction("Database, initializeParticipant");
 
-	for (int x = 0; x < pNum; x++)
+	for (int x = 0; x < totalPlayers; x++)
 	{
 		std::cout << "Creating participant " << x + 1 << ": " << std::endl;
 		Participants newParticipant(x);
@@ -48,19 +47,6 @@ std::vector <Participants> *Database::getParticipantsList() {
 	return &participantsList;
 }
 
-void Database::setMaxCommanders(int num) {
-	//For debugging
-	INF::debugFunction("Database, setMaxCommanders");
-
-	maxCommanders = num;
-}
-int Database::getMaxCommanders() {
-	//For debugging
-	INF::debugFunction("Database, getMaxCommanders");
-
-	return maxCommanders;
-}
-
 void Database::setCurrentParticipant(Participants* p) {
 	//For debugging
 	INF::debugFunction("Database, setCurrentParticipant");
@@ -79,14 +65,11 @@ bool Participants::isPlayer() {
 	//For debugging
 	INF::debugFunction("Database, isPlayer");
 
-	return playerStatus;
-}
+	if (participantIndex < 0) {
+		return false;
+	}
 
-void Participants::setPlayerStatus(bool status) {
-	//For debugging
-	INF::debugFunction("Database, setPlayerStatus");
-
-	playerStatus = status;
+	return true;
 }
 
 Participants *Database::getParticipant(int index) {

@@ -57,7 +57,8 @@ void Coords::setCoords(ipair systemCoords, ipair userCoords) {
 	this->userCoords = userCoords;
 }
 
-//Translate coords of currentType to other type
+/*Translate coords of currentType to other type
+If current type is SYSTEM, translate to USER, vice versa*/
 ipair Coords::translateCoords(ipair coords, CoordsType currentType) {
 	//For debugging
 	INF::debugFunction("Coords, translateCoords");

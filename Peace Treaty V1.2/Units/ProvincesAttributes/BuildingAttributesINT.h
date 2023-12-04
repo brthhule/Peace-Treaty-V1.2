@@ -18,7 +18,7 @@ class BuildingAttributesINT{
 public:	
 	/*These are functions*/
 	i5array getBuildingLevel(BUILD::BuildingsEnum type, int index, INF::Quantity quant);
-	i5array getResourceProduction(BUILD::ResourceBuildings name, INF::Quantity amount);
+	i5array getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount);
 	i5array getCapacity(BUILD::BuildingType type, int name, INF::Quantity amount);
 
 	void mutateLevel(

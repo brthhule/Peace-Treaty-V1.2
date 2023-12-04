@@ -767,7 +767,7 @@ void Participants::createMapParticipant() {
 
 std::pair<int, int> Participants::pickCoords() {
 	//For debugging
-	INF::debugFunction("Database, pickCoords");
+	INF::debugFunction("Participants, pickCoords");
 
 	Participants* tempParticipant = new Participants();
 	tempParticipant->showMap();
