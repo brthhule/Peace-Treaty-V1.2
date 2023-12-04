@@ -37,7 +37,7 @@ void Participants::upgradeCommander() {
 	//For debugging
 	INF::debugFunction("ArmyOverview, upgradeCommander");
 
-	if (getCommandersNum == 0) {
+	if (getCommandersNum() == 0) {
 		std::cout << "No commanders available, can not upgrade\n";
 		enterAnything(1);
 		return;
@@ -68,15 +68,15 @@ void Participants::upgradeCommander() {
 	bool resourcesPositive = getCapitalProvince()->subtractCheckResources(costsArray);
 
 	if (resourcesPositive == true) {
-		getCommander(commanderName)->addLevel();
-		std::cout << "Upgrade successful; Commander " + commanderName + "is now level " << getCommander(commanderName)->getLevel() << std::endl;
+		commander->addLevel();
+		std::cout << "Upgrade successful; Commander " + commander->getUnitName() + "is now level " << commander->getLevel() << std::endl;
 	} else {
 		//Add subtracted resources back to province resources
-		getCapitalProvince()->modifyResources(costsArray, true);
+		getCapitalProvince()->modifyResources(costsArray, INF::INCREASE);
 		std::cout << "Upgrade failed. " << std::endl;
 	}
 
-	INF::enterAnything();
+	INF::enterAnything(1);
 	return;
 }
 
@@ -126,7 +126,7 @@ void Participants::trainCommanders() {
 	INF::enterAnything(1);
 }
 
-void Participants::proceedWithTraining(std::array<int, 5> trainCosts) {
+void Participants::proceedWithTraining(i5array trainCosts) {
 	//For debugging
 	INF::debugFunction("ArmyOverview, proceedWithTraining");
 
@@ -139,7 +139,7 @@ void Participants::proceedWithTraining(std::array<int, 5> trainCosts) {
 		std::cout << "Current commanders: " << this->getCommandersNum() << std::endl;
 	} else {
 		std::cout << "Commander training failed (Not enough resources)... \n\n";
-		getCapitalProvince()->modifyResources(trainCosts, true);
+		getCapitalProvince()->modifyResources(trainCosts, INCREASE);
 	}
 }
 

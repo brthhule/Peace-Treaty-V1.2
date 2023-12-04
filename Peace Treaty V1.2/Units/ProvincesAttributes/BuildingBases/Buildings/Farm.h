@@ -8,7 +8,7 @@
 class Farm : public BuildingsBASE {
 public:
 	Farm();
-	updateProductionRates();
+	INF::i5array updateProductionRates(int level);
 private:
 	INF::i5array baseProductionRates;
 	INF::i5array currentProductionRates;

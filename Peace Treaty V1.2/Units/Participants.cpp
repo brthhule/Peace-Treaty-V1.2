@@ -16,41 +16,29 @@ std::vector<Participants*> Participants::botsList = {};
 //Constructor
 Participants::Participants() {
 	//For debugging
-	INF::debugFunction("Participants, Participants (1 Param)");
+	INF::debugFunction("Participants, Participants (0 Param)");
 
-	capitalIndex = 0;
-	participantIndex = 0;
-	capitalProvince = new Provinces;
+	Participants(0);
 
+	capitalProvince = nullptr;
 	//Default
-	selectedCommander = NULL;
-
-
-	//Defaults
-	commandersMap = std::unordered_map<std::string, Commanders*>();
-	provincesMap = std::unordered_map<std::string, Provinces*>();
-	it = std::unordered_map<std::string, Commanders*>::iterator();
-
-	provincesVector = std::vector<Provinces*>();
-	commandersVector = std::vector<Commanders>();
+	selectedCommander = nullptr;
 }
 
 Participants::Participants(int pIndex) {
 	//For debugging
 	INF::debugFunction("Participants, Participants (1 Param)");
-
-	std::cout << "Add commander\n";
 	addCommander();
-	std::cout << "Initial cap rss";
 	initialCapRSS();
-	std::cout << "Set kingdom name\n";
 	setKingdomName("-1");
 	participantIndex = pIndex;
+
+	capitalIndex = 0;
 
 	//Defaults
 	commandersMap = std::unordered_map<std::string, Commanders*>();
 	provincesMap = std::unordered_map<std::string, Provinces*>();
-	it = std::unordered_map<std::string, Commanders*>::iterator();
+	commIt = std::unordered_map<std::string, Commanders*>::iterator();
 
 	provincesVector = std::vector<Provinces*>();
 	commandersVector = std::vector<Commanders>();
@@ -64,7 +52,7 @@ Provinces* Participants::getCapitalProvince() {
 	return capitalProvince; 
 }
 
-Provinces* Participants::getProvince(1)(std::pair<int, int> userCoords) {
+Provinces* Participants::getProvince(std::pair<int, int> userCoords) {
 	//For debugging
 	INF::debugFunction("Participants, getProvince");
 	
@@ -541,7 +529,7 @@ bool Participants::hasProvince(Provinces* province) {
 	return province->getParticipantIndex() == participantIndex;
 }
 
-Commanders *Participants::pickCommander() {
+std::shared_ptr<Commanders> *Participants::pickCommander() {
 	//For debugging
 	INF::debugFunction("Participants, pickCommander");
 

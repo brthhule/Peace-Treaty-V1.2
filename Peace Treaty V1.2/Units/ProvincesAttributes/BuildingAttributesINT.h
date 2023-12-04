@@ -7,6 +7,7 @@
 #include "../Misc/INF.h"
 #include "../Misc/INF.h"
 #include "../ProvincesAttributes/Build.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\ProvincesAttributes\BuildingBases\BuildingsBASE.h"
 
 #include "../AllUnits.h"
 
@@ -47,20 +48,7 @@ protected:
 	i5array resourceBuildingsLevels;
 	i5array otherBuildingsLevels;
 
-	//For upgrades
-	static d5array farmUR;
-	static d5array millUR;
-	static d5array quarryUR;
-	static d5array mineUR;
-	static d5array churchUR;
-	static d5array barracksUR;
-	static d5array infirmaryUR;
-	static d5array libraryUR;
-	static d5array wallUR;
-	static d5array residencesUR;
-
-	static std::array<d5array, 10> upgradeRates;
-
+	std::array<BuildingsBASE, 10> buildings;
 private:
 	//First is RESOURCE, second is OTHER
 	std::pair<i5array*, i5array*> levels;

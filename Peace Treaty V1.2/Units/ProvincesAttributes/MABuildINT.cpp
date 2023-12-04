@@ -1,6 +1,6 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Provinces.cpp"
 
-void Provinces::printInformation(BuildingType type, i5array requiredResources, int buildingIndex) {
+void Provinces::printInformation(d5array requiredRrsources, int buildingIndex) {
 	//For debugging
 	INF::debugFunction("Provinces, printInformation");
 
@@ -10,7 +10,7 @@ void Provinces::printInformation(BuildingType type, i5array requiredResources, i
 
 	println("The following is the cost of the upgrade: ");
 	for (int x = 0; x < 5; x++) {
-		std::cout << INF::RESOURCE_NAMES[x] << ": " << requiredResources[x]
+		std::cout << INF::RESOURCE_NAMES.at(x) << ": " << requiredResources.at(x)
 			<< std::endl;
 	}
 	println("\nThe following are how many resources are in this province: ");
@@ -74,55 +74,37 @@ void Provinces::upgradeBuildings() {
 	std::cout << "Returning to Build Infrastructure action menu. " << std::endl;
 }
 
+
 void Provinces::upgradeBuildings2(char optionChar) {
 	//For debugging
 	INF::debugFunction("Provinces, upgradeBuildings2");
 
-	int option = optionChar - '0';
+	int index = optionChar - '0';
 	BUILD::BuildingType type = BUILD::BuildingType(option >= 6);
-	//type is other
-	if (type) {
-		upgradeBuildings3(type, &otherBuildingsLevels, BUILD::OtherBuildings(option));
+	
+
+	//Multiplies level by base line rate
+	BuildingsBASE *building = &this->buildings.at(index);
+	d5array requiredResources = building->getUpgradeCosts();
+
+	int buildingIndex = NULL;//Fix this later
+	printInformation(requiredResources, buildingIndex);
+
+	char upgradeProceed = Input::getInputText("Proceed with upgrade? (Y/N) ", { "Y", "N" }).at(0);
+
+	if (upgradeProceed != 'Y') {
 		return;
 	}
 
-	//Type is resource
-	upgradeBuildings3(type, &resourceBuildingsLevels, BUILD::ResourceBuildings(option));
+	bool upgradeSuccess = this->subtractCheckResources(requiredResources);
 
-}
-
-void Provinces::upgradeBuildings3(BUILD::BuildingType type, INF::i5array* listArg, int name) {
-	//For debugging
-	INF::debugFunction("Provinces, upgradeBuildings3");
-
-	int index = name;
-	//If other type
-	if (type)
-	{
-		index = name + 5;
+	if (upgradeSuccess == false) {
+		modifyResources(requiredResources, true);
+		println("Upgrade failed. Not enough resources. ");
+	} else {
+		println("Upgrade successful.\n");
+		building->increaseLevel();
 	}
-
-	//Multiplies level by base line rate
-	std::array<int, 5> requiredResources;
-	for (int x = 0; x < 5; x++) {
-		requiredResources[x] = (int)listArg->at(name) * (int)upgradeRates[0][x];//Fix this later
-	}
-
-
-	int buildingIndex = NULL;//Fix this later
-	printInformation(type, requiredResources, buildingIndex);
-	char upgradeProceed = Input::getInputText("Proceed with upgrade? (Y/N) ", { "Y", "N" }).at(0);
-
-	if (upgradeProceed == 'Y') {
-		bool upgradeSuccess = this->subtractCheckResources(requiredResources);
-
-		if (upgradeSuccess == false) {
-			modifyResources(requiredResources, true);
-			println("Upgrade failed. Not enough resources. ");
-		} else {
-			println("Upgrade successful.\n");
-			//this->mutateLevel(buildingIndex, {1}); fix this later
-		}
-	}
+	
 }
 

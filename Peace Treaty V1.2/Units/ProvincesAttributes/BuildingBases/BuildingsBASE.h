@@ -5,15 +5,15 @@
 
 class BuildingsBASE {
 public:
-	BuildingsBASE(INF::i5array baseUpgradeRatesArg);
+	BuildingsBASE(INF::d5array baseUpgradeRatesArg);
 
 	void increaseLevel(int amount);
 	int getLevel();
 
-	INF::i5array getUpgradeCosts();
+	INF::d5array getUpgradeCosts();
 private:
 	int level;
-	INF::i5array baseUpgradeRates;
+	INF::d5array baseUpgradeRates;
 
 };
 #endif

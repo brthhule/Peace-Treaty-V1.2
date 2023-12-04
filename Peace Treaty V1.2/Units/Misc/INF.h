@@ -212,7 +212,7 @@ namespace INF
 	
 
 	//Manipulate vectors
-	i5array mutateArray(i5array primeArray, i5array secondaryArray, MutateDirection direction;
+	i5array mutateArray(i5array primeArray, i5array secondaryArray, MutateDirection direction);
 
 	//For if/ternary statements with no "else"
 	static void nothing() {};

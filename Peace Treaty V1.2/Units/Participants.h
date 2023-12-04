@@ -133,7 +133,7 @@ public:
 		getKingdomName(),
 		getNewName();
 
-	Commanders *pickCommander();
+	std::shared_ptr<Commanders> pickCommander();
 
 	VOID setCapital(Provinces* newProvince);
 	VOID showMapOld();

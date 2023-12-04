@@ -22,7 +22,6 @@ protected:
 		trainCommanders() = 0,
 		proceedWithTraining(std::array <int,5> trainCosts) = 0,
 		upgradeCommander() = 0,
-		upgradeCommander() = 0,
 		viewArmyOverview() = 0,
 		deployCommanderMF() = 0;
 };

@@ -134,11 +134,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Units\ProvincesAttributes\BUILD.cpp" />
-	<ClCompile Include="Units\ProvincesAttributes\BuildingsATTImplementation.cpp" />
-    <ClCompile Include="Units\ProvincesAttributes\BuildMAImplementation.cpp" />
-	<ClCompile Include="Units\ProvincesAttributes\BuildingEntities\BuildingsBase.cpp" />
+	<ClCompile Include="Units\ProvincesAttributes\MABuildINT.cpp" />
+    <ClCompile Include="Units\ProvincesAttributes\BuildingAttributesINT.cpp" />
+	<ClCompile Include="Units\ProvincesAttributes\BuildingBases\BuildingsBASE.cpp" />
 	 
-
 	<ClCompile Include="Units\Reports\CommanderReport.cpp" />
     <ClCompile Include="Units\AllUnitsAttributes\Coords.cpp" />
     <ClCompile Include="Units\Misc\Input.cpp" />
