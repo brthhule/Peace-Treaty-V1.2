@@ -1,3 +1,4 @@
+
 //ScoutMA.h
 //Interface
 //Implemented by Participants
@@ -26,13 +27,13 @@ public:
 	virtual scoutTypes selectTarget(Provinces* targetProvince) = 0;
 
 	// Functions
-	virtual void playerScoutStepTwo(scoutTypes canScout, Provinces* targetProvince) = 0;
+	virtual std::pair<AllUnits*, int> playerScoutStepTwo(scoutTypes canScout, Provinces* targetProvince) = 0;
 	
 
 	virtual AllUnits* selectUnitToScout(scoutTypes canScout) = 0;
-	virtual AllUnits *selectUnitToScoutTwo(scoutTypes canScout) = 0;
+	virtual AllUnits* selectUnitToScoutTwo(scoutTypes canScout) = 0;
 
-	virtual scoutTypes getCanScout() = 0;
+	virtual scoutTypes getCanScout(Provinces* targetProvince) = 0;
 
 	virtual void scoutLogCalculationsProvince(int accuracy) = 0;
 	virtual void getCanScoutTwo(int targetX, int targetY, int a, int b, scoutTypes & canScout) = 0;

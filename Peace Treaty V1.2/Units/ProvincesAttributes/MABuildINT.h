@@ -9,10 +9,10 @@ using namespace BUILD;
 class MABuildINT
 {
 protected:
-	virtual void playerBuildFunction() = 0;
-	virtual void upgradeBuildings() = 0;
-	virtual void upgradeBuildings2(char optionChar) = 0;
-	virtual void printInformation(INF::d5array requiredresources, int buildingindex) = 0;
+	virtual void mainBuildFunction() = 0;
+	virtual void selectUpgradeBuilding() = 0;
+	virtual void upgradeBuilding(char optionChar) = 0;
+	virtual void printBuildingUpgradeCosts(INF::i5array requiredresources, int buildingindex) = 0;
 };
 
 #endif

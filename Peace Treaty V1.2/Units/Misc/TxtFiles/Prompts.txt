@@ -58,3 +58,11 @@ SELECT_ENEMY_PROVINCE
 - Scout this province (S)
 - View the scout log (V)
 Options:A,S,V
+
+TRAIN_MA_FUNCTION_UNITS
+- Infantry (1)
+- Archers (2)
+- Cavalry (3)
+- Guards (4)
+- Artillary (5)
+Options:1,2,3,4,5

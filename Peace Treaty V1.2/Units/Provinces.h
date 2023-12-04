@@ -51,7 +51,7 @@ public:
 		getOverallIndex();
 		
 	
-	std::array<int, 5> getTotalResources();
+	i5array getTotalResources();
 
 	void
 		makeCapital(int participantIndexArg),
@@ -69,18 +69,16 @@ public:
 		createReport(int scouterLevelArg, int targetLevelArg);
 
 	////////////////MABuildINT///
-	void printInformation(BUILD::BuildingType type, i5array requiredresources, int buildingindex),
-		playerBuildFunction(),
-		upgradeBuildings(),
-		upgradeBuildings2(char optionchar);
-
-	void upgradeBuildings3(BUILD::BuildingType type, INF::i5array* listArg, int name);
+	void printBuildingUpgradeCosts(i5array requiredresources, int buildingindex),
+		mainBuildFunction(),
+		selectUpgradeBuilding(),
+		upgradeBuilding(char optionchar);
 		
 	//////////////End MABuildINT///
 	//type (resource, other), other/resourceLevels, name of object in Levels list
 	
 
-	std::string getKingdomName() { return kingdomName; }
+	std::string getKingdomName();
 	
 	std::array<std::array<int, 5>, 7> getLists();
 	std::array<int, 7> getListInt();

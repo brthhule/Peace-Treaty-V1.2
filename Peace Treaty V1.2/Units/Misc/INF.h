@@ -72,7 +72,6 @@ namespace INF
 		RESOURCE_PRODUCTION;
 
 	extern const int BARRACKS_PRODUCTION;
-	extern std::array<std::string, 12> PROMPTS_STRING;
 
 	extern int 
 		continentSize, 
@@ -97,43 +96,6 @@ namespace INF
 	extern std::array<std::string, 9> COLORS_STRING;
 
 	/////////////////////////////////////Enums/////////////////////////////////
-	/*	GUARDS,
-		INFANTRY,
-		ARCHERS,
-		CAVALRY,
-		ARTILLARY*/
-	enum TroopTypes {
-		GUARDS,
-		INFANTRY,
-		ARCHERS,
-		CAVALRY,
-		ARTILLARY
-	};
-	/*	SELECT_ENEMY_ACTION, 
-		PLAYER_UNIT_ACTION, 
-		INTRODUCTION, 
-		PLAYER_ACTION, 
-		ARMY_DEPLOYMENT, 
-		TRAIN_MA_FUNCTION, 
-		PLAYER_BUILD_FUNCTION, 
-		VIEW_PLAYER_MAP, 
-		SELECT_PLAYER_PROVINCE,
-		SELECT_ENEMY_PROVINCE,
-		WHAT_REPORT*/
-	enum Prompts { 
-		SELECT_ENEMY_ACTION, 
-		PLAYER_UNIT_ACTION, 
-		INTRODUCTION, 
-		PLAYER_ACTION, 
-		ARMY_DEPLOYMENT, 
-		TRAIN_MA_FUNCTION, 
-		PLAYER_BUILD_FUNCTION, 
-		VIEW_PLAYER_MAP, 
-		SELECT_PLAYER_PROVINCE,
-		SELECT_ENEMY_PROVINCE,
-		WHAT_REPORT,
-		BATTLE_FORMATION
-	};
 
 	/*REGULAR, 
 		INJURED,
@@ -183,14 +145,12 @@ namespace INF
 	//////////////////////////////Functions////////////////////////////////////
 	
 	//////////////string///////////////
-	std::string promptsToString(Prompts p);
 	//Get command to print certain color to console
 	std::string getColor(COLORS color);
 
 	std::string createRandomName();
 
-	int getStringIndex(std::string arg);
-	Prompts stringToPrompts(std::string arg);
+	
 	
 	
 	//////////////void/////////////////

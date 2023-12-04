@@ -9,6 +9,8 @@ public:
 
 private:
 	INF::i5array productionRates();
+	INF::i5array capacityAmounts; // add implementation
+	//i5array Provinces::capacityAmounts = { 10,10,10,10,10 };
 };
 
 #endif

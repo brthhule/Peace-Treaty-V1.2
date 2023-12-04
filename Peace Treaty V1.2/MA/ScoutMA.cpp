@@ -4,29 +4,25 @@
 
 
 /*Main ScoutMA function. Takes a target province pointer as a parameter
-
-
 If the target */
-Participants::mainScoutMA(Provinces* provinceArg) {
+void Participants::mainScoutMA(Provinces* provinceArg) {
 	//For debugging
 	INF::debugFunction("ScoutMA, mainScoutmA");
 
 	Provinces* yourProvince = provinceArg;
 	Provinces* targetProvince = this->pickProvince(1);
 	
-	ScoutMA::scoutTypes canScout = selectTarget();
+	ScoutMA::scoutTypes canScout = selectTarget(targetProvince);
 	AllUnits *scoutUnit = nullptr;
 
 	int accuracy = 0;
-	if (canScout != nullptr) {
-		std::pair<AllUnits, int> tempPair = playerScoutStepTwo(canScout);
+	if (canScout.first == nullptr || nullptr.second = nullptr) {
+		std::pair<AllUnits*, int> tempPair = playerScoutStepTwo(canScout, targetProvince);
 		scoutUnit = tempPair.first;
 		accuracy = tempPair.second;
 	}
 
-	std::pair<int, int> scoutUnitSystemCoords = scoutUnit->getCoords(Coords::SYSTEM);
-
-	scoutProvince(getSystemProvince(scoutUnitSystemCoords, accuracy);
+	scoutProvince(getSystemProvince(scoutUnit->getCoords(Coords::SYSTEM)), accuracy);
 
 	INF::enterAnything(1);
 }
@@ -43,7 +39,7 @@ ScoutMA::scoutTypes Participants::selectTarget(Provinces* targetProvince)
 	//Make sure the province being scouted is not the current participant's 
 	if (this->hasProvince(targetProvince)) {
 		std::cout << "This province belongs to you; please select a different province";
-		selectTarget();
+		selectTarget(this->pickProvince(1));
 	}
 
 	//If the selected province doesn't belong to the participant
@@ -58,7 +54,7 @@ ScoutMA::scoutTypes Participants::selectTarget(Provinces* targetProvince)
 	}
 	else {
 		std::cout << "No player provinces or armies are around the target... \n";
-		canScout = NULL;
+		canScout = std::make_pair(nullptr, nullptr);
 	}
 	std::cout << "Returning to previous menu\n\n";
 
@@ -67,7 +63,7 @@ ScoutMA::scoutTypes Participants::selectTarget(Provinces* targetProvince)
 
 
 // Finish this later
-AllUnits Participants::playerScoutStepTwo(scoutTypes canScout, Provinces* targetProvince) 
+std::pair <AllUnits*, int> Participants::playerScoutStepTwo(scoutTypes canScout, Provinces* targetProvince) 
 {
 	//For debugging
 	INF::debugFunction("ScoutMA, playerScoutStepTwo");
@@ -83,7 +79,7 @@ AllUnits Participants::playerScoutStepTwo(scoutTypes canScout, Provinces* target
 		targetParticipant = botsList.at(index);
 	}
 
-	int enemyLevel = targetParticipant->getLevel();//Fix this later
+	int enemyLevel = targetProvince->getLevel();//Fix this later
 
 
 	std::cout << "You have " << canScout.second.size() << " provinces and " << canScout.first.size() << "armies next to the target. Below is a list of units that can scout the target.";
@@ -94,7 +90,7 @@ AllUnits Participants::playerScoutStepTwo(scoutTypes canScout, Provinces* target
 	AllUnits *unit = selectUnitToScout(canScout);
 
 
-	std::cout << "Proceed scout action with unit at " << tempParticipant->getSystemProvince(unit->getCoords(Coords::SYSTEM)) << "? (Y/N) ";
+	std::cout << "Proceed scout action with unit at " << getSystemProvince(unit->getCoords(Coords::SYSTEM)) << "? (Y/N) ";
 
 	char proceedWithScoutChar = Input::getInputText("", { "Y", "N" }).at(0);
 
@@ -121,12 +117,12 @@ AllUnits Participants::playerScoutStepTwo(scoutTypes canScout, Provinces* target
 	return std::make_pair(unit, accuracy);
 }
 
-ScoutMA::scoutTypes Participants::getCanScout()
+ScoutMA::scoutTypes Participants::getCanScout(Provinces* targetProvince)
 {
 	//For debugging
 	INF::debugFunction("ScoutMA, getCanScout");
 
-	std::pair<int, int> targetUserCoords = ScoutInfo::targetProvince->getCoords(INF::USER);
+	std::pair<int, int> targetUserCoords = targetProvince->getCoords(Coords::USER);
 	int targetX = targetUserCoords.first;
 	int targetY = targetUserCoords.second;
 
@@ -157,7 +153,7 @@ void Participants::getCanScoutTwo(int targetX, int targetY, int a, int b, ScoutM
 	
 	std::pair<int, int> tempPair(targetX + a, targetY + b);
 	Provinces* newProvince = this->getSystemProvince(tempPair);
-	if (newProvince->getParticipantIndex() == participant->getParticipantIndex()) {
+	if (newProvince->getParticipantIndex() == this->participantIndex) {
 		canScout.second.push_back(newProvince);
 	}
 
@@ -165,7 +161,7 @@ void Participants::getCanScoutTwo(int targetX, int targetY, int a, int b, ScoutM
 	commandersPtrMap newMap = this->getCommandersMap();
 	commandersPtrMap::iterator it;
 	for (it = newMap.begin(); it != newMap.end(); it++){
-		if (it->second->getCoords(INF::USER) == newProvince->getCoords(INF::USER))
+		if (it->second->getCoords(Coords::USER) == newProvince->getCoords(Coords::USER))
 			canScout.first.push_back(it->second);
 	}
 
@@ -187,14 +183,14 @@ AllUnits * Participants::selectUnitToScout(ScoutMA::scoutTypes canScout) {
 	std::cout << "Provinces that can scout: " << std::endl;
 	for (Provinces* province : canScout.second) {
 		std::cout << province->getUnitName() + "; ";
-		province->printCoords(USER);
+		province->printCoords(Coords::USER);
 		std::cout << "; Level: " << province->getLevel() << std::endl;
 	}
 
 	std::cout << "Commanders that can scout: \n";
 	for (Commanders* commander : canScout.first) {
 		std::cout << commander->getUnitName() << "; ";
-		commander->printCoords(USER);
+		commander->printCoords(Coords::USER);
 		std::cout << "; Level: " << commander->getLevel() << std::endl;
 	}
 	std::cout << "\n\033[;0m";
@@ -202,8 +198,7 @@ AllUnits * Participants::selectUnitToScout(ScoutMA::scoutTypes canScout) {
 	return selectUnitToScoutTwo(canScout);
 }
 
-AllUnits * Participants::selectUnitToScoutTwo(ScoutMA::scoutTypes canScout)
-{
+AllUnits* Participants::selectUnitToScoutTwo(ScoutMA::scoutTypes canScout){
 	//For debugging
 	INF::debugFunction("ScoutMA, selectUnitToScoutTwo");
 
@@ -211,7 +206,7 @@ AllUnits * Participants::selectUnitToScoutTwo(ScoutMA::scoutTypes canScout)
 	print("Enter the name of the province/commander you wish to select to scout: ");
 	std::getline(std::cin, unitName);
 
-	if (participant->hasUnit(unitName) == false) {
+	if (this->hasUnit(unitName) == false) { 
 		std::cout << "Invalid name entered; please try again \n";
 		selectUnitToScoutTwo(canScout);
 	}

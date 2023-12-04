@@ -108,7 +108,7 @@ void Participants::selectPlayerProvince(Provinces *province) {
 		Options:B,T*/
 	switch (selectPlayerCapitalAction) {
 	case 'B': {
-		province->playerBuildFunction();
+		province->mainBuildFunction();
 		break;
 	}
 	case 'T': {
@@ -140,12 +140,11 @@ void Participants::selectEnemyProvince(Provinces* newP) {
 
 	switch (selectUnitEnemyProvinceChar) {
 	case 'A': {
-		AttackMA newAttackMA(enemyProvince, participant);
-		//selectEnemyProvince(enemyProvince);
+		this->mainAttackMA(enemyProvince, nullptr);
 		break;
 	}
 	case 'S': {
-		this->selectTarget();
+		this->selectTarget(enemyProvince);
 		//selectEnemyProvince(enemyProvince);
 		break;
 	}

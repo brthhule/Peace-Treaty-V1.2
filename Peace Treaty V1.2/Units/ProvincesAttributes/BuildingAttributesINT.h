@@ -18,7 +18,7 @@ using namespace BUILD;
 class BuildingAttributesINT{
 public:	
 	/*These are functions*/
-	i5array getBuildingLevel(BUILD::BuildingsEnum type, int index, INF::Quantity quant);
+	i5array int (BUILD::BuildingsEnum type);
 	i5array getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount);
 	i5array getCapacity(BUILD::BuildingType type, int name, INF::Quantity amount);
 
@@ -39,6 +39,8 @@ public:
 	void resetTroopsTrainedThisTurn();
 	void initiailizeCapitalBuildings();
 	void initializeEmptyBuildings();
+
+	BuildingsBASE getBuilding(BUILD::BuildingsEnum type);
 
 protected:
 	int troopsTrainedThisTurn;

@@ -33,9 +33,6 @@ public:
 	//Default Constructor
 	AllUnits();
 
-	
-
-
 	int getCP();
 	int getParticipantIndex();
 	int getLevel();

@@ -199,7 +199,7 @@ public:
 	//ScoutMA.h
 	void mainScoutMA (Provinces* provinceArg);
 
-	std::pair<AllUnits, int> playerScoutStepTwo(scoutTypes canScout, Provinces* targetProvince);
+	std::pair<AllUnits*, int> playerScoutStepTwo(scoutTypes canScout, Provinces* targetProvince);
 	void scoutLogCalculationsProvince(int accuracy);
 	void getCanScoutTwo(
 			int targetX, 
@@ -209,10 +209,10 @@ public:
 			scoutTypes& canScout);
 
 	AllUnits* selectUnitToScout(scoutTypes canScout);
-	AllUnits* *selectUnitToScoutTwo(scoutTypes canScout);
+	AllUnits* selectUnitToScoutTwo(scoutTypes canScout);
 
 	scoutTypes selectTarget(Provinces* targetProvince);
-	scoutTypes getCanScout();
+	scoutTypes getCanScout(Provinces* targetProvince);
 
 	/////////AttackMA.h///////////////////
 	class AttackMAInfo {

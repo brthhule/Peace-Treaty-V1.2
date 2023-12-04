@@ -308,3 +308,7 @@ void Provinces::createReport(int scouterLevelArg, int targetLevelArg) {
 	int index = 0;//Determine how to find this
 	scoutReports[index].push_back(sendReport);
 }
+
+std::string Provinces::getKingdomName() {
+	return kingdomName;
+}

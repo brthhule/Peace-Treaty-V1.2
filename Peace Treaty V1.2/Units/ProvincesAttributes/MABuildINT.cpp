@@ -1,6 +1,6 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Provinces.cpp"
 
-void Provinces::printInformation(d5array requiredRrsources, int buildingIndex) {
+void Provinces::printBuildingUpgradeCosts(i5array requiredResources, int buildingIndex) {
 	//For debugging
 	INF::debugFunction("Provinces, printInformation");
 
@@ -18,7 +18,7 @@ void Provinces::printInformation(d5array requiredRrsources, int buildingIndex) {
 	std::cout << "----------End printing informatio----------" << std::endl;
 }
 
-void Provinces::playerBuildFunction() {
+void Provinces::mainBuildFunction() {
 	//For debugging
 	INF::debugFunction("Provinces, playerBuildFunction");
 
@@ -39,16 +39,18 @@ void Provinces::playerBuildFunction() {
 
 	upgradeBuilding = Input::getOptionPrompt(PLAYER_BUILD_FUNCTION).at(0);
 	if (upgradeBuilding == 'U') {
-		upgradeBuildings();
-		playerBuildFunction();
-		std::cout << std::endl;
+		selectUpgradeBuilding();
+		//Recursion
+		mainBuildFunction();
+		std::cout << "\n";
 	} else {
+		//Break condition
 		std::cout << "Returning to previous menu... " << std::endl;
 		INF::clearScreen();
 	}
 }
 
-void Provinces::upgradeBuildings() {
+void Provinces::selectUpgradeBuilding() {
 	//For debugging
 	INF::debugFunction("Provinces, upgradeBuildings");
 
@@ -58,8 +60,9 @@ void Provinces::upgradeBuildings() {
 	}
 
 	displayListOfBuildings();
-
-	char option = Input::getInputText("Enter the number of the building you want to upgrade (enter 'H' for help): ", buildingLetterList).at(0);
+	std::string message1 = "Enter the number of the building you want to upgrade " + 
+		"(enter 'H' for help) : ";
+	char option = Input::getInputText(message1, buildingLetterList).at(0);
 
 	if (option != 'H') {
 		upgradeBuildings2(option);
@@ -75,36 +78,32 @@ void Provinces::upgradeBuildings() {
 }
 
 
-void Provinces::upgradeBuildings2(char optionChar) {
+void Provinces::upgradeBuilding(char optionChar) {
 	//For debugging
 	INF::debugFunction("Provinces, upgradeBuildings2");
-
-	int index = optionChar - '0';
-	BUILD::BuildingType type = BUILD::BuildingType(option >= 6);
-	
+	std::string optionString = "" + optionChar;
+	int index = std::stoi(optionString);	
 
 	//Multiplies level by base line rate
 	BuildingsBASE *building = &this->buildings.at(index);
-	d5array requiredResources = building->getUpgradeCosts();
+	i5array requiredResources = building->getUpgradeCosts();
 
-	int buildingIndex = NULL;//Fix this later
-	printInformation(requiredResources, buildingIndex);
+	printBuildingUpgradeCosts(requiredResources, index);
+	std::string message = "Proceed with upgrade? (Y/N): ";
+	char upgradeProceed = Input::getInputText(message, { "Y", "N" }).at(0);
 
-	char upgradeProceed = Input::getInputText("Proceed with upgrade? (Y/N) ", { "Y", "N" }).at(0);
-
-	if (upgradeProceed != 'Y') {
-		return;
-	}
+	if (upgradeProceed != 'Y') { return;}
 
 	bool upgradeSuccess = this->subtractCheckResources(requiredResources);
 
 	if (upgradeSuccess == false) {
 		modifyResources(requiredResources, true);
 		println("Upgrade failed. Not enough resources. ");
-	} else {
-		println("Upgrade successful.\n");
-		building->increaseLevel();
+		return;
 	}
-	
+
+	println("Upgrade successful.\n");
+	building->increaseLevel();
+	return;
 }
 

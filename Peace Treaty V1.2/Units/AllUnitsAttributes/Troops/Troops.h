@@ -1,3 +1,7 @@
+/*Troops base class
+* Composition: inside AllUnits.h
+*/
+
 #ifndef TROOPS_H
 #define TROOPS_H
 
@@ -20,6 +24,19 @@ public:
 		getLevel(),
 		getCurrentHealth(),
 		getTier();
+
+	/*	GUARDS,
+		INFANTRY,
+		ARCHERS,
+		CAVALRY,
+		ARTILLARY*/
+	static enum TroopTypes {
+		GUARDS,
+		INFANTRY,
+		ARCHERS,
+		CAVALRY,
+		ARTILLARY
+	};
 
 	std::array<int,3> getCurrentDamage();
 

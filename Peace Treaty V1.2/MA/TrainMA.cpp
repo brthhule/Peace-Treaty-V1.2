@@ -1,25 +1,33 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Participants.h"
 
+//Main TrainMA function
 void Participants::TrainMAFunction() {
     //For debugging
-    Provinces* capitalProvince = this->getCapitalProvince();
+    Provinces* province = this->pickYourProvince(1);
     INF::debugFunction("TrainMA, TrainMAFunction");
 
     this->showMap();
 
-
-    int barracksLevel = capitalProvince->getBuildingLevel(OTHER, BARRACKS, SINGLE)[0];
+    //Barracks level determins how 
+    int barracksLevel = province->getBuildingLevel(BARRACKS);
     std::cout << "Start printing province barracks information: \033[34m\n";
     std::cout << "Province of kingdom " << this->getKingdomName() << " selected\n";
 
     std::cout << "Coordinates: " +
-        capitalProvince->getUserCoordsString() + "\n\nThe barracks level of this province: " + 
+        capitalProvince->getUserCoordsString() + 
+        "\n\nThe barracks level of this province: " + 
           std::to_string(barracksLevel) + "\n";
 
     int troopTier = barracksLevel / 5;
     troopTier += 1;
-    if (troopTier > 5)
+    if (troopTier > 5) {
         troopTier = 5;
+    }
+
+    std::cout << "What type of troop do you want to upgrade?\n";
+    int troopTypeNum = Input::getShowPrompt(Prompts::TRAIN_MA_FUNCTION_UNITS);
+    Troops::TroopTypes troopType = Troops::TroopTypes(1);
+        
 
     std::cout << "The max tier troop you can train: " << troopTier << ", " << INF::TROOP_NAMES[troopTier - 1] << std::endl;
 

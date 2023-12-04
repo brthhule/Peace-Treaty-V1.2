@@ -5,9 +5,9 @@
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Misc\INF.h"
 
-class Farm : public BuildingsBASE {
+class Quarry : public BuildingsBASE {
 public:
-	Farm();
+	Quarry();
 private:
 	INF::i5array baseProductionRates;
 	INF::i5array currentProductionRates;

@@ -3,8 +3,6 @@
 #define print(x) std::cout << x;
 #define println(x) std::cout << x << std::endl;
 
-d5array Provinces::farmUR = { 1, 0.5, 0.25, 0.125, 0.0625 };
-d5array Provinces::millUR = { 2, 1, 0.5, 0.25, 0.125 };
 d5array Provinces::quarryUR = { 3, 2, 1, 0.5, 0.25 };
 d5array Provinces::mineUR = { 4, 3, 2, 1, 0.5 };
 d5array Provinces::churchUR = { 5, 4, 3, 2, 1 };
@@ -14,57 +12,9 @@ d5array Provinces::libraryUR = { 1, 1, 1, 1, 0.2 };
 d5array Provinces::wallUR = { 1, 1, 1, 1, 0.2 };
 d5array Provinces::residencesUR = {};
 
-i5array Provinces::capacityAmounts = { 10,10,10,10,10 };
-i5array Provinces::resourceProduction = { 5,4,3,2,1 };
-
-std::array<d5array, 10> Provinces::upgradeRates = {
-		&farmUR,
-		&millUR,
-		&quarryUR,
-		&mineUR,
-		&churchUR,
-		&barracksUR,
-		&infirmaryUR,
-		&libraryUR,
-		&wallUR,
-		&residencesUR
-};
-
 Provinces::Buildings() {
 	//For debugging
 	INF::debugFunction("Buildings, OtherBuildingsToString");
-
-
-	otherBuildingsLevels = INF::i5array{};
-	resourceBuildingsLevels = INF::i5array{};
-
-	levels = std::make_pair(&resourceBuildingsLevels, &otherBuildingsLevels);
-}
-
-
-//Use struct/class here to pass to template, maybe don't use template??? Use returnArray or returnInt for arrayArg
-i5array Provinces::getBuildingLevel(BUILD::BuildingType type, int index, INF::Quantity quant) {
-	//For debugging
-	INF::debugFunction("Buildings, getBuildingLevel");
-
-	i5array arrayCopy, returnArray;
-	arrayCopy = *levels.first;
-	if (type) {
-		arrayCopy = *levels.second;
-	}
-
-	(quant == SINGLE) ? returnArray[0] = arrayCopy[index] : returnArray = arrayCopy;
-
-	/*
-	switch (quant) {
-		case SINGLE:
-			returnArray[0] = arrayCopy[index];
-			break;
-		case ALL:
-			returnArray = arrayCopy;
-	}
-	return returnArray;
-	*/
 }
 
 /*Use returnArray or returnInt for arrayArg*/
@@ -242,5 +192,9 @@ void Provinces::displayListOfBuildings() {
 	for (int x = 6; x < 10; x++) {
 		std::cout << x << ") " << INF::OTHER_BUILDING_NAMES[x] << "\n";
 	}
+}
+
+BuildingsBASE Provinces::getBuilding(BUILD::BuildingsEnum type) {
+	return buildings.at(type);
 }
 

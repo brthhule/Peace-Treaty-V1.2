@@ -187,7 +187,7 @@ i5array AllUnits::getGenericTroops(TroopCondition troopCondition) {
 
 //----Mutators----
 //Change troops of type index at this unit by amount
-void AllUnits::mutateTroop(INF::TroopCondition troopCondition, TroopTypes troopType, i5array amount, Quantity quant, INF::MutateDirection direction, int troopTier) {
+void AllUnits::mutateTroop(INF::TroopCondition troopCondition, Troops::TroopTypes troopType, i5array amount, Quantity quant, INF::MutateDirection direction, int troopTier) {
 	//For debugging
 	INF::debugFunction("Troops, mutateTroop");
 

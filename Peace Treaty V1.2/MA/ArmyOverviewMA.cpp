@@ -147,7 +147,7 @@ void Participants::deployCommanderMF() {
 	//For debugging
 	INF::debugFunction("ArmyOverview, deployCommanderMF");
 
-	Commanders* commander = pickCommander();
+	std::shared_ptr<Commanders> commander = pickCommander();
 	if (commander == nullptr) {
 		return;
 	}

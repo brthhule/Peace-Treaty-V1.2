@@ -64,31 +64,8 @@ namespace INF {
 	};
 
 
-	/*"	SELECT_ENEMY_ACTION",
-			"PLAYER_UNIT_ACTION",
-			"INTRODUCTION",
-			"PLAYER_ACTION",
-			"ARMY_DEPLOYMENT",
-			"TRAIN_MA_FUNCTION",
-			"PLAYER_BUILD_FUNCTION",
-			"VIEW_PLAYER_MAP",
-			"SELECT_PLAYER_PROVINCE",
-			"SELECT_ENEMY_PROVINCE",
-			"WHAT_REPORT"*/
-	std::array<std::string, 12> PROMPTS_STRING = {
-			"SELECT_ENEMY_ACTION",
-			"PLAYER_UNIT_ACTION",
-			"INTRODUCTION",
-			"PLAYER_ACTION",
-			"ARMY_DEPLOYMENT",
-			"TRAIN_MA_FUNCTION",
-			"PLAYER_BUILD_FUNCTION",
-			"VIEW_PLAYER_MAP",
-			"SELECT_PLAYER_PROVINCE",
-			"SELECT_ENEMY_PROVINCE",
-			"WHAT_REPORT" /*Add stuff for this*/,
-			"BATTLE_FORMATION" /*May not be used*/
-	};
+	
+	
 
 	
 	int continentSize = 0;
@@ -105,18 +82,7 @@ namespace INF {
 
 	//////////////////////////////////////End Variables////////////////////////
 
-	int INF::getStringIndex(std::string arg) {
-		//For debugging
-		INF::debugFunction("CV, getStringIndex");
-
-		for (int x = 0; x < (signed)PROMPTS_STRING.size(); x++) {
-			if (PROMPTS_STRING[x] == arg) {
-				return x;
-			}
-		}
-		//Error case
-		return -1;
-	}
+	
 
 
 	void INF::addColor(COLORS c) {
@@ -189,12 +155,6 @@ namespace INF {
 		return sequences[color];
 	}
 
-	std::string INF::promptsToString(Prompts p) {
-		//For debugging
-		INF::debugFunction("CV, promptsToString");
-
-		return PROMPTS_STRING[p];
-	}
 	//Generates a random name by randomly selecting consonants and vowels
 	std::string INF::createRandomName() {
 		//For debugging
@@ -219,14 +179,6 @@ namespace INF {
 			name += newCharacter;
 		}
 		return name;
-	}
-	
-
-	INF::Prompts INF::stringToPrompts(std::string arg) {
-		//For debugging
-		INF::debugFunction("CV, stringToPrompts");
-
-		return Prompts(INF::getStringIndex(arg));
 	}
 
 	i5array INF::mutateArray(
