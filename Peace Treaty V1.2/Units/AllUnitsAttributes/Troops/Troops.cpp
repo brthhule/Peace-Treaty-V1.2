@@ -71,11 +71,7 @@ void Troops::increaseTier(int amount) {
 	tier += amount;
 }
 
-std::array<int, 3> Troops::getCurrentDamage() {
-	return currentDamage;
-}
-
-TroopTypes Troops::getThisType() {
+Troops::TroopTypes Troops::getThisType() {
 	return thisType;
 }
 

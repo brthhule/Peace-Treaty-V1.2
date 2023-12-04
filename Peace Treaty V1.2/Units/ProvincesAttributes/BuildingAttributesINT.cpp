@@ -1,15 +1,8 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Provinces.h"
 
-#define print(x) std::cout << x;
-#define println(x) std::cout << x << std::endl;
 
-d5array Provinces::quarryUR = { 3, 2, 1, 0.5, 0.25 };
-d5array Provinces::mineUR = { 4, 3, 2, 1, 0.5 };
-d5array Provinces::churchUR = { 5, 4, 3, 2, 1 };
-d5array Provinces::barracksUR = { 1, 1, 1, 1, 0.2 };
-d5array Provinces::infirmaryUR = { 1, 1, 1, 1, 0.2 };
-d5array Provinces::libraryUR = { 1, 1, 1, 1, 0.2 };
-d5array Provinces::wallUR = { 1, 1, 1, 1, 0.2 };
+
+
 d5array Provinces::residencesUR = {};
 
 Provinces::Buildings() {

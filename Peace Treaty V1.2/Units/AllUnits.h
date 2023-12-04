@@ -57,11 +57,11 @@ public:
 
 	/*Return all the tiers for one troop type for a particular condition
 	Example: returns all tiers for guards present*/
-	i5array getAllOneTroopArray(TroopCondition troopCondition, INF::TroopTypes troopType);
+	i5array getAllOneTroopArray(TroopCondition troopCondition, Troops::TroopTypes troopType);
 
 	/*Returns the total of all of a particular troop type's tiers for a particular condition
 	Example: returns the total of all tiers for guards present*/
-	int getAllOneTroopInt(TroopCondition troopCondition, INF::TroopTypes troopType);
+	int getAllOneTroopInt(TroopCondition troopCondition, Troops::TroopTypes troopType);
 
 	/*Returns the tier totals for all troop types for a particular condition
 	Example: returns the total of all tiers of all troops presnet, as in the totals for guards, infantry, archers, etc.*/
@@ -77,7 +77,7 @@ public:
 	troopTier: 1/2/3/3/4/5*/
 	void mutateTroop(
 		INF::TroopCondition troopCondition,
-		TroopTypes troopType,
+		Troops::TroopTypes troopType,
 		i5array amount,
 		Quantity quant,
 		INF::MutateDirection direction,

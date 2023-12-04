@@ -155,14 +155,14 @@ void AllUnits::printResources(i5array resourcesArray) {
 }
 
 
-i5array AllUnits::getAllOneTroopArray(INF::TroopCondition troopCondition, INF::TroopTypes type) {
+i5array AllUnits::getAllOneTroopArray(INF::TroopCondition troopCondition, Troops::TroopTypes type) {
 	//For debugging
 	INF::debugFunction("Troops, getAllOneTroopArray");
 
 	return allTroopConditions.at(troopCondition.at(type));
 }
 
-int AllUnits::getAllOneTroopInt(INF::TroopCondition troopCondition, INF::TroopTypes type) {
+int AllUnits::getAllOneTroopInt(INF::TroopCondition troopCondition, Troops::TroopTypes type) {
 	i5array tempArray = getAllOneTroopArray(troopCondition, type);
 	INF::debugFunction("Troops, getAllOneTroopInt");
 

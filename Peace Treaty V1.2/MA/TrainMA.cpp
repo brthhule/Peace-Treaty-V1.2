@@ -25,7 +25,7 @@ void Participants::TrainMAFunction() {
     }
 
     std::cout << "What type of troop do you want to upgrade?\n";
-    int troopTypeNum = Input::getShowPrompt(Prompts::TRAIN_MA_FUNCTION_UNITS);
+    int troopTypeNum = Input::getOptionPrompt(TRAIN_MA_FUNCTION_UNITS);
     Troops::TroopTypes troopType = Troops::TroopTypes(1);
         
 
@@ -110,7 +110,7 @@ void Participants::TrainMAFunctionDoWhileLoop(int troopTier, int amountOfTroops)
 
             if (trainingIsSuccess == false) {
                 std::cout << "Training failed" << std::endl;
-                capitalProvince->modifyResources(requiredResources, true);
+                capitalProvince->modifyResources(requiredResources, INCREASE);
             }
             else {
                 std::cout << "Training successful" << std::endl;

@@ -48,7 +48,7 @@ namespace Input
 
 	std::string 
 		getOptionPromptQuery(std::vector<std::string>AV),
-		getOptionPrompt(INF::Prompts p),
+		getOptionPrompt(Prompts p),
 		getInputQuery(std::vector<std::string>AV),
 		getInputText(std::string text, std::vector<std::string> AV);
 };

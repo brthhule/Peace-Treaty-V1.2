@@ -22,6 +22,7 @@
 #define println(x) std::cout << x << std::endl;
 #define Systemoutprintln(x) std::cout << x;
 
+
 namespace INF
 {
 	/////////////////////////////////////Aliases///////////////////////////////

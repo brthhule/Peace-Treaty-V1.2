@@ -12,31 +12,34 @@ using namespace INF;
 
 class Troops {
 public:
-	/*Constructor*/
-	Troops(
-		int level, 
-		int baseHalth,
-		int tier,
-		std::array<int, 3> baseDamage, 
-		INF::TroopTypes thisType);
-
-	int
-		getLevel(),
-		getCurrentHealth(),
-		getTier();
 
 	/*	GUARDS,
 		INFANTRY,
 		ARCHERS,
 		CAVALRY,
 		ARTILLARY*/
-	static enum TroopTypes {
+	enum TroopTypes {
 		GUARDS,
 		INFANTRY,
 		ARCHERS,
 		CAVALRY,
 		ARTILLARY
 	};
+
+	/*Constructor*/
+	Troops(
+		int level, 
+		int baseHalth,
+		int tier,
+		std::array<int, 3> baseDamage, 
+		TroopTypes thisType);
+
+	int
+		getLevel(),
+		getCurrentHealth(),
+		getTier();
+
+	
 
 	std::array<int,3> getCurrentDamage();
 
@@ -56,7 +59,7 @@ public:
 	void setTier(int num);
 	void increaseTier(int amount);
 
-	INF::TroopTypes getThisType();
+	TroopTypes getThisType();
 
 
 	void applyBoosts(int healthBoost, int damageBoost);
@@ -64,7 +67,7 @@ public:
 private:
 	int level, tier, baseHealth, currentHealth;
 	std::array<int, 3> baseDamage, currentDamage;
-	INF::TroopTypes thisType;
+	TroopTypes thisType;
 	
 };
 #endif

@@ -47,7 +47,7 @@ ScoutMA::scoutTypes Participants::selectTarget(Provinces* targetProvince)
 	std::cout << "You can only scout this unit if one of your provinces or commanders is next to it... \n";
 
 	//Check nearby provinces
-	ScoutMA::scoutTypes canScout = getCanScout();
+	ScoutMA::scoutTypes canScout = getCanScout(targetProvince);
 	// If there are commanders or provinces that can scout the target
 	if (canScout.first.size() > 0 || canScout.second.size() > 0) {
 		return canScout;

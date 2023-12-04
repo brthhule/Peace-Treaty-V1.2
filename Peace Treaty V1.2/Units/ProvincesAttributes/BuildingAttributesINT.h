@@ -18,7 +18,7 @@ using namespace BUILD;
 class BuildingAttributesINT{
 public:	
 	/*These are functions*/
-	i5array int (BUILD::BuildingsEnum type);
+	i5array int getBuildingLevel (BUILD::BuildingsEnum type);
 	i5array getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount);
 	i5array getCapacity(BUILD::BuildingType type, int name, INF::Quantity amount);
 
