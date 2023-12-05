@@ -1,7 +1,9 @@
 #ifndef BUILDINGSBASE_H
 #define BUILDINGSBASE_H
 
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Misc\INF.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Misc\FilePaths.h";
+
+#include INF_H
 
 //Have to implement workers/buildiner/civillians functionality
 class BuildingsBASE {

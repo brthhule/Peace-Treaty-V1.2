@@ -14,8 +14,9 @@
 #include "ProvincesAttributes/MABuildINT.h"
 #include "Misc/Input.h"
 #include "AllUnitsAttributes/Coords.h"
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\ProvincesAttributes\BuildingAttributesINT.h"
+#include INITIAL_PATH + "ProvincesAttributes\BuildingAttributesINT.h"
 #include "Reports/ProvinceReport.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\ProvincesAttributes\BuildingBases\Buildings\ResourceBuildings\ResourceBuildingsBASE.h;"
 
 
 #define print(x) std::cout << x;

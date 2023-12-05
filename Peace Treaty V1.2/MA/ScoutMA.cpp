@@ -135,7 +135,7 @@ ScoutMA::scoutTypes Participants::getCanScout(Provinces* targetProvince)
 	}
 
 	//Error case
-	ScoutMA::scoutTypes tempScout (NULL, NULL);
+	ScoutMA::scoutTypes tempScout({}, {});
 	return tempScout;
 }
 
@@ -225,7 +225,7 @@ AllUnits* Participants::selectUnitToScoutTwo(ScoutMA::scoutTypes canScout){
 		}
 	}
 	//Error path
-	return NULL;
+	return nullptr;
 }
 
 

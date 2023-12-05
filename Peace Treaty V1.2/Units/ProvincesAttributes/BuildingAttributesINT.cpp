@@ -2,44 +2,26 @@
 
 
 
-
-d5array Provinces::residencesUR = {};
-
-Provinces::Buildings() {
+Provinces::BuildingAttributesINT() {
 	//For debugging
 	INF::debugFunction("Buildings, OtherBuildingsToString");
 }
 
 /*Use returnArray or returnInt for arrayArg*/
-i5array Provinces::getCapacity(BUILD::BuildingType type, int name, INF::Quantity amount) {
+int Provinces::getCapacity(BUILD::BuildingsEnum name) {
 	//For debugging
 	INF::debugFunction("Buildings, getCapacity");
 
-	i5array arrayCopy, returnArray;
-	arrayCopy = *levels.first;
-	if (type) {
-		arrayCopy = *levels.second;
-	}
-
-	switch (amount) {
-		case SINGLE:
-			returnArray[0] = arrayCopy[name];
-			break;
-		case ALL:
-			for (int x = 0; x < 5; x++) {
-				returnArray[x] = arrayCopy[x] * (int)capacityAmounts[x];
-			}
-	}
-	return returnArray;
+	Resource
 }
 
 /*Use returnArray or returnInt for arrayArg*/
-i5array Provinces::getResourceProduction(BUILD::ResourceBuildings name, INF::Quantity amount) {
+i5array Provinces::getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount) {
 	//For debugging
 	INF::debugFunction("Buildings, getResourceProduction");
 
 	i5array arrayCopy, returnArray;
-	arrayCopy = *levels.first;
+	BuildingsBASE* building = getBuilding(name);
 
 
 	switch (amount) {
@@ -85,7 +67,7 @@ void Provinces::mutateLevel(BUILD::BuildingType type, int name, i5array amount, 
 			}
 			break;
 		case ALL:
-			arrayCopy = INF::modifyArray(arrayCopy, amount, direction);
+			arrayCopy = INF::mutateArray(arrayCopy, amount, direction);
 			break;
 	}
 
@@ -182,7 +164,7 @@ void Provinces::displayListOfBuildings() {
 	}
 }
 
-BuildingsBASE Provinces::getBuilding(BUILD::BuildingsEnum type) {
+std::shared_ptr<BuildingsBASE> Provinces::getBuilding(BUILD::BuildingsEnum type) {
 	return buildings.at(type);
 }
 

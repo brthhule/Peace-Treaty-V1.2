@@ -19,9 +19,10 @@
 class ScoutMA {
 public:
 
-	typedef std::vector<Commanders*> commanderProfilePtrs;
-	typedef std::vector<Provinces*> provincesPtrs;
-	typedef std::pair<commanderProfilePtrs, provincesPtrs> scoutTypes;
+	typedef std::vector<Commanders*> commandersPtrsList;
+	typedef std::vector<Provinces*> provincesPtrsList;
+	//for null value, use scoutTypes nullValue ({}, {});
+	typedef std::pair<commandersPtrsList, provincesPtrsList> scoutTypes;
 
 	virtual void mainScoutMA (Provinces* provinceArg) = 0;
 	virtual scoutTypes selectTarget(Provinces* targetProvince) = 0;

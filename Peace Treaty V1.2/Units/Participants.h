@@ -23,6 +23,7 @@
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\AllUnits.h"
 #include "C:\Users\Brennen\source\repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Commanders.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Misc\BASE.h"
 #include "Map.h"
 #include "Provinces.h"
 
@@ -59,6 +60,7 @@ using namespace INF;
 
 //Players
 class Participants :
+	BASE_CLASS public BASE,
 	BASE_CLASS public Map,
 	BASE_CLASS public Mobility,
 	INTERFACE public ArmyOverviewMA,

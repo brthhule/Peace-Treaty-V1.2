@@ -15,12 +15,13 @@ using namespace INF;
 
 using namespace BUILD;
 
+//Methods and variables in Provinces that relate to Buildings
 class BuildingAttributesINT{
 public:	
 	/*These are functions*/
-	i5array int getBuildingLevel (BUILD::BuildingsEnum type);
+
 	i5array getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount);
-	i5array getCapacity(BUILD::BuildingType type, int name, INF::Quantity amount);
+	int getCapacity(BUILD::BuildingsEnum name);
 
 	void mutateLevel(
 		BUILD::BuildingType type, 
@@ -40,7 +41,7 @@ public:
 	void initiailizeCapitalBuildings();
 	void initializeEmptyBuildings();
 
-	BuildingsBASE getBuilding(BUILD::BuildingsEnum type);
+	std::shared_ptr<BuildingsBASE> getBuilding(BUILD::BuildingsEnum type);
 
 protected:
 	int troopsTrainedThisTurn;

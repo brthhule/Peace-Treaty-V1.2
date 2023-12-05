@@ -25,7 +25,7 @@ Provinces::Provinces(int overallIndexArg)
 
 	isACapital = false;
 	newAccuracy = -1;
-	INF::modifyArray(resourcesPresent, INF::INITIAL_VALUES, true);
+	INF::mutateArray(resourcesPresent, INF::INITIAL_VALUES, INCREASE);
 
 	unitLevel = 1;
 
@@ -62,7 +62,7 @@ void Provinces::updateProvinceResources()
 	INF::debugFunction("Provinces, updateProvinceResources");
 
 	i5array resourcesProduced = getResourceProduction(NULL, ALL);
-	resourcesPresent = INF::modifyArray(resourcesPresent, resourcesProduced, INCREASE);
+	resourcesPresent = INF::mutateArray(resourcesPresent, resourcesProduced, INCREASE);
 }
 
 //Other
@@ -153,10 +153,11 @@ bool Provinces::subtractCheckResources(std::array<int, 5> resourcesArray)
 	INF::debugFunction("Provinces, subtractCheckResources");
 
 	//returns false if resources dip into negatives
-	modifyResources(resourcesArray, false);
-	for (int x: resourcesPresent)
-		if (x < 0)
-			return false;
+	modifyResources(resourcesArray, DECREASE);
+	for (int x : resourcesPresent) {
+		if (x < 0) { return false; }
+	}
+	
 	return true;
 }
 

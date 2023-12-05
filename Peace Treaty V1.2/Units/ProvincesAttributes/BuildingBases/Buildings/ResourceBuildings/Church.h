@@ -3,7 +3,7 @@
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\ProvincesAttributes\BuildingBases\Buildings\ResourceBuildings\ResourceBuildingsBASE.h"
 
-class Church : public ResourceBuildingsBase {
+class Church : public ResourceBuildingsBASE {
 public:
 	Church();
 private:

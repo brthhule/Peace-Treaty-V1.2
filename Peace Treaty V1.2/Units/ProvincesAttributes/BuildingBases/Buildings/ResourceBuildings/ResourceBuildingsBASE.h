@@ -5,14 +5,17 @@
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\ProvincesAttributes\BuildingBases\BuildingsBASE.h"
 
-class ResourceBuildingsBase : public BuildingsBASE{
+class ResourceBuildingsBASE : public BuildingsBASE{
 public:
-	ResourceBuildingsBase(INF::i5array productionRates, INF::d5array upgradeRates);
+	//Potentiall add upgrade rate-- different buildings increase their production amounts at different rates
+	ResourceBuildingsBASE(INF::d5array upgradeRates);
+
+	void updateProductionRate(int level);
+	int getProudctionRate();
 
 private:
-	INF::i5array currentProductionRates;//Check this later
-	INF::i5array productionRates;
-	INF::i5array capacityAmounts; // add implementation
+	INF::i5array productionRate;
+	INF::i5array capacityAmount; // add implementation
 	//i5array Provinces::capacityAmounts = { 10,10,10,10,10 };
 };
 

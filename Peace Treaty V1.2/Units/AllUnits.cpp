@@ -118,7 +118,7 @@ void AllUnits::modifyResources(i5array resourcesArray, INF::MutateDirection dire
 	//For debugging
 	INF::debugFunction("AllUnits, mdofiyResources");
 
-	INF::modifyArray(resourcesPresent, resourcesArray, direction);
+	resourcesPresent = INF::mutateArray(resourcesPresent, resourcesArray, direction);
 }
 
 int AllUnits::getLevel() {

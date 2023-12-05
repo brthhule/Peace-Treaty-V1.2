@@ -402,7 +402,7 @@ std::array<int, 5> Participants::calculateEach(int option)
 				break;
 		}
 
-		returnArray = modifyArray(returnArray, modifyArrayAmount, INF::INCREASE);
+		returnArray = mutateArray(returnArray, modifyArrayAmount, INF::INCREASE);
 		
 	}
 	
@@ -688,9 +688,7 @@ i5array Participants::getAllUnitsArray() {
 	}
 	
 
-	returnArray = modifyArray(returnArray, allCommandersArray, true);
-	returnArray = modifyArray(returnArray, allProvincesArray, true);
-	return returnArray;
+	return mutateArray(returnArray, allCommandersArray, true);
 }
 
 VOID Participants::getAllUnitsArrayCommanders() {
@@ -699,7 +697,7 @@ VOID Participants::getAllUnitsArrayCommanders() {
 
 	for (Commanders instance : commandersVector) {
 		i5array commanderArray = instance.getTroop(REGULAR, -1, ALL);
-		INF::modifyArray(allCommandersArray, commanderArray, true);
+		INF::mutateArray(allCommandersArray, commanderArray, INCREASE);
 	}
 }
 
@@ -709,7 +707,7 @@ VOID Participants::getAllUnitsArrayProvinces() {
 
 	for (Provinces *instance : provincesVector) {
 		i5array provincesArray = instance->getTroop(REGULAR, -1, ALL);
-		INF::modifyArray(allProvincesArray, provincesArray, true);
+		INF::mutateArray(allProvincesArray, provincesArray, INCREASE);
 	}
 }
 

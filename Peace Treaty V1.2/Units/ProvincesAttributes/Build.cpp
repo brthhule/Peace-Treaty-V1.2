@@ -13,18 +13,21 @@ namespace BUILD {
 			"WALL",
 			"RESIDENCES"
 	};
-
-	std::pair<std::string, BuildingsEnum> translateEnumString(std::string stringArg, BuildingsEnum enumArg) {
-		if (stringArg == NULL) {
+	/*
+	* Null setting for stringArg is ""
+	* Null setting for enumArg is -1
+	*/
+	std::pair<std::string, BuildingsEnum> translateEnumString (std::string stringArg, BuildingsEnum enumArg) {
+		if (stringArg == "") {
 			return std::make_pair(BuildingStrings.at(enumArg), enumArg);
 		}
 
-		if (enumArg != NULL) {
+		if (enumArg != -1) {
 			return;
 		}
 
 		for (int index = 0; index < 10; index++) {
-			if (stringArg == BuildingStrings.at(x)) {
+			if (stringArg == BuildingStrings.at(index)) {
 				return std::make_pair(stringArg, BuildingsEnum(index));
 				break;
 			}
