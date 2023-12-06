@@ -4,7 +4,6 @@
 #include <iostream>
 
 #include "INF.h"
-#include "INF.h"
 
 using namespace INF;
 
@@ -39,7 +38,7 @@ namespace Input
 	};
 
 	std::string promptsToString(Prompts p);
-	extern std::array<std::string, 12> PROMPTS_STRING;
+	extern std::array<std::string, 13> PROMPTS_STRING;
 	int getStringIndex(std::string arg);
 	Prompts stringToPrompts(std::string arg);
 

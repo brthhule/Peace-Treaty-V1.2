@@ -6,9 +6,11 @@
 #include <iostream>
 #include <array>
 
-#include "Misc/INF.h"
-#include "AllUnitsAttributes/Coords.h"
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\AllUnitsAttributes\Troops\Troops.h"
+#include "C:/Users/Brennen/Source/Repos/brthhule/Peace-Treaty-V1.2/Peace Treaty V1.2/Units/Misc/FilePaths.h"
+
+#include INF_H
+#include COORDS_H
+#include TROOPS_H
 
 /*int resourcesPresent[5];
 	int troopsPresent[5];
@@ -16,7 +18,6 @@
 	int totalCP;*/
 
 using namespace INF;
-
 
 class AllUnits : public Coords
 {

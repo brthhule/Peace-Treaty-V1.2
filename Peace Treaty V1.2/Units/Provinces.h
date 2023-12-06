@@ -8,15 +8,16 @@
 #include <unordered_map>
 #include <random>
 
-#include "AllUnits.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Misc\FilePaths.h"
+
+#include ALL_UNITS_H
 #include "Commanders.h"
 #include "Misc/INF.h"
 #include "ProvincesAttributes/MABuildINT.h"
 #include "Misc/Input.h"
 #include "AllUnitsAttributes/Coords.h"
-#include INITIAL_PATH + "ProvincesAttributes\BuildingAttributesINT.h"
+#include BUILDING_ATTRIBUTES_INT_H
 #include "Reports/ProvinceReport.h"
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\ProvincesAttributes\BuildingBases\Buildings\ResourceBuildings\ResourceBuildingsBASE.h;"
 
 
 #define print(x) std::cout << x;

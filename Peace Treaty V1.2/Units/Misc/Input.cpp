@@ -121,7 +121,7 @@ namespace Input {
 		INF::debugFunction("Input, getOptionPrompt");
 
 		//Print prompt, return acceptable values
-		std::vector<std::string> AV = getShowPrompt(INF::promptsToString(p));
+		std::vector<std::string> AV = getShowPrompt(promptsToString(p));
 
 		return getOptionPromptQuery(AV);
 	}
@@ -159,15 +159,15 @@ namespace Input {
 		//For debugging
 		INF::debugFunction("CV, promptsToString");
 
-		return PROMPTS_STRING[p];
+		return PROMPTS_STRING.at(p);
 	}
 
-	int Input::getStringIndex(std::string arg) {
+	int getStringIndex(std::string arg) {
 		//For debugging
 		INF::debugFunction("CV, getStringIndex");
 
 		for (int x = 0; x < (signed)PROMPTS_STRING.size(); x++) {
-			if (PROMPTS_STRING[x] == arg) {
+			if (PROMPTS_STRING.at(x) == arg) {
 				return x;
 			}
 		}
@@ -175,10 +175,10 @@ namespace Input {
 		return -1;
 	}
 
-	Prompts INF::stringToPrompts(std::string arg) {
+	Prompts stringToPrompts(std::string arg) {
 		//For debugging
 		INF::debugFunction("CV, stringToPrompts");
 
-		return Prompts(INF::getStringIndex(arg));
+		return Prompts(getStringIndex(arg));
 	}
 };

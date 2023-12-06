@@ -4,15 +4,14 @@
 #include <iostream>
 #include <array>
 
-#include "../Misc/INF.h"
-#include "../Misc/INF.h"
-#include "../ProvincesAttributes/Build.h"
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\ProvincesAttributes\BuildingBases\BuildingsBASE.h"
+#include "C:/Users/Brennen/Source/Repos/brthhule/Peace-Treaty-V1.2/Peace Treaty V1.2/Units/ProvincesAttributes/BuildingAttributesINT.h"
 
-#include "../AllUnits.h"
+#include INF_H
+#include BUILD_H
+#include BUILDINGS_BASE_H
+#include ALL_UNITS_H
 
 using namespace INF;
-
 using namespace BUILD;
 
 //Methods and variables in Provinces that relate to Buildings

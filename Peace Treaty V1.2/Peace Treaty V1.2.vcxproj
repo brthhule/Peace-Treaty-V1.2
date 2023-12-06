@@ -210,8 +210,7 @@
     <ClInclude Include="MA\MapMA.h" />
     <ClInclude Include="MA\ScoutMA.h" />
     <ClInclude Include="MA\TrainMA.h" />
-    <ClInclude Include="Misc\INF.h" />
-    <ClInclude Include="Misc\INF.h" />
+    <ClInclude Include="Units\Misc\INF.h" />
     <ClInclude Include="Mobility.h" />
     <ClInclude Include="PlayerAction.h" />
     <ClInclude Include="ProvinceReport.h" />
