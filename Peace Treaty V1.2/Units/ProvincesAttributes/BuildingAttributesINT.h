@@ -1,15 +1,15 @@
-#ifndef BUILDINGATTRIBUTES_H
-#define BUILDINGATTRIBUTES_H
+#ifndef BUILDINGATTRIBUTESINT_H
+#define BUILDINGATTRIBUTESINT_H
 
 #include <iostream>
 #include <array>
 
 #include "C:/Users/Brennen/Source/Repos/brthhule/Peace-Treaty-V1.2/Peace Treaty V1.2/Units/ProvincesAttributes/BuildingAttributesINT.h"
 
-#include INF_H
-#include BUILD_H
-#include BUILDINGS_BASE_H
-#include ALL_UNITS_H
+#include "C:/Users/Brennen/Source/Repos/brthhule/Peace-Treaty-V1.2/Peace Treaty V1.2/Units/Misc/INF.h"
+#include "C:/Users/Brennen/Source/Repos/brthhule/Peace-Treaty-V1.2/Peace Treaty V1.2/Units/ProvincesAttributes/BUILD.h"
+#include "C:/Users/Brennen/Source/Repos/brthhule/Peace-Treaty-V1.2/Peace Treaty V1.2/Units/ProvincesAttributes/BuildingBases/BuildingsBASE.h"
+#include "C:/Users/Brennen/Source/Repos/brthhule/Peace-Treaty-V1.2/Peace Treaty V1.2/Units/AllUnits.h"
 
 using namespace INF;
 using namespace BUILD;

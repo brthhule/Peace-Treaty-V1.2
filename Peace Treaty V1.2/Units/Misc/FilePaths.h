@@ -1,4 +1,6 @@
 //Shortens down absolute file paths for easy formatting
+#ifndef FILEPATHS_H
+#define FILEPATHS_H
 
 #define ALL_UNITS_H "C:/Users/Brennen/Source/Repos/brthhule/Peace-Treaty-V1.2/Peace Treaty V1.2/Units/AllUnits.h"
 
@@ -15,3 +17,5 @@
 #define RESOURCE_BUILDINGS_BASE_H "C:/Users/Brennen/Source/Repos/brthhule/Peace-Treaty-V1.2/Peace Treaty V1.2/Units/ProvincesAttributes/BuildingBases/Buildings/ResourceBuildings/ResourceBuildingsBASE.h"
 
 #define TROOPS_H "C:/Users/Brennen/Source/Repos/brthhule/Peace-Treaty-V1.2/Peace Treaty V1.2/Units/AllUnitsAttributes/Troops/Troops.h"
+
+#endif

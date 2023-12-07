@@ -203,7 +203,7 @@
     <ClInclude Include="Buildings.h" />
     <ClInclude Include="CommanderReport.h" />
     <ClInclude Include="Coords.h" />
-    <ClInclude Include="Input.h" />
+    <ClInclude Include="Units\Misc\Input.h" />
     <ClInclude Include="Interfaces\BuildMAInterface.h" />
     <ClInclude Include="MA\ArmyOverviewMA.h" />
     <ClInclude Include="MA\AttackMA.h" />

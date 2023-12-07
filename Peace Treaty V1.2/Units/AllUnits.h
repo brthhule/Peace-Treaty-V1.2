@@ -8,9 +8,9 @@
 
 #include "C:/Users/Brennen/Source/Repos/brthhule/Peace-Treaty-V1.2/Peace Treaty V1.2/Units/Misc/FilePaths.h"
 
-#include INF_H
-#include COORDS_H
-#include TROOPS_H
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Misc\INF.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\AllUnitsAttributes\Coords.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\AllUnitsAttributes\Troops\Troops.h"
 
 /*int resourcesPresent[5];
 	int troopsPresent[5];

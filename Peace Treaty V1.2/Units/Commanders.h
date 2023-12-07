@@ -1,10 +1,10 @@
-#ifndef COMMANDERPROFILE_H
-#define COMMANDERPROFILE_H
+#ifndef COMMANDERS_H
+#define COMMANDERS_H
 
 #include <vector>
 
-#include "AllUnits.h"
-#include "Misc/INF.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\AllUnits.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Misc\INF.h"
 
 using namespace INF;
 
@@ -36,7 +36,7 @@ public:
 	bool hasMoved();
 
 private:
-	INTEGER
+	INF::INTEGER
 		maxTroops,
 		totalMaxResources;
 

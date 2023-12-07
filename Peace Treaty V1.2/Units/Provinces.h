@@ -8,20 +8,14 @@
 #include <unordered_map>
 #include <random>
 
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Misc\FilePaths.h"
-
-#include ALL_UNITS_H
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\AllUnits.h"
 #include "Commanders.h"
-#include "Misc/INF.h"
-#include "ProvincesAttributes/MABuildINT.h"
-#include "Misc/Input.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Misc\INF.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\ProvincesAttributes\MABuildINT.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Misc\INF.h"
 #include "AllUnitsAttributes/Coords.h"
-#include BUILDING_ATTRIBUTES_INT_H
-#include "Reports/ProvinceReport.h"
-
-
-#define print(x) std::cout << x;
-#define println(x) std::cout << x << std::endl;
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\ProvincesAttributes\BuildingAttributesINT.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Reports\ProvinceReport.h"
 
 using namespace INF;
 using namespace Input;
