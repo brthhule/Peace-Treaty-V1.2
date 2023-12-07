@@ -1,4 +1,6 @@
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\AllUnitsAttributes\Troops\Troops.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Misc\Main_FilePaths.h"
+
+#include TROOPS_HEADER
 
 Troops::Troops(int level, 
 	int baseHealth,

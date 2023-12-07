@@ -1,4 +1,6 @@
-#include "Input.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Misc\Main_FilePaths.h"
+
+#include INPUT_HEADER
 
 namespace Input {
 	/*"	SELECT_ENEMY_ACTION",

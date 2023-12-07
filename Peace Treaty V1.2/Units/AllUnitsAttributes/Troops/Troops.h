@@ -6,7 +6,9 @@
 #define TROOPS_H
 
 #include <iostream>
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Misc\INF.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Misc\Main_FilePaths.h"
+
+#include INF_H
 
 using namespace INF;
 

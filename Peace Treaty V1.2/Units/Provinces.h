@@ -8,10 +8,15 @@
 #include <unordered_map>
 #include <random>
 
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\AllUnits.h"
-#include "Commanders.h"
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Misc\INF.h"
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\ProvincesAttributes\MABuildINT.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Misc\Main_FilePaths.h"
+
+#include ALL_UNITS_HEADER
+#include COMMANDERS_HEADER
+#include INF_HEADER
+#include MA_BUILD_INT_HEADER
+#include INPUT_HEADER
+
+
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Misc\INF.h"
 #include "AllUnitsAttributes/Coords.h"
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\ProvincesAttributes\BuildingAttributesINT.h"

@@ -3,14 +3,13 @@
 
 #include <iostream>
 
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Misc\Main_FilePaths.h"
 
-#include "ScoutMA.h"
-#include "AttackMA.h"
-#include "TrainMA.h"
-
-#include "../Units/Misc/INF.h"
-#include "../Units/Misc/INF.h"
-#include "../Units/Misc/Input.h"
+#include SCOUT_MA_HEADER
+#include ATTACK_MA_HEADER
+#include TRAIN_MA_HEADER
+#include INF_HEADER
+#include INPUT_HEADER
 
 
 //extern std::vector<std::vector<Provinces>> provincesMap;

@@ -9,12 +9,12 @@
 #include <iostream>
 #include <vector>
 
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Participants.h"
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\AllUnits.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Misc\Main_FilePaths.h"
 
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\AllUnits.h"
-#include "../Units/Misc/Input.h"
-#include "../Units/Misc/INF.h"
+#include PARTICIPANTS_HEADER
+#include ALL_UNITS_HEADER
+#include INPUT_HEADER
+#include INF_HEADER
 
 class ScoutMA {
 public:

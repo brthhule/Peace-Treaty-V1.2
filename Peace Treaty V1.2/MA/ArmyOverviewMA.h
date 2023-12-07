@@ -9,9 +9,10 @@
 #include <vector>
 #include <unordered_map>
 
-#include "../Units/Misc/INF.h"
-#include "../Units/Misc/Input.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Misc\Main_FilePaths.h"
 
+#include INF_HEADER
+#include INPUT_HEADER
 
 class ArmyOverviewMA
 {

@@ -5,12 +5,13 @@
 #include <string>
 #include <vector>
 
-#include "../Units/Commanders.h"
-#include "../Units/Provinces.h"
-#include "../Units/AllUnits.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Misc\Main_FilePaths.h"
 
-#include "../Units/Misc/Input.h"
-#include "../Units/Misc/INF.h"
+#include COMMANDERS_HEADER
+#include PROVINCES_HEADER
+#include ALL_UNITS_HEADER
+#include INPUT_HEADER
+#include INF_HEADER
 
 using namespace INF;
 

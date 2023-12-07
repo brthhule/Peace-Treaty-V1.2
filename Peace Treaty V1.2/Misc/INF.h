@@ -14,17 +14,7 @@
 #include <vector>
 #include <fstream>
 
-#include "INF.h"
-
-#define UNIT_AMOUNT 5
-
-#define print(x) std::cout << x;
-#define println(x) std::cout << x << std::endl;
-#define Systemoutprintln(x) std::cout << x;
-
-
-namespace INF
-{
+namespace INF {
 	/////////////////////////////////////Aliases///////////////////////////////
 	using s5array = std::array<std::string, UNIT_AMOUNT>;
 	using i5array = std::array<int, UNIT_AMOUNT>;
