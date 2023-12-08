@@ -557,6 +557,7 @@ std::shared_ptr<Commanders> *Participants::pickCommander() {
 	return nullptr;
 }
 
+/*Display this participant's list of commanders*/
 void Participants::displayCommanders() {
 	//For debugging
 	INF::debugFunction("Participants, displayCommanders");
@@ -582,45 +583,47 @@ switch(phrase)
 2: of the province you want to move to
 3: of the army you want to use to attack the target with"
 */
-Provinces* Participants::pickProvince(int phrase) {
+std::shared_ptr<Provinces> Participants::pickProvince(int phrase) {
 	//For debugging
 	INF::debugFunction("Participants, pickProvince");
 
 	std::vector<std::string> actualCoordinatesAVTwo = { "-1" };
 	//range of possible coordinates
-	for (int x = 1; x <= INF::continentSize; x++)
+	for (int x = 1; x <= INF::continentSize; x++) {
 		actualCoordinatesAVTwo.push_back(std::to_string(x));
-
+	}
+	
 	showMap();
+
 	std::array<std::string, 3> phrases{ 
-		"of the province you want to select" , 
-		"of the province you want to move to", 
-		"of the army you want to use to attack the target with" 
+		"province you want to select" , 
+		"province you want to move to", 
+		"army you want to use to attack the target with" 
 	};
 
 	//Prints list of provinces if prompted
-	if (identifier == 1 || identifier == 2) {
+	if (phrase == 1 || phrase == 2) {
 		printListOfProvinces();
 	}
 
-	std::string xCoordPrompt = 
-		"Enter the x coordinate " + phrases.at(phrase - 1) +
+	std::string xCoordPrompt = "Enter the x coordinate of the " + 
+		phrases.at(phrase - 1) +
 		" (Enter '-1' to go back to previous menu): ";
+
 	std::string yCoordPrompt = xCoordPrompt;
+	//Make x prompt relatable to y
 	yCoordPrompt.at(10) = 'y';
 
 	// Critical: check to make sure the coordinate checkings are correct
-	std::pair<int, int> tempUserCoords(
-		std::stoi(getInputText(xCoordPrompt, actualCoordinatesAVTwo),
-		std::stoi(getInputText(yCoordPrompt, actualCoordinatesAVTwo)
-	);
+	int xUserCoord = std::stoi(getInputText(xCoordPrompt, actualCoordinatesAVTwo);
+	int yUserCoord = std::stoi(getInputText(yCoordPrompt, actualCoordinatesAVTwo);
 
 	//Cancel action
-	if (tempUserCoords.first == -1 || tempUserCoords.second == -1) {
-		return NULL;
+	if (xUserCoord == -1 || yUserCoord == -1) {
+		return std::make_pair(NULL, NULL);
 	}
 
-	return getUserProvince(tempUserCoords);
+	return getUserProvince(std::make_pair(xUserCoord, yUserCoord));
 }
 
 

@@ -24,6 +24,7 @@ class AllUnits : public Coords
 public:
 	enum UnitType { COMMANDER, PROVINCE };
 	using T5array = std::array<Troops, 5>;
+	using AllUnitsSPtr = std::shared_ptr<AllUnits>;
 	/* T5array = std::array<Troops, 5>
 	troopConditionArray = std::array<T5array, 5> */
 	using troopConditionArray = std::array<T5array, 5>;
@@ -88,6 +89,9 @@ public:
 
 	//Override?
 	INF::ipair translateCoords(INF::ipair coords, CoordsType type);
+
+	std::vector<AllUnitsSPtr> sortVector(SortType sort, std::vector<AllUnitsSPtr> list);
+	std::vector<AllUnitsSPtr> levelSort(AllUnitsSPtr list);
 
 protected:
 	i5array resourcesPresent;

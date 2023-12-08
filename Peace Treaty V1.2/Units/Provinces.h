@@ -33,8 +33,8 @@ const int LOG_SIZE = 20;
 class Provinces : public AllUnits, public MABuildINT, public BuildingAttributesINT
 {
 public:
+	using ProvinceSPtr = std::shared_ptr<Provinces>;
 	/*Constructors*/
-
 	Provinces();
 	Provinces(int overallIndexArg);
 
@@ -79,7 +79,9 @@ public:
 		
 	//////////////End MABuildINT///
 	//type (resource, other), other/resourceLevels, name of object in Levels list
-	
+
+	void setCommandersSortStatus(SortType status);
+	SortType getCommandersSortStatus();
 
 	std::string getKingdomName();
 	
@@ -87,6 +89,7 @@ public:
 	std::array<int, 7> getListInt();
 	std::array<bool, 3> getListBool();
 	std::array< std::pair<int, int>, 2> getListCoords();
+
 
 protected:
 	enum LISTS {RESOURCE_BUILDINGS_LEVELS, OTHER_BUILDINGS_LEVELS, RESOURCES_PRESENT, TROOPS_PRESENT, TROOPS_INJURED, TROOPS_LOST, INITIAL_STATS};
@@ -100,6 +103,7 @@ protected:
 	enum REPORT {REPORT_TURN, REPORT_LOG};
 	
 private:
+	SortType currentSortType;
 	std::array<std::array<int, 5>*, 7> Lists;
 
 	std::array<std::array<i5array, 5>, 3> troopsLists;
@@ -118,6 +122,7 @@ private:
 
 	std::unordered_map<std::string, Commanders*> commanders;
 	std::unordered_map<std::string, Commanders*>::iterator it;
+	std::vector<
 
 	double newAccuracy;
 	std::string kingdomName;

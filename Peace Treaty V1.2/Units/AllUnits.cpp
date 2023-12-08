@@ -229,3 +229,45 @@ void AllUnits::setBattleFormation(troopConditionArray troopArray) {
 INF::ipair AllUnits::translateCoords(INF::ipair coords, CoordsType type) {
 	return Coords::translateCoords(coords, type);
 }
+
+//Quicksort
+std::vector<AllUnits::AllUnitsSPtr> AllUnits::sortVector(SortType sort, std::vector<AllUnits::AllUnitsSPtr> list) {
+	if (sort == LEVEL) {
+		return levelSort(list);
+	}
+
+	/* for casting back later :
+	std::shared_ptr<Base> base(new Derived());
+	std::shared_ptr<Derived> derived =
+		std::dynamic_pointer_cast<Derived> (base);*/
+}
+
+std::vector<AllUnits::AllUnitsSPtr> AllUnits::levelSort(std::vector<AllUnits::AllUnitsSPtr> list) {
+	if (list.size() <= 1) {
+		return list;
+	}
+
+	int listSize = list.size();
+	AllUnitsSPtr lastElement = list.at(listSize - 1);
+	int lastLevel = lastElement->getLevel();
+
+	std::vector<AllUnitsSPtr> greater = {};
+	std::vector<AllUnitsSPtr> lesser = {};
+	std::vector<AllUnitsSPtr> same = { lastElement };
+
+	for (int index = 0; index < listSize - 1; index++) {
+		AllUnitsSPtr currentElement = list.at(index);
+
+		if (currentElement->getLevel() < lastLevel) {
+			lesser.push_back(currentElement);
+		}
+		else if (currentElement->getLevel() > lastLevel) {
+			greater.push_back(currentElement);
+		}
+		else {
+			same.push_back(currentElement);
+		}
+	}
+
+	return concatVectors(lesser, same, greater);
+}

@@ -12,6 +12,7 @@ using namespace INF;
 //Control army units
 class Commanders : public AllUnits {
 public:
+	using CommanderSPtr = std::shared_ptr<Commanders>;
 	// Constructors
 	Commanders();
 	Commanders(int commanderLevel, std::string name);

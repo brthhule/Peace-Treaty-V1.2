@@ -29,6 +29,57 @@ namespace INF {
 	using VOID = void;
 	using BOOL = bool;
 
+	/////////////////////////////////////Enums/////////////////////////////////
+
+	/*REGULAR,
+		INJURED,
+		LOST */
+	enum TroopCondition {
+		REGULAR,
+		INJURED,
+		LOST
+	};
+
+	/*DECREASE = 0,
+		INCREASE = 1*/
+	enum MutateDirection {
+		DECREASE = 0,
+		INCREASE = 1
+	};
+	/*SINGLE = 0,
+		ALL = 1*/
+	enum Quantity {
+		SINGLE = 0,
+		ALL = 1
+	};
+
+	enum SortType {
+		ALPHABETICAL,
+		LEVEL
+	};
+
+
+	/*BLACK,
+		RED,
+		GREEN,
+		YELLOW,
+		BLUE,
+		MAGENTA,
+		CYAN,
+		WHITE,
+		RESET*/
+	enum COLORS {
+		BLACK,
+		RED,
+		GREEN,
+		YELLOW,
+		BLUE,
+		MAGENTA,
+		CYAN,
+		WHITE,
+		RESET
+	};
+
 	///////////////////////////////////Templates///////////////////////////////
 	//Creating my own vector version to enable vector element addition
 	template <typename T>
@@ -48,6 +99,9 @@ namespace INF {
 
 	using myvectorI = myvector<int>;
 	using myarrayI5A = myarray<std::array<int, 5>>;
+
+	template <typename T>
+	std::vector<T> concatVectors(std::vector<std::vector<T>> vectorsList);
 	
 	/////////////////////////////////Variables/////////////////////////////////
 	extern s5array
@@ -86,51 +140,7 @@ namespace INF {
 		"RESET" */
 	extern std::array<std::string, 9> COLORS_STRING;
 
-	/////////////////////////////////////Enums/////////////////////////////////
-
-	/*REGULAR, 
-		INJURED,
-		LOST */
-	enum TroopCondition { 
-		REGULAR, 
-		INJURED,
-		LOST 
-	};
-
-	/*DECREASE = 0, 
-		INCREASE = 1*/
-	enum MutateDirection {
-		DECREASE = 0, 
-		INCREASE = 1
-	};
-	/*SINGLE = 0, 
-		ALL = 1*/
-	enum Quantity {
-		SINGLE = 0, 
-		ALL = 1
-	};
-
 	
-	/*BLACK,
-		RED,
-		GREEN,
-		YELLOW,
-		BLUE,
-		MAGENTA,
-		CYAN,
-		WHITE,
-		RESET*/
-	enum COLORS {
-		BLACK,
-		RED,
-		GREEN,
-		YELLOW,
-		BLUE,
-		MAGENTA,
-		CYAN,
-		WHITE,
-		RESET
-	};
 
 	
 	//////////////////////////////Functions////////////////////////////////////

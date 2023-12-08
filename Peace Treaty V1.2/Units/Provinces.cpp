@@ -49,9 +49,22 @@ Provinces::Provinces(int overallIndexArg)
 		&troopsTrainedThisTurn,
 		&overallIndex
 	};
+
+	commandersSortStatus = ALPHABETICAL;
 }
 
+void Provinces::setCommandersSortStatus(SortType sort) {
+	if (sort == currentSortType) {
+		return;
+	}
 
+	crrentSortType = status;
+	commandersVector
+}
+
+Provinces::SortType Provinces::getCommandersSortStatus() {
+	return commandersSortStatus;
+}
 
 //Province stuff
 void Provinces::updateProvinceResources()

@@ -84,8 +84,6 @@ namespace INF {
 
 	//////////////////////////////////////End Variables////////////////////////
 
-	
-
 
 	void INF::addColor(COLORS c) {
 		//For debugging
@@ -374,4 +372,20 @@ void INF::printFile(std::string path) {
 	//close file
 	newfile.close();
 	return;
+}
+
+
+template <typename T>
+//Takes a list of vectors, concatentate them together. List goes in order of earliest to latest index
+std::vector<T> INF::concatVectors(std::vector<std::vector<T>> vectorsList) {
+	std::vector<T> baseList = vectorsList.at(0);
+
+	for (int list = 1; list < vectorsList.size(); list++) {
+		std::vector<T> currentList = vectorsList.at(list);
+		for (int currentElement = 0; currentElement < currentList.size(); currentElement++) {
+			baseList.push_back(currentElement);
+		}
+	}
+
+	return baseList;
 }

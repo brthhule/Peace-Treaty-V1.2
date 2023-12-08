@@ -62,7 +62,7 @@ ScoutMA::scoutTypes Participants::selectTarget(Provinces* targetProvince)
 } /*fix this-- needs to be reviewed*/
 
 
-// Finish this later
+// Returns a pair-- first: unit to scout with, second: accuracy
 std::pair <AllUnits*, int> Participants::playerScoutStepTwo(scoutTypes canScout, Provinces* targetProvince) 
 {
 	//For debugging
