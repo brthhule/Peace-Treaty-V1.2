@@ -84,61 +84,15 @@ namespace INF {
 
 	//////////////////////////////////////End Variables////////////////////////
 
-
-	void INF::addColor(COLORS c) {
+	//For stand alone color integration
+	void INF::addColor(COLORS color) {
 		//For debugging
 		INF::debugFunction("CV, addColor");
-
-
-		/*The color definition is a series of numbers, separated by semicolons.
-		In order to make the text color red (number 31), you can write 
-		"\033[31m" which will make any following output red. If you want yellow
-		text (33) on blue background (44), you write "\033[31;44m". To reset 
-		everything back to the default colors, you write "\033[0m".
-
-		foreground background
-		black        30         40
-		red          31         41
-		green        32         42
-		yellow       33         43
-		blue         34         44
-		magenta      35         45
-		cyan         36         46
-		white        37         47*/
-
-		switch (c) {
-			case BLACK:
-				std::cout << "\033[30m";
-				break;
-			case RED:
-				std::cout << "\033[31m";
-				break;
-			case GREEN:
-				std::cout << "\033[32m";
-				break;
-			case YELLOW:
-				std::cout << "\033[33m";
-				break;
-			case BLUE:
-				std::cout << "\033[34m";
-				break;
-			case MAGENTA:
-				std::cout << "\033[35m";
-				break;
-			case CYAN:
-				std::cout << "\033[36m";
-				break;
-			case WHITE:
-				std::cout << "\033[37m";
-				break;
-			case RESET:
-				std::cout << "\033[0m";
-				break;
-		}
-
-
+		std::cout << getColor(color);
+		
 	}
 
+	//For integration with strings/std::cout statements
 	std::string INF::getColor(COLORS color) {
 		std::array<std::string, 9> sequences = {
 			"\033[30m", //Black
@@ -152,7 +106,7 @@ namespace INF {
 			"\033[0m" //Reset
 		};
 
-		return sequences[color];
+		return sequences.at(color);
 	}
 
 	//Generates a random name by randomly selecting consonants and vowels
@@ -166,21 +120,22 @@ namespace INF {
 
 		char newCharacter = ' ';
 		for (int x = 0; x < 6; x++) {
-			if (x % 2 == 0) // if even
-			{
+			// if even
+			if (x % 2 == 0) {
 				newCharacter = consonants.at(rand() % 21);
-			} else if (x % 2 == 1) // if odd
-			{
+			} else {
+				// if odd
 				newCharacter = vowels.at(rand() % 5);
 			}
-			if (x == 0) {
-				newCharacter = toupper(newCharacter);
-			}
+
 			name += newCharacter;
 		}
+		//Capitalize name
+		name.at(0) = toupper(name.at(0))
 		return name;
 	}
 
+	//Can change this-> look at concatVectors as a template-- use a pair of arrays instead of passing two arrays
 	i5array INF::mutateArray(
 		i5array primeArray, 
 		i5array secondaryArray, 
