@@ -6,11 +6,8 @@
 #include <vector>
 #include <string>
 
-//Units
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Participants.h"
-
-#define print(x) std::cout << x;
-#define println(x) std::cout << x << std::endl;
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Misc\Main_FilePaths.h"
+#include PARTICIPANTS_HEADER
 
 using namespace INF;
 

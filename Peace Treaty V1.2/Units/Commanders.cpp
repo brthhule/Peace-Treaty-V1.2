@@ -1,4 +1,5 @@
-#include "Commanders.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Misc\Main_FilePaths.h"
+#include COMMANDERS_HEADER
 
 /*Constructors*/
 Commanders::Commanders() {

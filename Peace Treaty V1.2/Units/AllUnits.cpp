@@ -1,4 +1,5 @@
-#include "AllUnits.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Misc\Main_FilePaths.h"
+#include ALL_UNITS_HEADER
 
 //----Constructors----
 //One param overloaded Constructor
@@ -178,7 +179,7 @@ i5array AllUnits::getGenericTroops(TroopCondition troopCondition) {
 	i5array troopTotals = { 0,0,0,0,0 };
 
 	for (int x = 0; x < 5; x++) {
-		TroopTypes troopType = (TroopTypes)x;
+		Troops::TroopTypes troopType = (Troops::TroopTypes)x;
 		troopTotals.at(x) = getAllOneTroopInt(troopCondition, troopType);
 	}
 

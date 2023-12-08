@@ -1,4 +1,5 @@
-#include "Map.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Misc\Main_FilePaths.h"
+#include MAP_HEADER
 
 Map::ProvincesVector Map::map = std::vector<std::vector<Provinces*>>{};
 Map::ProvincesMap  Map::mapMap = std::unordered_map<std::string, Provinces*>();

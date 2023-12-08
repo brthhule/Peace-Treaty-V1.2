@@ -1,4 +1,5 @@
-#include "Database.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Misc\Main_FilePaths.h"
+#include DATABASE_HEADER
 
 Database::Database() {
 	//For debugging

@@ -7,6 +7,8 @@
 
 #define MAP_MA_HEADER "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\MA\MapMA.h"
 
+#define PLAYER_ACTION_HEADER "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\MA\PlayerAction.h"
+
 #define SCOUT_MA_HEADER "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\MA\ScoutMA.h"
 
 #define TRAIN_MA_HEADER "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\MA\TrainMA.h"

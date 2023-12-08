@@ -4,10 +4,8 @@
 #include<iostream>
 #include <array>
 
-#include "../Misc/INF.h"
-#include "../Misc/INF.h"
-
-
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Misc\Main_FilePaths.h"
+#include INF_HEADER
 
 namespace BUILD {
 	/*FARM, 

@@ -1,9 +1,9 @@
 #ifndef RESOURCEBUILDINGSBASE_H
 #define RESOURCEBUILDINGSBASE_H
 
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Misc\INF.h"
-
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\ProvincesAttributes\BuildingBases\BuildingsBASE.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Misc\Main_FilePaths.h"
+#include INF_HEADER
+#include BUILDINGS_BASE_HEADER
 
 class ResourceBuildingsBASE : public BuildingsBASE{
 public:

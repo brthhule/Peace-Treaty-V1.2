@@ -3,7 +3,7 @@
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Misc\Main_FilePaths.h";
 
-#include INF_H
+#include INF_HEADER
 
 //Have to implement workers/buildiner/civillians functionality
 class BuildingsBASE {

@@ -8,15 +8,12 @@
 #include <iostream>
 #include <cmath>
 
-#include "MA/ArmyOverviewMA.h"
-#include "MA/TrainMA.h"
-#include "MA/MapMA.h"
-
-
-#include "Units/Misc/INF.h"
-#include "Units/Participants.h"
-
-extern int turn;
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Misc\Main_FilePaths.h"
+#include ARMY_OVERVIEW_MA_HEADER
+#include TRAIN_MA_HEADER
+#include MAP_MA_HEADER
+#include INF_HEADER
+#include PARTICIPANTS_HEADER
 
 class PlayerAction
 {

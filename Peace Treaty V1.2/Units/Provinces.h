@@ -17,10 +17,12 @@
 #include INPUT_HEADER
 
 
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Misc\INF.h"
-#include "AllUnitsAttributes/Coords.h"
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\ProvincesAttributes\BuildingAttributesINT.h"
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Reports\ProvinceReport.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Misc\Main_FilePaths.h"
+#include PROVINCES_HEADER
+#include INF_HEADER
+#include COORDS_HEADER
+#include BUILDING_ATTRIBUTES_INT_HEADER
+#include PROVINCE_REPORT_HEADER
 
 using namespace INF;
 using namespace Input;

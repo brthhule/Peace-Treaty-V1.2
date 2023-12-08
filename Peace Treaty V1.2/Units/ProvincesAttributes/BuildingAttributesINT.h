@@ -4,12 +4,12 @@
 #include <iostream>
 #include <array>
 
-#include "C:/Users/Brennen/Source/Repos/brthhule/Peace-Treaty-V1.2/Peace Treaty V1.2/Units/ProvincesAttributes/BuildingAttributesINT.h"
-
-#include "C:/Users/Brennen/Source/Repos/brthhule/Peace-Treaty-V1.2/Peace Treaty V1.2/Units/Misc/INF.h"
-#include "C:/Users/Brennen/Source/Repos/brthhule/Peace-Treaty-V1.2/Peace Treaty V1.2/Units/ProvincesAttributes/BUILD.h"
-#include "C:/Users/Brennen/Source/Repos/brthhule/Peace-Treaty-V1.2/Peace Treaty V1.2/Units/ProvincesAttributes/BuildingBases/BuildingsBASE.h"
-#include "C:/Users/Brennen/Source/Repos/brthhule/Peace-Treaty-V1.2/Peace Treaty V1.2/Units/AllUnits.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Misc\Main_FilePaths.h"
+#include BUILDING_ATTRIBUTES_INT_HEADER
+#include INF_HEADER
+#include BUILD_HEADER
+#include BUILDINGS_BASE_HEADER
+#include ALL_UNITS_HEADER
 
 using namespace INF;
 using namespace BUILD;

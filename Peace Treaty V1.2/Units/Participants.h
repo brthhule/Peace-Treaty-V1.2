@@ -20,21 +20,19 @@
 #include <unordered_map>
 #include <vector>
 
-
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\AllUnits.h"
-#include "C:\Users\Brennen\source\repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Commanders.h"
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Misc\BASE.h"
-#include "Map.h"
-#include "Provinces.h"
-
-#include "Misc/INF.h"
-#include "CommandersAttributes/Mobility.h"
-
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\MA\AttackMA.h"
-#include "../MA/ArmyOverviewMA.h"
-#include "../MA/MapMA.h"
-#include "../PlayerAction.h"
-#include "../MA/ScoutMA.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Misc\Main_FilePaths.h"
+#include ALL_UNITS_HEADER
+#include COMMANDERS_HEADER
+#include BASE_HEADER
+#include MAP_HEADER
+#include PROVINCES_HEADER
+#include INF_HEADER
+#include MOBILITY_HEADER
+#include ATTACK_MA_HEADER
+#include ARMY_OVERVIEW_MA_HEADER
+#include MAP_MA_HEADER
+#include PLAYER_ACTION_HEADER
+#include SCOUT_MA_HEADER
 
 
 #define CONSTRUCTOR

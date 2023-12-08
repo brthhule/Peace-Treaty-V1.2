@@ -5,8 +5,8 @@
 #include <array>
 #include <vector>
 
-#include "../Misc/INF.h"
-
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Misc\Main_FilePaths.h"
+#include INF_HEADER
 
 
 class CommanderReport {

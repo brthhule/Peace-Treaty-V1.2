@@ -1,8 +1,6 @@
-#include "Provinces.h"
-#include "../Units/Misc/Input.h"
-
-#define print(x) std::cout << x;
-#define println(x) std::cout << x << std::endl;
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Misc\Main_FilePaths.h"
+#include PROVINCES_HEADER
+#include INPUT_HEADER
 
 //Empty constructor, used for temp provinces
 Provinces::Provinces() {

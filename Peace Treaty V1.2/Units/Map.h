@@ -8,9 +8,9 @@
 #include <iostream>
 #include <vector>
 
-#include "../Units/Provinces.h"
-
-#include "Misc/INF.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Misc\Main_FilePaths.h"
+#include PROVINCES_HEADER
+#include INF_HEADER
 
 using namespace INF;
 

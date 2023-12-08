@@ -15,7 +15,7 @@ namespace BUILD {
 	};
 	/*
 	* Null setting for stringArg is ""
-	* Null setting for enumArg is -1
+	* Null setting for enumArg is 0
 	*/
 	std::pair<std::string, BuildingsEnum> translateEnumString (std::string stringArg, BuildingsEnum enumArg) {
 		if (stringArg == "") {
@@ -23,7 +23,7 @@ namespace BUILD {
 		}
 
 		if (enumArg != -1) {
-			return;
+			return std::make_pair("",0)
 		}
 
 		for (int index = 0; index < 10; index++) {

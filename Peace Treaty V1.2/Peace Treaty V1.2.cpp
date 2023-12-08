@@ -14,20 +14,14 @@
 #include <time.h>
 #include <thread>
 
-
-//Player infrastructure
-#include "Units/Provinces.h"
-#include "Units/Participants.h"
-#include "Units/Commanders.h"
-#include "Units/Database.h"
-
-//Miscellaneous
-#include "Units/Misc/INF.h"
-#include "Units/Misc/INF.h"
-#include "Units/Misc/Input.h"
-
-//Main Actions
-#include "PlayerAction.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Misc\Main_FilePaths.h"
+#include PROVINCES_HEADER
+#include PARTICIPANTS_HEADER
+#include COMMANDERS_HEADER
+#include DATABASE_HEADER
+#include INF_HEADER
+#include INPUT_HEADER
+#include PLAYER_ACTION_HEADER
 
 void startOrResumeGame();
 void resumeGame();
@@ -41,9 +35,6 @@ int getContinentInformation();
 using namespace INF;
 
 Database db;
-
-
-
 
 int main()/*main code*/
 {
