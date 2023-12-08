@@ -242,6 +242,7 @@ std::vector<AllUnits::AllUnitsSPtr> AllUnits::sortVector(SortType sort, std::vec
 		std::dynamic_pointer_cast<Derived> (base);*/
 }
 
+//Has been tested with concatVectors, so should work
 std::vector<AllUnits::AllUnitsSPtr> AllUnits::levelSort(std::vector<AllUnits::AllUnitsSPtr> list) {
 	if (list.size() <= 1) {
 		return list;
@@ -269,5 +270,9 @@ std::vector<AllUnits::AllUnitsSPtr> AllUnits::levelSort(std::vector<AllUnits::Al
 		}
 	}
 
-	return concatVectors(lesser, same, greater);
+	greater = levelSort(greater); 
+	lesser = levelSort(lesser);
+
+	std::vector<std::vector<AllUnitsSPtr>> returnList = { lesser, same, greater };
+	return concatVectors(returnList);
 }

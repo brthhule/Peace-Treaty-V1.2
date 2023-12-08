@@ -383,7 +383,7 @@ std::vector<T> INF::concatVectors(std::vector<std::vector<T>> vectorsList) {
 	for (int list = 1; list < vectorsList.size(); list++) {
 		std::vector<T> currentList = vectorsList.at(list);
 		for (int currentElement = 0; currentElement < currentList.size(); currentElement++) {
-			baseList.push_back(currentElement);
+			baseList.push_back(currentList.at(currentElement));
 		}
 	}
 
