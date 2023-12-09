@@ -12,7 +12,7 @@ public:
 
 	void updateProductionRate(int level);
 	int getProudctionRate();
-
+	int getCapacityAmount();
 private:
 	INF::i5array productionRate;
 	INF::i5array capacityAmount; // add implementation

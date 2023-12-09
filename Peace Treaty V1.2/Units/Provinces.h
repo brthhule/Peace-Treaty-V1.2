@@ -23,6 +23,7 @@
 #include COORDS_HEADER
 #include BUILDING_ATTRIBUTES_INT_HEADER
 #include PROVINCE_REPORT_HEADER
+#include RESOURCE_BUILDINGS_BASE_HEADER
 
 using namespace INF;
 using namespace Input;
@@ -33,6 +34,8 @@ const int LOG_SIZE = 20;
 class Provinces : public AllUnits, public MABuildINT, public BuildingAttributesINT
 {
 public:
+	using CommandersSPtr = std::shared_ptr<Commanders>;
+	using commandersMapType = std::unordered_map<std::string, CommandersSPtr>;
 	using ProvinceSPtr = std::shared_ptr<Provinces>;
 	/*Constructors*/
 	Provinces();
@@ -85,10 +88,15 @@ public:
 
 	std::string getKingdomName();
 	
-	std::array<std::array<int, 5>, 7> getLists();
+	std::array<i5array, 7> getLists();
 	std::array<int, 7> getListInt();
 	std::array<bool, 3> getListBool();
 	std::array< std::pair<int, int>, 2> getListCoords();
+
+	//Scout/report stuff
+	std::array<std::array<int, 5>, 7> getGeneralLists();
+	std::array<Provinces::troopConditionArray, 3> getTroopsLists();
+	std::array<int, 5> getListsInt() {
 
 
 protected:
@@ -103,13 +111,7 @@ protected:
 	enum REPORT {REPORT_TURN, REPORT_LOG};
 	
 private:
-	SortType currentSortType;
-	std::array<std::array<int, 5>*, 7> Lists;
-
-	std::array<std::array<i5array, 5>, 3> troopsLists;
-
-	//Have to derive unitLevel
-	std::array<int*, 7> listInt;
+	SortType commandersSortType;
 
 	std::array<bool*, 2> listBool = {
 		&canSelectThisUnit, 
@@ -120,9 +122,9 @@ private:
 
 	int overallIndex;
 
-	std::unordered_map<std::string, Commanders*> commanders;
-	std::unordered_map<std::string, Commanders*>::iterator it;
-	std::vector<
+
+	commandersMapType commandersMap;
+	std::vector<CommandersSPtr> commandersVector;
 
 	double newAccuracy;
 	std::string kingdomName;

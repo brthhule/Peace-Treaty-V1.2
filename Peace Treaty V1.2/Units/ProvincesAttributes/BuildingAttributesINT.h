@@ -19,28 +19,31 @@ class BuildingAttributesINT{
 public:	
 	/*These are functions*/
 
-	i5array getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount);
-	int getCapacity(BUILD::BuildingsEnum name);
+	i5array getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount) = 0;
+	int getCapacity(BUILD::BuildingsEnum name) = 0;
+
+	//Returns an array of Resource/Other buildings levels
+	i5array getTypeLevels(BUILD::BuildingType type);
 
 	void mutateLevel(
 		BUILD::BuildingType type, 
 		int name, INF::i5array amount, 
 		INF::Quantity quant, 
-		INF::MutateDirection direction);
+		INF::MutateDirection direction) = 0;
 
-	int getTroopsTrainedThisTurn();
-	int getProvinceLevel();
+	int getTroopsTrainedThisTurn() = 0;
+	int getProvinceLevel() = 0;
 	
 	//Void Accessors
-	void printBuildingStats();
-	void displayListOfBuildings();
+	void printBuildingStats() = 0;
+	void displayListOfBuildings() = 0;
 	//Other modifiers
-	void addTroopsTrainedThisTurn(int amount);
-	void resetTroopsTrainedThisTurn();
-	void initiailizeCapitalBuildings();
-	void initializeEmptyBuildings();
+	void addTroopsTrainedThisTurn(int amount) = 0;
+	void resetTroopsTrainedThisTurn() = 0;
+	void initiailizeCapitalBuildings() = 0;
+	void initializeEmptyBuildings() = 0;
 
-	std::shared_ptr<BuildingsBASE> getBuilding(BUILD::BuildingsEnum type);
+	std::shared_ptr<BuildingsBASE> getBuilding(BUILD::BuildingsEnum name) = 0;
 
 protected:
 	int troopsTrainedThisTurn;
@@ -51,10 +54,10 @@ protected:
 	i5array otherBuildingsLevels;
 
 	std::array<BuildingsBASE, 10> buildings;
-private:
-	//First is RESOURCE, second is OTHER
-	std::pair<i5array*, i5array*> levels;
 
+	//Returns building levels for all Resource or Other type buildings
+	std::array<int, 5> getTypeLevels(BUILD::BuildingType type) = 0;
+private:
 	static i5array capacityAmounts;
 	static i5array resourceProduction;
 };

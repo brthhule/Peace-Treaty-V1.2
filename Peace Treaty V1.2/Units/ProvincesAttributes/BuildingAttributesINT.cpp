@@ -1,18 +1,13 @@
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Provinces.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Misc\Main_FilePaths.h"
+#include <memory>
+#include PROVINCES_HEADER
 
-
-
-Provinces::BuildingAttributesINT() {
-	//For debugging
-	INF::debugFunction("Buildings, OtherBuildingsToString");
-}
-
-/*Use returnArray or returnInt for arrayArg*/
 int Provinces::getCapacity(BUILD::BuildingsEnum name) {
 	//For debugging
 	INF::debugFunction("Buildings, getCapacity");
-
-	Resource
+	std::shared_ptr<BuildingsBASE> currentBuilding = getBuilding(name);
+	std::shared_ptr<ResourceBuildingsBASE> resourceBuilding = std::dynamic_pointer_cast<ResourceBuildingsBASE>(currentBuilding);
+	return resourceBuilding->getCapacityAmount();
 }
 
 /*Use returnArray or returnInt for arrayArg*/
@@ -144,9 +139,14 @@ void Provinces::addTroopsTrainedThisTurn(int amount)
 	troopsTrainedThisTurn += amount;
 }
 
+//Do something in Buildings here
 void Provinces::initiailizeCapitalBuildings() {
 	//For debugging
 	INF::debugFunction("Buildings, initializeCapitalBuildings");
+
+	i5array resourceBuildingsLevels, otherBuildingsLevels;
+	resourceBuildingsLevels = getTypeLevels(RESOURCE);
+	otherBuildingsLevels = getTypeLevels(OTHER);
 
 	for (int& x : resourceBuildingsLevels) {
 		x = 1;
@@ -168,3 +168,17 @@ std::shared_ptr<BuildingsBASE> Provinces::getBuilding(BUILD::BuildingsEnum type)
 	return buildings.at(type);
 }
 
+
+i5array Provinces::getTypeLevels(BUILD::BuildingType type) {
+	i5array resourceLevels, otherLevels;
+	for (int index = 0; index < 5; index++) { 
+		resourceLevels = buildings.at(index).getLevel(); 
+		otherLevels = buildings.at(index + 5).getLevel(); 
+	}
+
+	if (type == RESOURCE) {
+		return resourceLevels;
+	}
+
+	return otherLevels;
+}

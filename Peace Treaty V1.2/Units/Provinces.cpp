@@ -23,46 +23,52 @@ Provinces::Provinces(int overallIndexArg)
 
 	isACapital = false;
 	newAccuracy = -1;
-	INF::mutateArray(resourcesPresent, INF::INITIAL_VALUES, INCREASE);
+	resourcesPresent = INF::mutateArray(resourcesPresent, INF::INITIAL_VALUES, INCREASE);
 
 	unitLevel = 1;
+	commandersSortType = ALPHABETICAL;
+}
 
-	Lists = {
-		&resourceBuildingsLevels,
-		&otherBuildingsLevels,
-		&resourcesPresent,
-		&troopsPresent,
-		&troopsInjured,
-		&troopsLost,
-		&initialStats };
-	troopsLists = {
-		&troopsPresent,
-		&troopsInjured,
-		&troopsLost
-	};
-	listInt = {
-		&combatPower,
-		&totalTroops,
-		&foodConsumption,
-		&participantIndex,
-		&unitLevel,
-		&troopsTrainedThisTurn,
-		&overallIndex
+std::array<i5array, 4> Provinces::getGeneralLists() {
+	std::array<i5array, 4> returnArray = {
+		getTypeLevels(RESOURCE),
+		getTypeLevels(OTHER),
+		resourcesPresent,
+		initialStats;
 	};
 
-	commandersSortStatus = ALPHABETICAL;
+	return returnArray;
+
+}
+
+std::array<AllUnits::troopConditionArray, 3> Provinces::getTroopsLists() {
+	std::array<troopConditionArray, 3> returnArray = { troopsPresent, troopsInjured, troopsLost };
+	return returnArray;
+}
+
+std::array<int, 5> Provinces::getListsInt() {
+	std::array<int, 5> returnArray = {
+		combatPower,
+		totalTroops,
+		foodConsumption,
+		participantIndex,
+		unitLevel,
+		troopsTrainedThisTurn,
+		overallIndex
+	};
+	return returnArray;
 }
 
 void Provinces::setCommandersSortStatus(SortType sort) {
-	if (sort == currentSortType) {
-		return;
+	if (sort == commandersSortType) { 
+		return; 
 	}
 
-	crrentSortType = status;
-	commandersVector
+	commandersSortType = sort; 
+	commandersVector = sortVector(sort, commandersVector);
 }
 
-Provinces::SortType Provinces::getCommandersSortStatus() {
+INF::SortType Provinces::getCommandersSortStatus() {
 	return commandersSortStatus;
 }
 
