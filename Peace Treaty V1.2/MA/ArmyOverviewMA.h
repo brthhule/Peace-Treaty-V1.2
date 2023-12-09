@@ -3,6 +3,7 @@
 
 #ifndef ARMYOVERVIEWMA_H
 #define ARMYOVERVIEWMA_H
+#define ARMY_OVERVIEW_MA
 
 #include <iostream>
 #include <string>

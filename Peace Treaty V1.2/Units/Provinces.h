@@ -27,6 +27,7 @@
 
 using namespace INF;
 using namespace Input;
+using PROV = Provinces;
 
 extern const int BARRACKS_PRODUCTION;
 const int LOG_SIZE = 20;
@@ -34,10 +35,10 @@ const int LOG_SIZE = 20;
 class Provinces : public AllUnits, public MABuildINT, public BuildingAttributesINT
 {
 public:
-	using CommandersSPtr = std::shared_ptr<Commanders>;
-	using commandersMapType = std::unordered_map<std::string, CommandersSPtr>;
-	using ProvinceSPtr = std::shared_ptr<Provinces>;
-	/*Constructors*/
+	using provSPTR = std::shared_ptr<Provinces>;
+	using provMAP = std::unordered_map<std::string, provSPTR>;
+
+	CONSTRUCTOR
 	Provinces();
 	Provinces(int overallIndexArg);
 
@@ -74,15 +75,14 @@ public:
 
 		createReport(int scouterLevelArg, int targetLevelArg);
 
-	////////////////MABuildINT///
-	void printBuildingUpgradeCosts(i5array requiredresources, int buildingindex),
-		mainBuildFunction(),
-		selectUpgradeBuilding(),
-		upgradeBuilding(char optionchar);
+MA_BUILD_INT INTERFACE START 
+void
+	printBuildingUpgradeCosts(i5array requiredresources, int buildingindex) override,
+	mainBuildFunction() override,
+	selectUpgradeBuilding() override,
+	upgradeBuilding(char optionchar) override;
+	MA_BUILD_INT INTERFACE END 
 		
-	//////////////End MABuildINT///
-	//type (resource, other), other/resourceLevels, name of object in Levels list
-
 	void setCommandersSortStatus(SortType status);
 	SortType getCommandersSortStatus();
 
@@ -96,7 +96,7 @@ public:
 	//Scout/report stuff
 	std::array<std::array<int, 5>, 7> getGeneralLists();
 	std::array<Provinces::troopConditionArray, 3> getTroopsLists();
-	std::array<int, 5> getListsInt() {
+	std::array<int, 5> getListsInt();
 
 
 protected:
@@ -123,8 +123,8 @@ private:
 	int overallIndex;
 
 
-	commandersMapType commandersMap;
-	std::vector<CommandersSPtr> commandersVector;
+	COMM::commMAP commandersMap;
+	std::vector<COMM::commSPTR> commandersVector;
 
 	double newAccuracy;
 	std::string kingdomName;

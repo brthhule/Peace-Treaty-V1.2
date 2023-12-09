@@ -5,6 +5,8 @@
 #ifndef TRAINMA_H
 #define TRAINMA_H
 
+#define TRAIN_MA
+
 class TrainMA
 {
 public:

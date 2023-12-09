@@ -16,6 +16,8 @@
 
 namespace INF {
 	/////////////////////////////////////Aliases///////////////////////////////
+	constexpr int UNIT_AMOUNT = 5;
+
 	using s5array = std::array<std::string, UNIT_AMOUNT>;
 	using i5array = std::array<int, UNIT_AMOUNT>;
 	using d5array = std::array<double, UNIT_AMOUNT>;
@@ -28,6 +30,7 @@ namespace INF {
 	using STRING = std::string;
 	using VOID = void;
 	using BOOL = bool;
+
 
 	/////////////////////////////////////Enums/////////////////////////////////
 
@@ -103,6 +106,16 @@ namespace INF {
 	template <typename T>
 	std::vector<T> concatVectors(std::vector<std::vector<T>> vectorsList);
 	
+
+	template <class T>
+	//std::array<T,5> template
+	class Array5 {
+	public:
+		Array5(std::initializer_list<T> list);
+		T& get(int index);
+	private:
+		std::array<T, 5> items;
+	};
 	/////////////////////////////////Variables/////////////////////////////////
 	extern s5array
 		TROOP_NAMES,

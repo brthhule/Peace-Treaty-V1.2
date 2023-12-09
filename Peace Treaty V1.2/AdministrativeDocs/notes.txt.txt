@@ -24,3 +24,18 @@ int main() {
 		magenta      35         45
 		cyan         36         46
 		white        37         47*/
+
+
+
+Further, the keyword decltype can be used to determine the type of expression at compile-time. For example:
+
+int some_int;
+decltype(some_int) other_integer_variable = 5;
+
+
+Lambda functions and expressions
+Main article: Anonymous function § C++ (since C++11)
+C++11 provides the ability to create anonymous functions, called lambda functions.[14] These are defined as follows:
+
+[](int x, int y) -> int { return x + y; }
+The return type (-> int in this example) can be omitted as long as all return expressions return the same type. A lambda can optionally be a closure.

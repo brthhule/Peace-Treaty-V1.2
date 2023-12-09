@@ -65,11 +65,16 @@ namespace INF {
 			"RESET"
 	};
 
+	template <typename T>
+	Array5<T>::Array5(std::initializer_list<T> list) : items(list) {
+	
+	}
+	
+	template <typename T>
+	T& Array5<T>::get(int index) {
+		return items.at(index);
+	}
 
-	
-	
-
-	
 	int continentSize = 0;
 	int enemyDifficulty = 0;
 	int CPUNum = 0;

@@ -7,12 +7,16 @@
 #include ALL_UNITS_HEADER
 #include INF_HEADER
 
+using COMM = Commanders;
 using namespace INF;
 
 //Control army units
 class Commanders : public AllUnits {
 public:
-	using CommanderSPtr = std::shared_ptr<Commanders>;
+	//Commanders shared pointer
+	using commSPTR = std::shared_ptr<Commanders>;
+	/*std::unordered_map, key = commander name, value = commander shared pointer*/
+	using commMAP = std::unordered_map<std::string, commSPTR>;
 	// Constructors
 	Commanders();
 	Commanders(int commanderLevel, std::string name);

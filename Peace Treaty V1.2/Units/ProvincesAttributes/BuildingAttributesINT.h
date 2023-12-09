@@ -23,7 +23,7 @@ public:
 	int getCapacity(BUILD::BuildingsEnum name) = 0;
 
 	//Returns an array of Resource/Other buildings levels
-	i5array getTypeLevels(BUILD::BuildingType type);
+	const std::array<int&, 5> getTypeLevels(BUILD::BuildingType type);
 
 	void mutateLevel(
 		BUILD::BuildingType type, 

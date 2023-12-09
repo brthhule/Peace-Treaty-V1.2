@@ -1,10 +1,6 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Misc\Main_FilePaths.h"
 #include PARTICIPANTS_HEADER
 
-#define print(x) std::cout << x;
-#define println(x) std::cout << x << std::endl;
-
-
 i5array Participants::allCommandersArray = {};
 i5array Participants::allProvincesArray = {};
 i5array trainCosts = { 5, 4, 3, 2, 1 };

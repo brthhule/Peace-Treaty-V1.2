@@ -21,40 +21,19 @@
 #include <vector>
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Misc\Main_FilePaths.h"
+
 #include ALL_UNITS_HEADER
-#include COMMANDERS_HEADER
+#include ARMY_OVERVIEW_MA_HEADER
+#include ATTACK_MA_HEADER
 #include BASE_HEADER
-#include MAP_HEADER
-#include PROVINCES_HEADER
+#include COMMANDERS_HEADER
 #include INF_HEADER
 #include MOBILITY_HEADER
-#include ATTACK_MA_HEADER
-#include ARMY_OVERVIEW_MA_HEADER
+#include MAP_HEADER
 #include MAP_MA_HEADER
 #include PLAYER_ACTION_HEADER
+#include PROVINCES_HEADER
 #include SCOUT_MA_HEADER
-
-
-#define CONSTRUCTOR
-#define VARIABLE
-#define SETTER
-#define GETTER
-#define CHECK
-#define CALCULATE
-
-//Interface stuff
-#define INTERFACE
-#define TRAIN_MA
-#define PLAYER_ACTION
-#define MAP_MA
-#define SCOUT_MA
-
-#define BASE_CLASS
-#define MAP
-#define MOBILITY
-
-Provinces* newProv;
-using namespace INF;
 
 //Players
 class Participants :
@@ -74,12 +53,14 @@ public:
 	CONSTRUCTOR Participants();
 	CONSTRUCTOR Participants(int pIndex);
 	
-	VARIABLE i5array
+	CALCULATE GETTER
+	i5array
 		getTrainCosts(),
 		calculateEach(int option),
 		getAllUnitsArray();
 
-	VARIABLE static i5array
+	VARIABLE 
+	static i5array
 		allCommandersArray,
 		allProvincesArray;
 
@@ -89,7 +70,7 @@ public:
 	GETTER std::unordered_map<std::string, Commanders*> getCommandersMap();
 
 	BOOL
-		subtractCheckResources(String provinceName, i5array resourcesArray);
+		subtractCheckResources(String provinceName, INF::i5array resourcesArray);
 
 	CHECK BOOL
 		hasProvince(std::string name),
@@ -102,7 +83,8 @@ public:
 		hasUnit(std::string unitName),
 		hasUnit(AllUnits unit);
 
-	GETTER Commanders
+	GETTER 
+	Commanders
 		* getCommander(std::string name),
 		* getSelectedCommander();
 
@@ -161,7 +143,7 @@ public:
 		
 	const Provinces* tempProvince = new Provinces;
 
-	//ArmyOverviewMA.h
+ARMY_OVERVIEW_MA START
 	void printCosts(std::vector<int>costs, std::string type);
 	void armyDeploymentMF();
 	void trainCommanders();
@@ -170,13 +152,15 @@ public:
 	void upgradeCommander();
 	void viewArmyOverview();
 	void deployCommanderMF();
+	ARMY_OVERVIEW_MA END
 
-	//PlayerAction.h
-	
+PLAYER_ACTION START
 	char randomAction();
 	void initialDecision();
 	void pauseGame();
+	PLAYER_ACTION END
 
+TRAIN_MA START
 	//TrainMA.h
 	void TrainMAFunction();
 	void TrainMAFunctionDoWhileLoop(int troopTier, int amountOfTroops);
@@ -184,9 +168,9 @@ public:
 	void moveUnitOne(Commanders* commander);
 	std::vector <Provinces*> moveUnitTwo(Commanders* commander);
 	static std::pair<int, int> pickCoords();
+	TRAIN_MA END
 
-
-	//MapMA.h
+MAP_MA START
 	void viewPlayerMap();
 	void selectUnitOriginal(Provinces* selectedProvince);
 	void selectPlayerProvince(Provinces* province);
@@ -195,8 +179,9 @@ public:
 	void playerUnitActionP(Provinces* province);
 	void selectEnemyAction();
 	void selectEnemyProvince(Provinces* province);
-
-	//ScoutMA.h
+	MAP_MA END
+	
+SCOUT_MA START
 	void mainScoutMA (Provinces* provinceArg);
 
 	std::pair<AllUnits*, int> playerScoutStepTwo(scoutTypes canScout, Provinces* targetProvince);
@@ -213,8 +198,9 @@ public:
 
 	scoutTypes selectTarget(Provinces* targetProvince);
 	scoutTypes getCanScout(Provinces* targetProvince);
+	SCOUT_MA END
 
-	/////////AttackMA.h///////////////////
+ATTACK_MA START
 	class AttackMAInfo {
 		AttackMAInfo();
 		AttackMAInfo(Provinces* defendingProvinceArg);
@@ -229,29 +215,26 @@ public:
 		Provinces* defendingProvince,
 		Commanders* attackingCommander);
 
+	GETTER
 	std::vector<Commanders*> getCommandersCanAttack(std::pair<int, int> defenderSYstemCoords);
 	Commanders* pickCommanderAttack(std::vector<Commanders*>);
 	void playerCommitAttack(Provinces* defendingProvince, Commanders* attackingCommander);
-
-
 	Commanders* pickCommanderAttack(std::vector<Commanders*> commandersCanAttack);
 
-
+	GETTER
 	void printResourcesGained();
 	void determineLostCP(int attackerCP, int defendingCP, int& attackerLostCP, int& defenderLostCP);
 
+	CALCULATE
 	void calculateTroopsLost(Commanders* commander, int lostCombatPower, i5array& troopsLost, int troopIndex);
 	void battleCalculationsTwo(int& lostCombatPower, int troopsLost[5], int troopIndex);
 	void casualtyReport(i5array troopsLost, i5array injuredTroops);
-
-	//////////End AttackMA.h//////////////
+	ATTACK_MA END
 
 private:
-	using CommandersPtrMap = std::unordered_map<std::string, Commanders*>;
-
 	static i5array trainCosts;
 
-	Commanders* selectedCommander; //For ArmyDeploymentMA
+	COMM::commSPTR selectedCommander; //For ArmyDeploymentMA
 
 	INTEGER
 		capitalIndex,

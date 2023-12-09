@@ -4,6 +4,7 @@
 
 #ifndef MAP_H
 #define MAP_H
+#define MAP
 
 #include <iostream>
 #include <vector>
@@ -14,10 +15,14 @@
 
 using namespace INF;
 
+BASE_CLASS
 class Map {
 public:
+METHODS START
+	CONSTRUCTOR
 	Map();
 
+	GETTER SETTER CALCULATE
 	static void 
 		setMap(),
 		showMap(),
@@ -25,16 +30,18 @@ public:
 		printXAxis(),
 		updateTurnResources();
 
-	
+	GETTER
 	static Provinces
 		*getSystemProvince(std::pair<int, int> systemCoords),
 		*getUserProvince(std::pair<int, int> userCoords);
+METHODS END
 
-
+VARIABLES START
 	typedef std::vector <std::vector<Provinces*>> ProvincesVector;
 	typedef std::unordered_map <std::string, Provinces*> ProvincesMap;
 
 	static ProvincesVector map;
 	static ProvincesMap mapMap;
+VARIABLES END
 };
 #endif

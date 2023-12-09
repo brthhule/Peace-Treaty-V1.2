@@ -4,6 +4,8 @@
 #include <iostream>
 #include "BUILD.h"
 
+#define MA_BUILD_INT
+
 using namespace BUILD;
 
 class MABuildINT

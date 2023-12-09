@@ -5,12 +5,12 @@
 
 #ifndef SCOUTMA_H
 #define SCOUTMA_H
+#define SCOUT_MA
 
 #include <iostream>
 #include <vector>
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Misc\Main_FilePaths.h"
-
 #include PARTICIPANTS_HEADER
 #include ALL_UNITS_HEADER
 #include INPUT_HEADER

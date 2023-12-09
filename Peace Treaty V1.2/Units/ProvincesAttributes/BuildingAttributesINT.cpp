@@ -169,8 +169,8 @@ std::shared_ptr<BuildingsBASE> Provinces::getBuilding(BUILD::BuildingsEnum type)
 }
 
 
-i5array Provinces::getTypeLevels(BUILD::BuildingType type) {
-	i5array resourceLevels, otherLevels;
+const std::array<int&,5> Provinces::getTypeLevels(BUILD::BuildingType type) {
+	std::array<int&, 5> resourceLevels, otherLevels;
 	for (int index = 0; index < 5; index++) { 
 		resourceLevels = buildings.at(index).getLevel(); 
 		otherLevels = buildings.at(index + 5).getLevel(); 

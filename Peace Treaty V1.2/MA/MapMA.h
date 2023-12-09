@@ -1,5 +1,6 @@
 #ifndef MAPMA_H
 #define MAPMA_H
+#define MAP_MA
 
 #include <iostream>
 
@@ -11,14 +12,9 @@
 #include INF_HEADER
 #include INPUT_HEADER
 
-
-//extern std::vector<std::vector<Provinces>> provincesMap;
-//extern std::vector<Participants> participantsList;
-
 using namespace INF;
 
-class MapMA
-{
+class MapMA {
 public:
 	virtual void
 		viewPlayerMap() = 0,

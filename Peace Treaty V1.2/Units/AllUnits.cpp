@@ -69,7 +69,7 @@ int AllUnits::getParticipantIndex() {
 	return participantIndex;
 }
 
-void AllUnits::printResources() {
+void AllUnits::printResources() { 
 	//For debugging
 	INF::debugFunction("AllUnits, printResources");
 

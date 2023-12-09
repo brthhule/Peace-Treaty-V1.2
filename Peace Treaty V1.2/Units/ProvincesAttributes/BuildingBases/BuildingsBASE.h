@@ -11,7 +11,7 @@ public:
 	BuildingsBASE(INF::d5array baseUpgradeRatesArg);
 
 	void increaseLevel(int amount);
-	int getLevel();
+	const int& getLevel();
 
 	INF::i5array getUpgradeCosts();
 	INF::i5array updateProductionRates(int level);

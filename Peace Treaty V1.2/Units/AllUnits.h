@@ -1,33 +1,27 @@
 #ifndef ALLUNITS_H
 #define ALLUNITS_H
 
+#include <array>
+#include <iostream>
 #include <string>
 #include <vector>
-#include <iostream>
-#include <array>
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Misc\Main_FilePaths.h"
 
-#include INF_HEADER
 #include COORDS_HEADER
+#include INF_HEADER
 #include TROOPS_HEADER
-
-/*int resourcesPresent[5];
-	int troopsPresent[5];
-	int troopsInjured[5];
-	int totalCP;*/
 
 using namespace INF;
 
+BASE_CLASS
 class AllUnits : public Coords
 {
 public:
 	enum UnitType { COMMANDER, PROVINCE };
-	using T5array = std::array<Troops, 5>;
+	using T5array = INF::Array5<Troops>;
 	using AllUnitsSPtr = std::shared_ptr<AllUnits>;
-	/* T5array = std::array<Troops, 5>
-	troopConditionArray = std::array<T5array, 5> */
-	using troopConditionArray = std::array<T5array, 5>;
+	using troopConditionArray = INF::Array5<T5array>;
 	
 	//----Constructors----
 	//One param overloaded Constructor
@@ -35,7 +29,7 @@ public:
 	//Default Constructor
 	AllUnits();
 
-	int getCP();
+	const int& getCP();
 	int getParticipantIndex();
 	int getLevel();
 	int getFoodConsumption();

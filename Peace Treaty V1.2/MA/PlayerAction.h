@@ -4,6 +4,7 @@
 
 #ifndef PLAYERACTION_H
 #define PLAYERACTION_H
+#define PLAYER_ACTION
 
 #include <iostream>
 #include <cmath>
