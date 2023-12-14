@@ -57,8 +57,7 @@ void startOrResumeGame() {
 		case 'R':
 			resumeGame();
 			break;
-		case 'S':
-		{
+		case 'S': {
 			INF::enterAnything(1);
 			INF::clearScreen();
 			std::cout << "New game started...\n\n";

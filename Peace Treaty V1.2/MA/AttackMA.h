@@ -19,20 +19,22 @@ using namespace INF;
 class AttackMA
 {
 public:
-	virtual Commanders* pickCommanderAttack(std::vector<Commanders*> commandersCanAttack) = 0;
+	using commSPTR = Commanders::commSPTR;
+	using provSPTR = Provinces::provSPTR;
+	virtual Commanders::commSPTR pickCommanderAttack(std::vector<commSPTR> commandersCanAttack) = 0;
 
-	virtual void mainAttackMA(Provinces* defendingProvince, Commanders* attackingCommander) = 0;
+	virtual void mainAttackMA(Provinces::provSPTR, commSPTR attackingCommander) = 0;
 
 	virtual void printResourcesGained() = 0;
 	virtual void determineLostCP(int attackerCP, int defendingCP, int& attackerLostCP, int& defenderLostCP) = 0;
 
-	virtual void playerCommitAttack(Provinces * defendingProvince, Commanders * attackingCommander) = 0;
+	virtual void playerCommitAttack(provSPTR defendingProvince, commSPTR attackingCommander) = 0;
 
-	virtual void calculateTroopsLost(Commanders * commander, int lostCombatPower, std::array<int, 5> &troopsLost, int troopIndex) = 0;
+	virtual void calculateTroopsLost(commSPTR commander, int lostCombatPower, i5array &troopsLost, int troopIndex) = 0;
 	virtual void battleCalculationsTwo(int& lostCombatPower, int troopsLost[5], int troopIndex) = 0;
-	virtual void casualtyReport(std::array<int, 5> troopsLost, std::array<int, 5> injuredTroops) = 0;
+	virtual void casualtyReport(i5array troopsLost, i5array injuredTroops) = 0;
 
-	virtual std::vector<Commanders*> getCommandersCanAttack(std::pair<int, int> defenderSystemCoords) = 0;
+	virtual std::vector<commSPTR> getCommandersCanAttack(Provinces::provSPTR defendingProvince) = 0;
 };
 
 #endif

@@ -20,8 +20,9 @@ class AllUnits : public Coords
 public:
 	enum UnitType { COMMANDER, PROVINCE };
 	using T5array = INF::Array5<Troops>;
-	using AllUnitsSPtr = std::shared_ptr<AllUnits>;
+	using unitSPTR  = std::shared_ptr<AllUnits>;
 	using troopConditionArray = INF::Array5<T5array>;
+	using unitSPTR = std::shared_ptr<AllUnits>;
 	
 	//----Constructors----
 	//One param overloaded Constructor
@@ -30,10 +31,10 @@ public:
 	AllUnits();
 
 	const int& getCP();
-	int getParticipantIndex();
-	int getLevel();
-	int getFoodConsumption();
-	int getResource(int resourceIndex);
+	const int& getParticipantIndex();
+	const int& getLevel();
+	const int& getFoodConsumption();
+	const int& getResource(int resourceIndex);
 
 
 	//resources
@@ -84,8 +85,8 @@ public:
 	//Override?
 	INF::ipair translateCoords(INF::ipair coords, CoordsType type);
 
-	std::vector<AllUnitsSPtr> sortVector(SortType sort, std::vector<AllUnitsSPtr> list);
-	std::vector<AllUnitsSPtr> levelSort(AllUnitsSPtr list);
+	std::vector<unitSPTR > sortVector(SortType sort, std::vector<unitSPTR > list);
+	std::vector<unitSPTR > levelSort(unitSPTR  list);
 
 protected:
 	i5array resourcesPresent;

@@ -16,8 +16,6 @@
 #include MA_BUILD_INT_HEADER
 #include INPUT_HEADER
 
-
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Misc\Main_FilePaths.h"
 #include PROVINCES_HEADER
 #include INF_HEADER
 #include COORDS_HEADER
@@ -27,32 +25,36 @@
 
 using namespace INF;
 using namespace Input;
-using PROV = Provinces;
 
 extern const int BARRACKS_PRODUCTION;
 const int LOG_SIZE = 20;
 
-class Provinces : public AllUnits, public MABuildINT, public BuildingAttributesINT
+class Provinces : 
+	BASE_CLASS public AllUnits, 
+	INTERFACE public MABuildINT, 
+	INTERFACE public BuildingAttributesINT
 {
 public:
 	using provSPTR = std::shared_ptr<Provinces>;
 	using provMAP = std::unordered_map<std::string, provSPTR>;
+	using provSPTRList = std::vector<provSPTR>;
+	using commSPTR = Commanders::commSPTR;
+	using commSPTRList = Commanders::commSPTRList; 
 
 	CONSTRUCTOR
-	Provinces();
 	Provinces(int overallIndexArg);
 
 	/*Initialization*/
 	bool 
 		isCapital(),
 		hasCommander(std::string name),
-		subtractCheckResources(std::array<int, 5> resourcesArray);
+		subtractCheckResources(i5array resourcesArray);
 
 	// Commanders
-	Commanders* getCommander(std::string name);
-	std::vector <Commanders*> getAllCommanders();
+	commSPTR getCommander(std::string name);
+	commSPTRList getAllCommanders();
 
-	int 
+	const int& 
 		getCommandersNum(),
 		getTotalCP(),
 		getOverallIndex();
@@ -64,8 +66,8 @@ public:
 		makeCapital(int participantIndexArg),
 		initializeCapitalStats(),
 
-		addCommander(Commanders* newCommander),
-		removeCommander(Commanders* newCommander),
+		addCommander(commSPTR newCommander),
+		removeCommander(commSPTR newCommander),
 		printCommanders(),
 		updateProvinceResources(),
 		
@@ -91,12 +93,14 @@ void
 	std::array<i5array, 7> getLists();
 	std::array<int, 7> getListInt();
 	std::array<bool, 3> getListBool();
-	std::array< std::pair<int, int>, 2> getListCoords();
+	std::array< ipair, 2> getListCoords();
 
 	//Scout/report stuff
-	std::array<std::array<int, 5>, 7> getGeneralLists();
+	std::array<i5array, 4> getGeneralLists();
 	std::array<Provinces::troopConditionArray, 3> getTroopsLists();
-	std::array<int, 5> getListsInt();
+	std::array<int, 7> getListsInt();
+
+	int getCommanderIndex(commSPTR commander);
 
 
 protected:
@@ -122,14 +126,13 @@ private:
 
 	int overallIndex;
 
-
-	COMM::commMAP commandersMap;
-	std::vector<COMM::commSPTR> commandersVector;
+	Commanders::commMAP::iterator it; 
+	Commanders::commMAP commandersMap;
+	Commanders::commSPTRList commandersVector;
 
 	double newAccuracy;
 	std::string kingdomName;
 
-	
 	//Index within reports is the report. Index of report object is the participant the report belongs to
 	typedef std::vector<std::pair<int, ProvinceReport >> reports;
 	std::vector<reports> scoutReports;

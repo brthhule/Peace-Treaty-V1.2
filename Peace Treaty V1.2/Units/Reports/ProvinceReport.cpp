@@ -3,10 +3,10 @@
 
 ProvinceReport::ProvinceReport(int scouterLevelArg,
 	int targetLevelArg,
-	std::array<std::array<int, 5>, 7> ListsArg,
+	std::array<i5array, 7> ListsArg,
 	std::array<int, 7> listIntArg,
 	std::array<bool, 3> listBoolArg,
-	std::pair<int, int> listSystemCoordsArg) {
+	ipair listSystemCoordsArg) {
 
 	//For debugging
 	INF::debugFunction("ProvinceReport, ProvinceReport");

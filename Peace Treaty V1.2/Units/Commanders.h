@@ -17,52 +17,38 @@ public:
 	using commSPTR = std::shared_ptr<Commanders>;
 	/*std::unordered_map, key = commander name, value = commander shared pointer*/
 	using commMAP = std::unordered_map<std::string, commSPTR>;
+	using commSPTRList = std::vector<commSPTR>;
+
 	// Constructors
 	Commanders();
 	Commanders(int commanderLevel, std::string name);
-	// Destructor
 	~Commanders();
 
 
 
 	// Stats stuff
-	int
-		getCommanderStat(int index);
+	const int& getCommanderStat(int index);
 
 	void
 		printCommanderStats(),
 
-		printCosts(std::array<int, 5> costs),
+		printCosts(i5array costs),
 		addLevel(),
 		resetCommanderMoved(),
 		calculateCommanderScoutLog();
 
-	std::array<int, 5> getUpgradeCosts();
+	i5array getUpgradeCosts();
 	
 	bool hasMoved();
+	const std::string& getCommanderNameLevel();
+
+	//Print commander name and level then enter new line escape character
+	void printCommanderNameLevel();
 
 private:
 	INF::INTEGER
 		maxTroops,
 		totalMaxResources;
-
-	/*Each row is a different troop type, each column is a different tier
-
-	Rows:
-	0 = guardsTiers,
-	1 = infantryTiers,
-	2 = archersTiers,
-	3 = cavalryTiers,
-	4 = artillaryTiers;
-
-	Cols:
-	0 = tier 1
-	1 = tier 2
-	2 = tier 3
-	3 = tier 4
-	4 = tier 5
-		*/
-	
 
 	bool moved;
 

@@ -11,12 +11,14 @@
 
 class ProvinceReport {
 public:
+	using commSPTR = Commanders::commSPTR;
+
 	ProvinceReport(int scouterLevelArg,
 		int targetLevelArg,
-		std::array<std::array<int, 5>, 7> ListsArg, 
+		std::array<i5array, 7> ListsArg, 
 		std::array<int, 7> listIntArg,
 		std::array<bool, 3> listBoolArg,
-		std::pair<int, int> listSystemCoordsArg);
+		ipair listSystemCoordsArg);
 
 	void
 		computeAccuracy(),
@@ -31,10 +33,10 @@ public:
 
 
 private:
-	std::array<std::array<int, 5>, 7> Lists;
+	std::array<i5array, 7> Lists;
 	std::array<int, 7> listInt;
 	std::array<bool, 3> listBool;
-	std::pair<int, int> listSystemCoords;
+	ipair listSystemCoords;
 
 	
 	std::string kingdomName;
@@ -46,6 +48,6 @@ private:
 		scouterLevel;
 
 	std::vector<CommanderReport> commandersVector;
-	std::unordered_map<std::string, Commanders*> commandersMap;
+	std::unordered_map<std::string, commSPTR> commandersMap;
 };
 #endif

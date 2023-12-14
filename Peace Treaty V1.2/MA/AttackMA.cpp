@@ -1,17 +1,17 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Participants.h"
 
 void Participants::mainAttackMA(
-	Provinces* defendingProvinceArg, 
-	Commanders* attackingCommanderArg) {
+	provSPTR defendingProvinceArg, 
+	commSPTR attackingCommanderArg) {
 
 	INF::debugFunction("AttackMA, mainAttackMA");
 
-	Provinces* defendingProvince = defendingProvinceArg;
-	Commanders* attackingCommander = attackingCommanderArg;
+	provSPTR defendingProvince = defendingProvinceArg;
+	commSPTR attackingCommander = attackingCommanderArg;
 
 	//Find commander to attack with
 	if (attackingCommander == nullptr) {
-		std::vector<Commanders*> commandersCanAttack = getCommandersCanAttack(defendingProvince->getCoords(Coords::SYSTEM));
+		std::vector<commSPTR> commandersCanAttack = getCommandersCanAttack(defendingProvince);
 		if (commandersCanAttack.size() == 0) {
 			std::cout << "There are no armies available to attack the enemy. Please move an army unit to one of the provinces around the target. \n\n";
 			return;
@@ -23,25 +23,25 @@ void Participants::mainAttackMA(
 	playerCommitAttack(defendingProvince, attackingCommander);
 }
 
+//Get the commanders that can attack the defending province. defenderSystemCoords reflects the corods of the province
+std::vector<commSPTR> Participants::getCommandersCanAttack(provSPTR defendingProvince) {
+	std::vector<commSPTR> commandersCanAttack = {};
+	std::array<ipair, 8> surroundingProvinces;
 
-std::vector<Commanders*> Participants::getCommandersCanAttack(std::pair<int, int> defenderSystemCoords) {
-	std::vector<Commanders*> commandersCanAttack = {};
-
-	std::array<std::pair<int, int>, 8> surroundingProvinces;
 	int currentElements = 0;
 	for (int x = -1; x <= 1; x++) {
 		for (int y = -1; y <= 1; y++)
 		{
 			//Make sure the changed provinces aren't the same as the unchanged province
 			if (x != 0 || y != 0) {
-				std::pair<int, int> tempPair(x, y);
+				ipair tempPair(x, y);
 				surroundingProvinces[currentElements] = tempPair;
 				currentElements++;
 			}
 		}
 	}
 
-	for (std::pair<int, int> currentPair : surroundingProvinces) {
+	for (ipair currentPair : surroundingProvinces) {
 		int
 			firstCoordinate = defenderSystemCoords.first + x,
 			secondCoordinate = defenderSystemCoords.second + y;
@@ -55,15 +55,15 @@ std::vector<Commanders*> Participants::getCommandersCanAttack(std::pair<int, int
 				secondCoordinate < INF::continentSize);
 
 		if (checkFirstCoordinate && checkSecondCoordinate) {
-			std::pair<int, int> tempCoords(firstCoordinate, secondCoordinate);
+			ipair tempCoords(firstCoordinate, secondCoordinate);
 
-			Provinces* provincePtr = getSystemProvince(tempCoords);
+			provSPTR provincePtr = getSystemProvince(tempCoords);
 
 			//Get all Commanders at this province
-			std::vector<Commanders*> provinceCommanders = provincePtr->getAllCommanders();
+			std::vector<commSPTR> provinceCommanders = provincePtr->getAllCommanders();
 
 			//Add this participant's commanders the vector of commanders that can attack
-			for (Commanders* element : provinceCommanders) {
+			for (commSPTR element : provinceCommanders) {
 				if (element->getParticipantIndex() == participantIndex) {
 					commandersCanAttack.push_back(element);
 				}
@@ -74,44 +74,42 @@ std::vector<Commanders*> Participants::getCommandersCanAttack(std::pair<int, int
 	return commandersCanAttack;
 }
 
-Commanders* Participants::pickCommanderAttack(std::vector <Commanders*> commandersCanAttack) {
+commSPTR Participants::pickCommanderAttack(std::vector<commSPTR> commandersCanAttack) {
 	//For debugging
 	INF::debugFunction("AttackMA, findCommander");
 
-	std::cout << "The following commanders can attack the target: \n";
-	std::cout << "Amount of commanders: " << commandersCanAttack.size() << std::endl;
+	std::cout << "The following number of commanders can attack the target: " +
+		 std::to_string(commandersCanAttack.size()) + "\n";
 
 
-	for (Commanders* commander : commandersCanAttack) {
-		std::cout << "Commander " << commander->getUnitName() +
-			", Level: " << commander->getLevel();
+	for (commSPTR commander : commandersCanAttack) {
+		commander->printCommanderNameLevel();
 	}
 	
-	std::cout << "Enter the name of the commander you would like to select: ";
-	std::string commanderName;
-	getline(std::cin, commanderName);
+	std::string commanderName = getInputText("Enter the name of the commander you would like to select: ", {});
+
+	if (this->hasCommander(commanderName)) {
+		return getCommander(commanderName);
+	}
 
 	//If participant doesn't have commander, recurse until it does
-	if (this->hasCommander(commanderName) == false) {
-		std::cout << "Invalid commander selected... please try again.\n";
-		pickCommanderAttack(commandersCanAttack);
-	}
-		
-	return getCommander(commanderName);
+	std::cout << "Invalid commander selected... please try again.\n";
+	pickCommanderAttack(commandersCanAttack);
 }
 
-void Participants::playerCommitAttack(Provinces* defendingProvince,  Commanders* attackingCommander) {
+void Participants::playerCommitAttack(provSPTR defendingProvince,  commSPTR attackingCommander) {
 	//For debugging
 	INF::debugFunction("AttackMA, playerCommitAttack");
 
-	std::vector<Commanders*> defendingCommanders = defendingProvince->getAllCommanders();
+	std::vector<commSPTR> defendingCommanders = defendingProvince->getAllCommanders();
 
 	i5array preAttackResources = attackingCommander->getAllResources();
 
-	for (Commanders* defendingCommander : defendingCommanders) {
-
+	for (commSPTR defendingCommander : defendingCommanders) {
+		//Add implementation
 	}
-	Commanders* defendingCommander = defendingCommanders[0];
+
+	commSPTR defendingCommander = defendingCommanders[0];
 	int attackerCP = attackingCommander->getCP();
 	int defendingCP = defendingCommander->getCP();
 	int attackerLostCP = 0;
@@ -119,13 +117,13 @@ void Participants::playerCommitAttack(Provinces* defendingProvince,  Commanders*
 
 	determineLostCP(attackerCP, defendingCP, attackerLostCP, defenderLostCP);
 
-	std::array<int, 5> troopsLost = { 0, 0, 0, 0, 0 };
-	std::array<int, 5> injuredTroops = { 0, 0, 0, 0, 0 };
+	i5array troopsLost = { 0, 0, 0, 0, 0 };
+	i5array injuredTroops = { 0, 0, 0, 0, 0 };
 
 	calculateTroopsLost(attackingCommander, attackerLostCP, troopsLost, 0);
 
 	//Fix this later
-	TroopTypes type = TroopTypes::GUARDS;
+	Troops::TroopTypes type = Troops::TroopTypes::GUARDS; 
 	int troopTier = 1;
 
 	for (int x = 0; x < 5; x++) {
@@ -172,7 +170,7 @@ void Participants::playerCommitAttack(Provinces* defendingProvince,  Commanders*
 
 
 /*Basically go through each unit type and subtract 16CP worth of troops and keep going (done so that lost troops are distributed evenly among the various ranks, but there is still use to training lower rank troops as meat shields (if all lower troops are used up, then losses start piling up on higher rank troops; it's key to keep a healthy proportion of troops in your army))*/
-void Participants::calculateTroopsLost(Commanders* commander, int lostCombatPower, std::array<int, 5>& troopsLost, int troopIndex) {
+void Participants::calculateTroopsLost(commSPTR commander, int lostCombatPower, i5array& troopsLost, int troopIndex) {
 	//For debugging
 	INF::debugFunction("AttackMA, calculateTroopsLost");
 
@@ -249,7 +247,7 @@ void Participants::printResourcesGained()
 	//For debugging
 	INF::debugFunction("AttackMA, printResourcesGained");
 
-	std::array<int, 5> currentResources = attackingCommander->getAllResources();
+	i5array currentResources = attackingCommander->getAllResources();
 	std::cout << "Resources gained: \n \033[;34m";
 
 	for (int x = 0; x < 5; x++)
@@ -287,7 +285,7 @@ void Participants::determineLostCP(int attackerCP, int defendingCP, int& attacke
 		defendingCP = 1;
 }
 
-void Participants::casualtyReport(std::array<int, 5> troopsLost, std::array<int, 5> injuredTroops)
+void Participants::casualtyReport(i5array troopsLost, i5array injuredTroops)
 {
 	//For debugging
 	INF::debugFunction("AttackMA, casualtyReport");

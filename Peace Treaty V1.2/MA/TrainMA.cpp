@@ -3,7 +3,7 @@
 //Main TrainMA function
 void Participants::TrainMAFunction() {
     //For debugging
-    Provinces* province = this->pickYourProvince(1);
+    provSPTR province = this->pickYourProvince(1);
     INF::debugFunction("TrainMA, TrainMAFunction");
 
     this->showMap();
@@ -87,9 +87,9 @@ void Participants::TrainMAFunctionDoWhileLoop(int troopTier, int amountOfTroops)
     //For debugging
     INF::debugFunction("TrainMA, TrainMAFunctionDoWhileLoop");
 
-    Provinces* capitalProvince = this->getCapitalProvince();
+    provSPTR capitalProvince = this->getCapitalProvince();
 
-    std::array<int, 5> 
+    i5array 
         troopCost = { 5, 4, 3, 2, 1 },
         requiredResources = { 0, 0, 0, 0, 0 };
 

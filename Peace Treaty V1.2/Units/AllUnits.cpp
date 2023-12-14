@@ -51,7 +51,7 @@ void AllUnits::printTroopsPresent() {
 	}
 }
 
-int AllUnits::getCP() {
+const int& AllUnits::getCP() {
 	//For debugging
 	INF::debugFunction("AllUnits, getCP");
 
@@ -62,7 +62,7 @@ int AllUnits::getCP() {
 	return combatPower;
 }
 
-int AllUnits::getParticipantIndex() {
+const int& AllUnits::getParticipantIndex() {
 	//For debugging
 	INF::debugFunction("AllUnits, getParticipantIndex");
 
@@ -93,13 +93,13 @@ void AllUnits::changeUnitName(std::string name) {
 }
 
 //Mutator Functions
-int AllUnits::getFoodConsumption() {
+const int& AllUnits::getFoodConsumption() {
 	//For debugging
 	INF::debugFunction("AllUnits, getFoodConsumption");
 
 	return foodConsumption;
 }
-int AllUnits::getResource(int resourceIndex) {
+const int& AllUnits::getResource(int resourceIndex) {
 	//For debugging
 	INF::debugFunction("AllUnits, getResource");
 
@@ -122,7 +122,7 @@ void AllUnits::modifyResources(i5array resourcesArray, INF::MutateDirection dire
 	resourcesPresent = INF::mutateArray(resourcesPresent, resourcesArray, direction);
 }
 
-int AllUnits::getLevel() {
+const int& AllUnits::getLevel() {
 	//For debugging
 	INF::debugFunction("AllUnits, getLevel");
 
@@ -193,7 +193,7 @@ void AllUnits::mutateTroop(INF::TroopCondition troopCondition, Troops::TroopType
 	INF::debugFunction("Troops, mutateTroop");
 
 	std::shared_ptr<troopConditionArray> troopArray = allTroopConditions.at(troopCondition);
-	i5array* troopTiers = troopArray->at(troopType);
+	i5array* troopTiers = troopArray.get(troopType);
 
 	int modifier = -1;
 
@@ -231,7 +231,7 @@ INF::ipair AllUnits::translateCoords(INF::ipair coords, CoordsType type) {
 }
 
 //Quicksort
-std::vector<AllUnits::AllUnitsSPtr> AllUnits::sortVector(SortType sort, std::vector<AllUnits::AllUnitsSPtr> list) {
+std::vector<AllUnits::unitSPTR > AllUnits::sortVector(SortType sort, std::vector<AllUnits::unitSPTR > list) {
 	if (sort == LEVEL) {
 		return levelSort(list);
 	}
@@ -243,26 +243,26 @@ std::vector<AllUnits::AllUnitsSPtr> AllUnits::sortVector(SortType sort, std::vec
 }
 
 //Has been tested with concatVectors, so should work
-std::vector<AllUnits::AllUnitsSPtr> AllUnits::levelSort(std::vector<AllUnits::AllUnitsSPtr> list) {
+std::vector<AllUnits::unitSPTR > AllUnits::levelSort(std::vector<AllUnits::unitSPTR > list) {
 	if (list.size() <= 1) {
 		return list;
 	}
 
 	int listSize = list.size();
-	AllUnitsSPtr lastElement = list.at(listSize - 1);
+	unitSPTR  lastElement = list.at(listSize - 1);
 	int lastLevel = lastElement->getLevel();
 
-	std::vector<AllUnitsSPtr> greater = {};
-	std::vector<AllUnitsSPtr> lesser = {};
-	std::vector<AllUnitsSPtr> same = { lastElement };
+	std::vector<unitSPTR > greater = {};
+	std::vector<unitSPTR > lesser = {};
+	std::vector<unitSPTR > same = { lastElement };
 
 	for (int index = 0; index < listSize - 1; index++) {
-		AllUnitsSPtr currentElement = list.at(index);
-
-		if (currentElement->getLevel() < lastLevel) {
+		unitSPTR  currentElement = list.at(index);
+		int currentLevel = currentElement->getLevel();
+		if (currentLevel < lastLevel) {
 			lesser.push_back(currentElement);
 		}
-		else if (currentElement->getLevel() > lastLevel) {
+		else if (currentLevel > lastLevel) {
 			greater.push_back(currentElement);
 		}
 		else {
@@ -273,6 +273,6 @@ std::vector<AllUnits::AllUnitsSPtr> AllUnits::levelSort(std::vector<AllUnits::Al
 	greater = levelSort(greater); 
 	lesser = levelSort(lesser);
 
-	std::vector<std::vector<AllUnitsSPtr>> returnList = { lesser, same, greater };
+	std::vector<std::vector<unitSPTR >> returnList = { lesser, same, greater };
 	return concatVectors(returnList);
 }

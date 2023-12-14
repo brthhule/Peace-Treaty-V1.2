@@ -18,23 +18,22 @@
 
 class ScoutMA {
 public:
-
-	typedef std::vector<Commanders*> commandersPtrsList;
-	typedef std::vector<Provinces*> provincesPtrsList;
 	//for null value, use scoutTypes nullValue ({}, {});
-	typedef std::pair<commandersPtrsList, provincesPtrsList> scoutTypes;
+	using scoutTypes = std::pair<Commanders::commSPTRList, Provinces::provSPTRList>;
+	using unitSPTR = AllUnits::unitSPTR;
+	using commSPTR = Commanders::commSPTR;
 
-	virtual void mainScoutMA (Provinces* provinceArg) = 0;
-	virtual scoutTypes selectTarget(Provinces* targetProvince) = 0;
+	virtual void mainScoutMA (provSPTR provinceArg) = 0;
+	virtual scoutTypes selectTarget(provSPTR targetProvince) = 0;
 
 	// Functions
-	virtual std::pair<AllUnits*, int> playerScoutStepTwo(scoutTypes canScout, Provinces* targetProvince) = 0;
+	virtual std::pair<unitSPTR, int> playerScoutStepTwo(scoutTypes canScout, provSPTR targetProvince) = 0;
 	
 
-	virtual AllUnits* selectUnitToScout(scoutTypes canScout) = 0;
-	virtual AllUnits* selectUnitToScoutTwo(scoutTypes canScout) = 0;
+	virtual unitSPTR selectUnitToScout(scoutTypes canScout) = 0;
+	virtual unitSPTR selectUnitToScoutTwo(scoutTypes canScout) = 0;
 
-	virtual scoutTypes getCanScout(Provinces* targetProvince) = 0;
+	virtual scoutTypes getCanScout(provSPTR targetProvince) = 0;
 
 	virtual void scoutLogCalculationsProvince(int accuracy) = 0;
 	virtual void getCanScoutTwo(int targetX, int targetY, int a, int b, scoutTypes & canScout) = 0;

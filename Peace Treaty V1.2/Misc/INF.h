@@ -14,6 +14,7 @@
 #include <vector>
 #include <fstream>
 
+
 namespace INF {
 	/////////////////////////////////////Aliases///////////////////////////////
 	constexpr int UNIT_AMOUNT = 5;
@@ -24,7 +25,7 @@ namespace INF {
 
 	using ivector = std::vector<int>;
 	using String = std::string;
-	using ipair = std::pair<int, int>;
+	using ipair = std::pair<int,int>;
 
 	using INTEGER = int;
 	using STRING = std::string;
@@ -94,14 +95,14 @@ namespace INF {
 	};
 
 	template <typename T>
-	class myarray : std::array<int, 5> {
+	class myarray : i5array {
 	public:
 		void createArray(INF::i5array arrayArg);
 		void addArrayElements(myarray arrayArg);
 	};
 
 	using myvectorI = myvector<int>;
-	using myarrayI5A = myarray<std::array<int, 5>>;
+	using myarrayI5A = myarray<i5array>;
 
 	template <typename T>
 	std::vector<T> concatVectors(std::vector<std::vector<T>> vectorsList);

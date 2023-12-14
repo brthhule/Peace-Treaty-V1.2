@@ -89,11 +89,11 @@ void Database::createCapitals() {
 
 	for (Participants participant : participantsList) {
 		start:
-			std::pair<int, int> systemCoords;
+			ipair systemCoords;
 			systemCoords.first = rand() % INF::continentSize;
 			systemCoords.second = rand() % INF::continentSize;
 
-			Provinces* province = participantsList[0].getSystemProvince(systemCoords);
+			provSPTR province = participantsList[0].getSystemProvince(systemCoords);
 
 			if (province->getParticipantIndex() == -1)
 			{

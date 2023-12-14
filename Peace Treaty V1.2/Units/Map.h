@@ -15,6 +15,8 @@
 
 using namespace INF;
 
+using provSPTR = Provinces::provSPTR;
+
 BASE_CLASS
 class Map {
 public:
@@ -32,13 +34,14 @@ METHODS START
 
 	GETTER
 	static Provinces
-		*getSystemProvince(std::pair<int, int> systemCoords),
-		*getUserProvince(std::pair<int, int> userCoords);
+		*getSystemProvince(ipair systemCoords),
+		*getUserProvince(ipair userCoords);
 METHODS END
 
 VARIABLES START
-	typedef std::vector <std::vector<Provinces*>> ProvincesVector;
-	typedef std::unordered_map <std::string, Provinces*> ProvincesMap;
+	typedef std::unordered_map <std::string, provSPTR> ProvincesMap;
+	typedef std::vector <std::vector<provSPTR>> ProvincesVector;
+
 
 	static ProvincesVector map;
 	static ProvincesMap mapMap;

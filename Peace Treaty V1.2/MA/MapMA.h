@@ -18,13 +18,13 @@ class MapMA {
 public:
 	virtual void
 		viewPlayerMap() = 0,
-		selectUnitOriginal(Provinces *selectedProvince) = 0,
-		selectPlayerProvince(Provinces *province) = 0,
+		selectUnitOriginal(provSPTR selectedProvince) = 0,
+		selectPlayerProvince(provSPTR province) = 0,
 		
-		playerUnitAction(Provinces *province) = 0,
-		playerUnitActionP(Provinces * province) = 0,
+		playerUnitAction(provSPTR province) = 0,
+		playerUnitActionP(provSPTR  province) = 0,
 		selectEnemyAction() = 0,
-		selectEnemyProvince(Provinces * province) = 0;
+		selectEnemyProvince(provSPTR  province) = 0;
 };
 
 #endif

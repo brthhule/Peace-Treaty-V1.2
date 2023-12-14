@@ -1,8 +1,8 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Misc\Main_FilePaths.h"
 #include MAP_HEADER
 
-Map::ProvincesVector Map::map = std::vector<std::vector<Provinces*>>{};
-Map::ProvincesMap  Map::mapMap = std::unordered_map<std::string, Provinces*>();
+Map::ProvincesVector Map::map = std::vector<std::vector<provSPTR>>{};
+Map::ProvincesMap  Map::mapMap = std::unordered_map<std::string, provSPTR>();
 
 Map::Map() {
 	//For debugging
@@ -16,9 +16,9 @@ void Map::setMap() {
 
 	int overallIndex = 0;
 	for (int x = 0; x < INF::continentSize; x++) {
-		std::vector<Provinces*> tempVector = {};
+		std::vector<provSPTR> tempVector = {};
 		for (int y = 0; x < INF::continentSize; y++) {
-			Provinces *newProvince = new Provinces(overallIndex);
+			provSPTR newProvince = new Provinces(overallIndex);
 			newProvince->setOverallIndex(overallIndex);
 			overallIndex++;
 			tempVector.push_back(newProvince);
@@ -55,7 +55,7 @@ void Map::meat(int x, int y) {
 	INF::debugFunction("Map, meat");
 
 	char letter = ' ';
-	Provinces* currentProvince = map[x][y];
+	provSPTR currentProvince = map[x][y];
 
 	//Player province
 	if (currentProvince->getParticipantIndex() == currentParticipantIndex)
@@ -107,7 +107,7 @@ void Map::printXAxis() {
 
 //Only for system coords
 //First int should be row, second int should be column
-Provinces* Map::getSystemProvince(std::pair<int, int> systemCoords) {
+provSPTR Map::getSystemProvince(ipair systemCoords) {
 	//For debugging
 	INF::debugFunction("Map, getSystemProvince");
 
@@ -115,7 +115,7 @@ Provinces* Map::getSystemProvince(std::pair<int, int> systemCoords) {
 }
 
 
-Provinces* Map::getUserProvince(std::pair<int, int> userCoords) {
+provSPTR Map::getUserProvince(ipair userCoords) {
 	//For debugging
 	INF::debugFunction("Map, getUserProvince");
 

@@ -2,19 +2,19 @@
 
 #include PARTICIPANTS_HEADER
 
-void Participants::moveUnitOne(Commanders* commander) {
+void Participants::moveUnitOne(commSPTR commander) {
 	//For debugging
 	INF::debugFunction("Mobility, moveUnitOne");
 
 	//This will have the list of provinces that can be moved to
-	std::vector<Provinces*> provincesCanSelect;
+	std::vector<provSPTR> provincesCanSelect;
 
 	if (commander->hasMoved() == true) {
 		std::cout << "This unit has already moved this turn. Please pick another unit. \nReturning to previous menu... \n\n";
 	}
 	//If this commander has not moved yet
 	//Get their system coords
-	std::pair<int, int> newCoordinates = commander->getCoords(Coords::SYSTEM);
+	ipair newCoordinates = commander->getCoords(Coords::SYSTEM);
 
 	std::cout << "The coordinates of the chosen unit unit are: ";
 	commander->printCoords(Coords::USER);
@@ -24,11 +24,11 @@ void Participants::moveUnitOne(Commanders* commander) {
 	provincesCanSelect = moveUnitTwo(commander);
 
 	// The participant slects coordiantes
-	std::pair<int, int> userCoords = pickCoords();
+	ipair userCoords = pickCoords();
 
 
-	Provinces* provinceSelected = NULL;
-	for (Provinces* province : provincesCanSelect) {
+	provSPTR provinceSelected = NULL;
+	for (provSPTR province : provincesCanSelect) {
 		if (userCoords == province->getCoords(Coords::USER)) {
 			provinceSelected = province;
 		}
@@ -41,7 +41,7 @@ void Participants::moveUnitOne(Commanders* commander) {
 	}
 
 	// For display
-	std::pair<int, int> systemCoords = provinceSelected->getCoords(Coords::SYSTEM);
+	ipair systemCoords = provinceSelected->getCoords(Coords::SYSTEM);
 	std::string confirmMove;
 
 	enum Scenario {
@@ -71,7 +71,7 @@ void Participants::moveUnitOne(Commanders* commander) {
 			//Remove commander from previous province
 
 			Participants* tempParticipant = new Participants;
-			Provinces* formerProvince = tempParticipant->getSystemProvince(commander->getCoords(Coords::SYSTEM));
+			provSPTR formerProvince = tempParticipant->getSystemProvince(commander->getCoords(Coords::SYSTEM));
 			formerProvince->removeCommander(commander);
 
 			//Change commander coords to province coords
@@ -94,12 +94,12 @@ void Participants::moveUnitOne(Commanders* commander) {
 } /* unfinished*/
 
 
-std::vector<Provinces*> Participants::moveUnitTwo(Commanders* commander) {
+std::vector<provSPTR> Participants::moveUnitTwo(commSPTR commander) {
 	//For debugging
 	INF::debugFunction("Mobility, moveUnitTwo");
 
-	std::vector<Provinces*> provincesSelectList;
-	std::pair<int, int> systemCoords = commander->getCoords(Coords::SYSTEM);
+	std::vector<provSPTR> provincesSelectList;
+	ipair systemCoords = commander->getCoords(Coords::SYSTEM);
 
 
 	/*Identify all the provinces that the player can move a unit to*/
@@ -125,9 +125,9 @@ std::vector<Provinces*> Participants::moveUnitTwo(Commanders* commander) {
 
 
 			if (checkFirstCoordinate && checkSecondCoordinate && checkBothCoordinates){
-				std::pair<int, int> pushCoords(firstCoordinate, secondCoordinate);
+				ipair pushCoords(firstCoordinate, secondCoordinate);
 				Participants* tempParticipant = new Participants();
-				Provinces* province = tempParticipant->getSystemProvince(pushCoords);
+				provSPTR province = tempParticipant->getSystemProvince(pushCoords);
 				provincesSelectList.push_back(province);
 				delete tempParticipant;
 

@@ -48,8 +48,12 @@ class Participants :
 	INTERFACE public AttackMA
 {
 public:
+	using partSPTR = std::shared_ptr<Participants>;
 	static std::vector<Participants*> playersList;
 	static std::vector<Participants*> botsList;
+	using commSPTR = Commanders::commSPTR;
+	using provSPTR = Provinces::provSPTR;
+
 	CONSTRUCTOR Participants();
 	CONSTRUCTOR Participants(int pIndex);
 	
@@ -67,7 +71,7 @@ public:
 	std::thread th1Method();
 	std::thread th2Method();
 
-	GETTER std::unordered_map<std::string, Commanders*> getCommandersMap();
+	GETTER std::unordered_map<std::string, commSPTR> getCommandersMap();
 
 	BOOL
 		subtractCheckResources(String provinceName, INF::i5array resourcesArray);
@@ -76,7 +80,7 @@ public:
 		hasProvince(std::string name),
 		//Overloading
 		hasProvince(int pIndex),
-		hasProvince(Provinces* province),
+		hasProvince(provSPTR province),
 		hasCommander(std::string name),
 		isAlive(),
 		isPlayer(),
@@ -100,34 +104,34 @@ public:
 		getParticipantIndex();
 
 	//Coordinate stuff
-	Provinces
-		* pickYourProvince(int identifier),
-		* pickProvince(int identifer),
+	provSPTR
+		pickYourProvince(int identifier),
+		pickProvince(int identifer),
 
-		* getProvince(std::string name),
-		* getProvince(int index),
+		getProvince(std::string name),
+		getProvince(int index),
 
-		* getCapitalProvince(),
-		* getSystemProvince(std::pair<int, int> systemCoords);
+		getCapitalProvince(),
+		getSystemProvince(ipair systemCoords);
 		
 
 	STRING
 		getKingdomName(),
 		getNewName();
 
-	std::shared_ptr<Commanders> pickCommander();
+	commSPTR pickCommander();
 
-	VOID setCapital(Provinces* newProvince);
+	VOID setCapital(provSPTR newProvince);
 	VOID showMapOld();
 
 	VOID addCommander();
-	VOID addProvince(Provinces* newProvince);
+	VOID addProvince(provSPTR newProvince);
 	VOID printListOfProvinces();
 
 	VOID createAsPlayer(bool status);
 	VOID viewAllStatsFunction();
 	VOID viewStats();
-	VOID scoutProvince(Provinces* targetProvince, int accuracy);
+	VOID scoutProvince(provSPTR targetProvince, int accuracy);
 	VOID displayCommanders();
 	VOID initialCapRSS();
 
@@ -141,7 +145,7 @@ public:
 	VOID updateTurnResourcesParticipant();
 	VOID createMapParticipant();
 		
-	const Provinces* tempProvince = new Provinces;
+	const provSPTR tempProvince = new Provinces;
 
 ARMY_OVERVIEW_MA START
 	void printCosts(std::vector<int>costs, std::string type);
@@ -165,26 +169,26 @@ TRAIN_MA START
 	void TrainMAFunction();
 	void TrainMAFunctionDoWhileLoop(int troopTier, int amountOfTroops);
 
-	void moveUnitOne(Commanders* commander);
-	std::vector <Provinces*> moveUnitTwo(Commanders* commander);
-	static std::pair<int, int> pickCoords();
+	void moveUnitOne(commSPTR commander);
+	std::vector <provSPTR> moveUnitTwo(commSPTR commander);
+	static ipair pickCoords();
 	TRAIN_MA END
 
 MAP_MA START
 	void viewPlayerMap();
-	void selectUnitOriginal(Provinces* selectedProvince);
-	void selectPlayerProvince(Provinces* province);
+	void selectUnitOriginal(provSPTR selectedProvince);
+	void selectPlayerProvince(provSPTR province);
 
-	void playerUnitAction(Provinces* province);
-	void playerUnitActionP(Provinces* province);
+	void playerUnitAction(provSPTR province);
+	void playerUnitActionP(provSPTR province);
 	void selectEnemyAction();
-	void selectEnemyProvince(Provinces* province);
+	void selectEnemyProvince(provSPTR province);
 	MAP_MA END
 	
 SCOUT_MA START
-	void mainScoutMA (Provinces* provinceArg);
+	void mainScoutMA (provSPTR provinceArg);
 
-	std::pair<AllUnits*, int> playerScoutStepTwo(scoutTypes canScout, Provinces* targetProvince);
+	std::pair<unitSPTR, int> playerScoutStepTwo(scoutTypes canScout, provSPTR targetProvince);
 	void scoutLogCalculationsProvince(int accuracy);
 	void getCanScoutTwo(
 			int targetX, 
@@ -193,40 +197,40 @@ SCOUT_MA START
 			int b, 
 			scoutTypes& canScout);
 
-	AllUnits* selectUnitToScout(scoutTypes canScout);
-	AllUnits* selectUnitToScoutTwo(scoutTypes canScout);
+	unitSPTR selectUnitToScout(scoutTypes canScout);
+	unitSPTR selectUnitToScoutTwo(scoutTypes canScout);
 
-	scoutTypes selectTarget(Provinces* targetProvince);
-	scoutTypes getCanScout(Provinces* targetProvince);
+	scoutTypes selectTarget(provSPTR targetProvince);
+	scoutTypes getCanScout(provSPTR targetProvince);
 	SCOUT_MA END
 
 ATTACK_MA START
 	class AttackMAInfo {
 		AttackMAInfo();
-		AttackMAInfo(Provinces* defendingProvinceArg);
-		AttackMAInfo(Provinces* defenderProvinceArg, Commanders* commanderArg);
+		AttackMAInfo(provSPTR defendingProvinceArg);
+		AttackMAInfo(provSPTR defenderProvinceArg, commSPTR commanderArg);
 
-		Provinces* defendingProvince;
+		provSPTR defendingProvince;
 		//Participants* attackingParticipant; is this object
-		Commanders* commander;
+		commSPTR commander;
 		bool defenseCanRetreat;
 	};
 	void mainAttackMA(
-		Provinces* defendingProvince,
-		Commanders* attackingCommander);
+		provSPTR defendingProvince,
+		commSPTR attackingCommander);
 
 	GETTER
-	std::vector<Commanders*> getCommandersCanAttack(std::pair<int, int> defenderSYstemCoords);
-	Commanders* pickCommanderAttack(std::vector<Commanders*>);
-	void playerCommitAttack(Provinces* defendingProvince, Commanders* attackingCommander);
-	Commanders* pickCommanderAttack(std::vector<Commanders*> commandersCanAttack);
+	std::vector<commSPTR> getCommandersCanAttack(provSPTR defendingProvince);
+	commSPTR pickCommanderAttack(std::vector<commSPTR>);
+	void playerCommitAttack(provSPTR defendingProvince, commSPTR attackingCommander);
+	commSPTR pickCommanderAttack(std::vector<commSPTR> commandersCanAttack);
 
 	GETTER
 	void printResourcesGained();
 	void determineLostCP(int attackerCP, int defendingCP, int& attackerLostCP, int& defenderLostCP);
 
 	CALCULATE
-	void calculateTroopsLost(Commanders* commander, int lostCombatPower, i5array& troopsLost, int troopIndex);
+	void calculateTroopsLost(commSPTR commander, int lostCombatPower, i5array& troopsLost, int troopIndex);
 	void battleCalculationsTwo(int& lostCombatPower, int troopsLost[5], int troopIndex);
 	void casualtyReport(i5array troopsLost, i5array injuredTroops);
 	ATTACK_MA END
@@ -240,16 +244,16 @@ private:
 		capitalIndex,
 		participantIndex;
 
-	Provinces* capitalProvince;
+	provSPTR capitalProvince;
 
 	STRING kingdomName = " ";
 
-	std::unordered_map <std::string, Commanders*> commandersMap;
-	std::unordered_map <std::string, Provinces*> provincesMap;
-	std::unordered_map<std::string, Commanders*>::iterator commIt;
+	std::unordered_map <std::string, commSPTR> commandersMap;
+	std::unordered_map <std::string, provSPTR> provincesMap;
+	std::unordered_map<std::string, commSPTR>::iterator commIt;
 
-	std::vector <Provinces*> provincesVector;
-	std::vector <Commanders> commandersVector;
+	std::vector <provSPTR> provincesVector;
+	std::vector <commSPTR> commandersVector;
 	
 
 	

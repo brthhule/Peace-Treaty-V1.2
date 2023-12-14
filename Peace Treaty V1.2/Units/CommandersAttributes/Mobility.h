@@ -11,7 +11,10 @@
 
 class Mobility {
 public:
-	void moveUnitOne(Commanders* commander) = 0;
-	std::vector <Provinces*> moveUnitTwo(Commanders *commander) = 0;
+	using commSPTR = Commanders::commSPTR;
+	using provSPTR = Provinces::provSPTR;
+
+	virtual void moveUnitOne(commSPTR commander) = 0;
+	virtual std::vector <provSPTR> moveUnitTwo(commSPTR commander) = 0;
 };
 #endif

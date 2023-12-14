@@ -112,4 +112,10 @@ void Commanders::resetCommanderMoved() {
 	moved = false;
 }
 
+std::string Commanders::getCommanderNameLevel() {
+	return "Name: " + getUnitName() + ", Level: " + getLevel();
+}
 
+void Commanders::printCommanderNameLevel() {
+	std::cout << getCommanderNameLevel() << +"\n";
+}

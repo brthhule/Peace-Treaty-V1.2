@@ -22,7 +22,7 @@ void Coords::setIndex (int index) {
 ipair Coords::getCoords(CoordsType type) {
 	INF::debugFunction("Coords, getCoords");
 
-	std::pair<int, int> tempPair;
+	ipair tempPair;
 	switch (type) {
 	case SYSTEM:
 		tempPair = systemCoords;

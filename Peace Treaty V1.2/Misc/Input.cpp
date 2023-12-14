@@ -151,9 +151,14 @@ namespace Input {
 		INF::debugFunction("Iput, getInputText");
 
 		std::cout << text << "\n";
-		std::string input;
 
-		return getInputQuery(AV);
+		if (AV.size() != 0) {
+			return getInputQuery(AV);
+		}
+		
+		std::string input = "";
+		getline(std::cin, input);
+		return input;
 	}
 
 	std::string Input::promptsToString(Prompts p) {

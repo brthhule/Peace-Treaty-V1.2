@@ -26,7 +26,7 @@ void Participants::viewPlayerMap() {
 			INF::clearScreen();
 			std::cout << "Selecting a province...\n";
 			//The user selects a province
-			Provinces* province = this->pickYourProvince(1);
+			provSPTR province = this->pickYourProvince(1);
 
 			if (province != NULL){
 				selectUnitOriginal(province);
@@ -52,7 +52,7 @@ void Participants::viewPlayerMap() {
 }
 
 
-void Participants::selectUnitOriginal(Provinces* province) {
+void Participants::selectUnitOriginal(provSPTR province) {
 	//For debugging
 	INF::debugFunction("MapMA, selectUnitOriginal");
 
@@ -87,7 +87,7 @@ void Participants::selectUnitOriginal(Provinces* province) {
 }
 
 //You selected one of your provinces
-void Participants::selectPlayerProvince(Provinces *province) {
+void Participants::selectPlayerProvince(provSPTR province) {
 	//For debugging
 	INF::debugFunction("MapMA, selectPlayerProvince");
 
@@ -121,11 +121,11 @@ void Participants::selectPlayerProvince(Provinces *province) {
 }
 
 //You selected an enemy province
-void Participants::selectEnemyProvince(Provinces* newP) {
+void Participants::selectEnemyProvince(provSPTR newP) {
 	//For debugging
 	INF::debugFunction("MapMA, selectEnemyProvince");
 
-	Provinces* enemyProvince = newP;
+	provSPTR enemyProvince = newP;
 	if (enemyProvince->isCapital()) {
 		println("This is an enemy capital province ");
 	}
@@ -162,11 +162,11 @@ void Participants::selectEnemyProvince(Provinces* newP) {
 You selected an empty province that your commander is in
 - Move this unit (P)
 - Capture this province (C)*/
-void Participants::playerUnitAction(Provinces* newP) {
+void Participants::playerUnitAction(provSPTR newP) {
 	//For debugging
 	INF::debugFunction("MapMA, playerUnitAction");
 
-	Provinces* newProvince = newP;
+	provSPTR newProvince = newP;
 	println("This is one of your armies ");
 
 	switch (Input::getOptionPrompt(PLAYER_UNIT_ACTION).at(0)) {
@@ -190,12 +190,12 @@ void Participants::playerUnitAction(Provinces* newP) {
 }
 
 //Selected 
-void Participants::playerUnitActionP(Provinces* newP)
+void Participants::playerUnitActionP(provSPTR newP)
 {
 	//For debugging
 	INF::debugFunction("MapMA, playerUnitActionP");
 
-	Provinces* newProvince = newP;
+	provSPTR newProvince = newP;
 	std::cout << "The following commanders are at this province: \n";
 	newProvince->printCommanders();
 	// find index of commander unit, fix this

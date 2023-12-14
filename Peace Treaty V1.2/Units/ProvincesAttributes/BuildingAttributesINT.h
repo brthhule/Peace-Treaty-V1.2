@@ -18,32 +18,33 @@ using namespace BUILD;
 class BuildingAttributesINT{
 public:	
 	/*These are functions*/
-
-	i5array getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount) = 0;
-	int getCapacity(BUILD::BuildingsEnum name) = 0;
+	BuildingAttributesInt() {};
+	~BuildingAttributesInt();
+	virtual i5array getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount) = 0;
+	virtual int getCapacity(BUILD::BuildingsEnum name) = 0;
 
 	//Returns an array of Resource/Other buildings levels
-	const std::array<int&, 5> getTypeLevels(BUILD::BuildingType type);
+	virtual const std::array<int&, 5> getTypeLevels(BUILD::BuildingType type) = 0;
 
-	void mutateLevel(
+	virtual void mutateLevel(
 		BUILD::BuildingType type, 
 		int name, INF::i5array amount, 
 		INF::Quantity quant, 
 		INF::MutateDirection direction) = 0;
 
-	int getTroopsTrainedThisTurn() = 0;
-	int getProvinceLevel() = 0;
+	virtual int getTroopsTrainedThisTurn() = 0;
+	virtual int getProvinceLevel() = 0;
 	
 	//Void Accessors
-	void printBuildingStats() = 0;
-	void displayListOfBuildings() = 0;
+	virtual void printBuildingStats() = 0;
+	virtual void displayListOfBuildings() = 0;
 	//Other modifiers
-	void addTroopsTrainedThisTurn(int amount) = 0;
-	void resetTroopsTrainedThisTurn() = 0;
-	void initiailizeCapitalBuildings() = 0;
-	void initializeEmptyBuildings() = 0;
+	virtual void addTroopsTrainedThisTurn(int amount) = 0;
+	virtual void resetTroopsTrainedThisTurn() = 0;
+	virtual void initiailizeCapitalBuildings() = 0;
+	virtual void initializeEmptyBuildings() = 0;
 
-	std::shared_ptr<BuildingsBASE> getBuilding(BUILD::BuildingsEnum name) = 0;
+	virtual std::shared_ptr<BuildingsBASE> getBuilding(BUILD::BuildingsEnum name) = 0;
 
 protected:
 	int troopsTrainedThisTurn;
@@ -56,7 +57,6 @@ protected:
 	std::array<BuildingsBASE, 10> buildings;
 
 	//Returns building levels for all Resource or Other type buildings
-	std::array<int, 5> getTypeLevels(BUILD::BuildingType type) = 0;
 private:
 	static i5array capacityAmounts;
 	static i5array resourceProduction;

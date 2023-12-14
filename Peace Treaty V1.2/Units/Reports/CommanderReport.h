@@ -15,13 +15,15 @@ public:
 
 	void printReport();
 private:
-	std::array<std::array<int, 5>, 5 > listInt;
-	std::array<int, 5>
-		resourcesPresent = { 0, 0, 0, 0, 0 },
-		troopsPresent = { 0, 0, 0, 0, 0 },
-		troopsInjured = { 0, 0, 0, 0, 0 },
-		troopsLost = { 0, 0, 0, 0, 0 },
-		initialStats = { 5, 4, 3, 2, 1 };
+	std::array<i5array, 5 > listInt;
+
+	//Check these later
+	i5array
+		resourcesPresent,
+		troopsPresent,
+		troopsInjured,
+		troopsLost,
+		initialStats;
 
 	int
 		combatPower,

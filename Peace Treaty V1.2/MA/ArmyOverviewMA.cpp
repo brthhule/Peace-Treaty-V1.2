@@ -43,7 +43,7 @@ void Participants::upgradeCommander() {
 		return;
 	}
 
-	std::shared_ptr<Commanders> commander = this->pickCommander();
+	Commanders::commSPTR commander = this->pickCommander();
 
 	if (commander == nullptr) {
 		std::cout << "Cancelling upgrade...\n";
@@ -85,7 +85,7 @@ void Participants::viewArmyOverview() {
 	//For debugging
 	INF::debugFunction("ArmyOverview, viewArmyOverview");
 
-	std::shared_ptr<Commanders> commander = pickCommander();
+	commSPTR commander = pickCommander();
 
 	//Check that the user wants to proceed
 	if (commander == nullptr) {
@@ -147,7 +147,7 @@ void Participants::deployCommanderMF() {
 	//For debugging
 	INF::debugFunction("ArmyOverview, deployCommanderMF");
 
-	std::shared_ptr<Commanders> commander = pickCommander();
+	commSPTR commander = pickCommander();
 	if (commander == nullptr) {
 		return;
 	}
