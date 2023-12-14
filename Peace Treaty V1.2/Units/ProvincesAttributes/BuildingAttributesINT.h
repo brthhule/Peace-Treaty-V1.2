@@ -15,11 +15,9 @@ using namespace INF;
 using namespace BUILD;
 
 //Methods and variables in Provinces that relate to Buildings
-class BuildingAttributesINT{
+virtual class BuildingAttributesINT{
 public:	
 	/*These are functions*/
-	BuildingAttributesInt() {};
-	~BuildingAttributesInt();
 	virtual i5array getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount) = 0;
 	virtual int getCapacity(BUILD::BuildingsEnum name) = 0;
 

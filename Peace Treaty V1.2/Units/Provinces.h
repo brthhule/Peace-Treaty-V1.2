@@ -39,7 +39,7 @@ public:
 	using provMAP = std::unordered_map<std::string, provSPTR>;
 	using provSPTRList = std::vector<provSPTR>;
 	using commSPTR = Commanders::commSPTR;
-	using commSPTRList = Commanders::commSPTRList; 
+	using commSPTRList = Commanders::commSPTRList;
 
 	CONSTRUCTOR
 	Provinces(int overallIndexArg);
