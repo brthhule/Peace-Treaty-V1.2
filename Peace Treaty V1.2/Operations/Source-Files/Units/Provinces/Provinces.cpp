@@ -135,7 +135,7 @@ COMM::commSPTRList Provinces::getAllCommanders()
 	INF::debugFunction("Provinces, getAllCommanders");
 
 	commSPTRList commandersList;
-	Commanders::commMAP::iterator it;
+	COMM::commMAP::iterator it; 
 	for (it = commandersMap.begin(); it != commandersMap.end(); it++) {
 		commandersList.push_back(it->second);
 	}
@@ -246,7 +246,7 @@ std::array< ipair, 2> Provinces::getListCoords() {
 	//For debugging
 	INF::debugFunction("Provinces, getListCoords");
 
-	return { systemCoords, userCoords };
+	return { CoordsBASE::systemCoords, CoordsBASE::userCoords };
 }
 
 

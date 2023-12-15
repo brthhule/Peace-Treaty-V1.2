@@ -19,8 +19,12 @@ namespace UNIT {
 		class AllUnits : public CoordsBASE
 	{
 	public:
+		enum UnitType { COMMANDER, PROVINCE };
+		using T5array = INF::Array5<TroopUnitsBASE>;
+		using unitSPTR = std::shared_ptr<AllUnits>;
+		using troopConditionArray = INF::Array5<T5array>;
+		using unitSPTRList = std::vector<unitSPTR>;
 		
-
 		//----Constructors----
 		//One param overloaded Constructor
 		AllUnits(int index);
@@ -82,8 +86,8 @@ namespace UNIT {
 		//Override?
 		INF::ipair translateCoords(INF::ipair coords, CoordsType type);
 
-		std::vector<unitSPTR > sortVector(SortType sort, std::vector<unitSPTR > list);
-		std::vector<unitSPTR > levelSort(unitSPTR  list);
+		unitSPTRList sortVector(SortType sort, unitSPTRList list);
+		unitSPTRList levelSort(unitSPTRList list);
 
 	protected:
 		i5array resourcesPresent;
@@ -115,10 +119,7 @@ namespace UNIT {
 		TroopUnitsBASE troops;
 	};
 
-	enum UnitType { COMMANDER, PROVINCE };
-	using T5array = INF::Array5<TroopUnitsBASE>;
 	using unitSPTR = std::shared_ptr<AllUnits>;
-	using troopConditionArray = INF::Array5<T5array>;
-	using unitSPTR = std::shared_ptr<AllUnits>;
+	using unitSPTRList = std::vector<unitSPTR>;
 }
 #endif

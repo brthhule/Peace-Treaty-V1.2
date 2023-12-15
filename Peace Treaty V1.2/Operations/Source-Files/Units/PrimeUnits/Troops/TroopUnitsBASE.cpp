@@ -72,7 +72,7 @@ void TroopUnitsBASE::increaseTier(int amount) {
 	tier += amount;
 }
 
-TroopUnitsBASE:: TroopUnitsBASE::getThisType() {
+TroopUnitsBASE::TroopTypes TroopUnitsBASE::getThisType() {
 	return thisType;
 }
 

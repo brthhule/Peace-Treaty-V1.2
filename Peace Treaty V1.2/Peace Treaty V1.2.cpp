@@ -157,14 +157,14 @@ void gamePlay() {
 
 	//Create vector to copy the list of participants from the database
 	std::vector<Participants>* participantsPtr = db.getParticipantsList();
-	std::vector <std::shared_ptr<Participants>> participantsPtr = db.getParticipantsList();
+	std::vector <partSPTR> participantsPtr = db.getParticipantsList();
 
 	//Iterate through partiicpants by reference
 	for (int x = 0; x < (signed)participantsPtr->size(); x++)
 	{
-		Participants newParticipant = participantsPtr->at(x);
+		partSPTR newParticipant = participantsPtr->at(x);
 		//If the current participant is alive
-		if (newParticipant.isAlive())
+		if (newParticipant->isAlive())
 		{
 			try {
 				newParticipant->initialDecision();

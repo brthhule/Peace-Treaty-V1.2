@@ -9,7 +9,7 @@
 #include INF_HEADER
 
 using namespace INF;
-
+using namespace UNIT;
 //Namespace for Commanders
 namespace COMM {
 

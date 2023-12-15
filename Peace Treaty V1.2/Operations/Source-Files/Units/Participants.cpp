@@ -9,8 +9,8 @@ i5array Participants::allCommandersArray = {};
 i5array Participants::allProvincesArray = {};
 i5array trainCosts = { 5, 4, 3, 2, 1 };
 
-std::vector<Participants::partSPTR> Participants::playersList = {};
-std::vector<Participants::partSPTR> Participants::botsList = {};
+std::vector<partSPTR> Participants::playersList = {};
+std::vector<partSPTR> Participants::botsList = {};
 
 
 	// Constructor
@@ -647,12 +647,12 @@ bool Participants::hasUnit(std::string unitName) {
 	return false;
 }
 
-bool Participants::hasUnit(AllUnits unit) {
+bool Participants::hasUnit(AllUnits unit) { 
 	for (commIt = commandersMap.begin(); 
 		commIt != commandersMap.end(); 
 		commIt++) {
 
-		commSPTR commander = commIt->second();
+		commSPTR commander = commIt->second; 
 		if (&commander == unit) {
 			return true;
 		}
@@ -759,7 +759,7 @@ ipair Participants::pickCoords() {
 	//For debugging
 	INF::debugFunction("Participants, pickCoords");
 
-	partSPTR tempParticipant = new Participants();
+	partSPTR tempParticipant = std::make_shared(new Participants());
 	tempParticipant->showMap();
 	delete tempParticipant;
 

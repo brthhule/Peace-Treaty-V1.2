@@ -2,6 +2,8 @@
 
 #include PARTICIPANTS_HEADER
 
+using namespace PART;
+
 void Participants::moveUnitOne(commSPTR commander) {
 	//For debugging
 	INF::debugFunction("Mobility, moveUnitOne");
@@ -14,7 +16,7 @@ void Participants::moveUnitOne(commSPTR commander) {
 	}
 	//If this commander has not moved yet
 	//Get their system coords
-	ipair newCoordinates = commander->getCoords(CoordsBASE::SYSTEM);
+	ipair newCoordinates = commander->CoordsBASE::getCoords(CoordsBASE::SYSTEM); 
 
 	std::cout << "The coordinates of the chosen unit unit are: ";
 	commander->printCoords(CoordsBASE::USER);

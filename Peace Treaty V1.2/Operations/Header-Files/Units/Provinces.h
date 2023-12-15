@@ -16,7 +16,6 @@
 #include BUILD_MA_HEADER
 #include INPUT_HEADER
 
-#include INF_HEADER
 #include COORDS_BASE_HEADER
 #include BUILDING_ATTRIBUTES_INT_HEADER
 #include PROVINCE_REPORT_HEADER
@@ -25,6 +24,7 @@
 using namespace INF;
 using namespace Input;
 using namespace COMM;
+using namespace UNIT;
 
 namespace PROV {
 	class Provinces :
@@ -103,6 +103,35 @@ namespace PROV {
 		std::array<int, 7> getListsInt();
 
 		int getCommanderIndex(commSPTR commander);
+
+
+	BUILDING_ATTRIBUTES_INT_ START
+		i5array getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount);
+		int getCapacity(BUILD::BuildingsEnum name);
+
+		//Returns an array of Resource/Other buildings levels
+		const std::array<int&, 5> getTypeLevels(BUILD::BuildingType type);
+
+		void mutateLevel(
+			BUILD::BuildingType type,
+			int name, INF::i5array amount,
+			INF::Quantity quant,
+			INF::MutateDirection direction);
+
+		int getTroopsTrainedThisTurn();
+		int getProvinceLevel();
+
+		//Void Accessors
+		void printBuildingStats();
+		void displayListOfBuildings();
+		//Other modifiers
+		void addTroopsTrainedThisTurn(int amount);
+		void resetTroopsTrainedThisTurn();
+		void initiailizeCapitalBuildings();
+		void initializeEmptyBuildings();
+
+		virtual std::shared_ptr<BuildingsBASE> getBuilding(BUILD::BuildingsEnum name);
+	BUILDING_ATTRIBUTES_INT_ END
 
 
 	protected:

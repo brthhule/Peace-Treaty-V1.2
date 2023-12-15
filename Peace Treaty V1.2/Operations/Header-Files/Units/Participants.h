@@ -40,13 +40,15 @@ using namespace PROV;
 using namespace UNIT;
 
 namespace PART {
-//Players
-	class Participants :
-		EXTENDS_
-			BASE_CLASS public BASE,
+	
+
+	//Players
+	class Participants : 
+		EXTENDS_ 
+			BASE_CLASS public BASE, 
 			BASE_CLASS public Map,
 			BASE_CLASS public Mobility,
-		IMPLEMENTS_
+		IMPLEMENTS_ 
 			INTERFACE public ArmyOverviewMA,
 			INTERFACE public TrainMA,
 			INTERFACE public PlayerAction,
@@ -174,7 +176,6 @@ namespace PART {
 		void trainCommanders();
 		void proceedWithTraining(i5array trainCosts);
 		void upgradeCommander();
-		void upgradeCommander();
 		void viewArmyOverview();
 		void deployCommanderMF();
 		ARMY_OVERVIEW_MA_ END
@@ -242,7 +243,6 @@ namespace PART {
 
 		GETTER
 			std::vector<COMM::commSPTR> getCommandersCanAttack(provSPTR defendingProvince);
-		COMM::commSPTR pickCommanderAttack(std::vector<COMM::commSPTR>);
 		void playerCommitAttack(provSPTR defendingProvince, COMM::commSPTR attackingCommander);
 		COMM::commSPTR pickCommanderAttack(std::vector<COMM::commSPTR> commandersCanAttack);
 
@@ -278,5 +278,6 @@ namespace PART {
 	};
 
 	using partSPTR = std::shared_ptr<Participants>;
+	using partSPTRList = std::vector<partSPTR>;
 }
 #endif

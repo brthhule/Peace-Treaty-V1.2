@@ -1,7 +1,6 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 #include PARTICIPANTS_HEADER
 
-using unitSPTR = AllUnits::unitSPTR;
 using namespace PROV;
 using namespace COMM;
 using namespace PART;
@@ -124,7 +123,7 @@ void Participants::getCanScoutTwo(int targetX, int targetY, int a, int b, ScoutM
 	
 }
 
-AllUnits::unitSPTR Participants::selectUnitToScout(ScoutMA::scoutTypes canScout) {
+UNIT::unitSPTR Participants::selectUnitToScout(ScoutMA::scoutTypes canScout) {
 	//For debugging
 	INF::debugFunction("ScoutMA, selectUnitToScout");
 

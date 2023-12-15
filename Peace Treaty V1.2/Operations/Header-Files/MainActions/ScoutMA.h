@@ -32,11 +32,11 @@ public:
 	virtual scoutTypes selectTarget(provSPTR targetProvince) = 0;
 
 	// Functions
-	virtual std::pair<AllUnits::unitSPTR, int> playerScoutStepTwo(scoutTypes canScout, provSPTR targetProvince) = 0;
+	virtual std::pair<UNIT::unitSPTR, int> playerScoutStepTwo(scoutTypes canScout, provSPTR targetProvince) = 0;
 	
 
-	virtual AllUnits::unitSPTR selectUnitToScout(scoutTypes canScout) = 0;
-	virtual AllUnits::unitSPTR selectUnitToScoutTwo(scoutTypes canScout) = 0;
+	virtual UNIT::unitSPTR selectUnitToScout(scoutTypes canScout) = 0;
+	virtual UNIT::unitSPTR selectUnitToScoutTwo(scoutTypes canScout) = 0;
 
 	virtual scoutTypes getCanScout(provSPTR targetProvince) = 0;
 

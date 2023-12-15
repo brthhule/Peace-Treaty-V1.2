@@ -228,12 +228,12 @@ void AllUnits::setBattleFormation(troopConditionArray troopArray) {
 }
 
 
-INF::ipair AllUnits::translateCoords(INF::ipair coords, CoordsType type) {
+INF::ipair AllUnits::translateCoords(INF::ipair coords, CoordsType type) { 
 	return CoordsBASE::translateCoords(coords, type);
 }
 
 //Quicksort
-std::vector<AllUnits::unitSPTR > AllUnits::sortVector(SortType sort, std::vector<AllUnits::unitSPTR > list) {
+unitSPTRList AllUnits::sortVector(SortType sort, unitSPTRList list) { 
 	if (sort == LEVEL) {
 		return levelSort(list);
 	}
@@ -245,18 +245,19 @@ std::vector<AllUnits::unitSPTR > AllUnits::sortVector(SortType sort, std::vector
 }
 
 //Has been tested with concatVectors, so should work
-std::vector<AllUnits::unitSPTR > AllUnits::levelSort(std::vector<AllUnits::unitSPTR > list) {
+
+unitSPTRList AllUnits::levelSort(unitSPTRList list) {
 	if (list.size() <= 1) {
 		return list;
 	}
 
 	int listSize = list.size();
-	unitSPTR  lastElement = list.at(listSize - 1);
+	unitSPTR lastElement = list.at(listSize - 1);
 	int lastLevel = lastElement->getLevel();
 
-	std::vector<unitSPTR > greater = {};
-	std::vector<unitSPTR > lesser = {};
-	std::vector<unitSPTR > same = { lastElement };
+	unitSPTRList greater = {}; 
+	unitSPTRList lesser = {}; 
+	unitSPTRList same = { lastElement }; 
 
 	for (int index = 0; index < listSize - 1; index++) {
 		unitSPTR  currentElement = list.at(index);
@@ -275,6 +276,6 @@ std::vector<AllUnits::unitSPTR > AllUnits::levelSort(std::vector<AllUnits::unitS
 	greater = levelSort(greater); 
 	lesser = levelSort(lesser);
 
-	std::vector<std::vector<unitSPTR >> returnList = { lesser, same, greater };
+	std::vector<unitSPTRList> returnList = { lesser, same, greater }; 
 	return concatVectors(returnList);
 }

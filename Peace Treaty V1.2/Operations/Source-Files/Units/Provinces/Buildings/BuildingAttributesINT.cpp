@@ -5,7 +5,7 @@
 
 using namespace PROV;
 
-int Provinces::getCapacity(BUILD::BuildingsEnum name) {
+int Provinces::getCapacity(BUILD::BuildingsEnum name) { 
 	//For debugging
 	INF::debugFunction("Buildings, getCapacity");
 	std::shared_ptr<BuildingsBASE> currentBuilding = getBuilding(name);
