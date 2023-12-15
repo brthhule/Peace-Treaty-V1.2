@@ -7,6 +7,7 @@
 class Residences : BuildingsBASE {
 public:
 	Residences();
+	~Residences() {}
 private:
 };
 

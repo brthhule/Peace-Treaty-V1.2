@@ -9,7 +9,6 @@
 
 using namespace INF;
 
-
 namespace Input 
 {
 	/*	SELECT_ENEMY_ACTION,
@@ -39,18 +38,18 @@ namespace Input
 		TRAIN_MA_FUNCTION_UNITS
 	};
 
-	std::string promptsToString(Prompts p);
+	std::string promptsToString(Input::Prompts p);
 	extern std::array<std::string, 13> PROMPTS_STRING;
 	int getStringIndex(std::string arg);
-	Prompts stringToPrompts(std::string arg);
+	Input::Prompts stringToInput::Prompts(std::string arg);
 
 	//For prompt input
 	std::vector<std::string> getShowPrompt(std::string prompt);
 
-	std::string 
+	std::string
 		getOptionPromptQuery(std::vector<std::string>AV),
-		getOptionPrompt(Prompts p),
-		getInputQuery(std::vector<std::string>AV),
-		getInputText(std::string text, std::vector<std::string> AV);
+		getOptionPrompt(Input::Prompts p),
+		getInputQuery(std::vector<std::string>AV);
+	std::string getInputText(std::string text, std::vector<std::string> AV);
 };
 #endif

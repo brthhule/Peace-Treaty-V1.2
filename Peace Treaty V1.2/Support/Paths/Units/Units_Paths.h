@@ -24,7 +24,4 @@
 #define PARTICIPANTS_
 #define PARTICIPANTS_HEADER "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Header-Files\Units\Participants.h"
 
-#define PROVINCES_
-#define PROVINCES_HEADER "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Header-Files\Units\Provinces.h"
-
 #endif

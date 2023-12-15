@@ -14,6 +14,9 @@ using namespace COMM;
 
 class Mobility {
 public:
+	Mobility(){}
+	~Mobility(){}
+
 	virtual void moveUnitOne(commSPTR commander) = 0;
 	virtual std::vector <provSPTR> moveUnitTwo(commSPTR commander) = 0;
 };

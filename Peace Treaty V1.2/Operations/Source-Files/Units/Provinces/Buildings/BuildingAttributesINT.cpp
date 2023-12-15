@@ -14,21 +14,24 @@ int Provinces::getCapacity(BUILD::BuildingsEnum name) {
 }
 
 /*Use returnArray or returnInt for arrayArg*/
-i5array Provinces::getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount) {
+i5array Provinces::getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount) { 
 	//For debugging
 	INF::debugFunction("Buildings, getResourceProduction");
 
-	i5array arrayCopy, returnArray;
-	BuildingsBASE* building = getBuilding(name);
+	i5array arrayCopy, returnArray; 
+	std::shared_ptr<BuildingsBASE> building = getBuilding(name);  
+	std::shared_ptr<ResourceBuildingsBASE> resourceBuilding = std::dynamic_pointer_cast<ResourceBuildingsBASE> (building);
 
 
-	switch (amount) {
+	switch (amount) { 
 		case SINGLE:
-			returnArray[0] = arrayCopy[name] * resourceProduction[name];
+			returnArray[0] = arrayCopy[name] * resourceBuilding->getProudctionRate();
+			delete resourceBuilding;
 			break;
 		case ALL:
 			for (int x = 0; x < 5; x++) {
-				returnArray[0] = arrayCopy[x] * resourceProduction[x];
+				ResourceBuildingsBASE building = (ResourceBuildingsBASE)buildings.at(x); 
+				returnArray[0] = arrayCopy[x] * building.getProudctionRate(); 
 			}
 			break;
 	}
@@ -44,45 +47,21 @@ i5array Provinces::getResourceProduction(BUILD::BuildingsEnum name, INF::Quantit
 *quant: is whether or not only 1 level or all levels of a type of building is being mutated.
 *
 *direction: determines whether the process is addition or subtraction.*/
-void Provinces::mutateLevel(BUILD::BuildingType type, int name, i5array amount, INF::Quantity quant, INF::MutateDirection direction) {
+void Provinces::mutateLevel(BuildingsEnum name, MutateDirection direction, int amount) {
 	//For debugging
 	INF::debugFunction("Buildings, mutateLevel");
-
-	i5array arrayCopy = *levels.first;
-	if (type) {
-		arrayCopy = *levels.second;
+	if (direction == DECREASE) {
+		amount *= -1;
 	}
-
-	switch (quant) {
-		case SINGLE:
-			switch (direction) {
-				case INCREASE:
-					arrayCopy[name] += amount[0];
-					break;
-				case DECREASE:
-					arrayCopy[name] -= amount[0];
-					break;
-			}
-			break;
-		case ALL:
-			arrayCopy = INF::mutateArray(arrayCopy, amount, direction);
-			break;
-	}
-
-	if (type) {
-		*levels.second = arrayCopy;
-		return;
-	}
-	*levels.first = arrayCopy;
-	return;
+	buildings.at(name).increaseLevel(amount);
 }
 
 /*Return the amount of troops trained this turn - troopsTrainedThisTurn*/
-int Provinces::getTroopsTrainedThisTurn() {
+const int& Provinces::getTroopsTrainedThisTurn() {
 	//For debugging
 	INF::debugFunction("Buildings, getTroopsTrainedThisTurn");
-
-	return troopsTrainedThisTurn;
+	Barracks building = static_cast<Barracks>(buildings.at(BARRACKS));
+	return building.getTroopsTrainedThisTurn;
 }
 
 void Provinces::printBuildingStats()
@@ -158,8 +137,12 @@ void Provinces::displayListOfBuildings() {
 	}
 }
 
-std::shared_ptr<BuildingsBASE> Provinces::getBuilding(BUILD::BuildingsEnum type) {
-	return buildings.at(type);
+std::shared_ptr<BuildingsBASE> Provinces::getBuilding(BUILD::BuildingsEnum name) {
+	return std::make_shared(buildings.at(type));
+}
+
+const BuildingsBASE& Provinces::getBuildingConst(BUILD::BuildingsEnum name) {
+	return &buildings.at(name);
 }
 
 

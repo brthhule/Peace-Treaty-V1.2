@@ -27,6 +27,9 @@ class PlayerAction
 {
 
 public:
+	PlayerAction(){}
+	~PlayerAction(){}
+
 	char virtual randomAction() = 0;
 	virtual void
 		initialDecision() = 0,

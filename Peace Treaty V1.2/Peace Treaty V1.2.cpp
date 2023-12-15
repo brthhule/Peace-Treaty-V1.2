@@ -206,9 +206,11 @@ void endScreen() {
 	INF::debugFunction("main, endScreen");
 
 	std::vector<Participants>* participantsListCopy = db.getParticipantsList();
-	partSPTR currentParticipant = new Participants;
+	partSPTR currentParticipant;
 
+	//Only one is surviving, iterates through to find that participant
 	for (int x = 0; x <= (signed)participantsListCopy->size(); x++) {
+		currentParticipant = participantsListCopy->at(x);
 		if (currentParticipant->isAlive()) {
 			currentParticipant = &participantsListCopy->at(x);
 		}

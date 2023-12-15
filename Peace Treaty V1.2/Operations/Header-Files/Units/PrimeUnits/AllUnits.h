@@ -24,12 +24,13 @@ namespace UNIT {
 		using unitSPTR = std::shared_ptr<AllUnits>;
 		using troopConditionArray = INF::Array5<T5array>;
 		using unitSPTRList = std::vector<unitSPTR>;
-		
+
 		//----Constructors----
 		//One param overloaded Constructor
 		AllUnits(int index);
 		//Default Constructor
 		AllUnits();
+		~AllUnits(){}
 
 		const int& getCP();
 		const int& getParticipantIndex();

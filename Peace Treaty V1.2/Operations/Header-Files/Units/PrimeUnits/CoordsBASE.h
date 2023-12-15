@@ -15,6 +15,9 @@ EXTENDED_ BY_ ALL_UNITS_
 class CoordsBASE
 {
 public:
+	CoordsBASE(){}
+	~CoordsBASE(){}
+
 	/*SYSTEM, USER*/
 	enum CoordsType { SYSTEM, USER };
 

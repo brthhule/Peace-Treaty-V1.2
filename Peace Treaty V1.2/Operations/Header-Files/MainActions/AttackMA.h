@@ -28,6 +28,9 @@ class AttackMA
 		INPUT_
 {
 public:
+	AttackMA(){}
+	~AttackMA(){}
+
 	virtual commSPTR pickCommanderAttack(std::vector<commSPTR> commandersCanAttack) = 0;
 
 	virtual void mainAttackMA(provSPTR, commSPTR attackingCommander) = 0;

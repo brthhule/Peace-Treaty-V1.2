@@ -25,6 +25,8 @@ class ScoutMA {
 		INF_
 		INPUT_
 public:
+	ScoutMA(){}
+	~ScoutMA(){}
 	//for null value, use scoutTypes nullValue ({}, {});
 	using scoutTypes = std::pair<COMM::commSPTRList, PROV::provSPTRList>;
 

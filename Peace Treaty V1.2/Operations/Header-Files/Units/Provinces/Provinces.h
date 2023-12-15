@@ -29,22 +29,23 @@ using namespace UNIT;
 namespace PROV {
 	class Provinces :
 		EXTENDS_
-		BASE_CLASS public AllUnits,
-		BASE_CLASS public CoordsBASE,
+			BASE_CLASS public AllUnits,
 		IMPLEMENTS_
-		INTERFACE public MABuildINT,
-		INTERFACE public BuildingAttributesINT
+			INTERFACE public MABuildINT,
+			INTERFACE public BuildingAttributesINT
 		COMPRISES_
-		COMMANDERS_
-		PROVINCE_REPORT_
-		RESOURCES_BUILDINGS_BASE_
+			COMMANDERS_
+			PROVINCE_REPORT_
+			RESOURCES_BUILDINGS_BASE_
 		USES_
-		INF_
-		INPUT_
+			INF_
+			INPUT_
 	{
 	public:
 		CONSTRUCTOR
+			Provinces(){}
 			Provinces(int overallIndexArg);
+			~Provinces() {}
 
 			/*Initialization*/
 		bool
@@ -112,13 +113,27 @@ namespace PROV {
 		//Returns an array of Resource/Other buildings levels
 		const std::array<int&, 5> getTypeLevels(BUILD::BuildingType type);
 
-		void mutateLevel(
-			BUILD::BuildingType type,
-			int name, INF::i5array amount,
-			INF::Quantity quant,
-			INF::MutateDirection direction);
+		/** mutateLevel__ Changes the level of a building
 
-		int getTroopsTrainedThisTurn();
+			@param name__ the name of the building being changed
+			@param direction__ changing the level in an increasing/decreasing direction
+			@param amount__ the amount the level is being changed by, usually 1, always positive
+			@return void
+		*/
+		void mutateLevel(BuildingsEnum name, MutateDirection direction, int amount);
+
+		/** getTroopsTrainedThisTurn__ returns the amount of troops trained this turn
+
+			@param void
+			@return void
+		*/
+		const int& getTroopsTrainedThisTurn();
+
+		/** getProvinceLevel__ returns the level of this province by averaging all building levels
+
+			@param void
+			@return void
+		*/
 		int getProvinceLevel();
 
 		//Void Accessors
@@ -130,7 +145,8 @@ namespace PROV {
 		void initiailizeCapitalBuildings();
 		void initializeEmptyBuildings();
 
-		virtual std::shared_ptr<BuildingsBASE> getBuilding(BUILD::BuildingsEnum name);
+		std::shared_ptr<BuildingsBASE> getBuilding(BUILD::BuildingsEnum name);
+		const BuildingsBASE& getBuildingConst(BUILD::BuildingsEnum name);
 	BUILDING_ATTRIBUTES_INT_ END
 
 
@@ -167,11 +183,12 @@ namespace PROV {
 		//Index within reports is the report. Index of report object is the participant the report belongs to
 		typedef std::vector<std::pair<int, ProvinceReport >> reports;
 		std::vector<reports> scoutReports;
+		std::array<BuildingsBASE, 10> buildings;
 	};
 
 	using provSPTR = std::shared_ptr<Provinces>;
 	using provMAP = std::unordered_map<std::string, provSPTR>;
 	using provSPTRList = std::vector<provSPTR>;
-
+	
 }
 #endif

@@ -22,7 +22,7 @@ void Participants::initialDecision() {
 
 		this->showMap();
 
-		courseOfAction = Input::getOptionPrompt(PLAYER_ACTION).at(0);
+		courseOfAction = Input::getOptionPrompt(PLAYER_ACTION).at(0); 
 	} else {
 		// If the participant is the AI
 		courseOfAction = randomAction();
@@ -34,7 +34,7 @@ void Participants::initialDecision() {
 	switch (courseOfAction) {
 		case 'B': {
 			provSPTR newProvince = pickYourProvince(1);
-			newProvince->playerBuildFunction();
+			newProvince->mainBuildFunction();
 			break;
 		}
 		case 'T': {

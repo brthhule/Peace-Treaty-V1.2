@@ -74,7 +74,6 @@ void Participants::upgradeCommander() {
 		std::cout << "Upgrade successful; Commander " + commander->getUnitName() + "is now level " << commander->getLevel() << std::endl;
 	} else {
 		//Add subtracted resources back to province resources
-		getCapitalProvince()->modifyResources(costsArray, INF::INCREASE);
 		std::cout << "Upgrade failed. " << std::endl;
 	}
 
@@ -134,15 +133,16 @@ void Participants::proceedWithTraining(i5array trainCosts) {
 
 	bool trainingSuccess = getCapitalProvince()->subtractCheckResources(trainCosts);
 
-	if (trainingSuccess == true) {
+	if (trainingSuccess == false) {
+		std::cout << "Commander training failed (Not enough resources)... \n\n";
+		return;
+	}
+
 		addCommander();
 
-		println("Commander training successful ");
-		std::cout << "Current commanders: " << this->getCommandersNum() << std::endl;
-	} else {
-		std::cout << "Commander training failed (Not enough resources)... \n\n";
-		getCapitalProvince()->modifyResources(trainCosts, INCREASE);
-	}
+	println("Commander training successful ");
+	std::cout << "Current commanders: " << this->getCommandersNum() << std::endl;
+	return;
 }
 
 void Participants::deployCommanderMF() {
@@ -159,24 +159,29 @@ void Participants::deployCommanderMF() {
 	std::cout << "Deploy commander " + commander->getUnitName() + "? (Y/N) ";
 	char confirmDeploy = Input::getInputText("Replacement", { "Y", "N" }).at(0);
 
-	if (confirmDeploy == 'Y')
-	{
-		if (commander->hasMoved() == false) {
-			this->moveUnitOne(commander);
-		} else {
-			std::cout << "This unit has already moved... please pick another unit \n";
-			deployCommanderMF();
-		}
-
-		INF::enterAnything(1);
+	if (confirmDeploy == 'N') {
+		std::cout << "Returning to the previous page...\n";
+		return;
 	}
+
+	if (commander->hasMoved() == false) {
+		this->moveUnitOne(commander);
+		return;
+	} 
+
+	std::cout << "This unit has already moved... please pick another unit \n";
+	deployCommanderMF();
+	INF::enterAnything(1);
 }
 
-void Participants::printCosts(std::vector<int> costs, std::string type) {
+void Participants::printCosts(std::vector<int> costs, int phrase) {
+	if (phrase == 1) {
+		line = "Commander upgrade"
+	}
 	//For debugging
 	INF::debugFunction("ArmyOverview, printCosts");
 
-	std::cout << "The following are the " << type << " costs: \n";
+	std::cout << "The following are the " << line << " costs: \n";
 	for (int x = 0; x < 5; x++) {
 		std::cout << INF::RESOURCE_NAMES[x] << ": " << costs[x];
 	}

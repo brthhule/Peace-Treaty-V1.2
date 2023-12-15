@@ -117,7 +117,7 @@ namespace Input {
 		return getOptionPromptQuery(AV);
 	}
 
-	std::string Input::getOptionPrompt(Prompts p) {
+	std::string getOptionPrompt(Prompts p) {
 		//For debugging
 		INF::debugFunction("Input, getOptionPrompt");
 
@@ -146,7 +146,7 @@ namespace Input {
 		return getInputQuery(AV);
 	}
 
-	std::string getInputText(std::string text, std::vector<std::string> AV) {
+	std::string Input::getInputText(std::string text, std::vector<std::string> AV) {
 		//For debugging
 		INF::debugFunction("Iput, getInputText");
 
@@ -161,7 +161,7 @@ namespace Input {
 		return input;
 	}
 
-	std::string Input::promptsToString(Prompts p) {
+	std::string promptsToString(Prompts p) {
 		//For debugging
 		INF::debugFunction("CV, promptsToString");
 

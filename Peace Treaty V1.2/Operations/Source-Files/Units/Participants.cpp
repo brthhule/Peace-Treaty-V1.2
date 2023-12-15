@@ -53,20 +53,6 @@ provSPTR Participants::getCapitalProvince() {
 	return capitalProvince; 
 }
 
-provSPTR Participants::getProvince(ipair userCoords) {
-	//For debugging
-	INF::debugFunction("Participants, getProvince");
-	
-	for (provSPTR province : provincesVector) {
-		if (province->getCoords(CoordsBASE::USER) == userCoords) {
-			return province;
-		}
-	}
-
-	std::cout << "Error occurred, error path...\n";
-	return NULL;
-}
-
 int Participants::getProvincesNum() { 
 	//For debugging
 	INF::debugFunction("Participants, getProvincesNum");
@@ -120,7 +106,7 @@ void Participants::addCommander() {
 	newCommander.setCoords(tempSystemCoords, tempUserCoords);
 
 	commandersVector.push_back(newCommander);
-	commSPTR commanderPtr = &commandersVector[commandersVector.size() - 1];
+	commSPTR commanderPtr = std::make_shared(commandersVector.size() - 1);
 	commandersMap[newCommander.getUnitName()] = commanderPtr;
 
 	getCapitalProvince()->addCommander(commanderPtr);
@@ -209,8 +195,9 @@ std::vector<int> Participants::calculatePlayerValues(int decision) {
 	}
 	case 2: {
 		std::vector<int> newArray;
-		for (int x : troopsLost)
+		for (int x : troopsLost) {
 			newArray.push_back(x);
+		}
 		return newArray;
 	}
 	}
@@ -482,16 +469,18 @@ void Participants::showMapOld() {
 
 
 
-bool Participants::subtractCheckResources(AllUnits unit, i5array costs) {
+bool Participants::subtractCheckResources(unitSPTR unit, i5array resources) {  
 	//For debugging
 	INF::debugFunction("Participants, subtractCheckResources");
-
-	provSPTR newProvince = getProvince(provinceName);
-	//returns false if resources dip into negatives
-	newProvince->modifyResources(resourcesArray, false);
-	for (int x : newProvince->getAllResources())
-		if (x < 0)
+	unit->modifyResources(costs, DECREASE);  
+	for (int x : unit->getAllResources()) { 
+		if (x < 0) {
+			//Undo subtractions
+			unit->modifyResources(costs, INCREASE); 
 			return false;
+		}
+	}	
+	//Original resources array is greater than the resources being subtracted
 	return true;
 }
 
@@ -620,7 +609,7 @@ provSPTR Participants::pickProvince(int phrase) {
 
 	//Cancel action
 	if (xUserCoord == -1 || yUserCoord == -1) {
-		return std::make_pair(NULL, NULL);
+		return nullptr;
 	}
 
 	return getUserProvince(std::make_pair(xUserCoord, yUserCoord));
@@ -699,7 +688,7 @@ VOID Participants::getAllUnitsArrayCommanders() {
 	//For debugging
 	INF::debugFunction("Participants, getAllUnitsArrayCommanders");
 
-	for (Commanders instance : commandersVector) {
+	for (commSPTR instance : commandersVector) { 
 		i5array commanderArray = instance.getTroop(REGULAR, -1, ALL);
 		INF::mutateArray(allCommandersArray, commanderArray, INCREASE);
 	}
@@ -759,9 +748,7 @@ ipair Participants::pickCoords() {
 	//For debugging
 	INF::debugFunction("Participants, pickCoords");
 
-	partSPTR tempParticipant = std::make_shared(new Participants());
-	tempParticipant->showMap();
-	delete tempParticipant;
+	showMap(); 
 
 	std::string
 		xCoordinateString,

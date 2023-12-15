@@ -127,7 +127,7 @@ void Participants::playerCommitAttack(provSPTR defendingProvince,  commSPTR atta
 	calculateTroopsLost(attackingCommander, attackerLostCP, troopsLost, 0);
 
 	//Fix this later
-	TroopUnitsBASE::TroopType type = TroopUnitsBASE::GUARDS; 
+	TroopUnitsBASE::TroopTypes type = TroopUnitsBASE::GUARDS; 
 	int troopTier = 1;
 
 	for (int x = 0; x < 5; x++) {

@@ -22,7 +22,10 @@ class MapMA {
 		INF_
 		INPUT_
 public:
-	virtual void
+	MapMA(){}
+	~MapMA(){}
+
+	virtual void 
 		viewPlayerMap() = 0,
 		selectUnitOriginal(provSPTR selectedProvince) = 0,
 		selectPlayerProvince(provSPTR province) = 0,

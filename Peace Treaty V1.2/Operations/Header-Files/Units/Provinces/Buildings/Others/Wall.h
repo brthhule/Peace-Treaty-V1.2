@@ -7,6 +7,7 @@
 class Wall : BuildingsBASE {
 public:
 	Wall();
+	~Wall(){}
 private:
 };
 

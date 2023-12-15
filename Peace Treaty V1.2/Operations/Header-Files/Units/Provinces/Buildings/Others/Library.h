@@ -7,6 +7,7 @@
 class Library : BuildingsBASE {
 public:
 	Library();
+	~Library(){}
 private:
 };
 

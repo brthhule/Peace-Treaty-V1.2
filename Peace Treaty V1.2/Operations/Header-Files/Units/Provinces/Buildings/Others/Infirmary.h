@@ -7,6 +7,7 @@
 class Infirmary : BuildingsBASE {
 public:
 	Infirmary();
+	~Infirmary(){}
 private:
 };
 

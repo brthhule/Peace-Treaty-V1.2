@@ -224,7 +224,7 @@ void AllUnits::mutateTroop(INF::TroopCondition troopCondition, TroopUnitsBASE::T
 void AllUnits::setBattleFormation(troopConditionArray troopArray) {
 	std::cout << "Welcome to the Battle Formation menu.\n";
 	std::cout << "Please select a battle formation option: ";
-	std::cout << ""
+	std::cout << "";
 }
 
 

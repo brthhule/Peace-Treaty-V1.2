@@ -19,7 +19,10 @@ class ArmyOverviewMA
 		INF_ 
 		INPUT_
 {
-protected:
+public:
+	ArmyOverviewMA(){}
+	~ArmyOverviewMA(){}
+
 	virtual void
 		printCosts(i5array, int phrase) = 0;
 

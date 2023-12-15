@@ -7,7 +7,10 @@
 class Barracks : BuildingsBASE {
 public:
 	Barracks();
+	~Barracks(){}
+	const int& getTroopsTrainedThisTurn();
 private:
+	int troopsTrainedThisTurn;
 };
 
 #endif

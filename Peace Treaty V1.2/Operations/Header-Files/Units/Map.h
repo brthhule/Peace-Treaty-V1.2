@@ -22,6 +22,7 @@ public:
 METHODS START
 	CONSTRUCTOR
 	Map();
+	~Map(){}
 
 	GETTER SETTER CALCULATE
 	static void 

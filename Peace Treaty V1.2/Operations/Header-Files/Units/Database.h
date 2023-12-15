@@ -16,20 +16,21 @@ using namespace PART;
 
 //Clase for an object that contians everything in the system/game
 //Purpose: from now on, create 
-class Database
-	COMPRISES_
-		PARTICIPANTS_
-	USES_ 
-		INF_
+
+COMPRISES_
+	PARTICIPANTS_
+USES_ 
+	INF_
+class Database	
 {
 public:
 	//Constructor
 	Database();
+	~Database(){}
 
 	void createMap();
 	void initializeParticipants(int totalPlayers, int humanPlayers);
 	void updateTurnResources();
-	void setMaxCommanders(int num);
 	void setCurrentParticipant(partSPTR p);
 	void createCapitals();
 

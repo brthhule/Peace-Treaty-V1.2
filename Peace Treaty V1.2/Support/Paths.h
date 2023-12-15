@@ -30,7 +30,7 @@
 #define IMPLEMENTED_
 #define BY_
 #define COMPRISES_
-#define USES_
+#define USES_  
 #define NOTHING_
 
 //MainActions Folder

@@ -120,7 +120,7 @@ INF::i5array Provinces::getTotalResources()
 	INF::debugFunction("Provinces, getTotalResources");
 
 	INF::i5array totalResources = resourcesPresent;
-	Commanders::commMAP::iterator it;
+	COMM::commMAP::iterator it; 
 	for (it = commandersMap.begin(); it != commandersMap.end(); it++)
 		for (int y = 0; y < 5; y++)
 			totalResources[y] += it->second->getResource(y);
@@ -315,7 +315,7 @@ std::string Provinces::getKingdomName() {
 }
 
 int Provinces::getCommanderIndex(commSPTR commander) {
-	for (int index = 0; index < commandersVector.size(); index++) {
+	for (int index = 0; index < (int)commandersVector.size(); index++) {
 		if (commander == commandersVector.at(index)) {
 			return index;
 		}

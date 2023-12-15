@@ -29,7 +29,7 @@ public:
 	};
 
 	/*Constructor*/
-	Troops(
+	TroopUnitsBASE(
 		int level, 
 		int baseHalth,
 		int tier,

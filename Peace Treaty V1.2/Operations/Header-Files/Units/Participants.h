@@ -34,6 +34,7 @@
 #include PLAYER_ACTION_HEADER
 #include PROVINCES_HEADER
 #include SCOUT_MA_HEADER
+#include TRAIN_MA_HEADER
 
 using namespace INF;
 using namespace PROV;
@@ -63,11 +64,14 @@ namespace PART {
 			INF_
 	{
 	public:
+		using partSPTR = std::shared_ptr<Participants>;
+		using partSPTRList = std::vector<partSPTR>;
 		static std::vector<partSPTR> playersList;
 		static std::vector<partSPTR> botsList;
-
+		
 		CONSTRUCTOR Participants();
 		CONSTRUCTOR Participants(int pIndex);
+		~Participants(){}
 
 		CALCULATE GETTER
 			i5array
@@ -85,8 +89,13 @@ namespace PART {
 
 		GETTER std::unordered_map<std::string, COMM::commSPTR> getCommandersMap();
 
-		BOOL
-			subtractCheckResources(String provinceName, INF::i5array resourcesArray);
+		/** subtractCheckResources__ subtracts resources from a unit. If any resources go into the negative from subtractions, reverse the subtraction and return false. Otherwise, return true
+		* 
+		* @param unit__ the unit being modified
+		* @param resources__ the array of resources being subtracted
+		* @return bool__ true or false
+		*/
+		BOOL subtractCheckResources(unitSPTR unit, INF::i5array resourcesArray);
 
 		CHECK BOOL
 			hasProvince(std::string name),

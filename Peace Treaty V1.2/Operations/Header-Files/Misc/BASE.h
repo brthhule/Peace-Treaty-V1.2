@@ -5,6 +5,8 @@
 class BASE {
 public:
 	BASE();
+	~BASE() {}
+
 	bool getNullCondition();
 	void setNullCondition(bool nullConditionArg);
 private:

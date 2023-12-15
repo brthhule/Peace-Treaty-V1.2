@@ -1,14 +1,16 @@
 #ifndef BUILDINGSBASE_H
 #define BUILDINGSBASE_H
 
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h";
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 
 #include INF_HEADER
 
 //Have to implement workers/buildiner/civillians functionality
 class BuildingsBASE {
 public:
+	BuildingsBASE(){}
 	BuildingsBASE(INF::d5array baseUpgradeRatesArg);
+	~BuildingsBASE(){}
 
 	void increaseLevel(int amount);
 	const int& getLevel();

@@ -12,7 +12,10 @@ class MABuildINT
 	USES_
 		BUILD_ 
 {
-protected:
+public:
+	BuildMA(){}
+	~BuildMA(){}
+
 	virtual void mainBuildFunction() = 0;
 	virtual void selectUpgradeBuilding() = 0;
 	virtual void upgradeBuilding(char optionChar) = 0;
