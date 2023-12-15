@@ -156,17 +156,21 @@ public:
 	const provSPTR tempProvince = new Provinces;
 
 ARMY_OVERVIEW_MA_ START
-	void printCosts(std::vector<int>costs, std::string type);
-	/** armyDeploymentMF
-		Compare two Types
-
-		@param l Type lhs
-		@param r Type rhs
-		@return boolean result
+	/** printCosts__ Print commander upgrade costs
+	
+		@param costs__ array with resource costs amount
+		@param phrase__ 1 prints "commander upgrade"
+		@return void
 	*/
+	void printCosts(i5array costs, int phrase);
 
+	/** armyOverviewMain
+		Main method for ArmyOverviewMA
 
-	//void armyDeploymentMF();
+		@param void
+		@return void
+	*/
+	void armyOverviewMain();
 	void trainCommanders();
 	void proceedWithTraining(i5array trainCosts);
 	void upgradeCommander();

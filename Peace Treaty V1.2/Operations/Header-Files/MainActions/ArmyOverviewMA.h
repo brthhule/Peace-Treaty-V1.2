@@ -21,9 +21,9 @@ class ArmyOverviewMA
 {
 protected:
 	virtual void
-		printCosts(std::vector<int>costs, std::string type) = 0;
+		printCosts(i5array, int phrase) = 0;
 
-	virtual void armyDeploymentMF() = 0;
+	virtual void armyOverviewMain() = 0;
 	virtual void
 		trainCommanders() = 0,
 		proceedWithTraining(std::array <int,5> trainCosts) = 0,

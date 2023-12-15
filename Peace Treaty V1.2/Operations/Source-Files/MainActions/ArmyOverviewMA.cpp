@@ -1,13 +1,12 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 #include PARTICIPANTS_HEADER 
 
-//Hello
-void Participants::armyDeploymentMF() { 
+void Participants::armyOverviewMain() { 
 	//For debugging
-	INF::debugFunction("ArmyOverview, armyDeploymentMF");
+	INF::debugFunction("ArmyOverview, armyOverviewMain");
 	using func = void(Participants::*)();
 
-	println("Welcome to the Army Deployment action menun\n");
+	println("Welcome to the Army Overview action menu\n");
 	switch (Input::getOptionPrompt(ARMY_DEPLOYMENT).at(0)) {
 		case 'T':
 			trainCommanders();
@@ -31,7 +30,7 @@ void Participants::armyDeploymentMF() {
 		}
 	}
 
-	armyDeploymentMF();
+	armyOverviewMain();
 }
 
 void Participants::upgradeCommander() {
@@ -53,7 +52,7 @@ void Participants::upgradeCommander() {
 	}
 
 	i5array costsArray = commander->getUpgradeCosts();
-	commander->printCosts(costsArray);
+	printCosts(costsArray, "commander upgrade");
 
 	char proceedWithUpgradeQuestion =
 		Input::getInputText("\nProceed with upgrade? ", { "Y", "N" }).at(0);
