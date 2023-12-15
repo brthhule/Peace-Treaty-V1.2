@@ -6,12 +6,13 @@
 #include <vector>
 #include <unordered_map>
 
-#include "../Reports/CommanderReport.h"
-#include "../Commanders.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
+#include COMMANDER_REPORT_HEADER
+#include COMMANDERS_HEADER 
 
 class ProvinceReport {
 public:
-	using commSPTR = Commanders::commSPTR;
+	using commSPTR = COMM::commSPTR;
 
 	ProvinceReport(int scouterLevelArg,
 		int targetLevelArg,

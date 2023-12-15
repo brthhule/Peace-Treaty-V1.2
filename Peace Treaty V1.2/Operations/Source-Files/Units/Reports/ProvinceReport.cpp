@@ -1,5 +1,5 @@
-#pragma once
-#include "ProvinceReport.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
+#include PROVINCE_REPORT_HEADER
 
 ProvinceReport::ProvinceReport(int scouterLevelArg,
 	int targetLevelArg,

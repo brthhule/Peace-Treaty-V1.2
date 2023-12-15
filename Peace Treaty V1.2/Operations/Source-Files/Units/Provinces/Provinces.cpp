@@ -1,6 +1,8 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
-#include PROVINCES_HEADER
+#include PROVINCES_HEADER 
 #include INPUT_HEADER
+
+using namespace PROV;
 
 //Don't use default constructor, just just this with -1 as a parameter
 Provinces::Provinces(int overallIndexArg) {
@@ -127,7 +129,7 @@ INF::i5array Provinces::getTotalResources()
 }
 
 //Convert unordered_map to vector for easy understanding
-Commanders::commSPTRList Provinces::getAllCommanders()
+COMM::commSPTRList Provinces::getAllCommanders()
 {
 	//For debugging
 	INF::debugFunction("Provinces, getAllCommanders");
@@ -140,7 +142,7 @@ Commanders::commSPTRList Provinces::getAllCommanders()
 	return commandersList;
 }
 
-Commanders::commSPTR Provinces::getCommander(std::string name) { 
+COMM::commSPTR Provinces::getCommander(std::string name) { 
 	//For debugging
 	INF::debugFunction("Provinces, getCommander");	
 	return commandersMap[name];

@@ -1,4 +1,5 @@
-#include "CommanderReport.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
+#include COMMANDER_REPORT_HEADER
 
 CommanderReport::CommanderReport() {
 	//For debugging

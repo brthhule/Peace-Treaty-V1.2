@@ -1,6 +1,8 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 #include DATABASE_HEADER
 
+
+
 Database::Database() {
 	//For debugging
 	INF::debugFunction("Database, Database");

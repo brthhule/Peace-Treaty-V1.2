@@ -1,4 +1,7 @@
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Participants.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
+#include PARTICIPANTS_HEADER
+
+using namespace PART;
 
 //Main TrainMA function
 void Participants::TrainMAFunction() {
@@ -26,7 +29,7 @@ void Participants::TrainMAFunction() {
 
     std::cout << "What type of troop do you want to upgrade?\n";
     int troopTypeNum = Input::getOptionPrompt(TRAIN_MA_FUNCTION_UNITS);
-    Troops::TroopTypes troopType = Troops::TroopTypes(1);
+    TroopUnitsBASE::TroopTypes type = TroopUnitsBASE::(1);
         
 
     std::cout << "The max tier troop you can train: " << troopTier << ", " << INF::TROOP_NAMES[troopTier - 1] << std::endl;

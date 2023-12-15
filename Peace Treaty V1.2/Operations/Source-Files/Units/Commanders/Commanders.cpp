@@ -1,6 +1,8 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 #include COMMANDERS_HEADER
 
+using namespace COMM;
+
 /*Constructors*/
 Commanders::Commanders() {
 	//For debugging
@@ -47,7 +49,7 @@ void Commanders::printCommanderStats() {
 }
 
 ////////////Accessors//////////////////
-int Commanders::getCommanderStat(int index) {
+const int& Commanders::getCommanderStat(int index) {
 	//For debugging
 	INF::debugFunction("Commanders, getCommanderStat");
 
@@ -112,7 +114,7 @@ void Commanders::resetCommanderMoved() {
 	moved = false;
 }
 
-std::string Commanders::getCommanderNameLevel() {
+const std::string& Commanders::getCommanderNameLevel() {
 	return "Name: " + getUnitName() + ", Level: " + getLevel();
 }
 

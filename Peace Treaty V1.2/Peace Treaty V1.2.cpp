@@ -181,7 +181,8 @@ void gamePlay() {
 	//Check game end
 	//If there are more than one players, keep playing
 	int participantsAlive = 0;
-	for (Participants newParticipant : *db.getParticipantsList()) {
+	std::vector<Participants>* list = db.getParticipantsList();
+	for (Participants newParticipant : *list) {
 		if (newParticipant.isAlive() == true) {
 			participantsAlive++;
 		}

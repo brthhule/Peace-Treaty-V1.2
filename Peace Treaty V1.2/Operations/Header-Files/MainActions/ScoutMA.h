@@ -26,19 +26,17 @@ class ScoutMA {
 		INPUT_
 public:
 	//for null value, use scoutTypes nullValue ({}, {});
-	using scoutTypes = std::pair<Commanders::commSPTRList, Provinces::provSPTRList>;
-	using unitSPTR = AllUnits::unitSPTR;
-	using commSPTR = Commanders::commSPTR;
+	using scoutTypes = std::pair<COMM::commSPTRList, PROV::provSPTRList>;
 
 	virtual void mainScoutMA (provSPTR provinceArg) = 0;
 	virtual scoutTypes selectTarget(provSPTR targetProvince) = 0;
 
 	// Functions
-	virtual std::pair<unitSPTR, int> playerScoutStepTwo(scoutTypes canScout, provSPTR targetProvince) = 0;
+	virtual std::pair<AllUnits::unitSPTR, int> playerScoutStepTwo(scoutTypes canScout, provSPTR targetProvince) = 0;
 	
 
-	virtual unitSPTR selectUnitToScout(scoutTypes canScout) = 0;
-	virtual unitSPTR selectUnitToScoutTwo(scoutTypes canScout) = 0;
+	virtual AllUnits::unitSPTR selectUnitToScout(scoutTypes canScout) = 0;
+	virtual AllUnits::unitSPTR selectUnitToScoutTwo(scoutTypes canScout) = 0;
 
 	virtual scoutTypes getCanScout(provSPTR targetProvince) = 0;
 

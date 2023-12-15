@@ -1,7 +1,8 @@
 #include "pch.h"
 #include "CppUnitTest.h"
 
-#include "../Peace Treaty V1.2/Units/Misc/INF.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
+#include INF_HEADER
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 

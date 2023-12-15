@@ -1,9 +1,11 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
-#include ALL_UNITS_HEADER
+#include ALL_UNITS_HEADER 
+
+using namespace UNIT;
 
 //----Constructors----
 //One param overloaded Constructor
-AllUnits::AllUnits(int participantIndexArg) {
+AllUnits::AllUnits(int participantIndexArg) { 
 	//For debugging
 	INF::debugFunction("AllUnits, AllUnits (1 Param)");
 
@@ -156,14 +158,14 @@ void AllUnits::printResources(i5array resourcesArray) {
 }
 
 
-i5array AllUnits::getAllOneTroopArray(INF::TroopCondition troopCondition, Troops::TroopTypes type) {
+i5array AllUnits::getAllOneTroopArray(INF::TroopCondition troopCondition, TroopUnitsBASE::TroopTypes type) {
 	//For debugging
 	INF::debugFunction("Troops, getAllOneTroopArray");
 
 	return allTroopConditions.at(troopCondition.at(type));
 }
 
-int AllUnits::getAllOneTroopInt(INF::TroopCondition troopCondition, Troops::TroopTypes type) {
+int AllUnits::getAllOneTroopInt(INF::TroopCondition troopCondition, TroopUnitsBASE::TroopTypes type) {
 	i5array tempArray = getAllOneTroopArray(troopCondition, type);
 	INF::debugFunction("Troops, getAllOneTroopInt");
 
@@ -179,7 +181,7 @@ i5array AllUnits::getGenericTroops(TroopCondition troopCondition) {
 	i5array troopTotals = { 0,0,0,0,0 };
 
 	for (int x = 0; x < 5; x++) {
-		Troops::TroopTypes troopType = (Troops::TroopTypes)x;
+		TroopUnitsBASE::TroopTypes troopType = (TroopUnitsBASE::TroopTypes)x;
 		troopTotals.at(x) = getAllOneTroopInt(troopCondition, troopType);
 	}
 
@@ -188,7 +190,7 @@ i5array AllUnits::getGenericTroops(TroopCondition troopCondition) {
 
 //----Mutators----
 //Change troops of type index at this unit by amount
-void AllUnits::mutateTroop(INF::TroopCondition troopCondition, Troops::TroopTypes troopType, i5array amount, Quantity quant, INF::MutateDirection direction, int troopTier) {
+void AllUnits::mutateTroop(INF::TroopCondition troopCondition, TroopUnitsBASE::TroopTypes troopType, i5array amount, Quantity quant, INF::MutateDirection direction, int troopTier) {
 	//For debugging
 	INF::debugFunction("Troops, mutateTroop");
 

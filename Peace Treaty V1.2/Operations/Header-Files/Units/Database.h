@@ -10,6 +10,7 @@
 #include PARTICIPANTS_HEADER
 
 using namespace INF;
+using namespace PART;
 
 //constexpr int size = 10; // modern C++ same thing as #define SIZE 10
 
@@ -17,9 +18,9 @@ using namespace INF;
 //Purpose: from now on, create 
 class Database
 	COMPRISES_
-		
+		PARTICIPANTS_
 	USES_ 
-		INF_NAMESPACE
+		INF_
 {
 public:
 	//Constructor

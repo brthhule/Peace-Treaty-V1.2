@@ -1,4 +1,5 @@
-#include "Build.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
+#include BUILD_HEADER
 
 namespace BUILD {
 	std::array<std::string, 10> BuildingStrings = {

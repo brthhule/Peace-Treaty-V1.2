@@ -1,6 +1,8 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 #include PARTICIPANTS_HEADER 
 
+using namespace PART;
+
 void Participants::armyOverviewMain() { 
 	//For debugging
 	INF::debugFunction("ArmyOverview, armyOverviewMain");
@@ -43,7 +45,7 @@ void Participants::upgradeCommander() {
 		return;
 	}
 
-	Commanders::commSPTR commander = this->pickCommander();
+	COMM::commSPTR commander = this->pickCommander();
 
 	if (commander == nullptr) {
 		std::cout << "Cancelling upgrade...\n";

@@ -1,12 +1,16 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 #include PARTICIPANTS_HEADER
 
+using namespace COMM;
+using namespace PART;
+using namespace PROV;
+
 i5array Participants::allCommandersArray = {};
 i5array Participants::allProvincesArray = {};
 i5array trainCosts = { 5, 4, 3, 2, 1 };
 
-std::vector<partSPTR> Participants::playersList = {};
-std::vector<partSPTR> Participants::botsList = {};
+std::vector<Participants::partSPTR> Participants::playersList = {};
+std::vector<Participants::partSPTR> Participants::botsList = {};
 
 
 	// Constructor
@@ -233,8 +237,8 @@ std::string Participants::getNewName() {
 			getNewName();
 
 
-	for (it = commandersMap.begin(); it != commandersMap.end(); it++)
-		if (newName == it->second->getUnitName())
+	for (commIt = commandersMap.begin(); commIt != commandersMap.end(); commIt++)
+		if (newName == commIt->second->getUnitName())
 			getNewName();
 
 	return newName;
@@ -526,14 +530,14 @@ bool Participants::hasProvince(provSPTR province) {
 	return province->getParticipantIndex() == participantIndex;
 }
 
-commSPTR Participants::pickCommander() {
+commSPTR Participants::pickCommander() { 
 	//For debugging
 	INF::debugFunction("Participants, pickCommander");
 
 	this->displayCommanders();
 	std::string name = " ";
-	println("Enter the name of the commander you wish to select " + 
-		"(Enter - 1 to cancel selection) : ");
+	println(("Enter the name of the commander you wish to select " + 
+		"(Enter - 1 to cancel selection) : "));
 
 	getline(std::cin, name);
 
@@ -541,8 +545,8 @@ commSPTR Participants::pickCommander() {
 		std::cout << "Commander " << name << " selected...\n";
 		return commandersMap.at(name);
 	} else if (name != "-1") {
-		println("Invalid name entered. Please try again... " + 
-			"(Enter any character to continue)");
+		println(("Invalid name entered. Please try again... " + 
+			"(Enter any character to continue)"));
 
 		INF::enterAnything(1);
 		pickCommander();

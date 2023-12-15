@@ -11,7 +11,7 @@
 using namespace INF;
 
 BASE_CLASS
-EXTENDED_ BY_ 
+EXTENDED_ BY_ ALL_UNITS_
 class CoordsBASE
 {
 public:

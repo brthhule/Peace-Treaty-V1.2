@@ -1,4 +1,5 @@
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\ProvincesAttributes\BuildingBases\BuildingsBASE.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
+#include BUILDINGS_BASE_HEADER
 
 BuildingsBASE::BuildingsBASE(INF::d5array baseUpgradeRatesArg) {
 	level = 0; 

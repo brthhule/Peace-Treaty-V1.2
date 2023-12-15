@@ -1,6 +1,9 @@
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 #include <memory>
+
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 #include PROVINCES_HEADER
+
+using namespace PROV;
 
 int Provinces::getCapacity(BUILD::BuildingsEnum name) {
 	//For debugging
@@ -112,27 +115,21 @@ int Provinces::getProvinceLevel() {
 
 	int unitLevel = 0;
 
-	for (int x : resourceBuildingsLevels)
-		unitLevel += resourceBuildingsLevels[x];
-	for (int x : otherBuildingsLevels)
-		unitLevel += x;
-
-	unitLevel /= (int)resourceBuildingsLevels.size() + (int)otherBuildingsLevels.size();
-	return unitLevel;
-
+	for (BuildingsBASE build : buildings) {
+		unitLevel += build.getLevel();
+	}
+	
+	return unitLevel /= 10;;
 }
 
-void Provinces::resetTroopsTrainedThisTurn()
-
-{
+void Provinces::resetTroopsTrainedThisTurn() {
 	//For debugging
 	INF::debugFunction("Buildings, resetTroopsTrainedThisTurn");
 
 	troopsTrainedThisTurn = 0;
 }
 
-void Provinces::addTroopsTrainedThisTurn(int amount)
-{
+void Provinces::addTroopsTrainedThisTurn(int amount) {
 	//For debugging
 	INF::debugFunction("Buildings, addTroopsTrainedThisTurn");
 
@@ -148,11 +145,8 @@ void Provinces::initiailizeCapitalBuildings() {
 	resourceBuildingsLevels = getTypeLevels(RESOURCE);
 	otherBuildingsLevels = getTypeLevels(OTHER);
 
-	for (int& x : resourceBuildingsLevels) {
-		x = 1;
-	}
-	for (int& x : otherBuildingsLevels) {
-		x = 1;
+	for (BuildingsBASE building : buildings) {
+		building.increaseLevel(1);
 	}
 }
 

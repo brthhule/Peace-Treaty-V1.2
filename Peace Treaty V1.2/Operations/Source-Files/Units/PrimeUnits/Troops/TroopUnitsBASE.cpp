@@ -1,12 +1,11 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
+#include TROOP_UNITS_BASE_HEADER 
 
-#include TROOPS_HEADER
-
-Troops::Troops(int level, 
+TroopUnitsBASE::Troops(int level, 
 	int baseHealth,
 	int tier,
 	std::array<int,3> baseDamage,
-	TroopTypes thisType) {
+	TroopUnitsBASE::TroopTypes thisType) {
 	//For debugging
 	INF::debugFunction("Troops, Troops");
 
@@ -24,59 +23,59 @@ Troops::Troops(int level,
 }
 
 
-void Troops::applyBoosts(int healthBoost, int damageBoost) {
+void TroopUnitsBASE::applyBoosts(int healthBoost, int damageBoost) {
 	this->baseHealth += healthBoost;
 	for (int x : baseDamage) {
 		x += damageBoost;
 	}
 }
 
-int Troops::getLevel() {
+int TroopUnitsBASE::getLevel() {
 	return level;
 }
 
-int Troops::getCurrentHealth() {
+int TroopUnitsBASE::getCurrentHealth() {
 	return currentHealth;
 }
 
-std::array<int, 3> Troops::getCurrentDamage() {
+std::array<int, 3> TroopUnitsBASE::getCurrentDamage() {
 	return currentDamage;
 }
 
-void Troops::updateHealth(int newHealth) {
+void TroopUnitsBASE::updateHealth(int newHealth) {
 	currentHealth = newHealth;
 }
 
 //Current damage is proportional to current health / base health
-void Troops::updateCurrentDamage() {
+void TroopUnitsBASE::updateCurrentDamage() {
 	for (int x = 0; x < 3; x++) {
 		currentDamage.at(x) = baseDamage.at(x) * (currentHealth / baseHealth);
 	}
 }
 
-void Troops::resetStats() {
+void TroopUnitsBASE::resetStats() {
 	currentHealth = baseHealth;
 	for (int x = 0; x < 3; x++) {
 		currentDamage.at(x) = baseDamage.at(x);
 	}
 }
 
-void Troops::resetLevel() {
+void TroopUnitsBASE::resetLevel() {
 	level = 0;
 }
 
-void Troops::setTier(int num) {
+void TroopUnitsBASE::setTier(int num) {
 	tier = num;
 }
 
-void Troops::increaseTier(int amount) {
+void TroopUnitsBASE::increaseTier(int amount) {
 	tier += amount;
 }
 
-Troops::TroopTypes Troops::getThisType() {
+TroopUnitsBASE:: TroopUnitsBASE::getThisType() {
 	return thisType;
 }
 
-int Troops::getTier() {
+int TroopUnitsBASE::getTier() {
 	return tier;
 }

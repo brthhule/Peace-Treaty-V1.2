@@ -1,4 +1,7 @@
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Units\Participants.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
+#include PARTICIPANTS_HEADER
+
+using namespace PART;
 
 void Participants::mainAttackMA(
 	provSPTR defendingProvinceArg, 
@@ -25,7 +28,7 @@ void Participants::mainAttackMA(
 
 //Get the commanders that can attack the defending province. defenderSystemCoords reflects the corods of the province
 std::vector<commSPTR> Participants::getCommandersCanAttack(provSPTR defendingProvince) {
-	std::vector<commSPTR> commandersCanAttack = {};
+	std::vector<COMM::commSPTR> commandersCanAttack = {};
 	std::array<ipair, 8> surroundingProvinces;
 
 	int currentElements = 0;
@@ -41,6 +44,7 @@ std::vector<commSPTR> Participants::getCommandersCanAttack(provSPTR defendingPro
 		}
 	}
 
+	ipair defenderSystemCoords = defendingProvince->getCoords(SYSTEM);
 	for (ipair currentPair : surroundingProvinces) {
 		int
 			firstCoordinate = defenderSystemCoords.first + x,
@@ -123,7 +127,7 @@ void Participants::playerCommitAttack(provSPTR defendingProvince,  commSPTR atta
 	calculateTroopsLost(attackingCommander, attackerLostCP, troopsLost, 0);
 
 	//Fix this later
-	Troops::TroopTypes type = Troops::TroopTypes::GUARDS; 
+	TroopUnitsBASE:: type = TroopUnitsBASE::::GUARDS; 
 	int troopTier = 1;
 
 	for (int x = 0; x < 5; x++) {

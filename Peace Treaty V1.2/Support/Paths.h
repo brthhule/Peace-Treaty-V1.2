@@ -31,6 +31,7 @@
 #define BY_
 #define COMPRISES_
 #define USES_
+#define NOTHING_
 
 //MainActions Folder
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths\MainActions\MainActions_Paths.h"

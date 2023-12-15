@@ -14,8 +14,7 @@
 #include INF_HEADER
 
 using namespace INF;
-
-using provSPTR = Provinces::provSPTR;
+using namespace PROV;
 
 BASE_CLASS
 class Map {
@@ -33,15 +32,14 @@ METHODS START
 		updateTurnResources();
 
 	GETTER
-	static Provinces
-		*getSystemProvince(ipair systemCoords),
-		*getUserProvince(ipair userCoords);
+	static provSPTR 
+		getSystemProvince(ipair systemCoords),
+		getUserProvince(ipair userCoords);
 METHODS END
 
 VARIABLES START
 	typedef std::unordered_map <std::string, provSPTR> ProvincesMap;
 	typedef std::vector <std::vector<provSPTR>> ProvincesVector;
-
 
 	static ProvincesVector map;
 	static ProvincesMap mapMap;

@@ -15,6 +15,8 @@
 #include PROVINCES_HEADER
 
 using namespace INF;
+using namespace PROV;
+using namespace COMM;
 
 class AttackMA
 	COMPRISES_
@@ -26,11 +28,9 @@ class AttackMA
 		INPUT_
 {
 public:
-	using commSPTR = Commanders::commSPTR;
-	using provSPTR = Provinces::provSPTR;
-	virtual Commanders::commSPTR pickCommanderAttack(std::vector<commSPTR> commandersCanAttack) = 0;
+	virtual commSPTR pickCommanderAttack(std::vector<commSPTR> commandersCanAttack) = 0;
 
-	virtual void mainAttackMA(Provinces::provSPTR, commSPTR attackingCommander) = 0;
+	virtual void mainAttackMA(provSPTR, commSPTR attackingCommander) = 0;
 
 	virtual void printResourcesGained() = 0;
 	virtual void determineLostCP(int attackerCP, int defendingCP, int& attackerLostCP, int& defenderLostCP) = 0;
@@ -41,7 +41,7 @@ public:
 	virtual void battleCalculationsTwo(int& lostCombatPower, int troopsLost[5], int troopIndex) = 0;
 	virtual void casualtyReport(i5array troopsLost, i5array injuredTroops) = 0;
 
-	virtual std::vector<commSPTR> getCommandersCanAttack(Provinces::provSPTR defendingProvince) = 0;
+	virtual std::vector<commSPTR> getCommandersCanAttack(provSPTR defendingProvince) = 0;
 };
 
 #endif

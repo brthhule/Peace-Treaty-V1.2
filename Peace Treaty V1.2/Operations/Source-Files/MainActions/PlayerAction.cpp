@@ -1,6 +1,8 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 #include PARTICIPANTS_HEADER
 
+using namespace PART;
+
 void Participants::initialDecision() {
 	//For debugging
 	INF::debugFunction("PlayerAction, initialDecision");
@@ -15,7 +17,7 @@ void Participants::initialDecision() {
 	if (this->isPlayer() == true)
 	{
 		std::cout << "Turn: " << INF::turn << std::endl;
-		std::cout << "Player " << participant->getKingdomName() << "'s move...";
+		std::cout << "Player " << getKingdomName() << "'s move...";
 		std::cout << "\n\nWelcome to the Main Action menu \n\n\n";
 
 		this->showMap();
@@ -31,7 +33,7 @@ void Participants::initialDecision() {
 
 	switch (courseOfAction) {
 		case 'B': {
-			provSPTR newProvince = participant->pickYourProvince(1);
+			provSPTR newProvince = pickYourProvince(1);
 			newProvince->playerBuildFunction();
 			break;
 		}
@@ -47,7 +49,7 @@ void Participants::initialDecision() {
 			break;
 		}
 		case 'D': {
-			this->armyDeploymentMF();
+			this->armyOverviewMain();
 			break;
 		}
 		case 'N':
