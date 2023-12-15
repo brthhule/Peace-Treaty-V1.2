@@ -283,7 +283,7 @@
     <ClInclude Include="Input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Coords.h">
+    <ClInclude Include="CoordsBASE.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Buildings.h">
@@ -298,7 +298,7 @@
     <ClInclude Include="CommanderReport.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Troops.h">
+    <ClInclude Include="TroopUnitsBASE.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Mobility.h">

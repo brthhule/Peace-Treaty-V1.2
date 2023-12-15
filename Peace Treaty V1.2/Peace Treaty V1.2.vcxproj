@@ -151,7 +151,7 @@
     <ClCompile Include="MA\PlayerAction.cpp" />
     <ClCompile Include="Units\Reports\ProvinceReport.cpp" />
     <ClCompile Include="Misc\INF.cpp" />
-    <ClCompile Include="Units\AllUnitsAttributes\Troops\Troops.cpp" />
+    <ClCompile Include="Units\AllUnitsAttributes\Troops\TroopUnits\Troops.cpp" />
     <ClCompile Include="Units\AllUnits.cpp" />
     <ClCompile Include="Units\Commanders.cpp" />
     <ClCompile Include="Units\Database.cpp" />
@@ -202,7 +202,7 @@
     <ClInclude Include="Build.h" />
     <ClInclude Include="Buildings.h" />
     <ClInclude Include="CommanderReport.h" />
-    <ClInclude Include="Coords.h" />
+    <ClInclude Include="CoordsBASE.h" />
     <ClInclude Include="Misc\Input.h" />
     <ClInclude Include="Interfaces\BuildMAInterface.h" />
     <ClInclude Include="MA\ArmyOverviewMA.h" />
@@ -214,7 +214,7 @@
     <ClInclude Include="Mobility.h" />
     <ClInclude Include="PlayerAction.h" />
     <ClInclude Include="ProvinceReport.h" />
-    <ClInclude Include="Troops.h" />
+    <ClInclude Include="TroopUnitsBASE.h" />
     <ClInclude Include="Units\AllUnits.h" />
     <ClInclude Include="Units\Commanders.h" />
     <ClInclude Include="Units\Database.h" />

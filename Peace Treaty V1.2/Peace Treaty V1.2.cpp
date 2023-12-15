@@ -14,7 +14,7 @@
 #include <time.h>
 #include <thread>
 
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Misc\Main_FilePaths.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 #include PROVINCES_HEADER
 #include PARTICIPANTS_HEADER
 #include COMMANDERS_HEADER
@@ -188,7 +188,12 @@ void gamePlay() {
 	}
 
 	if (participantsAlive > 1) {
-		gamePlay();
+		try {
+			gamePlay(); 
+		} catch (...) {
+			println("Didn't work, try agian");
+		}
+		
 	}
 
 	endScreen();
@@ -200,7 +205,7 @@ void endScreen() {
 	INF::debugFunction("main, endScreen");
 
 	std::vector<Participants>* participantsListCopy = db.getParticipantsList();
-	Participants* currentParticipant = new Participants;
+	partSPTR currentParticipant = new Participants;
 
 	for (int x = 0; x <= (signed)participantsListCopy->size(); x++) {
 		if (currentParticipant->isAlive()) {
