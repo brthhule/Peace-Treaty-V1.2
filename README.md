@@ -13,9 +13,9 @@ Game experience:
 3) Defeat some kingdoms and make peace with all others (mixed approach)
 - Attack functionaltiy: Train commanders (in charge of armies) and troops (basic army units) and use them to attack/defend provinces
 - Diplomacy functionality: Defend other players' provinces with your troops, develop alliances, send resources, and send workers to help develop infrastruture in other kingdoms
-        - The more involved with other kingdoms, the more diplomatic influence you have over them. If 50% + 1 of something came from you, you have diplomatic superiority over that kingdom
-        - Example 1 - If a kingdom has 10 commanders and 1 or 5 were sent by you, you have diplomatic influence over them
-        - c) Example 2 - If a kingdom has 10 commanders and 6 or more were sent by you, you have diplomatic influence
+1) The more involved with other kingdoms, the more diplomatic influence you have over them. If 50% + 1 of something came from you, you have diplomatic superiority over that kingdom
+2) Example 1 - If a kingdom has 10 commanders and 1 or 5 were sent by you, you have diplomatic influence over them
+3) Example 2 - If a kingdom has 10 commanders and 6 or more were sent by you, you have diplomatic influence
   
 Graphics:
 This is a console application and uses text for all game prompts and input.
