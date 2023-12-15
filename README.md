@@ -8,7 +8,8 @@ Game experience:
 - Users can choose from a variety of options such as building infrastructure, developing armies, training troops, and attacking others
 - Users expand across the map and may attak or develop diplomatic relations with other users/bots
 - Win conditions:
-    - Defeat all other kingdoms (a kingdom dies when it has no provinces and no commanders)
+
+- Defeat all other kingdoms (a kingdom dies when it has no provinces and no commanders)
         - Make peace with all other kingdoms (establish diplomatic superiority)
         - Defeat some kingdoms and make peace with all others (mixed approach)
 - Attack functionaltiy: Train commanders (in charge of armies) and troops (basic army units) and use them to attack/defend provinces
