@@ -2,13 +2,8 @@
 #include MAP_HEADER
 
 Map::ProvincesVector Map::map = std::vector<std::vector<provSPTR>>{};
-Map::ProvincesMap  Map::mapMap = std::unordered_map<std::string, provSPTR>();
+Map::ProvincesMap Map::mapMap = std::unordered_map<std::string, provSPTR>();
 
-Map::Map() {
-	//For debugging
-	INF::debugFunction("Map, Map");
-
-}
 
 void Map::setMap() {
 	//For debugging
@@ -32,20 +27,18 @@ void Map::showMap() {
 	//For debugging
 	INF::debugFunction("Map, showMap");
 
+	//Can potentially add a lamda statement here to replace the inside of the for loop
+
 	int yAxis = INF::continentSize;
 	for (int x = 0; x < INF::continentSize; x++) {
 		// Y axis stuff
-		if (yAxis < 10)
-			std::cout << " " << yAxis << "| ";
-		else
-			std::cout << yAxis << "| ";
+		if (yAxis < 10) { std::cout << " " << yAxis << "| "; }
+		else { std::cout << yAxis << "| "; }
 
 		yAxis--;
 		// End y axis stuff
 
-		for (int y = 0; y < INF::continentSize; y++) {
-			meat(x, y);
-		}
+		for (int y = 0; y < INF::continentSize; y++) { meat(x, y); }
 		std::cout << std::endl;
 	}
 }
@@ -54,34 +47,20 @@ void Map::meat(int x, int y) {
 	//For debugging
 	INF::debugFunction("Map, meat");
 
-	char letter = ' ';
-	provSPTR currentProvince = map[x][y];
+	provSPTR currentProvince = map.at(x).at(y); 
+	//If it's a capital province, 'C', if regular, 'P'
+	char letter = (currentProvince->isCapital()) ? 'C' : 'P'; 
+	constINT currentIndex = currentParticipantIndex; 
+	constINT thisIndex = currentProvince->getParticipantIndex(); 
 
-	//Player province
-	if (currentProvince->getParticipantIndex() == currentParticipantIndex)
-	{
-		INF::addColor(BLUE);
-		if (currentProvince->isCapital() == true)
-			letter = 'C';
-		else
-			letter = 'p';
-	}
-	//Enemy province
-	else if (currentProvince->getParticipantIndex() != -1)
-	{
-		INF::addColor(RED);
-		if (currentProvince->isCapital() == true)
-			letter = 'C';
-		else
-			letter = 'p';
-	}
+	//If current participant's province
+	if (thisIndex == currentIndex){ INF::addColor(BLUE);}
+	//Enemy province (any other participant)
+	else if (thisIndex != 0) {INF::addColor(RED);}
 	//Empty province
-	else {
-		letter = '0';
-	}
+	else {letter = '0';}
 
 	std::cout << letter << currentProvince->getCommandersNum();
-	//std::cout << "  ";
 	INF::addColor(RESET);
 }
 
@@ -141,4 +120,10 @@ void Map::updateTurnResources() {
 			map[x][y]->updateProvinceResources();
 		}
 	}
+}
+
+
+
+PROV::provSPTR Map::getProvince(CoordsBASE::CoordsType typeWant, CoordsBASE::CoordsType coordsType, ipair coords) {
+
 }

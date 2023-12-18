@@ -151,6 +151,7 @@ namespace INF {
 	//----String-----------------------
 	//Get command to print certain color to console
 	std::string getColor(COLORS color);
+	
 
 	std::string createRandomName();
 

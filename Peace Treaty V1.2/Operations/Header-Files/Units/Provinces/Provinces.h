@@ -31,7 +31,7 @@ using namespace UNIT;
 
 namespace PROV {
 	class Provinces :
-		public AllUnits,				//Base Class
+		public PrimeUnits,				//Base Class
 		public MABuildINT,				//Interface
 		public BuildingAttributesINT	//Interface
 	{
@@ -167,7 +167,7 @@ namespace PROV {
 
 		enum LISTS_INT { CP, TOTAL_TROOPS, FOOD_CONSUMPTION, PARTICIPANT_INDEX, UNIT_LEVEL, TROOPS_TRAINED_THIS_TURN, OVRALL_INDEX };
 
-		enum LIST_BOOL { CAN_SELECT_THIS_UNIT, IS_CAPITAL, DELETE_PROVINCE };
+		enum LIST_bool{ CAN_SELECT_THIS_UNIT, IS_CAPITAL, DELETE_PROVINCE };
 
 		enum LIST_COORDS { SYSTEM_COORDS, USER_COORDS };
 

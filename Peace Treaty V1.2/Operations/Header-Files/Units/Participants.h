@@ -44,6 +44,10 @@ using namespace INF;
 using namespace PROV;
 using namespace UNIT;
 
+/*TODO
+* Check if hasProvince/hasUnit needs to use a shared pointer as param
+*	use const Province& address = *ptr
+*/
 namespace PART {
 	//Represent players, both human and AI
 	class Participants : 
@@ -71,51 +75,63 @@ namespace PART {
 
 		//----Getters----------------------------------------------------------
 		///Get the costs needed to train a new Commander?
-		constI5array getTrainCosts();
+		constI5array getTrainCosts(); 
 		i5array calculateEach(int option);
-		i5array getAllUnitsArray();
+		i5array getAllUnitsArray();//???
 
-	
+		///Returns a commander this Participant owns by name
+		commSPTR getCommander(std::string name);
+		///Return the unordered_map of Commander shared pointers
+		std::unordered_map<std::string, COMM::commSPTR> getCommandersMap();
 
+		///Got total number of Provinces in this participant
+		int getProvincesNum();
+		///Get total number of Commanders in this participant
+		int getCommandersNum();
+		///Return total number of Commanders + Provinces in this Participant
+		int getAllUnitsAmount();
+		///Get the index of this participant in the vector of all participants
+		int getParticipantIndex();
+
+		//----Threads----------------------------------------------------------
+		///Experimental
 		std::thread th1Method();
 		std::thread th2Method();
 
-		GETTER std::unordered_map<std::string, COMM::commSPTR> getCommandersMap();
-
+		//----Checkers---------------------------------------------------------
 		/** subtractCheckResources__ subtracts resources from a unit. If any resources go into the negative from subtractions, reverse the subtraction and return false. Otherwise, return true
 		* 
 		* @param unit__ the unit being modified
 		* @param resources__ the array of resources being subtracted
 		* @return bool__ true or false
 		*/
-		BOOL subtractCheckResources(unitSPTR unit, INF::i5array resourcesArray);
+		bool subtractCheckResources(unitSPTR unit, INF::i5array resourcesArray);
 
-		CHECK BOOL
-			hasProvince(std::string name),
-			//Overloading
-			hasProvince(int pIndex),
-			hasProvince(provSPTR province),
-			hasCommander(std::string name),
-			isAlive(),
-			isPlayer(),
-			hasUnit(std::string unitName),
-			hasUnit(AllUnits unit);
+		///Check if this participant has a province by name/participant index/province
+		bool hasProvince(std::string name);
+		bool hasProvince(int pIndex);
+		bool hasProvince(provSPTR province);
 
-		GETTER
-			COMM::commSPTR
-			getCommander(std::string name),
-			getSelectedCommander();
+		///Check if this participant has a particular commander
+		bool hasCommander(std::string name);
+		///Check if this participant is alive
+		bool isAlive();
+		///Check if this participant is a bot or a player
+		bool isPlayer();
+
+		///Check if this participant has a particular unit, not optimal (string param)
+		bool hasUnit(const std::string& unitName);
+		//Kinda sketch, look at this??
+		bool hasUnit(const PrimeUnits& unit);
+
+		
+			
 
 		ivector calculatePlayerValues(int decision);
 
-		INTEGER calculateTotals(int option);
+		int calculateTotals(int option);
 
-		GETTER INTEGER
-			getRandomCoordinate(),
-			getProvincesNum(),
-			getCommandersNum(),
-			getAllUnitsAmount(),//Create funciton
-			getParticipantIndex();
+		
 
 		//Coordinate stuff
 		provSPTR

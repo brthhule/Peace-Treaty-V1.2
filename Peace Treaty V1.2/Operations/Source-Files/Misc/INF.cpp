@@ -360,3 +360,4 @@ void INF::enterAndClear(int option) {
 	enterAnything(option);
 	clearScreen();
 }
+

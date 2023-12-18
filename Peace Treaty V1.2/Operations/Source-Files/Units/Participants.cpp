@@ -316,12 +316,7 @@ provSPTR Participants::pickYourProvince(int identifier) {
 
 
 
-int Participants::getRandomCoordinate() {
-	//For debugging
-	INF::debugFunction("Participants, getRandomCoordinate");
 
-	return rand() % INF::continentSize; 
-}
 
 bool Participants::hasCommander(std::string name) {
 	//For debugging
@@ -397,6 +392,21 @@ i5array Participants::calculateEach(int option)
 	return returnArray;
 }
 
+bool Participants::subtractCheckResources(unitSPTR unit, i5array resources) {
+	//For debugging
+	INF::debugFunction("Participants, subtractCheckResources");
+	unit->modifyResources(costs, DECREASE);
+	for (int x : unit->getAllResources()) {
+		if (x < 0) {
+			//Undo subtractions
+			unit->modifyResources(costs, INCREASE);
+			return false;
+		}
+	}
+	//Original resources array is greater than the resources being subtracted
+	return true;
+}
+
 
 void Participants::showMapOld() {
 	//For debugging
@@ -469,20 +479,6 @@ void Participants::showMapOld() {
 
 
 
-bool Participants::subtractCheckResources(unitSPTR unit, i5array resources) {  
-	//For debugging
-	INF::debugFunction("Participants, subtractCheckResources");
-	unit->modifyResources(costs, DECREASE);  
-	for (int x : unit->getAllResources()) { 
-		if (x < 0) {
-			//Undo subtractions
-			unit->modifyResources(costs, INCREASE); 
-			return false;
-		}
-	}	
-	//Original resources array is greater than the resources being subtracted
-	return true;
-}
 
 provSPTR Participants::getProvince(std::string name)
 {
@@ -615,15 +611,7 @@ provSPTR Participants::pickProvince(int phrase) {
 	return getUserProvince(std::make_pair(xUserCoord, yUserCoord));
 }
 
-
-commSPTR Participants::getSelectedCommander() {
-	//For debugging
-	INF::debugFunction("Participants, getSelectedCommander");
-
-	return selectedCommander;
-}
-
-bool Participants::hasUnit(std::string unitName) {
+bool Participants::hasUnit(const std::string &unitName) { 
 	//For debugging
 	INF::debugFunction("Participants, hasUnit");
 
@@ -636,15 +624,20 @@ bool Participants::hasUnit(std::string unitName) {
 	return false;
 }
 
-bool Participants::hasUnit(AllUnits unit) { 
-	for (commIt = commandersMap.begin(); 
-		commIt != commandersMap.end(); 
-		commIt++) {
+bool Participants::hasUnit(PrimeUnits unit&) { 
+	try {
+		PrimeUnits* tempUnit = unit; 
+		std::string name = tempUnit->getUnitName(); 
+		delete tempUnit; 
 
-		commSPTR commander = commIt->second; 
-		if (&commander == unit) {
-			return true;
+		if (typeid(tempUnit).name == "Commanders") { 
+			return hasCommander(name); 
 		}
+
+		return hasProvince(name); 
+		bool returnValue = hasCommander(name); 
+	} catch (...) {
+		std::cout << "Something wrong... Participants::hasUnit(PrimeUnits unit&)";
 	}
 }
 
@@ -685,7 +678,7 @@ i5array Participants::getAllUnitsArray() {
 }
 
 
-INTEGER Participants::getAllUnitsAmount() {
+int Participants::getAllUnitsAmount() {
 	//For debugging
 	INF::debugFunction("Participants, getAllUnitsAmount");
 

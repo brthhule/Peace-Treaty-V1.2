@@ -2,6 +2,8 @@
 
 #include COORDS_BASE_HEADER
 
+using namespace COORD;
+
 void CoordsBASE::setIndex (int index) {
 	//For debugging
 	INF::debugFunction("Coords, OtherBuildingsToString");
@@ -122,4 +124,10 @@ int CoordsBASE::coordsToIndex(ipair coords, CoordsType type) {
 			return (continentSize * (continentSize - coords.second)) +
 				(coords.first - 1);
 	}
+}
+
+const int& COORD::getRandomCoordinate() {  
+	//For debugging
+	INF::debugFunction("Map, getRandomCoordinate");
+	return rand() % INF::continentSize;
 }

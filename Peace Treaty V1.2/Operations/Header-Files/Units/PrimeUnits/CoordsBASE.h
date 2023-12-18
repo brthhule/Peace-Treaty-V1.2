@@ -14,19 +14,30 @@
 
 using namespace INF;
 
+namespace COORD {
+
+/*SYSTEM, USER*/
+enum CoordsType { SYSTEM, USER };
+
+///Get a random coordinate, used in Map creation?
+int getRandomCoordinate();
+
 class CoordsBASE {
 public:
+	//----Constructors---------------------------------------------------------
 	CoordsBASE(){}
 	~CoordsBASE(){}
 
-	/*SYSTEM, USER*/
-	enum CoordsType { SYSTEM, USER };
-
+	//----Setters--------------------------------------------------------------
 	void
 		setIndex(int index),
-		setCoords(ipair systemCoords, ipair userCoords),
+		setCoords(ipair systemCoords, ipair userCoords);
+
+	//----Printers-------------------------------------------------------------
+	void
 		printCoords(CoordsType type);
 
+	//----Getters--------------------------------------------------------------
 	ipair
 		getCoords(CoordsType type),
 		indexToCoords(int index, CoordsType type),
@@ -38,6 +49,8 @@ public:
 		getSystemCoordsString(),
 		getUserCoordsString();
 
+	
+
 
 protected:
 	ipair
@@ -47,5 +60,8 @@ protected:
 private:
 	int index;
 };
+
+
+}
 
 #endif COORDINATES_H
