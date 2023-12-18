@@ -10,16 +10,19 @@
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 
-#include ALL_UNITS_HEADER 
-#include COMMANDERS_HEADER
-#include INF_HEADER
-#include BUILD_MA_HEADER
-#include INPUT_HEADER
+#include ALL_UNITS_HEADER				//Base Class
+#include COORDS_BASE_HEADER				//Base Class
 
-#include COORDS_BASE_HEADER
-#include BUILDING_ATTRIBUTES_INT_HEADER
-#include PROVINCE_REPORT_HEADER
-#include RESOURCE_BUILDINGS_BASE_HEADER
+#include BUILD_MA_HEADER				//Interface
+#include BUILDING_ATTRIBUTES_INT_HEADER	//Interface
+
+#include COMMANDERS_HEADER				//Composition
+#include PROVINCE_REPORT_HEADER			//Composition
+#include RESOURCE_BUILDINGS_BASE_HEADER	//Composition 
+
+#include INF_HEADER						//Utility
+#include INPUT_HEADER					//Utility
+
 
 using namespace INF;
 using namespace Input;
@@ -28,65 +31,66 @@ using namespace UNIT;
 
 namespace PROV {
 	class Provinces :
-		EXTENDS_
-			BASE_CLASS public AllUnits,
-		IMPLEMENTS_
-			INTERFACE public MABuildINT,
-			INTERFACE public BuildingAttributesINT
-		COMPRISES_
-			COMMANDERS_
-			PROVINCE_REPORT_
-			RESOURCES_BUILDINGS_BASE_
-		USES_
-			INF_
-			INPUT_
+		public AllUnits,				//Base Class
+		public MABuildINT,				//Interface
+		public BuildingAttributesINT	//Interface
 	{
 	public:
-		CONSTRUCTOR
-			Provinces(){}
-			Provinces(int overallIndexArg);
-			~Provinces() {}
+		///////////////////////////////This Class//////////////////////////////
+		//----Constructors-----------------------------------------------------
+		Provinces(){}
+		Provinces(int overallIndexArg);
+		~Provinces() {}
 
-			/*Initialization*/
-		bool
-			isCapital(), 
-			hasCommander(std::string name),
-			subtractCheckResources(i5array resourcesArray);
+		//----Initialization---------------------------------------------------
+		bool isCapital();
+		bool hasCommander(std::string name);
+		bool subtractCheckResources(i5array resourcesArray);
 
-		// Commanders
+		///Initializes this province as a capital
+		void makeCapital(int participantIndexArg);
+		/*///Sets this provinces' stats to capital when generating game.
+		Sets all buildings to level 1*/
+		void initializeCapitalStats();
+
+		///Set the name of this kingdom
+		void setKingdomName(std::string name);
+		///Set map index of this province
+		void setOverallIndex(int index);
+
+		//----Getters----------------------------------------------------------
+		///Return shared pointer of commander by name
 		commSPTR getCommander(std::string name);
+		//Returns vector of commanders in this province
 		commSPTRList getAllCommanders();
 
-		const int&
-			getCommandersNum(),
-			getTotalCP(),
-			getOverallIndex();
+		///Returns the total amount of Commanders this unit has
+		constINT getCommandersNum();
+		///Calculates the combat power of this province
+		constINT getTotalCP();
+		///Get the index of this unit in its Participant's vector?
+		constINT getOverallIndex();
+
+		//----Setters----------------------------------------------------------
+		
+		///Add Commander to this province
+		void addCommander(commSPTR newCommander);
+		///Remove Commander from this province
+		void removeCommander(commSPTR newCommander);
+		/*//Update this province's resources at the end of the round.
+		Adds the resource production amounts to the resource totals*/
+		void updateProvinceResources();
+
+		///Create scout report for this province
+		void createReport(int scouterLevelArg, int targetLevelArg);
 
 
-		i5array getTotalResources();
-
-		void
-			makeCapital(int participantIndexArg),
-			initializeCapitalStats(),
-
-			addCommander(commSPTR newCommander),
-			removeCommander(commSPTR newCommander),
-			printCommanders(),
-			updateProvinceResources(),
-
-			setKingdomName(std::string name),
-			setOverallIndex(int index),
-
-
-			createReport(int scouterLevelArg, int targetLevelArg);
-
-		BUILD_MA_ INTERFACE START
-			void
-			printBuildingUpgradeCosts(i5array requiredresources, int buildingindex) override,
-			mainBuildFunction() override,
+		///////////////////////////////BuildMA/////////////////////////////////
+		//----Printers---------------------------------------------------------
+		void printBuildingUpgradeCosts(i5array requiredresources, int buildingindex) override;
+		void mainBuildFunction() override,
 			selectUpgradeBuilding() override,
 			upgradeBuilding(char optionchar) override;
-		BUILD_MA_ INTERFACE END
 
 		void setCommandersSortStatus(SortType status);
 		SortType getCommandersSortStatus();
@@ -106,48 +110,54 @@ namespace PROV {
 		int getCommanderIndex(commSPTR commander);
 
 
-	BUILDING_ATTRIBUTES_INT_ START
-		i5array getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount);
-		int getCapacity(BUILD::BuildingsEnum name);
+		///////////////////////////////BuildingAttributesINT///////////////////
+		
+		//----Getters----------------------------------------------------------
+		i5array& getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount) = 0;
+	//Returns an array of Resource/Other buildings levels
+		i5array& getTypeLevels(BUILD::BuildingType type) = 0;
 
-		//Returns an array of Resource/Other buildings levels
-		const std::array<int&, 5> getTypeLevels(BUILD::BuildingType type);
 
-		/** mutateLevel__ Changes the level of a building
+		int& getCapacity(BUILD::BuildingsEnum name) = 0;
+		/** getTroopsTrainedThisTurn__
+			returns the amount of troops trained this turn
 
-			@param name__ the name of the building being changed
-			@param direction__ changing the level in an increasing/decreasing direction
-			@param amount__ the amount the level is being changed by, usually 1, always positive
-			@return void
+				@param void
+				@return void
 		*/
-		void mutateLevel(BuildingsEnum name, MutateDirection direction, int amount);
+		int& getTroopsTrainedThisTurn() = 0;
+		/** getProvinceLevel__ 
+			returns the level of this province by averaging all building levels
 
-		/** getTroopsTrainedThisTurn__ returns the amount of troops trained this turn
-
-			@param void
-			@return void
+				@param void
+				@return void
 		*/
-		const int& getTroopsTrainedThisTurn();
+		int& getProvinceLevel() = 0;
 
-		/** getProvinceLevel__ returns the level of this province by averaging all building levels
+		virtual std::shared_ptr<BuildingsBASE> getBuilding(BUILD::BuildingsEnum name) = 0;
+		BuildingsBASE& getBuildingConst(BUILD::BuildingsEnum name) = 0;
 
-			@param void
-			@return void
+		//----Setters----------------------------------------------------------
+		/** mutateLevel__
+			Changes the level of a building
+
+				@param name__
+			the name of the building being changed
+				@param direction__
+			changing the level in an increasing/decreasing direction
+				@param amount__
+			the amount the level is being changed by, usually 1, always positive
+				@return void
 		*/
-		int getProvinceLevel();
+		virtual void mutateLevel(BuildingsEnum name, MutateDirection direction, int amount) = 0;
+		virtual void addTroopsTrainedThisTurn(int amount) = 0;
+		virtual void resetTroopsTrainedThisTurn() = 0;
+		virtual void initiailizeCapitalBuildings() = 0;
+		virtual void initializeEmptyBuildings() = 0;
 
-		//Void Accessors
-		void printBuildingStats();
-		void displayListOfBuildings();
-		//Other modifiers
-		void addTroopsTrainedThisTurn(int amount);
-		void resetTroopsTrainedThisTurn();
-		void initiailizeCapitalBuildings();
-		void initializeEmptyBuildings();
-
-		std::shared_ptr<BuildingsBASE> getBuilding(BUILD::BuildingsEnum name);
-		const BuildingsBASE& getBuildingConst(BUILD::BuildingsEnum name);
-	BUILDING_ATTRIBUTES_INT_ END
+		//----Printers---------------------------------------------------------
+		virtual void printBuildingStats() = 0;
+		virtual void printListOfBuildings() = 0;
 
 
 	protected:

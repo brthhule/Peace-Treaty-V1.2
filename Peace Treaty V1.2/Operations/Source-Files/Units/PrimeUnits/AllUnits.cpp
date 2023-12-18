@@ -53,7 +53,7 @@ void AllUnits::printTroopsPresent() {
 	}
 }
 
-const int& AllUnits::getCP() {
+constINT AllUnits::getCP() {
 	//For debugging
 	INF::debugFunction("AllUnits, getCP");
 
@@ -64,7 +64,7 @@ const int& AllUnits::getCP() {
 	return combatPower;
 }
 
-const int& AllUnits::getParticipantIndex() {
+constINT AllUnits::getParticipantIndex() {
 	//For debugging
 	INF::debugFunction("AllUnits, getParticipantIndex");
 
@@ -95,13 +95,13 @@ void AllUnits::changeUnitName(std::string name) {
 }
 
 //Mutator Functions
-const int& AllUnits::getFoodConsumption() {
+constINT AllUnits::getFoodConsumption() {
 	//For debugging
 	INF::debugFunction("AllUnits, getFoodConsumption");
 
 	return foodConsumption;
 }
-const int& AllUnits::getResource(int resourceIndex) {
+constINT AllUnits::getResource(int resourceIndex) {
 	//For debugging
 	INF::debugFunction("AllUnits, getResource");
 
@@ -124,7 +124,7 @@ void AllUnits::modifyResources(i5array resourcesArray, INF::MutateDirection dire
 	resourcesPresent = INF::mutateArray(resourcesPresent, resourcesArray, direction);
 }
 
-const int& AllUnits::getLevel() {
+constINT AllUnits::getLevel() {
 	//For debugging
 	INF::debugFunction("AllUnits, getLevel");
 
@@ -278,4 +278,18 @@ unitSPTRList AllUnits::levelSort(unitSPTRList list) {
 
 	std::vector<unitSPTRList> returnList = { lesser, same, greater }; 
 	return concatVectors(returnList);
+}
+
+
+INF::i5array AllUnits::getTotalResources() {
+	//For debugging
+	INF::debugFunction("Provinces, getTotalResources");
+
+	INF::i5array totalResources = resourcesPresent;
+	COMM::commMAP::iterator it;
+	for (it = commandersMap.begin(); it != commandersMap.end(); it++)
+		for (int y = 0; y < 5; y++)
+			totalResources[y] += it->second->getResource(y);
+
+	return totalResources;
 }

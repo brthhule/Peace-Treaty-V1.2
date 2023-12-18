@@ -1,3 +1,11 @@
+//BuildingsBASE.h
+//Base Class
+//Extended by Buildings units (Farm, Mill, Barracks, etc)
+
+/*Notes:
+- Have to implement workers/buildiner/civillians functionality
+*/
+
 #ifndef BUILDINGSBASE_H
 #define BUILDINGSBASE_H
 
@@ -5,21 +13,25 @@
 
 #include INF_HEADER
 
-//Have to implement workers/buildiner/civillians functionality
+using namespace INF;
+
 class BuildingsBASE {
 public:
+	//----Constructors---------------------------------------------------------
 	BuildingsBASE(){}
 	BuildingsBASE(INF::d5array baseUpgradeRatesArg);
 	~BuildingsBASE(){}
 
+	//----Getters--------------------------------------------------------------
+	constINT getLevel();
+	constINT getWorkersNum();
+	constI5array getUpgradeCosts();
+
+	//----Mutators-------------------------------------------------------------
 	void increaseLevel(int amount);
-	const int& getLevel();
-
-	INF::i5array getUpgradeCosts();
-	INF::i5array updateProductionRates(int level);
-
 	void mutateWorkersNum(int amount, INF::MutateDirection direction);
-	int getWorkersNum();
+
+	INF::i5array updateProductionRates(int level);
 
 private:
 	int level;

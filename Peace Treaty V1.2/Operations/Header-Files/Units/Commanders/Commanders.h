@@ -1,3 +1,7 @@
+///Commanders.h
+///Derived Class
+/// Extends AllUnits (Extends Coords)
+
 #ifndef COMMANDERS_H
 #define COMMANDERS_H
 
@@ -5,40 +9,36 @@
 #include <unordered_map>
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
-#include ALL_UNITS_HEADER
-#include INF_HEADER
+#include ALL_UNITS_HEADER				//Base Class
 
-using namespace INF;
 using namespace UNIT;
-//Namespace for Commanders
+
+///Namespace for Commanders
 namespace COMM {
 
 	//Control army units
 	class Commanders : public AllUnits {
 	public:
-		// Constructors
+		//----Constructors-----------------------------------------------------
 		Commanders();
 		Commanders(int commanderLevel, std::string name);
 		~Commanders();
 
-		// Stats stuff
-		const int& getCommanderStat(int index);
-
-		void
-			printCommanderStats(),
-
-			printCosts(i5array costs),
-			addLevel(),
-			resetCommanderMoved(),
-			calculateCommanderScoutLog();
-
-		i5array getUpgradeCosts();
-
+		//----Getters----------------------------------------------------------
+		constINT getCommanderStat(int index);
 		bool hasMoved();
 		const std::string& getCommanderNameLevel();
+		constI5array getUpgradeCosts();
 
+		//----Printers---------------------------------------------------------
+		void printCommanderStats();
 		//Print commander name and level then enter new line escape character
 		void printCommanderNameLevel();
+		void printCosts(i5array costs);
+
+		void addLevel();
+		void resetCommanderMoved();
+		void calculateCommanderScoutLog();
 
 	private:
 		INF::INTEGER
@@ -47,8 +47,7 @@ namespace COMM {
 
 		bool moved;
 
-		/*
-			"Resources:      ",
+		/*	"Resources:      ",
 			"Troops present: ",
 			"Troops injured: ",
 			"Troops lost:    ",
@@ -82,10 +81,14 @@ namespace COMM {
 		bool deleteCommander;
 	};
 
-	//Commanders shared pointer
+	/*Commanders shared pointer 
+	Expanded: std::shared_ptr<Commanders>*/
 	using commSPTR = std::shared_ptr<Commanders>;
-	/*std::unordered_map, key = commander name, value = commander shared pointer*/
+	/*Commanders unordered map; key: name, value: Commander
+	Expanded: std::unordered_map<std::string, commSPTR>*/
 	using commMAP = std::unordered_map<std::string, commSPTR>;
+	/*Vector of Commanders shared pointers
+	Expanded: std::vector<commSPTR>*/
 	using commSPTRList = std::vector<commSPTR>;
 }
 #endif

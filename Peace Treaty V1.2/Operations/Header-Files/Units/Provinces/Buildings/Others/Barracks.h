@@ -8,7 +8,7 @@ class Barracks : BuildingsBASE {
 public:
 	Barracks();
 	~Barracks(){}
-	const int& getTroopsTrainedThisTurn();
+	constINT getTroopsTrainedThisTurn();
 private:
 	int troopsTrainedThisTurn;
 };

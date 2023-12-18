@@ -16,36 +16,39 @@
 
 
 namespace INF {
-	/////////////////////////////////////Aliases///////////////////////////////
+	//////////////////////////////////////Aliases//////////////////////////////
+	//----Symbolic Constants-----------
 	constexpr int UNIT_AMOUNT = 5;
 
+	//----Array/Vector Types-----------
 	using s5array = std::array<std::string, UNIT_AMOUNT>;
 	using i5array = std::array<int, UNIT_AMOUNT>;
 	using d5array = std::array<double, UNIT_AMOUNT>;
 
 	using ivector = std::vector<int>;
+	using myvectorI = myvector<int>;
+	using myarrayI5A = myarray<i5array>;
+
+	//----Other Types------------------
 	using String = std::string;
 	using ipair = std::pair<int,int>;
 
-	using INTEGER = int;
-	using STRING = std::string;
-	using VOID = void;
-	using BOOL = bool;
+	//----Const Values-----------------
+	using constINT = const int&;
+	using constI5array = std::array<int&, 5>;
 
 
-	/////////////////////////////////////Enums/////////////////////////////////
 
-	/*REGULAR,
-		INJURED,
-		LOST */
+	///////////////////////////////////Enums/////////////////////////////////
+
+	/*REGULAR, INJURED, LOST */
 	enum TroopCondition {
 		REGULAR,
 		INJURED,
 		LOST
 	};
 
-	/*DECREASE = 0,
-		INCREASE = 1*/
+	/*DECREASE = 0, INCREASE = 1*/
 	enum MutateDirection {
 		DECREASE = 0,
 		INCREASE = 1
@@ -63,15 +66,7 @@ namespace INF {
 	};
 
 
-	/*BLACK,
-		RED,
-		GREEN,
-		YELLOW,
-		BLUE,
-		MAGENTA,
-		CYAN,
-		WHITE,
-		RESET*/
+	/*BLACK = 0, RED, GREEN, YELLOW, BLUE, MAGENTA = 5, CYAN, WHITE, RESET*/
 	enum COLORS {
 		BLACK,
 		RED,
@@ -84,8 +79,17 @@ namespace INF {
 		RESET
 	};
 
+	///FARM, WOOD, STONE, ORE, MANA
+	enum ResourceType {
+		FARM = 0,
+		WOOD,
+		STONE,
+		ORE,
+		MANA
+	};
+
 	///////////////////////////////////Templates///////////////////////////////
-	//Creating my own vector version to enable vector element addition
+	//---Vector/Array Implementations--
 	template <typename T>
 	class myvector : std::vector<int> {
 	public:
@@ -101,8 +105,7 @@ namespace INF {
 		void addArrayElements(myarray arrayArg);
 	};
 
-	using myvectorI = myvector<int>;
-	using myarrayI5A = myarray<i5array>;
+	
 
 	template <typename T>
 	std::vector<T> concatVectors(std::vector<std::vector<T>> vectorsList);
@@ -117,7 +120,7 @@ namespace INF {
 	private:
 		std::array<T, 5> items;
 	};
-	/////////////////////////////////Variables/////////////////////////////////
+	///////////////////////////////////Variables///////////////////////////////
 	extern s5array
 		TROOP_NAMES,
 		RESOURCE_BUILDING_NAMES,
@@ -155,9 +158,9 @@ namespace INF {
 	
 
 	
-	//////////////////////////////Functions////////////////////////////////////
+	///////////////////////////////////Functions///////////////////////////////
 	
-	//////////////string///////////////
+	//----String-----------------------
 	//Get command to print certain color to console
 	std::string getColor(COLORS color);
 
@@ -166,7 +169,7 @@ namespace INF {
 	
 	
 	
-	//////////////void/////////////////
+	//----Void-------------------------
 	//CLears the screen
 	void clearScreen();
 	//Prompts the user to enter anything
@@ -189,7 +192,6 @@ namespace INF {
 
 	//For if/ternary statements with no "else"
 	static void nothing() {};
-	
 }
 
 #endif		

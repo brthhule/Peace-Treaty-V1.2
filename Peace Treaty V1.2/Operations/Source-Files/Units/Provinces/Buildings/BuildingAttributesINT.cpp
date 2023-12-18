@@ -5,7 +5,7 @@
 
 using namespace PROV;
 
-int Provinces::getCapacity(BUILD::BuildingsEnum name) { 
+constINT Provinces::getCapacity(BUILD::BuildingsEnum name) { 
 	//For debugging
 	INF::debugFunction("Buildings, getCapacity");
 	std::shared_ptr<BuildingsBASE> currentBuilding = getBuilding(name);
@@ -57,7 +57,7 @@ void Provinces::mutateLevel(BuildingsEnum name, MutateDirection direction, int a
 }
 
 /*Return the amount of troops trained this turn - troopsTrainedThisTurn*/
-const int& Provinces::getTroopsTrainedThisTurn() {
+constINT Provinces::getTroopsTrainedThisTurn() {
 	//For debugging
 	INF::debugFunction("Buildings, getTroopsTrainedThisTurn");
 	Barracks building = static_cast<Barracks>(buildings.at(BARRACKS));
@@ -129,9 +129,9 @@ void Provinces::initiailizeCapitalBuildings() {
 	}
 }
 
-void Provinces::displayListOfBuildings() {
+void Provinces::printListOfBuildings() {
 	//For debugging
-	INF::debugFunction("Buildings, displayListOfBuildings");
+	INF::debugFunction("Buildings, printListOfBuildings");
 	for (int x = 0; x < 10; x++) {
 		std::cout << x << ") " << BUILD::BuildingStrings.at(x) << ", level: " << buildings.at(x).getLevel();
 	}

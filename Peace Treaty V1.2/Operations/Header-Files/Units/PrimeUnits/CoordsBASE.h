@@ -1,3 +1,7 @@
+//CoordsBASE.h
+//Base Class
+//Extended by AllUnits
+
 #ifndef COORDS_BASE_H
 #define COORDS_BASE_H
 
@@ -6,14 +10,11 @@
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 
-#include INF_HEADER
+#include INF_HEADER					    //Namespace
 
 using namespace INF;
 
-BASE_CLASS
-EXTENDED_ BY_ ALL_UNITS_
-class CoordsBASE
-{
+class CoordsBASE {
 public:
 	CoordsBASE(){}
 	~CoordsBASE(){}

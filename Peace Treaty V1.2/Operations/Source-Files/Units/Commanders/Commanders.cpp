@@ -49,7 +49,7 @@ void Commanders::printCommanderStats() {
 }
 
 ////////////Accessors//////////////////
-const int& Commanders::getCommanderStat(int index) {
+constINT Commanders::getCommanderStat(int index) {
 	//For debugging
 	INF::debugFunction("Commanders, getCommanderStat");
 

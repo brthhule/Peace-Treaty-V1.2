@@ -62,7 +62,7 @@ void Provinces::selectUpgradeBuilding() {
 		buildingLetterList.push_back(std::to_string(x));
 	}
 
-	displayListOfBuildings();
+	printListOfBuildings();
 	std::string message1 = "Enter the number of the building you want to upgrade " + 
 		"(enter 'H' for help) : ";
 	char option = Input::getInputText(message1, buildingLetterList).at(0);

@@ -100,7 +100,7 @@ void Provinces::addCommander(commSPTR newCommander)
 
 
 
-const int& Provinces::getTotalCP()
+constINT Provinces::getTotalCP()
 {
 	//For debugging
 	INF::debugFunction("Provinces, getTotalCP");
@@ -114,19 +114,7 @@ const int& Provinces::getTotalCP()
 	return totalCP;
 }
 
-INF::i5array Provinces::getTotalResources()
-{
-	//For debugging
-	INF::debugFunction("Provinces, getTotalResources");
 
-	INF::i5array totalResources = resourcesPresent;
-	COMM::commMAP::iterator it; 
-	for (it = commandersMap.begin(); it != commandersMap.end(); it++)
-		for (int y = 0; y < 5; y++)
-			totalResources[y] += it->second->getResource(y);
-	
-	return totalResources;
-}
 
 //Convert unordered_map to vector for easy understanding
 COMM::commSPTRList Provinces::getAllCommanders()
@@ -263,7 +251,7 @@ void Provinces::setKingdomName(std::string name) {
 	kingdomName = name;
 }
 
-const int& Provinces::getCommandersNum() {
+constINT Provinces::getCommandersNum() {
 	//For debugging
 	INF::debugFunction("Provinces, getCommandersNum");
 
