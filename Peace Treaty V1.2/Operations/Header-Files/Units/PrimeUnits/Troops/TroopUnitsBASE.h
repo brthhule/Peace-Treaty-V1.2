@@ -14,20 +14,6 @@ using namespace INF;
 
 class TroopUnitsBASE {
 public:
-
-	/*	GUARDS,
-		INFANTRY,
-		ARCHERS,
-		CAVALRY,
-		ARTILLARY*/
-	enum TroopTypes {
-		GUARDS,
-		INFANTRY,
-		ARCHERS,
-		CAVALRY,
-		ARTILLARY
-	};
-
 	/*Constructor*/
 	TroopUnitsBASE(
 		int level, 

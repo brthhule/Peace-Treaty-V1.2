@@ -26,7 +26,7 @@ void Participants::trainMAMain() {
 
     std::cout << "What type of troop do you want to upgrade?\n";
     int troopTypeNum = Input::getOptionPrompt(TRAIN_MA_FUNCTION_UNITS);
-    TroopUnitsBASE::TroopTypes type = TroopUnitsBASE::(1);
+    TROOP::TroopTypes type = TroopUnitsBASE::(1);
         
 
     std::cout << "The max tier troop you can train: " << troopTier << ", " << INF::TROOP_NAMES[troopTier - 1] << std::endl;

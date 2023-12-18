@@ -5,7 +5,7 @@ TroopUnitsBASE::TroopUnitsBASE(int level,
 	int baseHealth,
 	int tier,
 	std::array<int,3> baseDamage,
-	TroopUnitsBASE::TroopTypes thisType) {
+	TROOP::TroopTypes thisType) {
 	//For debugging
 	INF::debugFunction("Troops, Troops");
 
@@ -72,7 +72,7 @@ void TroopUnitsBASE::increaseTier(int amount) {
 	tier += amount;
 }
 
-TroopUnitsBASE::TroopTypes TroopUnitsBASE::getThisType() {
+TROOP::TroopTypes TroopUnitsBASE::getThisType() {
 	return thisType;
 }
 

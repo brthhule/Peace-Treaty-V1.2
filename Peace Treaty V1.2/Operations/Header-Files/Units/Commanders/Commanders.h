@@ -41,7 +41,7 @@ namespace COMM {
 		void calculateCommanderScoutLog();
 
 	private:
-		INF::INTEGER
+		int
 			maxTroops,
 			totalMaxResources;
 

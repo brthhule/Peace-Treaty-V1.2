@@ -77,7 +77,14 @@ public:
 	///Get the costs needed to train a new Commander?
 	constI5array getTrainCosts(); 
 	i5array calculateEach(int option);
+	///Returns all units in a participant, uses threading
 	i5array getAllUnitsArray();//???
+	/*Check out the return types of the bottom two funtions-
+	Are they supposed to return anything? Currently call to global variables
+	I deleted, can probably use a return type as a substitute*/
+	void Participants::getAllUnitsArrayProvinces();
+	void getAllUnitsArrayCommanders();
+
 
 	///Returns a commander this Participant owns by name
 	commSPTR getCommander(std::string name);
@@ -149,8 +156,6 @@ public:
 		
 
 	void setCapital(provSPTR newProvince);
-	void showMapOld();
-
 	void addCommander();
 	void addProvince(provSPTR newProvince);
 	void printListOfProvinces();
@@ -165,7 +170,6 @@ public:
 	void setParticipantIndex(int num);
 	void setKingdomName(std::string newName);
 	void showMap();
-
 
 	void updateTurnResourcesParticipant();
 	void createMapParticipant();

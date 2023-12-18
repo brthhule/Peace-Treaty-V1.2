@@ -395,11 +395,11 @@ i5array Participants::calculateEach(int option)
 bool Participants::subtractCheckResources(unitSPTR unit, i5array resources) {
 	//For debugging
 	INF::debugFunction("Participants, subtractCheckResources");
-	unit->modifyResources(costs, DECREASE);
+	unit->mutateAllResources(costs, DECREASE); 
 	for (int x : unit->getAllResources()) {
 		if (x < 0) {
 			//Undo subtractions
-			unit->modifyResources(costs, INCREASE);
+			unit->mutateAllResources(costs, INCREASE); 
 			return false;
 		}
 	}
@@ -407,75 +407,6 @@ bool Participants::subtractCheckResources(unitSPTR unit, i5array resources) {
 	return true;
 }
 
-
-void Participants::showMapOld() {
-	//For debugging
-	INF::debugFunction("Participants, showMapOld");
-
-	std::cout << "Map: \n";
-
-	int foo = INF::continentSize;
-	for (int x = 0; x < INF::continentSize; x++) {
-		// Y axis stuff
-		if (foo < 10) {
-			std::cout << " " << foo << "| ";
-		}
-		else {
-			std::cout << foo << "| ";
-		}
-			
-
-		foo--;
-		// End y axis stuff
-
-		for (int y = 0; y < INF::continentSize; y++) {
-			char letter = ' '; // Fix this later
-			provSPTR mapProvince = getSystemProvince({x,y});
-
-			if (mapProvince->getParticipantIndex() == participantIndex) {
-				std::cout << BLUE;
-				if (mapProvince->isCapital() == true) {
-					letter = 'C';
-				}
-				else {
-					letter = 'p';
-				}
-					
-			}
-			else if (mapProvince->getParticipantIndex() != -1) {
-				addColor(RED);
-				if (getSystemProvince({ x, y })->isCapital() == true) {
-					letter = 'C';
-				}
-				else {
-					letter = 'p';
-				}
-			}
-			else {
-				letter = '0';
-			}
-
-			std::cout << letter << mapProvince->getCommandersNum() << "  " << WHITE;
-		}
-		std::cout << std::endl;
-	}
-
-	// X axis stuff
-	std::cout << "    ";
-	for (int a = 0; a < INF::continentSize - 1; a++) {
-		std::cout << "----";
-	}
-	std::cout << "--";
-	std::cout << std::endl;
-	std::cout << "    ";
-	for (int a = 0; a < INF::continentSize; a++) {
-		if (a < 9)
-			std::cout << a + 1 << "   ";
-		else
-			std::cout << a + 1 << "  ";
-	}
-	std::cout << "\n\n";
-}
 
 
 
@@ -773,4 +704,36 @@ Participants::AttackMAInfo::AttackMAInfo(provSPTR defenderProvinceArg, commSPTR 
 Participants::AttackMAInfo::AttackMAInfo() {
 	defendingProvince = nullptr;
 	attackingCommander = nullptr;
+}
+
+void Participants::getAllUnitsArrayCommanders() {
+	//For debugging
+	INF::debugFunction("Participants, getAllUnitsArrayCommanders");
+
+	for (commSPTR instance : commandersVector) {
+		i5array commanderArray = instance.getTroop(REGULAR, -1, ALL);
+		//INF::mutateArray(allCommandersArray, commanderArray, INCREASE);
+	}
+}
+
+void Participants::getAllUnitsArrayProvinces() {
+	//For debugging
+	INF::debugFunction("Participants, getAllUnitsArrayProvinces");
+
+	for (provSPTR instance : provincesVector) {
+		i5array provincesArray = instance->getTroop(REGULAR, -1, ALL);
+		//INF::mutateArray(allProvincesArray, provincesArray, INCREASE);
+	}
+}
+
+int Participants::getAllUnitsAmount() {
+	//For debugging
+	INF::debugFunction("Participants, getAllUnitsAmount");
+
+	int amount = 0;
+	for (int x : getAllUnitsArray()) {
+		amount += x;
+	}
+
+	return amount;
 }
