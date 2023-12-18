@@ -4,18 +4,16 @@
 using namespace PART;
 
 void Participants::initialDecision() {
-	//For debugging
 	INF::debugFunction("PlayerAction, initialDecision");
+	INF::enterAndClear(1);
 
 	bool goToNextTurn = false;
-
-	INF::enterAnything(1);
-	INF::clearScreen();
+	
 
 	char courseOfAction = ' ';
 
-	if (this->isPlayer() == true)
-	{
+	//If player
+	if (this->isPlayer() == true) {
 		std::cout << "Turn: " << INF::turn << std::endl;
 		std::cout << "Player " << getKingdomName() << "'s move...";
 		std::cout << "\n\nWelcome to the Main Action menu \n\n\n";
@@ -28,8 +26,7 @@ void Participants::initialDecision() {
 		courseOfAction = randomAction();
 	}
 
-	INF::enterAnything(1);
-	INF::clearScreen();
+	INF::enterAndClear(1);
 
 	switch (courseOfAction) {
 		case 'B': {
@@ -68,8 +65,9 @@ void Participants::initialDecision() {
 			std::cout << "Returning to the Main menu... \n";
 		}
 	}
-	if (goToNextTurn == false)
-		initialDecision();
+	
+	//Recurse until base cass (Next turn action)
+	initialDecision();
 }
 
 char Participants::randomAction() {

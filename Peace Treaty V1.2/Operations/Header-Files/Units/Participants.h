@@ -45,9 +45,7 @@ using namespace PROV;
 using namespace UNIT;
 
 namespace PART {
-	
-
-	//Players
+	//Represent players, both human and AI
 	class Participants : 
 			public BASE, 
 			public Map,
@@ -60,25 +58,24 @@ namespace PART {
 			public AttackMA
 	{
 	public:
+		//----Aliases----------------------------------------------------------
 		using partSPTR = std::shared_ptr<Participants>;
 		using partSPTRList = std::vector<partSPTR>;
-		static std::vector<partSPTR> playersList;
-		static std::vector<partSPTR> botsList;
+		static partSPTRList playersList;
+		static partSPTRList botsList;
 		
-		CONSTRUCTOR Participants();
-		CONSTRUCTOR Participants(int pIndex);
+		//----Constructors-----------------------------------------------------
+		Participants();
+		Participants(int pIndex);
 		~Participants(){}
 
-		CALCULATE GETTER
-			i5array
-			getTrainCosts(),
-			calculateEach(int option),
-			getAllUnitsArray();
+		//----Getters----------------------------------------------------------
+		///Get the costs needed to train a new Commander?
+		constI5array getTrainCosts();
+		i5array calculateEach(int option);
+		i5array getAllUnitsArray();
 
-		VARIABLE
-			static i5array
-			allCommandersArray,
-			allProvincesArray;
+	
 
 		std::thread th1Method();
 		std::thread th2Method();

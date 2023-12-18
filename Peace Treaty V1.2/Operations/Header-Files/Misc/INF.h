@@ -35,14 +35,9 @@ namespace INF {
 
 	//----Const Values-----------------
 	using constINT = const int&;
-	using constI5array = std::array<int&, 5>;
-
-
+	using constI5array = std::array<constINT, 5>;
 
 	///////////////////////////////////Enums/////////////////////////////////
-
-	
-
 	/*DECREASE = 0, INCREASE = 1*/
 	enum MutateDirection {
 		DECREASE = 0,

@@ -684,25 +684,6 @@ i5array Participants::getAllUnitsArray() {
 	return mutateArray(returnArray, allCommandersArray, true);
 }
 
-void Participants::getAllUnitsArrayCommanders() {
-	//For debugging
-	INF::debugFunction("Participants, getAllUnitsArrayCommanders");
-
-	for (commSPTR instance : commandersVector) { 
-		i5array commanderArray = instance.getTroop(REGULAR, -1, ALL);
-		INF::mutateArray(allCommandersArray, commanderArray, INCREASE);
-	}
-}
-
-void Participants::getAllUnitsArrayProvinces() {
-	//For debugging
-	INF::debugFunction("Participants, getAllUnitsArrayProvinces");
-
-	for (provSPTR instance : provincesVector) {
-		i5array provincesArray = instance->getTroop(REGULAR, -1, ALL);
-		INF::mutateArray(allProvincesArray, provincesArray, INCREASE);
-	}
-}
 
 INTEGER Participants::getAllUnitsAmount() {
 	//For debugging
