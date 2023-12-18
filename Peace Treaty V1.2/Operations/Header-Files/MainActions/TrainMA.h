@@ -1,21 +1,24 @@
 //TrainMA.h
 
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
-
 #ifndef TRAINMA_H
 #define TRAINMA_H
 
-INTERFACE 
-IMPLEMENTED_ BY_  
-	PARTICIPANTS_ 
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
+
+#include INF_HEADER
+
+using namespace INF;
+
 class TrainMA 
 {
 public:
+	//----Constructors---------------------------------------------------------
 	TrainMA(){}
 	~TrainMA(){}
 
-	virtual void TrainMAFunction() = 0;
-	virtual void TrainMAFunctionDoWhileLoop(int troopTier, int amountOfTroops) = 0;
+	//----Methods--------------------------------------------------------------
+	virtual void trainMAMain() = 0;
+	virtual void trainMALoop(int troopTier, int amountOfTroops) = 0;
 };
 
 #endif

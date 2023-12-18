@@ -4,14 +4,12 @@
 
 namespace INF {
 	////////////////////////////////////////////////Start Variables///////////////////////////////////////
-	/*Troops_COST = 5, 4, 3, 2, 1 */
-	i5array Troops_COST = { 5, 4, 3, 2, 1 };
+	
 
 	/*INITIAL_VALUES = 5, 4, 3, 2, 1 */
 	i5array INITIAL_VALUES = { 5, 4, 3, 2, 1 };
 
-	/*Troops_CP = 1, 2, 4, 8, 16*/
-	i5array Troops_CP = { 1,2,4,8,16 };
+	
 
 	/*RESOURCE_PRODUCTION = 5, 4, 3, 2, 1 */
 	i5array RESOURCE_PRODUCTION = { 5,4,3,2,1 };
@@ -79,9 +77,7 @@ namespace INF {
 	int enemyDifficulty = 0;
 	int CPUNum = 0;
 	int turn = 0;
-	int UNIT_AMOUNT_CV = UNIT_AMOUNT;
 	int currentParticipantIndex = 0;
-	int maxCommanders = 0;
 
 	bool debuggingMode = true;
 
@@ -243,7 +239,7 @@ void INF::debugFunction(std::string functionName) {
 2 - playerUnitAction
 3 - introduction
 4 - playerAction
-6 - TrainMAFunction
+6 - trainMAMain
 7 - playerBuildFunction
 8 - viewPlayerMap
 9 - selectPlayerProvince
@@ -346,4 +342,21 @@ std::vector<T> INF::concatVectors(std::vector<std::vector<T>> vectorsList) {
 	}
 
 	return baseList;
+}
+
+
+void INF::printResources(i5array resourcesArray) {
+	//For debugging
+	INF::debugFunction("AllUnits, printResources");
+
+	for (int x = 0; x < 5; x++) {
+		std::cout << "- " << INF::RESOURCE_NAMES.at(x) << ": " << resourcesArray.at(x) << std::endl;
+	}
+
+	std::cout << std::endl;
+}
+
+void INF::enterAndClear(int option) {
+	enterAnything(option);
+	clearScreen();
 }

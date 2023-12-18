@@ -22,19 +22,23 @@
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 
-#include ALL_UNITS_HEADER
-#include ARMY_OVERVIEW_MA_HEADER
-#include ATTACK_MA_HEADER
-#include BASE_HEADER
-#include COMMANDERS_HEADER
-#include INF_HEADER
-#include MOBILITY_HEADER
-#include MAP_HEADER
-#include MAP_MA_HEADER
-#include PLAYER_ACTION_HEADER
-#include PROVINCES_HEADER
-#include SCOUT_MA_HEADER
-#include TRAIN_MA_HEADER
+#include BASE_HEADER					//Base Class
+#include MOBILITY_HEADER				//Base Class
+#include MAP_HEADER						//Base Class
+
+#include PRIME_UNITS_HEADER				//Composition
+#include COMMANDERS_HEADER				//Composition
+#include PROVINCES_HEADER				//Composition
+
+#include INF_HEADER						//Utility
+
+#include ARMY_OVERVIEW_MA_HEADER		//Interface
+#include ATTACK_MA_HEADER				//Interface
+#include MAP_MA_HEADER					//Interface
+#include PLAYER_ACTION_HEADER			//Interface
+#include SCOUT_MA_HEADER				//Interface
+#include TRAIN_MA_HEADER				//Interface
+#include TROOPS_INT_HEADER				//Interface
 
 using namespace INF;
 using namespace PROV;
@@ -45,23 +49,15 @@ namespace PART {
 
 	//Players
 	class Participants : 
-		EXTENDS_ 
-			BASE_CLASS public BASE, 
-			BASE_CLASS public Map,
-			BASE_CLASS public Mobility,
-		IMPLEMENTS_ 
-			INTERFACE public ArmyOverviewMA,
-			INTERFACE public TrainMA,
-			INTERFACE public PlayerAction,
-			INTERFACE public MapMA,
-			INTERFACE public ScoutMA,
-			INTERFACE public AttackMA
-		COMPRISES_
-			ALL_UNITS_
-			COMMANDERS_
-			PROVINCES_
-		USES_
-			INF_
+			public BASE, 
+			public Map,
+			public Mobility,
+			public ArmyOverviewMA,
+			public TrainMA,
+			public PlayerAction,
+			public MapMA,
+			public ScoutMA,
+			public AttackMA
 	{
 	public:
 		using partSPTR = std::shared_ptr<Participants>;
@@ -142,29 +138,29 @@ namespace PART {
 
 		COMM::commSPTR pickCommander();
 
-		VOID setCapital(provSPTR newProvince);
-		VOID showMapOld();
+		void setCapital(provSPTR newProvince);
+		void showMapOld();
 
-		VOID addCommander();
-		VOID addProvince(provSPTR newProvince);
-		VOID printListOfProvinces();
+		void addCommander();
+		void addProvince(provSPTR newProvince);
+		void printListOfProvinces();
 
-		VOID createAsPlayer(bool status);
-		VOID viewAllStatsFunction();
-		VOID viewStats();
-		VOID scoutProvince(provSPTR targetProvince, int accuracy);
-		VOID displayCommanders();
-		VOID initialCapRSS();
+		void createAsPlayer(bool status);
+		void viewAllStatsFunction();
+		void viewStats();
+		void scoutProvince(provSPTR targetProvince, int accuracy);
+		void displayCommanders();
+		void initialCapRSS();
 
-		VOID setParticipantIndex(int num);
-		VOID setKingdomName(std::string newName);
-		VOID showMap();
+		void setParticipantIndex(int num);
+		void setKingdomName(std::string newName);
+		void showMap();
 
-		VOID getAllUnitsArrayCommanders();
-		VOID getAllUnitsArrayProvinces();
+		void getAllUnitsArrayCommanders();
+		void getAllUnitsArrayProvinces();
 
-		VOID updateTurnResourcesParticipant();
-		VOID createMapParticipant();
+		void updateTurnResourcesParticipant();
+		void createMapParticipant();
 
 		ARMY_OVERVIEW_MA_ START
 			/** printCosts__ Print commander upgrade costs
@@ -197,8 +193,8 @@ namespace PART {
 
 			TRAIN_MA_ START
 				//TrainMA.h
-			void TrainMAFunction();
-		void TrainMAFunctionDoWhileLoop(int troopTier, int amountOfTroops);
+			void trainMAMain();
+		void trainMALoop(int troopTier, int amountOfTroops);
 
 		void moveUnitOne(COMM::commSPTR commander);
 		std::vector <provSPTR> moveUnitTwo(COMM::commSPTR commander);

@@ -61,9 +61,6 @@ void startOrResumeGame() {
 			INF::enterAnything(1);
 			INF::clearScreen();
 			std::cout << "New game started...\n\n";
-			// std::cout << "What is your kingdom name? " << RED;
-			// std::getline(std::cin, kingdomName);
-			// std::cout << WHITE << "The kingdom of " << RED << kingdomName << WHITE << " has been created! \n\n";
 			startGame();
 			break;
 		}
@@ -164,8 +161,7 @@ void gamePlay() {
 	{
 		partSPTR newParticipant = participantsPtr->at(x);
 		//If the current participant is alive
-		if (newParticipant->isAlive())
-		{
+		if (newParticipant->isAlive()) {
 			try {
 				newParticipant->initialDecision();
 			} catch (...) {

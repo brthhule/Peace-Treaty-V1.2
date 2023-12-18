@@ -41,12 +41,7 @@ namespace INF {
 
 	///////////////////////////////////Enums/////////////////////////////////
 
-	/*REGULAR, INJURED, LOST */
-	enum TroopCondition {
-		REGULAR,
-		INJURED,
-		LOST
-	};
+	
 
 	/*DECREASE = 0, INCREASE = 1*/
 	enum MutateDirection {
@@ -138,9 +133,7 @@ namespace INF {
 		enemyDifficulty,
 		CPUNum,
 		turn,
-		UNIT_AMOUNT_CV,
-		currentParticipantIndex,
-		maxCommanders;
+		currentParticipantIndex;
 
 	extern bool debuggingMode;
 
@@ -166,14 +159,20 @@ namespace INF {
 
 	std::string createRandomName();
 
+	///Takes an array of resources, formats and prints them out
+	void printResources(i5array resourcesArray);
+
+
 	
 	
 	
-	//----Void-------------------------
+	//----void-------------------------
 	//CLears the screen
 	void clearScreen();
 	//Prompts the user to enter anything
 	void enterAnything(int option);
+	///Calls enterAnything then clearScreen
+	void enterAndClear(int option);
 	//Debugging purposes
 	void debugFunction(std::string functionName);
 	//Text stuff
@@ -191,7 +190,7 @@ namespace INF {
 	i5array mutateArray(i5array primeArray, i5array secondaryArray, MutateDirection direction);
 
 	//For if/ternary statements with no "else"
-	static void nothing() {};
+	void nothing() {};
 }
 
 #endif		

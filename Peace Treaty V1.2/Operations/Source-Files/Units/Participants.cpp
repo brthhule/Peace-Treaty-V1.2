@@ -9,8 +9,8 @@ i5array Participants::allCommandersArray = {};
 i5array Participants::allProvincesArray = {};
 i5array trainCosts = { 5, 4, 3, 2, 1 };
 
-std::vector<partSPTR> Participants::playersList = {};
-std::vector<partSPTR> Participants::botsList = {};
+std::vector<partSPTR> Participants::playersList = {};  
+std::vector<partSPTR> Participants::botsList = {};  
 
 
 	// Constructor
@@ -102,7 +102,7 @@ void Participants::addCommander() {
 	ipair tempSystemCoords = getCapitalProvince()->getCoords(CoordsBASE::SYSTEM);
 	ipair tempUserCoords = getCapitalProvince()->getCoords(CoordsBASE::USER);
 
-	newCommander.changeParticipantIndex(participantIndex);
+	newCommander.setParticipantIndex(participantIndex);
 	newCommander.setCoords(tempSystemCoords, tempUserCoords);
 
 	commandersVector.push_back(newCommander);
@@ -684,7 +684,7 @@ i5array Participants::getAllUnitsArray() {
 	return mutateArray(returnArray, allCommandersArray, true);
 }
 
-VOID Participants::getAllUnitsArrayCommanders() {
+void Participants::getAllUnitsArrayCommanders() {
 	//For debugging
 	INF::debugFunction("Participants, getAllUnitsArrayCommanders");
 
@@ -694,7 +694,7 @@ VOID Participants::getAllUnitsArrayCommanders() {
 	}
 }
 
-VOID Participants::getAllUnitsArrayProvinces() {
+void Participants::getAllUnitsArrayProvinces() {
 	//For debugging
 	INF::debugFunction("Participants, getAllUnitsArrayProvinces");
 

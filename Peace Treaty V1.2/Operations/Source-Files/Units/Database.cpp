@@ -9,7 +9,7 @@ Database::Database() {
 
 	//Default
 	maxCommanders = 0;
-	currentParticipant = NULL;
+	currentParticipant = nullptr;
 
 }
 
@@ -99,8 +99,8 @@ void Database::createCapitals() {
 
 			if (province->getParticipantIndex() == -1)
 			{
-				province->changeParticipantIndex(participant.getParticipantIndex());
-				province->changeUnitName(participant.getNewName());
+				province->setParticipantIndex(participant.getParticipantIndex());
+				province->setUnitName(participant.getNewName());
 				participant.addProvince(province);
 				participant.setCapital(province);
 			}

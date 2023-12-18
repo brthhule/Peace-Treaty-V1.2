@@ -10,7 +10,7 @@
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 
-#include ALL_UNITS_HEADER				//Base Class
+#include PRIME_UNITS_HEADER				//Base Class
 #include COORDS_BASE_HEADER				//Base Class
 
 #include BUILD_MA_HEADER				//Interface
@@ -101,6 +101,8 @@ namespace PROV {
 		std::array<int, 7> getListInt();
 		std::array<bool, 3> getListBool();
 		std::array< ipair, 2> getListCoords();
+
+		const std::string getCoords(CoordsBASE::CoordsType type) override;
 
 		//Scout/report stuff
 		std::array<i5array, 4> getGeneralLists();

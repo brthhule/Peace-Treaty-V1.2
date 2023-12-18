@@ -9,7 +9,7 @@
 #include INF_HEADER
 #include BUILD_HEADER
 #include BUILDINGS_BASE_HEADER
-#include ALL_UNITS_HEADER
+#include PRIME_UNITS_HEADER
 #include BARRACKS_HEADER
 
 using namespace INF;

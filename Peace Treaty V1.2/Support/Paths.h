@@ -45,7 +45,7 @@
 //Types
 #define INTEGER_
 #define STRING_
-#define VOID_
+#define void_
 #define BOOL_
 #define ARRAY_
 #define TYPE_

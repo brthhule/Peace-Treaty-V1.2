@@ -113,7 +113,7 @@ void Participants::selectPlayerProvince(provSPTR province) {
 		break;
 	}
 	case 'T': {
-		this->TrainMAFunction();
+		this->trainMAMain();
 		break;
 	}
 	case 'M':

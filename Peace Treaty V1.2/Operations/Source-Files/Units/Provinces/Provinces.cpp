@@ -70,7 +70,7 @@ void Provinces::makeCapital(int participantIndexArg)
 	//For debugging
 	INF::debugFunction("Provinces, makeCapital");
 
-	changeParticipantIndex(participantIndexArg);
+	setParticipantIndex(participantIndexArg);
 	isACapital = true;
 }
 
@@ -238,6 +238,9 @@ std::array< ipair, 2> Provinces::getListCoords() {
 }
 
 
+const std::string Provinces::getCoords(CoordsBASE::CoordsType type) {
+	return PrimeUnits::getCoords(type);
+}
 
 
 

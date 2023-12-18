@@ -1,5 +1,5 @@
-#ifndef ALLUNITS_H
-#define ALLUNITS_H
+#ifndef PRIMEUNITS_H
+#define PRIMEUNITS_H
 
 #include <array>
 #include <iostream>
@@ -11,6 +11,7 @@
 #include COORDS_BASE_HEADER				//Base Class
 #include INF_HEADER						//Utility
 #include TROOP_UNITS_BASE_HEADER		//Composition
+#include TROOPS_INT_HEADER				//Interface
 
 using namespace INF;
 
@@ -18,23 +19,23 @@ namespace UNIT {
 
 enum UnitType { COMMANDER, PROVINCE };
 
-class AllUnits : 
+class PrimeUnits : 
 	public CoordsBASE					//Base Class
 {
 public:
 	//----Aliases--------------------------------------------------------------	
 	using T5array = INF::Array5<TroopUnitsBASE>;
-	using unitSPTR = std::shared_ptr<AllUnits>;
+	using unitSPTR = std::shared_ptr<PrimeUnits>;
 	using troopConditionArray = INF::Array5<T5array>;
 	using unitSPTRList = std::vector<unitSPTR>;
 
 	//----Constructors---------------------------------------------------------
 	///Default Constructor
-	AllUnits();
+	PrimeUnits();
 	///One param overloaded Constructor
-	AllUnits(int index);
+	PrimeUnits(int index);
 	///Destructor
-	~AllUnits(){}
+	~PrimeUnits(){}
 
 	//----Getters--------------------------------------------------------------
 	///Returns combat power of this unit. Implemented by derived classes
@@ -49,10 +50,13 @@ public:
 	///Returns the value of one type of resource in this unit
 	constINT getResource(int resourceIndex);
 
-	///Returns the amount of resources currently in this unit
-	constI5array getTotalResources();
+
 	///Get this unit's name
 	const std::string& getUnitName();
+
+	constI5array getAllResources();//Add implementation
+
+	const std::string getCoords(CoordsType type);
 
 
 	//----Mutators-------------------------------------------------------------
@@ -78,54 +82,24 @@ public:
 	*/
 	void mutateAllResources(constI5array resourcesArray, 
 		INF::MutateDirection direction);
-	///Change this unit's name
-	void changeUnitName(std::string name);
-	void changeParticipantIndex(int number);
 
 	//----Printers-------------------------------------------------------------
+	///Print all the resources in this unit
 	void printResources();
-	void printTroopsPresent();
-
-	i5array getAllResources();//Add implementation
-
-
-	void printResources(i5array resourcesArray);
-
-	/*Return all the tiers for one troop type for a particular condition
-	Example: returns all tiers for guards present*/
-	i5array getAllOneTroopArray(TroopCondition troopCondition, TroopUnitsBASE::TroopTypes type);
-
-	/*Returns the total of all of a particular troop type's tiers for a particular condition
-	Example: returns the total of all tiers for guards present*/
-	int getAllOneTroopInt(TroopCondition troopCondition, TroopUnitsBASE::TroopTypes type);
-
-	/*Returns the tier totals for all troop types for a particular condition
-	Example: returns the total of all tiers of all troops presnet, as in the totals for guards, infantry, archers, etc.*/
-	i5array getGenericTroops(TroopCondition type);
-
-
-	/*Change a troop by index or all trypes.
-	TroopCondition: REGULAR, INJURED, LOST
-	TroopUnitsBASE::TroopTypes: GUARDS, INFANTRY, ARCHERS, CAVALRY, ARTILLARY
-	amount: {a,b,c,d,e} or {a}
-	Quantitiy: SINGLE, ALL
-	MutateDirection: DECREASE, INCREASE
-	troopTier: 1/2/3/3/4/5*/
-	void mutateTroop(
-		INF::TroopCondition troopCondition,
-		TroopUnitsBASE::TroopTypes type,
-		i5array amount,
-		Quantity quant,
-		INF::MutateDirection direction,
-		int troopTier);
-
-	void setBattleFormation(troopConditionArray troopArray);
+	///Prints all the troops in this unit. Implemented by derived classes
+	
 
 	//Override?
 	INF::ipair translateCoords(INF::ipair coords, CoordsType type);
 
 	unitSPTRList sortVector(SortType sort, unitSPTRList list);
 	unitSPTRList levelSort(unitSPTRList list);
+
+	//----Setters--------------------------------------------------------------
+	///Set this unit's name
+	void setUnitName(std::string name);
+	///Set the index of the participant this unit belongs to
+	void setParticipantIndex(int number);
 
 protected:
 	i5array resourcesPresent;
@@ -157,7 +131,7 @@ protected:
 	TroopUnitsBASE troops;
 };
 
-using unitSPTR = std::shared_ptr<AllUnits>;
+using unitSPTR = std::shared_ptr<PrimeUnits>;
 using unitSPTRList = std::vector<unitSPTR>;
 
 }

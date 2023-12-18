@@ -38,7 +38,7 @@ void Participants::initialDecision() {
 			break;
 		}
 		case 'T': {
-			this->TrainMAFunction();
+			this->trainMAMain();
 			break;
 		}
 		case 'S':

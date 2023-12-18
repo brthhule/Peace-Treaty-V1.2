@@ -4,28 +4,25 @@
 using namespace PART;
 
 //Main TrainMA function
-void Participants::TrainMAFunction() {
+void Participants::trainMAMain() {
     //For debugging
     provSPTR province = this->pickYourProvince(1);
-    INF::debugFunction("TrainMA, TrainMAFunction");
 
     this->showMap();
 
     //Barracks level determins how 
     int barracksLevel = province->getBuilding(BARRACKS)->getLevel();
-    std::cout << "Start printing province barracks information: \033[34m\n";
-    std::cout << "Province of kingdom " << this->getKingdomName() << " selected\n";
+    std::cout << "Start printing province barracks information: " << getColor(BLUE);
+    std::cout << "Province of kingdom " << getKingdomName() << " selected\n";
+
 
     std::cout << "Coordinates: " +
-        province->getUserCoordsString() + 
+        province->getCoords(CoordsBASE::CoordsType::USER) +
         "\n\nThe barracks level of this province: " + 
           std::to_string(barracksLevel) + "\n";
 
-    int troopTier = barracksLevel / 5;
-    troopTier += 1;
-    if (troopTier > 5) {
-        troopTier = 5;
-    }
+    int troopTier = (barracksLevel / 5) + 1;
+    troopTier =  (troopTier > 5) ? troopTier = 5 : troopTier;
 
     std::cout << "What type of troop do you want to upgrade?\n";
     int troopTypeNum = Input::getOptionPrompt(TRAIN_MA_FUNCTION_UNITS);
@@ -53,7 +50,7 @@ void Participants::TrainMAFunction() {
     char repeatOuterDoLoop = 'N';
     if (trainTroop > troopTier) {
         std::cout << "Invalid troop tier... please try again...\n";
-        TrainMAFunction();
+        trainMAMain();
     }
     
     
@@ -82,13 +79,13 @@ void Participants::TrainMAFunction() {
         }
         
 
-    TrainMAFunctionDoWhileLoop(troopTier, amountOfTroops);
+    trainMALoop(troopTier, amountOfTroops);
     
 }
 
-void Participants::TrainMAFunctionDoWhileLoop(int troopTier, int amountOfTroops) {
+void Participants::trainMALoop(int troopTier, int amountOfTroops) {
     //For debugging
-    INF::debugFunction("TrainMA, TrainMAFunctionDoWhileLoop");
+    INF::debugFunction("TrainMA, trainMALoop");
 
     provSPTR capitalProvince = this->getCapitalProvince();
 

@@ -1,13 +1,13 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
-#include ALL_UNITS_HEADER 
+#include PRIME_UNITS_HEADER 
 
 using namespace UNIT;
 
 //----Constructors----
 //One param overloaded Constructor
-AllUnits::AllUnits(int participantIndexArg) { 
+PrimeUnits::PrimeUnits(int participantIndexArg) { 
 	//For debugging
-	INF::debugFunction("AllUnits, AllUnits (1 Param)");
+	INF::debugFunction("PrimeUnits, PrimeUnits (1 Param)");
 
 	switch (participantIndexArg) {
 		case -1:
@@ -38,24 +38,24 @@ AllUnits::AllUnits(int participantIndexArg) {
 }
 
 //Default Constructor
-AllUnits::AllUnits() {
+PrimeUnits::PrimeUnits() {
 	//For debugging
-	INF::debugFunction("AllUnits, AllUnits (0 Param)");
+	INF::debugFunction("PrimeUnits, PrimeUnits (0 Param)");
 
-	AllUnits(-1);
+	PrimeUnits(-1);
 };
 
 
-void AllUnits::printTroopsPresent() {
+void PrimeUnits::printTroopsPresent() {
 	i5array troopsPresent = this->getGenericTroops(REGULAR);
 	for (int x = 0; x < 5; x++) {
 		std::cout << TROOP_NAMES.at(x) << ": " << troopsPresent.at(x) << std::endl;
 	}
 }
 
-constINT AllUnits::getCP() {
+constINT PrimeUnits::getCP() {
 	//For debugging
-	INF::debugFunction("AllUnits, getCP");
+	INF::debugFunction("PrimeUnits, getCP");
 
 	combatPower = 0;
 	for (int x = 0; x < 5; x++) {
@@ -64,16 +64,16 @@ constINT AllUnits::getCP() {
 	return combatPower;
 }
 
-constINT AllUnits::getParticipantIndex() {
+constINT PrimeUnits::getParticipantIndex() {
 	//For debugging
-	INF::debugFunction("AllUnits, getParticipantIndex");
+	INF::debugFunction("PrimeUnits, getParticipantIndex");
 
 	return participantIndex;
 }
 
-void AllUnits::printResources() { 
+void PrimeUnits::printResources() { 
 	//For debugging
-	INF::debugFunction("AllUnits, printResources");
+	INF::debugFunction("PrimeUnits, printResources");
 
 	std::cout << "Resources currently present in this " << type << ": \n";
 	INF::addColor(INF::BLUE);
@@ -81,35 +81,35 @@ void AllUnits::printResources() {
 	INF::addColor(INF::RESET);
 }
 
-std::string AllUnits::getUnitName() {
+std::string PrimeUnits::getUnitName() {
 	//For debugging
-	INF::debugFunction("AllUnits, getUnitName");
+	INF::debugFunction("PrimeUnits, getUnitName");
 
 	return unitName;
 }
-void AllUnits::changeUnitName(std::string name) {
+void PrimeUnits::setUnitName(std::string name) {
 	//For debugging
-	INF::debugFunction("AllUnits, changeUnitName");
+	INF::debugFunction("PrimeUnits, setUnitName");
 
 	unitName = name;
 }
 
 //Mutator Functions
-constINT AllUnits::getFoodConsumption() {
+constINT PrimeUnits::getFoodConsumption() {
 	//For debugging
-	INF::debugFunction("AllUnits, getFoodConsumption");
+	INF::debugFunction("PrimeUnits, getFoodConsumption");
 
 	return foodConsumption;
 }
-constINT AllUnits::getResource(int resourceIndex) {
+constINT PrimeUnits::getResource(int resourceIndex) {
 	//For debugging
-	INF::debugFunction("AllUnits, getResource");
+	INF::debugFunction("PrimeUnits, getResource");
 
 	return resourcesPresent[resourceIndex];
 }
-void AllUnits::modifySpecificResource(int index, int amount, bool isAdd) {
+void PrimeUnits::modifySpecificResource(int index, int amount, bool isAdd) {
 	//For debugging
-	INF::debugFunction("AllUnits, modifySpecificResources");
+	INF::debugFunction("PrimeUnits, modifySpecificResources");
 
 	if (isAdd)
 		resourcesPresent[index] += amount;
@@ -117,55 +117,48 @@ void AllUnits::modifySpecificResource(int index, int amount, bool isAdd) {
 		resourcesPresent[index] -= amount;
 }
 
-void AllUnits::modifyResources(i5array resourcesArray, INF::MutateDirection direction) {
+void PrimeUnits::mutateAllResources(i5array resourcesArray, INF::MutateDirection direction) {
 	//For debugging
-	INF::debugFunction("AllUnits, mdofiyResources");
+	INF::debugFunction("PrimeUnits, mdofiyResources");
 
 	resourcesPresent = INF::mutateArray(resourcesPresent, resourcesArray, direction);
 }
 
-constINT AllUnits::getLevel() {
+constINT PrimeUnits::getLevel() {
 	//For debugging
-	INF::debugFunction("AllUnits, getLevel");
+	INF::debugFunction("PrimeUnits, getLevel");
 
 	return unitLevel;
 }
 
-i5array AllUnits::getAllResources() {
+constI5array PrimeUnits::getAllResources() {
 	//For debugging
-	INF::debugFunction("AllUnits, getAllResources");
-
+	INF::debugFunction("PrimeUnits, getAllResources");
 	return resourcesPresent;
 }
 
-void AllUnits::changeParticipantIndex(int number) {
+const std::string PrimeUnits::getCoords(CoordsType type) {
+	return CoordsBASE::getCoords(type);
+}
+
+void PrimeUnits::setParticipantIndex(int number) {
 	//For debugging
-	INF::debugFunction("AllUnits, changeParticipantIndex");
+	INF::debugFunction("PrimeUnits, setParticipantIndex");
 
 	participantIndex = number;
 }
 
-void AllUnits::printResources(i5array resourcesArray) {
-	//For debugging
-	INF::debugFunction("AllUnits, printResources");
-
-	for (int x = 0; x < 5; x++) {
-		std::cout << "- " << INF::RESOURCE_NAMES.at(x) << ": " << resourcesArray.at(x) << std::endl;
-	}
-		
-
-	std::cout << std::endl;
-}
 
 
-i5array AllUnits::getAllOneTroopArray(INF::TroopCondition troopCondition, TroopUnitsBASE::TroopTypes type) {
+
+i5array PrimeUnits::getAllOneTroopArray(INF::TroopCondition troopCondition, TroopUnitsBASE::TroopTypes type) {
 	//For debugging
 	INF::debugFunction("Troops, getAllOneTroopArray");
 
 	return allTroopConditions.at(troopCondition.at(type));
 }
 
-int AllUnits::getAllOneTroopInt(INF::TroopCondition troopCondition, TroopUnitsBASE::TroopTypes type) {
+int PrimeUnits::getAllOneTroopInt(INF::TroopCondition troopCondition, TroopUnitsBASE::TroopTypes type) {
 	i5array tempArray = getAllOneTroopArray(troopCondition, type);
 	INF::debugFunction("Troops, getAllOneTroopInt");
 
@@ -177,7 +170,7 @@ int AllUnits::getAllOneTroopInt(INF::TroopCondition troopCondition, TroopUnitsBA
 	return total;
 }
 
-i5array AllUnits::getGenericTroops(TroopCondition troopCondition) {
+i5array PrimeUnits::getGenericTroops(TroopCondition troopCondition) {
 	i5array troopTotals = { 0,0,0,0,0 };
 
 	for (int x = 0; x < 5; x++) {
@@ -190,7 +183,7 @@ i5array AllUnits::getGenericTroops(TroopCondition troopCondition) {
 
 //----Mutators----
 //Change troops of type index at this unit by amount
-void AllUnits::mutateTroop(INF::TroopCondition troopCondition, TroopUnitsBASE::TroopTypes troopType, i5array amount, Quantity quant, INF::MutateDirection direction, int troopTier) {
+void PrimeUnits::mutateTroop(INF::TroopCondition troopCondition, TroopUnitsBASE::TroopTypes troopType, i5array amount, Quantity quant, INF::MutateDirection direction, int troopTier) {
 	//For debugging
 	INF::debugFunction("Troops, mutateTroop");
 
@@ -221,19 +214,19 @@ void AllUnits::mutateTroop(INF::TroopCondition troopCondition, TroopUnitsBASE::T
 	return;
 }
 
-void AllUnits::setBattleFormation(troopConditionArray troopArray) {
+void PrimeUnits::setBattleFormation(troopConditionArray troopArray) {
 	std::cout << "Welcome to the Battle Formation menu.\n";
 	std::cout << "Please select a battle formation option: ";
 	std::cout << "";
 }
 
 
-INF::ipair AllUnits::translateCoords(INF::ipair coords, CoordsType type) { 
+INF::ipair PrimeUnits::translateCoords(INF::ipair coords, CoordsType type) { 
 	return CoordsBASE::translateCoords(coords, type);
 }
 
 //Quicksort
-unitSPTRList AllUnits::sortVector(SortType sort, unitSPTRList list) { 
+unitSPTRList PrimeUnits::sortVector(SortType sort, unitSPTRList list) { 
 	if (sort == LEVEL) {
 		return levelSort(list);
 	}
@@ -246,7 +239,7 @@ unitSPTRList AllUnits::sortVector(SortType sort, unitSPTRList list) {
 
 //Has been tested with concatVectors, so should work
 
-unitSPTRList AllUnits::levelSort(unitSPTRList list) {
+unitSPTRList PrimeUnits::levelSort(unitSPTRList list) {
 	if (list.size() <= 1) {
 		return list;
 	}
@@ -280,16 +273,3 @@ unitSPTRList AllUnits::levelSort(unitSPTRList list) {
 	return concatVectors(returnList);
 }
 
-
-INF::i5array AllUnits::getTotalResources() {
-	//For debugging
-	INF::debugFunction("Provinces, getTotalResources");
-
-	INF::i5array totalResources = resourcesPresent;
-	COMM::commMAP::iterator it;
-	for (it = commandersMap.begin(); it != commandersMap.end(); it++)
-		for (int y = 0; y < 5; y++)
-			totalResources[y] += it->second->getResource(y);
-
-	return totalResources;
-}
