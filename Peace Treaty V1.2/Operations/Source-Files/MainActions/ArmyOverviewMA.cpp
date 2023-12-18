@@ -174,7 +174,8 @@ void Participants::deployCommanderMF() {
 	INF::enterAnything(1);
 }
 
-void Participants::printCosts(std::vector<int> costs, int phrase) {
+void Participants::printCosts(constI5array costs, int phrase) {
+	std::string line;
 	if (phrase == 1) {
 		line = "Commander upgrade"
 	}

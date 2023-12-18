@@ -84,31 +84,7 @@ void Map::printXAxis() {
 	std::cout << "\n\n";
 }
 
-//Only for system coords
-//First int should be row, second int should be column
-provSPTR Map::getSystemProvince(ipair systemCoords) {
-	//For debugging
-	INF::debugFunction("Map, getSystemProvince");
 
-	return map[systemCoords.first][systemCoords.second];
-}
-
-
-provSPTR Map::getUserProvince(ipair userCoords) {
-	//For debugging
-	INF::debugFunction("Map, getUserProvince");
-
-	for (int row = 0; row < INF::continentSize; row++) {
-		for (int col = 0; col < INF::continentSize; col++) {
-			if (map[row][col]->getCoords(CoordsBASE::USER) == userCoords) {
-				return map[row][col];
-			}
-		}
-	}
-
-	//This should never occur
-	return NULL;
-}
 
 void Map::updateTurnResources() {
 	//For debugging
@@ -124,6 +100,20 @@ void Map::updateTurnResources() {
 
 
 
-PROV::provSPTR Map::getProvince(CoordsBASE::CoordsType typeWant, CoordsBASE::CoordsType coordsType, ipair coords) {
+PROV::provSPTR Map::getProvince(CoordsType type, ipair coords) {
+	if (type == SYSTEM) {
+		return map.at(coords.first).at(coords.second);
+	}
 
+	//Ugly-- fix optomize this
+	for (int row = 0; row < INF::continentSize; row++) {
+		for (int col = 0; col < INF::continentSize; col++) {
+			if (map[row][col]->getCoords(CoordsBASE::USER) == userCoords) {
+				return map[row][col];
+			}
+		}
+	}
+
+	//Should never happen assuming the province exists
+	return nullptr;
 }

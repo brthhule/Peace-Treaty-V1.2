@@ -20,19 +20,33 @@ class ArmyOverviewMA
 		INPUT_
 {
 public:
+	//----Constructors---------------------------------------------------------
 	ArmyOverviewMA(){}
 	~ArmyOverviewMA(){}
 
+	//----Printers-------------------------------------------------------------
 	virtual void
+		/** printCosts__ Print commander upgrade costs
+
+			@param costs__ array with resource costs amount
+			@param phrase__ 1 prints "commander upgrade"
+			@return void
+		*/
 		printCosts(i5array, int phrase) = 0;
 
+	//----Methods--------------------------------------------------------------
+	/** armyOverviewMain
+			Main method for ArmyOverviewMA
+
+			@param void
+			@return void
+	*/
 	virtual void armyOverviewMain() = 0;
-	virtual void
-		trainCommanders() = 0,
-		proceedWithTraining(std::array <int,5> trainCosts) = 0,
-		upgradeCommander() = 0,
-		viewArmyOverview() = 0,
-		deployCommanderMF() = 0;
+	virtual void trainCommanders() = 0;
+	virtual void proceedWithTraining(constI5array trainCosts) = 0;
+	virtual void upgradeCommander() = 0;
+	virtual void viewArmyOverview() = 0;
+	virtual void deployCommanderMF() = 0;
 };
 
 #endif
