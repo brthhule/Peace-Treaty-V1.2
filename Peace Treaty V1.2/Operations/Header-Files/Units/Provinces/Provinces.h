@@ -103,7 +103,7 @@ namespace PROV {
 		std::array<bool, 3> getListBool();
 		std::array< ipair, 2> getListCoords();
 
-		const std::string getCoords(CoordsBASE::CoordsType type) override;
+		const std::string getCoords(COORD::CoordsType type) override; 
 
 		//Scout/report stuff
 		std::array<i5array, 4> getGeneralLists();

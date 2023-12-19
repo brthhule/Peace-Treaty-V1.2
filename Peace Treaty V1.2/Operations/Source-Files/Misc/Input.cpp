@@ -187,4 +187,18 @@ namespace Input {
 
 		return Prompts(getStringIndex(arg));
 	}
+
+	int getNumber(std::string text) {
+		std::string numberString = getInputText(text, {});
+		if (INF::checkIsNumber(numberString) == false) {
+			if (numberString == "-1") {
+				return -1;
+			}
+			std::cout << "Invalid entry entered, please try again...\n";
+			getNumber(text);
+		}
+
+		return std::stoi(numberString);
+	}
 };
+

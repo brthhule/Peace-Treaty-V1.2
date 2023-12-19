@@ -11,10 +11,12 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 #include PROVINCES_HEADER				//Composition
 #include INF_HEADER						//Utility
+#include INPUT_HEADER
 
 using namespace INF;
 using namespace PROV;
 using namespace COORD;
+using namespace Input;
 
 /*TODO
 * Potentially implement lamda in showMap();
@@ -50,7 +52,9 @@ public:
 	*		@return Provinces shared pointer
 	*/	
 	static provSPTR getProvince(CoordsType type, ipair coords);
-
+	//Prompts the user to pick a pair of x and y coordinates within the bounds of the map, returns USER type coords
+	static ipair pickCoords();
+	static bool checkInBounds(ipair coords, CoordsType type);
 	
 	typedef std::unordered_map <std::string, provSPTR> ProvincesMap;
 	typedef std::vector <std::vector<provSPTR>> ProvincesVector;

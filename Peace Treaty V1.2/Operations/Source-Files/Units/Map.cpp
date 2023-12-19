@@ -107,3 +107,35 @@ PROV::provSPTR Map::getProvince(CoordsType type, ipair coords) {
 	
 	return map.at(coords.first).at(coords.second);
 }
+
+
+ipair Map::pickCoords() {
+	int xCoordinate, yCoordinate; 
+	xCoordinate = Input::getNumber("Enter an X Coordinate (-1 to cancel): ");
+	yCoordinate = Input::getNumber("Enter a Y Coordinate (-1 to cancel): ");
+
+	ipair userCoords = std::make_pair<int, int>(xCoordinate, yCoordinate);
+	if (checkInBounds(userCoords, USER) == false ||
+		xCoordinate == -1 ||
+		yCoordinate == -1) {
+		return std::make_pair<int, int>(-1, -1);
+	}
+	
+	return userCoords;
+}
+
+bool Map::checkInBounds(ipair coords, CoordsType type) {
+	if (type == USER) {
+		coords.first -= 1;
+		coords.second -= 1; 
+	}
+
+	if (coords.first < 0 || coords.first >= INF::continentSize) {
+		return false;
+	}
+	if (coords.second < 0 || coords.second >= INF::continentSize) {
+		return false;
+	}
+
+	return true;
+}

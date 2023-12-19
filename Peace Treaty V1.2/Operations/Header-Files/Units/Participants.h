@@ -201,9 +201,8 @@ public:
 
 	///////////////////////////////////Mobility.h//////////////////////////////
 	void moveUnitOne(commSPTR commander) override;
-	std::vector <provSPTR> moveUnitTwo(commSPTR commander) override;
-	static ipair pickCoords();
-
+	std::vector <provSPTR> getSurroundingProvinces(commSPTR commander) override;
+	Provinces& pickProvinceToMoveTo(Commanders& commanderReference) override;
 	///////////////////////////////////MapMA.h/////////////////////////////////
 	void viewPlayerMap();
 	void selectUnitOriginal(provSPTR selectedProvince);

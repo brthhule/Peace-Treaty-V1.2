@@ -182,7 +182,15 @@ namespace INF {
 	}
 };
 
-
+bool INF::checkIsNumber(std::string numberString) {
+	std::string AV = "0123456789";
+	for (char letter : numberString) {
+		if (AV.find(letter) = std::string::npos) {
+			return false;
+		}
+	}
+	return true;
+}
 
 //Clears the screen
 void INF::clearScreen() {

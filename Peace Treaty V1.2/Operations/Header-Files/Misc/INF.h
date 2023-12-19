@@ -41,6 +41,10 @@ namespace INF {
 
 	///////////////////////////////////Enums/////////////////////////////////
 	/*DECREASE = 0, INCREASE = 1*/
+
+	enum ProvinceRelation { 
+		ENEMY_PROVINCE, FRIENDLY_PROVINCE };
+
 	enum MutateDirection {
 		DECREASE = 0,
 		INCREASE = 1
@@ -159,6 +163,9 @@ namespace INF {
 
 	///Takes an array of resources, formats and prints them out
 	void printResources(i5array resourcesArray);
+
+	///Checks if a string is an inteer, only works for positive integers
+	bool checkIsNumber(std::string number);
 
 
 	
