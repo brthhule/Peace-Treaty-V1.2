@@ -2,6 +2,7 @@
 #include PARTICIPANTS_HEADER 
 
 using namespace PART;
+using namespace COORD;
 
 void Participants::armyOverviewMain() { 
 	//For debugging
@@ -35,26 +36,38 @@ void Participants::armyOverviewMain() {
 	armyOverviewMain();
 }
 
+Commanders& Participants::pickCommanderToUpgrade() {
+	if (getCommandersNum() == 0) { 
+		std::cout << "No commanders available, can not upgrade\n"; 
+		enterAnything(1); 
+		return nullptr;
+	}
+
+	COMM::commSPTR commander = this->pickCommander(); 
+
+	if (commander == nullptr) { 
+		std::cout << "Cancelling upgrade...\n"; 
+		enterAnything(1); 
+		return nullptr;
+	}
+
+	//This should return the reference that commander holds
+	return *commander;
+}
+
 void Participants::upgradeCommander() {
 	//For debugging
 	INF::debugFunction("ArmyOverview, upgradeCommander");
 
-	if (getCommandersNum() == 0) {
-		std::cout << "No commanders available, can not upgrade\n";
-		enterAnything(1);
-		return;
-	}
-
-	COMM::commSPTR commander = this->pickCommander();
-
-	if (commander == nullptr) {
-		std::cout << "Cancelling upgrade...\n";
-		enterAnything(1);
-		return;
-	}
+	commSPTR commander = std::make_shared<Commanders>(pickCommanderToUpgrade());
+	if (commander = nullptr) { return; }
 
 	i5array costsArray = commander->getUpgradeCosts();
-	printCosts(costsArray, "commander upgrade");
+
+	std::cout << "The following are the Commander upgrade costs: \n";
+	INF::printResources(costsArray);
+	std::cout << "The following are the resources currently in your capital: \n";
+	getCapitalProvince()->printResources();
 
 	char proceedWithUpgradeQuestion =
 		Input::getInputText("\nProceed with upgrade? ", { "Y", "N" }).at(0);
@@ -64,8 +77,6 @@ void Participants::upgradeCommander() {
 		INF::enterAnything(1);
 		return;
 	}
-
-	/*Subtracts the necessary resources from capital province. If resources left over are all positive (there were enough resources), return true. If any resources are negative, return false*/
 
 	bool resourcesPositive = getCapitalProvince()->subtractCheckResources(costsArray);
 
@@ -93,10 +104,10 @@ void Participants::viewArmyOverview() {
 		INF::enterAnything(1);
 		return;
 	}
-
+	
 	std::cout << "Commander " + commander->getUnitName() +" selected... \n" +
 		"The coordinates of this Commander: ";
-	commander->printCoords(CoordsBASE::USER);
+	commander->printCoords(COORD::USER); 
 	std::cout << "\n\n";
 	commander->printCommanderStats();
 
@@ -107,22 +118,19 @@ void Participants::trainCommanders() {
 	INF::debugFunction("ArmyOverview, trainCommanders");
 
 	std::string yesOrNoString;
-	std::cout << "You have " << this->getCommandersNum() << "/" << INF::maxCommanders << " total army commanders. \n";
-	std::cout << "Do you want to train a commander? (Y/N) ";
-
-	i5array trainCosts = getTrainCosts();
-
-	if (Input::getInputText("Proceed with training", { "Y", "N" }).at(0) == 'N') {
+	std::cout << "You have " << this->getCommandersNum() << "/" << TROOP::maxCommanders << " total army commanders. \n";
+	if (getCommandersNum < TROOP::maxCommanders()) {
+		std::cout << "At maximum army commander amount. Training failed, returning to menu \n";
+		return;
+	}
+	
+	if (Input::getInputText("Proceed with training (Y/N)", { "Y", "N" }).at(0) == 'N') {
 		INF::enterAnything(1);
 		return;
 	}
 
-	/*if amount of commanders is less than max (not at max capacity)*/
-	if (this->getCommandersNum() < INF::maxCommanders) {
-		proceedWithTraining(trainCosts);
-	} else {
-		std::cout << "At maximum army commander amount. Training failed, returning to menu \n";
-	}
+	i5array trainCosts = getTrainCosts(); 
+	proceedWithTraining(trainCosts);
 
 	INF::enterAnything(1);
 }
@@ -138,7 +146,7 @@ void Participants::proceedWithTraining(i5array trainCosts) {
 		return;
 	}
 
-		addCommander();
+	addCommander();
 
 	println("Commander training successful ");
 	std::cout << "Current commanders: " << this->getCommandersNum() << std::endl;
@@ -173,21 +181,15 @@ void Participants::deployCommanderMF() {
 	deployCommanderMF();
 	INF::enterAnything(1);
 }
-
-void Participants::printCosts(constI5array costs, int phrase) {
-	std::string line;
-	if (phrase == 1) {
-		line = "Commander upgrade"
-	}
+ 
+void Participants::addCommander() { 
 	//For debugging
-	INF::debugFunction("ArmyOverview, printCosts");
+	INF::debugFunction("Participants, addCommander");
 
-	std::cout << "The following are the " << line << " costs: \n";
-	for (int x = 0; x < 5; x++) {
-		std::cout << INF::RESOURCE_NAMES[x] << ": " << costs[x];
-	}
+	commSPTR commander = std::make_shared<Commanders>(new Commanders(1, getNewName()));
+	commander->setParticipantIndex(participantIndex); 
 
-	std::cout << "The following are the resources currently in your capital: \n";
-	getCapitalProvince()->printResources();
+	commandersVector.push_back(std::make_shared<Commanders>(*commander)); 
+	commandersMap[commander.getUnitName()] = std::make_shared<Commanders>(*commander);
+	getCapitalProvince()->addCommander(*commander);
 }
-

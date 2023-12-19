@@ -1,6 +1,6 @@
 ///Commanders.h
 ///Derived Class
-/// Extends AllUnits (Extends Coords)
+/// Extends PrimeUnits (Extends Coords)
 
 #ifndef COMMANDERS_H
 #define COMMANDERS_H
@@ -17,7 +17,7 @@ using namespace UNIT;
 namespace COMM {
 
 	//Control army units
-	class Commanders : public AllUnits {
+	class Commanders : public PrimeUnits {
 	public:
 		//----Constructors-----------------------------------------------------
 		Commanders();

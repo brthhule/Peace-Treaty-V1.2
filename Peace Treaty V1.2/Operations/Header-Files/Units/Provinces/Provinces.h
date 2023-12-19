@@ -1,5 +1,5 @@
 //Provinces.h
-//Inherits: AllUnits, BuildMA, Buildings
+//Inherits: PrimeUnits, BuildMA, Buildings
 
 #ifndef PROVINCES_H
 #define PROVINCES_H
@@ -45,6 +45,7 @@ namespace PROV {
 		//----Initialization---------------------------------------------------
 		bool isCapital();
 		bool hasCommander(std::string name);
+		/*Subtracts the necessary resources from capital province. If resources left over are all positive (there were enough resources), return true. If any resources are negative, return false*/
 		bool subtractCheckResources(i5array resourcesArray);
 
 		///Initializes this province as a capital
@@ -73,8 +74,8 @@ namespace PROV {
 
 		//----Setters----------------------------------------------------------
 		
-		///Add Commander to this province
-		void addCommander(commSPTR newCommander);
+		///Add Commander to this province and change Commander corods to here
+		void addCommander(Commanders& newCommander);
 		///Remove Commander from this province
 		void removeCommander(commSPTR newCommander);
 		/*//Update this province's resources at the end of the round.

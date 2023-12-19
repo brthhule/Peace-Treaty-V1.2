@@ -131,3 +131,12 @@ const int& COORD::getRandomCoordinate() {
 	INF::debugFunction("Map, getRandomCoordinate");
 	return rand() % INF::continentSize;
 }
+
+void CoordsBASE::setCoords(std::pair<const ipair&, const ipair&> coords) { 
+	systemCoords = *coords.first; 
+	userCoords = *coords.second;
+}
+
+std::pair<const ipair&, const ipair&> CoordsBASE::getPairCoords() {  
+	return std::make_pair(&systemCoords, &userCoords); 
+}

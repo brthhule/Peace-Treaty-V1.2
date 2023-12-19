@@ -1,5 +1,5 @@
 /*Troops base class
-* Composition: inside AllUnits.h
+* Composition: inside PrimeUnits.h
 */
 
 #ifndef TROOPUNITSBASE_H
@@ -12,8 +12,8 @@
 
 using namespace INF;
 using namespace TROOP;
-
-class TroopUnitsBASE {
+ 
+class TroopUnitsBASE { 
 public:
 	/*Constructor*/
 	TroopUnitsBASE(

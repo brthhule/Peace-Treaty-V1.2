@@ -3,6 +3,7 @@
 #include INPUT_HEADER
 
 using namespace PROV;
+using namespace COORD;
 
 //Don't use default constructor, just just this with -1 as a parameter
 Provinces::Provinces(int overallIndexArg) {
@@ -23,7 +24,7 @@ Provinces::Provinces(int overallIndexArg) {
 	commandersSortType = ALPHABETICAL;
 }
 
-std::array<AllUnits::troopConditionArray, 3> Provinces::getTroopsLists() {
+std::array<PrimeUnits::troopConditionArray, 3> Provinces::getTroopsLists() {
 	std::array<troopConditionArray, 3> returnArray = { troopsPresent, troopsInjured, troopsLost };
 	return returnArray;
 }
@@ -91,11 +92,14 @@ void Provinces::removeCommander(commSPTR newCommander)
 	commandersVector.erase(getCommanderIndex(newCommander));
 }
 
-void Provinces::addCommander(commSPTR newCommander)
+void Provinces::addCommander(Commanders &commanderReference)
 {
 	//For debugging
 	INF::debugFunction("Provinces, addCommander");
-	commandersMap[newCommander->getUnitName()] = newCommander;
+	commSPTR commander = std::make_shared<Commanders>(commanderReference);
+	commandersMap[commander->getUnitName()] = commander; 
+
+	commander->setCoords(getPairCoords());
 }
 
 
@@ -294,7 +298,7 @@ void Provinces::createReport(int scouterLevelArg, int targetLevelArg) {
 		ListsArg, 
 		listIntArg, 
 		listBoolArg, 
-		getCoords(CoordsBASE::SYSTEM));
+		getCoords(COORD::SYSTEM));
 	int turn = newReport.getReportTurn();
 	std::pair<int, ProvinceReport> sendReport(turn, newReport);
 	int index = 0;//Determine how to find this

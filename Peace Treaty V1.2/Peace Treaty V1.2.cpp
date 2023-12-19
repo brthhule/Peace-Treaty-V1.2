@@ -154,23 +154,19 @@ void gamePlay() {
 	for (partUPTR participant : db.getParticipantsList()) {  
 		if (!participant->isAlive()) { break; }
 
-		try {
-			participant->chooseAction(); 
-		} catch (...) {
-			std::cout << "Something went wrong, error occurred in player turn";
-		}
+		try { participant->chooseAction(); } 
+		catch (...) { std::cout << "Error occurred in player turn";}
 	}
+
 	INF::turn++;
 	db.updateTurnResources();
 
 	//Check game end
 	//If there are more than one players, keep playing
 	int participantsAlive = 0;
-	std::vector<Participants>* list = db.getParticipantsList();
-	for (Participants newParticipant : *list) {
-		if (newParticipant.isAlive() == true) {
-			participantsAlive++;
-		}
+
+	for (partUPTR participant: db.getParticipantsList()) { 
+		if (participant->isAlive()) { participantsAlive++;}
 	}
 
 	if (participantsAlive > 1) {
@@ -188,9 +184,9 @@ void endScreen() {
 	std::string kingdomName = " ";
 
 	//Only one is surviving, iterates through to find that participant
-	for (Participants participant : db.getParticipantsList()) { 
-		if (participant.isAlive()) {   
-			kingdomName = participant.getKingdomName();
+	for (partUPTR participant : db.getParticipantsList()) { 
+		if (participant->isAlive()) {    
+			kingdomName = participant->getKingdomName(); 
 			break;
 		}
 	}

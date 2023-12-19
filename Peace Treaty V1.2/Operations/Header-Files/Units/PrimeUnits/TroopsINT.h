@@ -1,6 +1,6 @@
 //TroopsINT.h
 //Interface
-//Implemented by AllUnits.h (Extended by Provinces and Commanders, Composed in Particiapnts)
+//Implemented by PrimeUnits.h (Extended by Provinces and Commanders, Composed in Particiapnts)
 
 #ifndef TROOPSINT_H
 #define TROOPSINT_H

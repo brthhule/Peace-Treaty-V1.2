@@ -13,6 +13,7 @@
 
 #include INF_HEADER
 #include INPUT_HEADER
+#include COMMANDERS_HEADER
 
 class ArmyOverviewMA
 	USES_  
@@ -23,16 +24,6 @@ public:
 	//----Constructors---------------------------------------------------------
 	ArmyOverviewMA(){}
 	~ArmyOverviewMA(){}
-
-	//----Printers-------------------------------------------------------------
-	virtual void
-		/** printCosts__ Print commander upgrade costs
-
-			@param costs__ array with resource costs amount
-			@param phrase__ 1 prints "commander upgrade"
-			@return void
-		*/
-		printCosts(i5array, int phrase) = 0;
 
 	//----Methods--------------------------------------------------------------
 	/** armyOverviewMain
@@ -45,8 +36,10 @@ public:
 	virtual void trainCommanders() = 0;
 	virtual void proceedWithTraining(constI5array trainCosts) = 0;
 	virtual void upgradeCommander() = 0;
+	virtual Commanders& pickCommanderToUpgrade() = 0;  
 	virtual void viewArmyOverview() = 0;
 	virtual void deployCommanderMF() = 0;
+	virtual void addCommander() = 0;
 };
 
 #endif

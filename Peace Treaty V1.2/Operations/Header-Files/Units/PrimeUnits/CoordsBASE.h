@@ -1,6 +1,6 @@
 //CoordsBASE.h
 //Base Class
-//Extended by AllUnits
+//Extended by PrimeUnits
 
 #ifndef COORDS_BASE_H
 #define COORDS_BASE_H
@@ -32,6 +32,7 @@ public:
 	void
 		setIndex(int index),
 		setCoords(ipair systemCoords, ipair userCoords);
+		setCoords(std::pair<const ipair&, const ipair&> coords);
 
 	//----Printers-------------------------------------------------------------
 	void
@@ -49,8 +50,8 @@ public:
 		getSystemCoordsString(),
 		getUserCoordsString();
 
-	
-
+	///First one is SYSTEM, second is USER
+	std::pair<const ipair&, const ipair&> getPairCoords();
 
 protected:
 	ipair

@@ -1,13 +1,13 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
-#include PARTICIPANTS_HEADER
+#include PARTICIPANTS_HEADER 
 
 using namespace COMM;
 using namespace PART;
 using namespace PROV;
 
-i5array Participants::allCommandersArray = {};
+i5array Participants::allCommandersArray = {}; 
 i5array Participants::allProvincesArray = {};
-i5array trainCosts = { 5, 4, 3, 2, 1 };
+i5array trainCosts = { 5, 4, 3, 2, 1 }; 
 
 std::vector<partSPTR> Participants::playersList = {};  
 std::vector<partSPTR> Participants::botsList = {};  
@@ -105,23 +105,7 @@ void Participants::addProvince(provSPTR newProvince) {
 }
 
 
-void Participants::addCommander() {
-	//For debugging
-	INF::debugFunction("Participants, addCommander");
 
-	Commanders newCommander(1, getNewName());
-	ipair tempSystemCoords = getCapitalProvince()->getCoords(CoordsBASE::SYSTEM);
-	ipair tempUserCoords = getCapitalProvince()->getCoords(CoordsBASE::USER);
-
-	newCommander.setParticipantIndex(participantIndex);
-	newCommander.setCoords(tempSystemCoords, tempUserCoords);
-
-	commandersVector.push_back(newCommander);
-	commSPTR commanderPtr = std::make_shared(commandersVector.size() - 1);
-	commandersMap[newCommander.getUnitName()] = commanderPtr;
-
-	getCapitalProvince()->addCommander(commanderPtr);
-}
 
 void Participants::setKingdomName(std::string newName) {
 	//For debugging
@@ -365,24 +349,24 @@ i5array Participants::calculateEach(int option)
 
 	i5array returnArray = { 0, 0, 0, 0, 0 };
 
-	std::vector<std::shared_ptr<AllUnits>> unitsVector = {};
+	std::vector<std::shared_ptr<PrimeUnits>> unitsVector = {};
 
-	/*unitsVector = [&](std::vector < std::shared_ptr<AllUnits>> unitsVector, std::vector<provSPTR> provincesVector) {
-		for (std::shared_ptr<AllUnits> ptr : provincesVector) {
+	/*unitsVector = [&](std::vector < std::shared_ptr<PrimeUnits>> unitsVector, std::vector<provSPTR> provincesVector) {
+		for (std::shared_ptr<PrimeUnits> ptr : provincesVector) {
 			unitsVector.push_back(ptr);
 		}
 	}*/
 
-	for (std::shared_ptr<AllUnits> ptr : provincesVector){
+	for (std::shared_ptr<PrimeUnits> ptr : provincesVector){
 		unitsVector.push_back(ptr);
 	}
 
-	for (std::shared_ptr<AllUnits> ptr : commandersVector) {
+	for (std::shared_ptr<PrimeUnits> ptr : commandersVector) {
 		unitsVector.push_back(ptr);
 	}
 
 	//Iterate through all Provinces and Commanders
-	for (std::shared_ptr<AllUnits> unit : unitsVector) {
+	for (std::shared_ptr<PrimeUnits> unit : unitsVector) {
 		i5array secondaryArray;
 		switch (option) {
 			case 1://Calculate each Unit
@@ -597,9 +581,9 @@ void Participants::showMap() {
 	Map::showMap();
 }
 
-i5array Participants::getAllUnitsArray() {
+i5array Participants::getPrimeUnitsArray() {
 	//For debugging
-	INF::debugFunction("Participants, getAllUnitsArray");
+	INF::debugFunction("Participants, getPrimeUnitsArray");
 
 	i5array returnArray = {0,0,0,0,0};
 	partSPTR p = std::make_shared(new Participants());
@@ -611,8 +595,8 @@ i5array Participants::getAllUnitsArray() {
 		th2.join();
 	}
 	catch (...) {
-		getAllUnitsArrayCommanders();
-		getAllUnitsArrayProvinces();
+		getPrimeUnitsArrayCommanders();
+		getPrimeUnitsArrayProvinces();
 	}
 	
 
@@ -620,12 +604,12 @@ i5array Participants::getAllUnitsArray() {
 }
 
 
-int Participants::getAllUnitsAmount() {
+int Participants::getPrimeUnitsAmount() {
 	//For debugging
-	INF::debugFunction("Participants, getAllUnitsAmount");
+	INF::debugFunction("Participants, getPrimeUnitsAmount");
 
 	int amount = 0;
-	for (int x : getAllUnitsArray()) {
+	for (int x : getPrimeUnitsArray()) {
 		amount += x;
 	}
 
@@ -636,14 +620,14 @@ std::thread Participants::th1Method() {
 	//For debugging
 	INF::debugFunction("Participants, th1Method");
 
-	return std::thread([=] {getAllUnitsArrayProvinces(); });
+	return std::thread([=] {getPrimeUnitsArrayProvinces(); });
 }
 
 std::thread Participants::th2Method() {
 	//For debugging
 	INF::debugFunction("Participants, the2Method");
 
-	return std::thread([=] {getAllUnitsArrayCommanders(); });
+	return std::thread([=] {getPrimeUnitsArrayCommanders(); });
 }
 
 void Participants::updateTurnResourcesParticipant() {
@@ -717,9 +701,9 @@ Participants::AttackMAInfo::AttackMAInfo() {
 	attackingCommander = nullptr;
 }
 
-void Participants::getAllUnitsArrayCommanders() {
+void Participants::getPrimeUnitsArrayCommanders() {
 	//For debugging
-	INF::debugFunction("Participants, getAllUnitsArrayCommanders");
+	INF::debugFunction("Participants, getPrimeUnitsArrayCommanders");
 
 	for (commSPTR instance : commandersVector) {
 		i5array commanderArray = instance.getTroop(REGULAR, -1, ALL);
@@ -727,9 +711,9 @@ void Participants::getAllUnitsArrayCommanders() {
 	}
 }
 
-void Participants::getAllUnitsArrayProvinces() {
+void Participants::getPrimeUnitsArrayProvinces() {
 	//For debugging
-	INF::debugFunction("Participants, getAllUnitsArrayProvinces");
+	INF::debugFunction("Participants, getPrimeUnitsArrayProvinces");
 
 	for (provSPTR instance : provincesVector) {
 		i5array provincesArray = instance->getTroop(REGULAR, -1, ALL);
@@ -737,12 +721,12 @@ void Participants::getAllUnitsArrayProvinces() {
 	}
 }
 
-int Participants::getAllUnitsAmount() {
+int Participants::getPrimeUnitsAmount() {
 	//For debugging
-	INF::debugFunction("Participants, getAllUnitsAmount");
+	INF::debugFunction("Participants, getPrimeUnitsAmount");
 
 	int amount = 0;
-	for (int x : getAllUnitsArray()) {
+	for (int x : getPrimeUnitsArray()) {
 		amount += x;
 	}
 

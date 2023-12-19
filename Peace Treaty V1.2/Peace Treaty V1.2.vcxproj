@@ -154,7 +154,7 @@
 	<ClCompile Include="Operations\Source-Files\Units\PrimeUnits\Troops\Guards.cpp" />
 	<ClCompile Include="Operations\Source-Files\Units\PrimeUnits\Troops\Infantry.cpp" />
     <ClCompile Include="Operations\Source-Files\Units\PrimeUnits\Troops\TroopUnitsBASE.cpp" />
-	<ClCompile Include="Operations\Source-Files\Units\PrimeUnits\AllUnits.cpp" />
+	<ClCompile Include="Operations\Source-Files\Units\PrimeUnits\PrimeUnits.cpp" />
 	<ClCompile Include="Operations\Source-Files\Units\PrimeUnits\CoordsBASE.cpp" />
 	<ClCompile Include="Operations\Source-Files\Units\PrimeUnits\TroopsINT.cpp" />
 
@@ -244,7 +244,7 @@
 	<ClCompile Include="Operations\Header-Files\Units\PrimeUnits\Troops\Guards.h" />
 	<ClCompile Include="Operations\Header-Files\Units\PrimeUnits\Troops\Infantry.h" />
 	<ClCompile Include="Operations\Header-Files\Units\PrimeUnits\Troops\TroopUnitsBASE.h" />
-	<ClCompile Include="Operations\Header-Files\Units\PrimeUnits\AllUnits.h" />
+	<ClCompile Include="Operations\Header-Files\Units\PrimeUnits\PrimeUnits.h" />
 	<ClCompile Include="Operations\Header-Files\Units\PrimeUnits\CoordsBASE.h" />
 	<ClCompile Include="Operations\Header-Files\Units\PrimeUnits\TroopsINT.h" />
 

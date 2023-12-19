@@ -101,19 +101,9 @@ void Map::updateTurnResources() {
 
 
 PROV::provSPTR Map::getProvince(CoordsType type, ipair coords) {
-	if (type == SYSTEM) {
-		return map.at(coords.first).at(coords.second);
+	if (type == USER) {
+		coords = CoordsBASE::translateCoords(coords, USER);
 	}
-
-	//Ugly-- fix optomize this
-	for (int row = 0; row < INF::continentSize; row++) {
-		for (int col = 0; col < INF::continentSize; col++) {
-			if (map[row][col]->getCoords(CoordsBASE::USER) == userCoords) {
-				return map[row][col];
-			}
-		}
-	}
-
-	//Should never happen assuming the province exists
-	return nullptr;
+	
+	return map.at(coords.first).at(coords.second);
 }

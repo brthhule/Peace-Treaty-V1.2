@@ -347,7 +347,7 @@ std::vector<T> INF::concatVectors(std::vector<std::vector<T>> vectorsList) {
 
 void INF::printResources(i5array resourcesArray) {
 	//For debugging
-	INF::debugFunction("AllUnits, printResources");
+	INF::debugFunction("PrimeUnits, printResources");
 
 	for (int x = 0; x < 5; x++) {
 		std::cout << "- " << INF::RESOURCE_NAMES.at(x) << ": " << resourcesArray.at(x) << std::endl;

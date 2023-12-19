@@ -78,12 +78,12 @@ public:
 	constI5array getTrainCosts(); 
 	i5array calculateEach(int option);
 	///Returns all units in a participant, uses threading
-	i5array getAllUnitsArray();//???
+	i5array getPrimeUnitsArray();//???
 	/*Check out the return types of the bottom two funtions-
 	Are they supposed to return anything? Currently call to global variables
 	I deleted, can probably use a return type as a substitute*/
-	void Participants::getAllUnitsArrayProvinces();
-	void getAllUnitsArrayCommanders();
+	void Participants::getPrimeUnitsArrayProvinces();
+	void getPrimeUnitsArrayCommanders();
 
 
 	///Returns a commander this Participant owns by name
@@ -96,7 +96,7 @@ public:
 	///Get total number of Commanders in this participant
 	int getCommandersNum();
 	///Return total number of Commanders + Provinces in this Participant
-	int getAllUnitsAmount();
+	int getPrimeUnitsAmount();
 	///Get the index of this participant in the vector of all participants
 	int getParticipantIndex();
 
@@ -156,7 +156,6 @@ public:
 		
 
 	void setCapital(provSPTR newProvince);
-	void addCommander();
 	void addProvince(provSPTR newProvince);
 	void printListOfProvinces();
 
@@ -175,16 +174,18 @@ public:
 	void createMapParticipant();
 
 	/////////////////////////////////////ArmyOverviewMA.h//////////////////////
-	//-----Printers------------------------------------------------------------
-	void printCosts(constI5array, int phrase) override;
+
 
 	//----Methods--------------------------------------------------------------
 	void armyOverviewMain() override;
 	void trainCommanders() override;
 	void proceedWithTraining(i5array trainCosts) override;
 	void upgradeCommander() override;
+	Commanders& pickCommanderToUpgrade() override;
 	void viewArmyOverview() override;
 	void deployCommanderMF() override;
+	///Adds a Commander to the capital province
+	void addCommander();
 
 	///////////////////////////////////PlayerAction.h//////////////////////////
 	char randomAction() override;
