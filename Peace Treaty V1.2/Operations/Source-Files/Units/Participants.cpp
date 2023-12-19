@@ -13,6 +13,17 @@ std::vector<partSPTR> Participants::playersList = {};
 std::vector<partSPTR> Participants::botsList = {};  
 
 
+Participants::actionsMap = {
+		{'B', 0}, //Build
+		{'T', 1}, // Train
+		{'S', 2}, //View stats
+		{'U', 3}, //View map
+		{'D', 4}, //View army overview
+		{'N', 5}, //Go to next turn
+		{'H', 6}, //View help screen
+		{'P', 7}  //Pause game
+};
+
 	// Constructor
 //Constructor
 Participants::Participants() {

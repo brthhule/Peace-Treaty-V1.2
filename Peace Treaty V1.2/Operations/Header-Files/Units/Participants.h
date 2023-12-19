@@ -188,8 +188,11 @@ public:
 
 	///////////////////////////////////PlayerAction.h//////////////////////////
 	char randomAction() override;
-	void initialDecision() override;
+	void chooseAction() override;
 	void pauseGame() override;
+	void choosePauseGame() override;
+	void showHelp() override;
+	void buildAction() override;
 
 	///////////////////////////////////TrainMA/////////////////////////////////
 	void trainMAMain() override;
@@ -276,6 +279,8 @@ private:
 
 	std::vector <provSPTR> provincesVector;
 	std::vector <commSPTR> commandersVector;
+
+	static std::unordered_map<char, int> actionsMap;
 };
 
 using partSPTR = std::shared_ptr<Participants>;

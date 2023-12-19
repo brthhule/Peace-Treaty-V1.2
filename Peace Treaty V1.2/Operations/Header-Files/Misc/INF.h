@@ -37,6 +37,8 @@ namespace INF {
 	using constINT = const int&;
 	using constI5array = std::array<constINT, 5>;
 
+	using string = std::basic_string<char>; //Shenanigans
+
 	///////////////////////////////////Enums/////////////////////////////////
 	/*DECREASE = 0, INCREASE = 1*/
 	enum MutateDirection {
@@ -164,11 +166,12 @@ namespace INF {
 	
 	//----void-------------------------
 	//CLears the screen
-	void clearScreen();
+	inline void clearScreen();
 	//Prompts the user to enter anything
-	void enterAnything(int option);
+	inline void enterAnything(int option);
 	///Calls enterAnything then clearScreen
-	void enterAndClear(int option);
+	inline void enterAndClear(int option);
+
 	//Debugging purposes
 	void debugFunction(std::string functionName);
 	//Text stuff

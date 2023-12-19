@@ -58,14 +58,12 @@ void startOrResumeGame() {
 			resumeGame();
 			break;
 		case 'S': {
-			INF::enterAnything(1);
-			INF::clearScreen();
+			INF::enterAndClear(1);
 			std::cout << "New game started...\n\n";
 			startGame();
 			break;
 		}
-		case 'H':
-		{
+		case 'H': {
 			INF::showHelp(3);
 			main();
 			break;
@@ -163,7 +161,7 @@ void gamePlay() {
 		//If the current participant is alive
 		if (newParticipant->isAlive()) {
 			try {
-				newParticipant->initialDecision();
+				newParticipant->chooseAction();
 			} catch (...) {
 				std::cout << "Something went wrong, error occurred. Restarting player turn.";
 				x--;
@@ -185,12 +183,8 @@ void gamePlay() {
 	}
 
 	if (participantsAlive > 1) {
-		try {
-			gamePlay(); 
-		} catch (...) {
-			println("Didn't work, try agian");
-		}
-		
+		try { gamePlay(); } 
+		catch (...) { println("Didn't work, try agian");}
 	}
 
 	endScreen();

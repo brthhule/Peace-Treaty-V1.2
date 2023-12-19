@@ -3,71 +3,60 @@
 
 using namespace PART;
 
-void Participants::initialDecision() {
-	INF::debugFunction("PlayerAction, initialDecision");
+void Participants::chooseAction() {
+	INF::debugFunction("PlayerAction, chooseAction");
 	INF::enterAndClear(1);
 
 	bool goToNextTurn = false;
-	
 
-	char courseOfAction = ' ';
+	//For AI
+	char courseOfAction = randomAction();
 
 	//If player
-	if (this->isPlayer() == true) {
+	if (isPlayer()) {
 		std::cout << "Turn: " << INF::turn << std::endl;
 		std::cout << "Player " << getKingdomName() << "'s move...";
 		std::cout << "\n\nWelcome to the Main Action menu \n\n\n";
 
-		this->showMap();
-
+		showMap();
 		courseOfAction = Input::getOptionPrompt(PLAYER_ACTION).at(0); 
-	} else {
-		// If the participant is the AI
-		courseOfAction = randomAction();
-	}
+	} 
 
 	INF::enterAndClear(1);
 
-	switch (courseOfAction) {
-		case 'B': {
-			provSPTR newProvince = pickYourProvince(1);
-			newProvince->mainBuildFunction();
-			break;
-		}
-		case 'T': {
-			this->trainMAMain();
-			break;
-		}
-		case 'S':
-			this->viewStats();
-			break;
-		case 'U': {
-			this->viewPlayerMap();
-			break;
-		}
-		case 'D': {
-			this->armyOverviewMain();
-			break;
-		}
-		case 'N':
-			goToNextTurn = true;
-			break;
-		case 'H': {
-			INF::showHelp(4);
-			break;
-		}
-		case 'P': {
-			char pauseGameQuestionChar = Input::getInputText("Pausing the game will end this session of gameplay. Proceed? (Y/N): ", { "Y", "N" }).at(0);
+	typedef void (*Actions) ();
+	Actions actions[] = {
+		buildAction(),
+		trainMAMain(),
+		viewStats(),
+		viewPlayerMap(),
+		armyOverviewMain(),
+		INF::nothing(),
+		showHelp(),
+		choosePauseGame()
+	};
 
-			if (pauseGameQuestionChar == 'Y')
-				pauseGame();
-
-			std::cout << "Returning to the Main menu... \n";
-		}
-	}
-	
+	int actionNum = actionsMap[courseOfAction];  
+	actions[actionNum](); 
+	 
 	//Recurse until base cass (Next turn action)
-	initialDecision();
+	if (actionNum != 5) { chooseAction(); } 
+	return;
+}
+
+void Participants::buildAction() {
+	provSPTR newProvince = pickYourProvince(1);
+	newProvince->mainBuildFunction();
+}
+void Participants::showHelp() {
+	INF::showHelp(4); 
+}
+
+void Participants::choosePauseGame() { 
+	char pauseGameQuestionChar = Input::getInputText("Pausing the game will end this session of gameplay. Proceed? (Y/N): ", { "Y", "N" }).at(0); 
+
+	if (pauseGameQuestionChar == 'Y') { pauseGame(); }
+	std::cout << "Returning to the Main menu... \n";
 }
 
 char Participants::randomAction() {

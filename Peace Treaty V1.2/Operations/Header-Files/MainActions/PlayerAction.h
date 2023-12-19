@@ -33,10 +33,14 @@ public:
 	///Choose a random action (AI implementation)
 	virtual char randomAction() = 0;
 	///Player chooses an action to complete, recurses until end turn
-	virtual void initialDecision() = 0;
+	virtual void chooseAction() = 0;
 	///Pauses the game-- ???
 	virtual void pauseGame() = 0;
 
+	//Shenanigans
+	virtual void choosePauseGame() = 0;	
+	virtual void showHelp() = 0;
+	virtual void buildAction() = 0;
 };
 
 #endif
