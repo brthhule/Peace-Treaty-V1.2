@@ -45,12 +45,10 @@ void Participants::chooseAction() {
 }
 
 void Participants::buildAction() {
-	provSPTR newProvince = pickYourProvince(1);
-	newProvince->mainBuildFunction();
+	pickYourProvince(1)->mainBuildFunction(); 
 }
-void Participants::showHelp() {
-	INF::showHelp(4); 
-}
+
+void Participants::showHelp() { INF::showHelp(4); }
 
 void Participants::choosePauseGame() { 
 	char pauseGameQuestionChar = Input::getInputText("Pausing the game will end this session of gameplay. Proceed? (Y/N): ", { "Y", "N" }).at(0); 
@@ -63,9 +61,8 @@ char Participants::randomAction() {
 	//For debugging
 	INF::debugFunction("PlayerAction, randomAction");
 
-	int randomNumber = rand() % 6; // Random number 0 to 5 (inclusive)
 	std::vector<char> newVector = { 'B', 'T', 'S', 'U', 'D', 'N' };
-	return newVector[randomNumber];
+	return newVector.at(rand() % 6);
 }
 
 

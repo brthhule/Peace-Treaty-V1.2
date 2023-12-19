@@ -16,11 +16,6 @@ using namespace PART;
 
 //Clase for an object that contians everything in the system/game
 //Purpose: from now on, create 
-
-COMPRISES_
-	PARTICIPANTS_
-USES_ 
-	INF_
 class Database	
 {
 public:
@@ -35,16 +30,14 @@ public:
 	void createCapitals();
 
 	
-	std::vector<Participants>* getParticipantsList();
+	std::vector<partUPTR> *getParticipantsList();
 	
 	partSPTR getCurrentParticipant();
 	partSPTR getParticipant(int index);
 
 
 private:
-	
-	std::vector<Participants> participantsList;
-	partSPTR currentParticipant;
+	std::vector<partUPTR> participantsList; 
 };
 
 #endif

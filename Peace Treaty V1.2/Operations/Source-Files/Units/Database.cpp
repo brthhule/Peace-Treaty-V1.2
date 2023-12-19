@@ -9,8 +9,6 @@ Database::Database() {
 
 	//Default
 	maxCommanders = 0;
-	currentParticipant = nullptr;
-
 }
 
 void Database::updateTurnResources() {
@@ -43,7 +41,7 @@ void Database::initializeParticipants(int totalPlayers, int humanPlayers) {
 	createCapitals();
 }
 
-std::vector <Participants> *Database::getParticipantsList() {
+std::vector <partUPTR> Database::getParticipantsList() {
 	//For debugging
 	INF::debugFunction("Database, getParticipantsList");
 

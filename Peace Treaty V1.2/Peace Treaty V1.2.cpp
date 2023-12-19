@@ -150,23 +150,14 @@ void gamePlay() {
 
 	bool gameEnd = false;
 
-	//Create vector to copy the list of participants from the database
-	std::vector<Participants>* participantsPtr = db.getParticipantsList();
-	std::vector <partSPTR> participantsPtr = db.getParticipantsList();
-
 	//Iterate through partiicpants by reference
-	for (int x = 0; x < (signed)participantsPtr->size(); x++)
-	{
-		partSPTR newParticipant = participantsPtr->at(x);
-		//If the current participant is alive
-		if (newParticipant->isAlive()) {
-			try {
-				newParticipant->chooseAction();
-			} catch (...) {
-				std::cout << "Something went wrong, error occurred. Restarting player turn.";
-				x--;
-			}
+	for (partUPTR participant : db.getParticipantsList()) {  
+		if (!participant->isAlive()) { break; }
 
+		try {
+			participant->chooseAction(); 
+		} catch (...) {
+			std::cout << "Something went wrong, error occurred in player turn";
 		}
 	}
 	INF::turn++;
@@ -194,25 +185,19 @@ void gamePlay() {
 void endScreen() {
 	//For debugging
 	INF::debugFunction("main, endScreen");
-
-	std::vector<Participants>* participantsListCopy = db.getParticipantsList();
-	partSPTR currentParticipant;
+	std::string kingdomName = " ";
 
 	//Only one is surviving, iterates through to find that participant
-	for (int x = 0; x <= (signed)participantsListCopy->size(); x++) {
-		currentParticipant = participantsListCopy->at(x);
-		if (currentParticipant->isAlive()) {
-			currentParticipant = &participantsListCopy->at(x);
+	for (Participants participant : db.getParticipantsList()) { 
+		if (participant.isAlive()) {   
+			kingdomName = participant.getKingdomName();
+			break;
 		}
 	}
 
-	std::cout << "Congratulations to player " << currentParticipant->getKingdomName() << " for winning. You have successfully conquered your enemies and now reign as the Emperor! \n";
+	std::cout << "Congratulations to player " << kingdomName << " for winning. You have successfully conquered your enemies and now reign as the Emperor! \n"; 
 
 	char playAgain = Input::getInputText("Play again? (Y/N) ", { "letter", "Y", "N" }).at(0);
-
-
-	if (playAgain == 'Y') {
-		main();
-	}
+	if (playAgain == 'Y') { main();}
 }
 

@@ -283,6 +283,7 @@ private:
 	static std::unordered_map<char, int> actionsMap;
 };
 
+using partUPTR = std::unique_ptr<Participants>;
 using partSPTR = std::shared_ptr<Participants>;
 using partSPTRList = std::vector<partSPTR>;
 }
