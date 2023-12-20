@@ -24,15 +24,15 @@ public:
 	//----Getters--------------------------------------------------------------
 	/*Return all the tiers for one troop type for a particular condition
 	Example: returns all tiers for guards present*/
-	constI5array getAllOneTroopArray(TroopCondition troopCondition, TROOP::TroopTypes type);
+	virtual constArrayReference getAllOneTroopArray(TroopCondition troopCondition, TROOP::TroopTypes type) = 0;
 
 	/*Returns the total of all of a particular troop type's tiers for a particular condition
 	Example: returns the total of all tiers for guards present*/
-	constINT getAllOneTroopInt(TroopCondition troopCondition, TROOP::TroopTypes type);
+	virtual constINT getAllOneTroopInt(TroopCondition troopCondition, TROOP::TroopTypes type) = 0;
 
 	/*Returns the tier totals for all troop types for a particular condition
 	Example: returns the total of all tiers of all troops presnet, as in the totals for guards, infantry, archers, etc.*/
-	constI5array getGenericTroops(TroopCondition type);
+	virtual constArrayReference getGenericTroops(TroopCondition type) = 0;
 
 	//----Mutators-------------------------------------------------------------
 	/*Change a troop by index or all trypes.
@@ -42,17 +42,18 @@ public:
 	Quantitiy: SINGLE, ALL
 	MutateDirection: DECREASE, INCREASE
 	troopTier: 1/2/3/3/4/5*/
-	void mutateTroop(
+	virtual void mutateTroop(
 		TROOP::TroopCondition troopCondition,
 		TROOP::TroopTypes type,
 		i5array amount,
 		Quantity quant,
 		INF::MutateDirection direction,
-		int troopTier);
+		int troopTier) = 0;
 
+	virtual std::array<TROOP::troopConditionArray, 3> getTroopsLists() = 0;
 
 	///Set the battle formation for... battle
-	void setBattleFormation(TROOP::troopConditionArray troopArray);
+	virtual void setBattleFormation(TROOP::troopConditionArray troopArray) = 0;
 };
 
 #endif

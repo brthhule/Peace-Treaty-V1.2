@@ -79,18 +79,12 @@ ipair CoordsBASE::translateCoords(ipair coords, CoordsType currentType) {
 	
 }
 
-std::string CoordsBASE::getUserCoordsString() {
-	//For debugging
-	INF::debugFunction("Coords, getUserCoordsString");
+std::string CoordsBASE::getCoordsString(CoordsType type) {
+	if (type == USER) {
+		return "(" + std::to_string(userCoords.first) + ", " + std::to_string(userCoords.second) + ")"; 
+	}
 
-	return "(" + std::to_string(userCoords.first) + ", " + std::to_string(userCoords.second) + ")";
-}
-
-std::string CoordsBASE::getSystemCoordsString() {
-	//For debugging
-	INF::debugFunction("Coords, getSystemCoordsString");
-
-	return "(" + std::to_string(systemCoords.first) + ", " + std::to_string(systemCoords.second) + ")";
+	return "(" + std::to_string(systemCoords.first) + ", " + std::to_string(systemCoords.second) + ")"; 
 }
 
 ipair CoordsBASE::indexToCoords(int index, CoordsType type) {
@@ -126,7 +120,7 @@ int CoordsBASE::coordsToIndex(ipair coords, CoordsType type) {
 	}
 }
 
-const int& COORD::getRandomCoordinate() {   
+constINT COORD::getRandomCoordinate() {   
 	//For debugging
 	INF::debugFunction("Map, getRandomCoordinate");
 	return rand() % INF::continentSize; 

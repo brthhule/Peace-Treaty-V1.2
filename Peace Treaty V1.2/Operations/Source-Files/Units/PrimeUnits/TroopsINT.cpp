@@ -1,5 +1,5 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
-#include TROOPS_INT_HEADER
+#include PROVINCES_HEADER
 
 i5array TroopsINT::getAllOneTroopArray(TROOP::TroopCondition troopCondition, TROOP::TroopTypes type) {
 	//For debugging
@@ -68,4 +68,9 @@ void TroopsINT::setBattleFormation(troopConditionArray troopArray) {
 	std::cout << "Welcome to the Battle Formation menu.\n";
 	std::cout << "Please select a battle formation option: ";
 	std::cout << "";
+}
+
+std::array<TROOP::troopConditionArray, 3> TroopsINT::getTroopsLists() {
+	std::array<troopConditionArray, 3> returnArray = { troopsPresent, troopsInjured, troopsLost };
+	return returnArray;
 }

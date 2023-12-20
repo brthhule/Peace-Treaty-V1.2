@@ -20,7 +20,7 @@ namespace COORD {
 enum CoordsType { SYSTEM, USER };
 
 ///Get a random coordinate, used in Map creation?
-int getRandomCoordinate();
+constINT getRandomCoordinate();
 
 class CoordsBASE {
 public:
@@ -31,7 +31,7 @@ public:
 	//----Setters--------------------------------------------------------------
 	void
 		setIndex(int index),
-		setCoords(ipair systemCoords, ipair userCoords);
+		setCoords(ipair systemCoords, ipair userCoords),
 		setCoords(std::pair<const ipair&, const ipair&> coords);
 
 	//----Printers-------------------------------------------------------------
@@ -47,8 +47,7 @@ public:
 	int coordsToIndex(ipair coords, CoordsType type);
 
 	String
-		getSystemCoordsString(),
-		getUserCoordsString();
+		getCoordsString(CoordsType type);
 
 	///First one is SYSTEM, second is USER
 	std::pair<const ipair&, const ipair&> getPairCoords();

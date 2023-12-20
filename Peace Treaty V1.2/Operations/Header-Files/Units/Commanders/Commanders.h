@@ -28,7 +28,7 @@ namespace COMM {
 		constINT getCommanderStat(int index);
 		bool hasMoved();
 		const std::string& getCommanderNameLevel();
-		constI5array getUpgradeCosts();
+		constArrayReference getUpgradeCosts();
 
 		//----Printers---------------------------------------------------------
 		void printCommanderStats();

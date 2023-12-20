@@ -32,7 +32,7 @@ using namespace UNIT;
 namespace PROV {
 	class Provinces :
 		public PrimeUnits,				//Base Class
-		public MABuildINT,				//Interface
+		public BuildMA,				//Interface
 		public BuildingAttributesINT	//Interface
 	{
 	public:
@@ -46,7 +46,7 @@ namespace PROV {
 		bool isCapital();
 		bool hasCommander(std::string name);
 		/*Subtracts the necessary resources from capital province. If resources left over are all positive (there were enough resources), return true. If any resources are negative, return false*/
-		bool subtractCheckResources(i5array resourcesArray);
+		bool subtractCheckResources(constArrayReference resourcesArray);
 
 		///Initializes this province as a capital
 		void makeCapital(int participantIndexArg);
@@ -85,6 +85,8 @@ namespace PROV {
 		///Create scout report for this province
 		void createReport(int scouterLevelArg, int targetLevelArg);
 
+		void printCommanders();
+
 
 		///////////////////////////////BuildMA/////////////////////////////////
 		//----Printers---------------------------------------------------------
@@ -103,11 +105,8 @@ namespace PROV {
 		std::array<bool, 3> getListBool();
 		std::array< ipair, 2> getListCoords();
 
-		const std::string getCoords(COORD::CoordsType type) override; 
-
 		//Scout/report stuff
 		std::array<i5array, 4> getGeneralLists();
-		std::array<Provinces::troopConditionArray, 3> getTroopsLists();
 		std::array<int, 7> getListsInt();
 
 		int getCommanderIndex(commSPTR commander);
@@ -116,29 +115,29 @@ namespace PROV {
 		///////////////////////////////BuildingAttributesINT///////////////////
 		
 		//----Getters----------------------------------------------------------
-		i5array& getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount) = 0;
+		i5array& getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount);
 	//Returns an array of Resource/Other buildings levels
-		i5array& getTypeLevels(BUILD::BuildingType type) = 0;
+		i5array& getTypeLevels(BUILD::BuildingType type);
 
 
-		int& getCapacity(BUILD::BuildingsEnum name) = 0;
+		constINT getCapacity(BUILD::BuildingsEnum name);
 		/** getTroopsTrainedThisTurn__
 			returns the amount of troops trained this turn
 
 				@param void
 				@return void
 		*/
-		int& getTroopsTrainedThisTurn() = 0;
+		constINT getTroopsTrainedThisTurn();
 		/** getProvinceLevel__ 
 			returns the level of this province by averaging all building levels
 
 				@param void
 				@return void
 		*/
-		int& getProvinceLevel() = 0;
+		constINT getProvinceLevel();
 
-		virtual std::shared_ptr<BuildingsBASE> getBuilding(BUILD::BuildingsEnum name) = 0;
-		BuildingsBASE& getBuildingConst(BUILD::BuildingsEnum name) = 0;
+		std::shared_ptr<BuildingsBASE> getBuilding(BUILD::BuildingsEnum name);
+		BuildingsBASE& getBuildingConst(BUILD::BuildingsEnum name);
 
 		//----Setters----------------------------------------------------------
 		/** mutateLevel__
@@ -152,16 +151,35 @@ namespace PROV {
 			the amount the level is being changed by, usually 1, always positive
 				@return void
 		*/
-		virtual void mutateLevel(BuildingsEnum name, MutateDirection direction, int amount) = 0;
-		virtual void addTroopsTrainedThisTurn(int amount) = 0;
-		virtual void resetTroopsTrainedThisTurn() = 0;
-		virtual void initiailizeCapitalBuildings() = 0;
-		virtual void initializeEmptyBuildings() = 0;
+		void mutateLevel(BuildingsEnum name, MutateDirection direction, int amount);
+		void addTroopsTrainedThisTurn(int amount);
+		void resetTroopsTrainedThisTurn();
+		void initiailizeCapitalBuildings();
+		void initializeEmptyBuildings();
 
 		//----Printers---------------------------------------------------------
-		virtual void printBuildingStats() = 0;
-		virtual void printListOfBuildings() = 0;
+		void printBuildingStats();
+		void printListOfBuildings();
 
+
+		///////////////////////////////TroopsINT.h/////////////////////////////
+
+
+		//----Getters--------------------------------------------------------------
+		constArrayReference getAllOneTroopArray(TroopCondition troopCondition, TROOP::TroopTypes type);
+		constINT getAllOneTroopInt(TroopCondition troopCondition, TROOP::TroopTypes type);
+		constArrayReference getGenericTroops(TroopCondition type);
+
+		void mutateTroop(
+			TROOP::TroopCondition troopCondition,
+			TROOP::TroopTypes type,
+			i5array amount,
+			Quantity quant,
+			INF::MutateDirection direction,
+			int troopTier);
+
+		std::array<TROOP::troopConditionArray, 3> getTroopsLists();
+		void setBattleFormation(TROOP::troopConditionArray troopArray);
 
 	protected:
 		enum LISTS { RESOURCE_BUILDINGS_LEVELS, OTHER_BUILDINGS_LEVELS, RESOURCES_PRESENT, TROOPS_PRESENT, TROOPS_INJURED, TROOPS_LOST, INITIAL_STATS };

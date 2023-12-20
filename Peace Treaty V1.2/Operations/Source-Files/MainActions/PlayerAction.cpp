@@ -22,24 +22,22 @@ void Participants::chooseAction() {
 		courseOfAction = Input::getOptionPrompt(PLAYER_ACTION).at(0); 
 	} 
 
-	INF::enterAndClear(1);
+	typedef void (*Actions)(void); // function pointer type
+	typedef std::unordered_map<char, Actions> ActionFunctions; 
+	ActionFunctions actionsMap; 
+	actionsMap.emplace('B', &buildAction); 
+	actionsMap.emplace('T', &trainMAMain); 
+	actionsMap.emplace('S', &viewStats); 
+	actionsMap.emplace('U', &viewPlayerMap); 
+	actionsMap.emplace('D', &armyOverviewSelectAction); 
+	actionsMap.emplace('N', &INF::nothing); 
+	actionsMap.emplace('H', &playerActionShowHelp);  
+	actionsMap.emplace('P', &choosePauseGame); 
 
-	typedef void (*Actions) ();
-	std::unordered_map<char, Actions> actionsMap = {
-		{'B', buildAction()},
-		{'T', trainMAMain()},
-		{'S', viewStats()},
-		{'U', viewPlayerMap()},
-		{'D', armyOverviewMain()},
-		{'N', INF::nothing()()},
-		{'H', showHelp()},
-		{'P', choosePauseGame()}
-	};
-
-	actionsMap[courseOfAction]();
+	actionsMap[courseOfAction](); 
 	 
 	//Recurse until base cass (Next turn action)
-	if (actionNum != 5) { chooseAction(); } 
+	if (courseOfAction != 'N') { chooseAction(); }
 	return;
 }
 

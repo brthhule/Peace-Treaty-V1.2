@@ -86,7 +86,7 @@ void Provinces::upgradeBuilding(char buildingNumber) {
 
 	//Multiplies level by base line rate
 	BuildingsBASE *building = &this->buildings.at(index);
-	constI5array requiredResources = building->getUpgradeCosts(); 
+	constArrayReference requiredResources = building->getUpgradeCosts();
 
 	printBuildingUpgradeCosts(requiredResources, index);
 	std::string message = "Proceed with upgrade? (Y/N): ";

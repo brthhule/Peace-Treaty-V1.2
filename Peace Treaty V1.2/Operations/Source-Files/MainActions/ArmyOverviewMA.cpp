@@ -9,14 +9,15 @@ using namespace COORD;
 void Participants::armyOverviewSelectAction() { 
 	//For debugging
 	INF::debugFunction("ArmyOverview, armyOverviewSelectAction");
-	std::unordered_map<char, std::function<void()>> actionsMap = {
-		{'T', trainCommanderPrompt()},
-		{'U', upgradeCommander()},
-		{'V', viewCommanderStats()},
-		{'D', deployCommanderPrompt()},
-		{'H', armyOverviewSelectActionShowHelp()},
-		{'M', INF::nothing()}
-	};
+	typedef void (*Actions)(void); // function pointer type 
+	typedef std::unordered_map<char, Actions> ActionFunctions; 
+	ActionFunctions actionsMap; 
+	actionsMap.emplace('U', &trainCommanderPrompt); 
+	actionsMap.emplace('U', &upgradeCommander);
+	actionsMap.emplace('U', &viewCommanderStats); 
+	actionsMap.emplace('U', &deployCommanderPrompt); 
+	actionsMap.emplace('U', &armyOverviewSelectActionShowHelp); 
+	actionsMap.emplace('U', &INF::nothing); 
 
 	char action = Input::getOptionPrompt(ARMY_DEPLOYMENT).at(0);
 	actionsMap[action]();    
@@ -41,7 +42,7 @@ commSPTR Participants::pickCommanderToUpgrade() {
 	}
 
 	//This should return the reference that commander holds
-	return *commander;
+	return commander;
 }
 
 void Participants::upgradeCommander() {
@@ -51,12 +52,11 @@ void Participants::upgradeCommander() {
 	commSPTR commander = pickCommanderToUpgrade(); 
 	if (commander = nullptr) { return; }
 
-	i5array costsArray = commander->getUpgradeCosts();
+	constArrayReference costsArray = commander->getUpgradeCosts();
 
 	std::cout << "The following are the Commander upgrade costs: \n";
 	INF::printResources(costsArray);
-	st
-d::cout << "The following are the resources currently in your capital: \n";
+	std::cout << "The following are the resources currently in your capital: \n";
 	getCapitalProvince()->printResources();
 	char proceedWithUpgradeQuestion =
 		Input::getInputText("\nProceed with upgrade? ", { "Y", "N" }).at(0);

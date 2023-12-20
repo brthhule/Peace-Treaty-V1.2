@@ -3,14 +3,12 @@
 
 using namespace PART;
 
-void Participants::mainAttackMA(
-	provSPTR defendingProvinceArg, 
-	commSPTR attackingCommanderArg) {
+void Participants::mainAttackMA(provSPTR defendProv, commSPTR attackComm) {
 
 	INF::debugFunction("AttackMA, mainAttackMA");
 
-	provSPTR defendingProvince = defendingProvinceArg;
-	commSPTR attackingCommander = attackingCommanderArg;
+	provSPTR defendingProvince = defendProv;
+	commSPTR attackingCommander = attackComm;
 
 	//Find commander to attack with
 	if (attackingCommander == nullptr) {
@@ -30,25 +28,25 @@ void Participants::mainAttackMA(
 std::vector<commSPTR> Participants::getCommandersCanAttack(provSPTR defendingProvince) {
 	std::vector<COMM::commSPTR> commandersCanAttack = {};
 	std::array<ipair, 8> surroundingProvinces;
-
+	ipair defenderSystemCoords = defendingProvince->CoordsBASE::getCoords(SYSTEM);
 	int currentElements = 0;
 	for (int x = -1; x <= 1; x++) {
 		for (int y = -1; y <= 1; y++)
 		{
 			//Make sure the changed provinces aren't the same as the unchanged province
 			if (x != 0 || y != 0) {
-				ipair tempPair(x, y);
+				ipair tempPair(defenderSystemCoords.first + x, defenderSystemCoords.second + y);
 				surroundingProvinces[currentElements] = tempPair;
 				currentElements++;
 			}
 		}
 	}
 
-	ipair defenderSystemCoords = defendingProvince->getCoords(SYSTEM);
+	
 	for (ipair currentPair : surroundingProvinces) {
 		int
-			firstCoordinate = defenderSystemCoords.first + x,
-			secondCoordinate = defenderSystemCoords.second + y;
+			firstCoordinate = currentPair.first,
+			secondCoordinate = currentPair.second;
 
 		bool
 			checkFirstCoordinate = (
@@ -101,20 +99,20 @@ commSPTR Participants::pickCommanderAttack(std::vector<commSPTR> commandersCanAt
 	pickCommanderAttack(commandersCanAttack);
 }
 
-void Participants::playerCommitAttack(provSPTR defendingProvince,  commSPTR attackingCommander) {
+void Participants::playerCommitAttack(provSPTR defendingProvince,  commSPTR attackingCommander) { 
 	//For debugging
 	INF::debugFunction("AttackMA, playerCommitAttack");
 
-	std::vector<commSPTR> defendingCommanders = defendingProvince->getAllCommanders();
+	std::vector<commSPTR> defendingCommanders = defendingProvince->getAllCommanders(); 
 
-	constI5array preAttackResources = attackingCommander->getAllResources();
+	constArrayReference preAttackResources = attackingCommander->getAllResources();
 
 	for (commSPTR defendingCommander : defendingCommanders) {
 		//Add implementation
 	}
 
-	commSPTR defendingCommander = defendingCommanders[0];
-	int attackerCP = attackingCommander->getCP();
+	commSPTR defendingCommander = defendingCommanders[0]; 
+	int attackerCP = attackingCommander->getCP(); 
 	int defendingCP = defendingCommander->getCP();
 	int attackerLostCP = 0;
 	int defenderLostCP = 0;
@@ -127,7 +125,7 @@ void Participants::playerCommitAttack(provSPTR defendingProvince,  commSPTR atta
 	calculateTroopsLost(attackingCommander, attackerLostCP, troopsLost, 0);
 
 	//Fix this later
-	TROOP::TroopTypes type = TroopUnitsBASE::GUARDS; 
+	TROOP::TroopTypes type = GUARDS; 
 	int troopTier = 1;
 
 	for (int x = 0; x < 5; x++) {
@@ -146,8 +144,7 @@ void Participants::playerCommitAttack(provSPTR defendingProvince,  commSPTR atta
 	char repeatViewAllArmyStats = 'N';
 	std::string viewAllArmyStatsString;
 
-	defendingProvince->addCommander(
-		attackingCommander);
+	defendingProvince->addCommander(*attackingCommander);
 
 	do {
 		repeatViewAllArmyStats = 'N';
@@ -178,6 +175,7 @@ void Participants::calculateTroopsLost(commSPTR commander, int lostCombatPower, 
 	//For debugging
 	INF::debugFunction("AttackMA, calculateTroopsLost");
 
+	//Have to implement Troop functionality before doing this
 	int troopPresent = commander->getTroop(REGULAR, troopIndex, INF::SINGLE)[0];
 
 	int troopCP = INF::Troops_CP[troopIndex];
@@ -220,12 +218,12 @@ void Participants::calculateTroopsLost(commSPTR commander, int lostCombatPower, 
 }
 
 
-void Participants::battleCalculationsTwo(int& lostCombatPower, int troopsLost[5], int troopIndex) /*fix this*/
+void Participants::battleCalculationsTwo(int& lostCombatPower, int troopsLost[5], int troopIndex, commSPTR attackingCommander)
 {
 	//For debugging
 	INF::debugFunction("AttackMA, battleCalculationsTwo");
 
-	partSPTR playerParticipant = db.getCurrentParticipant();
+	partSPTR playerParticipant = Participants::participantsList.at(currentParticipantIndex);
 
 	int z = abs(4 - troopIndex);
 
@@ -246,12 +244,12 @@ void Participants::battleCalculationsTwo(int& lostCombatPower, int troopsLost[5]
 	}
 }
 
-void Participants::printResourcesGained()
+void Participants::printResourcesGained(commSPTR attackingCommander, const i5array& oldResources)
 {
 	//For debugging
 	INF::debugFunction("AttackMA, printResourcesGained");
 
-	i5array currentResources = attackingCommander->getAllResources();
+	constArrayReference currentResources = attackingCommander->getAllResources();
 	std::cout << "Resources gained: \n \033[;34m";
 
 	for (int x = 0; x < 5; x++)

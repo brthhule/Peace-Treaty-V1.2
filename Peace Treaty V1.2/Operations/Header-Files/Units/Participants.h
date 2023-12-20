@@ -67,15 +67,19 @@ public:
 	using partSPTRList = std::vector<partSPTR>;
 	static partSPTRList playersList;
 	static partSPTRList botsList;
+	static partSPTRList participantsList;
 		
 	//----Constructors-----------------------------------------------------
 	Participants();
 	Participants(int pIndex);
 	~Participants(){}
 
+	static void initializeParticipants(int totalPlayers, int humanPlayers);
+	static void createCapitals();
+
 	//----Getters----------------------------------------------------------
 	///Get the costs needed to train a new Commander?
-	constI5array getTrainCosts(); 
+	constArrayReference getTrainCosts();
 
 	i5array calculateEach(int option);
 	///Returns all units in a participant, uses threading
@@ -100,6 +104,8 @@ public:
 	int getPrimeUnitsAmount();
 	///Get the index of this participant in the vector of all participants
 	int getParticipantIndex();
+
+	partSPTR getParticipant(int listIndex);
 
 	///Returns participant statistics?
 	ivector calculatePlayerValues(int decision);
@@ -194,7 +200,7 @@ public:
 	void chooseAction() override;
 	void pauseGame() override;
 	void choosePauseGame() override;
-	void showHelp() override;
+	void plaerActionShowHelp() override;
 	void buildAction() override;
 
 	///////////////////////////////////TrainMA/////////////////////////////////
@@ -234,32 +240,18 @@ public:
 	scoutTypes getCanScout(provSPTR targetProvince);
 	
 	///////////////////////////////////AttackMA.h//////////////////////////////
-	class AttackMAInfo {
-		AttackMAInfo();
-		AttackMAInfo(provSPTR defendingProvinceArg);
-		AttackMAInfo(provSPTR defenderProvinceArg, commSPTR commanderArg);
-
-		provSPTR defendingProvince;
-		//partSPTR attackingParticipant; is this object
-		commSPTR commander;
-		bool defenseCanRetreat;
-	};
-	void mainAttackMA(
-		provSPTR defendingProvince,
-		commSPTR attackingCommander);
-
+	void mainAttackMA( provSPTR defendProv, commSPTR attackComm);
 
 	//----Getter Auxiliary Methods---------------------------------------------
-	std::vector<commSPTR> getCommandersCanAttack(provSPTR defendingProvince);
+	commSPTRList getCommandersCanAttack(provSPTR defendingProvince);
 	commSPTR pickCommanderAttack(std::vector<commSPTR> commandersCanAttack);
 
-	
 	void playerCommitAttack(provSPTR defendingProvince, commSPTR attackingCommander);
-	void printResourcesGained();
+	void printResourcesGained(commSPTR attackingCommander, const i5array& oldResources);
 	void determineLostCP(int attackerCP, int defendingCP, int& attackerLostCP, int& defenderLostCP);
 
 	void calculateTroopsLost(commSPTR commander, int lostCombatPower, i5array& troopsLost, int troopIndex);
-	void battleCalculationsTwo(int& lostCombatPower, int troopsLost[5], int troopIndex);
+	void battleCalculationsTwo(int& lostCombatPower, int troopsLost[5], int troopIndex, commSPTR attackingCommander);
 	void casualtyReport(i5array troopsLost, i5array injuredTroops);
 
 private:

@@ -130,14 +130,14 @@ namespace INF {
 			name += newCharacter;
 		}
 		//Capitalize name
-		name.at(0) = toupper(name.at(0))
+		name.at(0) = toupper(name.at(0));
 		return name;
 	}
 
 	//Can change this-> look at concatVectors as a template-- use a pair of arrays instead of passing two arrays
 	i5array INF::mutateArray(
 		i5array primeArray, 
-		constI5array secondaryArray, 
+		constArrayReference secondaryArray,
 		MutateDirection direction) 
 	{
 		//For debugging
@@ -330,8 +330,7 @@ std::vector<T> INF::concatVectors(std::vector<std::vector<T>> vectorsList) {
 	return baseList;
 }
 
-
-void INF::printResources(i5array resourcesArray) {
+void INF::printResources(constArrayReference resourcesArray) {
 	//For debugging
 	INF::debugFunction("PrimeUnits, printResources");
 

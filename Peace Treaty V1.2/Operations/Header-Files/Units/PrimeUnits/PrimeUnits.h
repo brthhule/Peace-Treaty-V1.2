@@ -55,7 +55,7 @@ public:
 	///Get this unit's name
 	const std::string& getName();
 
-	constI5array getAllResources();//Add implementation
+	constArrayReference getAllResources();//Add implementation
 
 	const std::string getCoords(CoordsType type);
 
@@ -81,7 +81,7 @@ public:
 			@param direction__
 				Does the mutation occur in an increasing/decreasing manner
 	*/
-	void mutateAllResources(constI5array resourcesArray, 
+	void mutateAllResources(constArrayReference resourcesArray,
 		INF::MutateDirection direction);
 
 	//----Printers-------------------------------------------------------------

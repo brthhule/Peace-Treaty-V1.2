@@ -18,7 +18,6 @@
 #include PROVINCES_HEADER
 #include PARTICIPANTS_HEADER
 #include COMMANDERS_HEADER
-#include DATABASE_HEADER
 #include INF_HEADER
 #include INPUT_HEADER
 #include PLAYER_ACTION_HEADER
@@ -33,8 +32,7 @@ void endScreen();
 int getContinentInformation();
 
 using namespace INF;
-
-Database db;
+using namespace PART;
 
 int main()/*main code*/
 {
@@ -89,7 +87,7 @@ void startGame() {
 	INF::debugFunction("main, startGame");
 	int pNum = getContinentInformation();
 	int players = generateNewContinent(pNum);
-	db.initializeParticipants(pNum, players);
+	Participants::initializeParticipants(pNum, players);
 	std::cout << "Created participants";
 }
 int getContinentInformation() {
@@ -126,7 +124,7 @@ int generateNewContinent(int pNum) {
 	INF::debugFunction("main, generateNewContinent");
 
 	std::cout << "Create map...\n";
-	db.createMap();
+	Map::setMap();
 
 	std::vector<std::string> howManyPlayers;
 	for (int x = 1; x <= 3; x++) {
@@ -151,7 +149,7 @@ void gamePlay() {
 	bool gameEnd = false;
 
 	//Iterate through partiicpants by reference
-	for (partUPTR participant : db.getParticipantsList()) {  
+	for (partSPTR participant : Participants::participantsList) {  
 		if (!participant->isAlive()) { break; }
 
 		try { participant->chooseAction(); } 
@@ -159,13 +157,13 @@ void gamePlay() {
 	}
 
 	INF::turn++;
-	db.updateTurnResources();
+	Map::updateTurnResources(); 
 
 	//Check game end
 	//If there are more than one players, keep playing
 	int participantsAlive = 0;
 
-	for (partUPTR participant: db.getParticipantsList()) { 
+	for (partSPTR participant: Participants::participantsList) { 
 		if (participant->isAlive()) { participantsAlive++;}
 	}
 
@@ -184,7 +182,7 @@ void endScreen() {
 	std::string kingdomName = " ";
 
 	//Only one is surviving, iterates through to find that participant
-	for (partUPTR participant : db.getParticipantsList()) { 
+	for (partSPTR participant : Participants::participantsList) { 
 		if (participant->isAlive()) {    
 			kingdomName = participant->getKingdomName(); 
 			break;

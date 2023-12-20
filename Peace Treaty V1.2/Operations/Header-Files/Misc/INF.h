@@ -163,7 +163,7 @@ namespace INF {
 	std::string createRandomName();
 
 	///Takes an array of resources, formats and prints them out
-	void printResources(i5array resourcesArray);
+	void printResources(constArrayReference resourcesArray);
 
 	///Checks if a string is an inteer, only works for positive integers
 	bool checkIsNumber(std::string number);
@@ -194,7 +194,7 @@ namespace INF {
 	
 
 	//Manipulate vectors
-	i5array mutateArray(i5array primeArray, constI5array secondaryArray, MutateDirection direction);
+	i5array mutateArray(i5array primeArray, constArrayReference secondaryArray, MutateDirection direction);
 
 	//For if/ternary statements with no "else"
 	void nothing() {};

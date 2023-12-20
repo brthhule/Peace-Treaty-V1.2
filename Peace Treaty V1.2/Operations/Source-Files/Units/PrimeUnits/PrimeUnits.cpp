@@ -47,7 +47,7 @@ PrimeUnits::PrimeUnits() {
 
 
 void PrimeUnits::printTroopsPresent() {
-	constI5array troopsPresent = this->getGenericTroops(REGULAR);
+	constArrayReference troopsPresent = this->getGenericTroops(REGULAR);
 	for (int x = 0; x < 5; x++) {
 		std::cout << TROOP_NAMES.at(x) << ": " << troopsPresent.at(x) << std::endl;
 	}
@@ -99,7 +99,7 @@ void PrimeUnits::mutateResource(ResourceType resource, constINT amount,
 	resourcesPresent.at(resource) + (amount * modifier);
 }
 
-void PrimeUnits::mutateAllResources(constI5array resourcesArray,
+void PrimeUnits::mutateAllResources(constArrayReference resourcesArray,
 	INF::MutateDirection direction) {
 	//For debugging
 	INF::debugFunction("PrimeUnits, mdofiyResources");
@@ -115,14 +115,14 @@ constINT PrimeUnits::getLevel() {
 	return unitLevel;
 }
 
-constI5array PrimeUnits::getAllResources() {
+constArrayReference PrimeUnits::getAllResources() {
 	//For debugging
 	INF::debugFunction("PrimeUnits, getAllResources");
 	return resourcesPresent;
 }
 
 const std::string PrimeUnits::getCoords(CoordsType type) {
-	return CoordsBASE::getCoords(type);
+	return CoordsBASE::getCoordsString(type); 
 }
 
 void PrimeUnits::setParticipantIndex(int number) {

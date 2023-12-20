@@ -73,7 +73,7 @@ INF::i5array Commanders::getUpgradeCosts() {
 	return costsArray;
 }
 
-void Commanders::printCosts(std::array <int, 5> costs)
+void Commanders::printCosts(i5array costs)
 {
 	//For debugging
 	INF::debugFunction("Commanders, printCosts");

@@ -39,7 +39,7 @@ public:
 
 	//Shenanigans
 	virtual void choosePauseGame() = 0;	
-	virtual void showHelp() = 0;
+	virtual void playerActionShowHelp() = 0;
 	virtual void buildAction() = 0;
 };
 
