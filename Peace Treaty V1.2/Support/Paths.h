@@ -50,6 +50,11 @@
 #define ARRAY_
 #define TYPE_
 
+#ifndef DEBUGGING_MODE
+#define DEBUG_FUNCTION(x, y) std::cout << "File: " << x << ", Method: " << y << std::endl;
+#else
+#define DEBUG_FUNCTION(x)
+#endif
 //MainActions Folder
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths\MainActions\MainActions_Paths.h"
 
