@@ -89,9 +89,9 @@ namespace PROV {
 		///////////////////////////////BuildMA/////////////////////////////////
 		//----Printers---------------------------------------------------------
 		void printBuildingUpgradeCosts(i5array requiredresources, int buildingindex) override;
-		void mainBuildFunction() override,
-			selectUpgradeBuilding() override,
-			upgradeBuilding(char optionchar) override;
+		void upgradeBuildingPrompt() override,
+			selectBuildingToUpgrade() override,
+			upgradeBuilding(int buildingNumber) override;
 
 		void setCommandersSortStatus(SortType status);
 		SortType getCommandersSortStatus();

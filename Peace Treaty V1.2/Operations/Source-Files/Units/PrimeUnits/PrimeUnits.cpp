@@ -30,11 +30,11 @@ PrimeUnits::PrimeUnits(int participantIndexArg) {
 	totalTroops = 0;
 	resourcesPresent = { 0,0,0,0,0 };
 	initialStats = { 5,4,3,2,1 };
-	allTroopConditions = { 
+	allTroopConditions = {
 		&troopsPresent,
 		&troopsInjured,
-		&troopsLost 
-	}
+		&troopsLost
+	};
 }
 
 //Default Constructor
@@ -47,7 +47,7 @@ PrimeUnits::PrimeUnits() {
 
 
 void PrimeUnits::printTroopsPresent() {
-	i5array troopsPresent = this->getGenericTroops(REGULAR);
+	constI5array troopsPresent = this->getGenericTroops(REGULAR);
 	for (int x = 0; x < 5; x++) {
 		std::cout << TROOP_NAMES.at(x) << ": " << troopsPresent.at(x) << std::endl;
 	}
@@ -77,49 +77,33 @@ void PrimeUnits::printResources() {
 
 	std::cout << "Resources currently present in this " << type << ": \n";
 	INF::addColor(INF::BLUE);
-	printResources(resourcesPresent);
+	INF::printResources(resourcesPresent);
 	INF::addColor(INF::RESET);
 }
 
-std::string PrimeUnits::getUnitName() {
-	//For debugging
-	INF::debugFunction("PrimeUnits, getUnitName");
-
-	return unitName;
-}
-void PrimeUnits::setUnitName(std::string name) {
-	//For debugging
-	INF::debugFunction("PrimeUnits, setUnitName");
-
-	unitName = name;
-}
+const std::string& PrimeUnits::getName() { return unitName; }
+void PrimeUnits::setName(std::string name) { unitName = name; }
 
 //Mutator Functions
-constINT PrimeUnits::getFoodConsumption() {
-	//For debugging
-	INF::debugFunction("PrimeUnits, getFoodConsumption");
-
-	return foodConsumption;
-}
-constINT PrimeUnits::getResource(int resourceIndex) {
-	//For debugging
-	INF::debugFunction("PrimeUnits, getResource");
-
+constINT PrimeUnits::getFoodConsumption() { return foodConsumption;}
+constINT PrimeUnits::getResource(int resourceIndex) { 
 	return resourcesPresent[resourceIndex];
 }
-void PrimeUnits::modifySpecificResource(int index, int amount, bool isAdd) {
-	//For debugging
-	INF::debugFunction("PrimeUnits, modifySpecificResources");
 
-	if (isAdd)
-		resourcesPresent[index] += amount;
-	else
-		resourcesPresent[index] -= amount;
+void PrimeUnits::mutateResource(ResourceType resource, constINT amount,
+	MutateDirection direction) {
+	//For debugging
+	INF::debugFunction("PrimeUnits, mutateResources");
+	int modifier = 1;
+	if (direction == DECREASE) { modifier = -1; }
+	resourcesPresent.at(resource) + (amount * modifier);
 }
 
-void PrimeUnits::mutateAllResources(i5array resourcesArray, INF::MutateDirection direction) {
+void PrimeUnits::mutateAllResources(constI5array resourcesArray,
+	INF::MutateDirection direction) {
 	//For debugging
 	INF::debugFunction("PrimeUnits, mdofiyResources");
+
 
 	resourcesPresent = INF::mutateArray(resourcesPresent, resourcesArray, direction);
 }

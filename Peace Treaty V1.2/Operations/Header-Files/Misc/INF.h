@@ -28,6 +28,7 @@ namespace INF {
 	using ivector = std::vector<int>;
 	using myvectorI = myvector<int>;
 	using myarrayI5A = myarray<i5array>;
+	using constArrayReference = const std::array<int, 5>&;
 
 	//----Other Types------------------
 	using String = std::string;
@@ -193,7 +194,7 @@ namespace INF {
 	
 
 	//Manipulate vectors
-	i5array mutateArray(i5array primeArray, i5array secondaryArray, MutateDirection direction);
+	i5array mutateArray(i5array primeArray, constI5array secondaryArray, MutateDirection direction);
 
 	//For if/ternary statements with no "else"
 	void nothing() {};

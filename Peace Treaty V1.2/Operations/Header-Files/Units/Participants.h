@@ -178,13 +178,14 @@ public:
 
 
 	//----Methods--------------------------------------------------------------
-	void armyOverviewMain() override;
-	void trainCommanders() override;
-	void proceedWithTraining(i5array trainCosts) override;
+	void armyOverviewSelectAction() override;
+	void armyOverviewSelectActionShowHelp() override;
+	void trainCommanderPrompt() override;
+	void proceedWithTraining(const i5array& trainCosts) override;
 	void upgradeCommander() override;
-	Commanders& pickCommanderToUpgrade() override;
-	void viewArmyOverview() override;
-	void deployCommanderMF() override;
+	commSPTR pickCommanderToUpgrade() override;
+	void viewCommanderStats() override;
+	void deployCommanderPrompt() override;
 	///Adds a Commander to the capital province
 	void addCommander();
 
@@ -283,7 +284,6 @@ private:
 	std::vector <provSPTR> provincesVector;
 	std::vector <commSPTR> commandersVector;
 
-	static std::unordered_map<char, int> actionsMap;
 };
 
 using partUPTR = std::unique_ptr<Participants>;

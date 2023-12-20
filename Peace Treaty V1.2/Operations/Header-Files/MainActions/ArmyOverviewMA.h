@@ -15,31 +15,29 @@
 #include INPUT_HEADER
 #include COMMANDERS_HEADER
 
-class ArmyOverviewMA
-	USES_  
-		INF_ 
-		INPUT_
-{
+using namespace COMM;
+class ArmyOverviewMA {
 public:
 	//----Constructors---------------------------------------------------------
 	ArmyOverviewMA(){}
 	~ArmyOverviewMA(){}
 
 	//----Methods--------------------------------------------------------------
-	/** armyOverviewMain
+	/** armyOverviewSelectAction
 			Main method for ArmyOverviewMA
 
 			@param void
 			@return void
 	*/
-	virtual void armyOverviewMain() = 0;
-	virtual void trainCommanders() = 0;
-	virtual void proceedWithTraining(constI5array trainCosts) = 0;
+	virtual void armyOverviewSelectAction() = 0;
+	virtual void trainCommanderPrompt() = 0;
+	virtual void proceedWithTraining(const i5array& trainCosts) = 0;
 	virtual void upgradeCommander() = 0;
-	virtual Commanders& pickCommanderToUpgrade() = 0;  
-	virtual void viewArmyOverview() = 0;
-	virtual void deployCommanderMF() = 0;
+	virtual commSPTR pickCommanderToUpgrade() = 0;  
+	virtual void viewCommanderStats() = 0;
+	virtual void deployCommanderPrompt() = 0;
 	virtual void addCommander() = 0;
+	virtual void armyOverviewSelectActionShowHelp() = 0;
 };
 
 #endif

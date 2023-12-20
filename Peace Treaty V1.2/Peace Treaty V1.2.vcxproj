@@ -133,143 +133,103 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-	<ClCompile Include="Operations\Source-Files\MainActions\ArmyOverviewMA.cpp" />
-	<ClCompile Include="Operations\Source-Files\MainActions\AttackMA.cpp" />
-	<ClCompile Include="Operations\Source-Files\MainActions\BuildMA.cpp" />
-	<ClCompile Include="Operations\Source-Files\MainActions\MapMA.cpp" />
-	<ClCompile Include="Operations\Source-Files\MainActions\PlayerAction.cpp" />
-	<ClCompile Include="Operations\Source-Files\MainActions\ScoutMA.cpp" />
-	<ClCompile Include="Operations\Source-Files\MainActions\TrainMA.cpp" />
-	  
+    <ClCompile Include="Operations\Source-Files\MainActions\ArmyOverviewMA.cpp" />
+    <ClCompile Include="Operations\Source-Files\MainActions\AttackMA.cpp" />
+    <ClCompile Include="Operations\Source-Files\MainActions\BuildMA.cpp" />
+    <ClCompile Include="Operations\Source-Files\MainActions\MapMA.cpp" />
+    <ClCompile Include="Operations\Source-Files\MainActions\PlayerAction.cpp" />
+    <ClCompile Include="Operations\Source-Files\MainActions\ScoutMA.cpp" />
+    <ClCompile Include="Operations\Source-Files\MainActions\TrainMA.cpp" />
     <ClCompile Include="Operations\Source-Files\Misc\BASE.cpp" />
     <ClCompile Include="Operations\Source-Files\Misc\INF.cpp" />
     <ClCompile Include="Operations\Source-Files\Misc\Input.cpp" />
-
-	<ClCompile Include="Operations\Source-Files\Units\Commanders\Mobility.cpp" />
-	<ClCompile Include="Operations\Source-Files\Units\Commanders\Commanders.cpp" />
-
-	<ClCompile Include="Operations\Source-Files\Units\PrimeUnits\Troops\Archers.cpp" />
-	<ClCompile Include="Operations\Source-Files\Units\PrimeUnits\Troops\Artillary.cpp" />
-	<ClCompile Include="Operations\Source-Files\Units\PrimeUnits\Troops\Cavalry.cpp" />
-	<ClCompile Include="Operations\Source-Files\Units\PrimeUnits\Troops\Guards.cpp" />
-	<ClCompile Include="Operations\Source-Files\Units\PrimeUnits\Troops\Infantry.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\Commanders\Mobility.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\Commanders\Commanders.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\PrimeUnits\Troops\Archers.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\PrimeUnits\Troops\Artillary.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\PrimeUnits\Troops\Cavalry.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\PrimeUnits\Troops\Guards.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\PrimeUnits\Troops\Infantry.cpp" />
     <ClCompile Include="Operations\Source-Files\Units\PrimeUnits\Troops\TroopUnitsBASE.cpp" />
-	<ClCompile Include="Operations\Source-Files\Units\PrimeUnits\PrimeUnits.cpp" />
-	<ClCompile Include="Operations\Source-Files\Units\PrimeUnits\CoordsBASE.cpp" />
-	<ClCompile Include="Operations\Source-Files\Units\PrimeUnits\TroopsINT.cpp" />
-
-	<ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Others\Barracks.cpp" />
-	<ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Others\Infirmary.cpp" />
-	<ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Others\Library.cpp" />
-	<ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Others\Residences.cpp" />
-	<ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Others\Wall.cpp" />
-	<ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Resources\Church.cpp" />
-	<ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Resources\Farm.cpp" />
-	<ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Resources\Mill.cpp" />
-	<ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Resources\Mine.cpp" />
-	<ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Resources\Quarry.cpp" />
-	<ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Resources\ResourceBuildingsBASE.cpp" />
-	<ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\BUILD.cpp" />
-	<ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\BuildingAttributesINT.cpp" />
-	<ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\BuildingsBASE.cpp" />
-	<ClCompile Include="Operations\Source-Files\Units\Provinces\Provinces.cpp" />
-	  
-	<ClCompile Include="Operations\Source-Files\Units\Reports\CommanderReport.cpp" />
-	<ClCompile Include="Operations\Source-Files\Units\Reports\ProvinceReport.cpp" />
-
+    <ClCompile Include="Operations\Source-Files\Units\PrimeUnits\PrimeUnits.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\PrimeUnits\CoordsBASE.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\PrimeUnits\TroopsINT.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Others\Barracks.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Others\Infirmary.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Others\Library.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Others\Residences.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Others\Wall.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Resources\Church.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Resources\Farm.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Resources\Mill.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Resources\Mine.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Resources\Quarry.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Resources\ResourceBuildingsBASE.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\BUILD.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\BuildingAttributesINT.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\BuildingsBASE.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\Provinces\Provinces.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\Reports\CommanderReport.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\Reports\ProvinceReport.cpp" />
     <ClCompile Include="Operations\Source-Files\Units\Database.cpp" />
     <ClCompile Include="Operations\Source-Files\Units\Map.cpp" />
     <ClCompile Include="Operations\Source-Files\Units\Participants.cpp" />
-
-	<ClCompile Include="Peace Treaty V1.2.cpp" />
+    <ClCompile Include="Peace Treaty V1.2.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\..\..\..\Downloads\1June2022.txt" />
-    <Text Include="..\..\..\..\..\Downloads\2July2022.txt" />
-    <Text Include="..\..\..\..\..\Downloads\3August2022.txt" />
-    <Text Include="..\..\..\..\..\Downloads\4November2022.txt" />
-    <Text Include="..\..\..\..\..\Downloads\5January2023.txt" />
-    <Text Include="..\..\..\..\..\Downloads\6February2023.txt" />
-    <Text Include="..\..\..\..\..\Downloads\7March2023.txt" />
-    <Text Include="..\..\..\..\..\Downloads\8April2023.txt" />
-    <Text Include="..\..\..\..\..\Downloads\9May2023.txt" />
-    <Text Include="..\..\..\..\..\Downloads\logOverview.txt" />
-    <Text Include="..\AdministrativeDocs\debugQuickAccess.txt" />
-    <Text Include="..\AdministrativeDocs\deletedContent.txt" />
-    <Text Include="..\AdministrativeDocs\headersAllocation.txt" />
-    <Text Include="..\AdministrativeDocs\needToDo.txt" />
-    <Text Include="..\AdministrativeDocs\notes.txt.txt" />
-    <Text Include="..\AdministrativeDocs\tips.txt.txt" />
-    <Text Include="..\ProjectLog\1June2022.txt" />
-    <Text Include="..\ProjectLog\2July2022.txt" />
-    <Text Include="..\ProjectLog\3August2022.txt" />
-    <Text Include="..\ProjectLog\4November2022.txt" />
-    <Text Include="..\ProjectLog\5January2023.txt" />
-    <Text Include="..\ProjectLog\6February2023.txt" />
-    <Text Include="..\ProjectLog\7March2023.txt" />
-    <Text Include="..\ProjectLog\8April2023.txt" />
-    <Text Include="..\ProjectLog\9May2023.txt" />
-    <Text Include="..\ProjectLog\logOverview.txt" />
     <Text Include="AdministrativeDocs\debugQuickAccess.txt" />
     <Text Include="AdministrativeDocs\deletedContent.txt" />
     <Text Include="AdministrativeDocs\headersAllocation.txt" />
     <Text Include="AdministrativeDocs\needToDo.txt" />
     <Text Include="AdministrativeDocs\notes.txt.txt" />
     <Text Include="AdministrativeDocs\tips.txt.txt" />
-	<Text Include="AdministrativeDocs\aliases.txt" />
-	<Text Include="color.txt" />
+    <Text Include="AdministrativeDocs\aliases.txt" />
     <Text Include="TxtFiles\Help.txt" />
     <Text Include="TxtFiles\Prompts.txt" />
     <Text Include="TxtFiles\Synopsis.txt" />
   </ItemGroup>
   <ItemGroup>
-	<ClCompile Include="Operations\Header-Files\MainActions\ArmyOverviewMA.h" />
-	<ClCompile Include="Operations\Header-Files\MainActions\AttackMA.h" />
-	<ClCompile Include="Operations\Header-Files\MainActions\BuildMA.h" />
-	<ClCompile Include="Operations\Header-Files\MainActions\MapMA.h" />
-	<ClCompile Include="Operations\Header-Files\MainActions\PlayerAction.h" />
-	<ClCompile Include="Operations\Header-Files\MainActions\ScoutMA.h" />
-	<ClCompile Include="Operations\Header-Files\MainActions\TrainMA.h" />
-
-	<ClCompile Include="Operations\Header-Files\Misc\BASE.h" />
-	<ClCompile Include="Operations\Header-Files\Misc\INF.h" />
-	<ClCompile Include="Operations\Header-Files\Misc\Input.h" />
-
-	<ClCompile Include="Operations\Header-Files\Units\Commanders\Mobility.h" />
-	<ClCompile Include="Operations\Header-Files\Units\Commanders\Commanders.h" />
-
-	<ClCompile Include="Operations\Header-Files\Units\PrimeUnits\Troops\Archers.h" />
-	<ClCompile Include="Operations\Header-Files\Units\PrimeUnits\Troops\Artillary.h" />
-	<ClCompile Include="Operations\Header-Files\Units\PrimeUnits\Troops\Cavalry.h" />
-	<ClCompile Include="Operations\Header-Files\Units\PrimeUnits\Troops\Guards.h" />
-	<ClCompile Include="Operations\Header-Files\Units\PrimeUnits\Troops\Infantry.h" />
-	<ClCompile Include="Operations\Header-Files\Units\PrimeUnits\Troops\TroopUnitsBASE.h" />
-	<ClCompile Include="Operations\Header-Files\Units\PrimeUnits\PrimeUnits.h" />
-	<ClCompile Include="Operations\Header-Files\Units\PrimeUnits\CoordsBASE.h" />
-	<ClCompile Include="Operations\Header-Files\Units\PrimeUnits\TroopsINT.h" />
-
-	<ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\Others\Barracks.h" />
-	<ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\Others\Infirmary.h" />
-	<ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\Others\Library.h" />
-	<ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\Others\Residences.h" />
-	<ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\Others\Wall.h" />
-	<ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\Resources\Church.h" />
-	<ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\Resources\Farm.h" />
-	<ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\Resources\Mill.h" />
-	<ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\Resources\Mine.h" />
-	<ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\Resources\Quarry.h" />
-	<ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\Resources\ResourceBuildingsBASE.h" />
-	<ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\BUILD.h" />
-	<ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\BuildingAttributesINT.h" />
-	<ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\BuildingsBASE.h" />
-	<ClCompile Include="Operations\Header-Files\Units\Provinces\Provinces.h" />
-
-	<ClCompile Include="Operations\Header-Files\Units\Reports\CommanderReport.h" />
-	<ClCompile Include="Operations\Header-Files\Units\Reports\ProvinceReport.h" />
-
-	<ClCompile Include="Operations\Header-Files\Units\Database.h" />
-	<ClCompile Include="Operations\Header-Files\Units\Map.h" />
-	<ClCompile Include="Operations\Header-Files\Units\Participants.h" />
+    <ClCompile Include="Operations\Header-Files\MainActions\ArmyOverviewMA.h" />
+    <ClCompile Include="Operations\Header-Files\MainActions\AttackMA.h" />
+    <ClCompile Include="Operations\Header-Files\MainActions\BuildMA.h" />
+    <ClCompile Include="Operations\Header-Files\MainActions\MapMA.h" />
+    <ClCompile Include="Operations\Header-Files\MainActions\PlayerAction.h" />
+    <ClCompile Include="Operations\Header-Files\MainActions\ScoutMA.h" />
+    <ClCompile Include="Operations\Header-Files\MainActions\TrainMA.h" />
+    <ClCompile Include="Operations\Header-Files\Misc\BASE.h" />
+    <ClCompile Include="Operations\Header-Files\Misc\INF.h" />
+    <ClCompile Include="Operations\Header-Files\Misc\Input.h" />
+    <ClCompile Include="Operations\Header-Files\Units\Commanders\Mobility.h" />
+    <ClCompile Include="Operations\Header-Files\Units\Commanders\Commanders.h" />
+    <ClCompile Include="Operations\Header-Files\Units\PrimeUnits\Troops\Archers.h" />
+    <ClCompile Include="Operations\Header-Files\Units\PrimeUnits\Troops\Artillary.h" />
+    <ClCompile Include="Operations\Header-Files\Units\PrimeUnits\Troops\Cavalry.h" />
+    <ClCompile Include="Operations\Header-Files\Units\PrimeUnits\Troops\Guards.h" />
+    <ClCompile Include="Operations\Header-Files\Units\PrimeUnits\Troops\Infantry.h" />
+    <ClCompile Include="Operations\Header-Files\Units\PrimeUnits\Troops\TroopUnitsBASE.h" />
+    <ClCompile Include="Operations\Header-Files\Units\PrimeUnits\PrimeUnits.h" />
+    <ClCompile Include="Operations\Header-Files\Units\PrimeUnits\CoordsBASE.h" />
+    <ClCompile Include="Operations\Header-Files\Units\PrimeUnits\TroopsINT.h" />
+    <ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\Others\Barracks.h" />
+    <ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\Others\Infirmary.h" />
+    <ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\Others\Library.h" />
+    <ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\Others\Residences.h" />
+    <ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\Others\Wall.h" />
+    <ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\Resources\Church.h" />
+    <ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\Resources\Farm.h" />
+    <ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\Resources\Mill.h" />
+    <ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\Resources\Mine.h" />
+    <ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\Resources\Quarry.h" />
+    <ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\Resources\ResourceBuildingsBASE.h" />
+    <ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\BUILD.h" />
+    <ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\BuildingAttributesINT.h" />
+    <ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\BuildingsBASE.h" />
+    <ClCompile Include="Operations\Header-Files\Units\Provinces\Provinces.h" />
+    <ClCompile Include="Operations\Header-Files\Units\Reports\CommanderReport.h" />
+    <ClCompile Include="Operations\Header-Files\Units\Reports\ProvinceReport.h" />
+    <ClCompile Include="Operations\Header-Files\Units\Database.h" />
+    <ClCompile Include="Operations\Header-Files\Units\Map.h" />
+    <ClCompile Include="Operations\Header-Files\Units\Participants.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.md" />

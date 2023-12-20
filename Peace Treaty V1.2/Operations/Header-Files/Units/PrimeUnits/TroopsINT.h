@@ -7,32 +7,10 @@
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 #include INF_HEADER
+#include TROOP_HEADER
 
 using namespace INF;
-
-namespace TROOP {
-	/*REGULAR, INJURED, LOST */
-	enum TroopCondition {
-		REGULAR,
-		INJURED,
-		LOST
-	};
-
-	/*	GUARDS,
-		INFANTRY,
-		ARCHERS,
-		CAVALRY,
-		ARTILLARY*/
-	enum TroopTypes {
-		GUARDS,
-		INFANTRY,
-		ARCHERS,
-		CAVALRY,
-		ARTILLARY
-	};
-
-	extern i5array TROOPS_COST, Troops_CP;
-	extern int maxCommanders;
+using namespace TROOP;
 
 class TroopsINT {
 public:
@@ -56,7 +34,7 @@ public:
 	Example: returns the total of all tiers of all troops presnet, as in the totals for guards, infantry, archers, etc.*/
 	constI5array getGenericTroops(TroopCondition type);
 
-
+	//----Mutators-------------------------------------------------------------
 	/*Change a troop by index or all trypes.
 	TroopCondition: REGULAR, INJURED, LOST
 	TROOP::TroopTypes: GUARDS, INFANTRY, ARCHERS, CAVALRY, ARTILLARY
@@ -74,9 +52,7 @@ public:
 
 
 	///Set the battle formation for... battle
-	void setBattleFormation(INF::troopConditionArray troopArray);
+	void setBattleFormation(TROOP::troopConditionArray troopArray);
 };
 
 #endif
-
-}

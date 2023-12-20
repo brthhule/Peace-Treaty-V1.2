@@ -30,16 +30,16 @@ void TroopUnitsBASE::applyBoosts(int healthBoost, int damageBoost) {
 	}
 }
 
-int TroopUnitsBASE::getLevel() {
-	return level;
+constINT TroopUnitsBASE::getLevel() {
+	return &level;
 }
 
-int TroopUnitsBASE::getCurrentHealth() {
-	return currentHealth;
+constINT TroopUnitsBASE::getCurrentHealth() {
+	return &currentHealth;
 }
 
-std::array<int, 3> TroopUnitsBASE::getCurrentDamage() {
-	return currentDamage;
+const std::array<int, 3>& TroopUnitsBASE::getCurrentDamage() { 
+	return &currentDamage;
 }
 
 void TroopUnitsBASE::updateHealth(int newHealth) {
@@ -76,6 +76,6 @@ TROOP::TroopTypes TroopUnitsBASE::getThisType() {
 	return thisType;
 }
 
-int TroopUnitsBASE::getTier() {
-	return tier;
+constINT TroopUnitsBASE::getTier() {
+	return &tier;
 }

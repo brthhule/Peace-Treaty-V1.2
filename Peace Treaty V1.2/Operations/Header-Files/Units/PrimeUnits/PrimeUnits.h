@@ -12,8 +12,11 @@
 #include INF_HEADER						//Utility
 #include TROOP_UNITS_BASE_HEADER		//Composition
 #include TROOPS_INT_HEADER				//Interface
+#include TROOP_HEADER					//Utility
 
 using namespace INF;
+using namespace TROOP;
+using namespace COORD;
 
 namespace UNIT {
 
@@ -24,9 +27,7 @@ class PrimeUnits :
 {
 public:
 	//----Aliases--------------------------------------------------------------	
-	using T5array = INF::Array5<TroopUnitsBASE>;
 	using unitSPTR = std::shared_ptr<PrimeUnits>;
-	using troopConditionArray = INF::Array5<T5array>;
 	using unitSPTRList = std::vector<unitSPTR>;
 
 	//----Constructors---------------------------------------------------------
@@ -52,7 +53,7 @@ public:
 
 
 	///Get this unit's name
-	const std::string& getUnitName();
+	const std::string& getName();
 
 	constI5array getAllResources();//Add implementation
 
@@ -97,9 +98,12 @@ public:
 
 	//----Setters--------------------------------------------------------------
 	///Set this unit's name
-	void setUnitName(std::string name);
+	void setName(std::string name);
 	///Set the index of the participant this unit belongs to
 	void setParticipantIndex(int number);
+
+	///////////////////////////////////TroopsINT.h/////////////////////////////
+	void printTroopsPresent() override;
 
 protected:
 	i5array resourcesPresent;

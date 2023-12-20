@@ -3,7 +3,7 @@
 #include INPUT_HEADER
 
 using namespace PROV;
-using namespace COORD;
+using namespace COORD; 
 
 //Don't use default constructor, just just this with -1 as a parameter
 Provinces::Provinces(int overallIndexArg) {
@@ -88,7 +88,7 @@ void Provinces::removeCommander(commSPTR newCommander)
 	//For debugging
 	INF::debugFunction("Provinces, removeCommander");
 
-	commandersMap.erase(newCommander->getUnitName());
+	commandersMap.erase(newCommander->getName());
 	commandersVector.erase(getCommanderIndex(newCommander));
 }
 
@@ -97,7 +97,7 @@ void Provinces::addCommander(Commanders &commanderReference)
 	//For debugging
 	INF::debugFunction("Provinces, addCommander");
 	commSPTR commander = std::make_shared<Commanders>(commanderReference);
-	commandersMap[commander->getUnitName()] = commander; 
+	commandersMap[commander->getName()] = commander; 
 
 	commander->setCoords(getPairCoords());
 }
@@ -159,7 +159,7 @@ void Provinces::printCommanders()
 	INF::debugFunction("Provinces, printCommanders");
 
 	for (it = commandersMap.begin(); it != commandersMap.end(); it++) {
-		std::cout << "- " << it->second->getUnitName();
+		std::cout << "- " << it->second->getName();
 	}
 }
 
@@ -168,7 +168,7 @@ bool Provinces::hasCommander(std::string name)
 	//For debugging
 	INF::debugFunction("Provinces, hasCommander");
 	for (it = commandersMap.begin(); it != commandersMap.end(); it++) {
-		if (it->second->getUnitName() == name) {
+		if (it->second->getName() == name) {
 			return true;
 		}
 	}

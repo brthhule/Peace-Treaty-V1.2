@@ -1,42 +1,31 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 #include PARTICIPANTS_HEADER 
 
+#include <functional>
+
 using namespace PART;
 using namespace COORD;
 
-void Participants::armyOverviewMain() { 
+void Participants::armyOverviewSelectAction() { 
 	//For debugging
-	INF::debugFunction("ArmyOverview, armyOverviewMain");
-	using func = void(Participants::*)();
+	INF::debugFunction("ArmyOverview, armyOverviewSelectAction");
+	std::unordered_map<char, std::function<void()>> actionsMap = {
+		{'T', trainCommanderPrompt()},
+		{'U', upgradeCommander()},
+		{'V', viewCommanderStats()},
+		{'D', deployCommanderPrompt()},
+		{'H', armyOverviewSelectActionShowHelp()},
+		{'M', INF::nothing()}
+	};
 
-	println("Welcome to the Army Overview action menu\n");
-	switch (Input::getOptionPrompt(ARMY_DEPLOYMENT).at(0)) {
-		case 'T':
-			trainCommanders();
-			break;
-		case 'U':
-			upgradeCommander();
-			break;
-		case 'V':
-			viewArmyOverview();
-			break;
-		case 'D': {
-			deployCommanderMF();
-			break;
-		}
-		case 'H': {
-			INF::showHelp(5);
-			break;
-		}
-		case 'M': {
-			return;
-		}
-	}
+	char action = Input::getOptionPrompt(ARMY_DEPLOYMENT).at(0);
+	actionsMap[action]();    
 
-	armyOverviewMain();
+	if (action != 'M') { armyOverviewSelectAction(); }
+	return;
 }
 
-Commanders& Participants::pickCommanderToUpgrade() {
+commSPTR Participants::pickCommanderToUpgrade() {
 	if (getCommandersNum() == 0) { 
 		std::cout << "No commanders available, can not upgrade\n"; 
 		enterAnything(1); 
@@ -59,16 +48,16 @@ void Participants::upgradeCommander() {
 	//For debugging
 	INF::debugFunction("ArmyOverview, upgradeCommander");
 
-	commSPTR commander = std::make_shared<Commanders>(pickCommanderToUpgrade());
+	commSPTR commander = pickCommanderToUpgrade(); 
 	if (commander = nullptr) { return; }
 
 	i5array costsArray = commander->getUpgradeCosts();
 
 	std::cout << "The following are the Commander upgrade costs: \n";
 	INF::printResources(costsArray);
-	std::cout << "The following are the resources currently in your capital: \n";
+	st
+d::cout << "The following are the resources currently in your capital: \n";
 	getCapitalProvince()->printResources();
-
 	char proceedWithUpgradeQuestion =
 		Input::getInputText("\nProceed with upgrade? ", { "Y", "N" }).at(0);
 
@@ -82,7 +71,7 @@ void Participants::upgradeCommander() {
 
 	if (resourcesPositive == true) {
 		commander->addLevel();
-		std::cout << "Upgrade successful; Commander " + commander->getUnitName() + "is now level " << commander->getLevel() << std::endl;
+		std::cout << "Upgrade successful; Commander " + commander->getName() + "is now level " << commander->getLevel() << std::endl;
 	} else {
 		//Add subtracted resources back to province resources
 		std::cout << "Upgrade failed. " << std::endl;
@@ -93,9 +82,9 @@ void Participants::upgradeCommander() {
 }
 
 //Currently shows one commander information by selection. Need to update to show all commander information
-void Participants::viewArmyOverview() {
+void Participants::viewCommanderStats() {
 	//For debugging
-	INF::debugFunction("ArmyOverview, viewArmyOverview");
+	INF::debugFunction("ArmyOverview, viewCommanderStats");
 
 	commSPTR commander = pickCommander();
 
@@ -105,7 +94,7 @@ void Participants::viewArmyOverview() {
 		return;
 	}
 	
-	std::cout << "Commander " + commander->getUnitName() +" selected... \n" +
+	std::cout << "Commander " + commander->getName() +" selected... \n" +
 		"The coordinates of this Commander: ";
 	commander->printCoords(COORD::USER); 
 	std::cout << "\n\n";
@@ -113,11 +102,10 @@ void Participants::viewArmyOverview() {
 
 }
 
-void Participants::trainCommanders() {
+void Participants::trainCommanderPrompt() {
 	//For debugging
-	INF::debugFunction("ArmyOverview, trainCommanders");
+	INF::debugFunction("ArmyOverview, trainCommanderPrompt");
 
-	std::string yesOrNoString;
 	std::cout << "You have " << this->getCommandersNum() << "/" << TROOP::maxCommanders << " total army commanders. \n";
 	if (getCommandersNum < TROOP::maxCommanders()) {
 		std::cout << "At maximum army commander amount. Training failed, returning to menu \n";
@@ -135,7 +123,7 @@ void Participants::trainCommanders() {
 	INF::enterAnything(1);
 }
 
-void Participants::proceedWithTraining(i5array trainCosts) {
+void Participants::proceedWithTraining(const i5array& trainCosts) {
 	//For debugging
 	INF::debugFunction("ArmyOverview, proceedWithTraining");
 
@@ -153,18 +141,16 @@ void Participants::proceedWithTraining(i5array trainCosts) {
 	return;
 }
 
-void Participants::deployCommanderMF() {
+void Participants::deployCommanderPrompt() {
 	//For debugging
-	INF::debugFunction("ArmyOverview, deployCommanderMF");
+	INF::debugFunction("ArmyOverview, deployCommanderPrompt");
 
 	commSPTR commander = pickCommander();
-	if (commander == nullptr) {
-		return;
-	}
+	if (commander == nullptr) { return; }
 
 	commander->printCommanderStats();
 
-	std::cout << "Deploy commander " + commander->getUnitName() + "? (Y/N) ";
+	std::cout << "Deploy commander " + commander->getName() + "? (Y/N) ";
 	char confirmDeploy = Input::getInputText("Replacement", { "Y", "N" }).at(0);
 
 	if (confirmDeploy == 'N') {
@@ -178,11 +164,11 @@ void Participants::deployCommanderMF() {
 	} 
 
 	std::cout << "This unit has already moved... please pick another unit \n";
-	deployCommanderMF(); 
+	deployCommanderPrompt(); 
 	INF::enterAnything(1);
 }
  
-void Participants::addCommander() { 
+void Participants::addCommander() {  
 	//For debugging
 	INF::debugFunction("Participants, addCommander");
 
@@ -190,6 +176,10 @@ void Participants::addCommander() {
 	commander->setParticipantIndex(participantIndex); 
 
 	commandersVector.push_back(std::make_shared<Commanders>(*commander)); 
-	commandersMap[commander.getUnitName()] = std::make_shared<Commanders>(*commander);
+	commandersMap[commander.getName()] = std::make_shared<Commanders>(*commander);
 	getCapitalProvince()->addCommander(*commander);
+}
+
+void Participants::armyOverviewSelectActionShowHelp() {
+	INF::showHelp(5);
 }

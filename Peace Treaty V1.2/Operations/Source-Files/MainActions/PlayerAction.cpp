@@ -25,19 +25,18 @@ void Participants::chooseAction() {
 	INF::enterAndClear(1);
 
 	typedef void (*Actions) ();
-	Actions actions[] = {
-		buildAction(),
-		trainMAMain(),
-		viewStats(),
-		viewPlayerMap(),
-		armyOverviewMain(),
-		INF::nothing(),
-		showHelp(),
-		choosePauseGame()
+	std::unordered_map<char, Actions> actionsMap = {
+		{'B', buildAction()},
+		{'T', trainMAMain()},
+		{'S', viewStats()},
+		{'U', viewPlayerMap()},
+		{'D', armyOverviewMain()},
+		{'N', INF::nothing()()},
+		{'H', showHelp()},
+		{'P', choosePauseGame()}
 	};
 
-	int actionNum = actionsMap[courseOfAction];  
-	actions[actionNum](); 
+	actionsMap[courseOfAction]();
 	 
 	//Recurse until base cass (Next turn action)
 	if (actionNum != 5) { chooseAction(); } 
@@ -45,7 +44,7 @@ void Participants::chooseAction() {
 }
 
 void Participants::buildAction() {
-	pickYourProvince(1)->mainBuildFunction(); 
+	pickYourProvince(1)->upgradeBuildingPrompt(); 
 }
 
 void Participants::showHelp() { INF::showHelp(4); }

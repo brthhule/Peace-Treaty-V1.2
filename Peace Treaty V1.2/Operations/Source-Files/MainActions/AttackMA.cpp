@@ -107,7 +107,7 @@ void Participants::playerCommitAttack(provSPTR defendingProvince,  commSPTR atta
 
 	std::vector<commSPTR> defendingCommanders = defendingProvince->getAllCommanders();
 
-	i5array preAttackResources = attackingCommander->getAllResources();
+	constI5array preAttackResources = attackingCommander->getAllResources();
 
 	for (commSPTR defendingCommander : defendingCommanders) {
 		//Add implementation
@@ -119,7 +119,7 @@ void Participants::playerCommitAttack(provSPTR defendingProvince,  commSPTR atta
 	int attackerLostCP = 0;
 	int defenderLostCP = 0;
 
-	determineLostCP(attackerCP, defendingCP, attackerLostCP, defenderLostCP);
+	determineLostCP(attackerCP, defendingCP, attackerLostCP, defenderLostCP); 
 
 	i5array troopsLost = { 0, 0, 0, 0, 0 };
 	i5array injuredTroops = { 0, 0, 0, 0, 0 };

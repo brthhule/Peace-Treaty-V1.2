@@ -7,52 +7,43 @@
 
 #include <iostream>
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
-#include TROOPS_INT_HEADER 
 #include INF_HEADER
+#include TROOP_HEADER
 
 using namespace INF;
 using namespace TROOP;
  
 class TroopUnitsBASE { 
 public:
-	/*Constructor*/
+	//----Constructors---------------------------------------------------------
 	TroopUnitsBASE(
 		int level, 
 		int baseHalth,
 		int tier,
 		std::array<int, 3> baseDamage, 
 		TroopTypes thisType);
-	
+	~TroopUnitsBASE(){}
 
-	int
+	//----Getters--------------------------------------------------------------
+	constINT
 		getLevel(),
 		getCurrentHealth(),
 		getTier();
 
+	const std::array<int,3>& getCurrentDamage();
+	TroopTypes getThisType();
 	
-
-	std::array<int,3> getCurrentDamage();
-
-	/*DEFENSE,
-		FIELD,
-		ATTACK*/
-	enum CombatTypes {
-		DEFENSE = 0,
-		FIELD = 1,
-		ATTACK = 2
-	};
-
+	//----Mutators-------------------------------------------------------------
 	void updateHealth(int newHealth);
 	void updateCurrentDamage();
+	void increaseTier(int amount);
+	void applyBoosts(int healthBoost, int damageBoost);
+
+	//----Setters--------------------------------------------------------------
 	void resetStats();
 	void resetLevel();
 	void setTier(int num);
-	void increaseTier(int amount);
 
-	TroopTypes getThisType();
-
-
-	void applyBoosts(int healthBoost, int damageBoost);
 
 private:
 	int level, tier, baseHealth, currentHealth;

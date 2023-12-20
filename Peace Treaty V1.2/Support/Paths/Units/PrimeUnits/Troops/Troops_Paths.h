@@ -16,6 +16,8 @@
 #define INFANTRY_
 #define INFANTRY_HEADER "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Header-Files\Units\PrimeUnits\Troops\Infantry.h"
 
+#define TROOP_HEADER "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Header-Files\Units\PrimeUnits\Troops\TROOP.h"
+
 #define TROOPS_UNTS_BASE_
 #define TROOP_UNITS_BASE_HEADER "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Header-Files\Units\PrimeUnits\Troops\TroopUnitsBASE.h"
 

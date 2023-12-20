@@ -47,7 +47,7 @@ ScoutMA::scoutTypes Participants::selectTarget(PROV::provSPTR targetProvince)
 	}
 
 	//If the selected province doesn't belong to the participant
-	std::cout << "Province " << targetProvince->getUnitName() << " selected \n";
+	std::cout << "Province " << targetProvince->getName() << " selected \n";
 	std::cout << "You can only scout this unit if one of your provinces or commanders is next to it... \n";
 
 	//Check nearby provinces
@@ -134,14 +134,14 @@ UNIT::unitSPTR Participants::selectUnitToScout(ScoutMA::scoutTypes canScout) {
 
 	std::cout << "Provinces that can scout: \n";
 	for (PROV::provSPTR province : canScout.second) {
-		std::cout << province->getUnitName() + "; ";
+		std::cout << province->getName() + "; ";
 		province->printCoords(CoordsBASE::USER);
 		std::cout << "; Level: " << province->getLevel() << std::endl;
 	}
 
 	std::cout << "Commanders that can scout: \n";
 	for (COMM::commSPTR commander : canScout.first) {
-		std::cout << commander->getUnitName() << "; ";
+		std::cout << commander->getName() << "; ";
 		commander->printCoords(CoordsBASE::USER);
 		std::cout << "; Level: " << commander->getLevel() << std::endl;
 	}
@@ -167,12 +167,12 @@ unitSPTR Participants::selectUnitToScoutTwo(ScoutMA::scoutTypes canScout){
 
 	//If a province has the name, isProvince is true; otherwise, it is false
 	for (PROV::provSPTR province : canScout.second) {
-		if (unitName == province->getUnitName()) {
+		if (unitName == province->getName()) {
 			return province;
 		}
 	}
 	for (COMM::commSPTR commander : canScout.first) {
-		if (unitName == commander->getUnitName()) {
+		if (unitName == commander->getName()) {
 			return commander;
 		}
 	}

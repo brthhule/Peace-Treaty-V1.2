@@ -21,7 +21,7 @@ Commanders::Commanders(int level, std::string name) {
 
 	maxTroops = unitLevel * 10;
 	totalMaxResources = 0;
-	setUnitName(name);
+	setName(name);
 }
 /*Destructor*/
 Commanders::~Commanders() {

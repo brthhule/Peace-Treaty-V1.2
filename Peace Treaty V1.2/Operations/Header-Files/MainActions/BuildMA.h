@@ -8,18 +8,16 @@
 
 using namespace BUILD;
 
-class MABuildINT
-	USES_
-		BUILD_ 
-{
+class BuildMA {
 public:
+	//----Constructors---------------------------------------------------------
 	BuildMA(){}
 	~BuildMA(){}
 
-	virtual void mainBuildFunction() = 0;
-	virtual void selectUpgradeBuilding() = 0;
-	virtual void upgradeBuilding(char optionChar) = 0;
-	virtual void printBuildingUpgradeCosts(INF::i5array requiredresources, int buildingindex) = 0;
+	virtual void upgradeBuildingPrompt() = 0;
+	virtual void selectBuildingToUpgrade() = 0;
+	virtual void upgradeBuilding(int buildingNumber) = 0;
+	virtual void printBuildingUpgradeCosts(INF::i5array requiredResources, int buildingindex) = 0;
 };
 
 #endif

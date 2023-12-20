@@ -1,17 +1,6 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 #include TROOPS_INT_HEADER
 
-using namespace TROOP;
-/*Troops_COST = 5, 4, 3, 2, 1 */
-i5array TROOP::Troops_COST = {5, 4, 3, 2, 1};
-/*Troops_CP = 1, 2, 4, 8, 16*/
-i5array TROOP::Troops_CP = { 1,2,4,8,16 };
-
-int TROOP::maxCommanders = 0; 
-
-
-
-
 i5array TroopsINT::getAllOneTroopArray(TROOP::TroopCondition troopCondition, TROOP::TroopTypes type) {
 	//For debugging
 	INF::debugFunction("Troops, getAllOneTroopArray");

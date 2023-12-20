@@ -137,7 +137,7 @@ namespace INF {
 	//Can change this-> look at concatVectors as a template-- use a pair of arrays instead of passing two arrays
 	i5array INF::mutateArray(
 		i5array primeArray, 
-		i5array secondaryArray, 
+		constI5array secondaryArray, 
 		MutateDirection direction) 
 	{
 		//For debugging
@@ -163,7 +163,7 @@ namespace INF {
 	INF::myvector<int>::myvector(std::vector<int> vectorArg) {
 		vector(vectorArg.begin(), vectorArg.end());
 	}
-	void INF::myvectorI::addVectorElements(INF::myvectorI vectorInstance) {
+	void INF::myvector<int>::addVectorElements(INF::myvector<int> vectorInstance) {
 		for (int x = 0; x < (int) this->size(); x++) {
 			at(x) += vectorInstance.at(x);
 		}
@@ -175,7 +175,7 @@ namespace INF {
 		}
 	}
 
-	void INF::myarrayI5A::addArrayElements(INF::myarrayI5A arrayArg) {
+	void INF::myarray<i5array>::addArrayElements(INF::myarray<i5array> arrayArg) {
 		for (int x = 0; x < 5; x++) {
 			at(x) += arrayArg[x];
 		}
@@ -185,7 +185,7 @@ namespace INF {
 bool INF::checkIsNumber(std::string numberString) {
 	std::string AV = "0123456789";
 	for (char letter : numberString) {
-		if (AV.find(letter) = std::string::npos) {
+		if (AV.find(letter) == std::string::npos) {
 			return false;
 		}
 	}
@@ -217,19 +217,13 @@ void INF::clearScreenCommand() {
 option = 1, says enter anything to proceed
 option = 2, says enter anything to return to previous menu*/
 void INF::enterAnything(int option) {
-	std::string line;
-	switch (option) {
-		case 1:
-			line = "proceed";
-			break;
-		case 2:
-			line = "return to the previous menu";
-			break;
-	}
 	debugFunction("OtherFunctions, enterAnything");
-	std::string emptyString = " ";
+	std::array<std::string, 2> phrases = { "proceed", "return to the previous menu" }; 
+	std::string line = phrases.at(option - 1);
+
 	std::cout << "Enter anything to " << line +
 		" (screen will clear): " << INF::getColor(BLUE);
+	std::string emptyString = " "; 
 	getline(std::cin, emptyString);
 	INF::addColor(BLUE);
 }
@@ -239,23 +233,7 @@ void INF::debugFunction(std::string functionName) {
 	if (debuggingMode == true) {
 		std::cout << "\033[35mFunction: " << functionName << "\033[0m\n";
 	}
-		
 }
-
-/*
-1 - selectEnemyAction
-2 - playerUnitAction
-3 - introduction
-4 - playerAction
-6 - trainMAMain
-7 - playerBuildFunction
-8 - viewPlayerMap
-9 - selectPlayerProvince
-10 - selectEnemyProvince
-11 - scoutLogFunction
-12 - upgradeBuildings
-*/
-
 
 /*Returns help prompt that correlates with the specified numerical 
 identifier(caseNum)*/

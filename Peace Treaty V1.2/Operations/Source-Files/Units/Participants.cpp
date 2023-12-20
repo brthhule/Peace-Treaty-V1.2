@@ -101,7 +101,7 @@ void Participants::addProvince(provSPTR newProvince) {
 	INF::debugFunction("Participants, addProvince");
 
 	provincesVector.push_back(newProvince);
-	provincesMap[newProvince->getUnitName()] = provincesVector[provincesVector.size() - 1];
+	provincesMap[newProvince->getName()] = provincesVector[provincesVector.size() - 1];
 }
 
 
@@ -215,12 +215,12 @@ std::string Participants::getNewName() {
 
 	std::string newName = INF::createRandomName();
 	for (provSPTR newProvince : provincesVector)
-		if (newName == newProvince->getUnitName())
+		if (newName == newProvince->getName())
 			getNewName();
 
 
 	for (commIt = commandersMap.begin(); commIt != commandersMap.end(); commIt++)
-		if (newName == commIt->second->getUnitName())
+		if (newName == commIt->second->getName())
 			getNewName();
 
 	return newName;
@@ -278,7 +278,7 @@ void Participants::printListOfProvinces() {
 	std::cout << "Here is a list of your provinces (Name, Coordinates): \n";
 	for (provSPTR province : provincesVector)
 	{
-		std::cout << "- " << province->getUnitName() << ": ";
+		std::cout << "- " << province->getName() << ": ";
 		province->getCoords(CoordsBASE::USER);
 		std::cout << "\n";
 	}
@@ -479,7 +479,7 @@ void Participants::displayCommanders() {
 
 	for (it = commandersMap.begin(); it != commandersMap.end(); it++) {
 		commSPTR tempCommander = it->second;
-		std::cout << "- Commander " << tempCommander->getUnitName() + 
+		std::cout << "- Commander " << tempCommander->getName() + 
 			"; Level: " << tempCommander->getLevel() << std::endl;
 		delete tempCommander;
 	}
@@ -553,7 +553,7 @@ bool Participants::hasUnit(const std::string &unitName) {
 bool Participants::hasUnit(PrimeUnits unit&) { 
 	try {
 		PrimeUnits* tempUnit = unit; 
-		std::string name = tempUnit->getUnitName(); 
+		std::string name = tempUnit->getName(); 
 		delete tempUnit; 
 
 		if (typeid(tempUnit).name == "Commanders") { 
