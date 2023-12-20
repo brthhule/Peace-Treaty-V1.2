@@ -17,7 +17,7 @@ void Participants::trainMAMain() {
 
 
     std::cout << "Coordinates: " +
-        province->getCoords(CoordsBASE::CoordsType::USER) +
+        province->getCoords(COORD::USER) +
         "\n\nThe barracks level of this province: " + 
           std::to_string(barracksLevel) + "\n";
 
@@ -110,7 +110,6 @@ void Participants::trainMALoop(int troopTier, int amountOfTroops) {
 
             if (trainingIsSuccess == false) {
                 std::cout << "Training failed" << std::endl;
-                capitalProvince->modifyResources(requiredResources, INCREASE);
             }
             else {
                 std::cout << "Training successful" << std::endl;

@@ -13,10 +13,12 @@
 #include INF_HEADER
 #include INPUT_HEADER
 #include PROVINCES_HEADER
-
+#include TROOPS_INT_HEADER
+ 
 using namespace INF;
 using namespace PROV;
 using namespace COMM;
+using namespace TROOP;
 
 class AttackMA
 	COMPRISES_

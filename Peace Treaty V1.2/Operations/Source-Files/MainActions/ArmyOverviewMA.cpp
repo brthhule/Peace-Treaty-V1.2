@@ -172,13 +172,13 @@ void Participants::deployCommanderMF() {
 		return;
 	}
 
-	if (commander->hasMoved() == false) {
+	if (commander->hasMoved() == false) { 
 		this->moveUnitOne(commander);
 		return;
 	} 
 
 	std::cout << "This unit has already moved... please pick another unit \n";
-	deployCommanderMF();
+	deployCommanderMF(); 
 	INF::enterAnything(1);
 }
  

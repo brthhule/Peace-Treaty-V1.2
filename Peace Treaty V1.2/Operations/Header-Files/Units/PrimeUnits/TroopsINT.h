@@ -74,7 +74,7 @@ public:
 
 
 	///Set the battle formation for... battle
-	void setBattleFormation(troopConditionArray troopArray);
+	void setBattleFormation(INF::troopConditionArray troopArray);
 };
 
 #endif

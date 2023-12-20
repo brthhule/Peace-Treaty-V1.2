@@ -20,7 +20,7 @@ namespace UNIT {
 enum UnitType { COMMANDER, PROVINCE };
 
 class PrimeUnits : 
-	public CoordsBASE					//Base Class
+	public CoordsBASE, public TroopsINT					//Base Class
 {
 public:
 	//----Aliases--------------------------------------------------------------	

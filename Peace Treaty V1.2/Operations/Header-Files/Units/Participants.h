@@ -76,6 +76,7 @@ public:
 	//----Getters----------------------------------------------------------
 	///Get the costs needed to train a new Commander?
 	constI5array getTrainCosts(); 
+
 	i5array calculateEach(int option);
 	///Returns all units in a participant, uses threading
 	i5array getPrimeUnitsArray();//???
@@ -262,6 +263,8 @@ public:
 
 private:
 	static i5array trainCosts;
+	i5array allCommandersArray;
+	i5array allProvincesArray;
 
 	commSPTR selectedCommander; //For ArmyDeploymentMA
 

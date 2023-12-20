@@ -8,7 +8,7 @@
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 #include PROVINCES_HEADER
-#incldue INPUT_HEADER
+#include INPUT_HEADER
 
 using namespace PROV;
 using namespace COMM;
