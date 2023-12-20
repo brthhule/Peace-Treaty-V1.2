@@ -4,37 +4,43 @@
 
 #ifndef PLAYERACTION_H
 #define PLAYERACTION_H
-#define PLAYER_ACTION
 
 #include <iostream>
 #include <cmath>
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
-#include ARMY_OVERVIEW_MA_HEADER
-#include INF_HEADER
-#include MAP_MA_HEADER
-#include PARTICIPANTS_HEADER
-#include TRAIN_MA_HEADER
 
-class PlayerAction
-	COMPRISES_
-		ARMY_OVERVIEW_MA_
-		TRAIN_MA_
-		MAP_MA_
-		PARTICIPANTS_
-	USES_
-		INF_
-{
+#include ARMY_OVERVIEW_MA_HEADER		//Composition (Action)
+#include MAP_MA_HEADER					//Composition (Action)
+#include TRAIN_MA_HEADER				//Composition (Action)
 
+#include PARTICIPANTS_HEADER			//Compositon (Unit)
+#include INF_HEADER						//Utility
+
+/* TODO
+* Implement randomAction (AI functionality, way ahead)
+* Take a look at pauseGame (I think it saves the data, not sure)
+*/
+class PlayerAction {
 public:
+	//----Constructors---------------------------------------------------------
+	///Default constructor
 	PlayerAction(){}
+	///Destructor
 	~PlayerAction(){}
 
-	char virtual randomAction() = 0;
-	virtual void
-		initialDecision() = 0,
-		pauseGame() = 0;
+	//----Methods--------------------------------------------------------------
+	///Choose a random action (AI implementation)
+	virtual char randomAction() = 0;
+	///Player chooses an action to complete, recurses until end turn
+	virtual void chooseAction() = 0;
+	///Pauses the game-- ???
+	virtual void pauseGame() = 0;
 
+	//Shenanigans
+	virtual void choosePauseGame() = 0;	
+	virtual void playerActionShowHelp() = 0;
+	virtual void buildAction() = 0;
 };
 
 #endif

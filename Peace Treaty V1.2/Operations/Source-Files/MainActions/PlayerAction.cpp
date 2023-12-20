@@ -3,82 +3,63 @@
 
 using namespace PART;
 
-void Participants::initialDecision() {
-	//For debugging
-	INF::debugFunction("PlayerAction, initialDecision");
+void Participants::chooseAction() {
+	INF::debugFunction("PlayerAction, chooseAction");
+	INF::enterAndClear(1);
 
 	bool goToNextTurn = false;
 
-	INF::enterAnything(1);
-	INF::clearScreen();
+	//For AI
+	char courseOfAction = randomAction();
 
-	char courseOfAction = ' ';
-
-	if (this->isPlayer() == true)
-	{
+	//If player
+	if (isPlayer()) {
 		std::cout << "Turn: " << INF::turn << std::endl;
 		std::cout << "Player " << getKingdomName() << "'s move...";
 		std::cout << "\n\nWelcome to the Main Action menu \n\n\n";
 
-		this->showMap();
-
+		showMap();
 		courseOfAction = Input::getOptionPrompt(PLAYER_ACTION).at(0); 
-	} else {
-		// If the participant is the AI
-		courseOfAction = randomAction();
-	}
+	} 
 
-	INF::enterAnything(1);
-	INF::clearScreen();
+	typedef void (*Actions)(void); // function pointer type
+	typedef std::unordered_map<char, Actions> ActionFunctions; 
+	ActionFunctions actionsMap; 
+	actionsMap.emplace('B', &buildAction); 
+	actionsMap.emplace('T', &trainMAMain); 
+	actionsMap.emplace('S', &viewStats); 
+	actionsMap.emplace('U', &viewPlayerMap); 
+	actionsMap.emplace('D', &armyOverviewSelectAction); 
+	actionsMap.emplace('N', &INF::nothing); 
+	actionsMap.emplace('H', &playerActionShowHelp);  
+	actionsMap.emplace('P', &choosePauseGame); 
 
-	switch (courseOfAction) {
-		case 'B': {
-			provSPTR newProvince = pickYourProvince(1);
-			newProvince->mainBuildFunction();
-			break;
-		}
-		case 'T': {
-			this->trainMAMain();
-			break;
-		}
-		case 'S':
-			this->viewStats();
-			break;
-		case 'U': {
-			this->viewPlayerMap();
-			break;
-		}
-		case 'D': {
-			this->armyOverviewMain();
-			break;
-		}
-		case 'N':
-			goToNextTurn = true;
-			break;
-		case 'H': {
-			INF::showHelp(4);
-			break;
-		}
-		case 'P': {
-			char pauseGameQuestionChar = Input::getInputText("Pausing the game will end this session of gameplay. Proceed? (Y/N): ", { "Y", "N" }).at(0);
+	actionsMap[courseOfAction](); 
+	 
+	//Recurse until base cass (Next turn action)
+	if (courseOfAction != 'N') { chooseAction(); }
+	return;
+}
 
-			if (pauseGameQuestionChar == 'Y')
-				pauseGame();
+void Participants::buildAction() {
+	pickYourProvince(1)->upgradeBuildingPrompt(); 
+}
 
-			std::cout << "Returning to the Main menu... \n";
-		}
-	}
-	if (goToNextTurn == false)
-		initialDecision();
+void Participants::showHelp() { INF::showHelp(4); }
+
+void Participants::choosePauseGame() { 
+	char pauseGameQuestionChar = Input::getInputText("Pausing the game will end this session of gameplay. Proceed? (Y/N): ", { "Y", "N" }).at(0); 
+
+	if (pauseGameQuestionChar == 'Y') { pauseGame(); }
+	std::cout << "Returning to the Main menu... \n";
 }
 
 char Participants::randomAction() {
 	//For debugging
 	INF::debugFunction("PlayerAction, randomAction");
 
-	int randomNumber = rand() % 6; // Random number 0 to 5 (inclusive)
 	std::vector<char> newVector = { 'B', 'T', 'S', 'U', 'D', 'N' };
-	return newVector[randomNumber];
+	return newVector.at(rand() % 6);
 }
 
 

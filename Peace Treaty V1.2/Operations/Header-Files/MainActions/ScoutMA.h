@@ -12,7 +12,7 @@
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 
-#include ALL_UNITS_HEADER
+#include PRIME_UNITS_HEADER
 #include INF_HEADER
 #include INPUT_HEADER
 #include PARTICIPANTS_HEADER

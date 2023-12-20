@@ -8,20 +8,18 @@ BuildingsBASE::BuildingsBASE(INF::d5array baseUpgradeRatesArg) {
 
 void BuildingsBASE::increaseLevel(int amount) {
 	level += amount;
-}
 
-int BuildingsBASE::getLevel() {
-	return level;
-}
-
-INF::i5array BuildingsBASE::getUpgradeCosts() {
-	INF::d5array upgradeCosts = {};
-
-	for (int index = 0; index < 5; index++) {
-		upgradeCosts.at(index) = level * baseUpgradeRates.at(index);
+	for (int index = 0; index < 5; index++) { 
+		upgradeCosts.at(index) = level * baseUpgradeRates.at(index); 
 	}
+}
 
-	return upgradeCosts;
+constINT BuildingsBASE::getLevel() { 
+	return &level; 
+}
+
+constArrayReference BuildingsBASE::getUpgradeCosts() {
+	return &upgradeCosts;
 }
 
 
@@ -34,6 +32,6 @@ void BuildingsBASE::mutateWorkersNum(int amount, INF::MutateDirection direction)
 	workersNum += amount * sign;
 }
 
-int BuildingsBASE::getWorkersNum() {
+constINT BuildingsBASE::getWorkersNum() {
 	return workersNum;
 }

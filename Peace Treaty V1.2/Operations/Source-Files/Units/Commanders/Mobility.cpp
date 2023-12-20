@@ -3,106 +3,96 @@
 #include PARTICIPANTS_HEADER
 
 using namespace PART;
+using namespace COORD;
+
+
 
 void Participants::moveUnitOne(commSPTR commander) {
 	//For debugging
 	INF::debugFunction("Mobility, moveUnitOne");
 
-	//This will have the list of provinces that can be moved to
-	std::vector<provSPTR> provincesCanSelect;
-
 	if (commander->hasMoved() == true) {
 		std::cout << "This unit has already moved this turn. Please pick another unit. \nReturning to previous menu... \n\n";
 	}
-	//If this commander has not moved yet
-	//Get their system coords
-	ipair newCoordinates = commander->CoordsBASE::getCoords(CoordsBASE::SYSTEM); 
 
-	std::cout << "The coordinates of the chosen unit unit are: ";
-	commander->printCoords(CoordsBASE::USER);
-	println("\n\nYou can only move this unit to one of the provinces adjacent to the province it is in");
-
-	//Get list of provinces that can be moved to
-	provincesCanSelect = moveUnitTwo(commander);
-
-	// The participant slects coordiantes
-	ipair userCoords = pickCoords();
-
-
-	provSPTR provinceSelected = NULL;
-	for (provSPTR province : provincesCanSelect) {
-		if (userCoords == province->getCoords(CoordsBASE::USER)) {
-			provinceSelected = province;
-		}
-	}
-
-	if (provinceSelected == NULL) {
-		std::cout << "Invalid province selected... please try again. " << std::endl;
-		// Recursion until suitable coordinates are chosen
-		moveUnitOne(commander);
-	}
-
-	// For display
-	ipair systemCoords = provinceSelected->getCoords(CoordsBASE::SYSTEM);
+	provSPTR provinceSelected = std::make_shared<Provinces>(pickProvinceToMoveTo(*commander)); 
 	std::string confirmMove;
 
-	enum Scenario {
-		ENEMY_PROVINCE,
-		FRIENDLY_PROVINCE
-	};
-	Scenario situation = FRIENDLY_PROVINCE;
+	ProvinceRelation relation = FRIENDLY_PROVINCE;
 	// If province is in the list
 
 	if (provinceSelected->getParticipantIndex() !=
 		commander->getParticipantIndex()) {
-		situation = ENEMY_PROVINCE;
+		relation = ENEMY_PROVINCE; 
 		println("This is an enemy province. Moving here will attack the enemy garrison stationed here.");
 	} else {
-		situation = FRIENDLY_PROVINCE;
 		std::cout << "This is a friendly province.\n";
 	}
 
-	std::cout << "Confirm moving your unit to ";
-	provinceSelected->printCoords(CoordsBASE::USER);
-	std::cout << "? (Y / N) ";
+	std::string prompt = "Confirm moving your unit to " + provinceSelected->getCoords(COORD::USER) + "? (Y / N) ";
 
 	// If participants confirms movement
-	if (Input::getInputText("Confirm Y/N: ", { "Y", "N" }).at(0) == 'Y') {
-		// If it's peaceful (moving to one of their own provinces)
-		if (situation == FRIENDLY_PROVINCE) {
-			//Remove commander from previous province
-
-			partSPTR tempParticipant = new Participants;
-			provSPTR formerProvince = tempParticipant->getSystemProvince(commander->getCoords(CoordsBASE::SYSTEM));
-			formerProvince->removeCommander(commander);
-
-			//Change commander coords to province coords
-			ipair tempSystemCoords, tempUserCoords;
-			tempSystemCoords = provinceSelected->getCoords(CoordsBASE::SYSTEM);
-			tempUserCoords = provinceSelected->getCoords(CoordsBASE::USER);
-			commander->setCoords(tempSystemCoords, tempUserCoords);
-			//Add the commander to the province's list of commanders
-			provinceSelected->addCommander(commander);
-
-		// If scenario is attack
-		} else {
-			//Have to work this out
-			//AttackMA newAttackMA(selectedCommanderProvince, attackProvince, participant, selectedCommander);
-		}
+	if (Input::getInputText(prompt, { "Y", "N" }).at(0) == 'N') {
+		std::cout << "Cancelling action...\n";
+		return;
 	}
 
+	if (relation == ENEMY_PROVINCE) {
+		//Have to work this out
+		//AttackMA newAttackMA(selectedCommanderProvince, attackProvince, participant, selectedCommander);
+	}
+
+	// If it's peaceful (moving to one of their own provinces)
+	//Remove commander from previous province
+	provSPTR formerProvince = Map::getProvince(SYSTEM, commander->getCoords(SYSTEM)); 
+	formerProvince->removeCommander(commander);
+	provinceSelected->addCommander(commander);
 	std::cout << "Returning to previous menu... \n\n";
 
 } /* unfinished*/
 
 
-std::vector<provSPTR> Participants::moveUnitTwo(commSPTR commander) {
+Provinces& Participants::pickProvinceToMoveTo(Commanders& commanderReference) {
+	//This will have the list of provinces that can be moved to
+	provSPTRList provincesCanSelect;
+	std::cout << "The coordinates of the chosen unit unit are: ";
+	commSPTR commander = std::make_shared<Commanders>(commanderReference);
+
+	commander->printCoords(COORD::USER); 
+	println("\n\nYou can only move this unit to one of the provinces adjacent to the province it is in");
+
+	//Get list of provinces that can be moved to
+	provincesCanSelect = getSurroundingProvinces(commander); 
+
+	// The participant slects coordinates
+	ipair pickUserCoords = Map::pickCoords();
+
+	if (pickUserCoords.first == -1) {
+		std::cout << "Cancelling action...\n";
+		INF::enterAndClear(1);
+		nullptr;
+	}
+
+	provSPTR provinceSelected = Map::getProvince(pickUserCoords, USER);
+	bool validProvince = false;
+	for (provSPTR provincePtr : provincesCanSelect) {
+		if (*provincePtr == *provinceSelected) {
+			validProvince == true;
+		}
+	}
+
+	if (!validProvince) {
+		std::cout << "Invalid province selected... please choose a valid province\n";
+		pickProvinceToMoveTo(*commander); 
+	}
+}
+
+provSPTRList Participants::getSurroundingProvinces(commSPTR commander) {
 	//For debugging
-	INF::debugFunction("Mobility, moveUnitTwo");
+	INF::debugFunction("Mobility, getSurroundingProvinces");
 
 	std::vector<provSPTR> provincesSelectList;
-	ipair systemCoords = commander->getCoords(CoordsBASE::SYSTEM);
-
+	ipair systemCoords = commander->getCoords(COORD::SYSTEM);
 
 	/*Identify all the provinces that the player can move a unit to*/
 	for (int x = -1; x <= 1; x++) {
@@ -128,11 +118,8 @@ std::vector<provSPTR> Participants::moveUnitTwo(commSPTR commander) {
 
 			if (checkFirstCoordinate && checkSecondCoordinate && checkBothCoordinates){
 				ipair pushCoords(firstCoordinate, secondCoordinate);
-				partSPTR tempParticipant = new Participants();
-				provSPTR province = tempParticipant->getSystemProvince(pushCoords);
-				provincesSelectList.push_back(province);
-				delete tempParticipant;
-
+				provSPTR province = Map::getProvince(SYSTEM, pushCoords);
+				provincesSelectList.push_back(std::make_shared<Provinces>(*province)); 
 			}
 		}
 	}

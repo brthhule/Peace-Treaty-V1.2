@@ -25,7 +25,7 @@ public:
 	//----Getters--------------------------------------------------------------
 	constINT getLevel();
 	constINT getWorkersNum();
-	constI5array getUpgradeCosts();
+	constArrayReference getUpgradeCosts(); 
 
 	//----Mutators-------------------------------------------------------------
 	void increaseLevel(int amount);
@@ -37,5 +37,6 @@ private:
 	int level;
 	INF::d5array baseUpgradeRates;
 	int workersNum;
+	i5array upgradeCosts;
 };
 #endif

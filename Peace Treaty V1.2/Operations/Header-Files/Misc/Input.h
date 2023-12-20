@@ -41,7 +41,7 @@ namespace Input
 	std::string promptsToString(Input::Prompts p);
 	extern std::array<std::string, 13> PROMPTS_STRING;
 	int getStringIndex(std::string arg);
-	Input::Prompts stringToInput::Prompts(std::string arg);
+	Input::Prompts stringToPrompts(std::string arg);
 
 	//For prompt input
 	std::vector<std::string> getShowPrompt(std::string prompt);
@@ -51,5 +51,7 @@ namespace Input
 		getOptionPrompt(Input::Prompts p),
 		getInputQuery(std::vector<std::string>AV);
 	std::string getInputText(std::string text, std::vector<std::string> AV);
+
+	int getNumber(std::string text);
 };
 #endif

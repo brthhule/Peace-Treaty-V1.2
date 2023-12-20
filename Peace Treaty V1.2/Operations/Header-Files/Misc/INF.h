@@ -28,6 +28,7 @@ namespace INF {
 	using ivector = std::vector<int>;
 	using myvectorI = myvector<int>;
 	using myarrayI5A = myarray<i5array>;
+	using constArrayReference = const std::array<int, 5>&;
 
 	//----Other Types------------------
 	using String = std::string;
@@ -35,15 +36,16 @@ namespace INF {
 
 	//----Const Values-----------------
 	using constINT = const int&;
-	using constI5array = std::array<int&, 5>;
+	using constI5array = std::array<constINT, 5>;
 
-
+	using string = std::basic_string<char>; //Shenanigans
 
 	///////////////////////////////////Enums/////////////////////////////////
-
-	
-
 	/*DECREASE = 0, INCREASE = 1*/
+
+	enum ProvinceRelation { 
+		ENEMY_PROVINCE, FRIENDLY_PROVINCE };
+
 	enum MutateDirection {
 		DECREASE = 0,
 		INCREASE = 1
@@ -156,11 +158,15 @@ namespace INF {
 	//----String-----------------------
 	//Get command to print certain color to console
 	std::string getColor(COLORS color);
+	
 
 	std::string createRandomName();
 
 	///Takes an array of resources, formats and prints them out
-	void printResources(i5array resourcesArray);
+	void printResources(constArrayReference resourcesArray);
+
+	///Checks if a string is an inteer, only works for positive integers
+	bool checkIsNumber(std::string number);
 
 
 	
@@ -168,11 +174,12 @@ namespace INF {
 	
 	//----void-------------------------
 	//CLears the screen
-	void clearScreen();
+	inline void clearScreen();
 	//Prompts the user to enter anything
-	void enterAnything(int option);
+	inline void enterAnything(int option);
 	///Calls enterAnything then clearScreen
-	void enterAndClear(int option);
+	inline void enterAndClear(int option);
+
 	//Debugging purposes
 	void debugFunction(std::string functionName);
 	//Text stuff
@@ -187,7 +194,7 @@ namespace INF {
 	
 
 	//Manipulate vectors
-	i5array mutateArray(i5array primeArray, i5array secondaryArray, MutateDirection direction);
+	i5array mutateArray(i5array primeArray, constArrayReference secondaryArray, MutateDirection direction);
 
 	//For if/ternary statements with no "else"
 	void nothing() {};

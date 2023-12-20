@@ -109,7 +109,7 @@ void Participants::selectPlayerProvince(provSPTR province) {
 		Options:B,T*/
 	switch (selectPlayerCapitalAction) {
 	case 'B': {
-		province->mainBuildFunction();
+		province->upgradeBuildingPrompt();
 		break;
 	}
 	case 'T': {

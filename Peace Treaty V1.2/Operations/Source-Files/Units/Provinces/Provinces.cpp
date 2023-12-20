@@ -3,6 +3,7 @@
 #include INPUT_HEADER
 
 using namespace PROV;
+using namespace COORD; 
 
 //Don't use default constructor, just just this with -1 as a parameter
 Provinces::Provinces(int overallIndexArg) {
@@ -11,7 +12,6 @@ Provinces::Provinces(int overallIndexArg) {
 
 	overallIndex = overallIndexArg;
 	//Initialize building levels
-	initializeEmptyBuildings();
 	resourcesPresent = INF::INITIAL_VALUES;
 	participantIndex = 0;
 
@@ -21,12 +21,13 @@ Provinces::Provinces(int overallIndexArg) {
 
 	unitLevel = 1;
 	commandersSortType = ALPHABETICAL;
+
+	//Buildings should be created when their province is created, figure out how to do that
+	/*Barracks barracks();
+	buildings.at(0) = barracks;*/
 }
 
-std::array<AllUnits::troopConditionArray, 3> Provinces::getTroopsLists() {
-	std::array<troopConditionArray, 3> returnArray = { troopsPresent, troopsInjured, troopsLost };
-	return returnArray;
-}
+
 
 std::array<int, 7> Provinces::getListsInt() {
 	std::array<int, 7> returnArray = {
@@ -35,7 +36,7 @@ std::array<int, 7> Provinces::getListsInt() {
 		foodConsumption,
 		participantIndex,
 		unitLevel,
-		troopsTrainedThisTurn,
+		getTroopsTrainedThisTurn(),
 		overallIndex
 	};
 	return returnArray;
@@ -47,7 +48,15 @@ void Provinces::setCommandersSortStatus(SortType sort) {
 	}
 
 	commandersSortType = sort; 
-	commandersVector = sortVector(sort, commandersVector);
+	std::vector<unitSPTR> units;
+	for (commSPTR commander : commandersVector) {
+		units.push_back(commander);
+	}
+	units = sortVector(sort, units);
+	commandersVector.clear();
+	for (unitSPTR unit : units) {
+		commandersVector.push_back(std::dynamic_pointer_cast<Commanders>(unit));
+	}
 }
 
 INF::SortType Provinces::getCommandersSortStatus() {
@@ -60,7 +69,8 @@ void Provinces::updateProvinceResources()
 	//For debugging
 	INF::debugFunction("Provinces, updateProvinceResources");
 
-	i5array resourcesProduced = getResourceProduction(FARM, ALL); 
+	//Farm is just a placeholder, it is overridden by the ALL param
+	i5array resourcesProduced = getResourceProduction(BuildingsEnum::FARM, ALL);  
 	resourcesPresent = INF::mutateArray(resourcesPresent, resourcesProduced, INCREASE);
 }
 
@@ -87,15 +97,18 @@ void Provinces::removeCommander(commSPTR newCommander)
 	//For debugging
 	INF::debugFunction("Provinces, removeCommander");
 
-	commandersMap.erase(newCommander->getUnitName());
-	commandersVector.erase(getCommanderIndex(newCommander));
+	commandersMap.erase(newCommander->getName());
+	commandersVector.erase(commandersVector.begin() + getCommanderIndex(newCommander));
 }
 
-void Provinces::addCommander(commSPTR newCommander)
+void Provinces::addCommander(Commanders &commanderReference)
 {
 	//For debugging
 	INF::debugFunction("Provinces, addCommander");
-	commandersMap[newCommander->getUnitName()] = newCommander;
+	commSPTR commander = std::make_shared<Commanders>(commanderReference);
+	commandersMap[commander->getName()] = commander; 
+
+	commander->setCoords(getPairCoords());
 }
 
 
@@ -136,12 +149,12 @@ COMM::commSPTR Provinces::getCommander(std::string name) {
 	return commandersMap[name];
 }
 
-bool Provinces::subtractCheckResources(i5array resourcesArray) {
+bool Provinces::subtractCheckResources(constArrayReference resourcesArray) {
 	//For debugging
 	INF::debugFunction("Provinces, subtractCheckResources");
 
 	//returns false if resources dip into negatives
-	this->modifyResources(resourcesArray, DECREASE);
+	this->mutateAllResources(resourcesArray, DECREASE);
 	for (int x : this->resourcesPresent) {
 		if (x < 0) { return false; }
 	}
@@ -155,7 +168,7 @@ void Provinces::printCommanders()
 	INF::debugFunction("Provinces, printCommanders");
 
 	for (it = commandersMap.begin(); it != commandersMap.end(); it++) {
-		std::cout << "- " << it->second->getUnitName();
+		std::cout << "- " << it->second->getName();
 	}
 }
 
@@ -164,7 +177,7 @@ bool Provinces::hasCommander(std::string name)
 	//For debugging
 	INF::debugFunction("Provinces, hasCommander");
 	for (it = commandersMap.begin(); it != commandersMap.end(); it++) {
-		if (it->second->getUnitName() == name) {
+		if (it->second->getName() == name) {
 			return true;
 		}
 	}
@@ -184,7 +197,7 @@ void Provinces::setOverallIndex(int index) {
 	overallIndex = index;
 }
 
-int Provinces::getOverallIndex() {
+constINT Provinces::getOverallIndex() {
 	//For debugging
 	INF::debugFunction("Provinces, getOverallIndex");
 
@@ -237,16 +250,6 @@ std::array< ipair, 2> Provinces::getListCoords() {
 	return { CoordsBASE::systemCoords, CoordsBASE::userCoords };
 }
 
-
-const std::string Provinces::getCoords(CoordsBASE::CoordsType type) {
-	return PrimeUnits::getCoords(type);
-}
-
-
-
-
-
-
 void Provinces::setKingdomName(std::string name) { 
 	//For debugging
 	INF::debugFunction("Provinces, setKingdomName");
@@ -294,7 +297,7 @@ void Provinces::createReport(int scouterLevelArg, int targetLevelArg) {
 		ListsArg, 
 		listIntArg, 
 		listBoolArg, 
-		getCoords(CoordsBASE::SYSTEM));
+		getCoords(COORD::SYSTEM));
 	int turn = newReport.getReportTurn();
 	std::pair<int, ProvinceReport> sendReport(turn, newReport);
 	int index = 0;//Determine how to find this

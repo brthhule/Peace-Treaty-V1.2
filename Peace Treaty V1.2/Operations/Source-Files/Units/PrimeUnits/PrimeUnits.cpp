@@ -30,11 +30,11 @@ PrimeUnits::PrimeUnits(int participantIndexArg) {
 	totalTroops = 0;
 	resourcesPresent = { 0,0,0,0,0 };
 	initialStats = { 5,4,3,2,1 };
-	allTroopConditions = { 
+	allTroopConditions = {
 		&troopsPresent,
 		&troopsInjured,
-		&troopsLost 
-	}
+		&troopsLost
+	};
 }
 
 //Default Constructor
@@ -47,7 +47,7 @@ PrimeUnits::PrimeUnits() {
 
 
 void PrimeUnits::printTroopsPresent() {
-	i5array troopsPresent = this->getGenericTroops(REGULAR);
+	constArrayReference troopsPresent = this->getGenericTroops(REGULAR);
 	for (int x = 0; x < 5; x++) {
 		std::cout << TROOP_NAMES.at(x) << ": " << troopsPresent.at(x) << std::endl;
 	}
@@ -77,49 +77,33 @@ void PrimeUnits::printResources() {
 
 	std::cout << "Resources currently present in this " << type << ": \n";
 	INF::addColor(INF::BLUE);
-	printResources(resourcesPresent);
+	INF::printResources(resourcesPresent);
 	INF::addColor(INF::RESET);
 }
 
-std::string PrimeUnits::getUnitName() {
-	//For debugging
-	INF::debugFunction("PrimeUnits, getUnitName");
-
-	return unitName;
-}
-void PrimeUnits::setUnitName(std::string name) {
-	//For debugging
-	INF::debugFunction("PrimeUnits, setUnitName");
-
-	unitName = name;
-}
+const std::string& PrimeUnits::getName() { return unitName; }
+void PrimeUnits::setName(std::string name) { unitName = name; }
 
 //Mutator Functions
-constINT PrimeUnits::getFoodConsumption() {
-	//For debugging
-	INF::debugFunction("PrimeUnits, getFoodConsumption");
-
-	return foodConsumption;
-}
-constINT PrimeUnits::getResource(int resourceIndex) {
-	//For debugging
-	INF::debugFunction("PrimeUnits, getResource");
-
+constINT PrimeUnits::getFoodConsumption() { return foodConsumption;}
+constINT PrimeUnits::getResource(int resourceIndex) { 
 	return resourcesPresent[resourceIndex];
 }
-void PrimeUnits::modifySpecificResource(int index, int amount, bool isAdd) {
-	//For debugging
-	INF::debugFunction("PrimeUnits, modifySpecificResources");
 
-	if (isAdd)
-		resourcesPresent[index] += amount;
-	else
-		resourcesPresent[index] -= amount;
+void PrimeUnits::mutateResource(ResourceType resource, constINT amount,
+	MutateDirection direction) {
+	//For debugging
+	INF::debugFunction("PrimeUnits, mutateResources");
+	int modifier = 1;
+	if (direction == DECREASE) { modifier = -1; }
+	resourcesPresent.at(resource) + (amount * modifier);
 }
 
-void PrimeUnits::mutateAllResources(i5array resourcesArray, INF::MutateDirection direction) {
+void PrimeUnits::mutateAllResources(constArrayReference resourcesArray,
+	INF::MutateDirection direction) {
 	//For debugging
 	INF::debugFunction("PrimeUnits, mdofiyResources");
+
 
 	resourcesPresent = INF::mutateArray(resourcesPresent, resourcesArray, direction);
 }
@@ -131,14 +115,14 @@ constINT PrimeUnits::getLevel() {
 	return unitLevel;
 }
 
-constI5array PrimeUnits::getAllResources() {
+constArrayReference PrimeUnits::getAllResources() {
 	//For debugging
 	INF::debugFunction("PrimeUnits, getAllResources");
 	return resourcesPresent;
 }
 
 const std::string PrimeUnits::getCoords(CoordsType type) {
-	return CoordsBASE::getCoords(type);
+	return CoordsBASE::getCoordsString(type); 
 }
 
 void PrimeUnits::setParticipantIndex(int number) {
@@ -149,76 +133,6 @@ void PrimeUnits::setParticipantIndex(int number) {
 }
 
 
-
-
-i5array PrimeUnits::getAllOneTroopArray(INF::TroopCondition troopCondition, TroopUnitsBASE::TroopTypes type) {
-	//For debugging
-	INF::debugFunction("Troops, getAllOneTroopArray");
-
-	return allTroopConditions.at(troopCondition.at(type));
-}
-
-int PrimeUnits::getAllOneTroopInt(INF::TroopCondition troopCondition, TroopUnitsBASE::TroopTypes type) {
-	i5array tempArray = getAllOneTroopArray(troopCondition, type);
-	INF::debugFunction("Troops, getAllOneTroopInt");
-
-	int total = 0;
-	for (int x : tempArray) {
-		total += x;
-	}
-
-	return total;
-}
-
-i5array PrimeUnits::getGenericTroops(TroopCondition troopCondition) {
-	i5array troopTotals = { 0,0,0,0,0 };
-
-	for (int x = 0; x < 5; x++) {
-		TroopUnitsBASE::TroopTypes troopType = (TroopUnitsBASE::TroopTypes)x;
-		troopTotals.at(x) = getAllOneTroopInt(troopCondition, troopType);
-	}
-
-	return troopTotals;
-}
-
-//----Mutators----
-//Change troops of type index at this unit by amount
-void PrimeUnits::mutateTroop(INF::TroopCondition troopCondition, TroopUnitsBASE::TroopTypes troopType, i5array amount, Quantity quant, INF::MutateDirection direction, int troopTier) {
-	//For debugging
-	INF::debugFunction("Troops, mutateTroop");
-
-	std::shared_ptr<troopConditionArray> troopArray = allTroopConditions.at(troopCondition);
-	i5array* troopTiers = troopArray.get(troopType);
-
-	int modifier = -1;
-
-	if (direction == INCREASE) {
-		modifier = 1;
-	}
-
-	switch (quant) {
-		//Change one tier of specific troop type
-		case SINGLE: {
-			troopTiers->at(troopTier) += amount[0] * modifier;
-			break;
-		}
-		//Change all tiers of a specific troop type
-		case ALL: {
-			for (int x = 0; x < 5; x++) {
-				troopTiers->at(x) += amount.at(x);
-			}
-			break;
-		}
-	}
-
-	return;
-}
-
-void PrimeUnits::setBattleFormation(troopConditionArray troopArray) {
-	std::cout << "Welcome to the Battle Formation menu.\n";
-	std::cout << "Please select a battle formation option: ";
-	std::cout << "";
-}
 
 
 INF::ipair PrimeUnits::translateCoords(INF::ipair coords, CoordsType type) { 

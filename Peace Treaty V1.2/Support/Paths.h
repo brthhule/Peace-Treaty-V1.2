@@ -29,9 +29,9 @@
 //Method Types
 #define CONSTRUCTOR_
 #define SETTER_
-#define GETTER_
+#define _
 #define CHECK_
-#define CALCULATE_
+#define _
 #define PRINTERS_
 
 #define VARIABLES_

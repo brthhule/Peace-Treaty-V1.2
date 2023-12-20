@@ -18,7 +18,6 @@
 #include PROVINCES_HEADER
 #include PARTICIPANTS_HEADER
 #include COMMANDERS_HEADER
-#include DATABASE_HEADER
 #include INF_HEADER
 #include INPUT_HEADER
 #include PLAYER_ACTION_HEADER
@@ -33,8 +32,7 @@ void endScreen();
 int getContinentInformation();
 
 using namespace INF;
-
-Database db;
+using namespace PART;
 
 int main()/*main code*/
 {
@@ -58,14 +56,12 @@ void startOrResumeGame() {
 			resumeGame();
 			break;
 		case 'S': {
-			INF::enterAnything(1);
-			INF::clearScreen();
+			INF::enterAndClear(1);
 			std::cout << "New game started...\n\n";
 			startGame();
 			break;
 		}
-		case 'H':
-		{
+		case 'H': {
 			INF::showHelp(3);
 			main();
 			break;
@@ -91,7 +87,7 @@ void startGame() {
 	INF::debugFunction("main, startGame");
 	int pNum = getContinentInformation();
 	int players = generateNewContinent(pNum);
-	db.initializeParticipants(pNum, players);
+	Participants::initializeParticipants(pNum, players);
 	std::cout << "Created participants";
 }
 int getContinentInformation() {
@@ -128,7 +124,7 @@ int generateNewContinent(int pNum) {
 	INF::debugFunction("main, generateNewContinent");
 
 	std::cout << "Create map...\n";
-	db.createMap();
+	Map::setMap();
 
 	std::vector<std::string> howManyPlayers;
 	for (int x = 1; x <= 3; x++) {
@@ -152,45 +148,28 @@ void gamePlay() {
 
 	bool gameEnd = false;
 
-	//Create vector to copy the list of participants from the database
-	std::vector<Participants>* participantsPtr = db.getParticipantsList();
-	std::vector <partSPTR> participantsPtr = db.getParticipantsList();
-
 	//Iterate through partiicpants by reference
-	for (int x = 0; x < (signed)participantsPtr->size(); x++)
-	{
-		partSPTR newParticipant = participantsPtr->at(x);
-		//If the current participant is alive
-		if (newParticipant->isAlive()) {
-			try {
-				newParticipant->initialDecision();
-			} catch (...) {
-				std::cout << "Something went wrong, error occurred. Restarting player turn.";
-				x--;
-			}
+	for (partSPTR participant : Participants::participantsList) {  
+		if (!participant->isAlive()) { break; }
 
-		}
+		try { participant->chooseAction(); } 
+		catch (...) { std::cout << "Error occurred in player turn";}
 	}
+
 	INF::turn++;
-	db.updateTurnResources();
+	Map::updateTurnResources(); 
 
 	//Check game end
 	//If there are more than one players, keep playing
 	int participantsAlive = 0;
-	std::vector<Participants>* list = db.getParticipantsList();
-	for (Participants newParticipant : *list) {
-		if (newParticipant.isAlive() == true) {
-			participantsAlive++;
-		}
+
+	for (partSPTR participant: Participants::participantsList) { 
+		if (participant->isAlive()) { participantsAlive++;}
 	}
 
 	if (participantsAlive > 1) {
-		try {
-			gamePlay(); 
-		} catch (...) {
-			println("Didn't work, try agian");
-		}
-		
+		try { gamePlay(); } 
+		catch (...) { println("Didn't work, try agian");}
 	}
 
 	endScreen();
@@ -200,25 +179,19 @@ void gamePlay() {
 void endScreen() {
 	//For debugging
 	INF::debugFunction("main, endScreen");
-
-	std::vector<Participants>* participantsListCopy = db.getParticipantsList();
-	partSPTR currentParticipant;
+	std::string kingdomName = " ";
 
 	//Only one is surviving, iterates through to find that participant
-	for (int x = 0; x <= (signed)participantsListCopy->size(); x++) {
-		currentParticipant = participantsListCopy->at(x);
-		if (currentParticipant->isAlive()) {
-			currentParticipant = &participantsListCopy->at(x);
+	for (partSPTR participant : Participants::participantsList) { 
+		if (participant->isAlive()) {    
+			kingdomName = participant->getKingdomName(); 
+			break;
 		}
 	}
 
-	std::cout << "Congratulations to player " << currentParticipant->getKingdomName() << " for winning. You have successfully conquered your enemies and now reign as the Emperor! \n";
+	std::cout << "Congratulations to player " << kingdomName << " for winning. You have successfully conquered your enemies and now reign as the Emperor! \n"; 
 
 	char playAgain = Input::getInputText("Play again? (Y/N) ", { "letter", "Y", "N" }).at(0);
-
-
-	if (playAgain == 'Y') {
-		main();
-	}
+	if (playAgain == 'Y') { main();}
 }
 

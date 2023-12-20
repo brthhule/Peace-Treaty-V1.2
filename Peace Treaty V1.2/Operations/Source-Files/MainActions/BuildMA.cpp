@@ -1,7 +1,36 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
-#include PROVINCES_HEADER
+#include PROVINCES_HEADER 
 
 using namespace PROV;
+
+void Provinces::upgradeBuildingPrompt() {  
+	//For debugging
+	INF::debugFunction("Provinces, playerBuildFunction");
+
+	INF::clearScreen();
+	std::cout <<
+		"---------- Start printing province information ----------";
+	INF::addColor(BLUE);
+	std::cout << "Province of kingdom " + getKingdomName();
+	std::cout << "Coordinates: " << getCoords(COORD::USER) << "\n\n";  
+	INF::addColor(RESET);
+
+	this->printResources();
+	printBuildingStats();
+	println("---------- End printing province information ----------\n");
+
+	char repeatPlayerBuildFunction = 'Y';
+
+	char upgradeBuilding = Input::getOptionPrompt(PLAYER_BUILD_FUNCTION).at(0);
+	if (upgradeBuilding == 'U') {
+		selectBuildingToUpgrade();
+	} else {
+		//Break condition
+		std::cout << "Returning to previous menu... " << std::endl;
+		INF::clearScreen();
+	}
+}
+
 
 void Provinces::printBuildingUpgradeCosts(i5array requiredResources, int buildingIndex) {
 	//For debugging
@@ -21,39 +50,8 @@ void Provinces::printBuildingUpgradeCosts(i5array requiredResources, int buildin
 	std::cout << "----------End printing informatio----------" << std::endl;
 }
 
-void Provinces::mainBuildFunction() {
-	//For debugging
-	INF::debugFunction("Provinces, playerBuildFunction");
 
-	INF::clearScreen();
-	std::cout <<
-		"---------- Start printing province information ----------";
-	INF::addColor(BLUE);
-	std::cout << "Province of kingdom " + getKingdomName();
-	std::cout << "Coordinates: " << getUserCoordsString() << "\n\n";
-	INF::addColor(RESET);
-
-	this->printResources();
-	printBuildingStats();
-	println("---------- End printing province information ----------\n");
-
-	char upgradeBuilding = ' ';
-	char repeatPlayerBuildFunction = 'Y';
-
-	upgradeBuilding = Input::getOptionPrompt(PLAYER_BUILD_FUNCTION).at(0);
-	if (upgradeBuilding == 'U') {
-		selectUpgradeBuilding();
-		//Recursion
-		mainBuildFunction();
-		std::cout << "\n";
-	} else {
-		//Break condition
-		std::cout << "Returning to previous menu... " << std::endl;
-		INF::clearScreen();
-	}
-}
-
-void Provinces::selectUpgradeBuilding() {
+void Provinces::selectBuildingToUpgrade() {
 	//For debugging
 	INF::debugFunction("Provinces, upgradeBuildings");
 
@@ -63,33 +61,32 @@ void Provinces::selectUpgradeBuilding() {
 	}
 
 	printListOfBuildings();
+
 	std::string message1 = "Enter the number of the building you want to upgrade " + 
 		"(enter 'H' for help) : ";
-	char option = Input::getInputText(message1, buildingLetterList).at(0);
+	char buildingNumber = Input::getInputText(message1, buildingLetterList).at(0);
 
 	if (option != 'H') {
-		upgradeBuildings2(option);
+		upgradeBuilding(std::stoi(buildingNumber)); 
 	} else {
 		INF::showHelp(12);
 	}
 
 	char upgradeAgain = Input::getInputText("Upgrade another building (Y/N): ", { "Y", "N" }).at(0);
 	if (upgradeAgain == 'Y') {
-		upgradeBuildings();
+		selectBuildingToUpgrade(); 
 	}
 	std::cout << "Returning to Build Infrastructure action menu. " << std::endl;
 }
 
 
-void Provinces::upgradeBuilding(char optionChar) {
+void Provinces::upgradeBuilding(char buildingNumber) {
 	//For debugging
 	INF::debugFunction("Provinces, upgradeBuildings2");
-	std::string optionString = "" + optionChar;
-	int index = std::stoi(optionString);	
 
 	//Multiplies level by base line rate
 	BuildingsBASE *building = &this->buildings.at(index);
-	i5array requiredResources = building->getUpgradeCosts();
+	constArrayReference requiredResources = building->getUpgradeCosts();
 
 	printBuildingUpgradeCosts(requiredResources, index);
 	std::string message = "Proceed with upgrade? (Y/N): ";

@@ -4,6 +4,7 @@
 using namespace PROV;
 using namespace COMM;
 using namespace PART;
+using namespace COORD;
 
 /*Main ScoutMA function. Takes a target province pointer as a parameter
 If the target */
@@ -47,7 +48,7 @@ ScoutMA::scoutTypes Participants::selectTarget(PROV::provSPTR targetProvince)
 	}
 
 	//If the selected province doesn't belong to the participant
-	std::cout << "Province " << targetProvince->getUnitName() << " selected \n";
+	std::cout << "Province " << targetProvince->getName() << " selected \n";
 	std::cout << "You can only scout this unit if one of your provinces or commanders is next to it... \n";
 
 	//Check nearby provinces
@@ -74,7 +75,7 @@ ScoutMA::scoutTypes Participants::getCanScout(PROV::provSPTR targetProvince)
 	//For debugging
 	INF::debugFunction("ScoutMA, getCanScout");
 
-	ipair targetUserCoords = targetProvince->getCoords(CoordsBASE::USER);
+	ipair targetUserCoords = targetProvince->getCoords(USER);
 	int targetX = targetUserCoords.first;
 	int targetY = targetUserCoords.second;
 
@@ -113,7 +114,7 @@ void Participants::getCanScoutTwo(int targetX, int targetY, int a, int b, ScoutM
 	commandersPtrMap newMap = this->getCommandersMap(); 
 	commandersPtrMap::iterator it;
 	for (it = newMap.begin(); it != newMap.end(); it++){
-		if (it->second->getCoords(CoordsBASE::USER) == newProvince->getCoords(CoordsBASE::USER))
+		if (it->second->getCoords(USER) == newProvince->getCoords(USER))
 			canScout.first.push_back(it->second);
 	}
 
@@ -134,15 +135,15 @@ UNIT::unitSPTR Participants::selectUnitToScout(ScoutMA::scoutTypes canScout) {
 
 	std::cout << "Provinces that can scout: \n";
 	for (PROV::provSPTR province : canScout.second) {
-		std::cout << province->getUnitName() + "; ";
-		province->printCoords(CoordsBASE::USER);
+		std::cout << province->getName() + "; ";
+		province->printCoords(USER);
 		std::cout << "; Level: " << province->getLevel() << std::endl;
 	}
 
 	std::cout << "Commanders that can scout: \n";
 	for (COMM::commSPTR commander : canScout.first) {
-		std::cout << commander->getUnitName() << "; ";
-		commander->printCoords(CoordsBASE::USER);
+		std::cout << commander->getName() << "; ";
+		commander->printCoords(USER);
 		std::cout << "; Level: " << commander->getLevel() << std::endl;
 	}
 	std::cout << "\n\033[;0m";
@@ -167,12 +168,12 @@ unitSPTR Participants::selectUnitToScoutTwo(ScoutMA::scoutTypes canScout){
 
 	//If a province has the name, isProvince is true; otherwise, it is false
 	for (PROV::provSPTR province : canScout.second) {
-		if (unitName == province->getUnitName()) {
+		if (unitName == province->getName()) {
 			return province;
 		}
 	}
 	for (COMM::commSPTR commander : canScout.first) {
-		if (unitName == commander->getUnitName()) {
+		if (unitName == commander->getName()) {
 			return commander;
 		}
 	}

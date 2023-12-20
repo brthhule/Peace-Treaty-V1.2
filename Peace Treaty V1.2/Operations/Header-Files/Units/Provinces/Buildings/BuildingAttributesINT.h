@@ -23,9 +23,9 @@ public:
 	~BuildingAttributesINT(){}
 
 	///////////////////////////////////Getters/////////////////////////////////
-	virtual constI5array getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount) = 0;
+	virtual constArrayReference getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount) = 0;
 	//Returns an array of Resource/Other buildings levels
-	virtual constI5array getTypeLevels(BUILD::BuildingType type) = 0;
+	virtual constArrayReference getTypeLevels(BUILD::BuildingType type) = 0;
 
 	
 	virtual constINT getCapacity(BUILD::BuildingsEnum name) = 0;

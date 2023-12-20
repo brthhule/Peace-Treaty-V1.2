@@ -17,7 +17,7 @@ void Participants::trainMAMain() {
 
 
     std::cout << "Coordinates: " +
-        province->getCoords(CoordsBASE::CoordsType::USER) +
+        province->getCoords(COORD::USER) +
         "\n\nThe barracks level of this province: " + 
           std::to_string(barracksLevel) + "\n";
 
@@ -26,7 +26,7 @@ void Participants::trainMAMain() {
 
     std::cout << "What type of troop do you want to upgrade?\n";
     int troopTypeNum = Input::getOptionPrompt(TRAIN_MA_FUNCTION_UNITS);
-    TroopUnitsBASE::TroopTypes type = TroopUnitsBASE::(1);
+    TROOP::TroopTypes type = TroopUnitsBASE::(1);
         
 
     std::cout << "The max tier troop you can train: " << troopTier << ", " << INF::TROOP_NAMES[troopTier - 1] << std::endl;
@@ -110,7 +110,6 @@ void Participants::trainMALoop(int troopTier, int amountOfTroops) {
 
             if (trainingIsSuccess == false) {
                 std::cout << "Training failed" << std::endl;
-                capitalProvince->modifyResources(requiredResources, INCREASE);
             }
             else {
                 std::cout << "Training successful" << std::endl;

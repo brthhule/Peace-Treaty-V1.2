@@ -21,7 +21,7 @@ Commanders::Commanders(int level, std::string name) {
 
 	maxTroops = unitLevel * 10;
 	totalMaxResources = 0;
-	setUnitName(name);
+	setName(name);
 }
 /*Destructor*/
 Commanders::~Commanders() {
@@ -73,7 +73,7 @@ INF::i5array Commanders::getUpgradeCosts() {
 	return costsArray;
 }
 
-void Commanders::printCosts(std::array <int, 5> costs)
+void Commanders::printCosts(i5array costs)
 {
 	//For debugging
 	INF::debugFunction("Commanders, printCosts");

@@ -1,6 +1,6 @@
 ///Commanders.h
 ///Derived Class
-/// Extends AllUnits (Extends Coords)
+/// Extends PrimeUnits (Extends Coords)
 
 #ifndef COMMANDERS_H
 #define COMMANDERS_H
@@ -17,7 +17,7 @@ using namespace UNIT;
 namespace COMM {
 
 	//Control army units
-	class Commanders : public AllUnits {
+	class Commanders : public PrimeUnits {
 	public:
 		//----Constructors-----------------------------------------------------
 		Commanders();
@@ -28,7 +28,7 @@ namespace COMM {
 		constINT getCommanderStat(int index);
 		bool hasMoved();
 		const std::string& getCommanderNameLevel();
-		constI5array getUpgradeCosts();
+		constArrayReference getUpgradeCosts();
 
 		//----Printers---------------------------------------------------------
 		void printCommanderStats();
@@ -41,7 +41,7 @@ namespace COMM {
 		void calculateCommanderScoutLog();
 
 	private:
-		INF::INTEGER
+		int
 			maxTroops,
 			totalMaxResources;
 
