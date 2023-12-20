@@ -5,7 +5,7 @@ using namespace PROV;
 
 void Provinces::upgradeBuildingPrompt() {  
 	//For debugging
-	INF::debugFunction("Provinces, playerBuildFunction");
+	DEBUG_FUNCTION("Provinces, playerBuildFunction");
 
 	INF::clearScreen();
 	std::cout <<
@@ -34,7 +34,7 @@ void Provinces::upgradeBuildingPrompt() {
 
 void Provinces::printBuildingUpgradeCosts(i5array requiredResources, int buildingIndex) {
 	//For debugging
-	INF::debugFunction("Provinces, printInformation");
+	DEBUG_FUNCTION("Provinces, printInformation");
 
 	std::cout << "---------- Start printing information----------\n\n\033[34m";
 	std::cout << INF::RESOURCE_BUILDING_NAMES[buildingIndex] << " selected \n";
@@ -53,7 +53,7 @@ void Provinces::printBuildingUpgradeCosts(i5array requiredResources, int buildin
 
 void Provinces::selectBuildingToUpgrade() {
 	//For debugging
-	INF::debugFunction("Provinces, upgradeBuildings");
+	DEBUG_FUNCTION("Provinces, upgradeBuildings");
 
 	std::vector<std::string> buildingLetterList = { "H" };
 	for (int x = 1; x <= 10; x++) {
@@ -82,7 +82,7 @@ void Provinces::selectBuildingToUpgrade() {
 
 void Provinces::upgradeBuilding(char buildingNumber) {
 	//For debugging
-	INF::debugFunction("Provinces, upgradeBuildings2");
+	DEBUG_FUNCTION("Provinces, upgradeBuildings2");
 
 	//Multiplies level by base line rate
 	BuildingsBASE *building = &this->buildings.at(index);

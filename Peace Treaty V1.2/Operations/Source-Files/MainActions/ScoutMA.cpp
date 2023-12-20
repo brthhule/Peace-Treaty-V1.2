@@ -10,7 +10,7 @@ using namespace COORD;
 If the target */
 void Participants::mainScoutMA(PROV::provSPTR provinceArg) {
 	//For debugging
-	INF::debugFunction("ScoutMA, mainScoutmA");
+	DEBUG_FUNCTION("ScoutMA, mainScoutmA");
 
 	PROV::provSPTR yourProvince = provinceArg;
 	PROV::provSPTR targetProvince = this->pickProvince(1);
@@ -38,7 +38,7 @@ void Participants::mainScoutMA(PROV::provSPTR provinceArg) {
 ScoutMA::scoutTypes Participants::selectTarget(PROV::provSPTR targetProvince)
 {
 	//For debugging
-	INF::debugFunction("ScoutMA, selectTarget");
+	DEBUG_FUNCTION("ScoutMA, selectTarget");
 
 	//The participant selects a province
 	//Make sure the province being scouted is not the current participant's 
@@ -73,7 +73,7 @@ ScoutMA::scoutTypes Participants::selectTarget(PROV::provSPTR targetProvince)
 ScoutMA::scoutTypes Participants::getCanScout(PROV::provSPTR targetProvince)
 {
 	//For debugging
-	INF::debugFunction("ScoutMA, getCanScout");
+	DEBUG_FUNCTION("ScoutMA, getCanScout");
 
 	ipair targetUserCoords = targetProvince->getCoords(USER);
 	int targetX = targetUserCoords.first;
@@ -95,7 +95,7 @@ ScoutMA::scoutTypes Participants::getCanScout(PROV::provSPTR targetProvince)
 void Participants::getCanScoutTwo(int targetX, int targetY, int a, int b, ScoutMA::scoutTypes &canScout) 
 {
 	//For debugging
-	INF::debugFunction("ScoutMA, getCanScoutTwo");
+	DEBUG_FUNCTION("ScoutMA, getCanScoutTwo");
 
 	bool xCoordsCondition = targetX + a >= 0 && targetX + a < INF::continentSize;
 	bool yCoordsCondition = targetY + b >= 0 && targetY + b < INF::continentSize;
@@ -126,7 +126,7 @@ void Participants::getCanScoutTwo(int targetX, int targetY, int a, int b, ScoutM
 
 UNIT::unitSPTR Participants::selectUnitToScout(ScoutMA::scoutTypes canScout) {
 	//For debugging
-	INF::debugFunction("ScoutMA, selectUnitToScout");
+	DEBUG_FUNCTION("ScoutMA, selectUnitToScout");
 
 	int unitLevel = 0;
 	std::cout << "\033[;34m";
@@ -153,7 +153,7 @@ UNIT::unitSPTR Participants::selectUnitToScout(ScoutMA::scoutTypes canScout) {
 
 unitSPTR Participants::selectUnitToScoutTwo(ScoutMA::scoutTypes canScout){
 	//For debugging
-	INF::debugFunction("ScoutMA, selectUnitToScoutTwo");
+	DEBUG_FUNCTION("ScoutMA, selectUnitToScoutTwo");
 
 	std::string unitName;
 	print("Enter the name of the province/commander you wish to select to scout: ");
@@ -185,7 +185,7 @@ unitSPTR Participants::selectUnitToScoutTwo(ScoutMA::scoutTypes canScout){
 /*Add implementation later*/
 void Participants::scoutProvince(PROV::provSPTR targetProvince, int accuracy) {
 	//For debugging
-	INF::debugFunction("Participants, scoutProvince");
+	DEBUG_FUNCTION("Participants, scoutProvince");
 
 }
 
@@ -193,7 +193,7 @@ void Participants::scoutProvince(PROV::provSPTR targetProvince, int accuracy) {
 // Returns a pair-- first: unit to scout with, second: accuracy
 std::pair <unitSPTR, int> Participants::playerScoutStepTwo(ScoutMA::scoutTypes canScout, PROV::provSPTR targetProvince) {
 	//For debugging
-	INF::debugFunction("ScoutMA, playerScoutStepTwo");
+	DEBUG_FUNCTION("ScoutMA, playerScoutStepTwo");
 
 	int accuracy = 0;
 	std::vector<int> unitsCanScoutWith;

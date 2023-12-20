@@ -8,7 +8,7 @@ using namespace COORD;
 //Don't use default constructor, just just this with -1 as a parameter
 Provinces::Provinces(int overallIndexArg) {
 	//For debugging
-	INF::debugFunction("Provinces, Provinces (1 Param)");
+	DEBUG_FUNCTION("Provinces, Provinces (1 Param)");
 
 	overallIndex = overallIndexArg;
 	//Initialize building levels
@@ -67,7 +67,7 @@ INF::SortType Provinces::getCommandersSortStatus() {
 void Provinces::updateProvinceResources()
 {
 	//For debugging
-	INF::debugFunction("Provinces, updateProvinceResources");
+	DEBUG_FUNCTION("Provinces, updateProvinceResources");
 
 	//Farm is just a placeholder, it is overridden by the ALL param
 	i5array resourcesProduced = getResourceProduction(BuildingsEnum::FARM, ALL);  
@@ -78,7 +78,7 @@ void Provinces::updateProvinceResources()
 void Provinces::makeCapital(int participantIndexArg)
 {
 	//For debugging
-	INF::debugFunction("Provinces, makeCapital");
+	DEBUG_FUNCTION("Provinces, makeCapital");
 
 	setParticipantIndex(participantIndexArg);
 	isACapital = true;
@@ -86,7 +86,7 @@ void Provinces::makeCapital(int participantIndexArg)
 
 void Provinces::initializeCapitalStats() {
 	//For debugging
-	INF::debugFunction("Provinces, initializeCapitalStats");
+	DEBUG_FUNCTION("Provinces, initializeCapitalStats");
 
 	initiailizeCapitalBuildings();
 }
@@ -95,7 +95,7 @@ void Provinces::initializeCapitalStats() {
 void Provinces::removeCommander(commSPTR newCommander)
 {
 	//For debugging
-	INF::debugFunction("Provinces, removeCommander");
+	DEBUG_FUNCTION("Provinces, removeCommander");
 
 	commandersMap.erase(newCommander->getName());
 	commandersVector.erase(commandersVector.begin() + getCommanderIndex(newCommander));
@@ -104,7 +104,7 @@ void Provinces::removeCommander(commSPTR newCommander)
 void Provinces::addCommander(Commanders &commanderReference)
 {
 	//For debugging
-	INF::debugFunction("Provinces, addCommander");
+	DEBUG_FUNCTION("Provinces, addCommander");
 	commSPTR commander = std::make_shared<Commanders>(commanderReference);
 	commandersMap[commander->getName()] = commander; 
 
@@ -116,7 +116,7 @@ void Provinces::addCommander(Commanders &commanderReference)
 constINT Provinces::getTotalCP()
 {
 	//For debugging
-	INF::debugFunction("Provinces, getTotalCP");
+	DEBUG_FUNCTION("Provinces, getTotalCP");
 
 	int totalCP = 0;
 	totalCP += getCP();
@@ -133,7 +133,7 @@ constINT Provinces::getTotalCP()
 COMM::commSPTRList Provinces::getAllCommanders()
 {
 	//For debugging
-	INF::debugFunction("Provinces, getAllCommanders");
+	DEBUG_FUNCTION("Provinces, getAllCommanders");
 
 	commSPTRList commandersList;
 	COMM::commMAP::iterator it; 
@@ -145,13 +145,13 @@ COMM::commSPTRList Provinces::getAllCommanders()
 
 COMM::commSPTR Provinces::getCommander(std::string name) { 
 	//For debugging
-	INF::debugFunction("Provinces, getCommander");	
+	DEBUG_FUNCTION("Provinces, getCommander");	
 	return commandersMap[name];
 }
 
 bool Provinces::subtractCheckResources(constArrayReference resourcesArray) {
 	//For debugging
-	INF::debugFunction("Provinces, subtractCheckResources");
+	DEBUG_FUNCTION("Provinces, subtractCheckResources");
 
 	//returns false if resources dip into negatives
 	this->mutateAllResources(resourcesArray, DECREASE);
@@ -165,7 +165,7 @@ bool Provinces::subtractCheckResources(constArrayReference resourcesArray) {
 void Provinces::printCommanders()
 {
 	//For debugging
-	INF::debugFunction("Provinces, printCommanders");
+	DEBUG_FUNCTION("Provinces, printCommanders");
 
 	for (it = commandersMap.begin(); it != commandersMap.end(); it++) {
 		std::cout << "- " << it->second->getName();
@@ -175,7 +175,7 @@ void Provinces::printCommanders()
 bool Provinces::hasCommander(std::string name)
 {
 	//For debugging
-	INF::debugFunction("Provinces, hasCommander");
+	DEBUG_FUNCTION("Provinces, hasCommander");
 	for (it = commandersMap.begin(); it != commandersMap.end(); it++) {
 		if (it->second->getName() == name) {
 			return true;
@@ -192,21 +192,21 @@ bool Provinces::hasCommander(std::string name)
 
 void Provinces::setOverallIndex(int index) {
 	//For debugging
-	INF::debugFunction("Provinces, setOverallIndex");
+	DEBUG_FUNCTION("Provinces, setOverallIndex");
 
 	overallIndex = index;
 }
 
 constINT Provinces::getOverallIndex() {
 	//For debugging
-	INF::debugFunction("Provinces, getOverallIndex");
+	DEBUG_FUNCTION("Provinces, getOverallIndex");
 
 	return overallIndex;
 }
 
 std::array<i5array, 7> Provinces::getLists() {
 	//For debugging
-	INF::debugFunction("Provinces, getLists");
+	DEBUG_FUNCTION("Provinces, getLists");
 
 	std::array<i5array, 7> tempOverallArray;
 	for (int row = 0; row < 7; row++) {
@@ -222,7 +222,7 @@ std::array<i5array, 7> Provinces::getLists() {
 std::array<int, 7> Provinces::getListInt()
 {
 	//For debugging
-	INF::debugFunction("Provinces, getListInt");
+	DEBUG_FUNCTION("Provinces, getListInt");
 
 	std::array<int, 7> listTemp;
 	for (int column = 0; column < 7; column++) {
@@ -234,7 +234,7 @@ std::array<int, 7> Provinces::getListInt()
 std::array<bool, 3> Provinces::getListBool()
 {
 	//For debugging
-	INF::debugFunction("Provinces, getListBool");
+	DEBUG_FUNCTION("Provinces, getListBool");
 
 	std::array<bool, 3> listTemp;
 	for (int column = 0; column < 3; column++) {
@@ -245,35 +245,35 @@ std::array<bool, 3> Provinces::getListBool()
 
 std::array< ipair, 2> Provinces::getListCoords() {
 	//For debugging
-	INF::debugFunction("Provinces, getListCoords");
+	DEBUG_FUNCTION("Provinces, getListCoords");
 
 	return { CoordsBASE::systemCoords, CoordsBASE::userCoords };
 }
 
 void Provinces::setKingdomName(std::string name) { 
 	//For debugging
-	INF::debugFunction("Provinces, setKingdomName");
+	DEBUG_FUNCTION("Provinces, setKingdomName");
 
 	kingdomName = name;
 }
 
 constINT Provinces::getCommandersNum() {
 	//For debugging
-	INF::debugFunction("Provinces, getCommandersNum");
+	DEBUG_FUNCTION("Provinces, getCommandersNum");
 
 	return (int)commandersVector.size(); 
 }
 
 bool Provinces::isCapital() {
 	//For debugging
-	INF::debugFunction("Provinces, isCapital");
+	DEBUG_FUNCTION("Provinces, isCapital");
 
 	return isACapital;
 }
 
 void Provinces::createReport(int scouterLevelArg, int targetLevelArg) {
 	//For debugging
-	INF::debugFunction("Provinces, createReport");
+	DEBUG_FUNCTION("Provinces, createReport");
 
 	std::array<i5array, 7> ListsArg;
 	std::array<int, 7> listIntArg;

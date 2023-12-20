@@ -13,7 +13,7 @@ std::vector<partSPTR> Participants::participantsList = {};
 
 Participants::Participants() {
 	//For debugging
-	INF::debugFunction("Participants, Participants (0 Param)");
+	DEBUG_FUNCTION("Participants, Participants (0 Param)");
 
 	Participants(0);
 
@@ -22,7 +22,7 @@ Participants::Participants() {
 
 Participants::Participants(int pIndex) {
 	//For debugging
-	INF::debugFunction("Participants, Participants (1 Param)");
+	DEBUG_FUNCTION("Participants, Participants (1 Param)");
 	addCommander();
 	initialCapRSS();
 	setKingdomName("-1");
@@ -42,21 +42,21 @@ Participants::Participants(int pIndex) {
 // Accessors
 provSPTR Participants::getCapitalProvince() { 
 	//For debugging
-	INF::debugFunction("Participants, getCapitalProvince");
+	DEBUG_FUNCTION("Participants, getCapitalProvince");
 	
 	return capitalProvince; 
 }
 
 int Participants::getProvincesNum() { 
 	//For debugging
-	INF::debugFunction("Participants, getProvincesNum");
+	DEBUG_FUNCTION("Participants, getProvincesNum");
 
 	return (int) provincesVector.size(); 
 }
 
 int Participants::getCommandersNum() { 
 	//For debugging
-	INF::debugFunction("Participants, getCommandersNum");
+	DEBUG_FUNCTION("Participants, getCommandersNum");
 	
 	return (int) commandersVector.size();
 }
@@ -64,7 +64,7 @@ int Participants::getCommandersNum() {
 
 void Participants::initialCapRSS() {
 	//For debugging
-	INF::debugFunction("Participants, initialCaRSS");
+	DEBUG_FUNCTION("Participants, initialCaRSS");
 
 	//Add functionality so, depending on the difficulty, AI participants get more or less resources to start off with
 	provSPTR newProvince = getCapitalProvince();
@@ -74,14 +74,14 @@ void Participants::initialCapRSS() {
 // Mutators
 void Participants::setCapital(provSPTR newProvince) {
 	//For debugging
-	INF::debugFunction("Participants, setCapital");
+	DEBUG_FUNCTION("Participants, setCapital");
 
 	capitalProvince = newProvince;
 }
 
 void Participants::addProvince(provSPTR newProvince) {
 	//For debugging
-	INF::debugFunction("Participants, addProvince");
+	DEBUG_FUNCTION("Participants, addProvince");
 
 	provincesVector.push_back(newProvince);
 	provincesMap[newProvince->getName()] = provincesVector[provincesVector.size() - 1];
@@ -92,7 +92,7 @@ void Participants::addProvince(provSPTR newProvince) {
 
 void Participants::setKingdomName(std::string newName) {
 	//For debugging
-	INF::debugFunction("Participants, setKingdomName");
+	DEBUG_FUNCTION("Participants, setKingdomName");
 
 	if (newName == "-1") {
 		newName = getNewName();
@@ -105,7 +105,7 @@ std::string Participants::getKingdomName() { return kingdomName; }
 
 bool Participants::isAlive() {
 	//For debugging
-	INF::debugFunction("Participants, isAlive");
+	DEBUG_FUNCTION("Participants, isAlive");
 
 	if (getProvincesNum() > 0 || getCommandersNum() > 0) {
 		return true;
@@ -117,7 +117,7 @@ bool Participants::isAlive() {
 void Participants::createAsPlayer(bool status)
 {
 	//For debugging
-	INF::debugFunction("Participants, createAsPlayer");
+	DEBUG_FUNCTION("Participants, createAsPlayer");
 
 	std::cout << "This is a human player...\n";
 	//If player
@@ -136,7 +136,7 @@ void Participants::createAsPlayer(bool status)
 
 void Participants::viewStats() {
 	//For debugging
-	INF::debugFunction("Participants, viewStats");
+	DEBUG_FUNCTION("Participants, viewStats");
 
 	i5array eachUnit = calculateEach(1);
 	i5array totalResources = calculateEach(2);
@@ -161,7 +161,7 @@ void Participants::viewStats() {
 
 std::vector<int> Participants::calculatePlayerValues(int decision) {
 	//For debugging
-	INF::debugFunction("Participants, calculatePlayerValues");
+	DEBUG_FUNCTION("Participants, calculatePlayerValues");
 
 	i5array newArray = calculateEach(decision);
 	switch (decision) {
@@ -187,14 +187,14 @@ std::vector<int> Participants::calculatePlayerValues(int decision) {
 
 provSPTR Participants::getProvince(int index) { 
 	//For debugging
-	INF::debugFunction("Participants, getProvince");
+	DEBUG_FUNCTION("Participants, getProvince");
 
 	return provincesVector[index]; 
 }
 
 std::string Participants::getNewName() {
 	//For debugging
-	INF::debugFunction("Participants, getNewName");
+	DEBUG_FUNCTION("Participants, getNewName");
 
 	std::string newName = INF::createRandomName();
 	for (provSPTR newProvince : provincesVector)
@@ -217,28 +217,28 @@ std::string Participants::getNewName() {
 
 i5array Participants::getTrainCosts() { 
 	//For debugging
-	INF::debugFunction("Participants, getTrainCosts");
+	DEBUG_FUNCTION("Participants, getTrainCosts");
 
 	return trainCosts; 
 }
 
 void Participants::setParticipantIndex(int num) { 
 	//For debugging
-	INF::debugFunction("Participants, setParticipantIndex");
+	DEBUG_FUNCTION("Participants, setParticipantIndex");
 
 	participantIndex = num; 
 }
 
 int Participants::getParticipantIndex() { 
 	//For debugging
-	INF::debugFunction("Participants, getParticipantIndex");
+	DEBUG_FUNCTION("Participants, getParticipantIndex");
 
 	return participantIndex; 
 }
 
 void Participants::viewAllStatsFunction() {
 	//For debugging
-	INF::debugFunction("Participants, viewAllStatsFunction");
+	DEBUG_FUNCTION("Participants, viewAllStatsFunction");
 
 	std::string literallyAnyRandomCharacter;
 	std::cout << BLUE; // NW
@@ -256,7 +256,7 @@ void Participants::viewAllStatsFunction() {
 
 void Participants::printListOfProvinces() {
 	//For debugging
-	INF::debugFunction("Participants, printListOfProvinces");
+	DEBUG_FUNCTION("Participants, printListOfProvinces");
 
 	std::cout << "Here is a list of your provinces (Name, Coordinates): \n";
 	for (provSPTR province : provincesVector)
@@ -274,7 +274,7 @@ add functionality to potentially break out of the process-- enter -1 to leave th
 -- revise to make it an array??*/
 provSPTR Participants::pickYourProvince(int identifier) {
 	//For debugging
-	INF::debugFunction("Participants, pickYourProvince");
+	DEBUG_FUNCTION("Participants, pickYourProvince");
 
 	provSPTR newProvince = pickProvince(identifier);
 	if (newProvince->getParticipantIndex() == participantIndex)
@@ -298,7 +298,7 @@ provSPTR Participants::pickYourProvince(int identifier) {
 
 bool Participants::hasCommander(std::string name) {
 	//For debugging
-	INF::debugFunction("Participants, hasCommander");
+	DEBUG_FUNCTION("Participants, hasCommander");
 
 	if (commandersMap.find(name) == commandersMap.end())
 		return false;
@@ -307,7 +307,7 @@ bool Participants::hasCommander(std::string name) {
 
 commSPTR Participants::getCommander(std::string name) {
 	//For debugging
-	INF::debugFunction("Participants, getCommander");
+	DEBUG_FUNCTION("Participants, getCommander");
 
 	return commandersMap[name];
 }
@@ -315,7 +315,7 @@ commSPTR Participants::getCommander(std::string name) {
 int Participants::calculateTotals(int option)
 {
 	//For debugging
-	INF::debugFunction("Participants, calculateTotals");
+	DEBUG_FUNCTION("Participants, calculateTotals");
 
 	int sum = 0;
 	std::array <int, 5> totals = calculateEach(option);
@@ -328,7 +328,7 @@ int Participants::calculateTotals(int option)
 i5array Participants::calculateEach(int option)
 {
 	//For debugging
-	INF::debugFunction("Participants, calculateEach");
+	DEBUG_FUNCTION("Participants, calculateEach");
 
 	i5array returnArray = { 0, 0, 0, 0, 0 };
 
@@ -372,7 +372,7 @@ i5array Participants::calculateEach(int option)
 
 bool Participants::subtractCheckResources(unitSPTR unit, i5array resources) {
 	//For debugging
-	INF::debugFunction("Participants, subtractCheckResources");
+	DEBUG_FUNCTION("Participants, subtractCheckResources");
 	unit->mutateAllResources(costs, DECREASE); 
 	for (int x : unit->getAllResources()) {
 		if (x < 0) {
@@ -392,7 +392,7 @@ bool Participants::subtractCheckResources(unitSPTR unit, i5array resources) {
 provSPTR Participants::getProvince(std::string name)
 {
 	//For debugging
-	INF::debugFunction("Participants, getProvince");
+	DEBUG_FUNCTION("Participants, getProvince");
 
 	return provincesMap[name];
 }
@@ -407,7 +407,7 @@ provSPTR Participants::getProvince(std::string name)
 bool Participants::hasProvince(std::string name)
 {
 	//For debugging
-	INF::debugFunction("Participants, hasProvince");
+	DEBUG_FUNCTION("Participants, hasProvince");
 
 	if (provincesMap.find(name) != provincesMap.end()) {
 		return true;
@@ -426,7 +426,7 @@ bool Participants::hasProvince(provSPTR province) {
 
 commSPTR Participants::pickCommander() { 
 	//For debugging
-	INF::debugFunction("Participants, pickCommander");
+	DEBUG_FUNCTION("Participants, pickCommander");
 
 	this->displayCommanders();
 	std::string name = " ";
@@ -451,10 +451,9 @@ commSPTR Participants::pickCommander() {
 	return nullptr;
 }
 
-/*Display this participant's list of commSPTR/
 void Participants::displayCommanders() {
 	//For debugging
-	INF::debugFunction("Participants, displayCommanders");
+	DEBUG_FUNCTION("Participants, displayCommanders");
 
 	std::cout << "Here is list of your commanders: \n";
 	CommandersPtrMap commandersMap = getCommandersMap();
@@ -479,7 +478,7 @@ switch(phrase)
 */
 provSPTR Participants::pickProvince(int phrase) {
 	//For debugging
-	INF::debugFunction("Participants, pickProvince");
+	DEBUG_FUNCTION("Participants, pickProvince");
 
 	std::vector<std::string> actualCoordinatesAVTwo = { "-1" };
 	//range of possible coordinates
@@ -522,7 +521,7 @@ provSPTR Participants::pickProvince(int phrase) {
 
 bool Participants::hasUnit(const std::string &unitName) { 
 	//For debugging
-	INF::debugFunction("Participants, hasUnit");
+	DEBUG_FUNCTION("Participants, hasUnit");
 
 	if (hasCommander(unitName)) {
 		return true;
@@ -552,21 +551,21 @@ bool Participants::hasUnit(PrimeUnits unit&) {
 
 provSPTR Participants::getSystemProvince(ipair systemCoords) {
 	//For debugging
-	INF::debugFunction("Participants, getSystemProvince");
+	DEBUG_FUNCTION("Participants, getSystemProvince");
 
 	return Map::getSystemProvince(systemCoords);
 }
 
 void Participants::showMap() {
 	//For debugging
-	INF::debugFunction("Participants, showMap");
+	DEBUG_FUNCTION("Participants, showMap");
 
 	Map::showMap();
 }
 
 i5array Participants::getPrimeUnitsArray() {
 	//For debugging
-	INF::debugFunction("Participants, getPrimeUnitsArray");
+	DEBUG_FUNCTION("Participants, getPrimeUnitsArray");
 
 	i5array returnArray = {0,0,0,0,0};
 	partSPTR p = std::make_shared(new Participants());
@@ -589,7 +588,7 @@ i5array Participants::getPrimeUnitsArray() {
 
 int Participants::getPrimeUnitsAmount() {
 	//For debugging
-	INF::debugFunction("Participants, getPrimeUnitsAmount");
+	DEBUG_FUNCTION("Participants, getPrimeUnitsAmount");
 
 	int amount = 0;
 	for (int x : getPrimeUnitsArray()) {
@@ -601,14 +600,14 @@ int Participants::getPrimeUnitsAmount() {
 
 std::thread Participants::th1Method() {
 	//For debugging
-	INF::debugFunction("Participants, th1Method");
+	DEBUG_FUNCTION("Participants, th1Method");
 
 	return std::thread([=] {getPrimeUnitsArrayProvinces(); });
 }
 
 std::thread Participants::th2Method() {
 	//For debugging
-	INF::debugFunction("Participants, the2Method");
+	DEBUG_FUNCTION("Participants, the2Method");
 
 	return std::thread([=] {getPrimeUnitsArrayCommanders(); });
 }
@@ -618,7 +617,7 @@ std::thread Participants::th2Method() {
 
 ipair Participants::pickCoords() {
 	//For debugging
-	INF::debugFunction("Participants, pickCoords");
+	DEBUG_FUNCTION("Participants, pickCoords");
 
 	showMap(); 
 
@@ -660,7 +659,7 @@ std::unordered_map<std::string, commSPTR> Participants::getCommandersMap() {
 
 void Participants::getPrimeUnitsArrayCommanders() {
 	//For debugging
-	INF::debugFunction("Participants, getPrimeUnitsArrayCommanders");
+	DEBUG_FUNCTION("Participants, getPrimeUnitsArrayCommanders");
 
 	for (commSPTR instance : commandersVector) {
 		i5array commanderArray = instance.getTroop(REGULAR, -1, ALL);
@@ -670,7 +669,7 @@ void Participants::getPrimeUnitsArrayCommanders() {
 
 void Participants::getPrimeUnitsArrayProvinces() {
 	//For debugging
-	INF::debugFunction("Participants, getPrimeUnitsArrayProvinces");
+	DEBUG_FUNCTION("Participants, getPrimeUnitsArrayProvinces");
 
 	for (provSPTR instance : provincesVector) {
 		i5array provincesArray = instance->getTroop(REGULAR, -1, ALL);
@@ -680,7 +679,7 @@ void Participants::getPrimeUnitsArrayProvinces() {
 
 int Participants::getPrimeUnitsAmount() {
 	//For debugging
-	INF::debugFunction("Participants, getPrimeUnitsAmount");
+	DEBUG_FUNCTION("Participants, getPrimeUnitsAmount");
 
 	int amount = 0;
 	for (int x : getPrimeUnitsArray()) {
@@ -693,7 +692,7 @@ int Participants::getPrimeUnitsAmount() {
 
 void Participants::initializeParticipants(int totalPlayers, int humanPlayers) {
 	//For debugging
-	INF::debugFunction("Database, initializeParticipant");
+	DEBUG_FUNCTION("Database, initializeParticipant");
 
 	for (int x = 0; x < totalPlayers; x++)
 	{
@@ -715,7 +714,7 @@ void Participants::initializeParticipants(int totalPlayers, int humanPlayers) {
 
 void Participants::createCapitals() {
 	//For debugging
-	INF::debugFunction("Database, createCapitals()");
+	DEBUG_FUNCTION("Database, createCapitals()");
 
 	for (partSPTR participant : participantsList) {
 	start:

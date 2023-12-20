@@ -8,8 +8,12 @@ using namespace COORD;
 
 void Participants::armyOverviewSelectAction() { 
 	//For debugging
-	INF::debugFunction("ArmyOverview, armyOverviewSelectAction");
-	typedef void (*Actions)(void); // function pointer type 
+	DEBUG_FUNCTION("ArmyOverview, armyOverviewSelectAction");
+
+	/*Its type is “int (*)(char,float)” if an ordinary function
+Its type is “int (Fred::*)(char,float)” if a non-static member function of class Fred*/
+	typedef void (Participants::* Actions)(void);
+	//typedef void (*Actions)(void); // function pointer type 
 	typedef std::unordered_map<char, Actions> ActionFunctions; 
 	ActionFunctions actionsMap; 
 	actionsMap.emplace('U', &trainCommanderPrompt); 
@@ -17,7 +21,7 @@ void Participants::armyOverviewSelectAction() {
 	actionsMap.emplace('U', &viewCommanderStats); 
 	actionsMap.emplace('U', &deployCommanderPrompt); 
 	actionsMap.emplace('U', &armyOverviewSelectActionShowHelp); 
-	actionsMap.emplace('U', &INF::nothing); 
+	actionsMap.emplace('U', &nothing()); 
 
 	char action = Input::getOptionPrompt(ARMY_DEPLOYMENT).at(0);
 	actionsMap[action]();    
@@ -47,7 +51,7 @@ commSPTR Participants::pickCommanderToUpgrade() {
 
 void Participants::upgradeCommander() {
 	//For debugging
-	INF::debugFunction("ArmyOverview, upgradeCommander");
+	DEBUG_FUNCTION("ArmyOverview, upgradeCommander");
 
 	commSPTR commander = pickCommanderToUpgrade(); 
 	if (commander = nullptr) { return; }
@@ -84,7 +88,7 @@ void Participants::upgradeCommander() {
 //Currently shows one commander information by selection. Need to update to show all commander information
 void Participants::viewCommanderStats() {
 	//For debugging
-	INF::debugFunction("ArmyOverview, viewCommanderStats");
+	DEBUG_FUNCTION("ArmyOverview, viewCommanderStats");
 
 	commSPTR commander = pickCommander();
 
@@ -104,7 +108,7 @@ void Participants::viewCommanderStats() {
 
 void Participants::trainCommanderPrompt() {
 	//For debugging
-	INF::debugFunction("ArmyOverview, trainCommanderPrompt");
+	DEBUG_FUNCTION("ArmyOverview, trainCommanderPrompt");
 
 	std::cout << "You have " << this->getCommandersNum() << "/" << TROOP::maxCommanders << " total army commanders. \n";
 	if (getCommandersNum < TROOP::maxCommanders()) {
@@ -125,7 +129,7 @@ void Participants::trainCommanderPrompt() {
 
 void Participants::proceedWithTraining(const i5array& trainCosts) {
 	//For debugging
-	INF::debugFunction("ArmyOverview, proceedWithTraining");
+	DEBUG_FUNCTION("ArmyOverview, proceedWithTraining");
 
 	bool trainingSuccess = getCapitalProvince()->subtractCheckResources(trainCosts);
 
@@ -143,7 +147,7 @@ void Participants::proceedWithTraining(const i5array& trainCosts) {
 
 void Participants::deployCommanderPrompt() {
 	//For debugging
-	INF::debugFunction("ArmyOverview, deployCommanderPrompt");
+	DEBUG_FUNCTION("ArmyOverview, deployCommanderPrompt");
 
 	commSPTR commander = pickCommander();
 	if (commander == nullptr) { return; }
@@ -170,8 +174,7 @@ void Participants::deployCommanderPrompt() {
  
 void Participants::addCommander() {  
 	//For debugging
-	INF::debugFunction("Participants, addCommander");
-
+	DEBUG_FUNCTION("Participants, addCommander");
 	commSPTR commander = std::make_shared<Commanders>(new Commanders(1, getNewName()));
 	commander->setParticipantIndex(participantIndex); 
 

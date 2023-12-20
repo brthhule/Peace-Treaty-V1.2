@@ -12,3 +12,7 @@ bool BASE::getNullCondition() {
 void BASE::setNullCondition(bool nullConditionArg) {
 	nullCondition = nullConditionArg;
 }
+
+void BASE::nothing() {
+
+}

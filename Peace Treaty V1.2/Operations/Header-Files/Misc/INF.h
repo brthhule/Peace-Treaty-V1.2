@@ -16,6 +16,21 @@
 
 
 namespace INF {
+	template <typename T>
+	class myvector : std::vector<int> {
+	public:
+		myvector(std::vector<int> vectorArg);
+		void addVectorElements(myvector vectorArg);
+	private:
+	};
+
+	template <typename T>
+	class myarray : i5array {
+	public:
+		void createArray(INF::i5array arrayArg);
+		void addArrayElements(myarray arrayArg);
+	};
+
 	//////////////////////////////////////Aliases//////////////////////////////
 	//----Symbolic Constants-----------
 	constexpr int UNIT_AMOUNT = 5;
@@ -87,23 +102,6 @@ namespace INF {
 
 	///////////////////////////////////Templates///////////////////////////////
 	//---Vector/Array Implementations--
-	template <typename T>
-	class myvector : std::vector<int> {
-	public:
-		myvector(std::vector<int> vectorArg);
-		void addVectorElements(myvector vectorArg);
-	private:
-	};
-
-	template <typename T>
-	class myarray : i5array {
-	public:
-		void createArray(INF::i5array arrayArg);
-		void addArrayElements(myarray arrayArg);
-	};
-
-	
-
 	template <typename T>
 	std::vector<T> concatVectors(std::vector<std::vector<T>> vectorsList);
 	
@@ -196,8 +194,7 @@ namespace INF {
 	//Manipulate vectors
 	i5array mutateArray(i5array primeArray, constArrayReference secondaryArray, MutateDirection direction);
 
-	//For if/ternary statements with no "else"
-	void nothing() {};
+	
 }
 
 #endif		

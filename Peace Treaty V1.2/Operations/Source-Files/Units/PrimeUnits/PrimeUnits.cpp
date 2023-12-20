@@ -7,7 +7,7 @@ using namespace UNIT;
 //One param overloaded Constructor
 PrimeUnits::PrimeUnits(int participantIndexArg) { 
 	//For debugging
-	INF::debugFunction("PrimeUnits, PrimeUnits (1 Param)");
+	DEBUG_FUNCTION("PrimeUnits, PrimeUnits (1 Param)");
 
 	switch (participantIndexArg) {
 		case -1:
@@ -40,7 +40,7 @@ PrimeUnits::PrimeUnits(int participantIndexArg) {
 //Default Constructor
 PrimeUnits::PrimeUnits() {
 	//For debugging
-	INF::debugFunction("PrimeUnits, PrimeUnits (0 Param)");
+	DEBUG_FUNCTION("PrimeUnits, PrimeUnits (0 Param)");
 
 	PrimeUnits(-1);
 };
@@ -55,7 +55,7 @@ void PrimeUnits::printTroopsPresent() {
 
 constINT PrimeUnits::getCP() {
 	//For debugging
-	INF::debugFunction("PrimeUnits, getCP");
+	DEBUG_FUNCTION("PrimeUnits, getCP");
 
 	combatPower = 0;
 	for (int x = 0; x < 5; x++) {
@@ -66,14 +66,14 @@ constINT PrimeUnits::getCP() {
 
 constINT PrimeUnits::getParticipantIndex() {
 	//For debugging
-	INF::debugFunction("PrimeUnits, getParticipantIndex");
+	DEBUG_FUNCTION("PrimeUnits, getParticipantIndex");
 
 	return participantIndex;
 }
 
 void PrimeUnits::printResources() { 
 	//For debugging
-	INF::debugFunction("PrimeUnits, printResources");
+	DEBUG_FUNCTION("PrimeUnits, printResources");
 
 	std::cout << "Resources currently present in this " << type << ": \n";
 	INF::addColor(INF::BLUE);
@@ -93,7 +93,7 @@ constINT PrimeUnits::getResource(int resourceIndex) {
 void PrimeUnits::mutateResource(ResourceType resource, constINT amount,
 	MutateDirection direction) {
 	//For debugging
-	INF::debugFunction("PrimeUnits, mutateResources");
+	DEBUG_FUNCTION("PrimeUnits, mutateResources");
 	int modifier = 1;
 	if (direction == DECREASE) { modifier = -1; }
 	resourcesPresent.at(resource) + (amount * modifier);
@@ -102,7 +102,7 @@ void PrimeUnits::mutateResource(ResourceType resource, constINT amount,
 void PrimeUnits::mutateAllResources(constArrayReference resourcesArray,
 	INF::MutateDirection direction) {
 	//For debugging
-	INF::debugFunction("PrimeUnits, mdofiyResources");
+	DEBUG_FUNCTION("PrimeUnits, mdofiyResources");
 
 
 	resourcesPresent = INF::mutateArray(resourcesPresent, resourcesArray, direction);
@@ -110,14 +110,14 @@ void PrimeUnits::mutateAllResources(constArrayReference resourcesArray,
 
 constINT PrimeUnits::getLevel() {
 	//For debugging
-	INF::debugFunction("PrimeUnits, getLevel");
+	DEBUG_FUNCTION("PrimeUnits, getLevel");
 
 	return unitLevel;
 }
 
 constArrayReference PrimeUnits::getAllResources() {
 	//For debugging
-	INF::debugFunction("PrimeUnits, getAllResources");
+	DEBUG_FUNCTION("PrimeUnits, getAllResources");
 	return resourcesPresent;
 }
 
@@ -127,7 +127,7 @@ const std::string PrimeUnits::getCoords(CoordsType type) {
 
 void PrimeUnits::setParticipantIndex(int number) {
 	//For debugging
-	INF::debugFunction("PrimeUnits, setParticipantIndex");
+	DEBUG_FUNCTION("PrimeUnits, setParticipantIndex");
 
 	participantIndex = number;
 }

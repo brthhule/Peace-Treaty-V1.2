@@ -31,7 +31,7 @@ std::array<std::string, 13> PROMPTS_STRING = {
 
 std::vector<std::string> getShowPrompt(std::string prompt) {
 //For debugging
-	INF::debugFunction("Input, getShowPrompt");
+	DEBUG_FUNCTION("Input, getShowPrompt");
 
 	std::fstream newfile;
 	"C:\\Users\\Brennen\\Source\\Repos\\brthhule\\Peace-Treaty-V1.2\\Peace Treaty V1.2\\Units\\Misc\\TxtFiles\\Synopsis.txt";
@@ -96,7 +96,7 @@ std::vector<std::string> getShowPrompt(std::string prompt) {
 
 std::string getOptionPromptQuery(std::vector<std::string>AV) {
 	//For debugging
-	INF::debugFunction("Input, getShowPromptQuery");
+	DEBUG_FUNCTION("Input, getShowPromptQuery");
 
 	std::string input;
 	std::cout << "Enter an option: " << getColor(BLUE);
@@ -119,7 +119,7 @@ std::string getOptionPromptQuery(std::vector<std::string>AV) {
 
 std::string getOptionPrompt(Prompts p) {
 	//For debugging
-	INF::debugFunction("Input, getOptionPrompt");
+	DEBUG_FUNCTION("Input, getOptionPrompt");
 
 	//Print prompt, return acceptable values
 	std::vector<std::string> AV = getShowPrompt(promptsToString(p));
@@ -129,7 +129,7 @@ std::string getOptionPrompt(Prompts p) {
 
 std::string getInputQuery(std::vector<std::string>AV) {
 	//For debugging
-	INF::debugFunction("Input, getInputQuery");
+	DEBUG_FUNCTION("Input, getInputQuery");
 
 	std::cout << "Enter an option: " << getColor(BLUE);
 	std::string input;
@@ -148,7 +148,7 @@ std::string getInputQuery(std::vector<std::string>AV) {
 
 std::string getInputText(std::string text, std::vector<std::string> AV) {
 	//For debugging
-	INF::debugFunction("Iput, getInputText");
+	DEBUG_FUNCTION("Iput, getInputText");
 
 	std::cout << text << "\n";
 
@@ -163,14 +163,14 @@ std::string getInputText(std::string text, std::vector<std::string> AV) {
 
 std::string promptsToString(Prompts p) {
 	//For debugging
-	INF::debugFunction("CV, promptsToString");
+	DEBUG_FUNCTION("CV, promptsToString");
 
 	return PROMPTS_STRING.at(p);
 }
 
 int getStringIndex(std::string arg) {
 	//For debugging
-	INF::debugFunction("CV, getStringIndex");
+	DEBUG_FUNCTION("CV, getStringIndex");
 
 	for (int x = 0; x < (signed)PROMPTS_STRING.size(); x++) {
 		if (PROMPTS_STRING.at(x) == arg) {
@@ -183,7 +183,7 @@ int getStringIndex(std::string arg) {
 
 Prompts stringToPrompts(std::string arg) {
 	//For debugging
-	INF::debugFunction("CV, stringToPrompts");
+	DEBUG_FUNCTION("CV, stringToPrompts");
 
 	return Prompts(getStringIndex(arg));
 }

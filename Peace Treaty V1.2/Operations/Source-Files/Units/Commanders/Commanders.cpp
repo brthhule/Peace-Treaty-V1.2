@@ -6,14 +6,14 @@ using namespace COMM;
 /*Constructors*/
 Commanders::Commanders() {
 	//For debugging
-	INF::debugFunction("Commanders, Commanders (0 Param)");
+	DEBUG_FUNCTION("Commanders, Commanders (0 Param)");
 
 	Commanders(1, "Unnamed");
 }
 
 Commanders::Commanders(int level, std::string name) {
 	//For debugging
-	INF::debugFunction("Commanders, Commanders (1 Param)");
+	DEBUG_FUNCTION("Commanders, Commanders (1 Param)");
 
 	unitLevel = level;
 	moved = false;
@@ -26,13 +26,13 @@ Commanders::Commanders(int level, std::string name) {
 /*Destructor*/
 Commanders::~Commanders() {
 	//For debugging
-	INF::debugFunction("Commanders, ~Commanders");
+	DEBUG_FUNCTION("Commanders, ~Commanders");
 }
 
 /////////////////////Display///////////
 void Commanders::printCommanderStats() {
 	//For debugging
-	INF::debugFunction("Commanders, printCommanderStats");
+	DEBUG_FUNCTION("Commanders, printCommanderStats");
 
 	// print out stats
 	INF::addColor(INF::BLUE);
@@ -51,7 +51,7 @@ void Commanders::printCommanderStats() {
 ////////////Accessors//////////////////
 constINT Commanders::getCommanderStat(int index) {
 	//For debugging
-	INF::debugFunction("Commanders, getCommanderStat");
+	DEBUG_FUNCTION("Commanders, getCommanderStat");
 
 	//placeholder
 	return -1;
@@ -60,7 +60,7 @@ constINT Commanders::getCommanderStat(int index) {
 
 INF::i5array Commanders::getUpgradeCosts() {
 	//For debugging
-	INF::debugFunction("Commanders, getUpgradeCosts");
+	DEBUG_FUNCTION("Commanders, getUpgradeCosts");
 
 	i5array costsArray;
 	costsArray.fill(0);
@@ -76,7 +76,7 @@ INF::i5array Commanders::getUpgradeCosts() {
 void Commanders::printCosts(i5array costs)
 {
 	//For debugging
-	INF::debugFunction("Commanders, printCosts");
+	DEBUG_FUNCTION("Commanders, printCosts");
 
 	for (int x = 0; x < 5; x++) {
 		std::cout << INF::RESOURCE_NAMES[x] << " cost: " << costs[x] << std::endl;
@@ -88,28 +88,28 @@ void Commanders::printCosts(i5array costs)
 void Commanders::calculateCommanderScoutLog()
 {
 	//For debugging
-	INF::debugFunction("Commanders, calculateCommanderScoutLog");
+	DEBUG_FUNCTION("Commanders, calculateCommanderScoutLog");
 
 	//Implement this
 }
 
 void Commanders::addLevel() {
 	//For debugging
-	INF::debugFunction("Commanders, addLevel");
+	DEBUG_FUNCTION("Commanders, addLevel");
 
 	unitLevel++;
 }
 
 bool Commanders::hasMoved() {
 	//For debugging
-	INF::debugFunction("Commanders, hasMoved");
+	DEBUG_FUNCTION("Commanders, hasMoved");
 
 	return moved;
 }
 
 void Commanders::resetCommanderMoved() {
 	//For debugging
-	INF::debugFunction("Commanders, resetCommanderHasMoved");
+	DEBUG_FUNCTION("Commanders, resetCommanderHasMoved");
 
 	moved = false;
 }

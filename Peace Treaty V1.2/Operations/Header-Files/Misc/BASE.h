@@ -9,6 +9,9 @@ public:
 
 	bool getNullCondition();
 	void setNullCondition(bool nullConditionArg);
+
+	//For if/ternary statements with no "else"
+	void nothing() {};
 private:
 	bool nullCondition;
 };

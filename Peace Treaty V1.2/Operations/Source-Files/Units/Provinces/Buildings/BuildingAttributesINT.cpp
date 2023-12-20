@@ -7,7 +7,7 @@ using namespace PROV;
 
 constINT Provinces::getCapacity(BUILD::BuildingsEnum name) { 
 	//For debugging
-	INF::debugFunction("Buildings, getCapacity");
+	DEBUG_FUNCTION("Buildings, getCapacity");
 	std::shared_ptr<BuildingsBASE> currentBuilding = getBuilding(name);
 	std::shared_ptr<ResourceBuildingsBASE> resourceBuilding = std::dynamic_pointer_cast<ResourceBuildingsBASE>(currentBuilding);
 	return resourceBuilding->getCapacityAmount();
@@ -16,7 +16,7 @@ constINT Provinces::getCapacity(BUILD::BuildingsEnum name) {
 /*Use returnArray or returnInt for arrayArg*/
 i5array Provinces::getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount) { 
 	//For debugging
-	INF::debugFunction("Buildings, getResourceProduction");
+	DEBUG_FUNCTION("Buildings, getResourceProduction");
 
 	i5array arrayCopy, returnArray; 
 	std::shared_ptr<BuildingsBASE> building = getBuilding(name);  
@@ -49,7 +49,7 @@ i5array Provinces::getResourceProduction(BUILD::BuildingsEnum name, INF::Quantit
 *direction: determines whether the process is addition or subtraction.*/
 void Provinces::mutateLevel(BuildingsEnum name, MutateDirection direction, int amount) {
 	//For debugging
-	INF::debugFunction("Buildings, mutateLevel");
+	DEBUG_FUNCTION("Buildings, mutateLevel");
 	if (direction == DECREASE) {
 		amount *= -1;
 	}
@@ -59,7 +59,7 @@ void Provinces::mutateLevel(BuildingsEnum name, MutateDirection direction, int a
 /*Return the amount of troops trained this turn - troopsTrainedThisTurn*/
 constINT Provinces::getTroopsTrainedThisTurn() {
 	//For debugging
-	INF::debugFunction("Buildings, getTroopsTrainedThisTurn");
+	DEBUG_FUNCTION("Buildings, getTroopsTrainedThisTurn");
 	Barracks building = static_cast<Barracks>(buildings.at(BARRACKS));
 	return building.getTroopsTrainedThisTurn;
 }
@@ -67,7 +67,7 @@ constINT Provinces::getTroopsTrainedThisTurn() {
 void Provinces::printBuildingStats()
 {
 	//For debugging
-	INF::debugFunction("Provinces, printBuildingStats");
+	DEBUG_FUNCTION("Provinces, printBuildingStats");
 
 	i5array productionArray = getResourceProduction(BUILD::CHURCH, INF::ALL);
 	std::cout << "\033[;34m";
@@ -90,7 +90,7 @@ void Provinces::printBuildingStats()
 //Returns average of all buildings, rounded down to nearest int
 int Provinces::getProvinceLevel() {
 	//For debugging
-	INF::debugFunction("Provinces, getProvinceLevel");
+	DEBUG_FUNCTION("Provinces, getProvinceLevel");
 
 	int unitLevel = 0;
 
@@ -103,14 +103,14 @@ int Provinces::getProvinceLevel() {
 
 void Provinces::resetTroopsTrainedThisTurn() {
 	//For debugging
-	INF::debugFunction("Buildings, resetTroopsTrainedThisTurn");
+	DEBUG_FUNCTION("Buildings, resetTroopsTrainedThisTurn");
 
 	troopsTrainedThisTurn = 0;
 }
 
 void Provinces::addTroopsTrainedThisTurn(int amount) {
 	//For debugging
-	INF::debugFunction("Buildings, addTroopsTrainedThisTurn");
+	DEBUG_FUNCTION("Buildings, addTroopsTrainedThisTurn");
 
 	troopsTrainedThisTurn += amount;
 }
@@ -118,7 +118,7 @@ void Provinces::addTroopsTrainedThisTurn(int amount) {
 //Do something in Buildings here
 void Provinces::initiailizeCapitalBuildings() {
 	//For debugging
-	INF::debugFunction("Buildings, initializeCapitalBuildings");
+	DEBUG_FUNCTION("Buildings, initializeCapitalBuildings");
 
 	i5array resourceBuildingsLevels, otherBuildingsLevels;
 	resourceBuildingsLevels = getTypeLevels(RESOURCE);
@@ -131,7 +131,7 @@ void Provinces::initiailizeCapitalBuildings() {
 
 void Provinces::printListOfBuildings() {
 	//For debugging
-	INF::debugFunction("Buildings, printListOfBuildings");
+	DEBUG_FUNCTION("Buildings, printListOfBuildings");
 	for (int x = 0; x < 10; x++) {
 		std::cout << x << ") " << BUILD::BuildingStrings.at(x) << ", level: " << buildings.at(x).getLevel();
 	}

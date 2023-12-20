@@ -3,14 +3,14 @@
 
 i5array TroopsINT::getAllOneTroopArray(TROOP::TroopCondition troopCondition, TROOP::TroopTypes type) {
 	//For debugging
-	INF::debugFunction("Troops, getAllOneTroopArray");
+	DEBUG_FUNCTION("Troops, getAllOneTroopArray");
 
 	return allTroopConditions.at(troopCondition.at(type));
 }
 
 int TroopsINT::getAllOneTroopInt(TROOP::TroopCondition troopCondition, TROOP::TroopTypes type) {
 	i5array tempArray = getAllOneTroopArray(troopCondition, type);
-	INF::debugFunction("Troops, getAllOneTroopInt");
+	DEBUG_FUNCTION("Troops, getAllOneTroopInt");
 
 	int total = 0;
 	for (int x : tempArray) {
@@ -35,7 +35,7 @@ i5array TroopsINT::getGenericTroops(TroopCondition troopCondition) {
 //Change troops of type index at this unit by amount
 void TroopsINT::mutateTroop(TROOP::TroopCondition troopCondition, TROOP::TroopTypes troopType, i5array amount, Quantity quant, INF::MutateDirection direction, int troopTier) {
 	//For debugging
-	INF::debugFunction("Troops, mutateTroop");
+	DEBUG_FUNCTION("Troops, mutateTroop");
 
 	std::shared_ptr<troopConditionArray> troopArray = allTroopConditions.at(troopCondition);
 	i5array* troopTiers = troopArray.get(troopType);

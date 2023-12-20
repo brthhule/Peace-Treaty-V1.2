@@ -74,7 +74,7 @@ public:
 	Participants(int pIndex);
 	~Participants(){}
 
-	static void initializeParticipants(int totalPlayers, int humanPlayers);
+	static void initializeParticipants(int totalPlayers, int humanPlayers); 
 	static void createCapitals();
 
 	//----Getters----------------------------------------------------------
@@ -170,6 +170,7 @@ public:
 	void viewAllStatsFunction();
 	void viewStats();
 	void scoutProvince(provSPTR targetProvince, int accuracy);
+	/*Display this participant's list of commSPTR*/
 	void displayCommanders();
 	void initialCapRSS();
 
@@ -177,12 +178,7 @@ public:
 	void setKingdomName(std::string newName);
 	void showMap();
 
-	void updateTurnResourcesParticipant();
-	void createMapParticipant();
-
 	/////////////////////////////////////ArmyOverviewMA.h//////////////////////
-
-
 	//----Methods--------------------------------------------------------------
 	void armyOverviewSelectAction() override;
 	void armyOverviewSelectActionShowHelp() override;
@@ -200,7 +196,7 @@ public:
 	void chooseAction() override;
 	void pauseGame() override;
 	void choosePauseGame() override;
-	void plaerActionShowHelp() override;
+	void playerActionShowHelp() override; 
 	void buildAction() override;
 
 	///////////////////////////////////TrainMA/////////////////////////////////

@@ -4,7 +4,7 @@
 using namespace PART;
 
 void Participants::chooseAction() {
-	INF::debugFunction("PlayerAction, chooseAction");
+	DEBUG_FUNCTION("PlayerAction, chooseAction");
 	INF::enterAndClear(1);
 
 	bool goToNextTurn = false;
@@ -30,7 +30,7 @@ void Participants::chooseAction() {
 	actionsMap.emplace('S', &viewStats); 
 	actionsMap.emplace('U', &viewPlayerMap); 
 	actionsMap.emplace('D', &armyOverviewSelectAction); 
-	actionsMap.emplace('N', &INF::nothing); 
+	actionsMap.emplace('N', &BASE::nothing); 
 	actionsMap.emplace('H', &playerActionShowHelp);  
 	actionsMap.emplace('P', &choosePauseGame); 
 
@@ -56,7 +56,7 @@ void Participants::choosePauseGame() {
 
 char Participants::randomAction() {
 	//For debugging
-	INF::debugFunction("PlayerAction, randomAction");
+	DEBUG_FUNCTION("PlayerAction, randomAction");
 
 	std::vector<char> newVector = { 'B', 'T', 'S', 'U', 'D', 'N' };
 	return newVector.at(rand() % 6);
@@ -65,7 +65,7 @@ char Participants::randomAction() {
 
 void Participants::pauseGame() {
 	//For debugging
-	INF::debugFunction("PlayerAction, pauseGame");
+	DEBUG_FUNCTION("PlayerAction, pauseGame");
 
 	std::string gameCode;
 	gameCode += INF::continentSize;

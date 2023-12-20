@@ -37,7 +37,7 @@ using namespace PART;
 int main()/*main code*/
 {
 	//For debugging
-	INF::debugFunction("main, main");
+	DEBUG_FUNCTION("main, main");
 
 	INF::CPUNum = std::thread::hardware_concurrency();
 
@@ -74,7 +74,7 @@ void startOrResumeGame() {
 void resumeGame() /*download data from previous game fix this*/
 {
 	//For debugging
-	INF::debugFunction("main, resumeGame");
+	DEBUG_FUNCTION("main, resumeGame");
 
 	std::string gameCode;
 	std::cout << "Please enter the game code of your previous game: \033[31m";
@@ -84,7 +84,7 @@ void resumeGame() /*download data from previous game fix this*/
 }
 void startGame() {
 	//For debugging
-	INF::debugFunction("main, startGame");
+	DEBUG_FUNCTION("main, startGame");
 	int pNum = getContinentInformation();
 	int players = generateNewContinent(pNum);
 	Participants::initializeParticipants(pNum, players);
@@ -121,7 +121,7 @@ int getContinentInformation() {
 }
 int generateNewContinent(int pNum) {
 	//For debugging
-	INF::debugFunction("main, generateNewContinent");
+	DEBUG_FUNCTION("main, generateNewContinent");
 
 	std::cout << "Create map...\n";
 	Map::setMap();
@@ -144,7 +144,7 @@ int generateNewContinent(int pNum) {
 
 void gamePlay() {
 	//For debugging
-	INF::debugFunction("main, gamePlay");
+	DEBUG_FUNCTION("main, gamePlay");
 
 	bool gameEnd = false;
 
@@ -178,7 +178,7 @@ void gamePlay() {
 //Call this function when all winning condition has been met
 void endScreen() {
 	//For debugging
-	INF::debugFunction("main, endScreen");
+	DEBUG_FUNCTION("main, endScreen");
 	std::string kingdomName = " ";
 
 	//Only one is surviving, iterates through to find that participant

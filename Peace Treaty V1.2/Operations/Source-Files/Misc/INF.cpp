@@ -86,7 +86,7 @@ namespace INF {
 	//For stand alone color integration
 	void INF::addColor(COLORS color) {
 		//For debugging
-		INF::debugFunction("CV, addColor");
+		DEBUG_FUNCTION("CV, addColor");
 		std::cout << getColor(color);
 		
 	}
@@ -229,7 +229,7 @@ void INF::enterAnything(int option) {
 }
 
 /*functionName is styled as "file name, function name*/
-void INF::debugFunction(std::string functionName) {
+void DEBUG_FUNCTION(std::string functionName) {
 	if (debuggingMode == true) {
 		std::cout << "\033[35mFunction: " << functionName << "\033[0m\n";
 	}
@@ -239,7 +239,7 @@ void INF::debugFunction(std::string functionName) {
 identifier(caseNum)*/
 void INF::showHelp(int caseNum) {
 	//For debugging
-	INF::debugFunction("OF, showHelp");
+	DEBUG_FUNCTION("OF, showHelp");
 
 	std::string caseNumString = std::to_string(caseNum);
 
@@ -332,7 +332,7 @@ std::vector<T> INF::concatVectors(std::vector<std::vector<T>> vectorsList) {
 
 void INF::printResources(constArrayReference resourcesArray) {
 	//For debugging
-	INF::debugFunction("PrimeUnits, printResources");
+	DEBUG_FUNCTION("PrimeUnits, printResources");
 
 	for (int x = 0; x < 5; x++) {
 		std::cout << "- " << INF::RESOURCE_NAMES.at(x) << ": " << resourcesArray.at(x) << std::endl;

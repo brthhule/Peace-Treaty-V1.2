@@ -85,7 +85,7 @@ void Participants::trainMAMain() {
 
 void Participants::trainMALoop(int troopTier, int amountOfTroops) {
     //For debugging
-    INF::debugFunction("TrainMA, trainMALoop");
+    DEBUG_FUNCTION("TrainMA, trainMALoop");
 
     provSPTR capitalProvince = this->getCapitalProvince();
 

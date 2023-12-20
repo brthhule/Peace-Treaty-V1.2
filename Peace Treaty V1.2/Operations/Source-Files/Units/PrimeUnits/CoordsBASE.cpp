@@ -6,7 +6,7 @@ using namespace COORD;
 
 void CoordsBASE::setIndex (int index) {
 	//For debugging
-	INF::debugFunction("Coords, OtherBuildingsToString");
+	DEBUG_FUNCTION("Coords, OtherBuildingsToString");
 
 	this->index = index;
 
@@ -22,7 +22,7 @@ void CoordsBASE::setIndex (int index) {
 }
 
 ipair CoordsBASE::getCoords(CoordsType type) {
-	INF::debugFunction("Coords, getCoords");
+	DEBUG_FUNCTION("Coords, getCoords");
 
 	ipair tempPair;
 	switch (type) {
@@ -38,7 +38,7 @@ ipair CoordsBASE::getCoords(CoordsType type) {
 }
 
 void CoordsBASE::printCoords(CoordsType type) {
-	INF::debugFunction("Coords, printCoords");
+	DEBUG_FUNCTION("Coords, printCoords");
 
 	ipair tempPair;
 	switch (type) {
@@ -55,7 +55,7 @@ void CoordsBASE::printCoords(CoordsType type) {
 
 void CoordsBASE::setCoords(ipair systemCoords, ipair userCoords) {
 	//For debugging
-	INF::debugFunction("Coords, setCoords");
+	DEBUG_FUNCTION("Coords, setCoords");
 
 	this->systemCoords = systemCoords;
 	this->userCoords = userCoords;
@@ -65,7 +65,7 @@ void CoordsBASE::setCoords(ipair systemCoords, ipair userCoords) {
 If current type is SYSTEM, translate to USER, vice versa*/
 ipair CoordsBASE::translateCoords(ipair coords, CoordsType currentType) {
 	//For debugging
-	INF::debugFunction("Coords, translateCoords");
+	DEBUG_FUNCTION("Coords, translateCoords");
 
 	int index = coordsToIndex(coords, currentType);
 
@@ -88,7 +88,7 @@ std::string CoordsBASE::getCoordsString(CoordsType type) {
 }
 
 ipair CoordsBASE::indexToCoords(int index, CoordsType type) {
-	INF::debugFunction("Coords, indexToCoords");
+	DEBUG_FUNCTION("Coords, indexToCoords");
 	int row = 0, col = 0, x = 0, y = 0;
 
 	switch (type) {
@@ -109,7 +109,7 @@ ipair CoordsBASE::indexToCoords(int index, CoordsType type) {
 }
 
 int CoordsBASE::coordsToIndex(ipair coords, CoordsType type) {
-	INF::debugFunction("Coords, coordsToIndex");
+	DEBUG_FUNCTION("Coords, coordsToIndex");
 	switch (type) {
 		case SYSTEM:
 			return (coords.first * continentSize) + coords.second;
@@ -122,7 +122,7 @@ int CoordsBASE::coordsToIndex(ipair coords, CoordsType type) {
 
 constINT COORD::getRandomCoordinate() {   
 	//For debugging
-	INF::debugFunction("Map, getRandomCoordinate");
+	DEBUG_FUNCTION("Map, getRandomCoordinate");
 	return rand() % INF::continentSize; 
 }
 

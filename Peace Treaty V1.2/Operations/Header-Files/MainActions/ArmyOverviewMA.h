@@ -38,6 +38,7 @@ public:
 	virtual void deployCommanderPrompt() = 0;
 	virtual void addCommander() = 0;
 	virtual void armyOverviewSelectActionShowHelp() = 0;
+	virtual void playerActionShowHelp() = 0;
 };
 
 #endif

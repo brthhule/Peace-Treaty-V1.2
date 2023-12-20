@@ -9,7 +9,7 @@ using namespace COORD;
 
 void Participants::moveUnitOne(commSPTR commander) {
 	//For debugging
-	INF::debugFunction("Mobility, moveUnitOne");
+	DEBUG_FUNCTION("Mobility, moveUnitOne");
 
 	if (commander->hasMoved() == true) {
 		std::cout << "This unit has already moved this turn. Please pick another unit. \nReturning to previous menu... \n\n";
@@ -89,7 +89,7 @@ Provinces& Participants::pickProvinceToMoveTo(Commanders& commanderReference) {
 
 provSPTRList Participants::getSurroundingProvinces(commSPTR commander) {
 	//For debugging
-	INF::debugFunction("Mobility, getSurroundingProvinces");
+	DEBUG_FUNCTION("Mobility, getSurroundingProvinces");
 
 	std::vector<provSPTR> provincesSelectList;
 	ipair systemCoords = commander->getCoords(COORD::SYSTEM);
