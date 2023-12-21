@@ -14,16 +14,6 @@ namespace INF {
 	/*RESOURCE_PRODUCTION = 5, 4, 3, 2, 1 */
 	i5array RESOURCE_PRODUCTION = { 5,4,3,2,1 };
 
-
-	/*TROOP_NAMES = Militia, Guards, Cavalry, Knights, Paladins*/
-	s5array TROOP_NAMES = {
-		"Militia",
-		"Guards",
-		"Cavalry",
-		"Knights",
-		"Paladins"
-	};
-
 	/*RESOURCE_BUILDING = Farm, Lumber Mill, Quarry, Mine, Church*/
 	s5array RESOURCE_BUILDING_NAMES = {
 		"Farm",
@@ -86,7 +76,7 @@ namespace INF {
 	//For stand alone color integration
 	void INF::addColor(COLORS color) {
 		//For debugging
-		DEBUG_FUNCTION("CV, addColor");
+		DEBUG_FUNCTION("INF", "addColor");
 		std::cout << getColor(color);
 		
 	}
@@ -111,7 +101,7 @@ namespace INF {
 	//Generates a random name by randomly selecting consonants and vowels
 	std::string INF::createRandomName() {
 		//For debugging
-		debugFunction("OF, createRandomName");
+		DEBUG_FUNCTION("INF", "createRandomName");
 
 		std::string name = "";
 		std::string consonants = "bcdfghjklmnpqrstvwxyz";
@@ -226,13 +216,6 @@ void INF::enterAnything(int option) {
 	std::string emptyString = " "; 
 	getline(std::cin, emptyString);
 	INF::addColor(BLUE);
-}
-
-/*functionName is styled as "file name, function name*/
-void DEBUG_FUNCTION(std::string functionName) {
-	if (debuggingMode == true) {
-		std::cout << "\033[35mFunction: " << functionName << "\033[0m\n";
-	}
 }
 
 /*Returns help prompt that correlates with the specified numerical 

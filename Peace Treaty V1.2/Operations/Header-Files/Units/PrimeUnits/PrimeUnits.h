@@ -23,7 +23,7 @@ namespace UNIT {
 enum UnitType { COMMANDER, PROVINCE };
 
 class PrimeUnits : 
-	public CoordsBASE, public TroopsINT					//Base Class
+	public CoordsBASE					//Base Class
 {
 public:
 	//----Aliases--------------------------------------------------------------	
@@ -40,7 +40,8 @@ public:
 
 	//----Getters--------------------------------------------------------------
 	///Returns combat power of this unit. Implemented by derived classes
-	virtual constINT getCP() = 0;
+	virtual constINT getCombatPower() = 0;
+	virtual void calculateFoodConsumption() = 0;  
 	///Get the food consumption of this unit. Implemented by derived class
 	virtual constINT getFoodConsumption();
 	///Get the level of this unit. Implemented by derived classes

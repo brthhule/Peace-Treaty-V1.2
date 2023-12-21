@@ -76,6 +76,7 @@ public:
 
 	static void initializeParticipants(int totalPlayers, int humanPlayers); 
 	static void createCapitals();
+	static partSPTR getCurrentParticipant();
 
 	//----Getters----------------------------------------------------------
 	///Get the costs needed to train a new Commander?
@@ -243,7 +244,6 @@ public:
 	commSPTR pickCommanderAttack(std::vector<commSPTR> commandersCanAttack);
 
 	void playerCommitAttack(provSPTR defendingProvince, commSPTR attackingCommander);
-	void printResourcesGained(commSPTR attackingCommander, const i5array& oldResources);
 	void determineLostCP(int attackerCP, int defendingCP, int& attackerLostCP, int& defenderLostCP);
 
 	void calculateTroopsLost(commSPTR commander, int lostCombatPower, i5array& troopsLost, int troopIndex);

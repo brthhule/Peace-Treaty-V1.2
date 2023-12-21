@@ -29,7 +29,6 @@ public:
 
 	virtual void mainAttackMA(provSPTR, commSPTR attackingCommander) = 0;
 
-	virtual void printResourcesGained(commSPTR attackingCommander, const i5array& oldResources) = 0;
 	virtual void determineLostCP(int attackerCP, int defendingCP, int& attackerLostCP, int& defenderLostCP) = 0;
 
 	virtual void playerCommitAttack(provSPTR defendingProvince, commSPTR attackingCommander) = 0;

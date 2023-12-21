@@ -736,3 +736,7 @@ void Participants::createCapitals() {
 	}
 
 }
+
+partSPTR Participants::getCurrentParticipant() {
+	return participantsList.at(currentParticipantIndex);
+}

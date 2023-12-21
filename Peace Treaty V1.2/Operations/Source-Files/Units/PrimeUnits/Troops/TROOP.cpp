@@ -7,3 +7,12 @@ i5array TROOP::Troops_COST = { 5, 4, 3, 2, 1 };
 i5array TROOP::Troops_CP = { 1,2,4,8,16 };
 
 int TROOP::maxCommanders = 0;
+
+/*TROOP_NAMES = Militia, Guards, Cavalry, Knights, Paladins*/
+s5array TROOP::TROOP_NAMES = {
+	"Militia",
+	"Guards",
+	"Cavalry",
+	"Knights",
+	"Paladins"
+};

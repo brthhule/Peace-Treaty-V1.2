@@ -7,8 +7,7 @@ using namespace PART;
 using namespace COORD;
 
 void Participants::armyOverviewSelectAction() { 
-	//For debugging
-	DEBUG_FUNCTION("ArmyOverview, armyOverviewSelectAction");
+	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "armyOverviewSelectAction()");
 
 	/*Its type is “int (*)(char,float)” if an ordinary function
 Its type is “int (Fred::*)(char,float)” if a non-static member function of class Fred*/
@@ -31,6 +30,7 @@ Its type is “int (Fred::*)(char,float)” if a non-static member function of class
 }
 
 commSPTR Participants::pickCommanderToUpgrade() {
+	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "pickCommanderToUpgrade()");
 	if (getCommandersNum() == 0) { 
 		std::cout << "No commanders available, can not upgrade\n"; 
 		enterAnything(1); 
@@ -50,8 +50,7 @@ commSPTR Participants::pickCommanderToUpgrade() {
 }
 
 void Participants::upgradeCommander() {
-	//For debugging
-	DEBUG_FUNCTION("ArmyOverview, upgradeCommander");
+	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "upgradeCommander()");
 
 	commSPTR commander = pickCommanderToUpgrade(); 
 	if (commander = nullptr) { return; }
@@ -87,8 +86,7 @@ void Participants::upgradeCommander() {
 
 //Currently shows one commander information by selection. Need to update to show all commander information
 void Participants::viewCommanderStats() {
-	//For debugging
-	DEBUG_FUNCTION("ArmyOverview, viewCommanderStats");
+	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "viewCommanderStats()");
 
 	commSPTR commander = pickCommander();
 
@@ -107,8 +105,7 @@ void Participants::viewCommanderStats() {
 }
 
 void Participants::trainCommanderPrompt() {
-	//For debugging
-	DEBUG_FUNCTION("ArmyOverview, trainCommanderPrompt");
+	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "trainCommanderPrompt()");
 
 	std::cout << "You have " << this->getCommandersNum() << "/" << TROOP::maxCommanders << " total army commanders. \n";
 	if (getCommandersNum < TROOP::maxCommanders()) {
@@ -127,9 +124,8 @@ void Participants::trainCommanderPrompt() {
 	INF::enterAnything(1);
 }
 
-void Participants::proceedWithTraining(const i5array& trainCosts) {
-	//For debugging
-	DEBUG_FUNCTION("ArmyOverview, proceedWithTraining");
+void Participants::proceedWithTraining(constArrayReference trainCosts) {
+	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "proceedWithTraining(constArrayReference)");
 
 	bool trainingSuccess = getCapitalProvince()->subtractCheckResources(trainCosts);
 
@@ -146,8 +142,7 @@ void Participants::proceedWithTraining(const i5array& trainCosts) {
 }
 
 void Participants::deployCommanderPrompt() {
-	//For debugging
-	DEBUG_FUNCTION("ArmyOverview, deployCommanderPrompt");
+	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "deployComanderPrompt(0)");
 
 	commSPTR commander = pickCommander();
 	if (commander == nullptr) { return; }
@@ -173,8 +168,8 @@ void Participants::deployCommanderPrompt() {
 }
  
 void Participants::addCommander() {  
-	//For debugging
-	DEBUG_FUNCTION("Participants, addCommander");
+	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "addCommander()");
+
 	commSPTR commander = std::make_shared<Commanders>(new Commanders(1, getNewName()));
 	commander->setParticipantIndex(participantIndex); 
 
@@ -184,5 +179,6 @@ void Participants::addCommander() {
 }
 
 void Participants::armyOverviewSelectActionShowHelp() {
+	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "armyOverviewSelectActionShowHelp()");
 	INF::showHelp(5);
 }

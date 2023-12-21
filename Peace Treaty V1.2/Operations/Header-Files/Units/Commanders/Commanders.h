@@ -17,7 +17,7 @@ using namespace UNIT;
 namespace COMM {
 
 	//Control army units
-	class Commanders : public PrimeUnits {
+	class Commanders : public PrimeUnits, public TroopsINT {
 	public:
 		//----Constructors-----------------------------------------------------
 		Commanders();
@@ -29,6 +29,7 @@ namespace COMM {
 		bool hasMoved();
 		const std::string& getCommanderNameLevel();
 		constArrayReference getUpgradeCosts();
+		
 
 		//----Printers---------------------------------------------------------
 		void printCommanderStats();
@@ -39,6 +40,36 @@ namespace COMM {
 		void addLevel();
 		void resetCommanderMoved();
 		void calculateCommanderScoutLog();
+
+		///////////////////////////////PrimeUnits.h////////////////////////////
+		constINT getCombatPower() override;
+		void calculateFoodConsumption() override;
+		constINT getFoodConsumption() override;
+		constINT getLevel() override;
+
+		///////////////////////////////TroopsINT.h/////////////////////////////
+		void printTroopsPresent() ;
+
+		//----Getters--------------------------------------------------------------
+	
+		constArrayReference getAllOneTroopArray(TroopCondition troopCondition, TROOP::TroopTypes type);
+		constINT getAllOneTroopInt(TroopCondition troopCondition, TROOP::TroopTypes type);
+
+		constArrayReference getGenericTroops(TroopCondition type);
+
+		//----Mutators-------------------------------------------------------------
+		void mutateTroop(
+			TROOP::TroopCondition troopCondition,
+			TROOP::TroopTypes type,
+			i5array amount,
+			Quantity quant,
+			INF::MutateDirection direction,
+			int troopTier);
+
+		std::array<TROOP::troopConditionArray, 3> getTroopsLists();
+
+		///Set the battle formation for... battle
+		void setBattleFormation(TROOP::troopConditionArray troopArray);
 
 	private:
 		int

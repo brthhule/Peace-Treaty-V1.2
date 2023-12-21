@@ -2,6 +2,7 @@
 #include COMMANDERS_HEADER
 
 using namespace COMM;
+using namespace TROOP;
 
 /*Constructors*/
 Commanders::Commanders() {
@@ -120,4 +121,23 @@ const std::string& Commanders::getCommanderNameLevel() {
 
 void Commanders::printCommanderNameLevel() {
 	std::cout << getCommanderNameLevel() << +"\n";
+}
+
+constINT Commanders::getCombatPower() {
+	return combatPower;
+}
+
+void Commanders::calculateFoodConsumption() {
+	foodConsumption = 0;
+	for (int troopType = 0; troopType < 5; troopType++) { 
+		foodConsumption += getAllOneTroopInt(REGULAR, TroopTypes(troopType)); 
+	}
+}
+
+constINT Commanders::getFoodConsumption() {
+	return foodConsumption;
+}
+
+constINT Commanders::getLevel() {
+	return level;
 }

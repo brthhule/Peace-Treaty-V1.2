@@ -33,6 +33,8 @@ namespace TROOP {
 		ARTILLARY
 	};
 
+	
+	extern i5array TROOP_NAMES;
 	//Check out spelling below??
 	extern i5array TROOPS_COST, Troops_CP;
 	extern int maxCommanders;
