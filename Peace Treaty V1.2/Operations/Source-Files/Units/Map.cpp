@@ -7,14 +7,13 @@ Map::ProvincesMap Map::mapMap = std::unordered_map<std::string, provSPTR>();
 
 void Map::setMap() {
 	//For debugging
-	DEBUG_FUNCTION("Map, setMap");
+	DEBUG_FUNCTION("Map.cpp", "setMap");
 
-	int overallIndex = 0;
+	int mapIndex = 0;
 	for (int x = 0; x < INF::continentSize; x++) {
 		std::vector<provSPTR> tempVector = {};
 		for (int y = 0; x < INF::continentSize; y++) {
-			provSPTR newProvince = new Provinces(overallIndex);
-			newProvince->setOverallIndex(overallIndex);
+			provSPTR newProvince = new Provinces(mapIndex, -1);
 			overallIndex++;
 			tempVector.push_back(newProvince);
 			mapMap[newProvince->getUnitName()] = newProvince;
@@ -114,10 +113,14 @@ ipair Map::pickCoords() {
 	xCoordinate = Input::getNumber("Enter an X Coordinate (-1 to cancel): ");
 	yCoordinate = Input::getNumber("Enter a Y Coordinate (-1 to cancel): ");
 
-	ipair userCoords = std::make_pair<int, int>(xCoordinate, yCoordinate);
-	if (checkInBounds(userCoords, USER) == false ||
-		xCoordinate == -1 ||
-		yCoordinate == -1) {
+	ipair userCoords = std::make_pair(xCoordinate, yCoordinate);
+
+	if (checkInBounds(userCoords, USER) == false) {
+		std::cout << getColor(RED) << "Coordinates out of bounds... please try again\n" << getColor(RESET);
+		pickCoords();
+	}
+
+	if (xCoordinate == -1 || yCoordinate == -1) {
 		return std::make_pair<int, int>(-1, -1);
 	}
 	

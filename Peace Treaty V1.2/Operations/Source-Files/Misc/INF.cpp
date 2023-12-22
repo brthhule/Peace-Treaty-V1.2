@@ -5,6 +5,16 @@
 namespace INF {
 	////////////////////////////////////////////////Start Variables///////////////////////////////////////
 	
+	template <typename T>
+	const T& makeConst(T& object) {
+		return object;
+	}
+
+	template <typename T>
+	T makeCopy(T& object) {
+		T copy = object;
+		return copy;
+	}
 
 	/*INITIAL_VALUES = 5, 4, 3, 2, 1 */
 	i5array INITIAL_VALUES = { 5, 4, 3, 2, 1 };
@@ -59,7 +69,7 @@ namespace INF {
 	}
 	
 	template <typename T>
-	T& Array5<T>::get(int index) {
+	T& Array5<T>::at(int index) {
 		return items.at(index);
 	}
 

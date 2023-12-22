@@ -7,7 +7,7 @@ using namespace TROOP;
 /*Constructors*/
 Commanders::Commanders() {
 	//For debugging
-	DEBUG_FUNCTION("Commanders, Commanders (0 Param)");
+	DEBUG_FUNCTION("Commanders", "Commanders ()");
 
 	Commanders(1, "Unnamed");
 }
@@ -74,53 +74,37 @@ INF::i5array Commanders::getUpgradeCosts() {
 	return costsArray;
 }
 
-void Commanders::printCosts(i5array costs)
-{
-	//For debugging
-	DEBUG_FUNCTION("Commanders, printCosts");
 
-	for (int x = 0; x < 5; x++) {
-		std::cout << INF::RESOURCE_NAMES[x] << " cost: " << costs[x] << std::endl;
-	}
-		
-	std::cout << std::endl;
-}
 
-void Commanders::calculateCommanderScoutLog()
-{
+void Commanders::calculateCommanderScoutLog(){
 	//For debugging
-	DEBUG_FUNCTION("Commanders, calculateCommanderScoutLog");
+	DEBUG_FUNCTION("Commanders.cpp", "calculateCommanderScoutLog");
 
 	//Implement this
 }
 
 void Commanders::addLevel() {
 	//For debugging
-	DEBUG_FUNCTION("Commanders, addLevel");
-
-	unitLevel++;
+	DEBUG_FUNCTION("Commanders.cpp", "addLevel");
+	level++;
 }
 
 bool Commanders::hasMoved() {
 	//For debugging
-	DEBUG_FUNCTION("Commanders, hasMoved");
+	DEBUG_FUNCTION("Commanders.cpp", "hasMoved");
 
 	return moved;
 }
 
 void Commanders::resetCommanderMoved() {
 	//For debugging
-	DEBUG_FUNCTION("Commanders, resetCommanderHasMoved");
+	DEBUG_FUNCTION("Commanders.cpp", "resetCommanderHasMoved");
 
 	moved = false;
 }
 
 const std::string& Commanders::getCommanderNameLevel() {
-	return "Name: " + getUnitName() + ", Level: " + getLevel();
-}
-
-void Commanders::printCommanderNameLevel() {
-	std::cout << getCommanderNameLevel() << +"\n";
+	return "Name: " + getName() + ", Level: " + getLevel();
 }
 
 constINT Commanders::getCombatPower() {
@@ -130,7 +114,7 @@ constINT Commanders::getCombatPower() {
 void Commanders::calculateFoodConsumption() {
 	foodConsumption = 0;
 	for (int troopType = 0; troopType < 5; troopType++) { 
-		foodConsumption += getAllOneTroopInt(REGULAR, TroopTypes(troopType)); 
+		foodConsumption += getSumOfTiersOfTroop(REGULAR, TroopTypes(troopType)); 
 	}
 }
 
@@ -140,4 +124,8 @@ constINT Commanders::getFoodConsumption() {
 
 constINT Commanders::getLevel() {
 	return level;
+}
+
+const Commanders& makeConst(Commanders& commander) {
+	return commander;
 }

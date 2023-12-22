@@ -5,21 +5,20 @@
 using namespace PROV;
 using namespace COORD; 
 
-//Don't use default constructor, just just this with -1 as a parameter
-Provinces::Provinces(int overallIndexArg) {
+//Use participantIndex = -1 for empty provinces
+Provinces::Provinces(int mapIndex, int participantIndex) : PrimeUnits(participantIndex) {
 	//For debugging
-	DEBUG_FUNCTION("Provinces, Provinces (1 Param)");
+	DEBUG_FUNCTION("Provinces.cpp", "Provinces (int)");
 
-	overallIndex = overallIndexArg;
+	this->mapIndex = mapIndex;
 	//Initialize building levels
 	resourcesPresent = INF::INITIAL_VALUES;
-	participantIndex = 0;
 
 	isACapital = false;
 	newAccuracy = -1;
 	resourcesPresent = INF::mutateArray(resourcesPresent, INF::INITIAL_VALUES, INCREASE);
 
-	unitLevel = 1;
+	level = 1;
 	commandersSortType = ALPHABETICAL;
 
 	//Buildings should be created when their province is created, figure out how to do that
@@ -27,7 +26,13 @@ Provinces::Provinces(int overallIndexArg) {
 	buildings.at(0) = barracks;*/
 }
 
+constINT Provinces::getCombatPower() {
+	return combatPower;
+}
 
+constINT Provinces::getFoodConsumption() {
+	return foodConsumption;
+}
 
 std::array<int, 7> Provinces::getListsInt() {
 	std::array<int, 7> returnArray = {
@@ -35,9 +40,9 @@ std::array<int, 7> Provinces::getListsInt() {
 		totalTroops,
 		foodConsumption,
 		participantIndex,
-		unitLevel,
+		level,
 		getTroopsTrainedThisTurn(),
-		overallIndex
+		mapIndex
 	};
 	return returnArray;
 }
@@ -67,7 +72,7 @@ INF::SortType Provinces::getCommandersSortStatus() {
 void Provinces::updateProvinceResources()
 {
 	//For debugging
-	DEBUG_FUNCTION("Provinces, updateProvinceResources");
+	DEBUG_FUNCTION("Provinces.cpp", "updateProvinceResources");
 
 	//Farm is just a placeholder, it is overridden by the ALL param
 	i5array resourcesProduced = getResourceProduction(BuildingsEnum::FARM, ALL);  
@@ -78,7 +83,7 @@ void Provinces::updateProvinceResources()
 void Provinces::makeCapital(int participantIndexArg)
 {
 	//For debugging
-	DEBUG_FUNCTION("Provinces, makeCapital");
+	DEBUG_FUNCTION("Provinces.cpp", "makeCapital");
 
 	setParticipantIndex(participantIndexArg);
 	isACapital = true;
@@ -86,7 +91,7 @@ void Provinces::makeCapital(int participantIndexArg)
 
 void Provinces::initializeCapitalStats() {
 	//For debugging
-	DEBUG_FUNCTION("Provinces, initializeCapitalStats");
+	DEBUG_FUNCTION("Provinces.cpp", "initializeCapitalStats");
 
 	initiailizeCapitalBuildings();
 }
@@ -95,7 +100,7 @@ void Provinces::initializeCapitalStats() {
 void Provinces::removeCommander(commSPTR newCommander)
 {
 	//For debugging
-	DEBUG_FUNCTION("Provinces, removeCommander");
+	DEBUG_FUNCTION("Provinces.cpp", "removeCommander");
 
 	commandersMap.erase(newCommander->getName());
 	commandersVector.erase(commandersVector.begin() + getCommanderIndex(newCommander));
@@ -104,7 +109,7 @@ void Provinces::removeCommander(commSPTR newCommander)
 void Provinces::addCommander(Commanders &commanderReference)
 {
 	//For debugging
-	DEBUG_FUNCTION("Provinces, addCommander");
+	DEBUG_FUNCTION("Provinces.cpp", "addCommander");
 	commSPTR commander = std::make_shared<Commanders>(commanderReference);
 	commandersMap[commander->getName()] = commander; 
 
@@ -116,13 +121,13 @@ void Provinces::addCommander(Commanders &commanderReference)
 constINT Provinces::getTotalCP()
 {
 	//For debugging
-	DEBUG_FUNCTION("Provinces, getTotalCP");
+	DEBUG_FUNCTION("Provinces.cpp", "getTotalCP");
 
 	int totalCP = 0;
-	totalCP += getCP();
+	totalCP += getCombatPower();
 
 	for (int index = 0; index < commandersVector.size(); index++) {
-		totalCP += commandersVector.at(index)->getCP();
+		totalCP += commandersVector.at(index)->getCombatPower();
 	}
 	return totalCP;
 }
@@ -133,7 +138,7 @@ constINT Provinces::getTotalCP()
 COMM::commSPTRList Provinces::getAllCommanders()
 {
 	//For debugging
-	DEBUG_FUNCTION("Provinces, getAllCommanders");
+	DEBUG_FUNCTION("Provinces.cpp", "getAllCommanders");
 
 	commSPTRList commandersList;
 	COMM::commMAP::iterator it; 
@@ -145,13 +150,13 @@ COMM::commSPTRList Provinces::getAllCommanders()
 
 COMM::commSPTR Provinces::getCommander(std::string name) { 
 	//For debugging
-	DEBUG_FUNCTION("Provinces, getCommander");	
+	DEBUG_FUNCTION("Provinces.cpp", "getCommander");	
 	return commandersMap[name];
 }
 
 bool Provinces::subtractCheckResources(constArrayReference resourcesArray) {
 	//For debugging
-	DEBUG_FUNCTION("Provinces, subtractCheckResources");
+	DEBUG_FUNCTION("Provinces.cpp", "subtractCheckResources");
 
 	//returns false if resources dip into negatives
 	this->mutateAllResources(resourcesArray, DECREASE);
@@ -165,7 +170,7 @@ bool Provinces::subtractCheckResources(constArrayReference resourcesArray) {
 void Provinces::printCommanders()
 {
 	//For debugging
-	DEBUG_FUNCTION("Provinces, printCommanders");
+	DEBUG_FUNCTION("Provinces.cpp", "printCommanders");
 
 	for (it = commandersMap.begin(); it != commandersMap.end(); it++) {
 		std::cout << "- " << it->second->getName();
@@ -175,7 +180,7 @@ void Provinces::printCommanders()
 bool Provinces::hasCommander(std::string name)
 {
 	//For debugging
-	DEBUG_FUNCTION("Provinces, hasCommander");
+	DEBUG_FUNCTION("Provinces.cpp", "hasCommander");
 	for (it = commandersMap.begin(); it != commandersMap.end(); it++) {
 		if (it->second->getName() == name) {
 			return true;
@@ -189,24 +194,15 @@ bool Provinces::hasCommander(std::string name)
 
 
 //Fix this to differentiate between resource buildings and othe rother buildings; right now, only accounts for resource buildings
-
-void Provinces::setOverallIndex(int index) {
+constINT Provinces::getMapIndex() {
 	//For debugging
-	DEBUG_FUNCTION("Provinces, setOverallIndex");
-
-	overallIndex = index;
-}
-
-constINT Provinces::getOverallIndex() {
-	//For debugging
-	DEBUG_FUNCTION("Provinces, getOverallIndex");
-
-	return overallIndex;
+	DEBUG_FUNCTION("Provinces.cpp", "getMapIndex");
+	return mapIndex;
 }
 
 std::array<i5array, 7> Provinces::getLists() {
 	//For debugging
-	DEBUG_FUNCTION("Provinces, getLists");
+	DEBUG_FUNCTION("Provinces.cpp", "getLists");
 
 	std::array<i5array, 7> tempOverallArray;
 	for (int row = 0; row < 7; row++) {
@@ -222,7 +218,7 @@ std::array<i5array, 7> Provinces::getLists() {
 std::array<int, 7> Provinces::getListInt()
 {
 	//For debugging
-	DEBUG_FUNCTION("Provinces, getListInt");
+	DEBUG_FUNCTION("Provinces.cpp", "getListInt");
 
 	std::array<int, 7> listTemp;
 	for (int column = 0; column < 7; column++) {
@@ -234,7 +230,7 @@ std::array<int, 7> Provinces::getListInt()
 std::array<bool, 3> Provinces::getListBool()
 {
 	//For debugging
-	DEBUG_FUNCTION("Provinces, getListBool");
+	DEBUG_FUNCTION("Provinces.cpp", "getListBool");
 
 	std::array<bool, 3> listTemp;
 	for (int column = 0; column < 3; column++) {
@@ -245,35 +241,35 @@ std::array<bool, 3> Provinces::getListBool()
 
 std::array< ipair, 2> Provinces::getListCoords() {
 	//For debugging
-	DEBUG_FUNCTION("Provinces, getListCoords");
+	DEBUG_FUNCTION("Provinces.cpp", "getListCoords");
 
 	return { CoordsBASE::systemCoords, CoordsBASE::userCoords };
 }
 
 void Provinces::setKingdomName(std::string name) { 
 	//For debugging
-	DEBUG_FUNCTION("Provinces, setKingdomName");
+	DEBUG_FUNCTION("Provinces.cpp", "setKingdomName");
 
 	kingdomName = name;
 }
 
 constINT Provinces::getCommandersNum() {
 	//For debugging
-	DEBUG_FUNCTION("Provinces, getCommandersNum");
+	DEBUG_FUNCTION("Provinces.cpp", "getCommandersNum");
 
 	return (int)commandersVector.size(); 
 }
 
 bool Provinces::isCapital() {
 	//For debugging
-	DEBUG_FUNCTION("Provinces, isCapital");
+	DEBUG_FUNCTION("Provinces.cpp", "isCapital");
 
 	return isACapital;
 }
 
 void Provinces::createReport(int scouterLevelArg, int targetLevelArg) {
 	//For debugging
-	DEBUG_FUNCTION("Provinces, createReport");
+	DEBUG_FUNCTION("Provinces.cpp", "createReport");
 
 	std::array<i5array, 7> ListsArg;
 	std::array<int, 7> listIntArg;

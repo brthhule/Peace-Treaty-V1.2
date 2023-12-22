@@ -11,16 +11,25 @@ void Participants::armyOverviewSelectAction() {
 
 	/*Its type is “int (*)(char,float)” if an ordinary function
 Its type is “int (Fred::*)(char,float)” if a non-static member function of class Fred*/
-	typedef void (Participants::* Actions)(void);
-	//typedef void (*Actions)(void); // function pointer type 
+	typedef void (Participants::*Actions)(void);
+
 	typedef std::unordered_map<char, Actions> ActionFunctions; 
 	ActionFunctions actionsMap; 
-	actionsMap.emplace('U', &trainCommanderPrompt); 
-	actionsMap.emplace('U', &upgradeCommander);
-	actionsMap.emplace('U', &viewCommanderStats); 
-	actionsMap.emplace('U', &deployCommanderPrompt); 
-	actionsMap.emplace('U', &armyOverviewSelectActionShowHelp); 
-	actionsMap.emplace('U', &nothing()); 
+
+	actionsMap['T'] = trainCommanderPrompt;
+	actionsMap['U'] = upgradeCommander;
+	actionsMap['V'] = viewCommanderStats;
+	actionsMap['D'] = deployCommanderPrompt;
+	actionsMap['A'] = armyOverviewSelectActionShowHelp;
+	actionsMap['N'] = nothing();
+
+	actionsMap.insert(std::make_pair<char, void (Participants::*)(void)>(upgradeCommander));
+	actionsMap.insert('U', trainCommanderPrompt);
+	actionsMap.insert(std::make_pair(('U', upgradeCommander));
+	actionsMap.insert(std::make_pair(('U', viewCommanderStats));
+	actionsMap.insert(std::make_pair(('U', deployCommanderPrompt));
+	actionsMap.insert(std::make_pair(('U', armyOverviewSelectActionShowHelp));
+	actionsMap.insert(std::make_pair(('U', nothing()));
 
 	char action = Input::getOptionPrompt(ARMY_DEPLOYMENT).at(0);
 	actionsMap[action]();    

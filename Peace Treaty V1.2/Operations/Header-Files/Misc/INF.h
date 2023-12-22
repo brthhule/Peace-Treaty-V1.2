@@ -15,7 +15,12 @@
 #include <fstream>
 
 
+
 namespace INF {
+	//----Symbolic Constants-----------
+	constexpr int UNIT_AMOUNT = 5;
+
+	using i5array = std::array<int, UNIT_AMOUNT>;
 	template <typename T>
 	class myvector : std::vector<int> {
 	public:
@@ -27,17 +32,21 @@ namespace INF {
 	template <typename T>
 	class myarray : i5array {
 	public:
-		void createArray(INF::i5array arrayArg);
+		void createArray(i5array arrayArg);
 		void addArrayElements(myarray arrayArg);
 	};
 
+	template <typename T>
+	const T& makeConst(T& object);
+
+	template <typename T>
+	T makeCopy(T& object);
+
 	//////////////////////////////////////Aliases//////////////////////////////
-	//----Symbolic Constants-----------
-	constexpr int UNIT_AMOUNT = 5;
+	
 
 	//----Array/Vector Types-----------
 	using s5array = std::array<std::string, UNIT_AMOUNT>;
-	using i5array = std::array<int, UNIT_AMOUNT>;
 	using d5array = std::array<double, UNIT_AMOUNT>;
 
 	using ivector = std::vector<int>;
@@ -111,10 +120,11 @@ namespace INF {
 	class Array5 {
 	public:
 		Array5(std::initializer_list<T> list);
-		T& get(int index);
+		T& at(int index);
 	private:
 		std::array<T, 5> items;
 	};
+
 	///////////////////////////////////Variables///////////////////////////////
 	extern s5array
 		TROOP_NAMES,

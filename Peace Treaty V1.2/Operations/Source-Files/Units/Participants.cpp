@@ -521,7 +521,7 @@ provSPTR Participants::pickProvince(int phrase) {
 
 bool Participants::hasUnit(const std::string &unitName) { 
 	//For debugging
-	DEBUG_FUNCTION("Participants, hasUnit");
+	DEBUG_FUNCTION("Participants.cpp", "hasUnit(const std::string&)");
 
 	if (hasCommander(unitName)) {
 		return true;
@@ -532,18 +532,20 @@ bool Participants::hasUnit(const std::string &unitName) {
 	return false;
 }
 
-bool Participants::hasUnit(PrimeUnits unit&) { 
-	try {
-		PrimeUnits* tempUnit = unit; 
-		std::string name = tempUnit->getName(); 
-		delete tempUnit; 
+void Participants::nothing() {
+	//Do nothing
+}
 
-		if (typeid(tempUnit).name == "Commanders") { 
+bool Participants::hasUnit(PrimeUnits &unit) { 
+	try {
+		const std::string name = unit.getName();
+
+		if (typeid(unit).name() == "Commanders") {
 			return hasCommander(name); 
 		}
 
 		return hasProvince(name); 
-		bool returnValue = hasCommander(name); 
+
 	} catch (...) {
 		std::cout << "Something wrong... Participants::hasUnit(PrimeUnits unit&)";
 	}
@@ -551,28 +553,20 @@ bool Participants::hasUnit(PrimeUnits unit&) {
 
 provSPTR Participants::getSystemProvince(ipair systemCoords) {
 	//For debugging
-	DEBUG_FUNCTION("Participants, getSystemProvince");
+	DEBUG_FUNCTION("Participants.cpp", "getSystemProvince");
 
-	return Map::getSystemProvince(systemCoords);
-}
-
-void Participants::showMap() {
-	//For debugging
-	DEBUG_FUNCTION("Participants, showMap");
-
-	Map::showMap();
+	return Map::getProvince(SYSTEM, systemCoords);
 }
 
 i5array Participants::getPrimeUnitsArray() {
 	//For debugging
-	DEBUG_FUNCTION("Participants, getPrimeUnitsArray");
+	DEBUG_FUNCTION("Participants", "getPrimeUnitsArray");
 
 	i5array returnArray = {0,0,0,0,0};
-	partSPTR p = std::make_shared(new Participants());
 
 	try {
-		std::thread th1 = p->th1Method();
-		std::thread th2 = p->th2Method();
+		std::thread th1 = this->th1Method();
+		std::thread th2 = this->th2Method();
 		th1.join();
 		th2.join();
 	}
@@ -582,13 +576,13 @@ i5array Participants::getPrimeUnitsArray() {
 	}
 	
 
-	return mutateArray(returnArray, allCommandersArray, true);
+	return mutateArray(returnArray, allCommandersArray, INCREASE); 
 }
 
 
 int Participants::getPrimeUnitsAmount() {
 	//For debugging
-	DEBUG_FUNCTION("Participants, getPrimeUnitsAmount");
+	DEBUG_FUNCTION("Participants.cpp", "getPrimeUnitsAmount");
 
 	int amount = 0;
 	for (int x : getPrimeUnitsArray()) {
@@ -600,54 +594,20 @@ int Participants::getPrimeUnitsAmount() {
 
 std::thread Participants::th1Method() {
 	//For debugging
-	DEBUG_FUNCTION("Participants, th1Method");
+	DEBUG_FUNCTION("Participants.cpp", "th1Method");
 
 	return std::thread([=] {getPrimeUnitsArrayProvinces(); });
 }
 
 std::thread Participants::th2Method() {
 	//For debugging
-	DEBUG_FUNCTION("Participants, the2Method");
+	DEBUG_FUNCTION("Participants.cpp", "the2Method");
 
 	return std::thread([=] {getPrimeUnitsArrayCommanders(); });
-}
 
+	Commanders commander;
+	const Commanders &reference =  &commander;
 
-
-
-ipair Participants::pickCoords() {
-	//For debugging
-	DEBUG_FUNCTION("Participants, pickCoords");
-
-	showMap(); 
-
-	std::string
-		xCoordinateString,
-		yCoordinateString;
-
-	std::cout << "Enter an x coordinate: ";
-	getline(std::cin, xCoordinateString);
-	std::cout << "Enter a y coordinate: ";
-	getline(std::cin, yCoordinateString);
-
-	int
-		xCoordinate = std::stoi(xCoordinateString),
-		yCoordinate = std::stoi(yCoordinateString);
-
-	bool xCoordCondition = xCoordinate > 0 && xCoordinate <= INF::continentSize;
-	bool yCoordCondition = yCoordinate > 0 && yCoordinate <= INF::continentSize;
-	if (xCoordCondition && yCoordCondition) {
-		return { xCoordinate, yCoordinate };
-	}
-
-	INF::addColor(RED);
-	std::cout << "Inputed coordinates are out of bounds... please try again.";
-	INF::addColor(RESET);
-	pickCoords();
-
-	//Error path
-	ipair tempPair(-1, -1);
-	return tempPair;
 }
 
 partSPTR Participants::getParticipant(int listIndex) { 
@@ -659,7 +619,7 @@ std::unordered_map<std::string, commSPTR> Participants::getCommandersMap() {
 
 void Participants::getPrimeUnitsArrayCommanders() {
 	//For debugging
-	DEBUG_FUNCTION("Participants, getPrimeUnitsArrayCommanders");
+	DEBUG_FUNCTION("Participants.cpp", "getPrimeUnitsArrayCommanders");
 
 	for (commSPTR instance : commandersVector) {
 		i5array commanderArray = instance.getTroop(REGULAR, -1, ALL);

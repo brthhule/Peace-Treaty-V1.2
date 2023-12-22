@@ -31,10 +31,9 @@ public:
 	using unitSPTRList = std::vector<unitSPTR>;
 
 	//----Constructors---------------------------------------------------------
-	///Default Constructor
-	PrimeUnits();
 	///One param overloaded Constructor
-	PrimeUnits(int index);
+	///Use -1 for empty provinces
+	PrimeUnits(int participantIndex);
 	///Destructor
 	~PrimeUnits(){}
 
@@ -97,6 +96,8 @@ public:
 	unitSPTRList sortVector(SortType sort, unitSPTRList list);
 	unitSPTRList levelSort(unitSPTRList list);
 
+	void printNameLevel();
+
 	//----Setters--------------------------------------------------------------
 	///Set this unit's name
 	void setName(std::string name);
@@ -104,7 +105,6 @@ public:
 	void setParticipantIndex(int number);
 
 	///////////////////////////////////TroopsINT.h/////////////////////////////
-	void printTroopsPresent() override;
 
 protected:
 	i5array resourcesPresent;
@@ -114,25 +114,14 @@ protected:
 	int totalTroops;
 	int foodConsumption;
 	int participantIndex;
-	int unitLevel;
-
-
-	troopConditionArray troopsPresent;
-	troopConditionArray troopsInjured;
-	troopConditionArray troopsLost;
-
-
-	std::array<troopConditionArray*, 3> allTroopConditions;
-
-	std::array<std::vector<TroopUnitsBASE>, 5> battleFormation;
-
+	int level;
 
 	//Coordinates;
 
 	bool canSelectThisUnit;
 
 	UnitType type;
-	std::string unitName;
+	std::string name;
 	TroopUnitsBASE troops;
 };
 

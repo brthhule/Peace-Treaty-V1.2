@@ -4,58 +4,45 @@
 
 using namespace COORD;
 
-void CoordsBASE::setIndex (int index) {
+void CoordsBASE::setMapIndex (int mapIndex) {
 	//For debugging
-	DEBUG_FUNCTION("Coords, OtherBuildingsToString");
+	DEBUG_FUNCTION("Coords.cpp", "OtherBuildingsToString");
 
-	this->index = index;
+	this->mapIndex = mapIndex;
 
 	//Set systemCoords
 	systemCoords = std::make_pair(
-		index / INF::continentSize, 
-		index % INF::continentSize);
+		mapIndex / INF::continentSize, 
+		mapIndex % INF::continentSize);
 
 	//Set userCoords
 	userCoords = std::make_pair(
-		(index % INF::continentSize) + 1,
-		INF::continentSize - (index / INF::continentSize));
+		(mapIndex % INF::continentSize) + 1,
+		INF::continentSize - (mapIndex / INF::continentSize));
+}
+
+CoordsBASE::CoordsBASE() {
+	mapIndex = 0;
 }
 
 ipair CoordsBASE::getCoords(CoordsType type) {
-	DEBUG_FUNCTION("Coords, getCoords");
+	DEBUG_FUNCTION("Coords.cpp", "getCoords");
 
-	ipair tempPair;
-	switch (type) {
-	case SYSTEM:
-		tempPair = systemCoords;
-		break;
-	case USER:
-		tempPair = userCoords;
-		break;
-	}
-
-	return tempPair;
+	if (type == SYSTEM) { return systemCoords; }
+	return userCoords;
 }
 
 void CoordsBASE::printCoords(CoordsType type) {
-	DEBUG_FUNCTION("Coords, printCoords");
+	DEBUG_FUNCTION("Coords.cpp", "printCoords");
 
-	ipair tempPair;
-	switch (type) {
-	case SYSTEM:
-		tempPair = systemCoords;
-		break;
-	case USER:
-		tempPair = userCoords;
-		break;
-	}
-
+	ipair tempPair = userCoords;
+	if (type == SYSTEM) { tempPair = systemCoords; }
 	std::cout << "(" << tempPair.first << ", " << tempPair.second << ")";
 }
 
 void CoordsBASE::setCoords(ipair systemCoords, ipair userCoords) {
 	//For debugging
-	DEBUG_FUNCTION("Coords, setCoords");
+	DEBUG_FUNCTION("Coords.cpp", "setCoords");
 
 	this->systemCoords = systemCoords;
 	this->userCoords = userCoords;
@@ -65,72 +52,55 @@ void CoordsBASE::setCoords(ipair systemCoords, ipair userCoords) {
 If current type is SYSTEM, translate to USER, vice versa*/
 ipair CoordsBASE::translateCoords(ipair coords, CoordsType currentType) {
 	//For debugging
-	DEBUG_FUNCTION("Coords, translateCoords");
+	DEBUG_FUNCTION("Coords.cpp", "translateCoords");
 
-	int index = coordsToIndex(coords, currentType);
+	int mapIndex = coordsTomapIndex(coords, currentType);
 
-	switch (currentType) {
-		case SYSTEM:
-			return indexToCoords(index, USER);
-		case USER:
-		default:
-			return indexToCoords(index, SYSTEM);
-	}
-	
+	if (currentType == SYSTEM) { return mapIndexToCoords(mapIndex, USER); }
+	return mapIndexToCoords(mapIndex, SYSTEM);
+
 }
 
 std::string CoordsBASE::getCoordsString(CoordsType type) {
-	if (type == USER) {
-		return "(" + std::to_string(userCoords.first) + ", " + std::to_string(userCoords.second) + ")"; 
-	}
+	ipair coords = userCoords;
+	if (type == SYSTEM) { coords = systemCoords; }
 
-	return "(" + std::to_string(systemCoords.first) + ", " + std::to_string(systemCoords.second) + ")"; 
+	return "(" + std::to_string(coords.first) + ", " + std::to_string(coords.second) + ")"; 
 }
 
-ipair CoordsBASE::indexToCoords(int index, CoordsType type) {
-	DEBUG_FUNCTION("Coords, indexToCoords");
+ipair CoordsBASE::mapIndexToCoords(int mapIndex, CoordsType type) {
+	DEBUG_FUNCTION("Coords.cpp", "mapIndexToCoords");
 	int row = 0, col = 0, x = 0, y = 0;
 
-	switch (type) {
-		case SYSTEM:
-			row = index / continentSize;
-			col = index % continentSize;
-			return std::make_pair(row, col);
-
-			//Use this for "initialization of 'row' is skipped by 'case' label" error
-			break;
-		case USER:
-		default:
-			x = (index % continentSize) + 1;
-			y = continentSize - (index / continentSize);
-			return std::make_pair(x, y);
-			break;
+	if (type == SYSTEM) {
+		row = mapIndex / continentSize;
+		col = mapIndex % continentSize;
+		return std::make_pair(row, col);
 	}
+
+	x = (mapIndex % continentSize) + 1;
+	y = continentSize - (mapIndex / continentSize);
+	return std::make_pair(x, y);
 }
 
-int CoordsBASE::coordsToIndex(ipair coords, CoordsType type) {
-	DEBUG_FUNCTION("Coords, coordsToIndex");
-	switch (type) {
-		case SYSTEM:
-			return (coords.first * continentSize) + coords.second;
-		case USER:
-		default:
-			return (continentSize * (continentSize - coords.second)) +
-				(coords.first - 1);
-	}
+int CoordsBASE::coordsTomapIndex(ipair coords, CoordsType type) {
+	DEBUG_FUNCTION("Coords.cpp", "coordsTomapIndex");
+	if (type == SYSTEM) { return (coords.first * continentSize) + coords.second; }
+
+	return (continentSize * (continentSize - coords.second)) + (coords.first - 1);
 }
 
-constINT COORD::getRandomCoordinate() {   
+int COORD::getRandomCoordinate() {   
 	//For debugging
-	DEBUG_FUNCTION("Map, getRandomCoordinate");
+	DEBUG_FUNCTION("Map.cpp", "getRandomCoordinate");
 	return rand() % INF::continentSize; 
 }
 
 void CoordsBASE::setCoords(std::pair<const ipair&, const ipair&> coords) {  
-	systemCoords = *coords.first; 
-	userCoords = *coords.second;
+	systemCoords = coords.first; 
+	userCoords = coords.second;
 } 
 
 std::pair<const ipair&, const ipair&> CoordsBASE::getPairCoords() {  
-	return std::make_pair(&systemCoords, &userCoords); 
+	return std::make_pair(systemCoords, userCoords); 
 }

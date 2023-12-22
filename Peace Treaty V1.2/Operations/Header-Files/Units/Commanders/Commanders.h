@@ -15,9 +15,10 @@ using namespace UNIT;
 
 ///Namespace for Commanders
 namespace COMM {
-
 	//Control army units
 	class Commanders : public PrimeUnits, public TroopsINT {
+
+		
 	public:
 		//----Constructors-----------------------------------------------------
 		Commanders();
@@ -34,8 +35,6 @@ namespace COMM {
 		//----Printers---------------------------------------------------------
 		void printCommanderStats();
 		//Print commander name and level then enter new line escape character
-		void printCommanderNameLevel();
-		void printCosts(i5array costs);
 
 		void addLevel();
 		void resetCommanderMoved();
@@ -52,10 +51,11 @@ namespace COMM {
 
 		//----Getters--------------------------------------------------------------
 	
-		constArrayReference getAllOneTroopArray(TroopCondition troopCondition, TROOP::TroopTypes type);
-		constINT getAllOneTroopInt(TroopCondition troopCondition, TROOP::TroopTypes type);
+		tiersArray& getAllTiersOfTroop(TroopCondition troopCondition, TROOP::TroopTypes type);
+		int getSumOfTiersOfTroop(TroopCondition troopCondition, TROOP::TroopTypes type);
 
 		constArrayReference getGenericTroops(TroopCondition type);
+		std::array<troopsArray, 3> &getAllTroopConditions();
 
 		//----Mutators-------------------------------------------------------------
 		void mutateTroop(
@@ -66,10 +66,10 @@ namespace COMM {
 			INF::MutateDirection direction,
 			int troopTier);
 
-		std::array<TROOP::troopConditionArray, 3> getTroopsLists();
-
 		///Set the battle formation for... battle
-		void setBattleFormation(TROOP::troopConditionArray troopArray);
+		void setBattleFormation(troopConditionArray troopArray);
+
+		const Commanders& makeConst(Commanders& commander);
 
 	private:
 		int
@@ -110,6 +110,11 @@ namespace COMM {
 		// check
 		i5array costToUpgrade = { 5, 4, 3, 2, 1 };
 		bool deleteCommander;
+
+		///PRESENT = 0, INJURED = 1, LOST = 2
+		std::array<troopsArray, 3> troopConditions;
+
+		std::array<std::vector<TroopUnitsBASE>, 5> battleFormation;
 	};
 
 	/*Commanders shared pointer 

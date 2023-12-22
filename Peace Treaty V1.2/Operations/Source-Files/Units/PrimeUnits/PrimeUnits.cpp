@@ -7,7 +7,7 @@ using namespace UNIT;
 //One param overloaded Constructor
 PrimeUnits::PrimeUnits(int participantIndexArg) { 
 	//For debugging
-	DEBUG_FUNCTION("PrimeUnits, PrimeUnits (1 Param)");
+	DEBUG_FUNCTION("PrimeUnits.cpp", "PrimeUnits (int)");
 
 	switch (participantIndexArg) {
 		case -1:
@@ -17,63 +17,29 @@ PrimeUnits::PrimeUnits(int participantIndexArg) {
 			canSelectThisUnit = true;
 			for (int x = 0; x < 5; x++) {
 				resourcesPresent[x] = initialStats[x];
-				troopsPresent[x] = 0;
-				troopsInjured[x] = 0;
 			}
 			break;
 	}
 
 	participantIndex = participantIndexArg;
 	foodConsumption = 0;
-	unitLevel = 0;
+	level = 0;
 	combatPower = 0;
 	totalTroops = 0;
 	resourcesPresent = { 0,0,0,0,0 };
 	initialStats = { 5,4,3,2,1 };
-	allTroopConditions = {
-		&troopsPresent,
-		&troopsInjured,
-		&troopsLost
-	};
-}
-
-//Default Constructor
-PrimeUnits::PrimeUnits() {
-	//For debugging
-	DEBUG_FUNCTION("PrimeUnits, PrimeUnits (0 Param)");
-
-	PrimeUnits(-1);
-};
-
-
-void PrimeUnits::printTroopsPresent() {
-	constArrayReference troopsPresent = this->getGenericTroops(REGULAR);
-	for (int x = 0; x < 5; x++) {
-		std::cout << TROOP_NAMES.at(x) << ": " << troopsPresent.at(x) << std::endl;
-	}
-}
-
-constINT PrimeUnits::getCP() {
-	//For debugging
-	DEBUG_FUNCTION("PrimeUnits, getCP");
-
-	combatPower = 0;
-	for (int x = 0; x < 5; x++) {
-		combatPower += troopsPresent[x] * INF::Troops_CP[x];
-	}
-	return combatPower;
 }
 
 constINT PrimeUnits::getParticipantIndex() {
 	//For debugging
-	DEBUG_FUNCTION("PrimeUnits, getParticipantIndex");
+	DEBUG_FUNCTION("PrimeUnits.cpp", "getParticipantIndex");
 
 	return participantIndex;
 }
 
 void PrimeUnits::printResources() { 
 	//For debugging
-	DEBUG_FUNCTION("PrimeUnits, printResources");
+	DEBUG_FUNCTION("PrimeUnits.cpp", "printResources");
 
 	std::cout << "Resources currently present in this " << type << ": \n";
 	INF::addColor(INF::BLUE);
@@ -81,8 +47,8 @@ void PrimeUnits::printResources() {
 	INF::addColor(INF::RESET);
 }
 
-const std::string& PrimeUnits::getName() { return unitName; }
-void PrimeUnits::setName(std::string name) { unitName = name; }
+const std::string& PrimeUnits::getName() { return name; }
+void PrimeUnits::setName(std::string name) { this->name = name; }
 
 //Mutator Functions
 constINT PrimeUnits::getFoodConsumption() { return foodConsumption;}
@@ -93,7 +59,7 @@ constINT PrimeUnits::getResource(int resourceIndex) {
 void PrimeUnits::mutateResource(ResourceType resource, constINT amount,
 	MutateDirection direction) {
 	//For debugging
-	DEBUG_FUNCTION("PrimeUnits, mutateResources");
+	DEBUG_FUNCTION("PrimeUnits.cpp", "mutateResources");
 	int modifier = 1;
 	if (direction == DECREASE) { modifier = -1; }
 	resourcesPresent.at(resource) + (amount * modifier);
@@ -102,7 +68,7 @@ void PrimeUnits::mutateResource(ResourceType resource, constINT amount,
 void PrimeUnits::mutateAllResources(constArrayReference resourcesArray,
 	INF::MutateDirection direction) {
 	//For debugging
-	DEBUG_FUNCTION("PrimeUnits, mdofiyResources");
+	DEBUG_FUNCTION("PrimeUnits.cpp", "mutateAllResources");
 
 
 	resourcesPresent = INF::mutateArray(resourcesPresent, resourcesArray, direction);
@@ -110,14 +76,14 @@ void PrimeUnits::mutateAllResources(constArrayReference resourcesArray,
 
 constINT PrimeUnits::getLevel() {
 	//For debugging
-	DEBUG_FUNCTION("PrimeUnits, getLevel");
+	DEBUG_FUNCTION("PrimeUnits.cpp", "getLevel");
 
-	return unitLevel;
+	return level;
 }
 
 constArrayReference PrimeUnits::getAllResources() {
 	//For debugging
-	DEBUG_FUNCTION("PrimeUnits, getAllResources");
+	DEBUG_FUNCTION("PrimeUnits.cpp", "getAllResources");
 	return resourcesPresent;
 }
 
@@ -127,7 +93,7 @@ const std::string PrimeUnits::getCoords(CoordsType type) {
 
 void PrimeUnits::setParticipantIndex(int number) {
 	//For debugging
-	DEBUG_FUNCTION("PrimeUnits, setParticipantIndex");
+	DEBUG_FUNCTION("PrimeUnits.cpp", "setParticipantIndex");
 
 	participantIndex = number;
 }
@@ -187,3 +153,8 @@ unitSPTRList PrimeUnits::levelSort(unitSPTRList list) {
 	return concatVectors(returnList);
 }
 
+
+
+void PrimeUnits::printNameLevel() {
+	std::cout << "Name: " << name << ", Level: " << level;
+}

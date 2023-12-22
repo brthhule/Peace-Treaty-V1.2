@@ -15,7 +15,11 @@ using namespace TROOP;
  
 class TroopUnitsBASE { 
 public:
+
+	
+
 	//----Constructors---------------------------------------------------------
+	TroopUnitsBASE(){}
 	TroopUnitsBASE(
 		int level, 
 		int baseHalth,
@@ -51,4 +55,9 @@ private:
 	TroopTypes thisType;
 	
 };
+
+using oneTier = std::vector<TroopUnitsBASE>;
+using tiersArray = Array5<oneTier>;
+using troopsArray = Array5 <tiersArray>;
+
 #endif

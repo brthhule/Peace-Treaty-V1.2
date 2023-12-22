@@ -7,9 +7,6 @@
 using namespace INF;
 
 namespace TROOP {
-	using T5array = INF::Array5<TroopUnitsBASE>;
-	using troopConditionArray = INF::Array5<T5array>;
-
 	/*REGULAR, INJURED, LOST */
 	enum TroopCondition {
 		REGULAR,

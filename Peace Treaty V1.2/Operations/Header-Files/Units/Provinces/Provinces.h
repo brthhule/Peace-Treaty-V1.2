@@ -38,8 +38,7 @@ namespace PROV {
 	public:
 		///////////////////////////////This Class//////////////////////////////
 		//----Constructors-----------------------------------------------------
-		Provinces(){}
-		Provinces(int overallIndexArg);
+		Provinces(int mapIndex, int participantIndex);
 		~Provinces() {}
 
 		//----Initialization---------------------------------------------------
@@ -70,7 +69,7 @@ namespace PROV {
 		///Calculates the combat power of this province
 		constINT getTotalCP();
 		///Get the index of this unit in its Participant's vector?
-		constINT getOverallIndex();
+		constINT getMapIndex();
 
 		//----Setters----------------------------------------------------------
 		
@@ -111,7 +110,12 @@ namespace PROV {
 
 		int getCommanderIndex(commSPTR commander);
 
-
+		//Implement these, add them to PrimeUnits later on
+		void calculateCombatPower();
+		void calculateFoodConsumption();
+		///////////////////////////////PrimeUnits.h////////////////////////////
+		constINT getCombatPower() override;
+		constINT getFoodConsumption() override;
 		///////////////////////////////BuildingAttributesINT///////////////////
 		
 		//----Getters----------------------------------------------------------
@@ -166,8 +170,8 @@ namespace PROV {
 
 
 		//----Getters--------------------------------------------------------------
-		constArrayReference getAllOneTroopArray(TroopCondition troopCondition, TROOP::TroopTypes type);
-		constINT getAllOneTroopInt(TroopCondition troopCondition, TROOP::TroopTypes type);
+		constArrayReference getAllTiersOfTroop(TroopCondition troopCondition, TROOP::TroopTypes type);
+		constINT getSumOfTiersOfTroop(TroopCondition troopCondition, TROOP::TroopTypes type);
 		constArrayReference getGenericTroops(TroopCondition type);
 
 		void mutateTroop(
@@ -178,8 +182,8 @@ namespace PROV {
 			INF::MutateDirection direction,
 			int troopTier);
 
-		std::array<TROOP::troopConditionArray, 3> getTroopsLists();
-		void setBattleFormation(TROOP::troopConditionArray troopArray);
+		std::array<troopConditionArray, 3> getTroopsLists();
+		void setBattleFormation(troopConditionArray troopArray);
 
 	protected:
 		enum LISTS { RESOURCE_BUILDINGS_LEVELS, OTHER_BUILDINGS_LEVELS, RESOURCES_PRESENT, TROOPS_PRESENT, TROOPS_INJURED, TROOPS_LOST, INITIAL_STATS };
@@ -202,7 +206,7 @@ namespace PROV {
 
 		bool isACapital;
 
-		int overallIndex;
+		int mapIndex;
 
 		commMAP::iterator it;
 		commMAP commandersMap;

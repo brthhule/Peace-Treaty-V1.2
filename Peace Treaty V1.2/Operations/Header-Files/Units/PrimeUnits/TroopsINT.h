@@ -8,6 +8,7 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 #include INF_HEADER
 #include TROOP_HEADER
+#include TROOP_UNITS_BASE_HEADER
 
 using namespace INF;
 using namespace TROOP;
@@ -24,11 +25,11 @@ public:
 	//----Getters--------------------------------------------------------------
 	/*Return all the tiers for one troop type for a particular condition
 	Example: returns all tiers for guards present*/
-	virtual constArrayReference getAllOneTroopArray(TroopCondition troopCondition, TROOP::TroopTypes type) = 0;
+	virtual tiersArray& getAllTiersOfTroop(TroopCondition troopCondition, TROOP::TroopTypes type) = 0;
 
 	/*Returns the total of all of a particular troop type's tiers for a particular condition
 	Example: returns the total of all tiers for guards present*/
-	virtual constINT getAllOneTroopInt(TroopCondition troopCondition, TROOP::TroopTypes type) = 0;
+	virtual int getSumOfTiersOfTroop(TroopCondition troopCondition, TROOP::TroopTypes type) = 0;
 
 	/*Returns the tier totals for all troop types for a particular condition
 	Example: returns the total of all tiers of all troops presnet, as in the totals for guards, infantry, archers, etc.*/

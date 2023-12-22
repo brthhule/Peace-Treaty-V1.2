@@ -88,7 +88,7 @@ public:
 	/*Check out the return types of the bottom two funtions-
 	Are they supposed to return anything? Currently call to global variables
 	I deleted, can probably use a return type as a substitute*/
-	void Participants::getPrimeUnitsArrayProvinces();
+	void getPrimeUnitsArrayProvinces();
 	void getPrimeUnitsArrayCommanders();
 
 
@@ -157,7 +157,7 @@ public:
 	///Check if this participant has a particular unit, not optimal (string param)
 	bool hasUnit(const std::string& unitName);
 	//Kinda sketch, look at this??
-	bool hasUnit(const PrimeUnits& unit);
+	bool hasUnit(PrimeUnits& unit);
 
 	int calculateTotals(int option);
 
@@ -178,6 +178,8 @@ public:
 	void setParticipantIndex(int num);
 	void setKingdomName(std::string newName);
 	void showMap();
+
+	void nothing();
 
 	/////////////////////////////////////ArmyOverviewMA.h//////////////////////
 	//----Methods--------------------------------------------------------------
