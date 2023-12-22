@@ -9,9 +9,11 @@
 #include INF_HEADER
 #include TROOP_HEADER
 #include TROOP_UNITS_BASE_HEADER
+#include INPUT_HEADER
 
 using namespace INF;
 using namespace TROOP;
+using namespace Input;
 
 class TroopsINT {
 public:
@@ -33,7 +35,7 @@ public:
 
 	/*Returns the tier totals for all troop types for a particular condition
 	Example: returns the total of all tiers of all troops presnet, as in the totals for guards, infantry, archers, etc.*/
-	virtual constArrayReference getGenericTroops(TroopCondition type) = 0;
+	virtual i5array getArrayOfSumsOfTiersOfAllTroops(TroopCondition type) = 0;
 
 	//----Mutators-------------------------------------------------------------
 	/*Change a troop by index or all trypes.
@@ -46,15 +48,15 @@ public:
 	virtual void mutateTroop(
 		TROOP::TroopCondition troopCondition,
 		TROOP::TroopTypes type,
-		i5array amount,
+		troopsArray amount,
 		Quantity quant,
 		INF::MutateDirection direction,
 		int troopTier) = 0;
 
-	virtual std::array<TROOP::troopConditionArray, 3> getTroopsLists() = 0;
+	virtual std::array<troopsArray, 3>& getTroopConditions() = 0;
 
 	///Set the battle formation for... battle
-	virtual void setBattleFormation(TROOP::troopConditionArray troopArray) = 0;
+	virtual void setBattleFormation(troopsArray troopArray) = 0;
 };
 
 #endif

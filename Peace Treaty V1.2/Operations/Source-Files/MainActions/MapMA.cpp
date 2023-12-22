@@ -6,7 +6,7 @@ using namespace PART;
 //View the map
 void Participants::viewPlayerMap() {
 	//For debugging
-	DEBUG_FUNCTION("MapMA, viewPlayerMap");
+	DEBUG_FUNCTION("MapMA", "viewPlayerMap");
 
 	char whatToDo = ' ';
 
@@ -56,7 +56,7 @@ void Participants::viewPlayerMap() {
 
 void Participants::selectUnitOriginal(provSPTR province) {
 	//For debugging
-	DEBUG_FUNCTION("MapMA, selectUnitOriginal");
+	DEBUG_FUNCTION("MapMA", "selectUnitOriginal");
 
 	int participantIndex = province->getParticipantIndex();
 
@@ -91,7 +91,7 @@ void Participants::selectUnitOriginal(provSPTR province) {
 //You selected one of your provinces
 void Participants::selectPlayerProvince(provSPTR province) {
 	//For debugging
-	DEBUG_FUNCTION("MapMA, selectPlayerProvince");
+	DEBUG_FUNCTION("MapMA", "selectPlayerProvince");
 
 	if (province->isCapital()) {
 		print("This is your capital province ");
@@ -125,7 +125,7 @@ void Participants::selectPlayerProvince(provSPTR province) {
 //You selected an enemy province
 void Participants::selectEnemyProvince(provSPTR newP) {
 	//For debugging
-	DEBUG_FUNCTION("MapMA, selectEnemyProvince");
+	DEBUG_FUNCTION("MapMA", "selectEnemyProvince");
 
 	provSPTR enemyProvince = newP;
 	if (enemyProvince->isCapital()) {
@@ -166,7 +166,7 @@ You selected an empty province that your commander is in
 - Capture this province (C)*/
 void Participants::playerUnitAction(provSPTR newP) {
 	//For debugging
-	DEBUG_FUNCTION("MapMA, playerUnitAction");
+	DEBUG_FUNCTION("MapMA", "playerUnitAction");
 
 	provSPTR newProvince = newP;
 	println("This is one of your armies ");
@@ -195,7 +195,7 @@ void Participants::playerUnitAction(provSPTR newP) {
 void Participants::playerUnitActionP(provSPTR newP)
 {
 	//For debugging
-	DEBUG_FUNCTION("MapMA, playerUnitActionP");
+	DEBUG_FUNCTION("MapMA", "playerUnitActionP");
 
 	provSPTR newProvince = newP;
 	std::cout << "The following commanders are at this province: \n";
@@ -226,7 +226,7 @@ void Participants::playerUnitActionP(provSPTR newP)
 void Participants::selectEnemyAction() /*Add implementation*/
 {
 	//For debugging
-	DEBUG_FUNCTION("MapMA, selectEnemyAction");
+	DEBUG_FUNCTION("MapMA", "selectEnemyAction");
 
 	std::cout << "This is an enmy army. \n";
 

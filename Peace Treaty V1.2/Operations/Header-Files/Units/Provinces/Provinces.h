@@ -23,6 +23,17 @@
 #include INF_HEADER						//Utility
 #include INPUT_HEADER					//Utility
 
+#include FARM_HEADER
+#include MILL_HEADER
+#include MINE_HEADER
+#include QUARRY_HEADER
+#include CHURCH_HEADER
+
+#include BARRACKS_HEADER
+#include INFIRMARY_HEADER
+#include LIBRARY_HEADER
+#include RESIDENCES_HEADER 
+#include WALL_HEADER
 
 using namespace INF;
 using namespace Input;
@@ -71,6 +82,8 @@ namespace PROV {
 		///Get the index of this unit in its Participant's vector?
 		constINT getMapIndex();
 
+		Commanders& getProvinceCommander();
+
 		//----Setters----------------------------------------------------------
 		
 		///Add Commander to this province and change Commander corods to here
@@ -101,7 +114,7 @@ namespace PROV {
 
 		std::array<i5array, 7> getLists();
 		std::array<int, 7> getListInt();
-		std::array<bool, 3> getListBool();
+		std::array<bool, 2> getListBool();
 		std::array< ipair, 2> getListCoords();
 
 		//Scout/report stuff
@@ -165,26 +178,6 @@ namespace PROV {
 		void printBuildingStats();
 		void printListOfBuildings();
 
-
-		///////////////////////////////TroopsINT.h/////////////////////////////
-
-
-		//----Getters--------------------------------------------------------------
-		constArrayReference getAllTiersOfTroop(TroopCondition troopCondition, TROOP::TroopTypes type);
-		constINT getSumOfTiersOfTroop(TroopCondition troopCondition, TROOP::TroopTypes type);
-		constArrayReference getGenericTroops(TroopCondition type);
-
-		void mutateTroop(
-			TROOP::TroopCondition troopCondition,
-			TROOP::TroopTypes type,
-			i5array amount,
-			Quantity quant,
-			INF::MutateDirection direction,
-			int troopTier);
-
-		std::array<troopConditionArray, 3> getTroopsLists();
-		void setBattleFormation(troopConditionArray troopArray);
-
 	protected:
 		enum LISTS { RESOURCE_BUILDINGS_LEVELS, OTHER_BUILDINGS_LEVELS, RESOURCES_PRESENT, TROOPS_PRESENT, TROOPS_INJURED, TROOPS_LOST, INITIAL_STATS };
 
@@ -198,12 +191,6 @@ namespace PROV {
 
 	private:
 		SortType commandersSortType;
-
-		std::array<bool*, 2> listBool = {
-			&canSelectThisUnit,
-			&isACapital,
-		};
-
 		bool isACapital;
 
 		int mapIndex;
@@ -211,6 +198,8 @@ namespace PROV {
 		commMAP::iterator it;
 		commMAP commandersMap;
 		commSPTRList commandersVector;
+		///The main commander at this province
+		commSPTR provinceCommander;
 
 		double newAccuracy;
 		std::string kingdomName;
@@ -218,7 +207,7 @@ namespace PROV {
 		//Index within reports is the report. Index of report object is the participant the report belongs to
 		typedef std::vector<std::pair<int, ProvinceReport >> reports;
 		std::vector<reports> scoutReports;
-		std::array<BuildingsBASE, 10> buildings;
+		std::array<std::unique_ptr<BuildingsBASE>, 10> buildings;
 	};
 
 	using provSPTR = std::shared_ptr<Provinces>;

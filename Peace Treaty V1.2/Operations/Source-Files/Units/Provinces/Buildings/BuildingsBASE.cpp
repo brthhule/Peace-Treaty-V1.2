@@ -15,11 +15,11 @@ void BuildingsBASE::increaseLevel(int amount) {
 }
 
 constINT BuildingsBASE::getLevel() { 
-	return &level; 
+	return level; 
 }
 
 constArrayReference BuildingsBASE::getUpgradeCosts() {
-	return &upgradeCosts;
+	return upgradeCosts;
 }
 
 

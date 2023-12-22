@@ -5,7 +5,7 @@ using namespace PROV;
 
 void Provinces::upgradeBuildingPrompt() {  
 	//For debugging
-	DEBUG_FUNCTION("Provinces, playerBuildFunction");
+	DEBUG_FUNCTION("Provinces", "playerBuildFunction");
 
 	INF::clearScreen();
 	std::cout <<
@@ -34,7 +34,7 @@ void Provinces::upgradeBuildingPrompt() {
 
 void Provinces::printBuildingUpgradeCosts(i5array requiredResources, int buildingIndex) {
 	//For debugging
-	DEBUG_FUNCTION("Provinces, printInformation");
+	DEBUG_FUNCTION("Provinces", "printInformation");
 
 	std::cout << "---------- Start printing information----------\n\n\033[34m";
 	std::cout << INF::RESOURCE_BUILDING_NAMES[buildingIndex] << " selected \n";
@@ -53,7 +53,7 @@ void Provinces::printBuildingUpgradeCosts(i5array requiredResources, int buildin
 
 void Provinces::selectBuildingToUpgrade() {
 	//For debugging
-	DEBUG_FUNCTION("Provinces, upgradeBuildings");
+	DEBUG_FUNCTION("Provinces", "upgradeBuildings");
 
 	std::vector<std::string> buildingLetterList = { "H" };
 	for (int x = 1; x <= 10; x++) {
@@ -62,11 +62,10 @@ void Provinces::selectBuildingToUpgrade() {
 
 	printListOfBuildings();
 
-	std::string message1 = "Enter the number of the building you want to upgrade " + 
-		"(enter 'H' for help) : ";
-	char buildingNumber = Input::getInputText(message1, buildingLetterList).at(0);
+	std::string message1 = "Enter the number of the building you want to upgrade (enter 'H' for help) : ";
+	std::string buildingNumber = Input::getInputText(message1, buildingLetterList);
 
-	if (option != 'H') {
+	if (buildingNumber.at(0) != 'H') {
 		upgradeBuilding(std::stoi(buildingNumber)); 
 	} else {
 		INF::showHelp(12);
@@ -80,15 +79,15 @@ void Provinces::selectBuildingToUpgrade() {
 }
 
 
-void Provinces::upgradeBuilding(char buildingNumber) {
+void Provinces::upgradeBuilding(int buildingNumber) {
 	//For debugging
-	DEBUG_FUNCTION("Provinces, upgradeBuildings2");
+	DEBUG_FUNCTION("Provinces", "upgradeBuildings2");
 
 	//Multiplies level by base line rate
-	BuildingsBASE *building = &this->buildings.at(index);
+	BuildingsBASE *building = &this->buildings.at(buildingNumber);
 	constArrayReference requiredResources = building->getUpgradeCosts();
 
-	printBuildingUpgradeCosts(requiredResources, index);
+	printBuildingUpgradeCosts(requiredResources, buildingNumber);
 	std::string message = "Proceed with upgrade? (Y/N): ";
 	char upgradeProceed = Input::getInputText(message, { "Y", "N" }).at(0);
 
@@ -97,13 +96,13 @@ void Provinces::upgradeBuilding(char buildingNumber) {
 	bool upgradeSuccess = this->subtractCheckResources(requiredResources);
 
 	if (upgradeSuccess == false) {
-		modifyResources(requiredResources, true);
+		mutateAllResources(requiredResources, INCREASE);
 		println("Upgrade failed. Not enough resources. ");
 		return;
 	}
 
 	println("Upgrade successful.\n");
-	building->increaseLevel();
+	building->increaseLevel(1);
 	return;
 }
 

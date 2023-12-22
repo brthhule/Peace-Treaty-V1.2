@@ -43,6 +43,7 @@
 using namespace INF;
 using namespace PROV;
 using namespace UNIT;
+using namespace ScoutMANamespace;
 
 /*TODO
 * Check if hasProvince/hasUnit needs to use a shared pointer as param
@@ -179,7 +180,7 @@ public:
 	void setKingdomName(std::string newName);
 	void showMap();
 
-	void nothing();
+	void nothingArmyOverview() override;
 
 	/////////////////////////////////////ArmyOverviewMA.h//////////////////////
 	//----Methods--------------------------------------------------------------

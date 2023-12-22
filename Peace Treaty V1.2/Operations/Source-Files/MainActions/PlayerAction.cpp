@@ -4,7 +4,7 @@
 using namespace PART;
 
 void Participants::chooseAction() {
-	DEBUG_FUNCTION("PlayerAction, chooseAction");
+	DEBUG_FUNCTION("PlayerAction", "chooseAction");
 	INF::enterAndClear(1);
 
 	bool goToNextTurn = false;
@@ -45,7 +45,7 @@ void Participants::buildAction() {
 	pickYourProvince(1)->upgradeBuildingPrompt(); 
 }
 
-void Participants::showHelp() { INF::showHelp(4); }
+void Participants::playerActionShowHelp() { INF::showHelp(4); }
 
 void Participants::choosePauseGame() { 
 	char pauseGameQuestionChar = Input::getInputText("Pausing the game will end this session of gameplay. Proceed? (Y/N): ", { "Y", "N" }).at(0); 
@@ -56,7 +56,7 @@ void Participants::choosePauseGame() {
 
 char Participants::randomAction() {
 	//For debugging
-	DEBUG_FUNCTION("PlayerAction, randomAction");
+	DEBUG_FUNCTION("PlayerAction", "randomAction");
 
 	std::vector<char> newVector = { 'B', 'T', 'S', 'U', 'D', 'N' };
 	return newVector.at(rand() % 6);
@@ -65,7 +65,7 @@ char Participants::randomAction() {
 
 void Participants::pauseGame() {
 	//For debugging
-	DEBUG_FUNCTION("PlayerAction, pauseGame");
+	DEBUG_FUNCTION("PlayerAction", "pauseGame");
 
 	std::string gameCode;
 	gameCode += INF::continentSize;

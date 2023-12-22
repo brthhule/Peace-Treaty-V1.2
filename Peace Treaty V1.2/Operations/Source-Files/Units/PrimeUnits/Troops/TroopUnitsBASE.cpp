@@ -7,7 +7,7 @@ TroopUnitsBASE::TroopUnitsBASE(int level,
 	std::array<int,3> baseDamage,
 	TROOP::TroopTypes thisType) {
 	//For debugging
-	DEBUG_FUNCTION("Troops, Troops");
+	DEBUG_FUNCTION("TroopUnitsBASE.cpp", "Troops");
 
 	//Every battle increases level. At 10 levels, increase tier and reset levels
 	this->level = level;
@@ -35,11 +35,11 @@ constINT TroopUnitsBASE::getLevel() {
 }
 
 constINT TroopUnitsBASE::getCurrentHealth() {
-	return &currentHealth;
+	return currentHealth;
 }
 
 const std::array<int, 3>& TroopUnitsBASE::getCurrentDamage() { 
-	return &currentDamage;
+	return currentDamage;
 }
 
 void TroopUnitsBASE::updateHealth(int newHealth) {
@@ -77,5 +77,5 @@ TROOP::TroopTypes TroopUnitsBASE::getThisType() {
 }
 
 constINT TroopUnitsBASE::getTier() {
-	return &tier;
+	return tier;
 }

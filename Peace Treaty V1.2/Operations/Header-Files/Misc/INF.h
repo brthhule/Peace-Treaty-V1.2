@@ -135,7 +135,7 @@ namespace INF {
 	extern i5array
 		Troops_COST,
 		INITIAL_VALUES,
-		Troops_CP,
+		TROOPS_CP,
 		RESOURCE_PRODUCTION;
 
 	extern int 

@@ -9,7 +9,7 @@ using namespace COORD;
 
 void Participants::moveUnitOne(commSPTR commander) {
 	//For debugging
-	DEBUG_FUNCTION("Mobility, moveUnitOne");
+	DEBUG_FUNCTION("Mobility.cpp", "moveUnitOne");
 
 	if (commander->hasMoved() == true) {
 		std::cout << "This unit has already moved this turn. Please pick another unit. \nReturning to previous menu... \n\n";
@@ -44,9 +44,9 @@ void Participants::moveUnitOne(commSPTR commander) {
 
 	// If it's peaceful (moving to one of their own provinces)
 	//Remove commander from previous province
-	provSPTR formerProvince = Map::getProvince(SYSTEM, commander->getCoords(SYSTEM)); 
+	provSPTR formerProvince = Map::getProvince(SYSTEM, commander->CoordsBASE::getCoords(SYSTEM)); 
 	formerProvince->removeCommander(commander);
-	provinceSelected->addCommander(commander);
+	provinceSelected->addCommander(*commander); 
 	std::cout << "Returning to previous menu... \n\n";
 
 } /* unfinished*/
@@ -73,10 +73,10 @@ Provinces& Participants::pickProvinceToMoveTo(Commanders& commanderReference) {
 		nullptr;
 	}
 
-	provSPTR provinceSelected = Map::getProvince(pickUserCoords, USER);
+	provSPTR provinceSelected = Map::getProvince(USER, pickUserCoords);
 	bool validProvince = false;
 	for (provSPTR provincePtr : provincesCanSelect) {
-		if (*provincePtr == *provinceSelected) {
+		if (provincePtr == provinceSelected) {
 			validProvince == true;
 		}
 	}
@@ -89,10 +89,10 @@ Provinces& Participants::pickProvinceToMoveTo(Commanders& commanderReference) {
 
 provSPTRList Participants::getSurroundingProvinces(commSPTR commander) {
 	//For debugging
-	DEBUG_FUNCTION("Mobility, getSurroundingProvinces");
+	DEBUG_FUNCTION("Mobility.cpp", "getSurroundingProvinces");
 
 	std::vector<provSPTR> provincesSelectList;
-	ipair systemCoords = commander->getCoords(COORD::SYSTEM);
+	ipair systemCoords = commander->CoordsBASE::getCoords(COORD::SYSTEM);
 
 	/*Identify all the provinces that the player can move a unit to*/
 	for (int x = -1; x <= 1; x++) {

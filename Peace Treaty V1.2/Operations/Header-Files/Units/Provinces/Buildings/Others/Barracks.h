@@ -4,11 +4,13 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 #include BUILDINGS_BASE_HEADER
 
-class Barracks : BuildingsBASE {
+class Barracks : public BuildingsBASE {
 public:
 	Barracks();
 	~Barracks(){}
 	constINT getTroopsTrainedThisTurn();
+	void resetTroopsTrainedThisTurn();
+	void addTroopsTrainedThisTurn(int amount);
 private:
 	int troopsTrainedThisTurn;
 };

@@ -13,10 +13,10 @@ void Map::setMap() {
 	for (int x = 0; x < INF::continentSize; x++) {
 		std::vector<provSPTR> tempVector = {};
 		for (int y = 0; x < INF::continentSize; y++) {
-			provSPTR newProvince = new Provinces(mapIndex, -1);
-			overallIndex++;
+			provSPTR newProvince = std::make_shared<Provinces>(new Provinces(mapIndex, -1));
+			mapIndex++;
 			tempVector.push_back(newProvince);
-			mapMap[newProvince->getUnitName()] = newProvince;
+			mapMap[newProvince->getName()] = newProvince;
 		}
 		map.push_back(tempVector);
 	}
@@ -24,7 +24,7 @@ void Map::setMap() {
 
 void Map::showMap() {
 	//For debugging
-	DEBUG_FUNCTION("Map, showMap");
+	DEBUG_FUNCTION("Map.cpp", "showMap");
 
 	//Can potentially add a lamda statement here to replace the inside of the for loop
 
@@ -44,7 +44,7 @@ void Map::showMap() {
 
 void Map::meat(int x, int y) {
 	//For debugging
-	DEBUG_FUNCTION("Map, meat");
+	DEBUG_FUNCTION("Map.cpp", "meat"); 
 
 	provSPTR currentProvince = map.at(x).at(y); 
 	//If it's a capital province, 'C', if regular, 'P'
@@ -65,7 +65,7 @@ void Map::meat(int x, int y) {
 
 void Map::printXAxis() {
 	//For debugging
-	DEBUG_FUNCTION("Map, printXAxis");
+	DEBUG_FUNCTION("Map.cpp", "printXAxis");
 
 	std::cout << "    ";//4 spaces
 	for (int a = 0; a < INF::continentSize - 1; a++) {
@@ -87,9 +87,8 @@ void Map::printXAxis() {
 
 void Map::updateTurnResources() {
 	//For debugging
-	DEBUG_FUNCTION("Map, updateTurnResources");
+	DEBUG_FUNCTION("Map.cpp", "updateTurnResources");
 
-	DEBUG_FUNCTION("main, updateTurnResources");
 	for (int x = 0; x < INF::continentSize; x++) {
 		for (int y = 0; y < INF::continentSize; y++) {
 			map[x][y]->updateProvinceResources();

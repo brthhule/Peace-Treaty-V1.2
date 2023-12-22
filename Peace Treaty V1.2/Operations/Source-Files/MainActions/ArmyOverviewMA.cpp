@@ -23,16 +23,8 @@ Its type is “int (Fred::*)(char,float)” if a non-static member function of class
 	actionsMap['A'] = armyOverviewSelectActionShowHelp;
 	actionsMap['N'] = nothing();
 
-	actionsMap.insert(std::make_pair<char, void (Participants::*)(void)>(upgradeCommander));
-	actionsMap.insert('U', trainCommanderPrompt);
-	actionsMap.insert(std::make_pair(('U', upgradeCommander));
-	actionsMap.insert(std::make_pair(('U', viewCommanderStats));
-	actionsMap.insert(std::make_pair(('U', deployCommanderPrompt));
-	actionsMap.insert(std::make_pair(('U', armyOverviewSelectActionShowHelp));
-	actionsMap.insert(std::make_pair(('U', nothing()));
-
 	char action = Input::getOptionPrompt(ARMY_DEPLOYMENT).at(0);
-	actionsMap[action]();    
+	actionsMap.at(action);
 
 	if (action != 'M') { armyOverviewSelectAction(); }
 	return;
@@ -117,7 +109,7 @@ void Participants::trainCommanderPrompt() {
 	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "trainCommanderPrompt()");
 
 	std::cout << "You have " << this->getCommandersNum() << "/" << TROOP::maxCommanders << " total army commanders. \n";
-	if (getCommandersNum < TROOP::maxCommanders()) {
+	if (getCommandersNum() < maxCommanders) {
 		std::cout << "At maximum army commander amount. Training failed, returning to menu \n";
 		return;
 	}
@@ -181,9 +173,8 @@ void Participants::addCommander() {
 
 	commSPTR commander = std::make_shared<Commanders>(new Commanders(1, getNewName()));
 	commander->setParticipantIndex(participantIndex); 
-
 	commandersVector.push_back(std::make_shared<Commanders>(*commander)); 
-	commandersMap[commander.getName()] = std::make_shared<Commanders>(*commander);
+	commandersMap[commander->getName()] = std::make_shared<Commanders>(*commander);
 	getCapitalProvince()->addCommander(*commander);
 }
 

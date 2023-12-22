@@ -165,9 +165,6 @@
     <ClCompile Include="Operations\Source-Files\Units\Reports\ProvinceReport.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Operations\Source-Files\Units\Database.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Operations\Source-Files\Units\Map.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -288,14 +285,14 @@
     <ClCompile Include="Operations\Header-Files\Units\Reports\ProvinceReport.h">
       <Filter>Header Files</Filter>
     </ClCompile>
-    <ClCompile Include="Operations\Header-Files\Units\Database.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
     <ClCompile Include="Operations\Header-Files\Units\Map.h">
       <Filter>Header Files</Filter>
     </ClCompile>
     <ClCompile Include="Operations\Header-Files\Units\Participants.h">
       <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Operations\Source-Files\Units\PrimeUnits\Troops\TROOP.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -329,13 +326,13 @@
     <Text Include="AdministrativeDocs\aliases.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Misc\INF.h">
-      <Filter>Header Files\Misc</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\README.md">
       <Filter>Resource Files</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Operations\Header-Files\Units\PrimeUnits\Troops\TROOP.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

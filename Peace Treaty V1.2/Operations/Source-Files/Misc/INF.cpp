@@ -232,7 +232,7 @@ void INF::enterAnything(int option) {
 identifier(caseNum)*/
 void INF::showHelp(int caseNum) {
 	//For debugging
-	DEBUG_FUNCTION("OF, showHelp");
+	DEBUG_FUNCTION("INF", "showHelp");
 
 	std::string caseNumString = std::to_string(caseNum);
 
@@ -325,7 +325,7 @@ std::vector<T> INF::concatVectors(std::vector<std::vector<T>> vectorsList) {
 
 void INF::printResources(constArrayReference resourcesArray) {
 	//For debugging
-	DEBUG_FUNCTION("PrimeUnits, printResources");
+	DEBUG_FUNCTION("INF.cpp", "printResources");
 
 	for (int x = 0; x < 5; x++) {
 		std::cout << "- " << INF::RESOURCE_NAMES.at(x) << ": " << resourcesArray.at(x) << std::endl;

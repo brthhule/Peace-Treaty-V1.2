@@ -5,35 +5,35 @@ using namespace COMM;
 using namespace TROOP;
 
 /*Constructors*/
-Commanders::Commanders() {
+Commanders::Commanders() : PrimeUnits (-1) {
 	//For debugging
 	DEBUG_FUNCTION("Commanders", "Commanders ()");
 
-	Commanders(1, "Unnamed");
+	Commanders(1, "Unnamed", -1);
 }
 
-Commanders::Commanders(int level, std::string name) {
+Commanders::Commanders(int level, std::string name, int participantIndex) : PrimeUnits(participantIndex){
 	//For debugging
-	DEBUG_FUNCTION("Commanders, Commanders (1 Param)");
+	DEBUG_FUNCTION("Commanders.cpp", "Commanders (1 Param)");
 
-	unitLevel = level;
+	level = level;
 	moved = false;
 
 
-	maxTroops = unitLevel * 10;
+	maxTroops = level * 10;
 	totalMaxResources = 0;
 	setName(name);
 }
 /*Destructor*/
 Commanders::~Commanders() {
 	//For debugging
-	DEBUG_FUNCTION("Commanders, ~Commanders");
+	DEBUG_FUNCTION("Commanders.cpp", "~Commanders");
 }
 
 /////////////////////Display///////////
 void Commanders::printCommanderStats() {
 	//For debugging
-	DEBUG_FUNCTION("Commanders, printCommanderStats");
+	DEBUG_FUNCTION("Commanders.cpp", "printCommanderStats");
 
 	// print out stats
 	INF::addColor(INF::BLUE);
@@ -52,23 +52,23 @@ void Commanders::printCommanderStats() {
 ////////////Accessors//////////////////
 constINT Commanders::getCommanderStat(int index) {
 	//For debugging
-	DEBUG_FUNCTION("Commanders, getCommanderStat");
+	DEBUG_FUNCTION("Commanders.cpp", "getCommanderStat");
 
 	//placeholder
 	return -1;
 	//return *commanderArmyStats[index];
 }
 
-INF::i5array Commanders::getUpgradeCosts() {
+constArrayReference Commanders::getUpgradeCosts() {
 	//For debugging
-	DEBUG_FUNCTION("Commanders, getUpgradeCosts");
+	DEBUG_FUNCTION("Commanders.cpp", "getUpgradeCosts");
 
 	i5array costsArray;
 	costsArray.fill(0);
 
 
 	for (int x = 0; x < 5; x++) {
-		costsArray[x] = costToUpgrade.at(x) * unitLevel;
+		costsArray[x] = costToUpgrade.at(x) * level;
 	}
 		
 	return costsArray;
@@ -104,7 +104,7 @@ void Commanders::resetCommanderMoved() {
 }
 
 const std::string& Commanders::getCommanderNameLevel() {
-	return "Name: " + getName() + ", Level: " + getLevel();
+	return "Name: " + getName() + ", Level: " + std::to_string(getLevel());
 }
 
 constINT Commanders::getCombatPower() {

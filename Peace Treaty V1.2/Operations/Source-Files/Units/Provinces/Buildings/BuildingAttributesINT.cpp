@@ -7,16 +7,16 @@ using namespace PROV;
 
 constINT Provinces::getCapacity(BUILD::BuildingsEnum name) { 
 	//For debugging
-	DEBUG_FUNCTION("Buildings, getCapacity");
+	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "getCapacity");
 	std::shared_ptr<BuildingsBASE> currentBuilding = getBuilding(name);
 	std::shared_ptr<ResourceBuildingsBASE> resourceBuilding = std::dynamic_pointer_cast<ResourceBuildingsBASE>(currentBuilding);
 	return resourceBuilding->getCapacityAmount();
 }
 
 /*Use returnArray or returnInt for arrayArg*/
-i5array Provinces::getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount) { 
+i5array& Provinces::getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount) { 
 	//For debugging
-	DEBUG_FUNCTION("Buildings, getResourceProduction");
+	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "getResourceProduction");
 
 	i5array arrayCopy, returnArray; 
 	std::shared_ptr<BuildingsBASE> building = getBuilding(name);  
@@ -26,12 +26,11 @@ i5array Provinces::getResourceProduction(BUILD::BuildingsEnum name, INF::Quantit
 	switch (amount) { 
 		case SINGLE:
 			returnArray[0] = arrayCopy[name] * resourceBuilding->getProudctionRate();
-			delete resourceBuilding;
 			break;
 		case ALL:
 			for (int x = 0; x < 5; x++) {
-				ResourceBuildingsBASE building = (ResourceBuildingsBASE)buildings.at(x); 
-				returnArray[0] = arrayCopy[x] * building.getProudctionRate(); 
+				std::shared_ptr<ResourceBuildingsBASE> building = std::dynamic_pointer_cast<ResourceBuildingsBASE>(buildings.at(x));
+				returnArray[0] = arrayCopy[x] * building->getProudctionRate(); 
 			}
 			break;
 	}
@@ -49,7 +48,7 @@ i5array Provinces::getResourceProduction(BUILD::BuildingsEnum name, INF::Quantit
 *direction: determines whether the process is addition or subtraction.*/
 void Provinces::mutateLevel(BuildingsEnum name, MutateDirection direction, int amount) {
 	//For debugging
-	DEBUG_FUNCTION("Buildings, mutateLevel");
+	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "mutateLevel");
 	if (direction == DECREASE) {
 		amount *= -1;
 	}
@@ -59,15 +58,15 @@ void Provinces::mutateLevel(BuildingsEnum name, MutateDirection direction, int a
 /*Return the amount of troops trained this turn - troopsTrainedThisTurn*/
 constINT Provinces::getTroopsTrainedThisTurn() {
 	//For debugging
-	DEBUG_FUNCTION("Buildings, getTroopsTrainedThisTurn");
-	Barracks building = static_cast<Barracks>(buildings.at(BARRACKS));
-	return building.getTroopsTrainedThisTurn;
+	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "getTroopsTrainedThisTurn");
+	Barracks building = (Barracks) (buildings.at(BARRACKS));
+	return building.getTroopsTrainedThisTurn();
 }
 
 void Provinces::printBuildingStats()
 {
 	//For debugging
-	DEBUG_FUNCTION("Provinces, printBuildingStats");
+	DEBUG_FUNCTION("Provinces.cpp", "printBuildingStats");
 
 	i5array productionArray = getResourceProduction(BUILD::CHURCH, INF::ALL);
 	std::cout << "\033[;34m";
@@ -87,10 +86,10 @@ void Provinces::printBuildingStats()
 
 }
 
-//Returns average of all buildings, rounded down to nearest int
-int Provinces::getProvinceLevel() {
+//Returns average of all BuildingAttributesINT.cpp", "rounded down to nearest int
+constINT Provinces::getProvinceLevel() {
 	//For debugging
-	DEBUG_FUNCTION("Provinces, getProvinceLevel");
+	DEBUG_FUNCTION("Provinces.cpp", "getProvinceLevel");
 
 	int unitLevel = 0;
 
@@ -103,35 +102,37 @@ int Provinces::getProvinceLevel() {
 
 void Provinces::resetTroopsTrainedThisTurn() {
 	//For debugging
-	DEBUG_FUNCTION("Buildings, resetTroopsTrainedThisTurn");
+	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "resetTroopsTrainedThisTurn");
 
-	troopsTrainedThisTurn = 0;
+	buildings.at(0) = 0;
 }
 
 void Provinces::addTroopsTrainedThisTurn(int amount) {
 	//For debugging
-	DEBUG_FUNCTION("Buildings, addTroopsTrainedThisTurn");
+	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "addTroopsTrainedThisTurn");
 
-	troopsTrainedThisTurn += amount;
+	std::unique_ptr<Barracks> barracks = std::make_unique<Barracks>(buildings.at(BARRACKS));
+
+	barracks->addTroopsTrainedThisTurn(amount);
 }
 
 //Do something in Buildings here
 void Provinces::initiailizeCapitalBuildings() {
 	//For debugging
-	DEBUG_FUNCTION("Buildings, initializeCapitalBuildings");
+	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "initializeCapitalBuildings");
 
 	i5array resourceBuildingsLevels, otherBuildingsLevels;
 	resourceBuildingsLevels = getTypeLevels(RESOURCE);
 	otherBuildingsLevels = getTypeLevels(OTHER);
 
-	for (BuildingsBASE building : buildings) {
-		building.increaseLevel(1);
+	for (std::unique_ptr<BuildingsBASE> building : buildings) {
+		building->increaseLevel(1);
 	}
 }
 
 void Provinces::printListOfBuildings() {
 	//For debugging
-	DEBUG_FUNCTION("Buildings, printListOfBuildings");
+	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "printListOfBuildings");
 	for (int x = 0; x < 10; x++) {
 		std::cout << x << ") " << BUILD::BuildingStrings.at(x) << ", level: " << buildings.at(x).getLevel();
 	}

@@ -85,7 +85,7 @@ commSPTR Participants::pickCommanderAttack(commSPTRList commandersCanAttack) {
 
 
 	for (commSPTR commander : commandersCanAttack) {
-		commander->printCommanderNameLevel();
+		commander->printNameLevel();
 	}
 	
 	std::string commanderName = getInputText("Enter the name of the commander you would like to select: ", {});
@@ -111,8 +111,8 @@ void Participants::playerCommitAttack(provSPTR defendingProvince,  commSPTR atta
 	}
 
 	commSPTR defendingCommander = defendingCommanders[0]; 
-	int attackerCP = attackingCommander->getCP(); 
-	int defendingCP = defendingCommander->getCP();
+	int attackerCP = attackingCommander->getCombatPower(); 
+	int defendingCP = defendingCommander->getCombatPower();
 	int attackerLostCP = 0;
 	int defenderLostCP = 0;
 
@@ -136,8 +136,10 @@ void Participants::playerCommitAttack(provSPTR defendingProvince,  commSPTR atta
 	attackingCommander->mutateTroop(LOST, type, troopsLost, ALL, INCREASE, NULL);
 
 	std::cout << "  Results: \n\n";
-	std::cout << "Resources gained: " << addColor(BLUE);
-	INF::printResources(mutateArray(attackingCommander->getAllResources(), oldResources));
+	std::cout << "Resources gained: " << getColor(BLUE);
+
+	i5array oldResources;///////////////////
+	INF::printResources(mutateArray(attackingCommander->getAllResources(), oldResources, DECREASE));
 	attackingCommander->printResources();
 	casualtyReport(troopsLost, injuredTroops);
 
@@ -176,9 +178,9 @@ void Participants::calculateTroopsLost(commSPTR commander, int lostCombatPower, 
 	DEBUG_FUNCTION("AttackMA.cpp", "calculateTroopsLost(commSPTR, int, constArrayReference, int)");
 
 	//Have to implement Troop functionality before doing this
-	int troopPresent = commander->getTroop(REGULAR, troopIndex, INF::SINGLE)[0];
-
-	int troopCP = INF::Troops_CP[troopIndex];
+	//int troopPresent = commander->getTroop(REGULAR, troopIndex, INF::SINGLE)[0];
+	int troopsPresent;
+	int troopCP = INF::TROOPS_CP[troopIndex];
 
 	//If lostCP > 16
 	if (lostCombatPower - 16 > 0) {
@@ -215,7 +217,7 @@ void Participants::calculateTroopsLost(commSPTR commander, int lostCombatPower, 
 	}
 }
 
-
+/*
 void Participants::battleCalculationsTwo(constINT lostCombatPower, i5array, int troopIndex, commSPTR attackingCommander)
 {
 	DEBUG_FUNCTION("AttackMA.cpp", "battleCalculationsTwo(constINT, i5array, int, commSPTR)");
@@ -224,27 +226,27 @@ void Participants::battleCalculationsTwo(constINT lostCombatPower, i5array, int 
 
 	int z = abs(4 - troopIndex);
 
-	for (int b = 0; b < INF::Troops_CP[z]; b++) {
-		if (attackingCommander->getTroop(REGULAR, 5, SINGLE)[0] > 0) {
-			b = INF::Troops_CP[z];
+	for (int b = 0; b < INF::TROOPS_CP[z]; b++) {
+		if (attackingCommander->getAllTiersOfTroop(REGULAR, 5, SINGLE)[0] > 0) {
+			b = INF::TROOPS_CP[z];
 		}
 		else {
 			if (lostCombatPower > 0) {
-				lostCombatPower -= INF::Troops_CP[troopIndex];
+				lostCombatPower -= INF::TROOPS_CP[troopIndex];
 				troopsLost[troopIndex]++;
 				attackingCommander->mutateTroop(REGULAR, troopIndex, {1}, SINGLE, DECREASE);
 				attackingCommander->mutateTroop(LOST, troopIndex, {1}, SINGLE, INCREASE);
 			}
 			else
-				b = INF::Troops_CP[z];
+				b = INF::TROOPS_CP[z];
 		}
 	}
 }
-
+*/
 void Participants::determineLostCP(int attackerCP, int defendingCP, int& attackerLostCP, int& defenderLostCP)
 {
 	//For debugging
-	DEBUG_FUNCTION("AttackMA, determineLostCP");
+	DEBUG_FUNCTION("AttackMA", "determineLostCP");
 
 	int higherCP, lowerCP = 0;
 
@@ -275,7 +277,7 @@ void Participants::determineLostCP(int attackerCP, int defendingCP, int& attacke
 void Participants::casualtyReport(i5array troopsLost, i5array injuredTroops)
 {
 	//For debugging
-	DEBUG_FUNCTION("AttackMA, casualtyReport");
+	DEBUG_FUNCTION("AttackMA", "casualtyReport");
 
 	std::cout << "\nTroops casualties: \n";
 	for (int x = 0; x < 5; x++) /*print out deaths*/

@@ -22,7 +22,7 @@ namespace COMM {
 	public:
 		//----Constructors-----------------------------------------------------
 		Commanders();
-		Commanders(int commanderLevel, std::string name);
+		Commanders(int commanderLevel, std::string name, int participantIndex);
 		~Commanders();
 
 		//----Getters----------------------------------------------------------
@@ -48,26 +48,26 @@ namespace COMM {
 
 		///////////////////////////////TroopsINT.h/////////////////////////////
 		void printTroopsPresent() ;
-
+		std::array<troopsArray, 3>& getTroopConditions();
 		//----Getters--------------------------------------------------------------
 	
 		tiersArray& getAllTiersOfTroop(TroopCondition troopCondition, TROOP::TroopTypes type);
 		int getSumOfTiersOfTroop(TroopCondition troopCondition, TROOP::TroopTypes type);
 
-		constArrayReference getGenericTroops(TroopCondition type);
+		i5array getArrayOfSumsOfTiersOfAllTroops(TroopCondition type);
 		std::array<troopsArray, 3> &getAllTroopConditions();
 
 		//----Mutators-------------------------------------------------------------
 		void mutateTroop(
 			TROOP::TroopCondition troopCondition,
 			TROOP::TroopTypes type,
-			i5array amount,
+			troopsArray amount,
 			Quantity quant,
 			INF::MutateDirection direction,
 			int troopTier);
 
 		///Set the battle formation for... battle
-		void setBattleFormation(troopConditionArray troopArray);
+		void setBattleFormation(troopsArray troopArray);
 
 		const Commanders& makeConst(Commanders& commander);
 

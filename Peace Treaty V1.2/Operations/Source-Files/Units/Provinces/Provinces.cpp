@@ -24,17 +24,37 @@ Provinces::Provinces(int mapIndex, int participantIndex) : PrimeUnits(participan
 	//Buildings should be created when their province is created, figure out how to do that
 	/*Barracks barracks();
 	buildings.at(0) = barracks;*/
+
+	Farm farm;
+	Mill mill; 
+	Quarry quarry;
+	Mine mine;
+	Church church;
+	Barracks barracks; 
+	Infirmary infirmary; 
+	Library library;
+	Residences residences; 
+	Wall wall; 
+
+	buildings = {
+		std::make_unique<BuildingsBASE>(farm),
+		std::make_unique<BuildingsBASE>(mill),
+		std::make_unique<BuildingsBASE>(quarry),
+		std::make_unique<BuildingsBASE>(mine),
+		std::make_unique<BuildingsBASE>(church),
+		std::make_unique<BuildingsBASE>(barracks),
+		std::make_unique<BuildingsBASE>(infirmary),
+		std::make_unique<BuildingsBASE>(library),
+		std::make_unique<BuildingsBASE>(residences),
+		std::make_unique<BuildingsBASE>(wall)
+	};
 }
 
-constINT Provinces::getCombatPower() {
-	return combatPower;
-}
+constINT Provinces::getCombatPower() { return combatPower; }
 
-constINT Provinces::getFoodConsumption() {
-	return foodConsumption;
-}
+constINT Provinces::getFoodConsumption() { return foodConsumption; }
 
-std::array<int, 7> Provinces::getListsInt() {
+std::array<int, 7> Provinces::getListInt() {
 	std::array<int, 7> returnArray = {
 		combatPower,
 		totalTroops,
@@ -47,10 +67,12 @@ std::array<int, 7> Provinces::getListsInt() {
 	return returnArray;
 }
 
+std::array<bool, 2> Provinces::getListBool() {
+	return { canSelectThisUnit, isACapital };
+}
+
 void Provinces::setCommandersSortStatus(SortType sort) {
-	if (sort == commandersSortType) { 
-		return; 
-	}
+	if (sort == commandersSortType) { return; }
 
 	commandersSortType = sort; 
 	std::vector<unitSPTR> units;
@@ -200,44 +222,6 @@ constINT Provinces::getMapIndex() {
 	return mapIndex;
 }
 
-std::array<i5array, 7> Provinces::getLists() {
-	//For debugging
-	DEBUG_FUNCTION("Provinces.cpp", "getLists");
-
-	std::array<i5array, 7> tempOverallArray;
-	for (int row = 0; row < 7; row++) {
-		i5array tempRowArray = *Lists[row];
-
-		for (int column = 0; column < 5; column++) {
-			tempOverallArray[row][column] = tempRowArray[column];
-		}
-	}
-
-	return tempOverallArray;
-}
-std::array<int, 7> Provinces::getListInt()
-{
-	//For debugging
-	DEBUG_FUNCTION("Provinces.cpp", "getListInt");
-
-	std::array<int, 7> listTemp;
-	for (int column = 0; column < 7; column++) {
-		listTemp[column] = *listInt[column];
-	}
-	return listTemp;
-}
-
-std::array<bool, 3> Provinces::getListBool()
-{
-	//For debugging
-	DEBUG_FUNCTION("Provinces.cpp", "getListBool");
-
-	std::array<bool, 3> listTemp;
-	for (int column = 0; column < 3; column++) {
-		listTemp[column] = *listBool[column];
-	}
-	return listTemp;
-}
 
 std::array< ipair, 2> Provinces::getListCoords() {
 	//For debugging
@@ -275,25 +259,16 @@ void Provinces::createReport(int scouterLevelArg, int targetLevelArg) {
 	std::array<int, 7> listIntArg;
 	std::array<bool, 3> listBoolArg;
 
-	for (int row = 0; row < 7; row++) {
-		i5array tempArray = *Lists[row];
-		for (int col = 0; col < 5; col++) {
-			ListsArg[row][col] = tempArray[col];
-		}
 
-		listIntArg[row] = *listInt[row];
-	}
-
-	for (int x = 0; x < 3; x++) {
-		listBoolArg[x] = *listBool[x];
-	}
-
-	ProvinceReport newReport(scouterLevelArg, 
+	//Add implementation
+	ProvinceReport newReport(
+		scouterLevelArg, 
 		targetLevelArg, 
 		ListsArg, 
 		listIntArg, 
 		listBoolArg, 
-		getCoords(COORD::SYSTEM));
+		CoordsBASE::getCoords(COORD::SYSTEM)); 
+
 	int turn = newReport.getReportTurn();
 	std::pair<int, ProvinceReport> sendReport(turn, newReport);
 	int index = 0;//Determine how to find this
@@ -325,3 +300,6 @@ std::array<i5array, 4> Provinces::getGeneralLists() {
 	return returnArray;
 }
 
+Commanders& Provinces::getProvinceCommander() {
+	return *provinceCommander;
+}

@@ -8,3 +8,11 @@ Barracks::Barracks() : BuildingsBASE({ 1, 1, 1, 1, 0.2 }) {
 constINT Barracks::getTroopsTrainedThisTurn() {
 	return troopsTrainedThisTurn;
 }
+
+void Barracks::resetTroopsTrainedThisTurn() {
+	troopsTrainedThisTurn = 0;
+}
+
+void Barracks::addTroopsTrainedThisTurn(int amount) {
+	troopsTrainedThisTurn += amount;
+}

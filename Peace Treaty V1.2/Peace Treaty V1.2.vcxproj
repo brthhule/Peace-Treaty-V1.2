@@ -150,6 +150,7 @@
     <ClCompile Include="Operations\Source-Files\Units\PrimeUnits\Troops\Cavalry.cpp" />
     <ClCompile Include="Operations\Source-Files\Units\PrimeUnits\Troops\Guards.cpp" />
     <ClCompile Include="Operations\Source-Files\Units\PrimeUnits\Troops\Infantry.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\PrimeUnits\Troops\TROOP.cpp" />
     <ClCompile Include="Operations\Source-Files\Units\PrimeUnits\Troops\TroopUnitsBASE.cpp" />
     <ClCompile Include="Operations\Source-Files\Units\PrimeUnits\PrimeUnits.cpp" />
     <ClCompile Include="Operations\Source-Files\Units\PrimeUnits\CoordsBASE.cpp" />
@@ -171,7 +172,6 @@
     <ClCompile Include="Operations\Source-Files\Units\Provinces\Provinces.cpp" />
     <ClCompile Include="Operations\Source-Files\Units\Reports\CommanderReport.cpp" />
     <ClCompile Include="Operations\Source-Files\Units\Reports\ProvinceReport.cpp" />
-    <ClCompile Include="Operations\Source-Files\Units\Database.cpp" />
     <ClCompile Include="Operations\Source-Files\Units\Map.cpp" />
     <ClCompile Include="Operations\Source-Files\Units\Participants.cpp" />
     <ClCompile Include="Peace Treaty V1.2.cpp" />
@@ -227,12 +227,14 @@
     <ClCompile Include="Operations\Header-Files\Units\Provinces\Provinces.h" />
     <ClCompile Include="Operations\Header-Files\Units\Reports\CommanderReport.h" />
     <ClCompile Include="Operations\Header-Files\Units\Reports\ProvinceReport.h" />
-    <ClCompile Include="Operations\Header-Files\Units\Database.h" />
     <ClCompile Include="Operations\Header-Files\Units\Map.h" />
     <ClCompile Include="Operations\Header-Files\Units\Participants.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Operations\Header-Files\Units\PrimeUnits\Troops\TROOP.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

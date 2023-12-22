@@ -17,34 +17,37 @@
 #include INPUT_HEADER
 #include PARTICIPANTS_HEADER
 
-class ScoutMA {
-	COMPRISES_
-		ALL_UNITS_
-		PARTICIPANTS_
-	USES_
-		INF_
-		INPUT_
-public:
-	ScoutMA(){}
-	~ScoutMA(){}
+namespace ScoutMANamespace {
 	//for null value, use scoutTypes nullValue ({}, {});
 	using scoutTypes = std::pair<COMM::commSPTRList, PROV::provSPTRList>;
 
-	virtual void mainScoutMA (provSPTR provinceArg) = 0;
-	virtual scoutTypes selectTarget(provSPTR targetProvince) = 0;
+	class ScoutMA {
+		COMPRISES_
+			ALL_UNITS_
+			PARTICIPANTS_
+			USES_
+			INF_
+			INPUT_
+	public:
+		ScoutMA() {}
+		~ScoutMA() {}
 
-	// Functions
-	virtual std::pair<UNIT::unitSPTR, int> playerScoutStepTwo(scoutTypes canScout, provSPTR targetProvince) = 0;
-	
+		virtual void mainScoutMA(provSPTR provinceArg) = 0;
+		virtual scoutTypes selectTarget(provSPTR targetProvince) = 0;
 
-	virtual UNIT::unitSPTR selectUnitToScout(scoutTypes canScout) = 0;
-	virtual UNIT::unitSPTR selectUnitToScoutTwo(scoutTypes canScout) = 0;
+		// Functions
+		virtual std::pair<UNIT::unitSPTR, int> playerScoutStepTwo(scoutTypes canScout, provSPTR targetProvince) = 0;
 
-	virtual scoutTypes getCanScout(provSPTR targetProvince) = 0;
 
-	virtual void scoutLogCalculationsProvince(int accuracy) = 0;
-	virtual void getCanScoutTwo(int targetX, int targetY, int a, int b, scoutTypes & canScout) = 0;
+		virtual UNIT::unitSPTR selectUnitToScout(scoutTypes canScout) = 0;
+		virtual UNIT::unitSPTR selectUnitToScoutTwo(scoutTypes canScout) = 0;
 
-};
+		virtual scoutTypes getCanScout(provSPTR targetProvince) = 0;
 
+		virtual void scoutLogCalculationsProvince(int accuracy) = 0;
+		virtual void getCanScoutTwo(int targetX, int targetY, int a, int b, scoutTypes& canScout) = 0;
+
+	};
+
+}
 #endif

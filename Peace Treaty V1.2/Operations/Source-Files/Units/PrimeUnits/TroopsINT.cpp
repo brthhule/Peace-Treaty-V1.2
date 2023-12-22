@@ -25,7 +25,7 @@ int Commanders::getSumOfTiersOfTroop(TROOP::TroopCondition troopCondition, TROOP
 	return total;
 }
 
-i5array Commanders::getGenericTroops(TroopCondition troopCondition) {
+i5array Commanders::getArrayOfSumsOfTiersOfAllTroops(TroopCondition troopCondition) {
 	i5array troopTotals = { 0,0,0,0,0 };
 
 	for (int x = 0; x < 5; x++) {
@@ -38,7 +38,7 @@ i5array Commanders::getGenericTroops(TroopCondition troopCondition) {
 
 //----Mutators----
 //Change troops of type index at this unit by amount
-void Commanders::mutateTroop(TROOP::TroopCondition troopCondition, TROOP::TroopTypes troopType, troopsArray amountArrays, Quantity quant, INF::MutateDirection direction, int troopTier) {
+void Commanders::mutateTroop(TROOP::TroopCondition troopCondition, TROOP::TroopTypes troopType, troopsArray amount, Quantity quant, INF::MutateDirection direction, int troopTier) {
 	//For debugging
 	DEBUG_FUNCTION("Troops.cpp", "mutateTroop");
 
@@ -55,15 +55,32 @@ void Commanders::mutateTroop(TROOP::TroopCondition troopCondition, TROOP::TroopT
 		//Change one tier of specific troop type
 		case SINGLE: {
 			if (direction == INCREASE) {
-				troopTiers->at(troopTier).push_back(amountArrays.at(troopType).at(troopTier).at(0));
-			}
-			
+				troopTiers->at(troopTier).push_back(amount.at(troopType).at(troopTier).at(0));
+				break;
+			} 
+
+			oneTier* tiers = &troopTiers->at(troopTier);
+			tiers->erase(tiers->begin() + (tiers->size() - amount.at(troopType).at(troopTier).size()));
 			break;
 		}
 		//Change all tiers of a specific troop type
 		case ALL: {
-			for (int x = 0; x < 5; x++) {
-				troopTiers->at(x) += amount.at(x);
+			if (direction == INCREASE) {
+				for (int troopTypeVar = 0; troopTypeVar < 5; troopTypeVar++) {
+					for (int tierNum = 0; tierNum < 5; tierNum++) {
+						for (int tierSize = 0; tierSize < amount.at(troopType).at(tierNum).size(); tierSize++) {
+							troopConditions.at(troopCondition).at(troopTypeVar).at(tierNum).push_back(amount.at(troopTypeVar).at(tierNum).at(tierSize));
+						}
+					}
+				}
+				break;
+			}
+			for (int troopTypeVar = 0; troopTypeVar < 5; troopTypeVar++) {
+				for (int tierNum = 0; tierNum < 5; tierNum++) {
+					for (int tierSize = 0; tierSize < amount.at(troopType).at(tierNum).size(); tierSize++) {
+						troopConditions.at(troopCondition).at(troopTypeVar).at(tierNum).erase(amount.at(troopTypeVar).at(tierNum).begin() + (troopConditions.at(troopCondition).at(troopTypeVar).at(tierNum).size() - amount.at(troopTypeVar).at(tierNum).size()));
+					}
+				}
 			}
 			break;
 		}
@@ -72,13 +89,32 @@ void Commanders::mutateTroop(TROOP::TroopCondition troopCondition, TROOP::TroopT
 	return;
 }
 
-void Commanders::setBattleFormation(troopConditionArray troopArray) { 
+void Commanders::setBattleFormation(troopsArray troopArray) { 
 	std::cout << "Welcome to the Battle Formation menu.\n";
-	std::cout << "Please select a battle formation option: ";
+	std::string formationType = Input::getInputText("Pleae select a battle formation option (ROW/COLUMN): ", { "ROW", "COLUMN" });
+	std::string formationLane = "row";
+	if (formationType.at(0) == 'C') { formationLane = "column"; }
+
+	std::unordered_map<TroopTypes, int> things;
+	std::array<TroopTypes, 5> formationLanes = {};
+	for (int x = 0; x < 5; x++) {
+		std::string prompt = "What " + formationLane + " do you want to place " + TROOP::TROOP_NAMES.at(x) + "? ";
+		std::string answer = getInputText("", { "1", "2", "3", "4", "5" });
+		if (formationLanes.at(std::stoi(answer)) != NULL) {
+			std::cout << "This lane is already taken... please try again\n";
+			x--;
+			continue;
+		}
+
+		formationLanes.at(x) == TroopTypes(std::stoi(answer));
+	}
+	
+
+	//Fill appropriate rows/colummns with their respective amounts ????
 }
 
-std::array<COMM::troopConditionArray, 3> &Commanders::getAllTroopConditions() {
-	return allTroopConditions;
+std::array<troopsArray, 3> &Commanders::getTroopConditions() {
+	return troopConditions;
 }
 
 void Commanders::printTroopsPresent() {

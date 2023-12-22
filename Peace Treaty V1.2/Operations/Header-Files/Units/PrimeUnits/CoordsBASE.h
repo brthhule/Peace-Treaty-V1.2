@@ -41,8 +41,8 @@ public:
 	//----Getters--------------------------------------------------------------
 	ipair
 		getCoords(CoordsType type),
-		mapIndexToCoords(int mapIndex, CoordsType type),
-		translateCoords(ipair coords, CoordsType currentType);
+		mapIndexToCoords(int mapIndex, CoordsType type);
+	static ipair translateCoords(ipair coords, CoordsType currentType);
 
 	int coordsTomapIndex(ipair coords, CoordsType type);
 

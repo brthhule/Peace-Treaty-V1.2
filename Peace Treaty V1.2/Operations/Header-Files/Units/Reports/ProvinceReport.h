@@ -14,7 +14,8 @@ class ProvinceReport {
 public:
 	using commSPTR = COMM::commSPTR;
 
-	ProvinceReport(int scouterLevelArg,
+	ProvinceReport(
+		int scouterLevelArg,
 		int targetLevelArg,
 		std::array<i5array, 7> ListsArg, 
 		std::array<int, 7> listIntArg,

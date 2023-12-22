@@ -25,8 +25,8 @@ void Participants::trainMAMain() {
     troopTier =  (troopTier > 5) ? troopTier = 5 : troopTier;
 
     std::cout << "What type of troop do you want to upgrade?\n";
-    int troopTypeNum = Input::getOptionPrompt(TRAIN_MA_FUNCTION_UNITS);
-    TROOP::TroopTypes type = TroopUnitsBASE::(1);
+    int troopTypeNum = std::stoi(Input::getOptionPrompt(TRAIN_MA_FUNCTION_UNITS));
+    TROOP::TroopTypes type = TroopTypes(1);
         
 
     std::cout << "The max tier troop you can train: " << troopTier << ", " << INF::TROOP_NAMES[troopTier - 1] << std::endl;
@@ -85,7 +85,7 @@ void Participants::trainMAMain() {
 
 void Participants::trainMALoop(int troopTier, int amountOfTroops) {
     //For debugging
-    DEBUG_FUNCTION("TrainMA, trainMALoop");
+    DEBUG_FUNCTION("TrainMA", "trainMALoop");
 
     provSPTR capitalProvince = this->getCapitalProvince();
 
@@ -98,7 +98,7 @@ void Participants::trainMALoop(int troopTier, int amountOfTroops) {
         requiredResources[0] *= amountOfTroops;
     }
     std::cout << "The required amount of resources are as follows: \n";
-    capitalProvince->printResources(requiredResources);
+    INF::printResources(requiredResources);
 
     std::cout << std::endl;
     char repeatProceedWithTraining = 'Y';
@@ -114,7 +114,10 @@ void Participants::trainMALoop(int troopTier, int amountOfTroops) {
             else {
                 std::cout << "Training successful" << std::endl;
                 //This is the old troop system. Check this
-                capitalProvince->mutateTroop(REGULAR, troopTier, { amountOfTroops }, SINGLE, INCREASE);
+                Commanders* commanderPtr = &capitalProvince->getProvinceCommander();
+                TroopTypes type;//Temp fix
+                commanderPtr->mutateTroop(REGULAR, type, { }, SINGLE, INCREASE, troopTier);//fix this
+                delete commanderPtr;
             }
             break;
         }

@@ -31,10 +31,12 @@ namespace TROOP {
 	};
 
 	
-	extern i5array TROOP_NAMES;
+	extern s5array TROOP_NAMES;
 	//Check out spelling below??
-	extern i5array TROOPS_COST, Troops_CP;
+	extern i5array TROOPS_COST, TROOPS_CP;
 	extern int maxCommanders;
+
+	TroopTypes stringToTroopType(std::string type);
 }
 
 #endif
