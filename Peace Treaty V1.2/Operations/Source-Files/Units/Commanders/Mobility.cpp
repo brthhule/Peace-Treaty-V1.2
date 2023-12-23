@@ -77,7 +77,7 @@ Provinces& Participants::pickProvinceToMoveTo(Commanders& commanderReference) {
 	bool validProvince = false;
 	for (provSPTR provincePtr : provincesCanSelect) {
 		if (provincePtr == provinceSelected) {
-			validProvince == true;
+			validProvince = true;
 		}
 	}
 

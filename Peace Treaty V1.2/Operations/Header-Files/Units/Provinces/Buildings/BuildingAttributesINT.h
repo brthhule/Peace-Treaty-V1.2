@@ -25,7 +25,7 @@ public:
 	///////////////////////////////////Getters/////////////////////////////////
 	virtual constArrayReference getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount) = 0;
 	//Returns an array of Resource/Other buildings levels
-	virtual constArrayReference getTypeLevels(BUILD::BuildingType type) = 0;
+	virtual i5array getTypeLevels(BUILD::BuildingType type) = 0;
 
 	
 	virtual constINT getCapacity(BUILD::BuildingsEnum name) = 0;
@@ -44,7 +44,6 @@ public:
 	virtual constINT getProvinceLevel() = 0;
 
 	virtual std::shared_ptr<BuildingsBASE> getBuilding(BUILD::BuildingsEnum name) = 0;
-	virtual const BuildingsBASE& getBuildingConst(BUILD::BuildingsEnum name) = 0;
 
 	///////////////////////////////////Setters/////////////////////////////////
 	/** mutateLevel__

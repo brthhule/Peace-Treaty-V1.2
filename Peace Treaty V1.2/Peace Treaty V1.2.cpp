@@ -37,7 +37,7 @@ using namespace PART;
 int main()/*main code*/
 {
 	//For debugging
-	DEBUG_FUNCTION("main, main");
+	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "main");
 
 	INF::CPUNum = std::thread::hardware_concurrency();
 
@@ -74,7 +74,7 @@ void startOrResumeGame() {
 void resumeGame() /*download data from previous game fix this*/
 {
 	//For debugging
-	DEBUG_FUNCTION("main, resumeGame");
+	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "resumeGame");
 
 	std::string gameCode;
 	std::cout << "Please enter the game code of your previous game: \033[31m";
@@ -84,7 +84,7 @@ void resumeGame() /*download data from previous game fix this*/
 }
 void startGame() {
 	//For debugging
-	DEBUG_FUNCTION("main, startGame");
+	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "startGame");
 	int pNum = getContinentInformation();
 	int players = generateNewContinent(pNum);
 	Participants::initializeParticipants(pNum, players);
@@ -92,7 +92,7 @@ void startGame() {
 }
 int getContinentInformation() {
 	//For debugging
-	debugFunction("main, getContinentInformation");
+	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "getContinentInformation");
 
 	std::string text = "What continent size do you want to play on?\n- 5 (Recommended for mobile devices)\n- 10 (Medium-sized map)\n- 15 (Full experienced, recommended for a monitor)";
 	//"What continent size do you want to play on? (5, 10, 15) "
@@ -121,7 +121,7 @@ int getContinentInformation() {
 }
 int generateNewContinent(int pNum) {
 	//For debugging
-	DEBUG_FUNCTION("main, generateNewContinent");
+	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "generateNewContinent");
 
 	std::cout << "Create map...\n";
 	Map::setMap();
@@ -139,12 +139,13 @@ int generateNewContinent(int pNum) {
 	std::cout << getColor(RED) << players << getColor(WHITE) << " players initialized...\n\n";
 	pNum += players;
 	std::cout << "pNum: " << pNum << std::endl;
+	return players;
 }
 
 
 void gamePlay() {
 	//For debugging
-	DEBUG_FUNCTION("main, gamePlay");
+	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "gamePlay");
 
 	bool gameEnd = false;
 
@@ -178,7 +179,7 @@ void gamePlay() {
 //Call this function when all winning condition has been met
 void endScreen() {
 	//For debugging
-	DEBUG_FUNCTION("main, endScreen");
+	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "endScreen");
 	std::string kingdomName = " ";
 
 	//Only one is surviving, iterates through to find that participant

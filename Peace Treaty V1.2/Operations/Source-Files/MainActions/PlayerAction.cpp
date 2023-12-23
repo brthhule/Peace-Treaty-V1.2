@@ -22,19 +22,32 @@ void Participants::chooseAction() {
 		courseOfAction = Input::getOptionPrompt(PLAYER_ACTION).at(0); 
 	} 
 
-	typedef void (*Actions)(void); // function pointer type
-	typedef std::unordered_map<char, Actions> ActionFunctions; 
-	ActionFunctions actionsMap; 
-	actionsMap.emplace('B', &buildAction); 
-	actionsMap.emplace('T', &trainMAMain); 
-	actionsMap.emplace('S', &viewStats); 
-	actionsMap.emplace('U', &viewPlayerMap); 
-	actionsMap.emplace('D', &armyOverviewSelectAction); 
-	actionsMap.emplace('N', &BASE::nothing); 
-	actionsMap.emplace('H', &playerActionShowHelp);  
-	actionsMap.emplace('P', &choosePauseGame); 
-
-	actionsMap[courseOfAction](); 
+	switch (courseOfAction) {
+		case 'B':
+			buildAction();
+			break;
+		case 'T':
+			trainMAMain();
+			break;
+		case 'S':
+			viewStats();
+			break;
+		case 'U':
+			viewPlayerMap();
+			break;
+		case 'D':
+			armyOverviewSelectAction();
+			break;
+		case 'N':
+			BASE::nothing();
+			break;
+		case 'H':
+			playerActionShowHelp();
+			break;
+		case 'P':
+			choosePauseGame();
+			break;
+	}
 	 
 	//Recurse until base cass (Next turn action)
 	if (courseOfAction != 'N') { chooseAction(); }
@@ -79,3 +92,19 @@ void Participants::pauseGame() {
 		"paste it when using the 'Resume Game' functionality): "
 		<< gameCode << "\n\n";
 }
+
+/*
+typedef void (Participants::* Actions)(void);
+typedef std::unordered_map<char, Actions> ActionFunctions;
+ActionFunctions actionsMap;
+
+actionsMap['B'] = &buildAction;
+actionsMap['T'] = &trainMAMain;
+actionsMap['S'] = &viewStats;
+actionsMap['U'] = &viewPlayerMap;
+actionsMap['D'] = &armyOverviewSelectAction;
+actionsMap['N'] = &BASE::nothing;
+actionsMap['H'] = &playerActionShowHelp;
+actionsMap['P'] = &choosePauseGame;
+
+actionsMap.at(courseOfAction); */

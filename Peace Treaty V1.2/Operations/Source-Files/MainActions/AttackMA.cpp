@@ -131,9 +131,12 @@ void Participants::playerCommitAttack(provSPTR defendingProvince,  commSPTR atta
 		injuredTroops[x] = troopsLost[x] / (2 * enemyDifficulty);
 		troopsLost[x] -= injuredTroops[x];
 	}
+
+	troopsArray injuredTroopsTemp = {}, troopsLostTemp = {};//Fix this later
+
 	//Super scuffed check this stuff out
-	attackingCommander->mutateTroop(INJURED, type, injuredTroops, ALL, INCREASE, NULL);
-	attackingCommander->mutateTroop(LOST, type, troopsLost, ALL, INCREASE, NULL);
+	attackingCommander->mutateTroop(INJURED, type, injuredTroopsTemp, ALL, INCREASE, NULL);
+	attackingCommander->mutateTroop(LOST, type, troopsLostTemp, ALL, INCREASE, NULL);
 
 	std::cout << "  Results: \n\n";
 	std::cout << "Resources gained: " << getColor(BLUE);

@@ -11,20 +11,41 @@ void Participants::armyOverviewSelectAction() {
 
 	/*Its type is “int (*)(char,float)” if an ordinary function
 Its type is “int (Fred::*)(char,float)” if a non-static member function of class Fred*/
-	typedef void (Participants::*Actions)(void);
 
+	/*
+	typedef void (Participants::*Actions)(void);
 	typedef std::unordered_map<char, Actions> ActionFunctions; 
 	ActionFunctions actionsMap; 
 
-	actionsMap['T'] = trainCommanderPrompt;
-	actionsMap['U'] = upgradeCommander;
-	actionsMap['V'] = viewCommanderStats;
-	actionsMap['D'] = deployCommanderPrompt;
-	actionsMap['A'] = armyOverviewSelectActionShowHelp;
-	actionsMap['N'] = nothing();
+	actionsMap['T'] = &trainCommanderPrompt;
+	actionsMap['U'] = &upgradeCommander;
+	actionsMap['V'] = &viewCommanderStats;
+	actionsMap['D'] = &deployCommanderPrompt;
+	actionsMap['N'] = &nothingArmyOverview; 
+	actionsMap['A'] = &armyOverviewSelectActionShowHelp;*/
 
 	char action = Input::getOptionPrompt(ARMY_DEPLOYMENT).at(0);
-	actionsMap.at(action);
+
+	switch (action) {
+		case 'T':
+			trainCommanderPrompt();
+			break;
+		case 'U':
+			upgradeCommander();
+			break;
+		case 'V':
+			viewCommanderStats();
+			break;
+		case 'D':
+			deployCommanderPrompt();
+			break;
+		case 'N':
+			BASE::nothing();
+			break;
+		case 'A':
+			armyOverviewSelectActionShowHelp();
+			break;
+	}
 
 	if (action != 'M') { armyOverviewSelectAction(); }
 	return;
@@ -171,7 +192,7 @@ void Participants::deployCommanderPrompt() {
 void Participants::addCommander() {  
 	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "addCommander()");
 
-	commSPTR commander = std::make_shared<Commanders>(new Commanders(1, getNewName()));
+	commSPTR commander = std::make_shared<Commanders>(new Commanders(1, getNewName(), participantIndex));
 	commander->setParticipantIndex(participantIndex); 
 	commandersVector.push_back(std::make_shared<Commanders>(*commander)); 
 	commandersMap[commander->getName()] = std::make_shared<Commanders>(*commander);

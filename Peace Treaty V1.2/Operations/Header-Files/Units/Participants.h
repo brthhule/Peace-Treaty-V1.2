@@ -26,11 +26,8 @@
 #include MOBILITY_HEADER				//Base Class
 #include MAP_HEADER						//Base Class
 
-#include PRIME_UNITS_HEADER				//Composition
-#include COMMANDERS_HEADER				//Composition
+//Includes INF.h, Commanders.h, PrimeUnits.h
 #include PROVINCES_HEADER				//Composition
-
-#include INF_HEADER						//Utility
 
 #include ARMY_OVERVIEW_MA_HEADER		//Interface
 #include ATTACK_MA_HEADER				//Interface
@@ -105,7 +102,7 @@ public:
 	///Return total number of Commanders + Provinces in this Participant
 	int getPrimeUnitsAmount();
 	///Get the index of this participant in the vector of all participants
-	int getParticipantIndex();
+	constINT getParticipantIndex();
 
 	partSPTR getParticipant(int listIndex);
 
@@ -144,9 +141,9 @@ public:
 	bool subtractCheckResources(unitSPTR unit, INF::i5array resourcesArray);
 
 	///Check if this participant has a province by name/participant index/province
-	bool hasProvince(std::string name);
-	bool hasProvince(int pIndex);
-	bool hasProvince(provSPTR province);
+	const bool hasProvince(std::string name);
+	const bool hasProvince(int pIndex);
+	const bool hasProvince(provSPTR province);
 
 	///Check if this participant has a particular commander
 	bool hasCommander(std::string name);

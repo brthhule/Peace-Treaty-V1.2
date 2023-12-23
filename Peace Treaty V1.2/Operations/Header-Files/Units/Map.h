@@ -9,9 +9,9 @@
 #include <vector>
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
-#include PROVINCES_HEADER				//Composition
-#include INF_HEADER						//Utility
-#include INPUT_HEADER
+//Includes INF.h, Input.h
+#include PROVINCES_HEADER				//Composition 
+
 
 using namespace INF;
 using namespace PROV;

@@ -230,7 +230,7 @@ void Participants::setParticipantIndex(int num) {
 	participantIndex = num; 
 }
 
-int Participants::getParticipantIndex() { 
+constINT Participants::getParticipantIndex() { 
 	//For debugging
 	DEBUG_FUNCTION("Participants.cpp", "getParticipantIndex");
 
@@ -402,7 +402,7 @@ provSPTR Participants::getProvince(std::string name)
 	return &newProvince;
 }*/
 
-bool Participants::hasProvince(std::string name)
+const bool Participants::hasProvince(std::string name)
 {
 	//For debugging
 	DEBUG_FUNCTION("Participants.cpp", "hasProvince");
@@ -414,11 +414,11 @@ bool Participants::hasProvince(std::string name)
 	return false;
 }
 
-bool Participants::hasProvince(int participantNumberArg) {
+const bool Participants::hasProvince(int participantNumberArg) {
 	return participantNumberArg == participantIndex;
 }
 
-bool Participants::hasProvince(provSPTR province) {
+const bool Participants::hasProvince(provSPTR province) {
 	return province->getParticipantIndex() == participantIndex;
 }
 
@@ -540,6 +540,9 @@ bool Participants::hasUnit(PrimeUnits &unit) {
 	} catch (...) {
 		std::cout << "Something wrong... Participants::hasUnit(PrimeUnits unit&)";
 	}
+
+	//Something went wrong, placeholder value
+	return false;
 }
 
 provSPTR Participants::getSystemProvince(ipair systemCoords) {
@@ -622,18 +625,6 @@ void Participants::getPrimeUnitsArrayProvinces() {
 		//i5array provincesArray = instance->getTroop(REGULAR, -1, ALL);
 		//INF::mutateArray(allProvincesArray, provincesArray, INCREASE);
 	}
-}
-
-int Participants::getPrimeUnitsAmount() {
-	//For debugging
-	DEBUG_FUNCTION("Participants.cpp", "getPrimeUnitsAmount");
-
-	int amount = 0;
-	for (int x : getPrimeUnitsArray()) {
-		amount += x;
-	}
-
-	return amount;
 }
 
 

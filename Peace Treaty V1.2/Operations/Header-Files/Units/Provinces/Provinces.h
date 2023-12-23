@@ -134,7 +134,7 @@ namespace PROV {
 		//----Getters----------------------------------------------------------
 		i5array& getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount);
 	//Returns an array of Resource/Other buildings levels
-		i5array& getTypeLevels(BUILD::BuildingType type);
+		i5array getTypeLevels(BUILD::BuildingType type);
 
 
 		constINT getCapacity(BUILD::BuildingsEnum name);
@@ -154,7 +154,6 @@ namespace PROV {
 		constINT getProvinceLevel();
 
 		std::shared_ptr<BuildingsBASE> getBuilding(BUILD::BuildingsEnum name);
-		BuildingsBASE& getBuildingConst(BUILD::BuildingsEnum name);
 
 		//----Setters----------------------------------------------------------
 		/** mutateLevel__

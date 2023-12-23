@@ -31,7 +31,7 @@ void TroopUnitsBASE::applyBoosts(int healthBoost, int damageBoost) {
 }
 
 constINT TroopUnitsBASE::getLevel() {
-	return &level;
+	return level;
 }
 
 constINT TroopUnitsBASE::getCurrentHealth() {

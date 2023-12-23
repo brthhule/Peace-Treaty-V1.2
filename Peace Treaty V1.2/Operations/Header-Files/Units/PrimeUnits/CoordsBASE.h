@@ -39,12 +39,11 @@ public:
 		printCoords(CoordsType type);
 
 	//----Getters--------------------------------------------------------------
-	ipair
-		getCoords(CoordsType type),
-		mapIndexToCoords(int mapIndex, CoordsType type);
+	ipair getCoords(CoordsType type);
+	static ipair mapIndexToCoords(int mapIndex, CoordsType type);
 	static ipair translateCoords(ipair coords, CoordsType currentType);
 
-	int coordsTomapIndex(ipair coords, CoordsType type);
+	static int coordsTomapIndex(ipair coords, CoordsType type);
 
 	String
 		getCoordsString(CoordsType type);

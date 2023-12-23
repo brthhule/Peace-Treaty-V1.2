@@ -10,6 +10,7 @@
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 #include PRIME_UNITS_HEADER				//Base Class
+#include TROOPS_INT_HEADER
 
 using namespace UNIT;
 

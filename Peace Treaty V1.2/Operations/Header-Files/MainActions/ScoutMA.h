@@ -12,22 +12,17 @@
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 
-#include PRIME_UNITS_HEADER
-#include INF_HEADER
-#include INPUT_HEADER
-#include PARTICIPANTS_HEADER
+//Includes Commanders.h, INF.h, Input.h, PrimeUnits.h
+#include PROVINCES_HEADER	
+
+using namespace PROV;
+using namespace COMM;
 
 namespace ScoutMANamespace {
 	//for null value, use scoutTypes nullValue ({}, {});
 	using scoutTypes = std::pair<COMM::commSPTRList, PROV::provSPTRList>;
 
 	class ScoutMA {
-		COMPRISES_
-			ALL_UNITS_
-			PARTICIPANTS_
-			USES_
-			INF_
-			INPUT_
 	public:
 		ScoutMA() {}
 		~ScoutMA() {}

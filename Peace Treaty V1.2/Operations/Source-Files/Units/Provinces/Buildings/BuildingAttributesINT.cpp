@@ -25,12 +25,12 @@ i5array& Provinces::getResourceProduction(BUILD::BuildingsEnum name, INF::Quanti
 
 	switch (amount) { 
 		case SINGLE:
-			returnArray[0] = arrayCopy[name] * resourceBuilding->getProudctionRate();
+			returnArray[0] = arrayCopy[name] * resourceBuilding->getProductionRate();
 			break;
 		case ALL:
 			for (int x = 0; x < 5; x++) {
-				std::shared_ptr<ResourceBuildingsBASE> building = std::dynamic_pointer_cast<ResourceBuildingsBASE>(buildings.at(x));
-				returnArray[0] = arrayCopy[x] * building->getProudctionRate(); 
+				std::shared_ptr<ResourceBuildingsBASE> building = std::make_shared<ResourceBuildingsBASE>(buildings.at(x));
+				returnArray[0] = arrayCopy[x] * building->getProductionRate(); 
 			}
 			break;
 	}
@@ -52,15 +52,15 @@ void Provinces::mutateLevel(BuildingsEnum name, MutateDirection direction, int a
 	if (direction == DECREASE) {
 		amount *= -1;
 	}
-	buildings.at(name).increaseLevel(amount);
+	buildings.at(name)->increaseLevel(amount);
 }
 
 /*Return the amount of troops trained this turn - troopsTrainedThisTurn*/
 constINT Provinces::getTroopsTrainedThisTurn() {
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "getTroopsTrainedThisTurn");
-	Barracks building = (Barracks) (buildings.at(BARRACKS));
-	return building.getTroopsTrainedThisTurn();
+	std::shared_ptr<Barracks> building = std::make_shared<Barracks>(buildings.at(BARRACKS)); 
+	return building->getTroopsTrainedThisTurn(); 
 }
 
 void Provinces::printBuildingStats()
@@ -72,16 +72,24 @@ void Provinces::printBuildingStats()
 	std::cout << "\033[;34m";
 
 	std::cout << "Building stats of this province: " << std::endl;
+	for (int x = 0; x < 10; x++) {
+		std::cout << "- " << BUILD::BuildingStrings.at(x) << "(" << BUILD::BuildingStrings.at(x).at(0) << "): \n";
+		std::cout << "		Level: " << buildings.at(x)->getLevel() << "\n";
+		if (x < 5) {
+			std::shared_ptr<ResourceBuildingsBASE> resourceBuilding = std::make_shared<ResourceBuildingsBASE>(buildings.at(x));
+			std::cout << "		" << INF::RESOURCE_NAMES.at(x) << " production rate: " << resourceBuilding->getProductionRate(); 
+		}
+	}
 	for (int x = 0; x < 5; x++)
 	{
 		std::cout << "- " << INF::RESOURCE_BUILDING_NAMES[x] << " (" << INF::RESOURCE_BUILDING_NAMES[x].at(0) << ") " << std::endl;
-		std::cout << "    Level: " << resourceBuildingsLevels[x] << std::endl;
+		std::cout << "    Level: " << buildings.at(x)->getLevel() << std::endl;
 		std::cout << "    " << INF::RESOURCE_NAMES[x] << " production rate : " << productionArray[x] << std::endl;
 	}
 	//Add implementation
 	std::cout << "Barracks (B) " << std::endl;
-	std::cout << "    Level: " << otherBuildingsLevels[0] << std::endl;
-	std::cout << "    Max training capacity: " << getCapacity(OTHER, BARRACKS, SINGLE)[0] << "\n\n\033[;0m";
+	std::cout << "    Level: " << buildings.at(BARRACKS)->getLevel() << std::endl;
+	std::cout << "    Max training capacity: " << getCapacity(BARRACKS) << "\n\n\033[;0m";
 
 
 }
@@ -93,8 +101,8 @@ constINT Provinces::getProvinceLevel() {
 
 	int unitLevel = 0;
 
-	for (BuildingsBASE build : buildings) {
-		unitLevel += build.getLevel();
+	for (int x = 0; x < 10; x++) {
+		unitLevel += buildings.at(x)->getLevel();
 	}
 	
 	return unitLevel /= 10;;
@@ -125,8 +133,8 @@ void Provinces::initiailizeCapitalBuildings() {
 	resourceBuildingsLevels = getTypeLevels(RESOURCE);
 	otherBuildingsLevels = getTypeLevels(OTHER);
 
-	for (std::unique_ptr<BuildingsBASE> building : buildings) {
-		building->increaseLevel(1);
+	for (int x = 0; x < 10; x++) {
+		buildings.at(x)->increaseLevel(1);
 	}
 }
 
@@ -134,24 +142,20 @@ void Provinces::printListOfBuildings() {
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "printListOfBuildings");
 	for (int x = 0; x < 10; x++) {
-		std::cout << x << ") " << BUILD::BuildingStrings.at(x) << ", level: " << buildings.at(x).getLevel();
+		std::cout << x << ") " << BUILD::BuildingStrings.at(x) << ", level: " << buildings.at(x)->getLevel();
 	}
 }
 
 std::shared_ptr<BuildingsBASE> Provinces::getBuilding(BUILD::BuildingsEnum name) {
-	return std::make_shared(buildings.at(type));
-}
-
-const BuildingsBASE& Provinces::getBuildingConst(BUILD::BuildingsEnum name) {
-	return &buildings.at(name);
+	return std::make_shared<BuildingsBASE>(buildings.at(type));
 }
 
 
-const std::array<int&,5> Provinces::getTypeLevels(BUILD::BuildingType type) {
-	std::array<int&, 5> resourceLevels, otherLevels;
+i5array Provinces::getTypeLevels(BUILD::BuildingType type) {
+	i5array resourceLevels, otherLevels;
 	for (int index = 0; index < 5; index++) { 
-		resourceLevels = buildings.at(index).getLevel(); 
-		otherLevels = buildings.at(index + 5).getLevel(); 
+		resourceLevels.at(index) = buildings.at(index)->getLevel();
+		otherLevels.at(index) = buildings.at(index + 5)->getLevel();
 	}
 
 	if (type == RESOURCE) {

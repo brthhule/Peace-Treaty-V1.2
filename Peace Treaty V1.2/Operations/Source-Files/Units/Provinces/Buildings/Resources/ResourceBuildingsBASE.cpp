@@ -2,7 +2,7 @@
 #include RESOURCE_BUILDINGS_BASE_HEADER
 
 ResourceBuildingsBASE::ResourceBuildingsBASE(INF::d5array upgradeRates) : BuildingsBASE(upgradeRates) {
-	proudctionRate = 0;
+	productionRate = 0;
 	capacityAmount = 0;
 }
 
@@ -11,10 +11,10 @@ void ResourceBuildingsBASE::updateProductionRate(int level) {
 	capacityAmount = productionRate * 5;
 }
 
-void ResourceBuildingsBASE::getProudctionRate() {
+constINT ResourceBuildingsBASE::getProductionRate() {
 	return productionRate;
 }
 
-int ResourceBuildingsBASE::getCapacityAmount() {
+constINT ResourceBuildingsBASE::getCapacityAmount() {
 	return capacityAmount;
 }

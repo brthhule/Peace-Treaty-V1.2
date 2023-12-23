@@ -11,11 +11,11 @@ public:
 	ResourceBuildingsBASE(INF::d5array upgradeRates);
 
 	void updateProductionRate(int level);
-	int getProudctionRate();
-	int getCapacityAmount();
+	constINT getProductionRate();
+	constINT getCapacityAmount();
 private:
-	INF::i5array productionRate;
-	INF::i5array capacityAmount; // add implementation
+	int productionRate;
+	int capacityAmount; // add implementation
 	//i5array Provinces::capacityAmounts = { 10,10,10,10,10 };
 };
 
