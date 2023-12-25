@@ -54,7 +54,7 @@ void Map::meat(int x, int y) {
 	//For debugging
 	DEBUG_FUNCTION("Map.cpp", "meat"); 
 
-	provSPTR currentProvince = map.at(x).at(y); 
+	provSPTR currentProvince = std::make_shared<Provinces>(mapVectors.at(x).at(y)); 
 	//If it's a capital province, 'C', if regular, 'P'
 	char letter = (currentProvince->isCapital()) ? 'C' : 'P'; 
 	constINT currentIndex = currentParticipantIndex; 
@@ -99,7 +99,7 @@ void Map::updateTurnResources() {
 
 	for (int x = 0; x < INF::continentSize; x++) {
 		for (int y = 0; y < INF::continentSize; y++) {
-			map[x][y]->updateProvinceResources();
+			mapVectors.at(x).at(y).updateProvinceResources();
 		}
 	}
 }
@@ -111,7 +111,7 @@ PROV::provSPTR Map::getProvince(CoordsType type, ipair coords) {
 		coords = CoordsBASE::translateCoords(coords, USER);
 	}
 	
-	return map.at(coords.first).at(coords.second);
+	return std::make_shared<Provinces>(mapVectors.at(coords.first).at(coords.second));
 }
 
 

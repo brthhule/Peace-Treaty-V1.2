@@ -25,28 +25,17 @@ Provinces::Provinces(int mapIndex, int participantIndex) : PrimeUnits(participan
 	/*Barracks barracks();
 	buildings.at(0) = barracks;*/
 
-	Farm farm;
-	Mill mill; 
-	Quarry quarry;
-	Mine mine;
-	Church church;
-	Barracks barracks; 
-	Infirmary infirmary; 
-	Library library;
-	Residences residences; 
-	Wall wall; 
-
-	buildings = {
-		std::make_unique<BuildingsBASE>(farm),
-		std::make_unique<BuildingsBASE>(mill),
-		std::make_unique<BuildingsBASE>(quarry),
-		std::make_unique<BuildingsBASE>(mine),
-		std::make_unique<BuildingsBASE>(church),
-		std::make_unique<BuildingsBASE>(barracks),
-		std::make_unique<BuildingsBASE>(infirmary),
-		std::make_unique<BuildingsBASE>(library),
-		std::make_unique<BuildingsBASE>(residences),
-		std::make_unique<BuildingsBASE>(wall)
+	buildings = { 
+		std::make_unique<BuildingsBASE>(farm), 
+		std::make_unique<BuildingsBASE>(mill), 
+		std::make_unique<BuildingsBASE>(quarry), 
+		std::make_unique<BuildingsBASE>(mine), 
+		std::make_unique<BuildingsBASE>(church),  
+		std::make_unique<BuildingsBASE>(barracks), 
+		std::make_unique<BuildingsBASE>(infirmary),  
+		std::make_unique<BuildingsBASE>(library), 
+		std::make_unique<BuildingsBASE>(residences), 
+		std::make_unique<BuildingsBASE>(wall) 
 	};
 }
 

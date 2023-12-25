@@ -10,7 +10,7 @@ void BuildingsBASE::increaseLevel(int amount) {
 	level += amount;
 
 	for (int index = 0; index < 5; index++) { 
-		upgradeCosts.at(index) = level * baseUpgradeRates.at(index); 
+		upgradeCosts.at(index) = level * (int) baseUpgradeRates.at(index); 
 	}
 }
 

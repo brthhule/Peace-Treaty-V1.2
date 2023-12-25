@@ -207,6 +207,17 @@ namespace PROV {
 		typedef std::vector<std::pair<int, ProvinceReport >> reports;
 		std::vector<reports> scoutReports;
 		std::array<std::unique_ptr<BuildingsBASE>, 10> buildings;
+
+		Farm farm;
+		Mill mill;
+		Quarry quarry;
+		Mine mine;
+		Church church;
+		Barracks barracks;
+		Infirmary infirmary;
+		Library library;
+		Residences residences;
+		Wall wall;
 	};
 
 	using provSPTR = std::shared_ptr<Provinces>;

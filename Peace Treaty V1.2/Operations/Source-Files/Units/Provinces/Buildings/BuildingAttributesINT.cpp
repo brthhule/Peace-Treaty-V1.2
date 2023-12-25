@@ -18,21 +18,17 @@ i5array& Provinces::getResourceProduction(BUILD::BuildingsEnum name, INF::Quanti
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "getResourceProduction");
 
-	i5array arrayCopy, returnArray; 
+	i5array arrayCopy = {}, returnArray = {};
 	std::shared_ptr<BuildingsBASE> building = getBuilding(name);  
 	std::shared_ptr<ResourceBuildingsBASE> resourceBuilding = std::dynamic_pointer_cast<ResourceBuildingsBASE> (building);
 
-
-	switch (amount) { 
-		case SINGLE:
-			returnArray[0] = arrayCopy[name] * resourceBuilding->getProductionRate();
-			break;
-		case ALL:
-			for (int x = 0; x < 5; x++) {
-				std::shared_ptr<ResourceBuildingsBASE> building = std::make_shared<ResourceBuildingsBASE>(buildings.at(x));
-				returnArray[0] = arrayCopy[x] * building->getProductionRate(); 
-			}
-			break;
+	if (amount == SINGLE) {
+		returnArray[0] = arrayCopy[name] * resourceBuilding->getProductionRate();
+	} else {
+		for (int x = 0; x < 5; x++) {
+			std::shared_ptr<ResourceBuildingsBASE> building = std::make_shared<ResourceBuildingsBASE>(buildings.at(x)); 
+			returnArray[0] = arrayCopy[x] * building->getProductionRate(); 
+		}
 	}
 
 	return returnArray;
@@ -49,9 +45,7 @@ i5array& Provinces::getResourceProduction(BUILD::BuildingsEnum name, INF::Quanti
 void Provinces::mutateLevel(BuildingsEnum name, MutateDirection direction, int amount) {
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "mutateLevel");
-	if (direction == DECREASE) {
-		amount *= -1;
-	}
+	if (direction == DECREASE) { amount *= -1; }
 	buildings.at(name)->increaseLevel(amount);
 }
 
@@ -100,10 +94,7 @@ constINT Provinces::getProvinceLevel() {
 	DEBUG_FUNCTION("Provinces.cpp", "getProvinceLevel");
 
 	int unitLevel = 0;
-
-	for (int x = 0; x < 10; x++) {
-		unitLevel += buildings.at(x)->getLevel();
-	}
+	for (int x = 0; x < 10; x++) { unitLevel += buildings.at(x)->getLevel(); }
 	
 	return unitLevel /= 10;;
 }
@@ -111,8 +102,9 @@ constINT Provinces::getProvinceLevel() {
 void Provinces::resetTroopsTrainedThisTurn() {
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "resetTroopsTrainedThisTurn");
-
-	buildings.at(0) = 0;
+	std::shared_ptr <Provinces> building = std::make_shared<Provinces>(buildings.at(0));
+	std::shared_ptr<Barracks> barracks = std::dynamic_pointer_cast<Barracks>(building); 
+	barracks->resetTroopsTrainedThisTurn();
 }
 
 void Provinces::addTroopsTrainedThisTurn(int amount) {
@@ -152,7 +144,7 @@ std::shared_ptr<BuildingsBASE> Provinces::getBuilding(BUILD::BuildingsEnum name)
 
 
 i5array Provinces::getTypeLevels(BUILD::BuildingType type) {
-	i5array resourceLevels, otherLevels;
+	i5array resourceLevels = {}, otherLevels = {};
 	for (int index = 0; index < 5; index++) { 
 		resourceLevels.at(index) = buildings.at(index)->getLevel();
 		otherLevels.at(index) = buildings.at(index + 5)->getLevel();
