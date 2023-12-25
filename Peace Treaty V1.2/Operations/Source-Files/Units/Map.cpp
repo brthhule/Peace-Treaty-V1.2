@@ -1,7 +1,8 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 #include MAP_HEADER
 
-Map::ProvincesVector Map::map = std::vector<std::vector<provSPTR>>{};
+
+std::vector<std::vector<Provinces>> Map::mapVectors = std::vector<std::vector<Provinces>>{};
 Map::ProvincesMap Map::mapMap = std::unordered_map<std::string, provSPTR>();
 
 
@@ -11,14 +12,21 @@ void Map::setMap() {
 
 	int mapIndex = 0;
 	for (int x = 0; x < INF::continentSize; x++) {
-		std::vector<provSPTR> tempVector = {};
-		for (int y = 0; x < INF::continentSize; y++) {
-			provSPTR newProvince = std::make_shared<Provinces>(new Provinces(mapIndex, -1));
+		std::vector<Provinces> tempVector = {};
+		for (int y = 0; x < INF::continentSize; y++, mapIndex++) { 
+			Provinces newProvince(mapIndex, -1);
 			mapIndex++;
 			tempVector.push_back(newProvince);
-			mapMap[newProvince->getName()] = newProvince;
 		}
-		map.push_back(tempVector);
+		mapVectors.push_back(tempVector);
+	}
+
+	for (std::vector<Provinces> provinceVector : mapVectors) { 
+		for (int x = 0; x < (int) provinceVector.size(); x++) {
+			Provinces* province = &provinceVector.at(x);
+			mapMap[province->getName()] = std::make_shared<Provinces>(province);
+			delete province; 
+		}
 	}
 }
 

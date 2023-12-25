@@ -63,7 +63,7 @@ constArrayReference Commanders::getUpgradeCosts() {
 	//For debugging
 	DEBUG_FUNCTION("Commanders.cpp", "getUpgradeCosts");
 
-	i5array costsArray;
+	i5array costsArray = {};
 	costsArray.fill(0);
 
 

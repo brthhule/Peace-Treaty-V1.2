@@ -9,22 +9,20 @@ i5array trainCosts = { 5, 4, 3, 2, 1 };
 
 std::vector<partSPTR> Participants::playersList = {};  
 std::vector<partSPTR> Participants::botsList = {};  
-std::vector<partSPTR> Participants::participantsList = {};
+std::vector<Participants> Participants::participantsList = {};
+int totalPlayers = 0;
 
-Participants::Participants() {
+Participants::Participants() : Participants(0) {
 	//For debugging
 	DEBUG_FUNCTION("Participants.cpp", "Participants (0 Param)");
-
-	Participants(0);
-
 	capitalProvince = nullptr;
 }
 
-Participants::Participants(int pIndex) {
+Participants::Participants(int pIndex) { 
 	//For debugging
 	DEBUG_FUNCTION("Participants.cpp", "Participants (1 Param)");
+	capitalProvince = nullptr; 
 	addCommander();
-	initialCapRSS();
 	setKingdomName("-1");
 	participantIndex = pIndex;
 
@@ -40,36 +38,14 @@ Participants::Participants(int pIndex) {
 }
 
 // Accessors
-provSPTR Participants::getCapitalProvince() { 
-	//For debugging
-	DEBUG_FUNCTION("Participants.cpp", "getCapitalProvince");
-	
-	return capitalProvince; 
-}
+provSPTR Participants::getCapitalProvince() { return capitalProvince; }
 
-int Participants::getProvincesNum() { 
-	//For debugging
-	DEBUG_FUNCTION("Participants.cpp", "getProvincesNum");
+int Participants::getProvincesNum() { return (int) provincesVector.size(); }
 
-	return (int) provincesVector.size(); 
-}
-
-int Participants::getCommandersNum() { 
-	//For debugging
-	DEBUG_FUNCTION("Participants.cpp", "getCommandersNum");
-	
-	return (int) commandersVector.size();
-}
+int Participants::getCommandersNum() { return (int) commandersVector.size(); }
 
 
-void Participants::initialCapRSS() {
-	//For debugging
-	DEBUG_FUNCTION("Participants.cpp", "initialCaRSS");
 
-	//Add functionality so, depending on the difficulty, AI participants get more or less resources to start off with
-	provSPTR newProvince = getCapitalProvince();
-	newProvince->mutateAllResources(INF::INITIAL_VALUES, INCREASE);
-}
 
 // Mutators
 void Participants::setCapital(provSPTR newProvince) {
@@ -601,7 +577,7 @@ std::thread Participants::th2Method() {
 }
 
 partSPTR Participants::getParticipant(int listIndex) { 
-	return participantsList.at(listIndex);
+	return std::make_shared<Participants>(participantsList.at(listIndex));
 }
 std::unordered_map<std::string, commSPTR> Participants::getCommandersMap() {
 	return commandersMap;
@@ -628,47 +604,46 @@ void Participants::getPrimeUnitsArrayProvinces() {
 }
 
 
-void Participants::initializeParticipants(int totalPlayers, int humanPlayers) {
-	for (int x = 0; x < totalPlayers; x++) {
-		std::cout << "Creating participant " << x + 1 << ": " << std::endl;
-		Participants newParticipant(x);
+void Participants::initializeParticipants(int totalPlayers, int humanPlayers, int count) {
+	if (count == totalPlayers) { return; }
 
-		//Create players many players
-		if (x < totalPlayers /*I don't know if this is right*/) {
-			newParticipant.createAsPlayer(true);
-		} /*Everyone else is enemy AI*/ else {
-			newParticipant.createAsPlayer(false);
-		}
+	std::cout << "Creating participant " << count + 1 << ": \n"; 
+	Participants participant(count);
+	participant.createCapital();
+	if (count < totalPlayers) { participant.createAsPlayer(true); }
+	else { participant.createAsPlayer(false); }
+	participantsList.push_back(participant);
 
-		participantsList.push_back(std::make_shared<Participants>(newParticipant));
-	}
-
-	createCapitals();
+	initializeParticipants(totalPlayers, humanPlayers, ++count);
 }
 
-void Participants::createCapitals() {
+void Participants::createCapital() {
 	//For debugging
-	for (partSPTR participant : participantsList) {
-	start:
-		ipair systemCoords;
-		systemCoords.first = rand() % INF::continentSize;
-		systemCoords.second = rand() % INF::continentSize;
+	DEBUG_FUNCTION("Participants.cpp", "createCapital()")
 
-		provSPTR province = Map::getProvince(SYSTEM, systemCoords);
+	ipair systemCoords(rand() % continentSize, rand() % continentSize);
+	provSPTR province = Map::getProvince(SYSTEM, systemCoords);
 
-		if (province->getParticipantIndex() == -1)
-		{
-			province->setParticipantIndex(participant->getParticipantIndex());
-			province->setName(participant->getNewName());
-			participant->addProvince(province);
-			participant->setCapital(province);
-		} else {
-			goto start;
-		}
-	}
+	//Recurses if Province is already taken
+	if (province->getParticipantIndex() != -1) { createCapital(); }
 
+	province->setParticipantIndex(participantIndex);
+	province->setName(getNewName());
+	addProvince(province);
+	setCapital(province);
 }
+
+
 
 partSPTR Participants::getCurrentParticipant() {
-	return participantsList.at(currentParticipantIndex);
+	return std::make_shared<Participants>(participantsList.at(currentParticipantIndex));
+}
+
+bool Participants::isPlayer() {
+	if (participantIndex < humanPlayers) { return true; }
+	return false;
+}
+
+void Participants::setHumanPlayers(int num) {
+	humanPlayers = num;
 }

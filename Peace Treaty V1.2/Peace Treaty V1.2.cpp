@@ -85,9 +85,10 @@ void resumeGame() /*download data from previous game fix this*/
 void startGame() {
 	//For debugging
 	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "startGame");
-	int pNum = getContinentInformation();
-	int players = generateNewContinent(pNum);
-	Participants::initializeParticipants(pNum, players);
+	int humanPlayers = getContinentInformation();
+	int allPlayers = generateNewContinent(humanPlayers);
+	Participants::setHumanPlayers(humanPlayers);
+	Participants::initializeParticipants(pNum, players, 0);
 	std::cout << "Created participants";
 }
 int getContinentInformation() {

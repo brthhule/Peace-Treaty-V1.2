@@ -60,7 +60,7 @@ public:
 	typedef std::vector <std::vector<provSPTR>> ProvincesVector;
 
 	///2D vector of provinces shared ptrs
-	static ProvincesVector map;
+	static std::vector<std::vector<Provinces>> mapVectors;
 	///unordered map of provinces shared pointers
 	static ProvincesMap mapMap;
 };

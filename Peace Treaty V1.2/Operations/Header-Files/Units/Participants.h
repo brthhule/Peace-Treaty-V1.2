@@ -43,8 +43,9 @@ using namespace UNIT;
 using namespace ScoutMANamespace;
 
 /*TODO
-* Check if hasProvince/hasUnit needs to use a shared pointer as param
-*	use const Province& address = *ptr
+*Check if hasProvince/hasUnit needs to use a shared pointer as param
+*		use const Province& address = *ptr
+* Add functionality to initialCapRESS, depending on the difficulty, AI participants get more or less resources to start off with
 */
 namespace PART {
 //Represent players, both human and AI
@@ -65,15 +66,15 @@ public:
 	using partSPTRList = std::vector<partSPTR>;
 	static partSPTRList playersList;
 	static partSPTRList botsList;
-	static partSPTRList participantsList;
+	
 		
 	//----Constructors-----------------------------------------------------
 	Participants();
 	Participants(int pIndex);
 	~Participants(){}
 
-	static void initializeParticipants(int totalPlayers, int humanPlayers); 
-	static void createCapitals();
+	static void initializeParticipants(int totalPlayers, int humanPlayers, int count); 
+	void createCapital();
 	static partSPTR getCurrentParticipant();
 
 	//----Getters----------------------------------------------------------
@@ -160,8 +161,8 @@ public:
 	int calculateTotals(int option);
 
 		
-
-	void setCapital(provSPTR newProvince);
+	void setHumanPlayers(int num);
+	void setCapital(provSPTR newProvince); 
 	void addProvince(provSPTR newProvince);
 	void printListOfProvinces();
 
@@ -171,7 +172,6 @@ public:
 	void scoutProvince(provSPTR targetProvince, int accuracy);
 	/*Display this participant's list of commSPTR*/
 	void displayCommanders();
-	void initialCapRSS();
 
 	void setParticipantIndex(int num);
 	void setKingdomName(std::string newName);
@@ -251,7 +251,10 @@ public:
 	void casualtyReport(i5array troopsLost, i5array injuredTroops);
 
 private:
+	static std::vector<Participants> participantsList;
 	static i5array trainCosts;
+	static int humanPlayers;
+
 	i5array allCommandersArray;
 	i5array allProvincesArray;
 

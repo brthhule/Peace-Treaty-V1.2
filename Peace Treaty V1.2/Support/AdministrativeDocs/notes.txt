@@ -49,3 +49,12 @@ An rvalue is an expression that is not an lvalue. Examples of rvalues include li
 #define rvalue 42
 int lvalue;
 lvalue = rvalue;
+
+when you need to declare two variables of different types, it can't be done by one declaration
+
+Hackety hack hack:
+
+for (struct {int i; char c;} loop = {0, 'a'}; loop.i < 26; ++loop.i, ++loop.c)
+{
+    std::cout << loop.c << '\n';
+}
