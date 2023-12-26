@@ -178,7 +178,7 @@ void Participants::playerCommitAttack(provSPTR defendingProvince,  commSPTR atta
 
 /*Basically go through each unit type and subtract 16CP worth of troops and keep going (done so that lost troops are distributed evenly among the various ranks, but there is still use to training lower rank troops as meat shields (if all lower troops are used up, then losses start piling up on higher rank troops; it's key to keep a healthy proportion of troops in your army))*/
 void Participants::calculateTroopsLost(commSPTR commander, int lostCombatPower, constArrayReference troopsLost, int troopIndex) {
-	DEBUG_FUNCTION("AttackMA.cpp", "calculateTroopsLost(commSPTR, int, constArrayReference, int)");
+	/*DEBUG_FUNCTION("AttackMA.cpp", "calculateTroopsLost(commSPTR, int, constArrayReference, int)");
 
 	//Have to implement Troop functionality before doing this
 	//int troopPresent = commander->getTroop(REGULAR, troopIndex, INF::SINGLE)[0];
@@ -219,6 +219,8 @@ void Participants::calculateTroopsLost(commSPTR commander, int lostCombatPower, 
 		calculateTroopsLost(commander, lostCombatPower, troopsLost, troopIndex);
 	}
 }
+*/
+}
 
 /*
 void Participants::battleCalculationsTwo(constINT lostCombatPower, i5array, int troopIndex, commSPTR attackingCommander)
@@ -246,35 +248,27 @@ void Participants::battleCalculationsTwo(constINT lostCombatPower, i5array, int 
 	}
 }
 */
-void Participants::determineLostCP(int attackerCP, int defendingCP, int& attackerLostCP, int& defenderLostCP)
-{
+void Participants::determineLostCP(int attackerCP, int defendingCP, int& attackerLostCP, int& defenderLostCP) { 
 	//For debugging
 	DEBUG_FUNCTION("AttackMA", "determineLostCP");
 
 	int higherCP, lowerCP = 0;
 
-	if (attackerCP > defendingCP)
-	{
+	if (attackerCP > defendingCP) {
 		higherCP = attackerCP;
 		lowerCP = defendingCP;
-	}
-	else
-	{
+	} else {
 		higherCP = defendingCP;
 		lowerCP = attackerCP;
 	}
 
 	int difference = attackerCP / defendingCP;
-	attackerLostCP =
-		(defendingCP *
-			(1 / difference)) / 2;
+	attackerLostCP = (defendingCP * (1 / difference)) / 2;
 	defenderLostCP = (attackerCP * (1 / difference)) / 2;
 
 	//Add functionality so that there have to be some amount of CP lost; if no CP is lost, then will just repeat forever
-	if (attackerLostCP == 0)
-		attackerLostCP = 1;
-	if (defendingCP == 0)
-		defendingCP = 1;
+	if (attackerLostCP == 0) { attackerLostCP = 1; }
+	if (defendingCP == 0) { defendingCP = 1; }
 }
 
 void Participants::casualtyReport(i5array troopsLost, i5array injuredTroops)

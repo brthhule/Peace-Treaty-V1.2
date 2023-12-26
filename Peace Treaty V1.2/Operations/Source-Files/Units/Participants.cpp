@@ -2,10 +2,10 @@
 #include PARTICIPANTS_HEADER  
 
 using namespace COMM;
-using namespace PART; 
 using namespace PROV; 
+using namespace PART;
 
-i5array trainCosts = { 5, 4, 3, 2, 1 }; 
+i5array trainCosts = { 5, 4, 3, 2, 1 };  
 
 std::vector<partSPTR> Participants::playersList = {};  
 std::vector<partSPTR> Participants::botsList = {};  
@@ -40,9 +40,9 @@ Participants::Participants(int pIndex) {
 // Accessors
 provSPTR Participants::getCapitalProvince() { return capitalProvince; }
 
-int Participants::getProvincesNum() { return (int) provincesVector.size(); }
+int Participants::getProvincesNum() const { return (int) provincesVector.size(); }
 
-int Participants::getCommandersNum() { return (int) commandersVector.size(); }
+int Participants::getCommandersNum() const { return (int) commandersVector.size(); }
 
 
 
@@ -79,14 +79,11 @@ void Participants::setKingdomName(std::string newName) {
 
 std::string Participants::getKingdomName() { return kingdomName; }
 
-bool Participants::isAlive() {
+bool Participants::isAlive() const {
 	//For debugging
 	DEBUG_FUNCTION("Participants.cpp", "isAlive");
 
-	if (getProvincesNum() > 0 || getCommandersNum() > 0) {
-		return true;
-	}
-
+	if (getProvincesNum() > 0 || getCommandersNum() > 0) { return true; }
 	return false;
 }
 
@@ -206,7 +203,7 @@ void Participants::setParticipantIndex(int num) {
 	participantIndex = num; 
 }
 
-constINT Participants::getParticipantIndex() { 
+constINT Participants::getParticipantIndex() const { 
 	//For debugging
 	DEBUG_FUNCTION("Participants.cpp", "getParticipantIndex");
 
@@ -269,16 +266,11 @@ provSPTR Participants::pickYourProvince(int identifier) {
 	return NULL;
 }
 
-
-
-
-
-bool Participants::hasCommander(std::string name) {
+const bool Participants::hasCommander(std::string name) const {
 	//For debugging
 	DEBUG_FUNCTION("Participants.cpp", "hasCommander");
 
-	if (commandersMap.find(name) == commandersMap.end())
-		return false;
+	if (commandersMap.find(name) == commandersMap.end()) { return false; }
 	return true;
 }
 
@@ -378,8 +370,7 @@ provSPTR Participants::getProvince(std::string name)
 	return &newProvince;
 }*/
 
-const bool Participants::hasProvince(std::string name)
-{
+const bool Participants::hasProvince(std::string name) const {
 	//For debugging
 	DEBUG_FUNCTION("Participants.cpp", "hasProvince");
 
@@ -390,15 +381,15 @@ const bool Participants::hasProvince(std::string name)
 	return false;
 }
 
-const bool Participants::hasProvince(int participantNumberArg) {
+const bool Participants::hasProvince(int participantNumberArg) const {
 	return participantNumberArg == participantIndex;
 }
 
-const bool Participants::hasProvince(provSPTR province) {
+const bool Participants::hasProvince(provSPTR province) const {
 	return province->getParticipantIndex() == participantIndex;
 }
 
-commSPTR Participants::pickCommander() { 
+commSPTR Participants::pickCommander() const { 
 	//For debugging
 	DEBUG_FUNCTION("Participants.cpp", "pickCommander");
 
@@ -423,7 +414,7 @@ commSPTR Participants::pickCommander() {
 	return nullptr;
 }
 
-void Participants::displayCommanders() {
+void Participants::displayCommanders() const{
 	//For debugging
 	DEBUG_FUNCTION("Participants.cpp", "displayCommanders");
 
@@ -466,12 +457,13 @@ provSPTR Participants::pickProvince(int phrase) {
 	};
 
 	//Prints list of provinces if prompted
-	if (phrase == 1 || phrase == 2) {
-		printListOfProvinces();
-	}
+	if (phrase == 1 || phrase == 2) { printListOfProvinces(); }
 
+	/*Added explicitness below to get rid of Int - arithn error
+	Error: A sub-expression may overflow before being assigned to a wider type*/
+	int phraseString = phrase - 1;
 	std::string xCoordPrompt = "Enter the x coordinate of the " + 
-		phrases.at(phrase - 1) +
+		phrases.at(phraseString) +
 		" (Enter '-1' to go back to previous menu): ";
 
 	std::string yCoordPrompt = xCoordPrompt;
@@ -483,27 +475,20 @@ provSPTR Participants::pickProvince(int phrase) {
 	int yUserCoord = std::stoi(getInputText(yCoordPrompt, actualCoordinatesAVTwo));
 
 	//Cancel action
-	if (xUserCoord == -1 || yUserCoord == -1) {
-		return nullptr;
-	}
-
+	if (xUserCoord == -1 || yUserCoord == -1) { return nullptr; }
 	return Map::getProvince(USER, std::make_pair(xUserCoord, yUserCoord));
 }
 
-bool Participants::hasUnit(const std::string &unitName) { 
+bool Participants::hasUnit(const std::string &unitName) const { 
 	//For debugging
 	DEBUG_FUNCTION("Participants.cpp", "hasUnit(const std::string&)");
 
-	if (hasCommander(unitName)) {
-		return true;
-	}
-	else if (hasProvince(unitName)) {
-		return true;
-	}
+	if (hasCommander(unitName)) { return true; }
+	else if (hasProvince(unitName)) { return true; }
 	return false;
 }
 
-bool Participants::hasUnit(PrimeUnits &unit) { 
+bool Participants::hasUnit(PrimeUnits &unit) const { 
 	try {
 		const std::string name = unit.getName();
 
@@ -528,7 +513,7 @@ provSPTR Participants::getSystemProvince(ipair systemCoords) {
 	return Map::getProvince(SYSTEM, systemCoords);
 }
 
-i5array Participants::getPrimeUnitsArray() {
+i5array Participants::getPrimeUnitsArray() const {
 	//For debugging
 	DEBUG_FUNCTION("Participants.cpp", "getPrimeUnitsArray");
 
@@ -550,7 +535,7 @@ i5array Participants::getPrimeUnitsArray() {
 }
 
 
-int Participants::getPrimeUnitsAmount() {
+int Participants::getPrimeUnitsAmount() const{
 	//For debugging
 	DEBUG_FUNCTION("Participants.cpp", "getPrimeUnitsAmount");
 
@@ -562,28 +547,28 @@ int Participants::getPrimeUnitsAmount() {
 	return amount;
 }
 
-std::thread Participants::th1Method() {
+std::thread Participants::th1Method() const {
 	//For debugging
 	DEBUG_FUNCTION("Participants.cpp", "th1Method");
 
 	return std::thread([=] {getPrimeUnitsArrayProvinces(); });
 }
 
-std::thread Participants::th2Method() {
+std::thread Participants::th2Method() const {
 	//For debugging
 	DEBUG_FUNCTION("Participants.cpp", "the2Method");
 
 	return std::thread([=] {getPrimeUnitsArrayCommanders(); });
 }
 
-partSPTR Participants::getParticipant(int listIndex) { 
+partSPTR Participants::getParticipant(int listIndex) const { 
 	return std::make_shared<Participants>(participantsList.at(listIndex));
 }
-std::unordered_map<std::string, commSPTR> Participants::getCommandersMap() {
+std::unordered_map<std::string, commSPTR> Participants::getCommandersMap() const{
 	return commandersMap;
 }
 
-void Participants::getPrimeUnitsArrayCommanders() {
+void Participants::getPrimeUnitsArrayCommanders() const {
 	//For debugging
 	DEBUG_FUNCTION("Participants.cpp", "getPrimeUnitsArrayCommanders");
 
@@ -593,7 +578,7 @@ void Participants::getPrimeUnitsArrayCommanders() {
 	}
 }
 
-void Participants::getPrimeUnitsArrayProvinces() {
+void Participants::getPrimeUnitsArrayProvinces() const {
 	//For debugging
 	DEBUG_FUNCTION("Participants.cpp", "getPrimeUnitsArrayProvinces");
 
@@ -639,7 +624,7 @@ partSPTR Participants::getCurrentParticipant() {
 	return std::make_shared<Participants>(participantsList.at(currentParticipantIndex));
 }
 
-bool Participants::isPlayer() {
+bool Participants::isPlayer() const {
 	if (participantIndex < humanPlayers) { return true; }
 	return false;
 }
@@ -647,3 +632,4 @@ bool Participants::isPlayer() {
 void Participants::setHumanPlayers(int num) {
 	humanPlayers = num;
 }
+

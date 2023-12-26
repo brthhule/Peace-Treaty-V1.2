@@ -25,14 +25,14 @@ CoordsBASE::CoordsBASE() {
 	mapIndex = 0;
 }
 
-ipair CoordsBASE::getCoords(CoordsType type) {
+ipair CoordsBASE::getCoords(CoordsType type) const{
 	DEBUG_FUNCTION("Coords.cpp", "getCoords");
 
 	if (type == SYSTEM) { return systemCoords; }
 	return userCoords;
 }
 
-void CoordsBASE::printCoords(CoordsType type) {
+void CoordsBASE::printCoords(CoordsType type) const {
 	DEBUG_FUNCTION("Coords.cpp", "printCoords");
 
 	ipair tempPair = userCoords;
@@ -61,7 +61,7 @@ ipair CoordsBASE::translateCoords(ipair coords, CoordsType currentType) {
 
 }
 
-std::string CoordsBASE::getCoordsString(CoordsType type) {
+std::string CoordsBASE::getCoordsString(CoordsType type) const {
 	ipair coords = userCoords;
 	if (type == SYSTEM) { coords = systemCoords; }
 
@@ -101,6 +101,6 @@ void CoordsBASE::setCoords(std::pair<const ipair&, const ipair&> coords) {
 	userCoords = coords.second;
 } 
 
-std::pair<const ipair&, const ipair&> CoordsBASE::getPairCoords() {  
+std::pair<const ipair&, const ipair&> CoordsBASE::getPairCoords() const {  
 	return std::make_pair(systemCoords, userCoords); 
 }

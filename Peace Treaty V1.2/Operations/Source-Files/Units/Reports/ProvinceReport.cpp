@@ -9,7 +9,7 @@ ProvinceReport::ProvinceReport(int scouterLevelArg,
 	ipair listSystemCoordsArg) {
 
 	//For debugging
-	DEBUG_FUNCTION("ProvinceReport, ProvinceReport");
+	DEBUG_FUNCTION("ProvinceReport.cpp", "ProvinceReport");
 
 	scouterLevel = scouterLevelArg;
 	targetLevel = targetLevelArg;
@@ -28,7 +28,7 @@ ProvinceReport::ProvinceReport(int scouterLevelArg,
 
 void ProvinceReport::computeAccuracy() {
 	//For debugging
-	DEBUG_FUNCTION("ProvinceReport, computeAccuracy");
+	DEBUG_FUNCTION("ProvinceReport.cpp", "computeAccuracy");
 
 	int bigger = 0;
 	int smaller = 0;
@@ -61,7 +61,7 @@ void ProvinceReport::computeAccuracy() {
 
 void ProvinceReport::attuneValues() {
 	//For debugging
-	DEBUG_FUNCTION("ProvinceReport, attuneValues");
+	DEBUG_FUNCTION("ProvinceReport.cpp", "attuneValues");
 
 	int newAccuracy = 100 - accuracy;
 	int currentValue, mediumValue, upperValue, lowerValue;
@@ -87,34 +87,34 @@ void ProvinceReport::attuneValues() {
 
 void ProvinceReport::printReport() {
 	//For debugging
-	DEBUG_FUNCTION("ProvinceReport, printReport");
+	DEBUG_FUNCTION("ProvinceReport.cpp", "printReport");
 
 	//Complete implementation here
 }
 int ProvinceReport::getReportTurn() {
 	//For debugging
-	DEBUG_FUNCTION("ProvinceReport, getReportTurn");
+	DEBUG_FUNCTION("ProvinceReport.cpp", "getReportTurn");
 
 	return reportTurn;
 }
 
 int ProvinceReport::getAccuracy() {
 	//For debugging
-	DEBUG_FUNCTION("ProvinceReport, getAccuracy");
+	DEBUG_FUNCTION("ProvinceReport.cpp", "getAccuracy");
 
 	return accuracy;
 }
 
 int ProvinceReport::getTargetLevel() {
 	//For debugging
-	DEBUG_FUNCTION("ProvinceReport, getTargetLevel");
+	DEBUG_FUNCTION("ProvinceReport.cpp", "getTargetLevel");
 
 	return targetLevel;
 }
 
 int ProvinceReport::getScouterLevel() {
 	//For debugging
-	DEBUG_FUNCTION("ProvinceReport, getScouterLevel");
+	DEBUG_FUNCTION("ProvinceReport.cpp", "getScouterLevel");
 
 	return scouterLevel;
 }

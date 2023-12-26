@@ -35,21 +35,20 @@ public:
 		setCoords(std::pair<const ipair&, const ipair&> coords);
 
 	//----Printers-------------------------------------------------------------
-	void
-		printCoords(CoordsType type);
+	void printCoords(CoordsType type) const;
 
 	//----Getters--------------------------------------------------------------
-	ipair getCoords(CoordsType type);
+	ipair getCoords(CoordsType type) const;
 	static ipair mapIndexToCoords(int mapIndex, CoordsType type);
 	static ipair translateCoords(ipair coords, CoordsType currentType);
 
 	static int coordsTomapIndex(ipair coords, CoordsType type);
 
 	String
-		getCoordsString(CoordsType type);
+		getCoordsString(CoordsType type) const;
 
 	///First one is SYSTEM, second is USER
-	std::pair<const ipair&, const ipair&> getPairCoords();
+	std::pair<const ipair&, const ipair&> getPairCoords() const;
 
 protected:
 	ipair
@@ -59,7 +58,6 @@ protected:
 private:
 	int mapIndex;
 };
-
 
 }
 

@@ -18,20 +18,18 @@ using namespace INF;
 class BuildingsBASE {
 public:
 	//----Constructors---------------------------------------------------------
-	BuildingsBASE(){}
+	BuildingsBASE();
 	BuildingsBASE(INF::d5array baseUpgradeRatesArg);
 	~BuildingsBASE(){}
 
 	//----Getters--------------------------------------------------------------
-	constINT getLevel();
-	constINT getWorkersNum();
+	constINT getLevel() const;
+	constINT getWorkersNum() const;
 	constArrayReference getUpgradeCosts(); 
 
 	//----Mutators-------------------------------------------------------------
 	void increaseLevel(int amount);
 	void mutateWorkersNum(int amount, INF::MutateDirection direction);
-
-	INF::i5array updateProductionRates(int level);
 
 private:
 	int level;

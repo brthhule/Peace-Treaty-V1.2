@@ -53,7 +53,7 @@ namespace PROV {
 		~Provinces() {}
 
 		//----Initialization---------------------------------------------------
-		bool isCapital();
+		bool isCapital() const;
 		bool hasCommander(std::string name);
 		/*Subtracts the necessary resources from capital province. If resources left over are all positive (there were enough resources), return true. If any resources are negative, return false*/
 		bool subtractCheckResources(constArrayReference resourcesArray);
@@ -67,22 +67,21 @@ namespace PROV {
 		///Set the name of this kingdom
 		void setKingdomName(std::string name);
 		///Set map index of this province
-		void setOverallIndex(int index);
 
 		//----Getters----------------------------------------------------------
 		///Return shared pointer of commander by name
-		commSPTR getCommander(std::string name);
+		commSPTR getCommander(std::string name) const;
 		//Returns vector of commanders in this province
-		commSPTRList getAllCommanders();
+		commSPTRList getAllCommanders() const;
 
 		///Returns the total amount of Commanders this unit has
-		constINT getCommandersNum();
+		constINT getCommandersNum() const;
 		///Calculates the combat power of this province
-		constINT getTotalCP();
+		constINT getTotalCP() const;
 		///Get the index of this unit in its Participant's vector?
-		constINT getMapIndex();
+		constINT getMapIndex() const;
 
-		Commanders& getProvinceCommander();
+		Commanders& getProvinceCommander() const;
 
 		//----Setters----------------------------------------------------------
 		
@@ -108,7 +107,7 @@ namespace PROV {
 			upgradeBuilding(int buildingNumber) override;
 
 		void setCommandersSortStatus(SortType status);
-		SortType getCommandersSortStatus();
+		SortType getCommandersSortStatus() const;
 
 		std::string getKingdomName();
 
@@ -127,8 +126,8 @@ namespace PROV {
 		void calculateCombatPower();
 		void calculateFoodConsumption();
 		///////////////////////////////PrimeUnits.h////////////////////////////
-		constINT getCombatPower() override;
-		constINT getFoodConsumption() override;
+		constINT getCombatPower() const override;
+		constINT getFoodConsumption() const override;
 		///////////////////////////////BuildingAttributesINT///////////////////
 		
 		//----Getters----------------------------------------------------------

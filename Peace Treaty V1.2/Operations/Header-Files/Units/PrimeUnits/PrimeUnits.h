@@ -39,25 +39,25 @@ public:
 
 	//----Getters--------------------------------------------------------------
 	///Returns combat power of this unit. Implemented by derived classes
-	virtual constINT getCombatPower() = 0;
+	virtual constINT getCombatPower() const = 0;
 	virtual void calculateFoodConsumption() = 0;  
 	///Get the food consumption of this unit. Implemented by derived class
-	virtual constINT getFoodConsumption();
+	virtual constINT getFoodConsumption() const = 0;
 	///Get the level of this unit. Implemented by derived classes
-	virtual constINT getLevel();
+	virtual constINT getLevel() const = 0;
 
 	///Returns the index of the Participant this belongs to
-	constINT getParticipantIndex();
+	constINT getParticipantIndex() const;
 	///Returns the value of one type of resource in this unit
 	constINT getResource(int resourceIndex);
 
 
 	///Get this unit's name
-	const std::string& getName();
+	const std::string& getName() const;
 
-	constArrayReference getAllResources();//Add implementation
+	constArrayReference getAllResources() const;//Add implementation
 
-	const std::string getCoords(CoordsType type);
+	const std::string getCoords(CoordsType type) const;
 
 
 	//----Mutators-------------------------------------------------------------
@@ -86,7 +86,7 @@ public:
 
 	//----Printers-------------------------------------------------------------
 	///Print all the resources in this unit
-	void printResources();
+	void printResources() const;
 	///Prints all the troops in this unit. Implemented by derived classes
 	
 
@@ -96,7 +96,7 @@ public:
 	unitSPTRList sortVector(SortType sort, unitSPTRList list);
 	unitSPTRList levelSort(unitSPTRList list);
 
-	void printNameLevel();
+	void printNameLevel() const;
 
 	//----Setters--------------------------------------------------------------
 	///Set this unit's name

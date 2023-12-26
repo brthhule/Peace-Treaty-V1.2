@@ -5,14 +5,9 @@ using namespace COMM;
 using namespace TROOP;
 
 /*Constructors*/
-Commanders::Commanders() : PrimeUnits (-1) {
-	//For debugging
-	DEBUG_FUNCTION("Commanders", "Commanders ()");
+Commanders::Commanders() : Commanders(1, "Unnamed", -1) { }
 
-	Commanders(1, "Unnamed", -1);
-}
-
-Commanders::Commanders(int level, std::string name, int participantIndex) : PrimeUnits(participantIndex){
+Commanders::Commanders(int level, std::string name, int participantIndex) : PrimeUnits(participantIndex) {
 	//For debugging
 	DEBUG_FUNCTION("Commanders.cpp", "Commanders (1 Param)");
 
@@ -89,7 +84,7 @@ void Commanders::addLevel() {
 	level++;
 }
 
-bool Commanders::hasMoved() {
+bool Commanders::hasMoved() const {
 	//For debugging
 	DEBUG_FUNCTION("Commanders.cpp", "hasMoved");
 
@@ -107,9 +102,7 @@ const std::string& Commanders::getCommanderNameLevel() {
 	return "Name: " + getName() + ", Level: " + std::to_string(getLevel());
 }
 
-constINT Commanders::getCombatPower() {
-	return combatPower;
-}
+constINT Commanders::getCombatPower() const { return combatPower; }
 
 void Commanders::calculateFoodConsumption() {
 	foodConsumption = 0;
@@ -118,11 +111,11 @@ void Commanders::calculateFoodConsumption() {
 	}
 }
 
-constINT Commanders::getFoodConsumption() {
+constINT Commanders::getFoodConsumption() const {
 	return foodConsumption;
 }
 
-constINT Commanders::getLevel() {
+constINT Commanders::getLevel() const {
 	return level;
 }
 

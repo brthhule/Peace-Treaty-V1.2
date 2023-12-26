@@ -147,7 +147,10 @@ i5array Provinces::getTypeLevels(BUILD::BuildingType type) {
 	i5array resourceLevels = {}, otherLevels = {};
 	for (int index = 0; index < 5; index++) { 
 		resourceLevels.at(index) = buildings.at(index)->getLevel();
-		otherLevels.at(index) = buildings.at(index + 5)->getLevel();
+		/*Added explicitness below to get rid of Int - arithn error
+		Error: A sub-expression may overflow before being assigned to a wider type*/
+		int otherLevelsIndex = index + 5; 
+		otherLevels.at(index) = buildings.at(otherLevelsIndex)->getLevel();
 	}
 
 	if (type == RESOURCE) {

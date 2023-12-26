@@ -83,29 +83,29 @@ public:
 
 	i5array calculateEach(int option);
 	///Returns all units in a participant, uses threading
-	i5array getPrimeUnitsArray();//???
+	i5array getPrimeUnitsArray() const;//???
 	/*Check out the return types of the bottom two funtions-
 	Are they supposed to return anything? Currently call to global variables
 	I deleted, can probably use a return type as a substitute*/
-	void getPrimeUnitsArrayProvinces();
-	void getPrimeUnitsArrayCommanders();
+	void getPrimeUnitsArrayProvinces() const;
+	void getPrimeUnitsArrayCommanders() const;
 
 
 	///Returns a commander this Participant owns by name
 	commSPTR getCommander(std::string name);
 	///Return the unordered_map of Commander shared pointers
-	std::unordered_map<std::string, commSPTR> getCommandersMap();
+	std::unordered_map<std::string, commSPTR> getCommandersMap() const;
 
 	///Got total number of Provinces in this participant
-	int getProvincesNum();
+	int getProvincesNum() const;
 	///Get total number of Commanders in this participant
-	int getCommandersNum();
+	int getCommandersNum() const;
 	///Return total number of Commanders + Provinces in this Participant
-	int getPrimeUnitsAmount();
+	int getPrimeUnitsAmount() const;
 	///Get the index of this participant in the vector of all participants
-	constINT getParticipantIndex();
+	constINT getParticipantIndex() const;
 
-	partSPTR getParticipant(int listIndex);
+	partSPTR getParticipant(int listIndex) const;
 
 	///Returns participant statistics?
 	ivector calculatePlayerValues(int decision);
@@ -125,12 +125,12 @@ public:
 		getKingdomName(),
 		getNewName();
 
-	commSPTR pickCommander();
+	commSPTR pickCommander() const;
 
 	//----Threads----------------------------------------------------------
 	///Experimental
-	std::thread th1Method();
-	std::thread th2Method();
+	std::thread th1Method() const;
+	std::thread th2Method() const;
 
 	//----Checkers---------------------------------------------------------
 	/** subtractCheckResources__ subtracts resources from a unit. If any resources go into the negative from subtractions, reverse the subtraction and return false. Otherwise, return true
@@ -142,21 +142,22 @@ public:
 	bool subtractCheckResources(unitSPTR unit, INF::i5array resourcesArray);
 
 	///Check if this participant has a province by name/participant index/province
-	const bool hasProvince(std::string name);
-	const bool hasProvince(int pIndex);
-	const bool hasProvince(provSPTR province);
+	const bool hasProvince(std::string name) const;
+	const bool hasProvince(int pIndex) const;
+	const bool hasProvince(provSPTR province) const;
 
 	///Check if this participant has a particular commander
-	bool hasCommander(std::string name);
+	const bool hasCommander(std::string name) const;
 	///Check if this participant is alive
-	bool isAlive();
+	
+	bool isAlive() const;
 	///Check if this participant is a bot or a player
-	bool isPlayer();
+	bool isPlayer() const;
 
 	///Check if this participant has a particular unit, not optimal (string param)
-	bool hasUnit(const std::string& unitName);
+	bool hasUnit(const std::string& unitName) const;
 	//Kinda sketch, look at this??
-	bool hasUnit(PrimeUnits& unit);
+	bool hasUnit(PrimeUnits& unit) const;
 
 	int calculateTotals(int option);
 
@@ -171,7 +172,7 @@ public:
 	void viewStats();
 	void scoutProvince(provSPTR targetProvince, int accuracy);
 	/*Display this participant's list of commSPTR*/
-	void displayCommanders();
+	void displayCommanders() const;
 
 	void setParticipantIndex(int num);
 	void setKingdomName(std::string newName);
@@ -184,7 +185,7 @@ public:
 	void armyOverviewSelectAction() override;
 	void armyOverviewSelectActionShowHelp() override;
 	void trainCommanderPrompt() override;
-	void proceedWithTraining(const i5array& trainCosts) override;
+	void proceedWithTraining(constArrayReference trainCosts) override;
 	void upgradeCommander() override;
 	commSPTR pickCommanderToUpgrade() override;
 	void viewCommanderStats() override;
@@ -237,18 +238,18 @@ public:
 	scoutTypes getCanScout(provSPTR targetProvince);
 	
 	///////////////////////////////////AttackMA.h//////////////////////////////
-	void mainAttackMA( provSPTR defendProv, commSPTR attackComm);
+	void mainAttackMA( provSPTR defendProv, commSPTR attackComm) override;
 
 	//----Getter Auxiliary Methods---------------------------------------------
-	commSPTRList getCommandersCanAttack(provSPTR defendingProvince);
-	commSPTR pickCommanderAttack(std::vector<commSPTR> commandersCanAttack);
+	commSPTRList getCommandersCanAttack(provSPTR defendingProvince) override;
+	commSPTR pickCommanderAttack(std::vector<commSPTR> commandersCanAttack) override;
 
-	void playerCommitAttack(provSPTR defendingProvince, commSPTR attackingCommander);
-	void determineLostCP(int attackerCP, int defendingCP, int& attackerLostCP, int& defenderLostCP);
+	void playerCommitAttack(provSPTR defendingProvince, commSPTR attackingCommander) override;
+	void determineLostCP(int attackerCP, int defendingCP, int& attackerLostCP, int& defenderLostCP) override;
 
-	void calculateTroopsLost(commSPTR commander, int lostCombatPower, i5array& troopsLost, int troopIndex);
-	void battleCalculationsTwo(int& lostCombatPower, int troopsLost[5], int troopIndex, commSPTR attackingCommander);
-	void casualtyReport(i5array troopsLost, i5array injuredTroops);
+	void calculateTroopsLost(commSPTR commander, int lostCombatPower, constArrayReference troopsLost, int troopIndex) override;
+	void battleCalculationsTwo(int& lostCombatPower, int troopsLost[5], int troopIndex, commSPTR attackingCommander) override;
+	void casualtyReport(i5array troopsLost, i5array injuredTroops) override;
 
 private:
 	static std::vector<Participants> participantsList;

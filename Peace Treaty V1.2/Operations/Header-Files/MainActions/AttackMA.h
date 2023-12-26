@@ -30,7 +30,7 @@ public:
 
 	virtual void playerCommitAttack(provSPTR defendingProvince, commSPTR attackingCommander) = 0;
 
-	virtual void calculateTroopsLost(commSPTR commander, int lostCombatPower, i5array &troopsLost, int troopIndex) = 0;
+	virtual void calculateTroopsLost(commSPTR commander, int lostCombatPower, constArrayReference troopsLost, int troopIndex) = 0;
 	virtual void battleCalculationsTwo(int& lostCombatPower, int troopsLost[5], int troopIndex, commSPTR attackingCommander) = 0;
 	virtual void casualtyReport(i5array troopsLost, i5array injuredTroops) = 0;
 

@@ -28,16 +28,17 @@ PrimeUnits::PrimeUnits(int participantIndexArg) {
 	totalTroops = 0;
 	resourcesPresent = { 0,0,0,0,0 };
 	initialStats = { 5,4,3,2,1 };
+	type = COMMANDER;//Fix this???
 }
 
-constINT PrimeUnits::getParticipantIndex() {
+constINT PrimeUnits::getParticipantIndex() const {
 	//For debugging
 	DEBUG_FUNCTION("PrimeUnits.cpp", "getParticipantIndex");
 
 	return participantIndex;
 }
 
-void PrimeUnits::printResources() { 
+void PrimeUnits::printResources() const { 
 	//For debugging
 	DEBUG_FUNCTION("PrimeUnits.cpp", "printResources");
 
@@ -47,11 +48,11 @@ void PrimeUnits::printResources() {
 	INF::addColor(INF::RESET);
 }
 
-const std::string& PrimeUnits::getName() { return name; }
+const std::string& PrimeUnits::getName() const { return name; }
 void PrimeUnits::setName(std::string name) { this->name = name; }
 
 //Mutator Functions
-constINT PrimeUnits::getFoodConsumption() { return foodConsumption;}
+constINT PrimeUnits::getFoodConsumption() const { return foodConsumption;}
 constINT PrimeUnits::getResource(int resourceIndex) { 
 	return resourcesPresent[resourceIndex];
 }
@@ -74,20 +75,20 @@ void PrimeUnits::mutateAllResources(constArrayReference resourcesArray,
 	resourcesPresent = INF::mutateArray(resourcesPresent, resourcesArray, direction);
 }
 
-constINT PrimeUnits::getLevel() {
+constINT PrimeUnits::getLevel() const {
 	//For debugging
 	DEBUG_FUNCTION("PrimeUnits.cpp", "getLevel");
 
 	return level;
 }
 
-constArrayReference PrimeUnits::getAllResources() {
+constArrayReference PrimeUnits::getAllResources() const {
 	//For debugging
 	DEBUG_FUNCTION("PrimeUnits.cpp", "getAllResources");
 	return resourcesPresent;
 }
 
-const std::string PrimeUnits::getCoords(CoordsType type) {
+const std::string PrimeUnits::getCoords(CoordsType type) const {
 	return CoordsBASE::getCoordsString(type); 
 }
 
@@ -155,6 +156,6 @@ unitSPTRList PrimeUnits::levelSort(unitSPTRList list) {
 
 
 
-void PrimeUnits::printNameLevel() {
+void PrimeUnits::printNameLevel() const {
 	std::cout << "Name: " << name << ", Level: " << level;
 }

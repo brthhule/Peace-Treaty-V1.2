@@ -1,6 +1,9 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 #include TROOP_UNITS_BASE_HEADER 
 
+TroopUnitsBASE::TroopUnitsBASE() : TroopUnitsBASE(0, 0, 0, {0,0,0}, GUARDS) {
+
+}
 TroopUnitsBASE::TroopUnitsBASE(int level,
 	int baseHealth,
 	int tier,
@@ -11,9 +14,9 @@ TroopUnitsBASE::TroopUnitsBASE(int level,
 
 	//Every battle increases level. At 10 levels, increase tier and reset levels
 	this->level = level;
-
+	this->currentHealth = 0;//Check this out???
 	this->baseHealth = baseHealth + (5 * (tier - 1));
-
+	this->tier = tier;
 	this->thisType = thisType;
 
 	for (int x = 0; x < 3; x++) {
@@ -30,11 +33,11 @@ void TroopUnitsBASE::applyBoosts(int healthBoost, int damageBoost) {
 	}
 }
 
-constINT TroopUnitsBASE::getLevel() {
+constINT TroopUnitsBASE::getLevel() const{
 	return level;
 }
 
-constINT TroopUnitsBASE::getCurrentHealth() {
+constINT TroopUnitsBASE::getCurrentHealth() const {
 	return currentHealth;
 }
 
@@ -72,10 +75,10 @@ void TroopUnitsBASE::increaseTier(int amount) {
 	tier += amount;
 }
 
-TROOP::TroopTypes TroopUnitsBASE::getThisType() {
+TROOP::TroopTypes TroopUnitsBASE::getThisType() const {
 	return thisType;
 }
 
-constINT TroopUnitsBASE::getTier() {
+constINT TroopUnitsBASE::getTier() const{
 	return tier;
 }

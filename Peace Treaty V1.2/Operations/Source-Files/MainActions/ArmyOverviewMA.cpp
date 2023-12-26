@@ -9,21 +9,6 @@ using namespace COORD;
 void Participants::armyOverviewSelectAction() { 
 	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "armyOverviewSelectAction()");
 
-	/*Its type is “int (*)(char,float)” if an ordinary function
-Its type is “int (Fred::*)(char,float)” if a non-static member function of class Fred*/
-
-	/*
-	typedef void (Participants::*Actions)(void);
-	typedef std::unordered_map<char, Actions> ActionFunctions; 
-	ActionFunctions actionsMap; 
-
-	actionsMap['T'] = &trainCommanderPrompt;
-	actionsMap['U'] = &upgradeCommander;
-	actionsMap['V'] = &viewCommanderStats;
-	actionsMap['D'] = &deployCommanderPrompt;
-	actionsMap['N'] = &nothingArmyOverview; 
-	actionsMap['A'] = &armyOverviewSelectActionShowHelp;*/
-
 	char action = Input::getOptionPrompt(ARMY_DEPLOYMENT).at(0);
 
 	switch (action) {
@@ -203,3 +188,18 @@ void Participants::armyOverviewSelectActionShowHelp() {
 	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "armyOverviewSelectActionShowHelp()");
 	INF::showHelp(5);
 }
+
+/*Its type is “int (*)(char,float)” if an ordinary function
+Its type is “int (Fred::*)(char,float)” if a non-static member function of class Fred*/
+
+	/*
+	typedef void (Participants::*Actions)(void);
+	typedef std::unordered_map<char, Actions> ActionFunctions;
+	ActionFunctions actionsMap;
+
+	actionsMap['T'] = &trainCommanderPrompt;
+	actionsMap['U'] = &upgradeCommander;
+	actionsMap['V'] = &viewCommanderStats;
+	actionsMap['D'] = &deployCommanderPrompt;
+	actionsMap['N'] = &nothingArmyOverview;
+	actionsMap['A'] = &armyOverviewSelectActionShowHelp;*/

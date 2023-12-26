@@ -19,7 +19,7 @@ public:
 	
 
 	//----Constructors---------------------------------------------------------
-	TroopUnitsBASE(){}
+	TroopUnitsBASE();
 	TroopUnitsBASE(
 		int level, 
 		int baseHalth,
@@ -30,12 +30,12 @@ public:
 
 	//----Getters--------------------------------------------------------------
 	constINT
-		getLevel(),
-		getCurrentHealth(),
-		getTier();
+		getLevel() const,
+		getCurrentHealth() const,
+		getTier() const;
 
 	const std::array<int,3>& getCurrentDamage();
-	TroopTypes getThisType();
+	TroopTypes getThisType() const;
 	
 	//----Mutators-------------------------------------------------------------
 	void updateHealth(int newHealth);

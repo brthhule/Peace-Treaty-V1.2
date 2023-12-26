@@ -28,7 +28,7 @@ namespace COMM {
 
 		//----Getters----------------------------------------------------------
 		constINT getCommanderStat(int index);
-		bool hasMoved();
+		bool hasMoved() const;
 		const std::string& getCommanderNameLevel();
 		constArrayReference getUpgradeCosts();
 		
@@ -42,10 +42,10 @@ namespace COMM {
 		void calculateCommanderScoutLog();
 
 		///////////////////////////////PrimeUnits.h////////////////////////////
-		constINT getCombatPower() override;
+		constINT getCombatPower() const override;
 		void calculateFoodConsumption() override;
-		constINT getFoodConsumption() override;
-		constINT getLevel() override;
+		constINT getFoodConsumption() const override;
+		constINT getLevel() const override;
 
 		///////////////////////////////TroopsINT.h/////////////////////////////
 		void printTroopsPresent() ;
@@ -70,7 +70,7 @@ namespace COMM {
 		///Set the battle formation for... battle
 		void setBattleFormation(troopsArray troopArray);
 
-		const Commanders& makeConst(Commanders& commander);
+		const Commanders& makeConst(Commanders& commander) const;
 
 	private:
 		int
