@@ -7,8 +7,9 @@
 
 #include <iostream>
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
-#include INF_HEADER
+
 #include TROOP_HEADER
+/*	#include INF_HEADER*/
 
 using namespace INF;
 using namespace TROOP;
@@ -56,8 +57,12 @@ private:
 	
 };
 
+/*using oneTier = std::vector<TroopUnitsBASE>;
+using tiersArray = Array5(oneTier);
+using troopsArray = Array5(tiersArray);*/
+
 using oneTier = std::vector<TroopUnitsBASE>;
-using tiersArray = Array5<oneTier>;
-using troopsArray = Array5 <tiersArray>;
+using tiersArray = std::array<std::vector<TroopUnitsBASE>, 5>;
+using troopsArray = std::array<std::array<std::vector<TroopUnitsBASE>, 5>, 5>;
 
 #endif

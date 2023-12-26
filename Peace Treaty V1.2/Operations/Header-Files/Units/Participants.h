@@ -29,13 +29,17 @@
 //Includes INF.h, Commanders.h, PrimeUnits.h
 #include PROVINCES_HEADER				//Composition
 
-#include ARMY_OVERVIEW_MA_HEADER		//Interface
-#include ATTACK_MA_HEADER				//Interface
-#include MAP_MA_HEADER					//Interface
+/*	#include ARMY_OVERVIEW_MA_HEADER		//Composition (Action)
+		#include TRAIN_MA_HEADER
+		#include INF_HEADER
+	#include MAP_MA_HEADER					//Composition (Action)
+		#include ATTACK_MA_HEADER
+		#include INF_HEADER
+		#include INPUT_HEADER
+		#include SCOUT_MA_HEADER
+		#include TRAIN_MA_HEADER
+*/
 #include PLAYER_ACTION_HEADER			//Interface
-#include SCOUT_MA_HEADER				//Interface
-#include TRAIN_MA_HEADER				//Interface
-#include TROOPS_INT_HEADER				//Interface
 
 using namespace INF;
 using namespace PROV;
@@ -126,6 +130,7 @@ public:
 		getNewName();
 
 	commSPTR pickCommander() const;
+	static const std::vector<Participants>& getParticipants();
 
 	//----Threads----------------------------------------------------------
 	///Experimental
@@ -162,7 +167,7 @@ public:
 	int calculateTotals(int option);
 
 		
-	void setHumanPlayers(int num);
+	static void setHumanPlayers(int num);
 	void setCapital(provSPTR newProvince); 
 	void addProvince(provSPTR newProvince);
 	void printListOfProvinces();

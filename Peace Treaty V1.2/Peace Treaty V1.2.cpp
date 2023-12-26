@@ -15,11 +15,8 @@
 #include <thread>
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
-#include PROVINCES_HEADER
+/*Includes Provinces.h (INF.h, Input.h, Commanders.h)*/
 #include PARTICIPANTS_HEADER
-#include COMMANDERS_HEADER
-#include INF_HEADER
-#include INPUT_HEADER
 #include PLAYER_ACTION_HEADER
 
 void startOrResumeGame();
@@ -88,7 +85,7 @@ void startGame() {
 	int humanPlayers = getContinentInformation();
 	int allPlayers = generateNewContinent(humanPlayers);
 	Participants::setHumanPlayers(humanPlayers);
-	Participants::initializeParticipants(pNum, players, 0);
+	Participants::initializeParticipants(humanPlayers, allPlayers, 0);
 	std::cout << "Created participants";
 }
 int getContinentInformation() {
@@ -151,10 +148,10 @@ void gamePlay() {
 	bool gameEnd = false;
 
 	//Iterate through partiicpants by reference
-	for (partSPTR participant : Participants::participantsList) {  
-		if (!participant->isAlive()) { break; }
+	for (Participants participant : Participants::getParticipants()) {  
+		if (!participant.isAlive()) { break; }
 
-		try { participant->chooseAction(); } 
+		try { participant.chooseAction(); } 
 		catch (...) { std::cout << "Error occurred in player turn";}
 	}
 
@@ -165,8 +162,8 @@ void gamePlay() {
 	//If there are more than one players, keep playing
 	int participantsAlive = 0;
 
-	for (partSPTR participant: Participants::participantsList) { 
-		if (participant->isAlive()) { participantsAlive++;}
+	for (Participants participant : Participants::getParticipants()) { 
+		if (participant.isAlive()) { participantsAlive++; } 
 	}
 
 	if (participantsAlive > 1) {
@@ -177,6 +174,8 @@ void gamePlay() {
 	endScreen();
 }
 
+
+
 //Call this function when all winning condition has been met
 void endScreen() {
 	//For debugging
@@ -184,9 +183,9 @@ void endScreen() {
 	std::string kingdomName = " ";
 
 	//Only one is surviving, iterates through to find that participant
-	for (partSPTR participant : Participants::participantsList) { 
-		if (participant->isAlive()) {    
-			kingdomName = participant->getKingdomName(); 
+	for (Participants participant : Participants::getParticipants()) {  
+		if (participant.isAlive()) {    
+			kingdomName = participant.getKingdomName(); 
 			break;
 		}
 	}

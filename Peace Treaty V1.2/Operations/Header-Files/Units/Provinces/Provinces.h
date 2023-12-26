@@ -10,17 +10,24 @@
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 
-#include PRIME_UNITS_HEADER				//Base Class
 #include COORDS_BASE_HEADER				//Base Class
 
 #include BUILD_MA_HEADER				//Interface
 #include BUILDING_ATTRIBUTES_INT_HEADER	//Interface
 
 #include COMMANDERS_HEADER				//Composition
+/*	#include PRIME_UNITS_HEADER					//Base Class
+		#include COORDS_BASE_HEADER				//Base Class
+			#include INF_HEADER
+		#include TROOP_UNITS_BASE_HEADER		//Composition
+			#include TROOP_HEADER
+		#include TROOPS_INT_HEADER				//Interface
+			#include TROOP_HEADER
+*/
+
 #include PROVINCE_REPORT_HEADER			//Composition
 #include RESOURCE_BUILDINGS_BASE_HEADER	//Composition 
 
-#include INF_HEADER						//Utility
 #include INPUT_HEADER					//Utility
 
 #include FARM_HEADER
@@ -82,6 +89,7 @@ namespace PROV {
 		constINT getMapIndex() const;
 
 		Commanders& getProvinceCommander() const;
+		constINT getLevel() const override;
 
 		//----Setters----------------------------------------------------------
 		

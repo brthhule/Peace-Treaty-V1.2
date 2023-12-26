@@ -12,9 +12,7 @@ BuildingsBASE::BuildingsBASE(INF::d5array baseUpgradeRatesArg) {
 	}
 }
 
-BuildingsBASE::BuildingsBASE() : BuildingsBASE({}) {
-
-}
+BuildingsBASE::BuildingsBASE() : BuildingsBASE({0.0, 0.0, 0.0, 0.0, 0.0}) { }
 
 void BuildingsBASE::increaseLevel(int amount) {
 	level += amount;

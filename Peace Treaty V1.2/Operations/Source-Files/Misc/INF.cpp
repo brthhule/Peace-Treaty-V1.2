@@ -10,10 +10,9 @@ namespace INF {
 		return object;
 	}
 
-	template <typename T>
+	template<typename T>
 	T makeCopy(T& object) {
-		T copy = object;
-		return copy;
+		return T(object);
 	}
 
 	/*INITIAL_VALUES = 5, 4, 3, 2, 1 */
@@ -62,7 +61,7 @@ namespace INF {
 			"WHITE",
 			"RESET"
 	};
-
+	/*
 	template <typename T>
 	Array5<T>::Array5(std::initializer_list<T> list) : items(list) {
 	
@@ -71,7 +70,7 @@ namespace INF {
 	template <typename T>
 	T& Array5<T>::at(int index) {
 		return items.at(index);
-	}
+	}*/
 
 	int continentSize = 0;
 	int enemyDifficulty = 0;

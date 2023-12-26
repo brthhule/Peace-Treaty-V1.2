@@ -9,13 +9,27 @@
 #include <unordered_map>
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
-#include PRIME_UNITS_HEADER				//Base Class
-#include TROOPS_INT_HEADER
+
+
+#include PRIME_UNITS_HEADER					//Base Class
+/*	#include COORDS_BASE_HEADER				//Base Class
+		#include INF_HEADER
+	#include TROOP_UNITS_BASE_HEADER		//Composition
+		#include TROOP_HEADER
+	#include TROOPS_INT_HEADER				//Interface
+		#include TROOP_HEADER
+*/
 
 using namespace UNIT;
 
 ///Namespace for Commanders
 namespace COMM {
+	extern s5array statsOne;
+
+	//Check this
+	extern std::array<s5array, 4> namesOfManOne;
+	extern std::array<std::string, 6> namesOfManTwo;
+
 	//Control army units
 	class Commanders : public PrimeUnits, public TroopsINT {
 
@@ -29,8 +43,8 @@ namespace COMM {
 		//----Getters----------------------------------------------------------
 		constINT getCommanderStat(int index);
 		bool hasMoved() const;
-		const std::string& getCommanderNameLevel();
-		constArrayReference getUpgradeCosts();
+		const std::string getCommanderNameLevel();
+		const i5array getUpgradeCosts();
 		
 
 		//----Printers---------------------------------------------------------
@@ -70,52 +84,18 @@ namespace COMM {
 		///Set the battle formation for... battle
 		void setBattleFormation(troopsArray troopArray);
 
-		const Commanders& makeConst(Commanders& commander) const;
-
 	private:
-		int
-			maxTroops,
-			totalMaxResources;
+		int maxTroops;
+		int totalMaxResources;
 
 		bool moved;
-
-		/*	"Resources:      ",
-			"Troops present: ",
-			"Troops injured: ",
-			"Troops lost:    ",
-			"Other stats:    "
-		*/
-		s5array statsOne = {
-			"Resources:      ",
-			"Troops present: ",
-			"Troops injured: ",
-			"Troops lost:    ",
-			"Other stats:    "
-		};
-
-		//Check this
-		std::array<s5array, 4> namesOfManOne = {
-			INF::RESOURCE_NAMES,
-			INF::TROOP_NAMES
-		};
-
-		std::array<std::string, 6> namesOfManTwo{
-			 "Total Troops",
-			 "Total Army CP",
-			 "Commander Level",
-			 "Max Troops this army can have",
-			 "Army Food consumption",
-			 "Max Resources this army can have"
-		};
-
 		// check
 		i5array costToUpgrade = { 5, 4, 3, 2, 1 };
 		bool deleteCommander;
 
 		///PRESENT = 0, INJURED = 1, LOST = 2
 		std::array<troopsArray, 3> troopConditions;
-
-		std::array<std::vector<TroopUnitsBASE>, 5> battleFormation;
+		std::array<std::array<std::vector<TroopUnitsBASE>, 5>, 5> battleFormation;
 	};
 
 	/*Commanders shared pointer 

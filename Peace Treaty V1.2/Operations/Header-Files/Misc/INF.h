@@ -14,7 +14,7 @@
 #include <vector>
 #include <fstream>
 
-
+#define Array5(x) std::array<x, 5>
 
 namespace INF {
 	//----Symbolic Constants-----------
@@ -114,7 +114,7 @@ namespace INF {
 	template <typename T>
 	std::vector<T> concatVectors(std::vector<std::vector<T>> vectorsList);
 	
-
+	/*
 	template <class T>
 	//std::array<T,5> template
 	class Array5 {
@@ -123,7 +123,7 @@ namespace INF {
 		T& at(int index);
 	private:
 		std::array<T, 5> items;
-	};
+	};*/
 
 	///////////////////////////////////Variables///////////////////////////////
 	extern s5array

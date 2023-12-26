@@ -115,7 +115,7 @@ void Participants::trainMALoop(int troopTier, int amountOfTroops) {
                 std::cout << "Training successful" << std::endl;
                 //This is the old troop system. Check this
                 Commanders* commanderPtr = &capitalProvince->getProvinceCommander();
-                TroopTypes type;//Temp fix
+                TroopTypes type = GUARDS;//Temp fix
                 commanderPtr->mutateTroop(REGULAR, type, { }, SINGLE, INCREASE, troopTier);//fix this
                 delete commanderPtr;
             }

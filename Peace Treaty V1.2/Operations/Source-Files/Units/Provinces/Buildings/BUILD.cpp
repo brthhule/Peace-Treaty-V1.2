@@ -24,7 +24,7 @@ namespace BUILD {
 		}
 
 		if (enumArg != -1) {
-			return std::make_pair("", 0);
+			return std::make_pair("", FARM);
 		}
 
 		for (int index = 0; index < 10; index++) {

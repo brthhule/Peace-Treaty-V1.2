@@ -24,7 +24,7 @@ void Participants::chooseAction() {
 
 	switch (courseOfAction) {
 		case 'B':
-			buildAction();
+			buildAction(); 
 			break;
 		case 'T':
 			trainMAMain();

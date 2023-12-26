@@ -6,21 +6,17 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 
 #include ATTACK_MA_HEADER
-#include INF_HEADER
-#include INPUT_HEADER
+
+/*	#include PROVINCES_HEADER
+	#include INPUT_HEADER*/
 #include SCOUT_MA_HEADER
+
+/*	#include INF_HEADER*/
 #include TRAIN_MA_HEADER
 
 using namespace INF;
 
 class MapMA {
-	COMPRISES_
-		SCOUT_MA_
-		ATTACK_MA_
-		TRAIN_MA_
-	USES_
-		INF_
-		INPUT_
 public:
 	MapMA(){}
 	~MapMA(){}

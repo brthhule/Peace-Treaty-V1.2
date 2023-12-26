@@ -3,7 +3,7 @@
 
 CommanderReport::CommanderReport() {
 	//For debugging
-	DEBUG_FUNCTION("CommanderReport, CommanderReport");
+	DEBUG_FUNCTION("CommanderReport", "CommanderReport");
 
 	resourcesPresent = { 0, 0, 0, 0, 0 },
 	troopsPresent = { 0, 0, 0, 0, 0 },
@@ -16,7 +16,7 @@ CommanderReport::CommanderReport() {
 
 void CommanderReport::printReport() {
 	//For debugging
-	DEBUG_FUNCTION("CommanderReport, printReport");
+	DEBUG_FUNCTION("CommanderReport", "printReport");
 
 	//Implement this
 

@@ -11,7 +11,7 @@ public:
 	void setNullCondition(bool nullConditionArg);
 
 	//For if/ternary statements with no "else"
-	void nothing() {};
+	void nothing();
 private:
 	bool nullCondition;
 };

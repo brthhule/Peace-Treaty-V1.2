@@ -285,3 +285,7 @@ std::array<i5array, 4> Provinces::getGeneralLists() {
 Commanders& Provinces::getProvinceCommander() const {
 	return *provinceCommander;
 }
+
+constINT Provinces::getLevel() const {
+	return level;
+}

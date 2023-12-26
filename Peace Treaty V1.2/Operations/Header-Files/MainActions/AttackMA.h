@@ -8,9 +8,8 @@
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 
-//Includes PrimeUnits.h,, Commanders.h, Input.h, INF.h
+//Includes PrimeUnits.h,, Commanders.h (TroopsINT.h), Input.h, INF.h
 #include PROVINCES_HEADER				//Composition
-#include TROOPS_INT_HEADER				//Composition
  
 using namespace INF;
 using namespace PROV;

@@ -16,7 +16,7 @@
 #include COMMANDERS_HEADER
 
 using namespace COMM;
-class ArmyOverviewMA {
+class ArmyOverviewMA { 
 public:
 	//----Constructors---------------------------------------------------------
 	ArmyOverviewMA(){}
@@ -31,7 +31,7 @@ public:
 	*/
 	virtual void armyOverviewSelectAction() = 0;
 	virtual void trainCommanderPrompt() = 0;
-	virtual void proceedWithTraining(const i5array& trainCosts) = 0;
+	virtual void proceedWithTraining(constArrayReference trainCosts) = 0;
 	virtual void upgradeCommander() = 0;
 	virtual commSPTR pickCommanderToUpgrade() = 0;  
 	virtual void viewCommanderStats() = 0;

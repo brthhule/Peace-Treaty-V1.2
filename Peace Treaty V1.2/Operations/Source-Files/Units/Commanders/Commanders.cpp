@@ -4,6 +4,35 @@
 using namespace COMM;
 using namespace TROOP;
 
+/*	"Resources:      ",
+	"Troops present: ",
+	"Troops injured: ",
+	"Troops lost:    ",
+	"Other stats:    "
+*/
+s5array statsOne = {
+	"Resources:      ",
+	"Troops present: ",
+	"Troops injured: ",
+	"Troops lost:    ",
+	"Other stats:    "
+};
+
+//Check this
+std::array<s5array, 4> namesOfManOne = {
+	INF::RESOURCE_NAMES,
+	INF::TROOP_NAMES
+};
+
+std::array<std::string, 6> namesOfManTwo{
+	 "Total Troops",
+	 "Total Army CP",
+	 "Commander Level",
+	 "Max Troops this army can have",
+	 "Army Food consumption",
+	 "Max Resources this army can have"
+};
+
 /*Constructors*/
 Commanders::Commanders() : Commanders(1, "Unnamed", -1) { }
 
@@ -13,11 +42,25 @@ Commanders::Commanders(int level, std::string name, int participantIndex) : Prim
 
 	level = level;
 	moved = false;
-
-
 	maxTroops = level * 10;
 	totalMaxResources = 0;
 	setName(name);
+
+	troopConditions = {};
+	for (int condition = 0; condition < 3; condition++) {
+		for (int troopType = 0; troopType < 5; troopType++) {
+			for (int tier = 0; tier < 5; tier++) {
+				troopConditions.at(condition).at(troopType).at(tier) = {};
+			}
+		}
+	}
+
+	std::array<std::array<std::vector<TroopUnitsBASE>, 5>, 5> battleFormation; 
+	for (int lane = 0; lane < 5; lane++) {
+		for (int cell = 0; cell < 5; cell++) {
+			battleFormation.at(lane).at(cell) = {};
+		}
+	}
 }
 /*Destructor*/
 Commanders::~Commanders() {
@@ -54,7 +97,7 @@ constINT Commanders::getCommanderStat(int index) {
 	//return *commanderArmyStats[index];
 }
 
-constArrayReference Commanders::getUpgradeCosts() {
+const i5array Commanders::getUpgradeCosts() {
 	//For debugging
 	DEBUG_FUNCTION("Commanders.cpp", "getUpgradeCosts");
 
@@ -98,7 +141,7 @@ void Commanders::resetCommanderMoved() {
 	moved = false;
 }
 
-const std::string& Commanders::getCommanderNameLevel() {
+const std::string Commanders::getCommanderNameLevel() {
 	return "Name: " + getName() + ", Level: " + std::to_string(getLevel());
 }
 
