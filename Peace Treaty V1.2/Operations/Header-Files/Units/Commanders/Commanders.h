@@ -70,7 +70,6 @@ namespace COMM {
 		int getSumOfTiersOfTroop(TroopCondition troopCondition, TROOP::TroopTypes type);
 
 		i5array getArrayOfSumsOfTiersOfAllTroops(TroopCondition type);
-		std::array<troopsArray, 3> &getAllTroopConditions();
 
 		//----Mutators-------------------------------------------------------------
 		void mutateTroop(

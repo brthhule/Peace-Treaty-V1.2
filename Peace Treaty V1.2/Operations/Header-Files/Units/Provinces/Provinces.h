@@ -10,7 +10,6 @@
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 
-#include COORDS_BASE_HEADER				//Base Class
 
 #include BUILD_MA_HEADER				//Interface
 #include BUILDING_ATTRIBUTES_INT_HEADER	//Interface

@@ -45,6 +45,7 @@ namespace INF {
 	//////////////////////////////////////Aliases//////////////////////////////
 	
 
+
 	//----Array/Vector Types-----------
 	using s5array = std::array<std::string, UNIT_AMOUNT>;
 	using d5array = std::array<double, UNIT_AMOUNT>;
@@ -188,8 +189,6 @@ namespace INF {
 	///Calls enterAnything then clearScreen
 	inline void enterAndClear(int option);
 
-	//Debugging purposes
-	void debugFunction(std::string functionName);
 	//Text stuff
 	void showHelp(int caseNum);
 	void printFile(std::string path);
