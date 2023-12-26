@@ -192,7 +192,7 @@ public:
 	void trainCommanderPrompt() override;
 	void proceedWithTraining(constArrayReference trainCosts) override;
 	void upgradeCommander() override;
-	commSPTR pickCommanderToUpgrade() override;
+	sPTR<Commanders> pickCommanderToUpgrade() override;
 	void viewCommanderStats() override;
 	void deployCommanderPrompt() override;
 	///Adds a Commander to the capital province

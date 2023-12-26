@@ -42,6 +42,27 @@ namespace INF {
 	template <typename T>
 	T makeCopy(T& object);
 
+	template<class T>
+	//Shared pointer of type T
+	class sPTR {
+	public:
+		sPTR<T>(T thing) {
+			ptr = std::make_shared<T>(thing);
+		}
+		sPTR<T>() {
+			ptr = nullptr;
+		}
+		std::shared_ptr<T> get() {
+			return ptr;
+		}
+
+		static std::shared_ptr<T> makeSPTR(T thing) {
+			return std::make_shared<T>(thing);
+		}
+	private:
+		std::shared_ptr<T> ptr;
+	};
+
 	//////////////////////////////////////Aliases//////////////////////////////
 	
 

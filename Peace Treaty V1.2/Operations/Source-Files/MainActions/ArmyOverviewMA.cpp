@@ -36,20 +36,21 @@ void Participants::armyOverviewSelectAction() {
 	return;
 }
 
-commSPTR Participants::pickCommanderToUpgrade() {
+sPTR<Commanders> Participants::pickCommanderToUpgrade() { 
 	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "pickCommanderToUpgrade()");
 	if (getCommandersNum() == 0) { 
 		std::cout << "No commanders available, can not upgrade\n"; 
 		enterAnything(1); 
-		return nullptr;
+		return sPTR<Commanders>();
 	}
 
-	COMM::commSPTR commander = this->pickCommander(); 
+	COMM::commSPTR commanderPtr = this->pickCommander(); 
+	sPTR<Commanders> commander (*commanderPtr);
 
-	if (commander == nullptr) { 
+	if (commander.get() == nullptr) {
 		std::cout << "Cancelling upgrade...\n"; 
 		enterAnything(1); 
-		return nullptr;
+		return sPTR<Commanders>();
 	}
 
 	//This should return the reference that commander holds
@@ -59,10 +60,11 @@ commSPTR Participants::pickCommanderToUpgrade() {
 void Participants::upgradeCommander() {
 	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "upgradeCommander()");
 
-	commSPTR commander = pickCommanderToUpgrade(); 
-	if (commander = nullptr) { return; }
+	sPTR<Commanders> commander = pickCommanderToUpgrade();
 
-	constArrayReference costsArray = commander->getUpgradeCosts();
+	if (commander.get() = nullptr) { return; }
+
+	constArrayReference costsArray = commander.get()->getUpgradeCosts();
 
 	std::cout << "The following are the Commander upgrade costs: \n";
 	INF::printResources(costsArray);
@@ -80,8 +82,8 @@ void Participants::upgradeCommander() {
 	bool resourcesPositive = getCapitalProvince()->subtractCheckResources(costsArray);
 
 	if (resourcesPositive == true) {
-		commander->addLevel();
-		std::cout << "Upgrade successful; Commander " + commander->getName() + "is now level " << commander->getLevel() << std::endl;
+		commander.get()->addLevel();
+		std::cout << "Upgrade successful; Commander " + commander.get()->getName() + "is now level " << commander.get()->getLevel() << std::endl; 
 	} else {
 		//Add subtracted resources back to province resources
 		std::cout << "Upgrade failed. " << std::endl;

@@ -140,7 +140,7 @@ namespace INF {
 		MutateDirection direction) 
 	{
 		//For debugging
-		debugFunction("OF, mutateArray");
+		DEBUG_FUNCTION("OF", "mutateArray");
 
 		switch (direction) {
 			case INCREASE:
@@ -194,7 +194,7 @@ bool INF::checkIsNumber(std::string numberString) {
 //Clears the screen
 void INF::clearScreen() {
 	//For debugging
-	debugFunction("OF, clearScreen");
+	DEBUG_FUNCTION("OF", "clearScreen");
 
 	addColor(RED);
 	std::cout << "Clearing screen. \n";
@@ -207,7 +207,7 @@ void INF::clearScreen() {
 
 void INF::clearScreenCommand() {
 	//For debugging
-	debugFunction("OF, clearScreenCommand");
+	DEBUG_FUNCTION("OF", "clearScreenCommand");
 	std::cout << "\033[2J\033[1;1H";
 }
 
@@ -216,7 +216,7 @@ void INF::clearScreenCommand() {
 option = 1, says enter anything to proceed
 option = 2, says enter anything to return to previous menu*/
 void INF::enterAnything(int option) {
-	debugFunction("OtherFunctions, enterAnything");
+	DEBUG_FUNCTION("INF.cpp", "enterAnything");
 	std::array<std::string, 2> phrases = { "proceed", "return to the previous menu" }; 
 	std::string line = phrases.at(option - 1);
 
@@ -265,7 +265,7 @@ void INF::showHelp(int caseNum) {
 //Print a text file
 void INF::printFile(std::string path) {
 	//For debugging
-	debugFunction("OF, printFile");
+	DEBUG_FUNCTION("OF", "printFile");
 
 	//Create file
 	std::fstream newfile;
