@@ -36,7 +36,7 @@ void Participants::armyOverviewSelectAction() {
 	return;
 }
 
-sPTR<Commanders> Participants::pickCommanderToUpgrade() { 
+sPTR<Commanders> Participants::pickCommanderToUpgrade() {  
 	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "pickCommanderToUpgrade()");
 	if (getCommandersNum() == 0) { 
 		std::cout << "No commanders available, can not upgrade\n"; 

@@ -65,13 +65,13 @@ void Provinces::setCommandersSortStatus(SortType sort) {
 
 	commandersSortType = sort; 
 	std::vector<unitSPTR> units;
-	for (commSPTR commander : commandersVector) {
-		units.push_back(commander);
+	for (Commanders commander : commandersVector) {
+		units.push_back(std::make_shared<Commanders>(commander));
 	}
 	units = sortVector(sort, units);
 	commandersVector.clear();
 	for (unitSPTR unit : units) {
-		commandersVector.push_back(std::dynamic_pointer_cast<Commanders>(unit));
+		commandersVector.push_back(*std::dynamic_pointer_cast<Commanders>(unit)); 
 	}
 }
 
@@ -117,19 +117,20 @@ void Provinces::removeCommander(commSPTR newCommander)
 	commandersVector.erase(commandersVector.begin() + getCommanderIndex(newCommander));
 }
 
-void Provinces::addCommander(Commanders &commanderReference)
+void Provinces::addCommander(Commanders commanderCopy) 
 {
 	//For debugging
 	DEBUG_FUNCTION("Provinces.cpp", "addCommander");
-	commSPTR commander = std::make_shared<Commanders>(commanderReference);
-	commandersMap[commander->getName()] = commander; 
+	commandersVector.push_back(commanderCopy);
 
+	commSPTR commander = std::make_shared<Commanders>(commandersVector.end() - 1);
+	commandersMap[commander->getName()] = commander; 
 	commander->setCoords(getPairCoords());
 }
 
 
 
-constINT Provinces::getTotalCP() const {
+int Provinces::getTotalCP() const {
 	//For debugging
 	DEBUG_FUNCTION("Provinces.cpp", "getTotalCP");
 
@@ -137,7 +138,7 @@ constINT Provinces::getTotalCP() const {
 	totalCP += getCombatPower();
 
 	for (int index = 0; index < (int) commandersVector.size(); index++) {
-		totalCP += commandersVector.at(index)->getCombatPower();
+		totalCP += commandersVector.at(index).getCombatPower();
 	}
 	return totalCP;
 }
@@ -220,7 +221,7 @@ void Provinces::setKingdomName(std::string name) {
 	kingdomName = name;
 }
 
-constINT Provinces::getCommandersNum() const {
+int Provinces::getCommandersNum() const {
 	//For debugging
 	DEBUG_FUNCTION("Provinces.cpp", "getCommandersNum");
 
@@ -263,7 +264,7 @@ std::string Provinces::getKingdomName() {
 
 int Provinces::getCommanderIndex(commSPTR commander) {
 	for (int index = 0; index < (int)commandersVector.size(); index++) {
-		if (commander == commandersVector.at(index)) {
+		if (commander->getName() == commandersVector.at(index).getName()) {
 			return index;
 		}
 	}

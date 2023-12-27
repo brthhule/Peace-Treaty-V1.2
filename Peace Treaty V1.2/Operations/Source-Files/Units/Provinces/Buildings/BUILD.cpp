@@ -19,13 +19,9 @@ namespace BUILD {
 	* Null setting for enumArg is 0
 	*/
 	std::pair<std::string, BuildingsEnum> translateEnumString (std::string stringArg, BuildingsEnum enumArg) {
-		if (stringArg == "") {
-			return std::make_pair(BuildingStrings.at(enumArg), enumArg);
-		}
+		if (stringArg == "") { return std::make_pair(BuildingStrings.at(enumArg), enumArg); }
 
-		if (enumArg != -1) {
-			return std::make_pair("", FARM);
-		}
+		if (enumArg != -1) { return std::make_pair("", FARM); }
 
 		for (int index = 0; index < 10; index++) {
 			if (stringArg == BuildingStrings.at(index)) {
@@ -33,5 +29,8 @@ namespace BUILD {
 				break;
 			}
 		}
+
+		//Not all control paths return a value
+		return std::make_pair("", FARM); 
 	}
 }

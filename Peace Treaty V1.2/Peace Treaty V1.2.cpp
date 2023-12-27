@@ -15,9 +15,8 @@
 #include <thread>
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
-/*Includes Provinces.h (INF.h, Input.h, Commanders.h)*/
+/*Includes Provinces.h (INF.h, Input.h, Commanders.h, PlayerAction.h)*/
 #include PARTICIPANTS_HEADER
-#include PLAYER_ACTION_HEADER
 
 void startOrResumeGame();
 void resumeGame();

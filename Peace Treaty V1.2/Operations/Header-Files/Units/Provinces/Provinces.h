@@ -81,9 +81,9 @@ namespace PROV {
 		commSPTRList getAllCommanders() const;
 
 		///Returns the total amount of Commanders this unit has
-		constINT getCommandersNum() const;
+		int getCommandersNum() const;
 		///Calculates the combat power of this province
-		constINT getTotalCP() const;
+		int getTotalCP() const;
 		///Get the index of this unit in its Participant's vector?
 		constINT getMapIndex() const;
 
@@ -93,7 +93,7 @@ namespace PROV {
 		//----Setters----------------------------------------------------------
 		
 		///Add Commander to this province and change Commander corods to here
-		void addCommander(Commanders& newCommander);
+		void addCommander(Commanders newCommander);
 		///Remove Commander from this province
 		void removeCommander(commSPTR newCommander);
 		/*//Update this province's resources at the end of the round.
@@ -202,7 +202,7 @@ namespace PROV {
 
 		commMAP::iterator it;
 		commMAP commandersMap;
-		commSPTRList commandersVector;
+		std::vector<Commanders> commandersVector; //Commanders live here
 		///The main commander at this province
 		commSPTR provinceCommander;
 

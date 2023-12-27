@@ -57,12 +57,13 @@ private:
 	
 };
 
-/*using oneTier = std::vector<TroopUnitsBASE>;
-using tiersArray = Array5(oneTier);
-using troopsArray = Array5(tiersArray);*/
+using oneTier = std::vector<TroopUnitsBASE>;
+using tiersArray = std::array<oneTier, 5>;
+using troopsArray = std::array<tiersArray, 5>;
 
+/*
 #define oneTier = std::vector<TroopUnitsBASE>;
 #define tiersArray = std::array<std::vector<TroopUnitsBASE>, 5>;
 using troopsArray = std::array<std::array<std::vector<TroopUnitsBASE>, 5>, 5>;
-
+*/
 #endif
