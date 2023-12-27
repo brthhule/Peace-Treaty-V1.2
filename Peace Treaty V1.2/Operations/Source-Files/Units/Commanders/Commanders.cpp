@@ -88,7 +88,7 @@ void Commanders::printCommanderStats() {
 }
 
 ////////////Accessors//////////////////
-constINT Commanders::getCommanderStat(int index) {
+int Commanders::getCommanderStat(int index) {
 	//For debugging
 	DEBUG_FUNCTION("Commanders.cpp", "getCommanderStat");
 
@@ -139,10 +139,6 @@ void Commanders::resetCommanderMoved() {
 	DEBUG_FUNCTION("Commanders.cpp", "resetCommanderHasMoved");
 
 	moved = false;
-}
-
-const std::string Commanders::getCommanderNameLevel() {
-	return "Name: " + getName() + ", Level: " + std::to_string(getLevel());
 }
 
 constINT Commanders::getCombatPower() const { return combatPower; }

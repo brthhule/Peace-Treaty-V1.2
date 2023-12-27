@@ -90,13 +90,14 @@ commSPTR Participants::pickCommanderAttack(commSPTRList commandersCanAttack) {
 	
 	std::string commanderName = getInputText("Enter the name of the commander you would like to select: ", {});
 
-	if (this->hasCommander(commanderName)) {
-		return getCommander(commanderName);
-	}
+	if (this->hasCommander(commanderName)) { return getCommander(commanderName); }
 
 	//If participant doesn't have commander, recurse until it does
 	std::cout << "Invalid commander selected... please try again.\n";
 	pickCommanderAttack(commandersCanAttack);
+
+	//not all control paths return a value
+	return nullptr;
 }
 
 void Participants::playerCommitAttack(provSPTR defendingProvince,  commSPTR attackingCommander) { 
@@ -141,7 +142,7 @@ void Participants::playerCommitAttack(provSPTR defendingProvince,  commSPTR atta
 	std::cout << "  Results: \n\n";
 	std::cout << "Resources gained: " << getColor(BLUE);
 
-	i5array oldResources;///////////////////
+	i5array oldResources = {};///////////////////
 	INF::printResources(mutateArray(attackingCommander->getAllResources(), oldResources, DECREASE));
 	attackingCommander->printResources();
 	casualtyReport(troopsLost, injuredTroops);

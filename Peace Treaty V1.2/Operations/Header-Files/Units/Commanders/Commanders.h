@@ -41,9 +41,8 @@ namespace COMM {
 		~Commanders();
 
 		//----Getters----------------------------------------------------------
-		constINT getCommanderStat(int index);
+		int getCommanderStat(int index);
 		bool hasMoved() const;
-		const std::string getCommanderNameLevel();
 		const i5array getUpgradeCosts();
 		
 

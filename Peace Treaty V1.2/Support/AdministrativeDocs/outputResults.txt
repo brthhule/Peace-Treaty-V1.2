@@ -1,0 +1,427 @@
+02:37:23:265	Build started at 2:37 AM...
+02:37:23:714	1>------ Build started: Project: Peace Treaty V1.2, Configuration: Debug x64 ------
+02:37:23:939	1>ArmyOverviewMA.cpp
+02:37:24:840	1>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(255,61): error C2665: 'COMM::Commanders::Commanders': no overloaded function could convert all the argument types
+02:37:24:840	1>(compiling source file 'Operations/Source-Files/MainActions/ArmyOverviewMA.cpp')
+02:37:24:840	1>C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Header-Files\Units\Commanders\Commanders.h(97,2):
+02:37:24:840	1>could be 'COMM::Commanders::Commanders(const COMM::Commanders &)'
+02:37:24:840	1>	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(255,61):
+02:37:24:840	1>	'COMM::Commanders::Commanders(const COMM::Commanders &)': cannot convert argument 1 from '_Ty' to 'const COMM::Commanders &'
+02:37:24:840	1>        with
+02:37:24:840	1>        [
+02:37:24:840	1>            _Ty=COMM::Commanders *
+02:37:24:840	1>        ]
+02:37:24:840	1>		C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(255,82):
+02:37:24:840	1>		Reason: cannot convert from '_Ty' to 'const COMM::Commanders'
+02:37:24:840	1>        with
+02:37:24:840	1>        [
+02:37:24:840	1>            _Ty=COMM::Commanders *
+02:37:24:840	1>        ]
+02:37:24:840	1>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(255,61):
+02:37:24:840	1>while trying to match the argument list '(_Ty)'
+02:37:24:840	1>        with
+02:37:24:840	1>        [
+02:37:24:840	1>            _Ty=COMM::Commanders *
+02:37:24:840	1>        ]
+02:37:24:840	1>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(255,61):
+02:37:24:840	1>the template instantiation context (the oldest one first) is
+02:37:24:840	1>	C:\Users\Brennen\source\repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Source-Files\MainActions\ArmyOverviewMA.cpp(182,28):
+02:37:24:840	1>	see reference to function template instantiation 'std::shared_ptr<COMM::Commanders> std::make_shared<COMM::Commanders,COMM::Commanders*>(COMM::Commanders *&&)' being compiled
+02:37:24:840	1>	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(2769,46):
+02:37:24:840	1>	see reference to function template instantiation 'std::_Ref_count_obj2<COMM::Commanders>::_Ref_count_obj2<_Ty>(_Ty &&)' being compiled
+02:37:24:840	1>        with
+02:37:24:840	1>        [
+02:37:24:840	1>            _Ty=COMM::Commanders *
+02:37:24:840	1>        ]
+02:37:24:840	1>	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(2094,18):
+02:37:24:840	1>	see reference to function template instantiation 'void std::_Construct_in_place<_Ty,COMM::Commanders*>(_Ty &,COMM::Commanders *&&) noexcept(false)' being compiled
+02:37:24:840	1>        with
+02:37:24:840	1>        [
+02:37:24:840	1>            _Ty=COMM::Commanders
+02:37:24:840	1>        ]
+02:37:25:086	1>AttackMA.cpp
+02:37:26:125	1>BuildMA.cpp
+02:37:27:044	1>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(255,61): error C2665: 'BuildingsBASE::BuildingsBASE': no overloaded function could convert all the argument types
+02:37:27:044	1>(compiling source file 'Operations/Source-Files/MainActions/BuildMA.cpp')
+02:37:27:044	1>C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Header-Files\Units\Provinces\Buildings\BuildingsBASE.h(39,1):
+02:37:27:044	1>could be 'BuildingsBASE::BuildingsBASE(const BuildingsBASE &)'
+02:37:27:044	1>	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(255,61):
+02:37:27:044	1>	'BuildingsBASE::BuildingsBASE(const BuildingsBASE &)': cannot convert argument 1 from '_Ty' to 'const BuildingsBASE &'
+02:37:27:044	1>        with
+02:37:27:044	1>        [
+02:37:27:044	1>            _Ty=std::unique_ptr<BuildingsBASE,std::default_delete<BuildingsBASE>>
+02:37:27:044	1>        ]
+02:37:27:044	1>		C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(255,82):
+02:37:27:044	1>		Reason: cannot convert from '_Ty' to 'const BuildingsBASE'
+02:37:27:044	1>        with
+02:37:27:044	1>        [
+02:37:27:044	1>            _Ty=std::unique_ptr<BuildingsBASE,std::default_delete<BuildingsBASE>>
+02:37:27:044	1>        ]
+02:37:27:044	1>		C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(255,82):
+02:37:27:044	1>		No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+02:37:27:044	1>C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Header-Files\Units\Provinces\Buildings\BuildingsBASE.h(22,2):
+02:37:27:044	1>or       'BuildingsBASE::BuildingsBASE(INF::d5array)'
+02:37:27:044	1>	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(255,61):
+02:37:27:044	1>	'BuildingsBASE::BuildingsBASE(INF::d5array)': cannot convert argument 1 from '_Ty' to 'INF::d5array'
+02:37:27:044	1>        with
+02:37:27:044	1>        [
+02:37:27:044	1>            _Ty=std::unique_ptr<BuildingsBASE,std::default_delete<BuildingsBASE>>
+02:37:27:044	1>        ]
+02:37:27:044	1>		C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(255,82):
+02:37:27:044	1>		No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+02:37:27:044	1>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(255,61):
+02:37:27:044	1>while trying to match the argument list '(_Ty)'
+02:37:27:044	1>        with
+02:37:27:044	1>        [
+02:37:27:044	1>            _Ty=std::unique_ptr<BuildingsBASE,std::default_delete<BuildingsBASE>>
+02:37:27:044	1>        ]
+02:37:27:044	1>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(255,61):
+02:37:27:044	1>the template instantiation context (the oldest one first) is
+02:37:27:044	1>	C:\Users\Brennen\source\repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Source-Files\MainActions\BuildMA.cpp(87,49):
+02:37:27:044	1>	see reference to function template instantiation 'std::shared_ptr<BuildingsBASE> std::make_shared<BuildingsBASE,_Ty&>(_Ty &)' being compiled
+02:37:27:044	1>        with
+02:37:27:044	1>        [
+02:37:27:044	1>            _Ty=std::unique_ptr<BuildingsBASE,std::default_delete<BuildingsBASE>>
+02:37:27:044	1>        ]
+02:37:27:044	1>	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(2769,46):
+02:37:27:044	1>	see reference to function template instantiation 'std::_Ref_count_obj2<BuildingsBASE>::_Ref_count_obj2<_Ty&>(_Ty &)' being compiled
+02:37:27:044	1>        with
+02:37:27:044	1>        [
+02:37:27:044	1>            _Ty=std::unique_ptr<BuildingsBASE,std::default_delete<BuildingsBASE>>
+02:37:27:044	1>        ]
+02:37:27:044	1>	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(2094,18):
+02:37:27:044	1>	see reference to function template instantiation 'void std::_Construct_in_place<_Ty,std::unique_ptr<_Ty,std::default_delete<_Ty>>&>(_Ty &,std::unique_ptr<_Ty,std::default_delete<_Ty>> &) noexcept(false)' being compiled
+02:37:27:044	1>        with
+02:37:27:044	1>        [
+02:37:27:044	1>            _Ty=BuildingsBASE
+02:37:27:044	1>        ]
+02:37:27:113	1>MapMA.cpp
+02:37:28:070	1>PlayerAction.cpp
+02:37:28:864	1>ScoutMA.cpp
+02:37:30:036	1>TrainMA.cpp
+02:37:30:894	1>BASE.cpp
+02:37:30:964	1>INF.cpp
+02:37:31:504	1>Input.cpp
+02:37:32:079	1>Mobility.cpp
+02:37:32:860	1>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(255,61): error C2280: 'PROV::Provinces::Provinces(const PROV::Provinces &)': attempting to reference a deleted function
+02:37:32:860	1>(compiling source file 'Operations/Source-Files/Units/Commanders/Mobility.cpp')
+02:37:32:860	1>C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Header-Files\Units\Provinces\Provinces.h(227,2):
+02:37:32:860	1>compiler has generated 'PROV::Provinces::Provinces' here
+02:37:32:860	1>C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Header-Files\Units\Provinces\Provinces.h(227,2):
+02:37:32:860	1>'PROV::Provinces::Provinces(const PROV::Provinces &)': function was implicitly deleted because a data member invokes a deleted or inaccessible function 'std::array<std::unique_ptr<BuildingsBASE,std::default_delete<BuildingsBASE>>,10>::array(const std::array<std::unique_ptr<BuildingsBASE,std::default_delete<BuildingsBASE>>,10> &)'
+02:37:32:860	1>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\array(578,1):
+02:37:32:860	1>'std::array<std::unique_ptr<BuildingsBASE,std::default_delete<BuildingsBASE>>,10>::array(const std::array<std::unique_ptr<BuildingsBASE,std::default_delete<BuildingsBASE>>,10> &)': function was implicitly deleted because a data member invokes a deleted or inaccessible function 'std::unique_ptr<BuildingsBASE,std::default_delete<BuildingsBASE>>::unique_ptr(const std::unique_ptr<BuildingsBASE,std::default_delete<BuildingsBASE>> &)'
+02:37:32:860	1>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(3319,5):
+02:37:32:860	1>'std::unique_ptr<BuildingsBASE,std::default_delete<BuildingsBASE>>::unique_ptr(const std::unique_ptr<BuildingsBASE,std::default_delete<BuildingsBASE>> &)': function was explicitly deleted
+02:37:32:860	1>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(255,61):
+02:37:32:860	1>the template instantiation context (the oldest one first) is
+02:37:32:860	1>	C:\Users\Brennen\source\repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Source-Files\Units\Commanders\Mobility.cpp(18,35):
+02:37:32:860	1>	see reference to function template instantiation 'std::shared_ptr<PROV::Provinces> std::make_shared<PROV::Provinces,PROV::Provinces&>(PROV::Provinces &)' being compiled
+02:37:32:860	1>	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(2769,46):
+02:37:32:860	1>	see reference to function template instantiation 'std::_Ref_count_obj2<PROV::Provinces>::_Ref_count_obj2<PROV::Provinces&>(PROV::Provinces &)' being compiled
+02:37:32:860	1>	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(2094,18):
+02:37:32:860	1>	see reference to function template instantiation 'void std::_Construct_in_place<_Ty,PROV::Provinces&>(_Ty &,PROV::Provinces &) noexcept(false)' being compiled
+02:37:32:860	1>        with
+02:37:32:860	1>        [
+02:37:32:860	1>            _Ty=PROV::Provinces
+02:37:32:860	1>        ]
+02:37:32:928	1>Commanders.cpp
+02:37:33:519	1>Archers.cpp
+02:37:34:084	1>Artillary.cpp
+02:37:35:241	1>Cavalry.cpp
+02:37:36:140	1>Guards.cpp
+02:37:37:007	1>Infantry.cpp
+02:37:37:661	1>TROOP.cpp
+02:37:38:300	1>TroopUnitsBASE.cpp
+02:37:38:927	1>PrimeUnits.cpp
+02:37:39:334	1>C:\Users\Brennen\source\repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Source-Files\Units\PrimeUnits\PrimeUnits.cpp(128,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+02:37:39:707	1>Generating Code...
+02:37:39:707	1>C:\Users\Brennen\source\repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Source-Files\Units\PrimeUnits\PrimeUnits.cpp(119): warning C4715: 'UNIT::PrimeUnits::sortVector': not all control paths return a value
+02:37:39:707	1>C:\Users\Brennen\source\repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Source-Files\Units\PrimeUnits\Troops\TROOP.cpp(26): warning C4715: 'TROOP::stringToTroopType': not all control paths return a value
+02:37:39:878	1>Compiling...
+02:37:39:878	1>CoordsBASE.cpp
+02:37:40:685	1>TroopsINT.cpp
+02:37:41:357	1>C:\Users\Brennen\source\repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Source-Files\Units\PrimeUnits\TroopsINT.cpp(22,20): warning C4267: '+=': conversion from 'size_t' to 'int', possible loss of data
+02:37:41:421	1>C:\Users\Brennen\source\repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Source-Files\Units\PrimeUnits\TroopsINT.cpp(109,24): warning C4553: '==': result of expression not used; did you intend '='?
+02:37:41:613	1>Barracks.cpp
+02:37:42:447	1>Infirmary.cpp
+02:37:43:208	1>Library.cpp
+02:37:43:875	1>Residences.cpp
+02:37:44:542	1>Wall.cpp
+02:37:45:164	1>Church.cpp
+02:37:45:898	1>Farm.cpp
+02:37:46:526	1>Mill.cpp
+02:37:47:229	1>Mine.cpp
+02:37:47:923	1>Quarry.cpp
+02:37:48:998	1>ResourceBuildingsBASE.cpp
+02:37:49:879	1>BUILD.cpp
+02:37:50:551	1>BuildingAttributesINT.cpp
+02:37:51:377	1>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(2034,23): error C2683: 'dynamic_cast': 'BuildingsBASE' is not a polymorphic type
+02:37:51:377	1>(compiling source file 'Operations/Source-Files/Units/Provinces/Buildings/BuildingAttributesINT.cpp')
+02:37:51:377	1>C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Header-Files\Units\Provinces\Buildings\BuildingsBASE.h(18,7):
+02:37:51:377	1>see declaration of 'BuildingsBASE'
+02:37:51:377	1>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(2034,23):
+02:37:51:377	1>the template instantiation context (the oldest one first) is
+02:37:51:377	1>	C:\Users\Brennen\source\repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Source-Files\Units\Provinces\Buildings\BuildingAttributesINT.cpp(12,65):
+02:37:51:377	1>	see reference to function template instantiation 'std::shared_ptr<ResourceBuildingsBASE> std::dynamic_pointer_cast<ResourceBuildingsBASE,BuildingsBASE>(const std::shared_ptr<BuildingsBASE> &) noexcept' being compiled
+02:37:51:377	1>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(2034,16): error C2737: '_Ptr': const object must be initialized
+02:37:51:377	1>(compiling source file 'Operations/Source-Files/Units/Provinces/Buildings/BuildingAttributesINT.cpp')
+02:37:51:377	1>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(2036,9): error C3536: '_Ptr': cannot be used before it is initialized
+02:37:51:377	1>(compiling source file 'Operations/Source-Files/Units/Provinces/Buildings/BuildingAttributesINT.cpp')
+02:37:51:377	1>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(2037,32): error C2440: '<function-style-cast>': cannot convert from 'initializer list' to 'std::shared_ptr<ResourceBuildingsBASE>'
+02:37:51:377	1>(compiling source file 'Operations/Source-Files/Units/Provinces/Buildings/BuildingAttributesINT.cpp')
+02:37:51:377	1>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(2037,32):
+02:37:51:377	1>'std::shared_ptr<ResourceBuildingsBASE>::shared_ptr': function does not take 2 arguments
+02:37:51:377	1>	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(1665,5):
+02:37:51:377	1>	could be 'std::shared_ptr<ResourceBuildingsBASE>::shared_ptr(std::unique_ptr<_Ux,_Dx> &&)'
+02:37:51:377	1>	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(1654,5):
+02:37:51:377	1>	or       'std::shared_ptr<ResourceBuildingsBASE>::shared_ptr(std::auto_ptr<_Other> &&)'
+02:37:51:377	1>	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(1646,5):
+02:37:51:377	1>	or       'std::shared_ptr<ResourceBuildingsBASE>::shared_ptr(const std::weak_ptr<_Ty2> &)'
+02:37:51:377	1>	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(1641,5):
+02:37:51:377	1>	or       'std::shared_ptr<ResourceBuildingsBASE>::shared_ptr(std::shared_ptr<_Ty2> &&) noexcept'
+02:37:51:377	1>	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(1631,5):
+02:37:51:377	1>	or       'std::shared_ptr<ResourceBuildingsBASE>::shared_ptr(const std::shared_ptr<_Ty2> &) noexcept'
+02:37:51:377	1>	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(1621,5):
+02:37:51:377	1>	or       'std::shared_ptr<ResourceBuildingsBASE>::shared_ptr(std::shared_ptr<_Ty2> &&,ResourceBuildingsBASE *) noexcept'
+02:37:51:377	1>	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(1615,5):
+02:37:51:377	1>	or       'std::shared_ptr<ResourceBuildingsBASE>::shared_ptr(const std::shared_ptr<_Ty2> &,ResourceBuildingsBASE *) noexcept'
+02:37:51:377	1>	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(1610,5):
+02:37:51:377	1>	or       'std::shared_ptr<ResourceBuildingsBASE>::shared_ptr(std::nullptr_t,_Dx,_Alloc)'
+02:37:51:377	1>	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(1604,5):
+02:37:51:377	1>	or       'std::shared_ptr<ResourceBuildingsBASE>::shared_ptr(std::nullptr_t,_Dx)'
+02:37:51:377	1>	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(1598,5):
+02:37:51:377	1>	or       'std::shared_ptr<ResourceBuildingsBASE>::shared_ptr(_Ux *,_Dx,_Alloc)'
+02:37:51:377	1>	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(1590,5):
+02:37:51:377	1>	or       'std::shared_ptr<ResourceBuildingsBASE>::shared_ptr(_Ux *,_Dx)'
+02:37:51:377	1>	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(1576,5):
+02:37:51:377	1>	or       'std::shared_ptr<ResourceBuildingsBASE>::shared_ptr(_Ux *)'
+02:37:51:377	1>	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(2037,32):
+02:37:51:377	1>	while trying to match the argument list '(const std::shared_ptr<BuildingsBASE>, int)'
+02:37:51:378	1>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(3465,35): error C2665: 'Barracks::Barracks': no overloaded function could convert all the argument types
+02:37:51:378	1>(compiling source file 'Operations/Source-Files/Units/Provinces/Buildings/BuildingAttributesINT.cpp')
+02:37:51:378	1>C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Header-Files\Units\Provinces\Buildings\Others\Barracks.h(16,1):
+02:37:51:378	1>could be 'Barracks::Barracks(const Barracks &)'
+02:37:51:378	1>	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(3465,35):
+02:37:51:378	1>	'Barracks::Barracks(const Barracks &)': cannot convert argument 1 from '_Ty' to 'const Barracks &'
+02:37:51:378	1>        with
+02:37:51:378	1>        [
+02:37:51:378	1>            _Ty=std::unique_ptr<BuildingsBASE,std::default_delete<BuildingsBASE>>
+02:37:51:378	1>        ]
+02:37:51:378	1>		C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(3465,56):
+02:37:51:378	1>		Reason: cannot convert from '_Ty' to 'const Barracks'
+02:37:51:378	1>        with
+02:37:51:378	1>        [
+02:37:51:378	1>            _Ty=std::unique_ptr<BuildingsBASE,std::default_delete<BuildingsBASE>>
+02:37:51:378	1>        ]
+02:37:51:378	1>		C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(3465,56):
+02:37:51:378	1>		No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+02:37:51:378	1>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(3465,35):
+02:37:51:378	1>while trying to match the argument list '(_Ty)'
+02:37:51:378	1>        with
+02:37:51:378	1>        [
+02:37:51:378	1>            _Ty=std::unique_ptr<BuildingsBASE,std::default_delete<BuildingsBASE>>
+02:37:51:378	1>        ]
+02:37:51:378	1>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(3465,35):
+02:37:51:378	1>the template instantiation context (the oldest one first) is
+02:37:51:378	1>	C:\Users\Brennen\source\repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Source-Files\Units\Provinces\Buildings\BuildingAttributesINT.cpp(114,44):
+02:37:51:378	1>	see reference to function template instantiation 'std::unique_ptr<Barracks,std::default_delete<Barracks>> std::make_unique<Barracks,_Ty&,0>(_Ty &)' being compiled
+02:37:51:378	1>        with
+02:37:51:378	1>        [
+02:37:51:378	1>            _Ty=std::unique_ptr<BuildingsBASE,std::default_delete<BuildingsBASE>>
+02:37:51:378	1>        ]
+02:37:51:395	1>BuildingsBASE.cpp
+02:37:52:014	1>Provinces.cpp
+02:37:52:837	1>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(255,61): error C2665: 'COMM::Commanders::Commanders': no overloaded function could convert all the argument types
+02:37:52:837	1>(compiling source file 'Operations/Source-Files/Units/Provinces/Provinces.cpp')
+02:37:52:837	1>C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Header-Files\Units\Commanders\Commanders.h(97,2):
+02:37:52:837	1>could be 'COMM::Commanders::Commanders(const COMM::Commanders &)'
+02:37:52:837	1>	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(255,61):
+02:37:52:837	1>	'COMM::Commanders::Commanders(const COMM::Commanders &)': cannot convert argument 1 from '_Ty' to 'const COMM::Commanders &'
+02:37:52:837	1>        with
+02:37:52:837	1>        [
+02:37:52:837	1>            _Ty=std::_Vector_iterator<std::_Vector_val<std::_Simple_types<COMM::Commanders>>>
+02:37:52:837	1>        ]
+02:37:52:837	1>		C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(255,82):
+02:37:52:837	1>		Reason: cannot convert from '_Ty' to 'const COMM::Commanders'
+02:37:52:837	1>        with
+02:37:52:837	1>        [
+02:37:52:837	1>            _Ty=std::_Vector_iterator<std::_Vector_val<std::_Simple_types<COMM::Commanders>>>
+02:37:52:837	1>        ]
+02:37:52:837	1>		C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(255,82):
+02:37:52:837	1>		No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+02:37:52:837	1>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(255,61):
+02:37:52:837	1>while trying to match the argument list '(_Ty)'
+02:37:52:837	1>        with
+02:37:52:837	1>        [
+02:37:52:837	1>            _Ty=std::_Vector_iterator<std::_Vector_val<std::_Simple_types<COMM::Commanders>>>
+02:37:52:837	1>        ]
+02:37:52:837	1>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(255,61):
+02:37:52:837	1>the template instantiation context (the oldest one first) is
+02:37:52:837	1>	C:\Users\Brennen\source\repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Source-Files\Units\Provinces\Provinces.cpp(126,28):
+02:37:52:837	1>	see reference to function template instantiation 'std::shared_ptr<COMM::Commanders> std::make_shared<COMM::Commanders,std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>>(std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>> &&)' being compiled
+02:37:52:837	1>        with
+02:37:52:837	1>        [
+02:37:52:837	1>            _Ty=COMM::Commanders
+02:37:52:837	1>        ]
+02:37:52:837	1>	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(2769,46):
+02:37:52:837	1>	see reference to function template instantiation 'std::_Ref_count_obj2<COMM::Commanders>::_Ref_count_obj2<_Ty>(_Ty &&)' being compiled
+02:37:52:837	1>        with
+02:37:52:837	1>        [
+02:37:52:837	1>            _Ty=std::_Vector_iterator<std::_Vector_val<std::_Simple_types<COMM::Commanders>>>
+02:37:52:837	1>        ]
+02:37:52:837	1>	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(2094,18):
+02:37:52:837	1>	see reference to function template instantiation 'void std::_Construct_in_place<_Ty,std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>>(_Ty &,std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>> &&) noexcept(false)' being compiled
+02:37:52:837	1>        with
+02:37:52:837	1>        [
+02:37:52:837	1>            _Ty=COMM::Commanders
+02:37:52:837	1>        ]
+02:37:52:902	1>CommanderReport.cpp
+02:37:53:590	1>ProvinceReport.cpp
+02:37:54:297	1>Map.cpp
+02:37:55:134	1>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(255,61): error C2665: 'PROV::Provinces::Provinces': no overloaded function could convert all the argument types
+02:37:55:134	1>(compiling source file 'Operations/Source-Files/Units/Map.cpp')
+02:37:55:134	1>C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Header-Files\Units\Provinces\Provinces.h(227,2):
+02:37:55:134	1>could be 'PROV::Provinces::Provinces(const PROV::Provinces &)'
+02:37:55:134	1>	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(255,61):
+02:37:55:134	1>	'PROV::Provinces::Provinces(const PROV::Provinces &)': cannot convert argument 1 from 'PROV::Provinces *' to 'const PROV::Provinces &'
+02:37:55:134	1>		C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(255,82):
+02:37:55:134	1>		Reason: cannot convert from 'PROV::Provinces *' to 'const PROV::Provinces'
+02:37:55:134	1>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(255,61):
+02:37:55:134	1>while trying to match the argument list '(PROV::Provinces *)'
+02:37:55:134	1>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(255,61):
+02:37:55:134	1>the template instantiation context (the oldest one first) is
+02:37:55:134	1>	C:\Users\Brennen\source\repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Source-Files\Units\Map.cpp(27,39):
+02:37:55:134	1>	see reference to function template instantiation 'std::shared_ptr<PROV::Provinces> std::make_shared<PROV::Provinces,PROV::Provinces*&>(PROV::Provinces *&)' being compiled
+02:37:55:134	1>	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(2769,46):
+02:37:55:134	1>	see reference to function template instantiation 'std::_Ref_count_obj2<PROV::Provinces>::_Ref_count_obj2<PROV::Provinces*&>(PROV::Provinces *&)' being compiled
+02:37:55:134	1>	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(2094,18):
+02:37:55:134	1>	see reference to function template instantiation 'void std::_Construct_in_place<_Ty,PROV::Provinces*&>(_Ty &,PROV::Provinces *&) noexcept(false)' being compiled
+02:37:55:134	1>        with
+02:37:55:134	1>        [
+02:37:55:134	1>            _Ty=PROV::Provinces
+02:37:55:134	1>        ]
+02:37:55:135	1>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(255,61): error C2280: 'PROV::Provinces::Provinces(const PROV::Provinces &)': attempting to reference a deleted function
+02:37:55:135	1>(compiling source file 'Operations/Source-Files/Units/Map.cpp')
+02:37:55:135	1>C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Header-Files\Units\Provinces\Provinces.h(227,2):
+02:37:55:135	1>compiler has generated 'PROV::Provinces::Provinces' here
+02:37:55:135	1>C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Header-Files\Units\Provinces\Provinces.h(227,2):
+02:37:55:135	1>'PROV::Provinces::Provinces(const PROV::Provinces &)': function was implicitly deleted because a data member invokes a deleted or inaccessible function 'std::array<std::unique_ptr<BuildingsBASE,std::default_delete<BuildingsBASE>>,10>::array(const std::array<std::unique_ptr<BuildingsBASE,std::default_delete<BuildingsBASE>>,10> &)'
+02:37:55:135	1>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\array(578,1):
+02:37:55:135	1>'std::array<std::unique_ptr<BuildingsBASE,std::default_delete<BuildingsBASE>>,10>::array(const std::array<std::unique_ptr<BuildingsBASE,std::default_delete<BuildingsBASE>>,10> &)': function was implicitly deleted because a data member invokes a deleted or inaccessible function 'std::unique_ptr<BuildingsBASE,std::default_delete<BuildingsBASE>>::unique_ptr(const std::unique_ptr<BuildingsBASE,std::default_delete<BuildingsBASE>> &)'
+02:37:55:135	1>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(3319,5):
+02:37:55:135	1>'std::unique_ptr<BuildingsBASE,std::default_delete<BuildingsBASE>>::unique_ptr(const std::unique_ptr<BuildingsBASE,std::default_delete<BuildingsBASE>> &)': function was explicitly deleted
+02:37:55:135	1>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xutility(255,61):
+02:37:55:135	1>the template instantiation context (the oldest one first) is
+02:37:55:135	1>	C:\Users\Brennen\source\repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Source-Files\Units\Map.cpp(57,34):
+02:37:55:135	1>	see reference to function template instantiation 'std::shared_ptr<PROV::Provinces> std::make_shared<PROV::Provinces,_Ty&>(_Ty &)' being compiled
+02:37:55:135	1>        with
+02:37:55:135	1>        [
+02:37:55:135	1>            _Ty=PROV::Provinces
+02:37:55:135	1>        ]
+02:37:55:135	1>	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(2769,46):
+02:37:55:135	1>	see reference to function template instantiation 'std::_Ref_count_obj2<PROV::Provinces>::_Ref_count_obj2<_Ty&>(_Ty &)' being compiled
+02:37:55:135	1>        with
+02:37:55:135	1>        [
+02:37:55:135	1>            _Ty=PROV::Provinces
+02:37:55:135	1>        ]
+02:37:55:135	1>	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(2094,18):
+02:37:55:135	1>	see reference to function template instantiation 'void std::_Construct_in_place<_Ty,_Ty&>(_Ty &,_Ty &) noexcept(false)' being compiled
+02:37:55:135	1>        with
+02:37:55:135	1>        [
+02:37:55:135	1>            _Ty=PROV::Provinces
+02:37:55:135	1>        ]
+02:37:55:143	1>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xmemory(723,82): error C2280: 'PROV::Provinces::Provinces(const PROV::Provinces &)': attempting to reference a deleted function
+02:37:55:143	1>(compiling source file 'Operations/Source-Files/Units/Map.cpp')
+02:37:55:143	1>C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Header-Files\Units\Provinces\Provinces.h(227,2):
+02:37:55:143	1>compiler has generated 'PROV::Provinces::Provinces' here
+02:37:55:143	1>C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Header-Files\Units\Provinces\Provinces.h(227,2):
+02:37:55:143	1>'PROV::Provinces::Provinces(const PROV::Provinces &)': function was implicitly deleted because a data member invokes a deleted or inaccessible function 'std::array<std::unique_ptr<BuildingsBASE,std::default_delete<BuildingsBASE>>,10>::array(const std::array<std::unique_ptr<BuildingsBASE,std::default_delete<BuildingsBASE>>,10> &)'
+02:37:55:143	1>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\array(578,1):
+02:37:55:143	1>'std::array<std::unique_ptr<BuildingsBASE,std::default_delete<BuildingsBASE>>,10>::array(const std::array<std::unique_ptr<BuildingsBASE,std::default_delete<BuildingsBASE>>,10> &)': function was implicitly deleted because a data member invokes a deleted or inaccessible function 'std::unique_ptr<BuildingsBASE,std::default_delete<BuildingsBASE>>::unique_ptr(const std::unique_ptr<BuildingsBASE,std::default_delete<BuildingsBASE>> &)'
+02:37:55:143	1>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\memory(3319,5):
+02:37:55:143	1>'std::unique_ptr<BuildingsBASE,std::default_delete<BuildingsBASE>>::unique_ptr(const std::unique_ptr<BuildingsBASE,std::default_delete<BuildingsBASE>> &)': function was explicitly deleted
+02:37:55:143	1>C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\xmemory(723,82):
+02:37:55:143	1>the template instantiation context (the oldest one first) is
+02:37:55:143	1>	C:\Users\Brennen\source\repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Source-Files\Units\Map.cpp(15,26):
+02:37:55:143	1>	see reference to class template instantiation 'std::vector<PROV::Provinces,std::allocator<PROV::Provinces>>' being compiled
+02:37:55:143	1>	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\vector(870,23):
+02:37:55:143	1>	while compiling class template member function 'void std::vector<PROV::Provinces,std::allocator<PROV::Provinces>>::push_back(const _Ty &)'
+02:37:55:143	1>        with
+02:37:55:143	1>        [
+02:37:55:143	1>            _Ty=PROV::Provinces
+02:37:55:143	1>        ]
+02:37:55:143	1>		C:\Users\Brennen\source\repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Source-Files\Units\Map.cpp(19,24):
+02:37:55:143	1>		see the first reference to 'std::vector<PROV::Provinces,std::allocator<PROV::Provinces>>::push_back' in 'Map::setMap'
+02:37:55:143	1>	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\vector(871,9):
+02:37:55:143	1>	see reference to function template instantiation '_Ty &std::vector<_Ty,std::allocator<_Ty>>::_Emplace_one_at_back<const _Ty&>(const _Ty &)' being compiled
+02:37:55:143	1>        with
+02:37:55:143	1>        [
+02:37:55:143	1>            _Ty=PROV::Provinces
+02:37:55:143	1>        ]
+02:37:55:143	1>	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\vector(780,20):
+02:37:55:143	1>	see reference to function template instantiation '_Ty &std::vector<_Ty,std::allocator<_Ty>>::_Emplace_back_with_unused_capacity<const _Ty&>(const _Ty &)' being compiled
+02:37:55:143	1>        with
+02:37:55:143	1>        [
+02:37:55:143	1>            _Ty=PROV::Provinces
+02:37:55:143	1>        ]
+02:37:55:143	1>	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\vector(798,27):
+02:37:55:143	1>	see reference to function template instantiation 'void std::_Default_allocator_traits<_Alloc>::construct<_Ty,const _Ty&>(_Alloc &,_Objty *const ,const _Ty &)' being compiled
+02:37:55:143	1>        with
+02:37:55:143	1>        [
+02:37:55:143	1>            _Alloc=std::allocator<PROV::Provinces>,
+02:37:55:143	1>            _Ty=PROV::Provinces,
+02:37:55:143	1>            _Objty=PROV::Provinces
+02:37:55:143	1>        ]
+02:37:55:228	1>Generating Code...
+02:37:55:327	1>Compiling...
+02:37:55:327	1>Participants.cpp
+02:37:56:452	1>Peace Treaty V1.2.cpp
+02:37:57:940	1>ArmyOverviewMA.h
+02:37:59:117	1>AttackMA.h
+02:38:00:007	1>BuildMA.h
+02:38:00:743	1>MapMA.h
+02:38:02:038	1>PlayerAction.h
+02:38:03:820	1>ScoutMA.h
+02:38:04:906	1>TrainMA.h
+02:38:05:677	1>BASE.h
+02:38:05:739	1>INF.h
+02:38:06:973	1>Input.h
+02:38:08:608	1>Mobility.h
+02:38:10:462	1>Commanders.h
+02:38:11:316	1>Archers.h
+02:38:12:051	1>Artillary.h
+02:38:12:731	1>Cavalry.h
+02:38:13:474	1>Guards.h
+02:38:14:145	1>Infantry.h
+02:38:15:039	1>TroopUnitsBASE.h
+02:38:16:113	1>Generating Code...
+02:38:16:760	1>Compiling...
+02:38:16:760	1>PrimeUnits.h
+02:38:17:892	1>CoordsBASE.h
+02:38:19:488	1>TroopsINT.h
+02:38:20:762	1>Barracks.h
+02:38:21:430	1>Infirmary.h
+02:38:22:393	1>Library.h
+02:38:23:598	1>Residences.h
+02:38:24:308	1>Wall.h
+02:38:25:333	1>Church.h
+02:38:26:241	1>Farm.h
+02:38:27:010	1>Mill.h
+02:38:27:800	1>Mine.h
+02:38:28:977	1>Quarry.h
+02:38:29:725	1>ResourceBuildingsBASE.h
+02:38:30:425	1>BUILD.h
+02:38:31:296	1>BuildingAttributesINT.h
+02:38:32:175	1>BuildingsBASE.h
+02:38:33:143	1>Provinces.h
+02:38:34:254	1>CommanderReport.h
+02:38:34:964	1>ProvinceReport.h
+02:38:35:647	1>Generating Code...
+02:38:35:759	1>Compiling...
+02:38:35:760	1>Map.h
+02:38:37:420	1>Participants.h
+02:38:39:957	1>Generating Code...
+02:38:40:451	1>Done building project "Peace Treaty V1.2.vcxproj" -- FAILED.
+02:38:40:490	========== Build: 0 succeeded, 1 failed, 0 up-to-date, 0 skipped ==========
+02:38:40:490	========== Build completed at 2:38 AM and took 01:17.532 minutes ==========

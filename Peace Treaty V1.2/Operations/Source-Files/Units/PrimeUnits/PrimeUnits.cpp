@@ -63,7 +63,7 @@ void PrimeUnits::mutateResource(ResourceType resource, constINT amount,
 	DEBUG_FUNCTION("PrimeUnits.cpp", "mutateResources");
 	int modifier = 1;
 	if (direction == DECREASE) { modifier = -1; }
-	resourcesPresent.at(resource) + (amount * modifier);
+	resourcesPresent[resource] += (amount * modifier); 
 }
 
 void PrimeUnits::mutateAllResources(constArrayReference resourcesArray,
@@ -158,4 +158,8 @@ unitSPTRList PrimeUnits::levelSort(unitSPTRList list) {
 
 void PrimeUnits::printNameLevel() const {
 	std::cout << "Name: " << name << ", Level: " << level;
+}
+
+const std::string PrimeUnits::getNameLevel() const {
+	return "Name " + name + ", Level: " + std::to_string(level); 
 }

@@ -2,18 +2,18 @@
 #include MAP_HEADER
 
 
-std::vector<std::vector<Provinces>> Map::mapVectors = std::vector<std::vector<Provinces>>{};
-Map::ProvincesMap Map::mapMap = std::unordered_map<std::string, provSPTR>();
+std::vector<std::vector<Provinces>> Map::mapVectors = std::vector<std::vector<Provinces>>{}; 
+Map::ProvincesMap Map::mapMap = std::unordered_map<std::string, provSPTR>(); 
 
 
 void Map::setMap() {
 	//For debugging
-	DEBUG_FUNCTION("Map.cpp", "setMap");
+	DEBUG_FUNCTION("Map.cpp", "setMap"); 
 
 	int mapIndex = 0;
-	for (int x = 0; x < INF::continentSize; x++) {
-		std::vector<Provinces> tempVector = {};
-		for (int y = 0; x < INF::continentSize; y++, mapIndex++) { 
+	for (int x = 0; x < INF::continentSize; x++) { 
+		std::vector<Provinces> tempVector = {}; 
+		for (int y = 0; x < INF::continentSize; y++, mapIndex++) {  
 			Provinces newProvince(mapIndex, -1);
 			mapIndex++;
 			tempVector.push_back(newProvince);
@@ -24,7 +24,7 @@ void Map::setMap() {
 	for (std::vector<Provinces> provinceVector : mapVectors) { 
 		for (int x = 0; x < (int) provinceVector.size(); x++) {
 			Provinces* province = &provinceVector.at(x);
-			mapMap[province->getName()] = std::make_shared<Provinces>(province);
+			mapMap[province->getName()] = std::make_shared<Provinces>(*province);
 			delete province; 
 		}
 	}

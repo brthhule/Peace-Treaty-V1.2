@@ -98,6 +98,7 @@ public:
 	unitSPTRList levelSort(unitSPTRList list);
 
 	void printNameLevel() const;
+	const std::string getNameLevel() const;
 
 	//----Setters--------------------------------------------------------------
 	///Set this unit's name

@@ -212,7 +212,7 @@ namespace PROV {
 		//Index within reports is the report. Index of report object is the participant the report belongs to
 		typedef std::vector<std::pair<int, ProvinceReport >> reports;
 		std::vector<reports> scoutReports;
-		std::array<std::unique_ptr<BuildingsBASE>, 10> buildings;
+		std::array<std::shared_ptr<BuildingsBASE>, 10> buildings;
 
 		Farm farm;
 		Mill mill;
