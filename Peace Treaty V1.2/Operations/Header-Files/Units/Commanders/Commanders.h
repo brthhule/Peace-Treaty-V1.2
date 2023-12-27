@@ -20,7 +20,6 @@
 		#include TROOP_HEADER
 */
 
-using namespace UNIT;
 
 ///Namespace for Commanders
 namespace COMM {
@@ -31,7 +30,7 @@ namespace COMM {
 	extern std::array<std::string, 6> namesOfManTwo;
 
 	//Control army units
-	class Commanders : public PrimeUnits, public TroopsINT {
+	class Commanders : public UNIT::PrimeUnits, public TroopsINT {
 
 		
 	public:

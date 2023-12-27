@@ -1,6 +1,8 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 #include INPUT_HEADER
 
+using namespace INF;
+
 namespace Input {
 /*"	SELECT_ENEMY_ACTION",
 		"PLAYER_UNIT_ACTION",

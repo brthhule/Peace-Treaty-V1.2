@@ -63,23 +63,27 @@ namespace INF {
 		std::shared_ptr<T> ptr;
 	};
 
+	template<typename T>
 	class sPTRVector {
 	public:
-		sPTR<T>(T thing) {
-			ptr = std::make_shared<T>(thing);
+		sPTRVector<T>() {
+			sharedPointersVector = {};
 		}
-		sPTR<T>() {
-			ptr = nullptr;
-		}
-		std::shared_ptr<T> get() {
-			return ptr;
+		
+		std::vector<std::shared_ptr<T>> get() { 
+			return sharedPointersVector;
 		}
 
-		static std::shared_ptr<T> makeSPTR(T thing) {
-			return std::make_shared<T>(thing);
+		void push_back(sPTR<T> element) {
+			sharedPointersVector.push_back(element);
 		}
-	private:
-		std::shared_ptr<T> ptr;
+
+		void remove(int index) {
+			sharedPointersVector.erase(sharedPointersVector.begin() + index);
+		}
+
+	private: 
+		std::vector<sPTR<T>> sharedPointersVector;
 	};
 
 	//////////////////////////////////////Aliases//////////////////////////////

@@ -41,11 +41,6 @@
 */
 #include PLAYER_ACTION_HEADER			//Interface
 
-using namespace INF;
-using namespace PROV;
-using namespace UNIT;
-using namespace ScoutMANamespace;
-
 /*TODO
 *Check if hasProvince/hasUnit needs to use a shared pointer as param
 *		use const Province& address = *ptr
@@ -96,9 +91,9 @@ public:
 
 
 	///Returns a commander this Participant owns by name
-	commSPTR getCommander(std::string name);
+	COMM::commSPTR getCommander(std::string name);
 	///Return the unordered_map of Commander shared pointers
-	std::unordered_map<std::string, commSPTR> getCommandersMap() const;
+	std::unordered_map<std::string, COMM::commSPTR> getCommandersMap() const;
 
 	///Got total number of Provinces in this participant
 	int getProvincesNum() const;
@@ -115,7 +110,7 @@ public:
 	ivector calculatePlayerValues(int decision);
 
 	//Coordinate stuff
-	provSPTR
+	PROV::provSPTR
 		pickYourProvince(int identifier),
 		pickProvince(int identifer),
 
@@ -129,7 +124,7 @@ public:
 		getKingdomName(),
 		getNewName();
 
-	commSPTR pickCommander() const;
+	COMM::commSPTR pickCommander() const;
 	static const std::vector<Participants>& getParticipants();
 
 	//----Threads----------------------------------------------------------
@@ -144,12 +139,12 @@ public:
 	* @param resources__ the array of resources being subtracted
 	* @return bool__ true or false
 	*/
-	bool subtractCheckResources(unitSPTR unit, INF::i5array resourcesArray);
+	bool subtractCheckResources(UNIT::unitSPTR unit, INF::i5array resourcesArray);
 
 	///Check if this participant has a province by name/participant index/province
 	const bool hasProvince(std::string name) const;
 	const bool hasProvince(int pIndex) const;
-	const bool hasProvince(provSPTR province) const;
+	const bool hasProvince(PROV::provSPTR province) const;
 
 	///Check if this participant has a particular commander
 	const bool hasCommander(std::string name) const;
@@ -162,20 +157,20 @@ public:
 	///Check if this participant has a particular unit, not optimal (string param)
 	bool hasUnit(const std::string& unitName) const;
 	//Kinda sketch, look at this??
-	bool hasUnit(PrimeUnits& unit) const;
+	bool hasUnit(UNIT::PrimeUnits& unit) const;
 
 	int calculateTotals(int option);
 
 		
 	static void setHumanPlayers(int num);
-	void setCapital(provSPTR newProvince); 
-	void addProvince(provSPTR newProvince);
+	void setCapital(PROV::provSPTR newProvince); 
+	void addProvince(PROV::provSPTR newProvince);
 	void printListOfProvinces();
 
 	void createAsPlayer(bool status);
 	void viewAllStatsFunction();
 	void viewStats();
-	void scoutProvince(provSPTR targetProvince, int accuracy);
+	void scoutProvince(PROV::provSPTR targetProvince, int accuracy);
 	/*Display this participant's list of commSPTR*/
 	void displayCommanders() const;
 
@@ -192,7 +187,7 @@ public:
 	void trainCommanderPrompt() override;
 	void proceedWithTraining(constArrayReference trainCosts) override;
 	void upgradeCommander() override;
-	sPTR<Commanders> pickCommanderToUpgrade() override;
+	COMM::commSPTR pickCommanderToUpgrade() override;
 	void viewCommanderStats() override;
 	void deployCommanderPrompt() override;
 	///Adds a Commander to the capital province
@@ -211,49 +206,49 @@ public:
 	void trainMALoop(int troopTier, int amountOfTroops) override;
 
 	///////////////////////////////////Mobility.h//////////////////////////////
-	void moveUnitOne(commSPTR commander) override;
-	std::vector <provSPTR> getSurroundingProvinces(commSPTR commander) override;
-	Provinces& pickProvinceToMoveTo(Commanders& commanderReference) override;
+	void moveUnitOne(COMM::commSPTR commander) override;
+	std::vector <PROV::provSPTR> getSurroundingProvinces(COMM::commSPTR commander) override;
+	PROV::Provinces& pickProvinceToMoveTo(COMM::Commanders& commanderReference) override;
 	///////////////////////////////////MapMA.h/////////////////////////////////
 	void viewPlayerMap();
-	void selectUnitOriginal(provSPTR selectedProvince);
-	void selectPlayerProvince(provSPTR province);
+	void selectUnitOriginal(PROV::provSPTR selectedProvince);
+	void selectPlayerProvince(PROV::provSPTR province);
 
-	void playerUnitAction(provSPTR province);
-	void playerUnitActionP(provSPTR province);
+	void playerUnitAction(PROV::provSPTR province);
+	void playerUnitActionP(PROV::provSPTR province);
 	void selectEnemyAction();
-	void selectEnemyProvince(provSPTR province);
+	void selectEnemyProvince(PROV::provSPTR province);
 	
 
 	///////////////////////////////////ScoutMA.h///////////////////////////////
-	void mainScoutMA(provSPTR provinceArg);
-	std::pair<unitSPTR, int> playerScoutStepTwo(scoutTypes canScout, provSPTR targetProvince);
+	void mainScoutMA(PROV::provSPTR provinceArg);
+	std::pair<UNIT::unitSPTR, int> playerScoutStepTwo(PROV::scoutTypes canScout, PROV::provSPTR targetProvince);
 	void scoutLogCalculationsProvince(int accuracy);
 	void getCanScoutTwo(
 		int targetX,
 		int targetY,
 		int a,
 		int b,
-		scoutTypes& canScout);
+		PROV::scoutTypes& canScout);
 
-	unitSPTR selectUnitToScout(scoutTypes canScout);
-	unitSPTR selectUnitToScoutTwo(scoutTypes canScout);
+	UNIT::unitSPTR selectUnitToScout(PROV::scoutTypes canScout);
+	UNIT::unitSPTR selectUnitToScoutTwo(PROV::scoutTypes canScout);
 
-	scoutTypes selectTarget(provSPTR targetProvince);
-	scoutTypes getCanScout(provSPTR targetProvince);
+	PROV::scoutTypes selectTarget(PROV::provSPTR targetProvince);
+	PROV::scoutTypes getCanScout(PROV::provSPTR targetProvince);
 	
 	///////////////////////////////////AttackMA.h//////////////////////////////
-	void mainAttackMA( provSPTR defendProv, commSPTR attackComm) override;
+	void mainAttackMA( PROV::provSPTR defendProv, COMM::commSPTR attackComm) override;
 
 	//----Getter Auxiliary Methods---------------------------------------------
-	commSPTRList getCommandersCanAttack(provSPTR defendingProvince) override;
-	commSPTR pickCommanderAttack(std::vector<commSPTR> commandersCanAttack) override;
+	COMM::commSPTRList getCommandersCanAttack(PROV::provSPTR defendingProvince) override;
+	COMM::commSPTR pickCommanderAttack(COMM::commSPTRList commandersCanAttack) override;
 
-	void playerCommitAttack(provSPTR defendingProvince, commSPTR attackingCommander) override;
+	void playerCommitAttack(PROV::provSPTR defendingProvince, COMM::commSPTR attackingCommander) override;
 	void determineLostCP(int attackerCP, int defendingCP, int& attackerLostCP, int& defenderLostCP) override;
 
-	void calculateTroopsLost(commSPTR commander, int lostCombatPower, constArrayReference troopsLost, int troopIndex) override;
-	void battleCalculationsTwo(int& lostCombatPower, int troopsLost[5], int troopIndex, commSPTR attackingCommander) override;
+	void calculateTroopsLost(COMM::commSPTR commander, int lostCombatPower, constArrayReference troopsLost, int troopIndex) override;
+	void battleCalculationsTwo(int& lostCombatPower, int troopsLost[5], int troopIndex, COMM::commSPTR attackingCommander) override;
 	void casualtyReport(i5array troopsLost, i5array injuredTroops) override;
 
 private:
@@ -264,22 +259,22 @@ private:
 	i5array allCommandersArray;
 	i5array allProvincesArray;
 
-	commSPTR selectedCommander; //For ArmyDeploymentMA
+	COMM::commSPTR selectedCommander; //For ArmyDeploymentMA
 
 	int
 		capitalIndex,
 		participantIndex;
 
-	provSPTR capitalProvince;
+	PROV::provSPTR capitalProvince;
 
 	std::string kingdomName = " "; 
 
-	std::unordered_map <std::string, commSPTR> commandersMap;
-	std::unordered_map <std::string, provSPTR> provincesMap;
-	std::unordered_map<std::string, commSPTR>::iterator commIt;
+	std::unordered_map <std::string, COMM::commSPTR> commandersMap;
+	std::unordered_map <std::string, PROV::provSPTR> provincesMap;
+	std::unordered_map<std::string, COMM::commSPTR>::iterator commIt;
 
-	std::vector <provSPTR> provincesVector;
-	std::vector <commSPTR> commandersVector;
+	PROV::provSPTRList provincesVector;
+	COMM::commSPTRList commandersVector;
 
 };
 

@@ -5,6 +5,7 @@
 
 using namespace PART;
 using namespace COORD;
+using namespace COMM;
 
 void Participants::armyOverviewSelectAction() { 
 	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "armyOverviewSelectAction()");
@@ -36,21 +37,20 @@ void Participants::armyOverviewSelectAction() {
 	return;
 }
 
-sPTR<Commanders> Participants::pickCommanderToUpgrade() {  
+commSPTR Participants::pickCommanderToUpgrade() {  
 	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "pickCommanderToUpgrade()");
 	if (getCommandersNum() == 0) { 
 		std::cout << "No commanders available, can not upgrade\n"; 
 		enterAnything(1); 
-		return sPTR<Commanders>();
+		return nullptr;
 	}
 
-	COMM::commSPTR commanderPtr = this->pickCommander(); 
-	sPTR<Commanders> commander (*commanderPtr);
+	COMM::commSPTR commander = this->pickCommander(); 
 
 	if (commander.get() == nullptr) {
 		std::cout << "Cancelling upgrade...\n"; 
 		enterAnything(1); 
-		return sPTR<Commanders>();
+		return nullptr;
 	}
 
 	//This should return the reference that commander holds
@@ -60,9 +60,9 @@ sPTR<Commanders> Participants::pickCommanderToUpgrade() {
 void Participants::upgradeCommander() {
 	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "upgradeCommander()");
 
-	sPTR<Commanders> commander = pickCommanderToUpgrade();
+	commSPTR commander = pickCommanderToUpgrade();
 
-	if (commander.get() = nullptr) { return; }
+	if (commander == nullptr) { return; }
 
 	constArrayReference costsArray = commander.get()->getUpgradeCosts();
 

@@ -1,13 +1,15 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 
-#include PARTICIPANTS_HEADER
+#include PARTICIPANTS_HEADER 
 
 using namespace PART;
 using namespace COORD;
+using namespace PROV;
+using namespace COMM;
+using namespace Input;
 
 
-
-void Participants::moveUnitOne(commSPTR commander) {
+void Participants::moveUnitOne(commSPTR commander) { 
 	//For debugging
 	DEBUG_FUNCTION("Mobility.cpp", "moveUnitOne");
 
@@ -83,7 +85,7 @@ Provinces& Participants::pickProvinceToMoveTo(Commanders& commanderReference) {
 
 	if (!validProvince) {
 		std::cout << "Invalid province selected... please choose a valid province\n";
-		pickProvinceToMoveTo(*commander); 
+		return pickProvinceToMoveTo(*commander); 
 	}
 }
 

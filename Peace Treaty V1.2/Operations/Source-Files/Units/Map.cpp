@@ -1,6 +1,10 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 #include MAP_HEADER
 
+using namespace INF;
+using namespace PROV;
+using namespace COORD;
+using namespace Input;
 
 std::vector<std::vector<Provinces>> Map::mapVectors = std::vector<std::vector<Provinces>>{}; 
 Map::ProvincesMap Map::mapMap = std::unordered_map<std::string, provSPTR>(); 

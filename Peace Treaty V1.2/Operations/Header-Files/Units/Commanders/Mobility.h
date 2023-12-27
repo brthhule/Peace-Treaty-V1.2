@@ -10,10 +10,6 @@
 //Includes Input.h, Commanders.h
 #include PROVINCES_HEADER
 
-using namespace PROV;
-using namespace COMM;
-using namespace Input;
-
 class Mobility {
 public:
 	//----Constructors---------------------------------------------------------
@@ -21,8 +17,8 @@ public:
 	~Mobility(){}
 
 	//----Methods--------------------------------------------------------------
-	virtual void moveUnitOne(commSPTR commander) = 0;
-	virtual std::vector <provSPTR> getSurroundingProvinces(commSPTR commander) = 0;
-	virtual Provinces& pickProvinceToMoveTo(Commanders& commanderReference) = 0;
+	virtual void moveUnitOne(COMM::commSPTR commander) = 0;
+	virtual std::vector <PROV::provSPTR> getSurroundingProvinces(COMM::commSPTR commander) = 0;
+	virtual PROV::Provinces& pickProvinceToMoveTo(COMM::Commanders& commanderReference) = 0;
 };
 #endif

@@ -41,14 +41,9 @@
 #include RESIDENCES_HEADER 
 #include WALL_HEADER
 
-using namespace INF;
-using namespace Input;
-using namespace COMM;
-using namespace UNIT;
-
 namespace PROV {
 	class Provinces :
-		public PrimeUnits,				//Base Class
+		public UNIT::PrimeUnits,				//Base Class
 		public BuildMA,				//Interface
 		public BuildingAttributesINT	//Interface
 	{
@@ -76,9 +71,9 @@ namespace PROV {
 
 		//----Getters----------------------------------------------------------
 		///Return shared pointer of commander by name
-		commSPTR getCommander(std::string name) const;
+		COMM::commSPTR getCommander(std::string name) const;
 		//Returns vector of commanders in this province
-		commSPTRList getAllCommanders() const;
+		COMM::commSPTRList getAllCommanders() const;
 
 		///Returns the total amount of Commanders this unit has
 		int getCommandersNum() const;
@@ -87,15 +82,15 @@ namespace PROV {
 		///Get the index of this unit in its Participant's vector?
 		constINT getMapIndex() const;
 
-		Commanders& getProvinceCommander() const;
+		COMM::Commanders & getProvinceCommander() const;
 		constINT getLevel() const override;
 
 		//----Setters----------------------------------------------------------
 		
 		///Add Commander to this province and change Commander corods to here
-		void addCommander(Commanders newCommander);
+		void addCommander(COMM::Commanders newCommander);
 		///Remove Commander from this province
-		void removeCommander(commSPTR newCommander);
+		void removeCommander(COMM::commSPTR newCommander);
 		/*//Update this province's resources at the end of the round.
 		Adds the resource production amounts to the resource totals*/
 		void updateProvinceResources();
@@ -127,7 +122,7 @@ namespace PROV {
 		std::array<i5array, 4> getGeneralLists();
 		std::array<int, 7> getListsInt();
 
-		int getCommanderIndex(commSPTR commander);
+		int getCommanderIndex(COMM::commSPTR commander);
 
 		//Implement these, add them to PrimeUnits later on
 		void calculateCombatPower();
@@ -200,11 +195,11 @@ namespace PROV {
 
 		int mapIndex;
 
-		commMAP::iterator it;
-		commMAP commandersMap;
-		std::vector<Commanders> commandersVector; //Commanders live here
+		COMM::commMAP::iterator it;
+		COMM::commMAP commandersMap;
+		std::vector<COMM::Commanders> commandersVector; //Commanders live here
 		///The main commander at this province
-		commSPTR provinceCommander;
+		COMM::commSPTR provinceCommander;
 
 		double newAccuracy;
 		std::string kingdomName;
@@ -229,6 +224,6 @@ namespace PROV {
 	using provSPTR = std::shared_ptr<Provinces>;
 	using provMAP = std::unordered_map<std::string, provSPTR>;
 	using provSPTRList = std::vector<provSPTR>;
-	
+	using scoutTypes = std::pair<COMM::commSPTRList, PROV::provSPTRList>;
 }
 #endif

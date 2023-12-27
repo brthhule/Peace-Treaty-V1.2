@@ -3,6 +3,7 @@
 #include COORDS_BASE_HEADER
 
 using namespace COORD;
+using namespace INF;
 
 void CoordsBASE::setMapIndex (int mapIndex) {
 	//For debugging

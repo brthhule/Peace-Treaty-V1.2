@@ -15,35 +15,25 @@
 //Includes Commanders.h, INF.h, Input.h, PrimeUnits.h
 #include PROVINCES_HEADER	
 
-using namespace PROV;
-using namespace COMM;
+class ScoutMA {
+public:
+	ScoutMA() {}
+	~ScoutMA() {}
 
-namespace ScoutMANamespace {
-	//for null value, use scoutTypes nullValue ({}, {});
-	using scoutTypes = std::pair<COMM::commSPTRList, PROV::provSPTRList>;
+	virtual void mainScoutMA(PROV::provSPTR provinceArg) = 0;
+	virtual PROV::scoutTypes selectTarget(PROV::provSPTR targetProvince) = 0;
 
-
-	class ScoutMA {
-	public:
-		ScoutMA() {}
-		~ScoutMA() {}
-
-		virtual void mainScoutMA(provSPTR provinceArg) = 0;
-		virtual scoutTypes selectTarget(provSPTR targetProvince) = 0;
-
-		// Functions
-		virtual std::pair<UNIT::unitSPTR, int> playerScoutStepTwo(scoutTypes canScout, provSPTR targetProvince) = 0;
+	// Functions
+	virtual std::pair<UNIT::unitSPTR, int> playerScoutStepTwo(PROV::scoutTypes canScout, PROV::provSPTR targetProvince) = 0;
 
 
-		virtual UNIT::unitSPTR selectUnitToScout(scoutTypes canScout) = 0;
-		virtual UNIT::unitSPTR selectUnitToScoutTwo(scoutTypes canScout) = 0;
+	virtual UNIT::unitSPTR selectUnitToScout(PROV::scoutTypes canScout) = 0;
+	virtual UNIT::unitSPTR selectUnitToScoutTwo(PROV::scoutTypes canScout) = 0;
 
-		virtual scoutTypes getCanScout(provSPTR targetProvince) = 0;
+	virtual  PROV::scoutTypes getCanScout(PROV::provSPTR targetProvince) = 0;
 
-		virtual void scoutLogCalculationsProvince(int accuracy) = 0;
-		virtual void getCanScoutTwo(int targetX, int targetY, int a, int b, scoutTypes& canScout) = 0;
+	virtual void scoutLogCalculationsProvince(int accuracy) = 0;
+	virtual void getCanScoutTwo(int targetX, int targetY, int a, int b, PROV::scoutTypes& canScout) = 0;
 
-	};
-
-}
+};
 #endif

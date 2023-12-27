@@ -2,6 +2,9 @@
 #include PRIME_UNITS_HEADER 
 
 using namespace UNIT;
+using namespace INF;
+using namespace TROOP;
+using namespace COORD;
 
 //----Constructors----
 //One param overloaded Constructor

@@ -14,8 +14,6 @@
 /*	#include INF_HEADER*/
 #include TRAIN_MA_HEADER
 
-using namespace INF;
-
 class MapMA {
 public:
 	MapMA(){}
@@ -23,13 +21,13 @@ public:
 
 	virtual void 
 		viewPlayerMap() = 0,
-		selectUnitOriginal(provSPTR selectedProvince) = 0,
-		selectPlayerProvince(provSPTR province) = 0,
+		selectUnitOriginal(PROV::provSPTR selectedProvince) = 0,
+		selectPlayerProvince(PROV::provSPTR province) = 0,
 		
-		playerUnitAction(provSPTR province) = 0,
-		playerUnitActionP(provSPTR  province) = 0,
+		playerUnitAction(PROV::provSPTR province) = 0,
+		playerUnitActionP(PROV::provSPTR  province) = 0,
 		selectEnemyAction() = 0,
-		selectEnemyProvince(provSPTR  province) = 0;
+		selectEnemyProvince(PROV::provSPTR  province) = 0;
 };
 
 #endif

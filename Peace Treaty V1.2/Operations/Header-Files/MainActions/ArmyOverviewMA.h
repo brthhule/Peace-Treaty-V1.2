@@ -15,7 +15,6 @@
 #include INPUT_HEADER
 #include COMMANDERS_HEADER
 
-using namespace COMM;
 class ArmyOverviewMA { 
 public:
 	//----Constructors---------------------------------------------------------
@@ -33,7 +32,7 @@ public:
 	virtual void trainCommanderPrompt() = 0;
 	virtual void proceedWithTraining(constArrayReference trainCosts) = 0;
 	virtual void upgradeCommander() = 0;
-	virtual sPTR<Commanders> pickCommanderToUpgrade() = 0;   
+	virtual COMM::commSPTR pickCommanderToUpgrade() = 0;   
 	virtual void viewCommanderStats() = 0;
 	virtual void deployCommanderPrompt() = 0;
 	virtual void addCommander() = 0;

@@ -2,6 +2,8 @@
 #include PARTICIPANTS_HEADER
 
 using namespace PART;
+using namespace PROV;
+using namespace COMM;
 
 //View the map
 void Participants::viewPlayerMap() {
@@ -58,33 +60,31 @@ void Participants::selectUnitOriginal(provSPTR province) {
 	//For debugging
 	DEBUG_FUNCTION("MapMA", "selectUnitOriginal");
 
-	int participantIndex = province->getParticipantIndex();
+	int provinceParticipantIndex = province->getParticipantIndex();
 
 	// If belongs to current participant
-	if (participantIndex == this->getParticipantIndex()) {
+	if (provinceParticipantIndex == this->getParticipantIndex()) { 
 		selectPlayerProvince(province);
+		return;
 	}
-	// If empty province
-	else if (participantIndex == -1) {
-		// If there are more than 0 commnaders
 
-		//if (province->fogofWar) Add implementation
-		if (province->getCommandersNum() > 0) {
-			//If the commander here is yours
-			if (province->getCommander(0)->getParticipantIndex() == this->getParticipantIndex()) {
-				playerUnitAction(province);
-			}
-			//If the commander here is an enemy
-			else {
-				selectEnemyAction();
-			}
-			
+	if (provinceParticipantIndex != -1) {
+		selectEnemyProvince(province); 
+		return;
+	}
+
+	// If unestablished province (provinceParticipantIndex == -1)
+	// If there are more than 0 commnaders
+	//if (province->fogofWar) Add implementation
+	if (province->getCommandersNum() > 0) {
+		//If the commander here is yours
+		commSPTR firstCommander = province->getCommander(0);
+		if (firstCommander->getParticipantIndex() == this->getParticipantIndex()) {
+			playerUnitAction(province);
 		}
-
-	}
-	// If enemy province
-	else {
-		selectEnemyProvince(province);
+		//If the commander here is an enemy
+		else { selectEnemyAction(); }
+		return;
 	}
 }
 

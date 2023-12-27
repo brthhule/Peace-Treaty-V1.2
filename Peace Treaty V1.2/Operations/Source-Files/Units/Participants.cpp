@@ -4,6 +4,10 @@
 using namespace COMM;
 using namespace PROV; 
 using namespace PART;
+using namespace INF;
+using namespace PROV;
+using namespace UNIT;
+using namespace COORD;
 
 i5array trainCosts = { 5, 4, 3, 2, 1 };  
 

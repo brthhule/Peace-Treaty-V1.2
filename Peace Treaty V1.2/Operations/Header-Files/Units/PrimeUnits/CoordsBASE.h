@@ -12,8 +12,6 @@
 
 #include INF_HEADER					    //Namespace
 
-using namespace INF;
-
 namespace COORD {
 
 /*SYSTEM, USER*/
@@ -31,27 +29,27 @@ public:
 	//----Setters--------------------------------------------------------------
 	void
 		setMapIndex(int mapIndex),
-		setCoords(ipair systemCoords, ipair userCoords),
-		setCoords(std::pair<const ipair&, const ipair&> coords);
+		setCoords(INF::ipair systemCoords, INF::ipair userCoords),
+		setCoords(std::pair<const INF::ipair&, const INF::ipair&> coords);
 
 	//----Printers-------------------------------------------------------------
 	void printCoords(CoordsType type) const;
 
 	//----Getters--------------------------------------------------------------
-	ipair getCoords(CoordsType type) const;
-	static ipair mapIndexToCoords(int mapIndex, CoordsType type);
-	static ipair translateCoords(ipair coords, CoordsType currentType);
+	INF::ipair getCoords(CoordsType type) const;
+	static INF::ipair mapIndexToCoords(int mapIndex, CoordsType type);
+	static INF::ipair translateCoords(INF::ipair coords, CoordsType currentType);
 
-	static int coordsTomapIndex(ipair coords, CoordsType type);
+	static int coordsTomapIndex(INF::ipair coords, CoordsType type);
 
-	String
+	std::string
 		getCoordsString(CoordsType type) const;
 
 	///First one is SYSTEM, second is USER
-	std::pair<const ipair&, const ipair&> getPairCoords() const;
+	std::pair<const INF::ipair&, const INF::ipair&> getPairCoords() const;
 
 protected:
-	ipair
+	INF::ipair 
 		systemCoords,//row, column
 		userCoords;//x, y
 

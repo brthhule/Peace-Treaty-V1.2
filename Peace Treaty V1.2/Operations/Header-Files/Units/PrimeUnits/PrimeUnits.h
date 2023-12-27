@@ -15,16 +15,12 @@
 #include TROOPS_INT_HEADER				//Interface
 /*	#include TROOP_HEADER*/
 
-using namespace INF;
-using namespace TROOP;
-using namespace COORD;
-
 namespace UNIT {
 
 enum UnitType { COMMANDER, PROVINCE };
 
 class PrimeUnits : 
-	public CoordsBASE					//Base Class
+	public COORD::CoordsBASE					//Base Class
 {
 public:
 	//----Aliases--------------------------------------------------------------	
@@ -58,7 +54,7 @@ public:
 
 	constArrayReference getAllResources() const;//Add implementation
 
-	const std::string getCoords(CoordsType type) const;
+	const std::string getCoords(COORD::CoordsType type) const;
 
 
 	//----Mutators-------------------------------------------------------------
@@ -92,7 +88,7 @@ public:
 	
 
 	//Override?
-	INF::ipair translateCoords(INF::ipair coords, CoordsType type);
+	INF::ipair translateCoords(INF::ipair coords, COORD::CoordsType type);
 
 	unitSPTRList sortVector(SortType sort, unitSPTRList list);
 	unitSPTRList levelSort(unitSPTRList list);

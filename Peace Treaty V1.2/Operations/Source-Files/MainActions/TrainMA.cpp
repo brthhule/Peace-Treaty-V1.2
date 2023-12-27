@@ -2,6 +2,8 @@
 #include PARTICIPANTS_HEADER
 
 using namespace PART;
+using namespace PROV;
+using namespace COMM;
 
 //Main TrainMA function
 void Participants::trainMAMain() {

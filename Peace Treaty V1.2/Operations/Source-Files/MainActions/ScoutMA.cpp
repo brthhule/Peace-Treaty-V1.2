@@ -5,7 +5,7 @@ using namespace PROV;
 using namespace COMM;
 using namespace PART;
 using namespace COORD;
-using namespace ScoutMANamespace;
+using namespace UNIT;
 
 /*Main ScoutMA function. Takes a target province pointer as a parameter
 If the target */

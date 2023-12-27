@@ -4,6 +4,7 @@
 
 using namespace PROV;
 using namespace COORD; 
+using namespace COMM;
 
 //Use participantIndex = -1 for empty provinces
 Provinces::Provinces(int mapIndex, int participantIndex) : PrimeUnits(participantIndex) {
@@ -80,8 +81,7 @@ INF::SortType Provinces::getCommandersSortStatus() const {
 }
 
 //Province stuff
-void Provinces::updateProvinceResources()
-{
+void Provinces::updateProvinceResources() {
 	//For debugging
 	DEBUG_FUNCTION("Provinces.cpp", "updateProvinceResources");
 

@@ -7,8 +7,6 @@
 
 #include INF_HEADER
 
-using namespace INF;
-
 namespace Input 
 {
 	/*	SELECT_ENEMY_ACTION,

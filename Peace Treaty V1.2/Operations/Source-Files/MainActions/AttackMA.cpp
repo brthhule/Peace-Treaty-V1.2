@@ -2,6 +2,10 @@
 #include PARTICIPANTS_HEADER
 
 using namespace PART;
+using namespace TROOP;
+using PROV::provSPTR; 
+using COMM::commSPTR; 
+using COMM::commSPTRList; 
 
 void Participants::mainAttackMA(provSPTR defendProv, commSPTR attackComm) {
 	DEBUG_FUNCTION("AttackMA.cpp", "mainAttackMA(provSPTR, commSPTR)");
@@ -11,7 +15,7 @@ void Participants::mainAttackMA(provSPTR defendProv, commSPTR attackComm) {
 
 	//Find commander to attack with
 	if (attackingCommander == nullptr) {
-		std::vector<commSPTR> commandersCanAttack = getCommandersCanAttack(defendingProvince);
+		commSPTRList commandersCanAttack = getCommandersCanAttack(defendingProvince); 
 		if (commandersCanAttack.size() == 0) {
 			std::cout << "There are no armies available to attack the enemy. Please move an army unit to one of the provinces around the target. \n\n";
 			return;
@@ -29,7 +33,7 @@ std::vector<commSPTR> Participants::getCommandersCanAttack(provSPTR defendingPro
 
 	std::vector<COMM::commSPTR> commandersCanAttack = {};
 	std::array<ipair, 8> surroundingProvinces;
-	ipair defenderSystemCoords = defendingProvince->CoordsBASE::getCoords(SYSTEM);
+	ipair defenderSystemCoords = defendingProvince->CoordsBASE::getCoords(COORD::SYSTEM); 
 	int currentElements = 0;
 	for (int x = -1; x <= 1; x++) {
 		for (int y = -1; y <= 1; y++)
