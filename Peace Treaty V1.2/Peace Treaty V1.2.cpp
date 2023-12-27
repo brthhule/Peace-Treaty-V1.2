@@ -20,7 +20,7 @@
 
 void startOrResumeGame();
 void resumeGame();
-void startGame();
+void startNewGame();
 int generateNewContinent(int pNum);
 void gamePlay();
 void endScreen();
@@ -54,7 +54,7 @@ void startOrResumeGame() {
 		case 'S': {
 			INF::enterAndClear(1);
 			std::cout << "New game started...\n\n";
-			startGame();
+			startNewGame();
 			break;
 		}
 		case 'H': {
@@ -78,9 +78,9 @@ void resumeGame() /*download data from previous game fix this*/
 	std::cout << "\033[0m";
 	/*use global variables to figure out code*/
 }
-void startGame() {
+void startNewGame() {
 	//For debugging
-	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "startGame");
+	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "startNewGame");
 	int humanPlayers = getContinentInformation();
 	int allPlayers = generateNewContinent(humanPlayers);
 	Participants::setHumanPlayers(humanPlayers);

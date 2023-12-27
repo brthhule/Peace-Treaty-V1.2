@@ -22,6 +22,7 @@ namespace ScoutMANamespace {
 	//for null value, use scoutTypes nullValue ({}, {});
 	using scoutTypes = std::pair<COMM::commSPTRList, PROV::provSPTRList>;
 
+
 	class ScoutMA {
 	public:
 		ScoutMA() {}

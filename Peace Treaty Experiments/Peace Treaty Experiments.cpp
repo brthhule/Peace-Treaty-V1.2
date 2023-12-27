@@ -19,6 +19,8 @@ private:
 
 class Provinces {
 public:
+    using String = std::string;
+
     Provinces(std::string name) {
         this->name = name;
     }
@@ -26,19 +28,29 @@ public:
         return name;
     }
 
+
 private:
     std::string name;
 };
+/*
+class Commanders {
+public:
+    Provinces::String myString;  
+    Commanders(std::string name) {
+        this->name = name;
+    }
+
+    decltype(myString) getName() {   
+        return name;
+    }
+private:
+    decltype(myString) name; 
+};*/
 
 int main()
 {
-    Provinces province("name");
-    std::cout << province.getName() << "\n";
-
-    sPTR<Provinces> ptr(province); 
-    std::cout << ptr.get()->getName();
-
-    std::cout << "\nHello World!\n";
+    Provinces province("New Yahk");
+    std::cout << "Name: " << province.getName();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
