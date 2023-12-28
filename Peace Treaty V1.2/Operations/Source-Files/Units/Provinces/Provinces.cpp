@@ -6,6 +6,29 @@ using namespace PROV;
 using namespace COORD; 
 using namespace COMM;
 
+
+BuildingsStruct::BuildingsStruct() : farm(), mill(), quarry(), mine(), church(), barracks(), infirmary(), library(), residences(), wall() { 
+	buildingsVector = { 
+		std::make_shared<BuildingsBASE>(farm), 
+		std::make_shared<BuildingsBASE>(mill), 
+		std::make_shared<BuildingsBASE>(quarry), 
+		std::make_shared<BuildingsBASE>(mine), 
+		std::make_shared<BuildingsBASE>(church), 
+		std::make_shared<BuildingsBASE>(barracks), 
+		std::make_shared<BuildingsBASE>(infirmary), 
+		std::make_shared<BuildingsBASE>(library), 
+		std::make_shared<BuildingsBASE>(residences), 
+		std::make_shared<BuildingsBASE>(wall) 
+	};
+}
+
+std::shared_ptr<BuildingsBASE> BuildingsStruct::get(BUILD::BuildingsEnum name) {
+	return buildingsVector.at(name);
+}
+std::shared_ptr<BuildingsBASE> BuildingsStruct::get(int num) {
+	return buildingsVector.at(num);
+}
+
 //Use participantIndex = -1 for empty provinces
 Provinces::Provinces(int mapIndex, int participantIndex) : PrimeUnits(participantIndex) {
 	//For debugging
@@ -25,19 +48,6 @@ Provinces::Provinces(int mapIndex, int participantIndex) : PrimeUnits(participan
 	//Buildings should be created when their province is created, figure out how to do that
 	/*Barracks barracks();
 	buildings.at(0) = barracks;*/
-
-	buildings = { 
-		std::make_shared<BuildingsBASE>(farm),  
-		std::make_shared<BuildingsBASE>(mill), 
-		std::make_shared<BuildingsBASE>(quarry), 
-		std::make_shared<BuildingsBASE>(mine), 
-		std::make_shared<BuildingsBASE>(church), 
-		std::make_shared<BuildingsBASE>(barracks), 
-		std::make_shared<BuildingsBASE>(infirmary), 
-		std::make_shared<BuildingsBASE>(library), 
-		std::make_shared<BuildingsBASE>(residences), 
-		std::make_shared<BuildingsBASE>(wall)  
-	};
 }
 
 constINT Provinces::getCombatPower() const { return combatPower; }

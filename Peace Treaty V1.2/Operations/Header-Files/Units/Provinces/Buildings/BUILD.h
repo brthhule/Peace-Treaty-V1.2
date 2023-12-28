@@ -44,6 +44,5 @@ namespace BUILD {
 
 	//Conversions
 	std::pair<std::string, BuildingsEnum> translateEnumString(std::string stringArg, BuildingsEnum enumArg);
-	
 }
 #endif

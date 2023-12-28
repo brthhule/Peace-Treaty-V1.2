@@ -41,6 +41,27 @@
 #include RESIDENCES_HEADER 
 #include WALL_HEADER
 
+//Plain old data, only accessible withing Provinces
+struct BuildingsStruct {
+	std::array<std::shared_ptr<BuildingsBASE>, 10> buildingsVector; 
+
+	Farm farm;
+	Mill mill;
+	Quarry quarry;
+	Mine mine;
+	Church church;
+	Barracks barracks;
+	Infirmary infirmary;
+	Library library;
+	Residences residences;
+	Wall wall;
+
+	BuildingsStruct();
+
+	std::shared_ptr<BuildingsBASE> get(BUILD::BuildingsEnum name);
+	std::shared_ptr<BuildingsBASE> get(int num);
+};
+
 namespace PROV {
 	class Provinces :
 		public UNIT::PrimeUnits,				//Base Class
@@ -207,18 +228,8 @@ namespace PROV {
 		//Index within reports is the report. Index of report object is the participant the report belongs to
 		typedef std::vector<std::pair<int, ProvinceReport >> reports;
 		std::vector<reports> scoutReports;
-		std::array<std::shared_ptr<BuildingsBASE>, 10> buildings;
 
-		Farm farm;
-		Mill mill;
-		Quarry quarry;
-		Mine mine;
-		Church church;
-		Barracks barracks;
-		Infirmary infirmary;
-		Library library;
-		Residences residences;
-		Wall wall;
+		BuildingsStruct buildings;
 	};
 
 	using provSPTR = std::shared_ptr<Provinces>;
