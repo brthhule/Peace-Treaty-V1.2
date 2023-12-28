@@ -61,7 +61,6 @@ public:
 	virtual void addTroopsTrainedThisTurn(int amount) = 0;
 	virtual void resetTroopsTrainedThisTurn() = 0;
 	virtual void initiailizeCapitalBuildings() = 0;
-	virtual void initializeEmptyBuildings() = 0;
 
 	///////////////////////////////////Printers////////////////////////////////
 	virtual void printBuildingStats() = 0;

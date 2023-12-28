@@ -300,3 +300,16 @@ Commanders& Provinces::getProvinceCommander() const {
 constINT Provinces::getLevel() const {
 	return level;
 }
+
+std::array<i5array, 7> Provinces::getLists() {
+	std::array<i5array, 7> temp = {};
+	return temp;
+}
+
+void Provinces::calculateCombatPower() {
+
+}
+
+void Provinces::calculateFoodConsumption() {
+
+}

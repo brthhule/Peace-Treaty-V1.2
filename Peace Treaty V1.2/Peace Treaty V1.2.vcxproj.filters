@@ -324,6 +324,18 @@
       <Filter>TxtFiles</Filter>
     </Text>
     <Text Include="AdministrativeDocs\aliases.txt" />
+    <Text Include="Support\AdministrativeDocs\aliases.txt" />
+    <Text Include="Support\AdministrativeDocs\color.txt" />
+    <Text Include="Support\AdministrativeDocs\debugQuickAccess.txt" />
+    <Text Include="Support\AdministrativeDocs\documentationStyle.txt" />
+    <Text Include="Support\AdministrativeDocs\headersAllocation.txt" />
+    <Text Include="Support\AdministrativeDocs\needToDo.txt" />
+    <Text Include="Support\AdministrativeDocs\notes.txt" />
+    <Text Include="Support\AdministrativeDocs\outputResults.txt" />
+    <Text Include="Support\AdministrativeDocs\tips.txt" />
+    <Text Include="Support\TxtFiles\Help.txt" />
+    <Text Include="Support\TxtFiles\Prompts.txt" />
+    <Text Include="Support\TxtFiles\Synopsis.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.md">
@@ -332,6 +344,42 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Operations\Header-Files\Units\PrimeUnits\Troops\TROOP.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Support\Paths.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Support\Paths\MainActions\MainActions_Paths.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Support\Paths\Misc\Misc_Paths.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Support\Paths\Units\Commanders\Commanders_Paths.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Support\Paths\Units\PrimeUnits\Troops\Troops_Paths.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Support\Paths\Units\PrimeUnits\PrimeUnits_Paths.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Support\Paths\Units\Provinces\Buildings\Others\Others_Paths.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Support\Paths\Units\Provinces\Buildings\ResourceBuildings\Resources_Paths.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Support\Paths\Units\Provinces\Buildings\Buildings_Paths.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Support\Paths\Units\Provinces\Provinces_Paths.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Support\Paths\Units\Reports\Reports_Paths.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Support\Paths\Units\Units_Paths.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

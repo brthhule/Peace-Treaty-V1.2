@@ -63,6 +63,10 @@ struct BuildingsStruct {
 };
 
 namespace PROV {
+
+	/*
+	Implement getLists, calculateCombatPower, calculateFoodConsumption
+	*/
 	class Provinces :
 		public UNIT::PrimeUnits,				//Base Class
 		public BuildMA,				//Interface
@@ -141,7 +145,6 @@ namespace PROV {
 
 		//Scout/report stuff
 		std::array<i5array, 4> getGeneralLists();
-		std::array<int, 7> getListsInt();
 
 		int getCommanderIndex(COMM::commSPTR commander);
 
@@ -193,7 +196,6 @@ namespace PROV {
 		void addTroopsTrainedThisTurn(int amount);
 		void resetTroopsTrainedThisTurn();
 		void initiailizeCapitalBuildings();
-		void initializeEmptyBuildings();
 
 		//----Printers---------------------------------------------------------
 		void printBuildingStats();
@@ -215,6 +217,8 @@ namespace PROV {
 		bool isACapital;
 
 		int mapIndex;
+
+		int civilians;
 
 		COMM::commMAP::iterator it;
 		COMM::commMAP commandersMap;
