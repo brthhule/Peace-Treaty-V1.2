@@ -160,7 +160,7 @@ namespace INF {
 	}
 
 	INF::myvector<int>::myvector(std::vector<int> vectorArg) {
-		vector(vectorArg.begin(), vectorArg.end());
+		//vector(vectorArg.begin(), vectorArg.end());
 	}
 	void INF::myvector<int>::addVectorElements(INF::myvector<int> vectorInstance) {
 		for (int x = 0; x < (int) this->size(); x++) {

@@ -118,13 +118,19 @@ void Provinces::initializeCapitalStats() {
 }
 
 //Commander Stuff
-void Provinces::removeCommander(commSPTR newCommander)
+void Provinces::removeCommander(commSPTR removeCommander)
 {
 	//For debugging
 	DEBUG_FUNCTION("Provinces.cpp", "removeCommander");
 
-	commandersMap.erase(newCommander->getName());
-	commandersVector.erase(commandersVector.begin() + getCommanderIndex(newCommander));
+	commandersMap.erase(removeCommander->getName());
+
+	int lastIndex = commandersVector.size() - 1; 
+	int removeIndex = removeCommander->getIndexInProvince(); 
+
+	//switch places between the Commander being removed and the last Commander (prevents other commanders from shifting after removal)
+	commandersVector.emplace(commandersVector.begin() + removeIndex, std::move(commandersVector.at(lastIndex)));
+	commandersVector.erase(commandersVector.begin() + lastIndex);
 }
 
 void Provinces::addCommander(Commanders commanderCopy) 
@@ -168,10 +174,14 @@ COMM::commSPTRList Provinces::getAllCommanders() const {
 	return commandersList;
 }
 
-COMM::commSPTR Provinces::getCommander(std::string name) const { 
+const Commanders& Provinces::getCommander(std::string name) const { 
 	//For debugging
 	DEBUG_FUNCTION("Provinces.cpp", "getCommander");	
-	return commandersMap.at(name);
+	return *commandersMap.at(name);
+}
+
+const Commanders& Provinces::getCommander(int index) const {
+	return commandersVector.at(index);
 }
 
 bool Provinces::subtractCheckResources(constArrayReference resourcesArray) {

@@ -27,11 +27,11 @@ public:
 		attuneValues(),
 		printReport();
 
-	int
-		getReportTurn(),
-		getAccuracy(),
-		getTargetLevel(),
-		getScouterLevel();
+	const int
+		getReportTurn() const,
+		getAccuracy() const,
+		getTargetLevel() const,
+		getScouterLevel() const;
 
 
 private:

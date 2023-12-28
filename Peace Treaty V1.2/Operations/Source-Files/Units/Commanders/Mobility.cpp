@@ -87,6 +87,8 @@ Provinces& Participants::pickProvinceToMoveTo(Commanders& commanderReference) {
 		std::cout << "Invalid province selected... please choose a valid province\n";
 		return pickProvinceToMoveTo(*commander); 
 	}
+
+	return *provinceSelected;
 }
 
 provSPTRList Participants::getSurroundingProvinces(commSPTR commander) {

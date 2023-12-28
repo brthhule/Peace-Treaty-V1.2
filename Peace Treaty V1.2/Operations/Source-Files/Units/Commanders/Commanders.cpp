@@ -158,6 +158,10 @@ constINT Commanders::getLevel() const {
 	return level;
 }
 
-const Commanders& makeConst(Commanders& commander) {
-	return commander;
+void Commanders::setIndexInProvince(int index) {
+	indexInProvince = index;
+}
+
+const int& Commanders::getIndexInProvince() const {
+	return indexInProvince;
 }

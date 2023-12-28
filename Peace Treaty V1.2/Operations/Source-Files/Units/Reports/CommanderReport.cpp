@@ -11,6 +11,14 @@ CommanderReport::CommanderReport() {
 	troopsLost = { 0, 0, 0, 0, 0 },
 	initialStats = { 5, 4, 3, 2, 1 };
 
+	combatPower = 0;
+	totalTroops = 0;
+	foodConsumption = 0;
+	participantIndex = 0;
+	unitLevel = 0;
+	maxTroops = 0;
+	totalMaxResources = 0;
+	commanderIndex = 0;
 	//Implement this
 }
 

@@ -115,6 +115,7 @@ unitSPTRList PrimeUnits::sortVector(SortType sort, unitSPTRList list) {
 		return levelSort(list);
 	}
 
+	return {};
 	/* for casting back later :
 	std::shared_ptr<Base> base(new Derived());
 	std::shared_ptr<Derived> derived =

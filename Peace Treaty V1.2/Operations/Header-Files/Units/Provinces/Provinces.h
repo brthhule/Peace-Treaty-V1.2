@@ -96,7 +96,8 @@ namespace PROV {
 
 		//----Getters----------------------------------------------------------
 		///Return shared pointer of commander by name
-		COMM::commSPTR getCommander(std::string name) const;
+		const COMM::Commanders& getCommander(std::string name) const;
+		const COMM::Commanders& getCommander(int index) const;
 		//Returns vector of commanders in this province
 		COMM::commSPTRList getAllCommanders() const;
 

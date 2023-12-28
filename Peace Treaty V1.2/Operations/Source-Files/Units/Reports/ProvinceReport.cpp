@@ -91,28 +91,28 @@ void ProvinceReport::printReport() {
 
 	//Complete implementation here
 }
-int ProvinceReport::getReportTurn() {
+const int ProvinceReport::getReportTurn() const {
 	//For debugging
 	DEBUG_FUNCTION("ProvinceReport.cpp", "getReportTurn");
 
 	return reportTurn;
 }
 
-int ProvinceReport::getAccuracy() {
+const int ProvinceReport::getAccuracy () const {
 	//For debugging
 	DEBUG_FUNCTION("ProvinceReport.cpp", "getAccuracy");
 
 	return accuracy;
 }
 
-int ProvinceReport::getTargetLevel() {
+const int ProvinceReport::getTargetLevel() const{
 	//For debugging
 	DEBUG_FUNCTION("ProvinceReport.cpp", "getTargetLevel");
 
 	return targetLevel;
 }
 
-int ProvinceReport::getScouterLevel() {
+const int ProvinceReport::getScouterLevel() const {
 	//For debugging
 	DEBUG_FUNCTION("ProvinceReport.cpp", "getScouterLevel");
 

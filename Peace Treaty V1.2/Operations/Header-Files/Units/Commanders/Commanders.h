@@ -43,6 +43,7 @@ namespace COMM {
 		int getCommanderStat(int index);
 		bool hasMoved() const;
 		const i5array getUpgradeCosts();
+		const int& getIndexInProvince() const;
 		
 
 		//----Printers---------------------------------------------------------
@@ -52,6 +53,8 @@ namespace COMM {
 		void addLevel();
 		void resetCommanderMoved();
 		void calculateCommanderScoutLog();
+
+		void setIndexInProvince(int index);
 
 		///////////////////////////////PrimeUnits.h////////////////////////////
 		constINT getCombatPower() const override;
@@ -93,6 +96,8 @@ namespace COMM {
 		///PRESENT = 0, INJURED = 1, LOST = 2
 		std::array<troopsArray, 3> troopConditions;
 		std::array<std::array<std::vector<TroopUnitsBASE>, 5>, 5> battleFormation;
+
+		int indexInProvince;
 	};
 
 	/*Commanders shared pointer 
