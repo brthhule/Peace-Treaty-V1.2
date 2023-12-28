@@ -9,7 +9,7 @@ constINT Provinces::getCapacity(BUILD::BuildingsEnum name) {
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "getCapacity");
 	std::shared_ptr<BuildingsBASE> currentBuilding = getBuilding(name);
-	std::shared_ptr<ResourceBuildingsBASE> resourceBuilding = std::static_pointer_cast<ResourceBuildingsBASE>(currentBuilding);
+	std::shared_ptr<ResourceBuildingsBASE> resourceBuilding = std::make_shared<ResourceBuildingsBASE>(*currentBuilding);
 	return resourceBuilding->getCapacityAmount();
 }
 
@@ -20,7 +20,7 @@ i5array& Provinces::getResourceProduction(BUILD::BuildingsEnum name, INF::Quanti
 
 	i5array arrayCopy = {}, returnArray = {};
 	std::shared_ptr<BuildingsBASE> building = getBuilding(name);  
-	std::shared_ptr<ResourceBuildingsBASE> resourceBuilding = std::static_pointer_cast<ResourceBuildingsBASE> (building);
+	std::shared_ptr<ResourceBuildingsBASE> resourceBuilding = std::make_shared<ResourceBuildingsBASE>(*building); 
 
 	if (amount == SINGLE) {
 		returnArray[0] = arrayCopy[name] * resourceBuilding->getProductionRate();
@@ -70,7 +70,7 @@ void Provinces::printBuildingStats()
 		std::cout << "- " << BUILD::BuildingStrings.at(x) << "(" << BUILD::BuildingStrings.at(x).at(0) << "): \n";
 		std::cout << "		Level: " << buildings.get(x)->getLevel() << "\n";
 		if (x < 5) {
-			std::shared_ptr<ResourceBuildingsBASE> resourceBuilding = std::make_shared<ResourceBuildingsBASE>(buildings.get(x));
+			std::shared_ptr<ResourceBuildingsBASE> resourceBuilding = std::make_shared<ResourceBuildingsBASE>(*buildings.get(x));
 			std::cout << "		" << INF::RESOURCE_NAMES.at(x) << " production rate: " << resourceBuilding->getProductionRate(); 
 		}
 	}

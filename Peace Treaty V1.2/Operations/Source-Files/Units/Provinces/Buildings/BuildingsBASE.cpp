@@ -4,12 +4,18 @@
 BuildingsBASE::BuildingsBASE(INF::d5array baseUpgradeRatesArg) {
 	level = 0; 
 	baseUpgradeRates = baseUpgradeRatesArg;
-	upgradeCosts = {};
 	workersNum = 0;
 	upgradeCosts = {};
 	for (int index = 0; index < 5; index++) {
 		upgradeCosts.at(index) = (int)baseUpgradeRates.at(index);
 	}
+}
+
+BuildingsBASE::BuildingsBASE(BuildingsBASE&& original) {
+	level = original.level;
+	baseUpgradeRates = original.baseUpgradeRates;
+	upgradeCosts = original.upgradeCosts;
+	workersNum = original.workersNum;
 }
 
 BuildingsBASE::BuildingsBASE() : BuildingsBASE({0.0, 0.0, 0.0, 0.0, 0.0}) { }

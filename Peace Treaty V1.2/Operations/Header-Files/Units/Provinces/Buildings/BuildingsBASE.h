@@ -20,6 +20,7 @@ public:
 	//----Constructors---------------------------------------------------------
 	BuildingsBASE();
 	BuildingsBASE(INF::d5array baseUpgradeRatesArg);
+	BuildingsBASE(const BuildingsBASE& original);
 	~BuildingsBASE(){}
 
 	//----Getters--------------------------------------------------------------
