@@ -11,12 +11,13 @@ BuildingsBASE::BuildingsBASE(INF::d5array baseUpgradeRatesArg) {
 	}
 }
 
+/*
 BuildingsBASE::BuildingsBASE(BuildingsBASE&& original) {
 	level = original.level;
 	baseUpgradeRates = original.baseUpgradeRates;
 	upgradeCosts = original.upgradeCosts;
 	workersNum = original.workersNum;
-}
+}*/
 
 BuildingsBASE::BuildingsBASE() : BuildingsBASE({0.0, 0.0, 0.0, 0.0, 0.0}) { }
 

@@ -8,7 +8,7 @@
 class ResourceBuildingsBASE : public BuildingsBASE{
 public:
 	//Potentiall add upgrade rate-- different buildings increase their production amounts at different rates
-	ResourceBuildingsBASE(ResourceBuildingsBASE&& copy);
+	//ResourceBuildingsBASE(ResourceBuildingsBASE&& copy);
 	ResourceBuildingsBASE(INF::d5array upgradeRates);
 
 	void updateProductionRate(int level);

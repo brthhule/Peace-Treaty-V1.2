@@ -6,10 +6,11 @@ ResourceBuildingsBASE::ResourceBuildingsBASE(INF::d5array upgradeRates) : Buildi
 	capacityAmount = 0;
 }
 
+/*
 ResourceBuildingsBASE::ResourceBuildingsBASE(ResourceBuildingsBASE&& original) : BuildingsBASE(static_cast<BuildingsBASE>(original)){
 	this->productionRate = original.productionRate;
 	capacityAmount = original.capacityAmount;
-}
+}*/
 
 void ResourceBuildingsBASE::updateProductionRate(int level) {
 	productionRate = level;
