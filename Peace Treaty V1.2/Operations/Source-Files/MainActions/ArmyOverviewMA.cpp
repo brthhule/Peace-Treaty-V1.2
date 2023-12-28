@@ -179,11 +179,14 @@ void Participants::deployCommanderPrompt() {
 void Participants::addCommander() {  
 	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "addCommander()");
 
-	commSPTR commander = std::make_shared<Commanders>(new Commanders(1, getNewName(), participantIndex));
+	Commanders newCommander(1, getNewName(), participantIndex); 
+	capitalProvince->addCommander(newCommander);
+
+	commSPTR commander = std::make_shared<Commanders>(capitalProvince->getCommander(newCommander.getName()));
+
 	commander->setParticipantIndex(participantIndex); 
 	commandersVector.push_back(std::make_shared<Commanders>(*commander)); 
 	commandersMap[commander->getName()] = std::make_shared<Commanders>(*commander);
-	getCapitalProvince()->addCommander(*commander);
 }
 
 void Participants::armyOverviewSelectActionShowHelp() {

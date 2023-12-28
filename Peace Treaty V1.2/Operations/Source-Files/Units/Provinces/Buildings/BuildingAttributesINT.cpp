@@ -9,7 +9,7 @@ constINT Provinces::getCapacity(BUILD::BuildingsEnum name) {
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "getCapacity");
 	std::shared_ptr<BuildingsBASE> currentBuilding = getBuilding(name);
-	std::shared_ptr<ResourceBuildingsBASE> resourceBuilding = std::dynamic_pointer_cast<ResourceBuildingsBASE>(currentBuilding);
+	std::shared_ptr<ResourceBuildingsBASE> resourceBuilding = std::static_pointer_cast<ResourceBuildingsBASE>(currentBuilding);
 	return resourceBuilding->getCapacityAmount();
 }
 
@@ -20,7 +20,7 @@ i5array& Provinces::getResourceProduction(BUILD::BuildingsEnum name, INF::Quanti
 
 	i5array arrayCopy = {}, returnArray = {};
 	std::shared_ptr<BuildingsBASE> building = getBuilding(name);  
-	std::shared_ptr<ResourceBuildingsBASE> resourceBuilding = std::dynamic_pointer_cast<ResourceBuildingsBASE> (building);
+	std::shared_ptr<ResourceBuildingsBASE> resourceBuilding = std::static_pointer_cast<ResourceBuildingsBASE> (building);
 
 	if (amount == SINGLE) {
 		returnArray[0] = arrayCopy[name] * resourceBuilding->getProductionRate();
@@ -111,7 +111,7 @@ void Provinces::addTroopsTrainedThisTurn(int amount) {
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "addTroopsTrainedThisTurn");
 
-	std::unique_ptr<Barracks> barracks = std::make_unique<Barracks>(buildings.at(BARRACKS));
+	std::shared_ptr<Barracks> barracks = std::make_shared<Barracks>(buildings.at(BARRACKS)); 
 
 	barracks->addTroopsTrainedThisTurn(amount);
 }
