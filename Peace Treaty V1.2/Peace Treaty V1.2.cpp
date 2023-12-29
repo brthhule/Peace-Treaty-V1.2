@@ -140,7 +140,7 @@ int generateNewContinent(int pNum) {
 
 	INF::clearScreen();
 
-	std::cout << getColor(RED) << players << getColor(WHITE) << " players initialized...\n\n";
+	std::cout << INF::getColor(RED) << players << INF::getColor(WHITE) << " players initialized...\n\n"; 
 	pNum += players;
 	std::cout << "pNum: " << pNum << std::endl;
 	return players;

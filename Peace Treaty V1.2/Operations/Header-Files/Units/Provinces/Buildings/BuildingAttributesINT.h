@@ -5,7 +5,6 @@
 #include <array>
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
-#include BUILDING_ATTRIBUTES_INT_HEADER
 #include INF_HEADER
 #include BUILD_HEADER
 #include BUILDINGS_BASE_HEADER

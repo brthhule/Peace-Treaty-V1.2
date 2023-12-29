@@ -11,8 +11,9 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 
 #include ARMY_OVERVIEW_MA_HEADER		//Composition (Action)
-//Includes TrainMA.h, INF.h
 #include MAP_MA_HEADER					//Composition (Action)
+#include TRAIN_MA_HEADER
+#include INF_HEADER
 
 /* TODO
 * Implement randomAction (AI functionality, way ahead)

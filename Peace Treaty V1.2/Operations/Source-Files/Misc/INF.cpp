@@ -51,7 +51,7 @@ namespace INF {
 	//////////////////////////////////////End Variables////////////////////////
 
 	//For stand alone color integration
-	void INF::addColor(COLORS color) {
+	void addColor(COLORS color) {
 		//For debugging
 		DEBUG_FUNCTION("INF", "addColor");
 		std::cout << getColor(color);
@@ -59,7 +59,7 @@ namespace INF {
 	}
 
 	//For integration with strings/std::cout statements
-	std::string INF::getColor(COLORS color) {
+	std::string getColor(COLORS color) {
 		std::array<std::string, 9> sequences = {
 			"\033[30m", //Black
 			"\033[31m", //Red
@@ -76,7 +76,7 @@ namespace INF {
 	}
 
 	//Generates a random name by randomly selecting consonants and vowels
-	std::string INF::createRandomName() {
+	std::string createRandomName() {
 		//For debugging
 		DEBUG_FUNCTION("INF", "createRandomName");
 
@@ -102,7 +102,7 @@ namespace INF {
 	}
 
 	//Can change this-> look at concatVectors as a template-- use a pair of arrays instead of passing two arrays
-	i5array INF::mutateArray(
+	i5array mutateArray(
 		i5array primeArray, 
 		constArrayReference secondaryArray,
 		MutateDirection direction) 

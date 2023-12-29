@@ -2,7 +2,6 @@
 
 #ifndef MOBILITY_H
 #define MOBILITY_H
-#define MOBILITY
 
 #include <vector>
 

@@ -1,6 +1,5 @@
 #ifndef ATTACKMA_H
 #define ATTACKMA_H
-#define ATTACK_MA
 
 #include <iostream>
 #include <string>

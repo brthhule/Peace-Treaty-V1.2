@@ -5,7 +5,6 @@
 
 #ifndef SCOUTMA_H
 #define SCOUTMA_H
-#define SCOUT_MA
 
 #include <iostream>
 #include <vector>

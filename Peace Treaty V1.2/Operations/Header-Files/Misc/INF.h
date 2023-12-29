@@ -36,11 +36,11 @@ namespace INF {
 		void addArrayElements(myarray arrayArg);
 	};
 
-	template <typename T>
+	/*template <typename T>
 	const T& makeConst(T& object);
 
 	template <typename T>
-	T makeCopy(T& object);
+	T makeCopy(T& object);*/
 
 	template<class T>
 	//Shared pointer of type T

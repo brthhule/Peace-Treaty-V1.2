@@ -10,16 +10,12 @@
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 
-
 #include PRIME_UNITS_HEADER					//Base Class
 #include COORDS_BASE_HEADER				//Base Class
 #include INF_HEADER
 #include TROOP_UNITS_BASE_HEADER		//Composition
 #include TROOP_HEADER
 #include TROOPS_INT_HEADER				//Interface
-#include TROOP_HEADER
-
-
 
 ///Namespace for Commanders
 namespace COMM {

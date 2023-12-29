@@ -59,4 +59,4 @@ private:
 
 }
 
-#endif COORDINATES_H
+#endif 

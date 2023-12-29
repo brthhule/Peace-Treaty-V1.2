@@ -6,6 +6,7 @@
 using namespace PART;
 using namespace COORD;
 using namespace COMM;
+using namespace INF;
 
 void Participants::armyOverviewSelectAction() { 
 	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "armyOverviewSelectAction()");
@@ -57,14 +58,14 @@ commSPTR Participants::pickCommanderToUpgrade() {
 	return commander;
 }
 
-void Participants::upgradeCommander() {
+void Participants::upgradeCommander() { 
 	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "upgradeCommander()");
 
 	commSPTR commander = pickCommanderToUpgrade();
 
 	if (commander == nullptr) { return; }
 
-	constArrayReference costsArray = commander.get()->getUpgradeCosts();
+	constArrayReference costsArray = commander.get()->getUpgradeCosts(); 
 
 	std::cout << "The following are the Commander upgrade costs: \n";
 	INF::printResources(costsArray);
