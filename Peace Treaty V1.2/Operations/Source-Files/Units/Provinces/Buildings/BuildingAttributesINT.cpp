@@ -24,17 +24,20 @@ i5array& Provinces::getResourceProduction(BUILD::BuildingsEnum name, INF::Quanti
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "getResourceProduction");
 
 	i5array arrayCopy = {}, returnArray = {};
-	BuildingsBASE &buildingRef = getBuilding(name);  
-	std::shared_ptr<ResourceBuildingsBASE> resourceBuilding = std::make_shared<ResourceBuildingsBASE>(buildingRef); 
 
 	if (amount == SINGLE) {
+		BuildingsBASE& buildingRef = getBuilding(name); 
+		ResourceBuildingsBASE* resourceBuilding = static_cast<ResourceBuildingsBASE*>(&buildingRef); 
 		returnArray[0] = arrayCopy[name] * resourceBuilding->getProductionRate();
+		delete resourceBuilding;
 	} else {
 		for (int x = 0; x < 5; x++) {
-			std::shared_ptr<ResourceBuildingsBASE> building = std::make_shared<ResourceBuildingsBASE>(buildings.get(BuildingsEnum(x))); 
+			ResourceBuildingsBASE* building = static_cast<ResourceBuildingsBASE*>(&buildings.get(BuildingsEnum(x)));
 			returnArray[0] = arrayCopy[x] * building->getProductionRate(); 
+			delete building;
 		}
 	}
+
 
 	return returnArray;
 }
@@ -79,6 +82,7 @@ void Provinces::printBuildingStats()
 		if (x < 5) {
 			ResourceBuildingsBASE* resourceBuilding = static_cast<ResourceBuildingsBASE*>(&buildings.get(x));
 			std::cout << "		" << INF::RESOURCE_NAMES.at(x) << " production rate: " << resourceBuilding->getProductionRate(); 
+			delete resourceBuilding;
 		}
 	}
 	for (int x = 0; x < 5; x++)
