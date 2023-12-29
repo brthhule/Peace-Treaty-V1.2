@@ -68,7 +68,7 @@ public:
 	//----Constructors-----------------------------------------------------
 	Participants();
 	Participants(int pIndex);
-	~Participants(){}
+	~Participants();
 
 	static void initializeParticipants(int totalPlayers, int humanPlayers, int count); 
 	void createCapital();
@@ -176,8 +176,6 @@ public:
 	void setKingdomName(std::string newName);
 	void showMap();
 
-	void nothingArmyOverview() override;
-
 	/////////////////////////////////////ArmyOverviewMA.h//////////////////////
 	//----Methods--------------------------------------------------------------
 	void armyOverviewSelectAction() override;
@@ -187,7 +185,7 @@ public:
 	void upgradeCommander() override;
 	COMM::commSPTR pickCommanderToUpgrade() override;
 	void viewCommanderStats() override;
-	void deployCommanderPrompt() override;
+	void deployCommanderPrompt() override; 
 	///Adds a Commander to the capital province
 	void addCommander();
 

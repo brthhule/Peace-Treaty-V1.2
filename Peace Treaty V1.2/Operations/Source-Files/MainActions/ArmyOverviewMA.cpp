@@ -133,7 +133,7 @@ void Participants::trainCommanderPrompt() {
 	INF::enterAnything(1);
 }
 
-void Participants::proceedWithTraining(constArrayReference trainCosts) {
+void Participants::proceedWithTraining(const i5array& trainCosts) {
 	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "proceedWithTraining(constArrayReference)");
 
 	bool trainingSuccess = getCapitalProvince()->subtractCheckResources(trainCosts);

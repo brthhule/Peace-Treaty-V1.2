@@ -18,10 +18,6 @@ namespace INF {
 	/*INITIAL_VALUES = 5, 4, 3, 2, 1 */
 	i5array INITIAL_VALUES = { 5, 4, 3, 2, 1 };
 
-	
-
-	
-
 	std::array<std::string, 9> COLORS_STRING = {
 			"BLACK",
 			"RED",

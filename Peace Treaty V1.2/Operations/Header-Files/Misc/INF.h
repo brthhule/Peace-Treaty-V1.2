@@ -171,18 +171,9 @@ namespace INF {
 	};*/
 
 	///////////////////////////////////Variables///////////////////////////////
-	extern s5array
-		TROOP_NAMES,
-		RESOURCE_BUILDING_NAMES,
-		OTHER_BUILDING_NAMES,
-		RESOURCE_NAMES;
+	extern s5array RESOURCE_NAMES;
 
-	extern i5array
-		Troops_COST,
-		INITIAL_VALUES,
-		TROOPS_CP,
-		RESOURCE_PRODUCTION;
-
+	extern i5array INITIAL_VALUES;
 	extern int 
 		continentSize, 
 		enemyDifficulty,

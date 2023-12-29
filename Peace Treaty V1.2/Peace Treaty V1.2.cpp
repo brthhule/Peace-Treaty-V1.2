@@ -15,8 +15,8 @@
 #include <thread>
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
+#include INF_HEADER  
 #include PARTICIPANTS_HEADER
-#include INF_HEADER 
 #include PROVINCES_HEADER
 #include INPUT_HEADER
 #include COMMANDERS_HEADER
@@ -119,7 +119,7 @@ int getContinentInformation() {
 	INF::enemyDifficulty = std::stoi(Input::getInputText("What gameplay difficulty do you want (1-3): ", { "number","1","2","3" }));
 	INF::enterAnything(1);
 	INF::clearScreen();
-	std::cout << "Gameplay difficulty " << getColor(RED) << INF::enemyDifficulty << getColor(WHITE) << " selected. \n\n";
+	std::cout << "Gameplay difficulty " << getColor(RED) << INF::enemyDifficulty << getColor(RESET) << " selected. \n\n"; 
 
 	return pNum;
 }

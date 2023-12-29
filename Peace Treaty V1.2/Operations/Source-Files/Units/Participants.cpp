@@ -48,7 +48,9 @@ int Participants::getProvincesNum() const { return (int) provincesVector.size();
 
 int Participants::getCommandersNum() const { return (int) commandersVector.size(); }
 
+Participants::~Participants() {    
 
+}
 
 
 // Mutators
