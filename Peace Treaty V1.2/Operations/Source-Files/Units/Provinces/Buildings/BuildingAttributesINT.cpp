@@ -8,11 +8,10 @@ using namespace PROV;
 const int Provinces::getCapacity(BUILD::BuildingsEnum name) const { 
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "getCapacity");
-	BuildingsBASE* currentBuilding = &getBuilding(name);
-	ResourceBuildingsBASE* resourceBuilding = static_cast<ResourceBuildingsBASE*>(currentBuilding);  
-	delete currentBuilding;
+	BuildingsBASE& currentBuilding = buildings.buildingsVector.at(name);  
+	ResourceBuildingsBASE* resourceBuilding = static_cast<ResourceBuildingsBASE*>(&currentBuilding);  
 
-	int amount = resourceBuilding->getCapacityAmouBnt();
+	int amount = resourceBuilding->getCapacityAmount();
 	delete resourceBuilding;
 
 	return amount;
