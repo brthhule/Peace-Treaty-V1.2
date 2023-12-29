@@ -22,7 +22,7 @@ s5array statsOne = {
 //Check this
 std::array<s5array, 4> namesOfManOne = {
 	INF::RESOURCE_NAMES,
-	INF::TROOP_NAMES
+	TROOP::TROOP_NAMES
 };
 
 std::array<std::string, 6> namesOfManTwo{
@@ -78,10 +78,10 @@ void Commanders::printCommanderStats() {
 	INF::addColor(INF::BLUE);
 	//Add implementation
 
-	std::cout << statsOne.at(0) << std::endl;
+	std::cout << COMM::statsOne.at(0) << std::endl;
 	this->printResources();
 
-	std::cout << statsOne.at(0) << std::endl;
+	std::cout << COMM::statsOne.at(0) << std::endl;
 	this->printTroopsPresent();
 
 	//Continue implementing here

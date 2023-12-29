@@ -84,6 +84,8 @@ public:
 	Are they supposed to return anything? Currently call to global variables
 	I deleted, can probably use a return type as a substitute*/
 	void getPrimeUnitsArrayProvinces() const;
+
+	//Need to implement this
 	void getPrimeUnitsArrayCommanders() const;
 
 
@@ -245,6 +247,9 @@ public:
 	void calculateTroopsLost(COMM::commSPTR commander, int lostCombatPower, constArrayReference troopsLost, int troopIndex) override;
 	void battleCalculationsTwo(int& lostCombatPower, int troopsLost[5], int troopIndex, COMM::commSPTR attackingCommander) override;
 	void casualtyReport(i5array troopsLost, i5array injuredTroops) override;
+
+	//Need this for some reason or else the program breaks
+	void plaerActionShowHelp();
 
 private:
 	static std::vector<Participants> participantsList;

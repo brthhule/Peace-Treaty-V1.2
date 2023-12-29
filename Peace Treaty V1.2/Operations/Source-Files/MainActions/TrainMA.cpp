@@ -139,3 +139,5 @@ void Participants::trainMALoop(int troopTier, int amountOfTroops) {
     } while (repeatProceedWithTraining == 'Y');
 }
 
+void Participants::plaerActionShowHelp() {
+}

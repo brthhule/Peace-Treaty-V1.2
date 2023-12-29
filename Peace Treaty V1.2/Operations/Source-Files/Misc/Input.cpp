@@ -202,5 +202,6 @@ int getNumber(std::string text) {
 
 	return std::stoi(numberString);
 }
+
 };
 

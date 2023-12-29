@@ -1,7 +1,6 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 #include PARTICIPANTS_HEADER
 
-using namespace PART;
 using namespace PROV;
 using namespace COMM;
 using namespace INF;

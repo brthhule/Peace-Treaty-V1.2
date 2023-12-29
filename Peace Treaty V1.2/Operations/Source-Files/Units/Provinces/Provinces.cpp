@@ -7,7 +7,7 @@ using namespace COORD;
 using namespace COMM;
 
 
-BuildingsStruct::BuildingsStruct() : farm(), mill(), quarry(), mine(), church(), barracks(), infirmary(), library(), residences(), wall() { 
+BuildingsClass::BuildingsClass() : farm(), mill(), quarry(), mine(), church(), barracks(), infirmary(), library(), residences(), wall() {
 	/*buildingsArray = {
 		
 		std::make_shared<BuildingsBASE>(farm), 
@@ -36,11 +36,11 @@ BuildingsStruct::BuildingsStruct() : farm(), mill(), quarry(), mine(), church(),
 	buildingsVector.at(0).get() = wall;*/
 }
 
-BuildingsBASE& BuildingsStruct::get(BUILD::BuildingsEnum name) {
-	return buildingsVector.at(name);
+BuildingsBASE& BuildingsClass::get(BUILD::BuildingsEnum name) {
+	return buildingsVector.at(name).get();
 }
-BuildingsBASE& BuildingsStruct::get(int num) {
-	return buildingsVector.at(num);
+BuildingsBASE& BuildingsClass::get(int num) {
+	return buildingsVector.at(num).get();
 }
 
 //Use participantIndex = -1 for empty provinces

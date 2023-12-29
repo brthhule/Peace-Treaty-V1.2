@@ -5,20 +5,20 @@
 
 using namespace PROV;
 
-const int Provinces::getCapacity(BUILD::BuildingsEnum name) const { 
+const int Provinces::getCapacity(BUILD::BuildingsEnum name) { 
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "getCapacity");
-	BuildingsBASE& currentBuilding = buildings.buildingsVector.at(name);  
-	ResourceBuildingsBASE* resourceBuilding = static_cast<ResourceBuildingsBASE*>(&currentBuilding);  
+	ResourceBuildingsBASE* resourceBuilding = static_cast<ResourceBuildingsBASE*>(&buildings.get(name));
 
 	int amount = resourceBuilding->getCapacityAmount();
-	delete resourceBuilding;
+	//Message: cannot delete ojects that are not pointers
+	//delete resourceBuilding;
 
 	return amount;
 }
 
 /*Use returnArray or returnInt for arrayArg*/
-i5array& Provinces::getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount) { 
+i5array Provinces::getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount) { 
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "getResourceProduction");
 
@@ -53,11 +53,11 @@ void Provinces::mutateLevel(BuildingsEnum name, MutateDirection direction, int a
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "mutateLevel");
 	if (direction == DECREASE) { amount *= -1; }
-	buildings.buildingsVector.at(name).get().increaseLevel(amount);
+	buildings.get(name).increaseLevel(amount); 
 }
 
 /*Return the amount of troops trained this turn - troopsTrainedThisTurn*/
-constINT Provinces::getTroopsTrainedThisTurn() {
+const int Provinces::getTroopsTrainedThisTurn() {
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "getTroopsTrainedThisTurn");
 	Barracks* building = static_cast<Barracks*>(&buildings.get(BARRACKS)); 
@@ -80,31 +80,31 @@ void Provinces::printBuildingStats()
 		std::cout << "		Level: " << buildings.get(x).getLevel() << "\n";
 		if (x < 5) {
 			ResourceBuildingsBASE* resourceBuilding = static_cast<ResourceBuildingsBASE*>(&buildings.get(x));
-			std::cout << "		" << INF::RESOURCE_NAMES.at(x) << " production rate: " << resourceBuilding->getProductionRate(); 
+			std::cout << "		" << INF::RESOURCE_NAMES.at(x) << " production rate: " << resourceBuilding->getProductionRate();
 			delete resourceBuilding;
 		}
 	}
 	for (int x = 0; x < 5; x++)
 	{
-		std::cout << "- " << INF::RESOURCE_BUILDING_NAMES[x] << " (" << INF::RESOURCE_BUILDING_NAMES[x].at(0) << ") " << std::endl;
+		std::cout << "- " << BUILD::RESOURCE_BUILDING_NAMES[x] << " (" << BUILD::RESOURCE_BUILDING_NAMES[x].at(0) << ") " << std::endl;
 		std::cout << "    Level: " << buildings.get(x).getLevel() << std::endl;
 		std::cout << "    " << INF::RESOURCE_NAMES[x] << " production rate : " << productionArray[x] << std::endl;
 	}
 	//Add implementation
 	std::cout << "Barracks (B) " << std::endl;
-	std::cout << "    Level: " << buildings.buildingsVector.at(BARRACKS).get().getLevel() << std::endl;
+	std::cout << "    Level: " << buildings.get(BARRACKS).getLevel() << std::endl; 
 	std::cout << "    Max training capacity: " << getCapacity(BARRACKS) << "\n\n\033[;0m";
 
 
 }
 
 //Returns average of all BuildingAttributesINT.cpp", "rounded down to nearest int
-constINT Provinces::getProvinceLevel() {
+const int Provinces::getProvinceLevel() {
 	//For debugging
 	DEBUG_FUNCTION("Provinces.cpp", "getProvinceLevel");
 
 	int unitLevel = 0;
-	for (int x = 0; x < 10; x++) { unitLevel += buildings.get(x).getLevel(); }
+	for (int x = 0; x < 10; x++) { unitLevel += buildings.get(x).getLevel(); }  
 	
 	return unitLevel /= 10;;
 }

@@ -33,7 +33,6 @@ void endScreen();
 int getContinentInformation();
 
 using namespace INF;
-using namespace PART;
 using namespace Input;
 using namespace TROOP;
 

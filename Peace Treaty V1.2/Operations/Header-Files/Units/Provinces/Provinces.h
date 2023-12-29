@@ -40,9 +40,13 @@
 #include WALL_HEADER
 
 //Plain old data, only accessible withing Provinces
-struct BuildingsStruct {
-	std::vector<std::reference_wrapper<BuildingsBASE>> buildingsVector;
+class BuildingsClass {
+public:
+	BuildingsClass();
 
+	BuildingsBASE& get(BUILD::BuildingsEnum name);
+	BuildingsBASE& get(int num);
+private:
 	Farm farm;
 	Mill mill;
 	Quarry quarry;
@@ -53,11 +57,7 @@ struct BuildingsStruct {
 	Library library;
 	Residences residences;
 	Wall wall;
-
-	BuildingsStruct();
-
-	BuildingsBASE& get(BUILD::BuildingsEnum name);
-	BuildingsBASE& get(int num);
+	std::vector<std::reference_wrapper<BuildingsBASE>> buildingsVector;
 };
 
 
@@ -155,26 +155,26 @@ public:
 	///////////////////////////////BuildingAttributesINT///////////////////
 		
 	//----Getters----------------------------------------------------------
-	i5array& getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount);
+	i5array getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount);
 //Returns an array of Resource/Other buildings levels
 	i5array getTypeLevels(BUILD::BuildingType type);
 
 
-	const int getCapacity(BUILD::BuildingsEnum name) const;
+	const int getCapacity(BUILD::BuildingsEnum name);
 	/** getTroopsTrainedThisTurn__
 		returns the amount of troops trained this turn
 
 			@param void
 			@return void
 	*/
-	constINT getTroopsTrainedThisTurn();
+	const int getTroopsTrainedThisTurn() override;
 	/** getProvinceLevel__ 
 		returns the level of this province by averaging all building levels
 
 			@param void
 			@return void
 	*/
-	constINT getProvinceLevel();
+	const int getProvinceLevel() override;
 
 	BuildingsBASE& getBuilding(BUILD::BuildingsEnum name);
 	BuildingsBASE& getBuilding(int num);
@@ -200,6 +200,10 @@ public:
 	void printBuildingStats();
 	void printListOfBuildings();
 
+
+
+	
+
 protected:
 	enum LISTS { RESOURCE_BUILDINGS_LEVELS, OTHER_BUILDINGS_LEVELS, RESOURCES_PRESENT, TROOPS_PRESENT, TROOPS_INJURED, TROOPS_LOST, INITIAL_STATS };
 
@@ -210,6 +214,8 @@ protected:
 	enum LIST_COORDS { SYSTEM_COORDS, USER_COORDS };
 
 	enum REPORT { REPORT_TURN, REPORT_LOG };
+
+	BuildingsClass buildings;
 
 private:
 	SortType commandersSortType;
@@ -232,7 +238,7 @@ private:
 	typedef std::vector<std::pair<int, ProvinceReport >> reports;
 	std::vector<reports> scoutReports;
 
-	BuildingsStruct buildings;
+	
 };
 
 namespace PROV {

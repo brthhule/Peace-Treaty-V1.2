@@ -72,7 +72,7 @@ void Commanders::mutateTroop(TROOP::TroopCondition troopCondition, TROOP::TroopT
 			if (direction == INCREASE) {
 				for (int troopTypeVar = 0; troopTypeVar < 5; troopTypeVar++) {
 					for (int tierNum = 0; tierNum < 5; tierNum++) {
-						for (int tierSize = 0; tierSize < amount.at(troopType).at(tierNum).size(); tierSize++) {
+						for (int tierSize = 0; tierSize < (int) amount.at(troopType).at(tierNum).size(); tierSize++) {
 							troopConditions.at(troopCondition).at(troopTypeVar).at(tierNum).push_back(amount.at(troopTypeVar).at(tierNum).at(tierSize));
 						}
 					}
@@ -81,7 +81,7 @@ void Commanders::mutateTroop(TROOP::TroopCondition troopCondition, TROOP::TroopT
 			}
 			for (int troopTypeVar = 0; troopTypeVar < 5; troopTypeVar++) {
 				for (int tierNum = 0; tierNum < 5; tierNum++) {
-					for (int tierSize = 0; tierSize < amount.at(troopType).at(tierNum).size(); tierSize++) {
+					for (int tierSize = 0; tierSize < (int) amount.at(troopType).at(tierNum).size(); tierSize++) {
 						troopConditions.at(troopCondition).at(troopTypeVar).at(tierNum).erase(amount.at(troopTypeVar).at(tierNum).begin() + (troopConditions.at(troopCondition).at(troopTypeVar).at(tierNum).size() - amount.at(troopTypeVar).at(tierNum).size()));
 					}
 				}
@@ -110,7 +110,7 @@ void Commanders::setBattleFormation(troopsArray troopArray) {
 			continue;
 		}
 
-		formationLanes.at(x) == TroopTypes(std::stoi(answer));
+		formationLanes.at(x) = TroopTypes(std::stoi(answer));
 	}
 	
 

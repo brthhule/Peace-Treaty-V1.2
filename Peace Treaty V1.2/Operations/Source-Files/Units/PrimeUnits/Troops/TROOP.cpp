@@ -25,5 +25,8 @@ TROOP::TroopTypes TROOP::stringToTroopType(std::string type) {
 			return TroopTypes(x);
 		}
 	}
+
+	//Error case
+	return GUARDS;
 }
 

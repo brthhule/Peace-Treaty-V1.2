@@ -22,25 +22,25 @@ public:
 	~BuildingAttributesINT(){}
 
 	///////////////////////////////////Getters/////////////////////////////////
-	virtual constArrayReference getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount) = 0;
+	virtual i5array getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount) = 0;
 	//Returns an array of Resource/Other buildings levels
 	virtual i5array getTypeLevels(BUILD::BuildingType type) = 0;
 
 	
-	virtual const int getCapacity(BUILD::BuildingsEnum name) const = 0;
+	virtual const int getCapacity(BUILD::BuildingsEnum name) = 0;
 	/** getTroopsTrainedThisTurn__
 		returns the amount of troops trained this turn
 
 			@param void
 			@return void
 	*/
-	virtual constINT getTroopsTrainedThisTurn() = 0;
+	virtual const int getTroopsTrainedThisTurn() = 0;
 	/** getProvinceLevel__ returns the level of this province by averaging all building levels
 
 			@param void
 			@return void
 	*/
-	virtual constINT getProvinceLevel() = 0;
+	virtual const int getProvinceLevel() = 0;
 
 	virtual BuildingsBASE& getBuilding(BUILD::BuildingsEnum name) = 0;
 	virtual BuildingsBASE& getBuilding(int num) = 0;

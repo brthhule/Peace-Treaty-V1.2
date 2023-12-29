@@ -127,7 +127,7 @@ void Participants::viewStats() {
 	}
 
 	for (int x = 0; x < 5; x++)
-		std::cout << "Total " << INF::TROOP_NAMES[x] << " alive: " << eachUnit[x] << std::endl;
+		std::cout << "Total " << TROOP::TROOP_NAMES[x] << " alive: " << eachUnit[x] << std::endl;
 
 	std::cout << "Your total army combat power: " << calculatePlayerValues(1).at(0);
 	std::cout << "\nYour numnber of provinces: " << getProvincesNum() << "\n\n";
@@ -224,7 +224,7 @@ void Participants::viewAllStatsFunction() {
 	std::cout << BLUE; // NW
 	i5array troopsLost = calculateEach(3);
 	for (int x = 0; x < 5; x++) {
-		std::cout << INF::TROOP_NAMES[x] << " lost: "
+		std::cout << TROOP::TROOP_NAMES[x] << " lost: "
 			<< troopsLost[x]
 			<< std::endl;
 	}
@@ -642,3 +642,4 @@ void Participants::setHumanPlayers(int num) {
 const std::vector<Participants>& Participants::getParticipants() { 
 	return participantsList; 
 }
+
