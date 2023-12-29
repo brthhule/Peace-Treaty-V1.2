@@ -41,7 +41,7 @@
 
 //Plain old data, only accessible withing Provinces
 struct BuildingsStruct {
-	std::array<BuildingsBASE&, 10> buildingsVector; 
+	std::vector<std::reference_wrapper<BuildingsBASE>> buildingsArray;
 
 	Farm farm;
 	Mill mill;

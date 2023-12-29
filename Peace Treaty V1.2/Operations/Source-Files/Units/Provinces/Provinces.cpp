@@ -8,7 +8,8 @@ using namespace COMM;
 
 
 BuildingsStruct::BuildingsStruct() : farm(), mill(), quarry(), mine(), church(), barracks(), infirmary(), library(), residences(), wall() { 
-	buildingsVector = { 
+	/*buildingsArray = {
+		
 		std::make_shared<BuildingsBASE>(farm), 
 		std::make_shared<BuildingsBASE>(mill), 
 		std::make_shared<BuildingsBASE>(quarry), 
@@ -19,14 +20,24 @@ BuildingsStruct::BuildingsStruct() : farm(), mill(), quarry(), mine(), church(),
 		std::make_shared<BuildingsBASE>(library), 
 		std::make_shared<BuildingsBASE>(residences), 
 		std::make_shared<BuildingsBASE>(wall) 
-	};
+	};*/
+	buildingsArray.at(0).get() = farm;
+	buildingsArray.at(0).get() = mill;
+	buildingsArray.at(0).get() = quarry;
+	buildingsArray.at(0).get() = mine;
+	buildingsArray.at(0).get() = church;
+	buildingsArray.at(0).get() = barracks;
+	buildingsArray.at(0).get() = infirmary;
+	buildingsArray.at(0).get() = library;
+	buildingsArray.at(0).get() = residences;
+	buildingsArray.at(0).get() = wall;
 }
 
 BuildingsBASE& BuildingsStruct::get(BUILD::BuildingsEnum name) {
-	return buildingsVector.at(name);
+	return buildingsArray.at(name);
 }
 BuildingsBASE& BuildingsStruct::get(int num) {
-	return buildingsVector.at(num);
+	return buildingsArray.at(num);
 }
 
 //Use participantIndex = -1 for empty provinces

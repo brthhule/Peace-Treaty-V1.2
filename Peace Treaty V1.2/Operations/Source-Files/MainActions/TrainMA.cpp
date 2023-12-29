@@ -6,7 +6,7 @@ using namespace PROV;
 using namespace COMM;
 using namespace INF;
 using namespace TROOP;
-using namespace INPUT;
+using namespace Input;
 
 //Main TrainMA function
 void Participants::trainMAMain() {
@@ -34,7 +34,7 @@ void Participants::trainMAMain() {
     TROOP::TroopTypes type = TroopTypes(1);
         
 
-    std::cout << "The max tier troop you can train: " << troopTier << ", " << TROOP_NAMES[troopTier - 1] << std::endl; 
+    std::cout << "The max tier troop you can train: " << troopTier << ", " << TROOP::TROOP_NAMES[troopTier - 1] << std::endl; 
 
     //Change this later
     int maxTroopsCanTrain = barracksLevel * 2;
