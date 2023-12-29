@@ -41,7 +41,7 @@
 
 //Plain old data, only accessible withing Provinces
 struct BuildingsStruct {
-	std::array<std::shared_ptr<BuildingsBASE>, 10> buildingsVector; 
+	std::array<BuildingsBASE&, 10> buildingsVector; 
 
 	Farm farm;
 	Mill mill;
@@ -56,8 +56,8 @@ struct BuildingsStruct {
 
 	BuildingsStruct();
 
-	std::shared_ptr<BuildingsBASE> get(BUILD::BuildingsEnum name);
-	std::shared_ptr<BuildingsBASE> get(int num);
+	BuildingsBASE& get(BUILD::BuildingsEnum name);
+	BuildingsBASE& get(int num);
 };
 
 namespace PROV {
@@ -177,7 +177,8 @@ namespace PROV {
 		*/
 		constINT getProvinceLevel();
 
-		std::shared_ptr<BuildingsBASE> getBuilding(BUILD::BuildingsEnum name);
+		BuildingsBASE& getBuilding(BUILD::BuildingsEnum name);
+		BuildingsBASE& getBuilding(int num);
 
 		//----Setters----------------------------------------------------------
 		/** mutateLevel__

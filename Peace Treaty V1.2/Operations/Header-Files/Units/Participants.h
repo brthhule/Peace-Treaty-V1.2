@@ -36,7 +36,6 @@
 #include ATTACK_MA_HEADER
 #include INPUT_HEADER
 #include SCOUT_MA_HEADER
-#include TRAIN_MA_HEADER
 
 #include PLAYER_ACTION_HEADER			//Interface
 

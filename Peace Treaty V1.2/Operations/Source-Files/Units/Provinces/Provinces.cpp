@@ -22,10 +22,10 @@ BuildingsStruct::BuildingsStruct() : farm(), mill(), quarry(), mine(), church(),
 	};
 }
 
-std::shared_ptr<BuildingsBASE> BuildingsStruct::get(BUILD::BuildingsEnum name) {
+BuildingsBASE& BuildingsStruct::get(BUILD::BuildingsEnum name) {
 	return buildingsVector.at(name);
 }
-std::shared_ptr<BuildingsBASE> BuildingsStruct::get(int num) {
+BuildingsBASE& BuildingsStruct::get(int num) {
 	return buildingsVector.at(num);
 }
 

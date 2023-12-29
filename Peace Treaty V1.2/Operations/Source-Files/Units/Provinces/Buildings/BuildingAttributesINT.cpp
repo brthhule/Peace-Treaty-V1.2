@@ -8,11 +8,11 @@ using namespace PROV;
 constINT Provinces::getCapacity(BUILD::BuildingsEnum name) { 
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "getCapacity");
-	BuildingsBASE* currentBuilding = getBuilding(name);
-	ResourceBuildingsBASE* resourceBuilding = std::static_pointer_cast<ResourceBuildingsBASE>(currentBuilding); 
+	BuildingsBASE* currentBuilding = &getBuilding(name);
+	ResourceBuildingsBASE* resourceBuilding = static_cast<ResourceBuildingsBASE*>(currentBuilding);  
 	delete currentBuilding;
 
-	int amount = resourceBuilding->getCapacityAmount;
+	int amount = resourceBuilding->getCapacityAmount();
 	delete resourceBuilding;
 
 	return amount;
@@ -24,8 +24,8 @@ i5array& Provinces::getResourceProduction(BUILD::BuildingsEnum name, INF::Quanti
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "getResourceProduction");
 
 	i5array arrayCopy = {}, returnArray = {};
-	std::shared_ptr<BuildingsBASE> building = getBuilding(name);  
-	std::shared_ptr<ResourceBuildingsBASE> resourceBuilding = std::make_shared<ResourceBuildingsBASE>(*building); 
+	BuildingsBASE &buildingRef = getBuilding(name);  
+	std::shared_ptr<ResourceBuildingsBASE> resourceBuilding = std::make_shared<ResourceBuildingsBASE>(buildingRef); 
 
 	if (amount == SINGLE) {
 		returnArray[0] = arrayCopy[name] * resourceBuilding->getProductionRate();
@@ -51,7 +51,7 @@ void Provinces::mutateLevel(BuildingsEnum name, MutateDirection direction, int a
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "mutateLevel");
 	if (direction == DECREASE) { amount *= -1; }
-	buildings.buildingsVector.at(name)->increaseLevel(amount);
+	buildings.buildingsVector.at(name).increaseLevel(amount);
 }
 
 /*Return the amount of troops trained this turn - troopsTrainedThisTurn*/
@@ -73,21 +73,21 @@ void Provinces::printBuildingStats()
 	std::cout << "Building stats of this province: " << std::endl;
 	for (int x = 0; x < 10; x++) {
 		std::cout << "- " << BUILD::BuildingStrings.at(x) << "(" << BUILD::BuildingStrings.at(x).at(0) << "): \n";
-		std::cout << "		Level: " << buildings.get(x)->getLevel() << "\n";
+		std::cout << "		Level: " << buildings.get(x).getLevel() << "\n";
 		if (x < 5) {
-			std::shared_ptr<ResourceBuildingsBASE> resourceBuilding = std::make_shared<ResourceBuildingsBASE>(*buildings.get(x));
+			ResourceBuildingsBASE* resourceBuilding = static_cast<ResourceBuildingsBASE*>(&buildings.get(x));
 			std::cout << "		" << INF::RESOURCE_NAMES.at(x) << " production rate: " << resourceBuilding->getProductionRate(); 
 		}
 	}
 	for (int x = 0; x < 5; x++)
 	{
 		std::cout << "- " << INF::RESOURCE_BUILDING_NAMES[x] << " (" << INF::RESOURCE_BUILDING_NAMES[x].at(0) << ") " << std::endl;
-		std::cout << "    Level: " << buildings.get(x)->getLevel() << std::endl;
+		std::cout << "    Level: " << buildings.get(x).getLevel() << std::endl;
 		std::cout << "    " << INF::RESOURCE_NAMES[x] << " production rate : " << productionArray[x] << std::endl;
 	}
 	//Add implementation
 	std::cout << "Barracks (B) " << std::endl;
-	std::cout << "    Level: " << buildings.buildingsVector.at(BARRACKS)->getLevel() << std::endl;
+	std::cout << "    Level: " << buildings.buildingsVector.at(BARRACKS).getLevel() << std::endl;
 	std::cout << "    Max training capacity: " << getCapacity(BARRACKS) << "\n\n\033[;0m";
 
 
@@ -99,7 +99,7 @@ constINT Provinces::getProvinceLevel() {
 	DEBUG_FUNCTION("Provinces.cpp", "getProvinceLevel");
 
 	int unitLevel = 0;
-	for (int x = 0; x < 10; x++) { unitLevel += buildings.get(x)->getLevel(); }
+	for (int x = 0; x < 10; x++) { unitLevel += buildings.get(x).getLevel(); }
 	
 	return unitLevel /= 10;;
 }
@@ -131,7 +131,7 @@ void Provinces::initiailizeCapitalBuildings() {
 	otherBuildingsLevels = getTypeLevels(OTHER);
 
 	for (int x = 0; x < 10; x++) {
-		buildings.get(x)->increaseLevel(1);
+		buildings.get(x).increaseLevel(1);
 	}
 }
 
@@ -139,7 +139,7 @@ void Provinces::printListOfBuildings() {
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "printListOfBuildings");
 	for (int x = 0; x < 10; x++) {
-		std::cout << x << ") " << BUILD::BuildingStrings.at(x) << ", level: " << buildings.get(x)->getLevel();
+		std::cout << x << ") " << BUILD::BuildingStrings.at(x) << ", level: " << buildings.get(x).getLevel();
 	}
 }
 
@@ -148,18 +148,18 @@ BuildingsBASE& Provinces::getBuilding(BUILD::BuildingsEnum name) {
 }
 
 BuildingsBASE& Provinces::getBuilding(int num) {
-	return buildings.at(num);
+	return buildings.get(num);
 }
 
 
 i5array Provinces::getTypeLevels(BUILD::BuildingType type) {
 	i5array resourceLevels = {}, otherLevels = {};
 	for (int index = 0; index < 5; index++) { 
-		resourceLevels.at(index) = buildings.get(index)->getLevel();
+		resourceLevels.at(index) = buildings.get(index).getLevel();
 		/*Added explicitness below to get rid of Int - arithn error
 		Error: A sub-expression may overflow before being assigned to a wider type*/
 		int otherLevelsIndex = index + 5; 
-		otherLevels.at(index) = buildings.get(otherLevelsIndex)->getLevel();
+		otherLevels.at(index) = buildings.get(otherLevelsIndex).getLevel();
 	}
 
 	if (type == RESOURCE) {
