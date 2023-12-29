@@ -3,7 +3,6 @@
 
 #include <functional>
 
-using namespace PART;
 using namespace COORD;
 using namespace COMM;
 using namespace INF;

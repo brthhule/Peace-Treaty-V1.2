@@ -19,6 +19,6 @@ public:
 	//----Methods--------------------------------------------------------------
 	virtual void moveUnitOne(COMM::commSPTR commander) = 0;
 	virtual std::vector <PROV::provSPTR> getSurroundingProvinces(COMM::commSPTR commander) = 0;
-	virtual PROV::Provinces& pickProvinceToMoveTo(COMM::Commanders& commanderReference) = 0;
+	virtual Provinces& pickProvinceToMoveTo(Commanders& commanderReference) = 0;
 };
 #endif

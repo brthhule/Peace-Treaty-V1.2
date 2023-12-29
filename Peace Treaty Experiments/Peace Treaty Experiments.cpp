@@ -32,6 +32,10 @@ public:
 private:
     std::string name;
 };
+
+namespace PROV {
+    using provSPTR = std::shared_ptr<Provinces>;
+}
 /*
 class Commanders {
 public:

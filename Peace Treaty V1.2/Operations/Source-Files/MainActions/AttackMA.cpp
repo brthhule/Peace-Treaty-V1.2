@@ -8,7 +8,7 @@ using COMM::commSPTR;
 using COMM::commSPTRList; 
 using namespace Input;
 
-void PART::Participants::mainAttackMA(provSPTR defendProv, commSPTR attackComm) {
+void Participants::mainAttackMA(provSPTR defendProv, commSPTR attackComm) {
 	DEBUG_FUNCTION("AttackMA.cpp", "mainAttackMA(provSPTR, commSPTR)");
 
 	provSPTR defendingProvince = defendProv;
@@ -29,7 +29,7 @@ void PART::Participants::mainAttackMA(provSPTR defendProv, commSPTR attackComm) 
 }
 
 //Get the commanders that can attack the defending province. defenderSystemCoords reflects the corods of the province
-std::vector<commSPTR> PART::Participants::getCommandersCanAttack(provSPTR defendingProvince) {
+std::vector<commSPTR> Participants::getCommandersCanAttack(provSPTR defendingProvince) {
 	DEBUG_FUNCTION("AttackMA.cpp", "getCommandersCanAtack(provSPTR)");
 
 	std::vector<COMM::commSPTR> commandersCanAttack = {};
@@ -82,7 +82,7 @@ std::vector<commSPTR> PART::Participants::getCommandersCanAttack(provSPTR defend
 	return commandersCanAttack;
 }
 
-commSPTR PART::Participants::pickCommanderAttack(commSPTRList commandersCanAttack) {
+commSPTR Participants::pickCommanderAttack(commSPTRList commandersCanAttack) {
 	DEBUG_FUNCTION("AttackMA.cpp", "pickCommanderCanAttack(commSPTRList)");
 
 	std::cout << "The following number of commanders can attack the target: " +
@@ -105,7 +105,7 @@ commSPTR PART::Participants::pickCommanderAttack(commSPTRList commandersCanAttac
 	return nullptr;
 }
 
-void PART::Participants::playerCommitAttack(provSPTR defendingProvince,  commSPTR attackingCommander) { 
+void Participants::playerCommitAttack(provSPTR defendingProvince,  commSPTR attackingCommander) { 
 	DEBUG_FUNCTION("AttackMA.cpp", "playerCommitAttack(provSPTR, commSPTR)");
 
 	std::vector<commSPTR> defendingCommanders = defendingProvince->getAllCommanders(); 
@@ -183,7 +183,7 @@ void PART::Participants::playerCommitAttack(provSPTR defendingProvince,  commSPT
 
 
 /*Basically go through each unit type and subtract 16CP worth of troops and keep going (done so that lost troops are distributed evenly among the various ranks, but there is still use to training lower rank troops as meat shields (if all lower troops are used up, then losses start piling up on higher rank troops; it's key to keep a healthy proportion of troops in your army))*/
-void PART::Participants::calculateTroopsLost(commSPTR commander, int lostCombatPower, constArrayReference troopsLost, int troopIndex) {
+void Participants::calculateTroopsLost(commSPTR commander, int lostCombatPower, constArrayReference troopsLost, int troopIndex) {
 	/*DEBUG_FUNCTION("AttackMA.cpp", "calculateTroopsLost(commSPTR, int, constArrayReference, int)");
 
 	//Have to implement Troop functionality before doing this
@@ -229,11 +229,11 @@ void PART::Participants::calculateTroopsLost(commSPTR commander, int lostCombatP
 }
 
 /*
-void PART::Participants::battleCalculationsTwo(constINT lostCombatPower, i5array, int troopIndex, commSPTR attackingCommander)
+void Participants::battleCalculationsTwo(constINT lostCombatPower, i5array, int troopIndex, commSPTR attackingCommander)
 {
 	DEBUG_FUNCTION("AttackMA.cpp", "battleCalculationsTwo(constINT, i5array, int, commSPTR)");
 
-	partSPTR playerParticipant = PART::Participants::participantsList.at(currentParticipantIndex);
+	partSPTR playerParticipant = Participants::participantsList.at(currentParticipantIndex);
 
 	int z = abs(4 - troopIndex);
 
@@ -254,7 +254,7 @@ void PART::Participants::battleCalculationsTwo(constINT lostCombatPower, i5array
 	}
 }
 */
-void PART::Participants::determineLostCP(int attackerCP, int defendingCP, int& attackerLostCP, int& defenderLostCP) { 
+void Participants::determineLostCP(int attackerCP, int defendingCP, int& attackerLostCP, int& defenderLostCP) { 
 	//For debugging
 	DEBUG_FUNCTION("AttackMA", "determineLostCP");
 
@@ -277,7 +277,7 @@ void PART::Participants::determineLostCP(int attackerCP, int defendingCP, int& a
 	if (defendingCP == 0) { defendingCP = 1; }
 }
 
-void PART::Participants::casualtyReport(i5array troopsLost, i5array injuredTroops)
+void Participants::casualtyReport(i5array troopsLost, i5array injuredTroops)
 {
 	//For debugging
 	DEBUG_FUNCTION("AttackMA", "casualtyReport");
@@ -285,12 +285,12 @@ void PART::Participants::casualtyReport(i5array troopsLost, i5array injuredTroop
 	std::cout << "\nTroops casualties: \n";
 	for (int x = 0; x < 5; x++) /*print out deaths*/
 	{
-		std::cout << INF::TROOP_NAMES[x] << " lost: " << troopsLost[x] << std::endl;
+		std::cout << TROOP::TROOP_NAMES[x] << " lost: " << troopsLost[x] << std::endl;
 	}
 	std::cout << std::endl;
 	for (int x = 0; x < 5; x++) /*print out deaths*/
 	{
-		std::cout << INF::TROOP_NAMES[x] << " injured: " << injuredTroops[x] << std::endl;
+		std::cout << TROOP::TROOP_NAMES[x] << " injured: " << injuredTroops[x] << std::endl;
 	}
 	std::cout << std::endl;
 }

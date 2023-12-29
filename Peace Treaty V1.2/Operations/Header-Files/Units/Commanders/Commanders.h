@@ -24,78 +24,80 @@ namespace COMM {
 	//Check this
 	extern std::array<INF::s5array, 4> namesOfManOne;
 	extern std::array<std::string, 6> namesOfManTwo;
+}
 
-	//Control army units
-	class Commanders : public UNIT::PrimeUnits, public TroopsINT {
+//Control army units
+class Commanders : public UNIT::PrimeUnits, public TroopsINT {
 
 		
-	public:
-		//----Constructors-----------------------------------------------------
-		Commanders();
-		Commanders(int commanderLevel, std::string name, int participantIndex);
-		~Commanders();
+public:
+	//----Constructors-----------------------------------------------------
+	Commanders();
+	Commanders(int commanderLevel, std::string name, int participantIndex);
+	~Commanders();
 
-		//----Getters----------------------------------------------------------
-		int getCommanderStat(int index);
-		bool hasMoved() const;
-		const INF::i5array getUpgradeCosts();
-		const int& getIndexInProvince() const;
+	//----Getters----------------------------------------------------------
+	int getCommanderStat(int index);
+	bool hasMoved() const;
+	const INF::i5array getUpgradeCosts();
+	const int& getIndexInProvince() const;
 		
 
-		//----Printers---------------------------------------------------------
-		void printCommanderStats();
-		//Print commander name and level then enter new line escape character
+	//----Printers---------------------------------------------------------
+	void printCommanderStats();
+	//Print commander name and level then enter new line escape character
 
-		void addLevel();
-		void resetCommanderMoved();
-		void calculateCommanderScoutLog();
+	void addLevel();
+	void resetCommanderMoved();
+	void calculateCommanderScoutLog();
 
-		void setIndexInProvince(int index);
+	void setIndexInProvince(int index);
 
-		///////////////////////////////PrimeUnits.h////////////////////////////
-		INF::constINT getCombatPower() const override;
-		void calculateFoodConsumption() override;
-		INF::constINT getFoodConsumption() const override;
-		INF::constINT getLevel() const override;
+	///////////////////////////////PrimeUnits.h////////////////////////////
+	INF::constINT getCombatPower() const override;
+	void calculateFoodConsumption() override;
+	INF::constINT getFoodConsumption() const override;
+	INF::constINT getLevel() const override;
 
-		///////////////////////////////TroopsINT.h/////////////////////////////
-		void printTroopsPresent() ;
-		std::array<troopsArray, 3>& getTroopConditions();
-		//----Getters--------------------------------------------------------------
+	///////////////////////////////TroopsINT.h/////////////////////////////
+	void printTroopsPresent() ;
+	std::array<troopsArray, 3>& getTroopConditions();
+	//----Getters--------------------------------------------------------------
 	
-		tiersArray& getAllTiersOfTroop(TROOP::TroopCondition troopCondition, TROOP::TroopTypes type);
-		int getSumOfTiersOfTroop(TROOP::TroopCondition troopCondition, TROOP::TroopTypes type);
+	tiersArray& getAllTiersOfTroop(TROOP::TroopCondition troopCondition, TROOP::TroopTypes type);
+	int getSumOfTiersOfTroop(TROOP::TroopCondition troopCondition, TROOP::TroopTypes type);
 
-		INF::i5array getArrayOfSumsOfTiersOfAllTroops(TROOP::TroopCondition type);
+	INF::i5array getArrayOfSumsOfTiersOfAllTroops(TROOP::TroopCondition type);
 
-		//----Mutators-------------------------------------------------------------
-		void mutateTroop(
-			TROOP::TroopCondition troopCondition,
-			TROOP::TroopTypes type,
-			troopsArray amount,
-			INF::Quantity quant,
-			INF::MutateDirection direction,
-			int troopTier);
+	//----Mutators-------------------------------------------------------------
+	void mutateTroop(
+		TROOP::TroopCondition troopCondition,
+		TROOP::TroopTypes type,
+		troopsArray amount,
+		INF::Quantity quant,
+		INF::MutateDirection direction,
+		int troopTier);
 
-		///Set the battle formation for... battle
-		void setBattleFormation(troopsArray troopArray);
+	///Set the battle formation for... battle
+	void setBattleFormation(troopsArray troopArray);
 
-	private:
-		int maxTroops;
-		int totalMaxResources;
+private:
+	int maxTroops;
+	int totalMaxResources;
 
-		bool moved;
-		// check
-		INF::i5array costToUpgrade = { 5, 4, 3, 2, 1 };
-		bool deleteCommander;
+	bool moved;
+	// check
+	INF::i5array costToUpgrade = { 5, 4, 3, 2, 1 };
+	bool deleteCommander;
 
-		///PRESENT = 0, INJURED = 1, LOST = 2
-		std::array<troopsArray, 3> troopConditions;
-		std::array<std::array<std::vector<TroopUnitsBASE>, 5>, 5> battleFormation;
+	///PRESENT = 0, INJURED = 1, LOST = 2
+	std::array<troopsArray, 3> troopConditions;
+	std::array<std::array<std::vector<TroopUnitsBASE>, 5>, 5> battleFormation;
 
-		int indexInProvince;
-	};
+	int indexInProvince;
+};
 
+namespace COMM {
 	/*Commanders shared pointer 
 	Expanded: std::shared_ptr<Commanders>*/
 	using commSPTR = std::shared_ptr<Commanders>;

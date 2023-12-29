@@ -52,7 +52,7 @@ public:
 	static bool checkInBounds(ipair coords, COORD::CoordsType type);
 	
 	typedef std::unordered_map <std::string, PROV::provSPTR> ProvincesMap;
-	typedef std::vector <std::vector<PROV::Provinces>> ProvincesVector;
+	typedef std::vector <std::vector<Provinces>> ProvincesVector;
 
 	///2D vector of provinces shared ptrs
 	static ProvincesVector mapVectors; 

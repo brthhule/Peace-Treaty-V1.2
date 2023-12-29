@@ -44,7 +44,6 @@
 *		use const Province& address = *ptr
 * Add functionality to initialCapRESS, depending on the difficulty, AI participants get more or less resources to start off with
 */
-namespace PART {
 //Represent players, both human and AI
 class Participants : 
 		public BASE, 
@@ -204,7 +203,7 @@ public:
 	///////////////////////////////////Mobility.h//////////////////////////////
 	void moveUnitOne(COMM::commSPTR commander) override;
 	std::vector <PROV::provSPTR> getSurroundingProvinces(COMM::commSPTR commander) override;
-	PROV::Provinces& pickProvinceToMoveTo(COMM::Commanders& commanderReference) override;
+	Provinces& pickProvinceToMoveTo(Commanders& commanderReference) override;
 	///////////////////////////////////MapMA.h/////////////////////////////////
 	void viewPlayerMap();
 	void selectUnitOriginal(PROV::provSPTR selectedProvince);
@@ -274,8 +273,9 @@ private:
 
 };
 
-using partUPTR = std::unique_ptr<Participants>;
-using partSPTR = std::shared_ptr<Participants>;
-using partSPTRList = std::vector<partSPTR>;
+namespace PART {
+	using partUPTR = std::unique_ptr<Participants>;
+	using partSPTR = std::shared_ptr<Participants>;
+	using partSPTRList = std::vector<partSPTR>;
 }
 #endif
