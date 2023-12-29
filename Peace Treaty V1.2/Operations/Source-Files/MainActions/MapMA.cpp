@@ -4,6 +4,7 @@
 using namespace PART;
 using namespace PROV;
 using namespace COMM;
+using namespace INF;
 
 //View the map
 void Participants::viewPlayerMap() {
@@ -78,7 +79,7 @@ void Participants::selectUnitOriginal(provSPTR province) {
 	//if (province->fogofWar) Add implementation
 	if (province->getCommandersNum() > 0) {
 		//If the commander here is yours
-		commSPTR firstCommander = province->getCommander(0);
+		commSPTR firstCommander = std::make_shared<Commanders>(province->getCommander(0));
 		if (firstCommander->getParticipantIndex() == this->getParticipantIndex()) {
 			playerUnitAction(province);
 		}

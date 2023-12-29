@@ -9,10 +9,9 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 
 #include TROOP_HEADER
-/*	#include INF_HEADER*/
+#include INF_HEADER;
 
-using namespace INF;
-using namespace TROOP;
+
  
 class TroopUnitsBASE { 
 public:
@@ -26,17 +25,17 @@ public:
 		int baseHalth,
 		int tier,
 		std::array<int, 3> baseDamage, 
-		TroopTypes thisType);
+		TROOP::TroopTypes thisType);
 	~TroopUnitsBASE(){}
 
 	//----Getters--------------------------------------------------------------
-	constINT
+	INF::constINT
 		getLevel() const,
 		getCurrentHealth() const,
 		getTier() const;
 
 	const std::array<int,3>& getCurrentDamage();
-	TroopTypes getThisType() const;
+	TROOP::TroopTypes getThisType() const;
 	
 	//----Mutators-------------------------------------------------------------
 	void updateHealth(int newHealth);
@@ -53,7 +52,7 @@ public:
 private:
 	int level, tier, baseHealth, currentHealth;
 	std::array<int, 3> baseDamage, currentDamage;
-	TroopTypes thisType;
+	TROOP::TroopTypes thisType;
 	
 };
 

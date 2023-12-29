@@ -323,13 +323,13 @@ i5array Participants::calculateEach(int option)
 		i5array secondaryArray;
 		switch (option) {
 			case 1://Calculate each Unit
-				secondaryArray = commander->getArrayOfSumsOfTiersOfAllTroops(REGULAR);
+				secondaryArray = commander->getArrayOfSumsOfTiersOfAllTroops(TROOP::REGULAR);
 				break;
 			case 2://Calculate each resource
 				secondaryArray = commander->getAllResources(); 
 				break;
 			case 3://calculate each troop lost
-				secondaryArray = commander->getArrayOfSumsOfTiersOfAllTroops(LOST); 
+				secondaryArray = commander->getArrayOfSumsOfTiersOfAllTroops(TROOP::LOST); 
 				break;
 		}
 
@@ -475,8 +475,8 @@ provSPTR Participants::pickProvince(int phrase) {
 	yCoordPrompt.at(10) = 'y';
 
 	// Critical: check to make sure the coordinate checkings are correct
-	int xUserCoord = std::stoi(getInputText(xCoordPrompt, actualCoordinatesAVTwo));
-	int yUserCoord = std::stoi(getInputText(yCoordPrompt, actualCoordinatesAVTwo));
+	int xUserCoord = std::stoi(Input::getInputText(xCoordPrompt, actualCoordinatesAVTwo));
+	int yUserCoord = std::stoi(Input:: getInputText(yCoordPrompt, actualCoordinatesAVTwo));
 
 	//Cancel action
 	if (xUserCoord == -1 || yUserCoord == -1) { return nullptr; }

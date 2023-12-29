@@ -1,6 +1,8 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 #include BUILD_HEADER
 
+using namespace INF;
+
 namespace BUILD {
 	std::array<std::string, 10> BuildingStrings = {
 			"FARM",
@@ -33,4 +35,34 @@ namespace BUILD {
 		//Not all control paths return a value
 		return std::make_pair("", FARM); 
 	}
+
+	/*RESOURCE_PRODUCTION = 5, 4, 3, 2, 1 */
+	i5array RESOURCE_PRODUCTION = { 5,4,3,2,1 };
+
+	/*RESOURCE_BUILDING = Farm, Lumber Mill, Quarry, Mine, Church*/
+	s5array RESOURCE_BUILDING_NAMES = {
+		"Farm",
+		"Lumber Mill",
+		"Quarry",
+		"Mine",
+		"Church"
+	};
+
+	/*OTHER_BUILDING = Barracks, Infirmary, Library, Wall, Residences*/
+	s5array OTHER_BUILDING_NAMES = {
+		"Barracks",
+		"Infirmary",
+		"Library",
+		"Wall",
+		"Residences"
+	};
+
+	/*RESOURCE = Food, Wood, Ore, Gold, Mana*/
+	s5array RESOURCE_NAMES = { 
+		"Food",
+		"Wood",
+		"Ore",
+		"Gold",
+		"Mana"
+	};
 }

@@ -12,21 +12,21 @@
 
 
 #include PRIME_UNITS_HEADER					//Base Class
-/*	#include COORDS_BASE_HEADER				//Base Class
-		#include INF_HEADER
-	#include TROOP_UNITS_BASE_HEADER		//Composition
-		#include TROOP_HEADER
-	#include TROOPS_INT_HEADER				//Interface
-		#include TROOP_HEADER
-*/
+#include COORDS_BASE_HEADER				//Base Class
+#include INF_HEADER
+#include TROOP_UNITS_BASE_HEADER		//Composition
+#include TROOP_HEADER
+#include TROOPS_INT_HEADER				//Interface
+#include TROOP_HEADER
+
 
 
 ///Namespace for Commanders
 namespace COMM {
-	extern s5array statsOne;
+	extern INF::s5array statsOne;
 
 	//Check this
-	extern std::array<s5array, 4> namesOfManOne;
+	extern std::array<INF::s5array, 4> namesOfManOne;
 	extern std::array<std::string, 6> namesOfManTwo;
 
 	//Control army units
@@ -42,7 +42,7 @@ namespace COMM {
 		//----Getters----------------------------------------------------------
 		int getCommanderStat(int index);
 		bool hasMoved() const;
-		const i5array getUpgradeCosts();
+		const INF::i5array getUpgradeCosts();
 		const int& getIndexInProvince() const;
 		
 
@@ -57,27 +57,27 @@ namespace COMM {
 		void setIndexInProvince(int index);
 
 		///////////////////////////////PrimeUnits.h////////////////////////////
-		constINT getCombatPower() const override;
+		INF::constINT getCombatPower() const override;
 		void calculateFoodConsumption() override;
-		constINT getFoodConsumption() const override;
-		constINT getLevel() const override;
+		INF::constINT getFoodConsumption() const override;
+		INF::constINT getLevel() const override;
 
 		///////////////////////////////TroopsINT.h/////////////////////////////
 		void printTroopsPresent() ;
 		std::array<troopsArray, 3>& getTroopConditions();
 		//----Getters--------------------------------------------------------------
 	
-		tiersArray& getAllTiersOfTroop(TroopCondition troopCondition, TROOP::TroopTypes type);
-		int getSumOfTiersOfTroop(TroopCondition troopCondition, TROOP::TroopTypes type);
+		tiersArray& getAllTiersOfTroop(TROOP::TroopCondition troopCondition, TROOP::TroopTypes type);
+		int getSumOfTiersOfTroop(TROOP::TroopCondition troopCondition, TROOP::TroopTypes type);
 
-		i5array getArrayOfSumsOfTiersOfAllTroops(TroopCondition type);
+		INF::i5array getArrayOfSumsOfTiersOfAllTroops(TROOP::TroopCondition type);
 
 		//----Mutators-------------------------------------------------------------
 		void mutateTroop(
 			TROOP::TroopCondition troopCondition,
 			TROOP::TroopTypes type,
 			troopsArray amount,
-			Quantity quant,
+			INF::Quantity quant,
 			INF::MutateDirection direction,
 			int troopTier);
 
@@ -90,7 +90,7 @@ namespace COMM {
 
 		bool moved;
 		// check
-		i5array costToUpgrade = { 5, 4, 3, 2, 1 };
+		INF::i5array costToUpgrade = { 5, 4, 3, 2, 1 };
 		bool deleteCommander;
 
 		///PRESENT = 0, INJURED = 1, LOST = 2

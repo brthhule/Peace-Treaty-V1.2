@@ -15,8 +15,12 @@
 #include <thread>
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
-/*Includes Provinces.h (INF.h, Input.h, Commanders.h, PlayerAction.h)*/
 #include PARTICIPANTS_HEADER
+#include INF_HEADER 
+#include PROVINCES_HEADER
+#include INPUT_HEADER
+#include COMMANDERS_HEADER
+#include PLAYER_ACTION_HEADER
 
 void startOrResumeGame();
 void resumeGame();
@@ -29,6 +33,7 @@ int getContinentInformation();
 
 using namespace INF;
 using namespace PART;
+using namespace Input;
 
 int main()/*main code*/
 {

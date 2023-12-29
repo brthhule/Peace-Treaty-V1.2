@@ -9,11 +9,10 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 
 #include COORDS_BASE_HEADER				//Base Class
-/*	#include INF_HEADER*/
+#include INF_HEADER
 #include TROOP_UNITS_BASE_HEADER		//Composition
-/*	#include TROOP_HEADER*/
 #include TROOPS_INT_HEADER				//Interface
-/*	#include TROOP_HEADER*/
+#include TROOP_HEADER
 
 namespace UNIT {
 
@@ -36,23 +35,23 @@ public:
 
 	//----Getters--------------------------------------------------------------
 	///Returns combat power of this unit. Implemented by derived classes
-	virtual constINT getCombatPower() const = 0;
+	virtual INF::constINT getCombatPower() const = 0;
 	virtual void calculateFoodConsumption() = 0;  
 	///Get the food consumption of this unit. Implemented by derived class
-	virtual constINT getFoodConsumption() const = 0;
+	virtual INF::constINT getFoodConsumption() const = 0;
 	///Get the level of this unit. Implemented by derived classes
-	virtual constINT getLevel() const = 0;
+	virtual INF::constINT getLevel() const = 0;
 
 	///Returns the index of the Participant this belongs to
-	constINT getParticipantIndex() const;
+	INF::constINT getParticipantIndex() const;
 	///Returns the value of one type of resource in this unit
-	constINT getResource(int resourceIndex);
+	INF::constINT getResource(int resourceIndex);
 
 
 	///Get this unit's name
 	const std::string& getName() const;
 
-	constArrayReference getAllResources() const;//Add implementation
+	INF::constArrayReference getAllResources() const;//Add implementation
 
 	const std::string getCoords(COORD::CoordsType type) const;
 
@@ -68,8 +67,8 @@ public:
 			@param direction__
 				Does the mutation occur in an increasing/decreasing manner
 	*/
-	void mutateResource(ResourceType resource, constINT amount, 
-		MutateDirection direction);
+	void mutateResource(INF::ResourceType resource, INF::constINT amount,
+		INF::MutateDirection direction);
 	/** mutateAllResources__
 			Changes all the values of this unit's resources by an array
 
@@ -78,7 +77,7 @@ public:
 			@param direction__
 				Does the mutation occur in an increasing/decreasing manner
 	*/
-	void mutateAllResources(constArrayReference resourcesArray,
+	void mutateAllResources(INF::constArrayReference resourcesArray,
 		INF::MutateDirection direction);
 
 	//----Printers-------------------------------------------------------------
@@ -90,7 +89,7 @@ public:
 	//Override?
 	INF::ipair translateCoords(INF::ipair coords, COORD::CoordsType type);
 
-	unitSPTRList sortVector(SortType sort, unitSPTRList list);
+	unitSPTRList sortVector(INF::SortType sort, unitSPTRList list);
 	unitSPTRList levelSort(unitSPTRList list);
 
 	void printNameLevel() const;
@@ -105,8 +104,8 @@ public:
 	///////////////////////////////////TroopsINT.h/////////////////////////////
 
 protected:
-	i5array resourcesPresent;
-	i5array initialStats;
+	INF::i5array resourcesPresent;
+	INF::i5array initialStats;
 
 	int combatPower;
 	int totalTroops;

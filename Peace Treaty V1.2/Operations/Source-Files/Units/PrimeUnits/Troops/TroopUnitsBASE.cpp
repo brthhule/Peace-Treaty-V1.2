@@ -1,6 +1,9 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 #include TROOP_UNITS_BASE_HEADER 
 
+using namespace INF;
+using namespace TROOP;
+
 TroopUnitsBASE::TroopUnitsBASE() : TroopUnitsBASE(0, 0, 0, {0,0,0}, GUARDS) {
 
 }

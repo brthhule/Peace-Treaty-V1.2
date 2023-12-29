@@ -37,12 +37,12 @@ void Provinces::printBuildingUpgradeCosts(i5array requiredResources, int buildin
 	DEBUG_FUNCTION("Provinces", "printInformation");
 
 	std::cout << "---------- Start printing information----------\n\n\033[34m";
-	std::cout << INF::RESOURCE_BUILDING_NAMES[buildingIndex] << " selected \n";
+	std::cout << BUILD::RESOURCE_BUILDING_NAMES[buildingIndex] << " selected \n";
 
 
 	println("The following is the cost of the upgrade: ");
 	for (int x = 0; x < 5; x++) {
-		std::cout << INF::RESOURCE_NAMES.at(x) << ": " << requiredResources.at(x)
+		std::cout << BUILD::RESOURCE_NAMES.at(x) << ": " << requiredResources.at(x)
 			<< std::endl;
 	}
 	println("\nThe following are how many resources are in this province: ");

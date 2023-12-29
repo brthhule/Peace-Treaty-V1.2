@@ -5,7 +5,7 @@
 namespace INF {
 	////////////////////////////////////////////////Start Variables///////////////////////////////////////
 	
-	template <typename T>
+	/*template <typename T>
 	const T& makeConst(T& object) {
 		return object;
 	}
@@ -13,42 +13,14 @@ namespace INF {
 	template<typename T>
 	T makeCopy(T& object) {
 		return T(object);
-	}
+	}*/
 
 	/*INITIAL_VALUES = 5, 4, 3, 2, 1 */
 	i5array INITIAL_VALUES = { 5, 4, 3, 2, 1 };
 
 	
 
-	/*RESOURCE_PRODUCTION = 5, 4, 3, 2, 1 */
-	i5array RESOURCE_PRODUCTION = { 5,4,3,2,1 };
-
-	/*RESOURCE_BUILDING = Farm, Lumber Mill, Quarry, Mine, Church*/
-	s5array RESOURCE_BUILDING_NAMES = {
-		"Farm",
-		"Lumber Mill",
-		"Quarry",
-		"Mine",
-		"Church"
-	};
-
-	/*OTHER_BUILDING = Barracks, Infirmary, Library, Wall, Residences*/
-	s5array OTHER_BUILDING_NAMES = {
-				"Barracks",
-				"Infirmary",
-				"Library",
-				"Wall",
-				"Residences"
-	};
-
-	/*RESOURCE = Food, Wood, Ore, Gold, Mana*/
-	s5array RESOURCE_NAMES = {
-				"Food",
-				"Wood",
-				"Ore",
-				"Gold",
-				"Mana"
-	};
+	
 
 	std::array<std::string, 9> COLORS_STRING = {
 			"BLACK",
@@ -327,7 +299,7 @@ void INF::printResources(constArrayReference resourcesArray) {
 	DEBUG_FUNCTION("INF.cpp", "printResources");
 
 	for (int x = 0; x < 5; x++) {
-		std::cout << "- " << INF::RESOURCE_NAMES.at(x) << ": " << resourcesArray.at(x) << std::endl;
+		std::cout << "- " << BUILD::RESOURCE_NAMES.at(x) << ": " << resourcesArray.at(x) << std::endl;
 	}
 
 	std::cout << std::endl;

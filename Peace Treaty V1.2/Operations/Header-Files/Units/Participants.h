@@ -29,16 +29,15 @@
 //Includes INF.h, Commanders.h, PrimeUnits.h
 #include PROVINCES_HEADER				//Composition
 
-/*	#include ARMY_OVERVIEW_MA_HEADER		//Composition (Action)
-		#include TRAIN_MA_HEADER
-		#include INF_HEADER
-	#include MAP_MA_HEADER					//Composition (Action)
-		#include ATTACK_MA_HEADER
-		#include INF_HEADER
-		#include INPUT_HEADER
-		#include SCOUT_MA_HEADER
-		#include TRAIN_MA_HEADER
-*/
+#include ARMY_OVERVIEW_MA_HEADER		//Composition (Action)
+#include TRAIN_MA_HEADER
+#include INF_HEADER
+#include MAP_MA_HEADER					//Composition (Action)
+#include ATTACK_MA_HEADER
+#include INPUT_HEADER
+#include SCOUT_MA_HEADER
+#include TRAIN_MA_HEADER
+
 #include PLAYER_ACTION_HEADER			//Interface
 
 /*TODO

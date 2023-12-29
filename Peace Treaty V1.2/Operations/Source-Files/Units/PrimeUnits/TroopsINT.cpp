@@ -1,6 +1,10 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 #include COMMANDERS_HEADER
 
+using namespace INF;
+using namespace TROOP;
+using namespace Input;
+
 using namespace COMM;
 using namespace TROOP;
 

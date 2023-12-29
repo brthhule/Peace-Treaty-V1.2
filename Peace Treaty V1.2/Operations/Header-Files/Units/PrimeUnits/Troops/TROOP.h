@@ -4,8 +4,6 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 #include INF_HEADER
 
-using namespace INF;
-
 namespace TROOP {
 	/*REGULAR, INJURED, LOST */
 	enum TroopCondition {
@@ -31,9 +29,9 @@ namespace TROOP {
 	};
 
 	
-	extern s5array TROOP_NAMES;
+	extern INF::s5array TROOP_NAMES;
 	//Check out spelling below??
-	extern i5array TROOPS_COST, TROOPS_CP;
+	extern INF::i5array TROOPS_COST, TROOPS_CP;
 	extern int maxCommanders;
 
 	TroopTypes stringToTroopType(std::string type);

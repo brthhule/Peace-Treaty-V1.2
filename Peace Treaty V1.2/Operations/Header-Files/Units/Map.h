@@ -9,8 +9,9 @@
 #include <vector>
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
-//Includes INF.h, Input.h
 #include PROVINCES_HEADER				//Composition 
+#include INF_HEADER
+#include INPUT_HEADER
 
 /*TODO
 * Potentially implement lamda in showMap();

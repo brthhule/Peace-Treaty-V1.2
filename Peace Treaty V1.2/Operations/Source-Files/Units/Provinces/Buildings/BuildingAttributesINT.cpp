@@ -71,14 +71,14 @@ void Provinces::printBuildingStats()
 		std::cout << "		Level: " << buildings.get(x)->getLevel() << "\n";
 		if (x < 5) {
 			std::shared_ptr<ResourceBuildingsBASE> resourceBuilding = std::make_shared<ResourceBuildingsBASE>(*buildings.get(x));
-			std::cout << "		" << INF::RESOURCE_NAMES.at(x) << " production rate: " << resourceBuilding->getProductionRate(); 
+			std::cout << "		" << BUILD::RESOURCE_NAMES.at(x) << " production rate: " << resourceBuilding->getProductionRate(); 
 		}
 	}
 	for (int x = 0; x < 5; x++)
 	{
 		std::cout << "- " << INF::RESOURCE_BUILDING_NAMES[x] << " (" << INF::RESOURCE_BUILDING_NAMES[x].at(0) << ") " << std::endl;
 		std::cout << "    Level: " << buildings.get(x)->getLevel() << std::endl;
-		std::cout << "    " << INF::RESOURCE_NAMES[x] << " production rate : " << productionArray[x] << std::endl;
+		std::cout << "    " << BUILD::RESOURCE_NAMES[x] << " production rate : " << productionArray[x] << std::endl;
 	}
 	//Add implementation
 	std::cout << "Barracks (B) " << std::endl;

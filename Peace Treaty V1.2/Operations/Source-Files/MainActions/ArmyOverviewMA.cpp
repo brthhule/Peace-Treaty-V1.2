@@ -10,7 +10,7 @@ using namespace COMM;
 void Participants::armyOverviewSelectAction() { 
 	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "armyOverviewSelectAction()");
 
-	char action = Input::getOptionPrompt(ARMY_DEPLOYMENT).at(0);
+	char action = Input::getOptionPrompt(Input::ARMY_DEPLOYMENT).at(0);
 
 	switch (action) {
 		case 'T':
@@ -117,7 +117,7 @@ void Participants::trainCommanderPrompt() {
 	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "trainCommanderPrompt()");
 
 	std::cout << "You have " << this->getCommandersNum() << "/" << TROOP::maxCommanders << " total army commanders. \n";
-	if (getCommandersNum() < maxCommanders) {
+	if (getCommandersNum() < TROOP::maxCommanders) {
 		std::cout << "At maximum army commander amount. Training failed, returning to menu \n";
 		return;
 	}

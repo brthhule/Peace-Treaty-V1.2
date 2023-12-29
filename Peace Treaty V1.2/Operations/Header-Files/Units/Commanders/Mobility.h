@@ -7,8 +7,9 @@
 #include <vector>
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
-//Includes Input.h, Commanders.h
 #include PROVINCES_HEADER
+#include INPUT_HEADER
+#include COMMANDERS_HEADER
 
 class Mobility {
 public:

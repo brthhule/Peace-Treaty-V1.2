@@ -8,9 +8,12 @@
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 
-//Includes PrimeUnits.h,, Commanders.h (TroopsINT.h), Input.h, INF.h
-#include PROVINCES_HEADER				//Composition
-
+#include PROVINCES_HEADER			
+#include PRIME_UNITS_HEADER
+#include COMMANDERS_HEADER
+#include TROOPS_INT_HEADER
+#include INPUT_HEADER
+#include INF_HEADER
 
 class AttackMA {
 public:

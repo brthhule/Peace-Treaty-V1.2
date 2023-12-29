@@ -11,10 +11,6 @@
 #include TROOP_UNITS_BASE_HEADER
 #include INPUT_HEADER
 
-using namespace INF;
-using namespace TROOP;
-using namespace Input;
-
 class TroopsINT {
 public:
 	//----Constructors---------------------------------------------------------
@@ -27,15 +23,15 @@ public:
 	//----Getters--------------------------------------------------------------
 	/*Return all the tiers for one troop type for a particular condition
 	Example: returns all tiers for guards present*/
-	virtual tiersArray& getAllTiersOfTroop(TroopCondition troopCondition, TROOP::TroopTypes type) = 0;
+	virtual tiersArray& getAllTiersOfTroop(TROOP::TroopCondition troopCondition, TROOP::TroopTypes type) = 0;
 
 	/*Returns the total of all of a particular troop type's tiers for a particular condition
 	Example: returns the total of all tiers for guards present*/
-	virtual int getSumOfTiersOfTroop(TroopCondition troopCondition, TROOP::TroopTypes type) = 0;
+	virtual int getSumOfTiersOfTroop(TROOP::TroopCondition troopCondition, TROOP::TroopTypes type) = 0;
 
 	/*Returns the tier totals for all troop types for a particular condition
 	Example: returns the total of all tiers of all troops presnet, as in the totals for guards, infantry, archers, etc.*/
-	virtual i5array getArrayOfSumsOfTiersOfAllTroops(TroopCondition type) = 0;
+	virtual INF::i5array getArrayOfSumsOfTiersOfAllTroops(TROOP::TroopCondition type) = 0;
 
 	//----Mutators-------------------------------------------------------------
 	/*Change a troop by index or all trypes.
@@ -49,7 +45,7 @@ public:
 		TROOP::TroopCondition troopCondition,
 		TROOP::TroopTypes type,
 		troopsArray amount,
-		Quantity quant,
+		INF::Quantity quant,
 		INF::MutateDirection direction,
 		int troopTier) = 0;
 

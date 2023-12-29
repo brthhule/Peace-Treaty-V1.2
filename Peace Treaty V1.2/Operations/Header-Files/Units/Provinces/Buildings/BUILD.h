@@ -44,5 +44,11 @@ namespace BUILD {
 
 	//Conversions
 	std::pair<std::string, BuildingsEnum> translateEnumString(std::string stringArg, BuildingsEnum enumArg);
+
+	extern INF::s5array
+		RESOURCE_BUILDING_NAMES,
+		OTHER_BUILDING_NAMES,
+		RESOURCE_NAMES,
+		RESOURCE_PRODUCTION;
 }
 #endif
