@@ -51,15 +51,17 @@ void Provinces::mutateLevel(BuildingsEnum name, MutateDirection direction, int a
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "mutateLevel");
 	if (direction == DECREASE) { amount *= -1; }
-	buildings.buildingsVector.at(name).increaseLevel(amount);
+	buildings.buildingsVector.at(name).get().increaseLevel(amount);
 }
 
 /*Return the amount of troops trained this turn - troopsTrainedThisTurn*/
 constINT Provinces::getTroopsTrainedThisTurn() {
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "getTroopsTrainedThisTurn");
-	std::shared_ptr<Barracks> building = std::make_shared<Barracks>(buildings.buildingsVector.at(BARRACKS));
-	return building->getTroopsTrainedThisTurn(); 
+	Barracks* building = static_cast<Barracks*>(&buildings.get(BARRACKS)); 
+	int amount = building->getTroopsTrainedThisTurn();
+	delete building;
+	return amount;
 }
 
 void Provinces::printBuildingStats()
@@ -87,7 +89,7 @@ void Provinces::printBuildingStats()
 	}
 	//Add implementation
 	std::cout << "Barracks (B) " << std::endl;
-	std::cout << "    Level: " << buildings.buildingsVector.at(BARRACKS).getLevel() << std::endl;
+	std::cout << "    Level: " << buildings.buildingsVector.at(BARRACKS).get().getLevel() << std::endl;
 	std::cout << "    Max training capacity: " << getCapacity(BARRACKS) << "\n\n\033[;0m";
 
 
@@ -107,18 +109,23 @@ constINT Provinces::getProvinceLevel() {
 void Provinces::resetTroopsTrainedThisTurn() {
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "resetTroopsTrainedThisTurn");
-	std::shared_ptr <Provinces> building = std::make_shared<Provinces>(buildings.get(0));
-	std::shared_ptr<Barracks> barracks = std::dynamic_pointer_cast<Barracks>(building); 
+	BuildingsBASE* building = &buildings.get(BARRACKS);
+
+	Barracks* barracks = static_cast<Barracks*>(building);  
+	delete building;
+
 	barracks->resetTroopsTrainedThisTurn();
+	delete barracks;
 }
 
 void Provinces::addTroopsTrainedThisTurn(int amount) {
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "addTroopsTrainedThisTurn");
 
-	std::shared_ptr<Barracks> barracks = std::make_shared<Barracks>(buildings.get(BARRACKS)); 
+	Barracks* barracks = static_cast<Barracks*>(&buildings.get(BARRACKS)); 
 
 	barracks->addTroopsTrainedThisTurn(amount);
+	delete barracks;
 }
 
 //Do something in Buildings here

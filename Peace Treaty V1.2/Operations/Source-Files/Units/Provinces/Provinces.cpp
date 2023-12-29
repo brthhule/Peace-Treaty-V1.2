@@ -21,23 +21,26 @@ BuildingsStruct::BuildingsStruct() : farm(), mill(), quarry(), mine(), church(),
 		std::make_shared<BuildingsBASE>(residences), 
 		std::make_shared<BuildingsBASE>(wall) 
 	};*/
-	buildingsArray.at(0).get() = farm;
-	buildingsArray.at(0).get() = mill;
-	buildingsArray.at(0).get() = quarry;
-	buildingsArray.at(0).get() = mine;
-	buildingsArray.at(0).get() = church;
-	buildingsArray.at(0).get() = barracks;
-	buildingsArray.at(0).get() = infirmary;
-	buildingsArray.at(0).get() = library;
-	buildingsArray.at(0).get() = residences;
-	buildingsArray.at(0).get() = wall;
+
+	buildingsVector = { farm, mill, quarry, mine, church, barracks, infirmary, library, residences, wall };
+	/*
+	buildingsVector.at(0).get() = farm;
+	buildingsVector.at(0).get() = mill;
+	buildingsVector.at(0).get() = quarry;
+	buildingsVector.at(0).get() = mine;
+	buildingsVector.at(0).get() = church;
+	buildingsVector.at(0).get() = barracks;
+	buildingsVector.at(0).get() = infirmary;
+	buildingsVector.at(0).get() = library;
+	buildingsVector.at(0).get() = residences;
+	buildingsVector.at(0).get() = wall;*/
 }
 
 BuildingsBASE& BuildingsStruct::get(BUILD::BuildingsEnum name) {
-	return buildingsArray.at(name);
+	return buildingsVector.at(name);
 }
 BuildingsBASE& BuildingsStruct::get(int num) {
-	return buildingsArray.at(num);
+	return buildingsVector.at(num);
 }
 
 //Use participantIndex = -1 for empty provinces
@@ -136,7 +139,7 @@ void Provinces::removeCommander(commSPTR removeCommander)
 
 	commandersMap.erase(removeCommander->getName());
 
-	int lastIndex = commandersVector.size() - 1; 
+	int lastIndex = (int) commandersVector.size() - 1; 
 	int removeIndex = removeCommander->getIndexInProvince(); 
 
 	//switch places between the Commander being removed and the last Commander (prevents other commanders from shifting after removal)
@@ -150,7 +153,7 @@ void Provinces::addCommander(Commanders commanderCopy)
 	DEBUG_FUNCTION("Provinces.cpp", "addCommander");
 	commandersVector.push_back(commanderCopy);
 
-	commSPTR commander = std::make_shared<Commanders>(commandersVector.end() - 1);
+	commSPTR commander = std::make_shared<Commanders>(commandersVector.at(commandersVector.size() - 1));
 	commandersMap[commander->getName()] = commander; 
 	commander->setCoords(getPairCoords());
 }

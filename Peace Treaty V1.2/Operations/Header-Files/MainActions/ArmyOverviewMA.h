@@ -30,7 +30,7 @@ public:
 	*/
 	virtual void armyOverviewSelectAction() = 0;
 	virtual void trainCommanderPrompt() = 0;
-	virtual void proceedWithTraining(constArrayReference trainCosts) = 0;
+	virtual void proceedWithTraining(INF::constArrayReference trainCosts) = 0;
 	virtual void upgradeCommander() = 0;
 	virtual COMM::commSPTR pickCommanderToUpgrade() = 0;   
 	virtual void viewCommanderStats() = 0;
