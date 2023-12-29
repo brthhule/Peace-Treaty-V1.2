@@ -9,9 +9,7 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 
 #include TROOP_HEADER
-#include INF_HEADER;
-
-
+#include INF_HEADER
  
 class TroopUnitsBASE { 
 public:

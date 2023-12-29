@@ -4,6 +4,9 @@
 using namespace PART;
 using namespace PROV;
 using namespace COMM;
+using namespace INF;
+using namespace TROOP;
+using namespace INPUT;
 
 //Main TrainMA function
 void Participants::trainMAMain() {
@@ -13,7 +16,7 @@ void Participants::trainMAMain() {
     this->showMap();
 
     //Barracks level determins how 
-    int barracksLevel = province->getBuilding(BARRACKS)->getLevel();
+    int barracksLevel = province->getBuilding(BARRACKS).getLevel(); 
     std::cout << "Start printing province barracks information: " << getColor(BLUE);
     std::cout << "Province of kingdom " << getKingdomName() << " selected\n";
 
@@ -27,11 +30,11 @@ void Participants::trainMAMain() {
     troopTier =  (troopTier > 5) ? troopTier = 5 : troopTier;
 
     std::cout << "What type of troop do you want to upgrade?\n";
-    int troopTypeNum = std::stoi(Input::getOptionPrompt(TRAIN_MA_FUNCTION_UNITS));
+    int troopTypeNum = std::stoi(Input::getOptionPrompt(Input::TRAIN_MA_FUNCTION_UNITS));
     TROOP::TroopTypes type = TroopTypes(1);
         
 
-    std::cout << "The max tier troop you can train: " << troopTier << ", " << INF::TROOP_NAMES[troopTier - 1] << std::endl;
+    std::cout << "The max tier troop you can train: " << troopTier << ", " << TROOP_NAMES[troopTier - 1] << std::endl; 
 
     //Change this later
     int maxTroopsCanTrain = barracksLevel * 2;
@@ -106,7 +109,7 @@ void Participants::trainMALoop(int troopTier, int amountOfTroops) {
     char repeatProceedWithTraining = 'Y';
     std::vector<char> proceedWithTrainingThree = { 'P', 'S', 'M' };    
     do {
-        switch (Input::getOptionPrompt(TRAIN_MA_FUNCTION).at(0)) {
+        switch (Input::getOptionPrompt(Input::TRAIN_MA_FUNCTION).at(0)) {
         case 'P': {
             bool trainingIsSuccess = capitalProvince->subtractCheckResources(requiredResources);
 

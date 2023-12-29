@@ -6,6 +6,7 @@ using namespace TROOP;
 using PROV::provSPTR; 
 using COMM::commSPTR; 
 using COMM::commSPTRList; 
+using namespace Input;
 
 void Participants::mainAttackMA(provSPTR defendProv, commSPTR attackComm) {
 	DEBUG_FUNCTION("AttackMA.cpp", "mainAttackMA(provSPTR, commSPTR)");

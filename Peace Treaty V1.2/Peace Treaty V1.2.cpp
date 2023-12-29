@@ -21,6 +21,7 @@
 #include INPUT_HEADER
 #include COMMANDERS_HEADER
 #include PLAYER_ACTION_HEADER
+#include TROOP_HEADER
 
 void startOrResumeGame();
 void resumeGame();
@@ -34,6 +35,7 @@ int getContinentInformation();
 using namespace INF;
 using namespace PART;
 using namespace Input;
+using namespace TROOP;
 
 int main()/*main code*/
 {

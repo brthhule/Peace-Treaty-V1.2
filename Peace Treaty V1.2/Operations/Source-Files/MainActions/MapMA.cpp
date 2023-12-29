@@ -5,6 +5,7 @@ using namespace PART;
 using namespace PROV;
 using namespace COMM;
 using namespace INF;
+using namespace Input;
 
 //View the map
 void Participants::viewPlayerMap() {
@@ -172,7 +173,7 @@ void Participants::playerUnitAction(provSPTR newP) {
 	provSPTR newProvince = newP;
 	println("This is one of your armies ");
 
-	switch (Input::getOptionPrompt(PLAYER_UNIT_ACTION).at(0)) {
+	switch (Input::getOptionPrompt(Input::PLAYER_UNIT_ACTION).at(0)) {
 		//Move this unit 
 	case 'P': {
 		playerUnitActionP(newProvince);

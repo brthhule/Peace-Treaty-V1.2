@@ -3,6 +3,7 @@
 
 using namespace COMM;
 using namespace TROOP;
+using namespace INF;
 
 /*	"Resources:      ",
 	"Troops present: ",
@@ -141,7 +142,7 @@ void Commanders::resetCommanderMoved() {
 	moved = false;
 }
 
-constINT Commanders::getCombatPower() const { return combatPower; }
+constINT Commanders::getCombatPower() const { return combatPower; } 
 
 void Commanders::calculateFoodConsumption() {
 	foodConsumption = 0;

@@ -43,7 +43,8 @@ public:
 	*/
 	virtual constINT getProvinceLevel() = 0;
 
-	virtual std::shared_ptr<BuildingsBASE> getBuilding(BUILD::BuildingsEnum name) = 0;
+	virtual BuildingsBASE& getBuilding(BUILD::BuildingsEnum name) = 0;
+	virtual BuildingsBASE& getBuilding(int num) = 0;
 
 	///////////////////////////////////Setters/////////////////////////////////
 	/** mutateLevel__

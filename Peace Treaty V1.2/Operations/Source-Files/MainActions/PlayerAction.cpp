@@ -2,6 +2,7 @@
 #include PARTICIPANTS_HEADER
 
 using namespace PART;
+using namespace Input;
 
 void Participants::chooseAction() {
 	DEBUG_FUNCTION("PlayerAction", "chooseAction");

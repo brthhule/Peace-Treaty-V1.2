@@ -56,13 +56,4 @@ namespace BUILD {
 		"Wall",
 		"Residences"
 	};
-
-	/*RESOURCE = Food, Wood, Ore, Gold, Mana*/
-	s5array RESOURCE_NAMES = { 
-		"Food",
-		"Wood",
-		"Ore",
-		"Gold",
-		"Mana"
-	};
 }

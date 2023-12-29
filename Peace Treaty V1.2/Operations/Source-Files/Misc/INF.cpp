@@ -151,7 +151,19 @@ namespace INF {
 			at(x) += arrayArg[x];
 		}
 	}
+
+	/*RESOURCE = Food, Wood, Ore, Gold, Mana*/
+	s5array RESOURCE_NAMES = { 
+		"Food",
+		"Wood",
+		"Ore",
+		"Gold",
+		"Mana"
+	};
 };
+
+
+
 
 bool INF::checkIsNumber(std::string numberString) {
 	std::string AV = "0123456789";
@@ -299,7 +311,7 @@ void INF::printResources(constArrayReference resourcesArray) {
 	DEBUG_FUNCTION("INF.cpp", "printResources");
 
 	for (int x = 0; x < 5; x++) {
-		std::cout << "- " << BUILD::RESOURCE_NAMES.at(x) << ": " << resourcesArray.at(x) << std::endl;
+		std::cout << "- " << INF::RESOURCE_NAMES.at(x) << ": " << resourcesArray.at(x) << std::endl;
 	}
 
 	std::cout << std::endl;

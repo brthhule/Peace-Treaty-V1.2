@@ -21,7 +21,7 @@ void Provinces::upgradeBuildingPrompt() {
 
 	char repeatPlayerBuildFunction = 'Y';
 
-	char upgradeBuilding = Input::getOptionPrompt(PLAYER_BUILD_FUNCTION).at(0);
+	char upgradeBuilding = Input::getOptionPrompt(Input::PLAYER_BUILD_FUNCTION).at(0);
 	if (upgradeBuilding == 'U') {
 		selectBuildingToUpgrade();
 	} else {
@@ -42,7 +42,7 @@ void Provinces::printBuildingUpgradeCosts(i5array requiredResources, int buildin
 
 	println("The following is the cost of the upgrade: ");
 	for (int x = 0; x < 5; x++) {
-		std::cout << BUILD::RESOURCE_NAMES.at(x) << ": " << requiredResources.at(x)
+		std::cout << INF::RESOURCE_NAMES.at(x) << ": " << requiredResources.at(x)
 			<< std::endl;
 	}
 	println("\nThe following are how many resources are in this province: ");
