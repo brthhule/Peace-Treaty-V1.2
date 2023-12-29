@@ -161,7 +161,7 @@ namespace PROV {
 		i5array getTypeLevels(BUILD::BuildingType type);
 
 
-		constINT getCapacity(BUILD::BuildingsEnum name);
+		const int getCapacity(BUILD::BuildingsEnum name) const;
 		/** getTroopsTrainedThisTurn__
 			returns the amount of troops trained this turn
 

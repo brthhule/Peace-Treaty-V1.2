@@ -28,7 +28,7 @@ public:
 	virtual i5array getTypeLevels(BUILD::BuildingType type) = 0;
 
 	
-	virtual constINT getCapacity(BUILD::BuildingsEnum name) = 0;
+	virtual const int getCapacity(BUILD::BuildingsEnum name) const = 0;
 	/** getTroopsTrainedThisTurn__
 		returns the amount of troops trained this turn
 

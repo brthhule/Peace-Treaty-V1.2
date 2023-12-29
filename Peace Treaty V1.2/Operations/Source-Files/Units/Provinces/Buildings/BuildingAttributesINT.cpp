@@ -5,14 +5,14 @@
 
 using namespace PROV;
 
-constINT Provinces::getCapacity(BUILD::BuildingsEnum name) { 
+const int Provinces::getCapacity(BUILD::BuildingsEnum name) const { 
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "getCapacity");
 	BuildingsBASE* currentBuilding = &getBuilding(name);
 	ResourceBuildingsBASE* resourceBuilding = static_cast<ResourceBuildingsBASE*>(currentBuilding);  
 	delete currentBuilding;
 
-	int amount = resourceBuilding->getCapacityAmount();
+	int amount = resourceBuilding->getCapacityAmouBnt();
 	delete resourceBuilding;
 
 	return amount;
