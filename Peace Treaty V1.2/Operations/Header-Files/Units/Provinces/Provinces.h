@@ -65,7 +65,7 @@ private:
 Implement getLists, calculateCombatPower, calculateFoodConsumption
 */
 class Provinces :
-	public UNIT::PrimeUnits,				//Base Class
+	public PrimeUnits,				//Base Class
 	public BuildMA,				//Interface
 	public BuildingAttributesINT	//Interface
 {

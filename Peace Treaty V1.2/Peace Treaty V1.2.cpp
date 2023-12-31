@@ -36,6 +36,8 @@ using namespace INF;
 using namespace Input;
 using namespace TROOP;
 
+extern int INF::continentSize;
+
 int main()/*main code*/
 {
 	//For debugging

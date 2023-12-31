@@ -156,7 +156,7 @@ public:
 	///Check if this participant has a particular unit, not optimal (string param)
 	bool hasUnit(const std::string& unitName) const;
 	//Kinda sketch, look at this??
-	bool hasUnit(UNIT::PrimeUnits& unit) const;
+	bool hasUnit(PrimeUnits& unit) const;
 
 	int calculateTotals(int option);
 

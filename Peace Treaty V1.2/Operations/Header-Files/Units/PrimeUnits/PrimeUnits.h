@@ -16,7 +16,9 @@
 
 namespace UNIT {
 
-enum UnitType { COMMANDER, PROVINCE };
+	enum UnitType { COMMANDER, PROVINCE };
+
+}
 
 class PrimeUnits : 
 	public COORD::CoordsBASE					//Base Class
@@ -117,10 +119,12 @@ protected:
 
 	bool canSelectThisUnit;
 
-	UnitType type;
+	UNIT::UnitType type; 
 	std::string name;
 	TroopUnitsBASE troops;
 };
+
+namespace UNIT {
 
 using unitSPTR = std::shared_ptr<PrimeUnits>;
 using unitSPTRList = std::vector<unitSPTR>;

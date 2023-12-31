@@ -27,7 +27,7 @@ namespace COMM {
 }
 
 //Control army units
-class Commanders : public UNIT::PrimeUnits, public TroopsINT {
+class Commanders : public PrimeUnits, public TroopsINT {
 
 		
 public:
