@@ -8,19 +8,17 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 #include INF_HEADER
 
-using namespace INF;
-
 class CommanderReport {
 public:
 	CommanderReport();
 
 	void printReport();
 private:
-	std::array<i5array, 5 > listInt;
+	std::array<INF::i5array, 5 > listInt;
 
 	//Check these later
-	i5array resourcesPresent; 
-	i5array troopsPresent,
+	INF::i5array resourcesPresent; 
+	INF::i5array troopsPresent,
 		troopsInjured,
 		troopsLost,
 		initialStats;

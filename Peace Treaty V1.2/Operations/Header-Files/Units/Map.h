@@ -20,8 +20,8 @@
 class Map {
 public:
 	//----Constructors---------------------------------------------------------
-	Map() {}
-	~Map(){}
+	Map();
+	~Map();
 
 	//----Mutators-------------------------------------------------------------
 	///Creates the map
@@ -46,10 +46,10 @@ public:
 	*		@param coords__ the pair of coords corresponding to SYSTEM/USER
 	*		@return Provinces shared pointer
 	*/	
-	static PROV::provSPTR getProvince(COORD::CoordsType type, ipair coords);
+	static PROV::provSPTR getProvince(COORD::CoordsType type, INF::ipair coords);
 	//Prompts the user to pick a pair of x and y coordinates within the bounds of the map, returns USER type coords
-	static ipair pickCoords();
-	static bool checkInBounds(ipair coords, COORD::CoordsType type);
+	static INF::ipair pickCoords();
+	static bool checkInBounds(INF::ipair coords, COORD::CoordsType type);
 	
 	typedef std::unordered_map <std::string, PROV::provSPTR> ProvincesMap;
 	typedef std::vector <std::vector<Provinces>> ProvincesVector;

@@ -26,8 +26,9 @@
 #include MOBILITY_HEADER				//Base Class
 #include MAP_HEADER						//Base Class
 
-//Includes INF.h, Commanders.h, PrimeUnits.h
 #include PROVINCES_HEADER				//Composition
+#include COMMANDERS_HEADER
+#include PRIME_UNITS_HEADER
 
 #include ARMY_OVERVIEW_MA_HEADER		//Composition (Action)
 #include TRAIN_MA_HEADER
@@ -75,11 +76,11 @@ public:
 
 	//----Getters----------------------------------------------------------
 	///Get the costs needed to train a new Commander?
-	constArrayReference getTrainCosts();
+	INF::constArrayReference getTrainCosts();
 
-	i5array calculateEach(int option);
+	INF::i5array calculateEach(int option);
 	///Returns all units in a participant, uses threading
-	i5array getPrimeUnitsArray() const;//???
+	INF::i5array getPrimeUnitsArray() const;//???
 	/*Check out the return types of the bottom two funtions-
 	Are they supposed to return anything? Currently call to global variables
 	I deleted, can probably use a return type as a substitute*/
@@ -101,12 +102,12 @@ public:
 	///Return total number of Commanders + Provinces in this Participant
 	int getPrimeUnitsAmount() const;
 	///Get the index of this participant in the vector of all participants
-	constINT getParticipantIndex() const;
+	INF::constINT getParticipantIndex() const;
 
 	partSPTR getParticipant(int listIndex) const;
 
 	///Returns participant statistics?
-	ivector calculatePlayerValues(int decision);
+	INF::ivector calculatePlayerValues(int decision);
 
 	//Coordinate stuff
 	PROV::provSPTR
@@ -117,7 +118,7 @@ public:
 		getProvince(int index),
 
 		getCapitalProvince(),
-		getSystemProvince(ipair systemCoords);
+		getSystemProvince(INF::ipair systemCoords);
 
 	std::string
 		getKingdomName(),
@@ -182,7 +183,7 @@ public:
 	void armyOverviewSelectAction() override;
 	void armyOverviewSelectActionShowHelp() override;
 	void trainCommanderPrompt() override;
-	void proceedWithTraining(constArrayReference trainCosts) override;
+	void proceedWithTraining(INF::constArrayReference trainCosts) override;
 	void upgradeCommander() override;
 	COMM::commSPTR pickCommanderToUpgrade() override;
 	void viewCommanderStats() override;
@@ -244,20 +245,20 @@ public:
 	void playerCommitAttack(PROV::provSPTR defendingProvince, COMM::commSPTR attackingCommander) override;
 	void determineLostCP(int attackerCP, int defendingCP, int& attackerLostCP, int& defenderLostCP) override;
 
-	void calculateTroopsLost(COMM::commSPTR commander, int lostCombatPower, constArrayReference troopsLost, int troopIndex) override;
+	void calculateTroopsLost(COMM::commSPTR commander, int lostCombatPower, INF::constArrayReference troopsLost, int troopIndex) override;
 	void battleCalculationsTwo(int& lostCombatPower, int troopsLost[5], int troopIndex, COMM::commSPTR attackingCommander) override;
-	void casualtyReport(i5array troopsLost, i5array injuredTroops) override;
+	void casualtyReport(INF::i5array troopsLost, INF::i5array injuredTroops) override;
 
 	//Need this for some reason or else the program breaks
 	void plaerActionShowHelp();
 
 private:
 	static std::vector<Participants> participantsList;
-	static i5array trainCosts;
+	static INF::i5array trainCosts;
 	static int humanPlayers;
 
-	i5array allCommandersArray;
-	i5array allProvincesArray;
+	INF::i5array allCommandersArray;
+	INF::i5array allProvincesArray;
 
 	COMM::commSPTR selectedCommander; //For ArmyDeploymentMA
 

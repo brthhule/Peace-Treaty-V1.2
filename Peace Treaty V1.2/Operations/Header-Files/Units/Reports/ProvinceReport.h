@@ -17,10 +17,10 @@ public:
 	ProvinceReport(
 		int scouterLevelArg,
 		int targetLevelArg,
-		std::array<i5array, 7> ListsArg, 
+		std::array<INF::i5array, 7> ListsArg,
 		std::array<int, 7> listIntArg,
 		std::array<bool, 3> listBoolArg,
-		ipair listSystemCoordsArg);
+		INF::ipair listSystemCoordsArg);
 
 	void
 		computeAccuracy(),
@@ -35,10 +35,10 @@ public:
 
 
 private:
-	std::array<i5array, 7> Lists;
+	std::array<INF::i5array, 7> Lists;
 	std::array<int, 7> listInt;
 	std::array<bool, 3> listBool;
-	ipair listSystemCoords;
+	INF::ipair listSystemCoords;
 
 	
 	std::string kingdomName;

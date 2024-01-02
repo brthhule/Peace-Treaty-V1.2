@@ -2,45 +2,10 @@
 #ifndef FILEPATHS_H
 #define FILEPATHS_H
 
+
 //Fun stuff
 #define print(x) std::cout << x;
-#define println(x) std::cout << x << std::endl;
-#define Systemoutprintln(x) std::cout << x;
-
-//Class types
-#define INTERFACE_
-#define BASE_CLASS_
-#define DERIVED_CLASS_
-#define COMPOSITION_
-
-//Relationshipps
-#define IMPLEMENTS_
-#define EXTENDS_
-#define EXTENDED_
-#define IMPLEMENTED_
-#define BY_
-#define COMPRISES_
-#define USES_  
-
-//Indicators
-#define START_
-#define END_
-
-//Method Types
-#define CONSTRUCTOR_
-#define SETTER_
-#define _
-#define CHECK_
-#define _
-#define PRINTERS_
-
-#define VARIABLES_
-#define METHODS_
-
-//Mutability
-#define NOTHING_
-#define MUTABLE_
-#define IMMUTABLE_
+#define println(x) std::cout << x << "\n";
 
 //Types
 #define INTEGER_

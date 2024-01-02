@@ -642,4 +642,3 @@ void Participants::setHumanPlayers(int num) {
 const std::vector<Participants>& Participants::getParticipants() { 
 	return participantsList; 
 }
-

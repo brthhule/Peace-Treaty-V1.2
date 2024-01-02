@@ -9,6 +9,14 @@ using namespace Input;
 std::vector<std::vector<Provinces>> Map::mapVectors = std::vector<std::vector<Provinces>>{}; 
 Map::ProvincesMap Map::mapMap = std::unordered_map<std::string, provSPTR>(); 
 
+Map::Map() {
+
+}
+
+Map::~Map() {
+
+}
+
 void Map::setMap() {
 	//For debugging
 	DEBUG_FUNCTION("Map.cpp", "setMap"); 

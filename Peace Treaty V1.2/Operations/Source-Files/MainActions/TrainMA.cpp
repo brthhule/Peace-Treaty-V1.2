@@ -5,8 +5,9 @@ using namespace PART;
 using namespace PROV;
 using namespace COMM;
 using namespace INF;
-using namespace TROOP;
 using namespace Input;
+using namespace TROOP;
+using namespace BUILD;
 
 //Main TrainMA function
 void Participants::trainMAMain() {

@@ -12,8 +12,8 @@ public:
 	ResourceBuildingsBASE(INF::d5array upgradeRates);
 
 	void updateProductionRate(int level);
-	constINT getProductionRate();
-	constINT getCapacityAmount();
+	INF::constINT getProductionRate();
+	INF::constINT getCapacityAmount();
 private:
 	int productionRate;
 	int capacityAmount; // add implementation

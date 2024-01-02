@@ -93,6 +93,20 @@ void Participants::upgradeCommander() {
 	return;
 }
 
+
+void Participants::addCommander() {
+	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "addCommander()");
+
+	Commanders newCommander(1, getNewName(), participantIndex);
+	capitalProvince->addCommander(newCommander);
+
+	commSPTR commander = std::make_shared<Commanders>(capitalProvince->getCommander(newCommander.getName()));
+
+	commander->setParticipantIndex(participantIndex);
+	commandersVector.push_back(std::make_shared<Commanders>(*commander));
+	commandersMap[commander->getName()] = std::make_shared<Commanders>(*commander);
+}
+
 //Currently shows one commander information by selection. Need to update to show all commander information
 void Participants::viewCommanderStats() {
 	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "viewCommanderStats()");
@@ -133,7 +147,7 @@ void Participants::trainCommanderPrompt() {
 	INF::enterAnything(1);
 }
 
-void Participants::proceedWithTraining(const i5array& trainCosts) {
+void Participants::proceedWithTraining(constArrayReference trainCosts) { 
 	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "proceedWithTraining(constArrayReference)");
 
 	bool trainingSuccess = getCapitalProvince()->subtractCheckResources(trainCosts);
@@ -175,19 +189,7 @@ void Participants::deployCommanderPrompt() {
 	deployCommanderPrompt(); 
 	INF::enterAnything(1);
 }
- 
-void Participants::addCommander() {  
-	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "addCommander()");
 
-	Commanders newCommander(1, getNewName(), participantIndex); 
-	capitalProvince->addCommander(newCommander);
-
-	commSPTR commander = std::make_shared<Commanders>(capitalProvince->getCommander(newCommander.getName()));
-
-	commander->setParticipantIndex(participantIndex); 
-	commandersVector.push_back(std::make_shared<Commanders>(*commander)); 
-	commandersMap[commander->getName()] = std::make_shared<Commanders>(*commander);
-}
 
 void Participants::armyOverviewSelectActionShowHelp() {
 	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "armyOverviewSelectActionShowHelp()");

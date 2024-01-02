@@ -13,8 +13,6 @@
 
 #include INF_HEADER
 
-using namespace INF;
-
 class BuildingsBASE {
 public:
 	//----Constructors---------------------------------------------------------
@@ -24,9 +22,9 @@ public:
 	~BuildingsBASE(){}
 
 	//----Getters--------------------------------------------------------------
-	constINT getLevel() const;
-	constINT getWorkersNum() const;
-	constArrayReference getUpgradeCosts(); 
+	INF::constINT getLevel() const;
+	INF::constINT getWorkersNum() const;
+	INF::constArrayReference getUpgradeCosts();
 
 	//----Mutators-------------------------------------------------------------
 	void increaseLevel(int amount);
@@ -36,6 +34,6 @@ private:
 	int level;
 	INF::d5array baseUpgradeRates;
 	int workersNum;
-	i5array upgradeCosts;
+	INF::i5array upgradeCosts;
 };
 #endif

@@ -4,6 +4,8 @@
 #include PROVINCES_HEADER
 
 using namespace PROV;
+using namespace INF;
+using namespace BUILD;
 
 const int Provinces::getCapacity(BUILD::BuildingsEnum name) { 
 	//For debugging

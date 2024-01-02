@@ -10,17 +10,19 @@
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 
-
-#include BUILD_MA_HEADER				//Interface
 #include BUILDING_ATTRIBUTES_INT_HEADER	//Interface
 
-#include COMMANDERS_HEADER				//Composition
+#include BUILD_MA_HEADER				//Interface
+
 #include PRIME_UNITS_HEADER					//Base Class
 #include COORDS_BASE_HEADER				//Base Class
 #include INF_HEADER
 #include TROOP_UNITS_BASE_HEADER		//Composition
 #include TROOP_HEADER
 #include TROOPS_INT_HEADER				//Interface
+
+
+#include COMMANDERS_HEADER				//Composition
 
 #include PROVINCE_REPORT_HEADER			//Composition
 #include RESOURCE_BUILDINGS_BASE_HEADER	//Composition 
@@ -38,6 +40,7 @@
 #include LIBRARY_HEADER
 #include RESIDENCES_HEADER 
 #include WALL_HEADER
+
 
 //Plain old data, only accessible withing Provinces
 class BuildingsClass {
@@ -79,7 +82,7 @@ public:
 	bool isCapital() const;
 	bool hasCommander(std::string name);
 	/*Subtracts the necessary resources from capital province. If resources left over are all positive (there were enough resources), return true. If any resources are negative, return false*/
-	bool subtractCheckResources(constArrayReference resourcesArray);
+	bool subtractCheckResources(INF::constArrayReference resourcesArray);
 
 	///Initializes this province as a capital
 	void makeCapital(int participantIndexArg);
@@ -103,10 +106,10 @@ public:
 	///Calculates the combat power of this province
 	int getTotalCP() const;
 	///Get the index of this unit in its Participant's vector?
-	constINT getMapIndex() const;
+	INF::constINT getMapIndex() const;
 
 	Commanders & getProvinceCommander() const;
-	constINT getLevel() const override;
+	INF::constINT getLevel() const override;
 
 	//----Setters----------------------------------------------------------
 		
@@ -126,23 +129,23 @@ public:
 
 	///////////////////////////////BuildMA/////////////////////////////////
 	//----Printers---------------------------------------------------------
-	void printBuildingUpgradeCosts(i5array requiredresources, int buildingindex) override;
+	void printBuildingUpgradeCosts(INF::i5array requiredresources, int buildingindex) override;
 	void upgradeBuildingPrompt() override,
 		selectBuildingToUpgrade() override,
 		upgradeBuilding(int buildingNumber) override;
 
-	void setCommandersSortStatus(SortType status);
-	SortType getCommandersSortStatus() const;
+	void setCommandersSortStatus(INF::SortType status);
+	INF::SortType getCommandersSortStatus() const;
 
 	std::string getKingdomName();
 
-	std::array<i5array, 7> getLists();
+	std::array<INF::i5array, 7> getLists();
 	std::array<int, 7> getListInt();
 	std::array<bool, 2> getListBool();
-	std::array< ipair, 2> getListCoords();
+	std::array< INF::ipair, 2> getListCoords();
 
 	//Scout/report stuff
-	std::array<i5array, 4> getGeneralLists();
+	std::array<INF::i5array, 4> getGeneralLists();
 
 	int getCommanderIndex(COMM::commSPTR commander);
 
@@ -150,14 +153,14 @@ public:
 	void calculateCombatPower();
 	void calculateFoodConsumption();
 	///////////////////////////////PrimeUnits.h////////////////////////////
-	constINT getCombatPower() const override;
-	constINT getFoodConsumption() const override;
+	INF::constINT getCombatPower() const override;
+	INF::constINT getFoodConsumption() const override;
 	///////////////////////////////BuildingAttributesINT///////////////////
 		
 	//----Getters----------------------------------------------------------
-	i5array getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount);
+	INF::i5array getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount);
 //Returns an array of Resource/Other buildings levels
-	i5array getTypeLevels(BUILD::BuildingType type);
+	INF::i5array getTypeLevels(BUILD::BuildingType type);
 
 
 	const int getCapacity(BUILD::BuildingsEnum name);
@@ -191,7 +194,7 @@ public:
 		the amount the level is being changed by, usually 1, always positive
 			@return void
 	*/
-	void mutateLevel(BuildingsEnum name, MutateDirection direction, int amount);
+	void mutateLevel(BUILD::BuildingsEnum name, INF::MutateDirection direction, int amount);
 	void addTroopsTrainedThisTurn(int amount);
 	void resetTroopsTrainedThisTurn();
 	void initiailizeCapitalBuildings();
@@ -218,7 +221,7 @@ protected:
 	BuildingsClass buildings;
 
 private:
-	SortType commandersSortType;
+	INF::SortType commandersSortType;
 	bool isACapital;
 
 	int mapIndex;

@@ -11,9 +11,6 @@
 #include PRIME_UNITS_HEADER
 #include BARRACKS_HEADER
 
-using namespace INF;
-using namespace BUILD;
-
 //Methods and variables in Provinces that relate to Buildings
 class BuildingAttributesINT{
 public:	
@@ -22,9 +19,9 @@ public:
 	~BuildingAttributesINT(){}
 
 	///////////////////////////////////Getters/////////////////////////////////
-	virtual i5array getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount) = 0;
+	virtual INF::i5array getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount) = 0;
 	//Returns an array of Resource/Other buildings levels
-	virtual i5array getTypeLevels(BUILD::BuildingType type) = 0;
+	virtual INF::i5array getTypeLevels(BUILD::BuildingType type) = 0;
 
 	
 	virtual const int getCapacity(BUILD::BuildingsEnum name) = 0;
@@ -57,7 +54,7 @@ public:
 			the amount the level is being changed by, usually 1, always positive
 			@return void
 	*/
-	virtual void mutateLevel(BuildingsEnum name, MutateDirection direction, int amount) = 0; 
+	virtual void mutateLevel(BUILD::BuildingsEnum name, INF::MutateDirection direction, int amount) = 0;
 	virtual void addTroopsTrainedThisTurn(int amount) = 0;
 	virtual void resetTroopsTrainedThisTurn() = 0;
 	virtual void initiailizeCapitalBuildings() = 0;

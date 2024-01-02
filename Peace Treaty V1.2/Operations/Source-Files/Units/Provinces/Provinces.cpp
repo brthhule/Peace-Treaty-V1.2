@@ -5,6 +5,8 @@
 using namespace PROV;
 using namespace COORD; 
 using namespace COMM;
+using namespace INF;
+using namespace BUILD;
 
 
 BuildingsClass::BuildingsClass() : farm(), mill(), quarry(), mine(), church(), barracks(), infirmary(), library(), residences(), wall() {
@@ -147,7 +149,7 @@ void Provinces::removeCommander(commSPTR removeCommander)
 	commandersVector.erase(commandersVector.begin() + lastIndex);
 }
 
-void Provinces::addCommander(Commanders commanderCopy) 
+void Provinces::addCommander(Commanders commanderCopy)  
 {
 	//For debugging
 	DEBUG_FUNCTION("Provinces.cpp", "addCommander");

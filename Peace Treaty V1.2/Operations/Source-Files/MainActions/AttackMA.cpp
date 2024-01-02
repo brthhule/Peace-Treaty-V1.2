@@ -8,6 +8,8 @@ using COMM::commSPTR;
 using COMM::commSPTRList; 
 using namespace Input;
 
+using namespace INF;
+
 void Participants::mainAttackMA(provSPTR defendProv, commSPTR attackComm) {
 	DEBUG_FUNCTION("AttackMA.cpp", "mainAttackMA(provSPTR, commSPTR)");
 
@@ -32,9 +34,9 @@ void Participants::mainAttackMA(provSPTR defendProv, commSPTR attackComm) {
 std::vector<commSPTR> Participants::getCommandersCanAttack(provSPTR defendingProvince) {
 	DEBUG_FUNCTION("AttackMA.cpp", "getCommandersCanAtack(provSPTR)");
 
-	std::vector<COMM::commSPTR> commandersCanAttack = {};
+	std::vector<commSPTR> commandersCanAttack = {};
 	std::array<ipair, 8> surroundingProvinces;
-	ipair defenderSystemCoords = defendingProvince->CoordsBASE::getCoords(COORD::SYSTEM); 
+	ipair defenderSystemCoords = defendingProvince->CoordsBASE::getCoords(COORD::SYSTEM);
 	int currentElements = 0;
 	for (int x = -1; x <= 1; x++) {
 		for (int y = -1; y <= 1; y++)
@@ -57,10 +59,10 @@ std::vector<commSPTR> Participants::getCommandersCanAttack(provSPTR defendingPro
 		bool
 			checkFirstCoordinate = (
 				firstCoordinate >= 0 &&
-				firstCoordinate < INF::continentSize),
+				firstCoordinate < continentSize),
 			checkSecondCoordinate = (
 				secondCoordinate >= 0 &&
-				secondCoordinate < INF::continentSize);
+				secondCoordinate < continentSize);
 
 		if (checkFirstCoordinate && checkSecondCoordinate) {
 			ipair tempCoords(firstCoordinate, secondCoordinate);
@@ -148,7 +150,7 @@ void Participants::playerCommitAttack(provSPTR defendingProvince,  commSPTR atta
 	std::cout << "Resources gained: " << getColor(BLUE);
 
 	i5array oldResources = {};///////////////////
-	INF::printResources(mutateArray(attackingCommander->getAllResources(), oldResources, DECREASE));
+	printResources(mutateArray(attackingCommander->getAllResources(), oldResources, DECREASE));
 	attackingCommander->printResources();
 	casualtyReport(troopsLost, injuredTroops);
 
@@ -187,9 +189,9 @@ void Participants::calculateTroopsLost(commSPTR commander, int lostCombatPower, 
 	/*DEBUG_FUNCTION("AttackMA.cpp", "calculateTroopsLost(commSPTR, int, constArrayReference, int)");
 
 	//Have to implement Troop functionality before doing this
-	//int troopPresent = commander->getTroop(REGULAR, troopIndex, INF::SINGLE)[0];
+	//int troopPresent = commander->getTroop(REGULAR, troopIndex, SINGLE)[0];
 	int troopsPresent;
-	int troopCP = INF::TROOPS_CP[troopIndex];
+	int troopCP = TROOPS_CP[troopIndex];
 
 	//If lostCP > 16
 	if (lostCombatPower - 16 > 0) {
@@ -237,19 +239,19 @@ void Participants::battleCalculationsTwo(constINT lostCombatPower, i5array, int 
 
 	int z = abs(4 - troopIndex);
 
-	for (int b = 0; b < INF::TROOPS_CP[z]; b++) {
+	for (int b = 0; b < TROOPS_CP[z]; b++) {
 		if (attackingCommander->getAllTiersOfTroop(REGULAR, 5, SINGLE)[0] > 0) {
-			b = INF::TROOPS_CP[z];
+			b = TROOPS_CP[z];
 		}
 		else {
 			if (lostCombatPower > 0) {
-				lostCombatPower -= INF::TROOPS_CP[troopIndex];
+				lostCombatPower -= TROOPS_CP[troopIndex];
 				troopsLost[troopIndex]++;
 				attackingCommander->mutateTroop(REGULAR, troopIndex, {1}, SINGLE, DECREASE);
 				attackingCommander->mutateTroop(LOST, troopIndex, {1}, SINGLE, INCREASE);
 			}
 			else
-				b = INF::TROOPS_CP[z];
+				b = TROOPS_CP[z];
 		}
 	}
 }

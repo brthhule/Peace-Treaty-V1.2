@@ -13,6 +13,7 @@
 #include TROOPS_INT_HEADER
 #include INPUT_HEADER
 #include INF_HEADER
+#include COORDS_BASE_HEADER
 
 class AttackMA {
 public:
@@ -27,9 +28,9 @@ public:
 
 	virtual void playerCommitAttack(PROV::provSPTR defendingProvince, COMM::commSPTR attackingCommander) = 0;
 
-	virtual void calculateTroopsLost(COMM::commSPTR commander, int lostCombatPower, constArrayReference troopsLost, int troopIndex) = 0;
+	virtual void calculateTroopsLost(COMM::commSPTR commander, int lostCombatPower, INF::constArrayReference troopsLost, int troopIndex) = 0;
 	virtual void battleCalculationsTwo(int& lostCombatPower, int troopsLost[5], int troopIndex, COMM::commSPTR attackingCommander) = 0;
-	virtual void casualtyReport(i5array troopsLost, i5array injuredTroops) = 0;
+	virtual void casualtyReport(INF::i5array troopsLost, INF::i5array injuredTroops) = 0;
 
 	virtual COMM::commSPTRList getCommandersCanAttack(PROV::provSPTR defendingProvince) = 0;
 };

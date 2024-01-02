@@ -8,7 +8,7 @@ class Barracks : public BuildingsBASE {
 public:
 	Barracks();
 	~Barracks(){}
-	constINT getTroopsTrainedThisTurn();
+	INF::constINT getTroopsTrainedThisTurn();
 	void resetTroopsTrainedThisTurn();
 	void addTroopsTrainedThisTurn(int amount);
 private:
