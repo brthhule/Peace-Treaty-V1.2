@@ -7,6 +7,7 @@ using namespace COORD;
 using namespace PROV;
 using namespace COMM;
 using namespace Input;
+using namespace INF;
 
 
 void Participants::moveUnitOne(commSPTR commander) { 

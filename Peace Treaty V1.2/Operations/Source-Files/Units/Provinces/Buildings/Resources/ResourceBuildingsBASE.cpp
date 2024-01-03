@@ -1,6 +1,8 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 #include RESOURCE_BUILDINGS_BASE_HEADER
 
+using namespace INF;
+
 ResourceBuildingsBASE::ResourceBuildingsBASE(INF::d5array upgradeRates) : BuildingsBASE(upgradeRates) {
 	productionRate = 0;
 	capacityAmount = 0;

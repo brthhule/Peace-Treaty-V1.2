@@ -1,6 +1,8 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 #include PROVINCE_REPORT_HEADER
 
+using namespace INF;
+
 ProvinceReport::ProvinceReport(int scouterLevelArg,
 	int targetLevelArg,
 	std::array<i5array, 7> ListsArg,

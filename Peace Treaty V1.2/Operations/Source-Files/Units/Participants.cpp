@@ -13,8 +13,12 @@ i5array trainCosts = { 5, 4, 3, 2, 1 };
 
 std::vector<partSPTR> Participants::playersList = {};  
 std::vector<partSPTR> Participants::botsList = {};  
-std::vector<Participants> Participants::participantsList = {};
 int totalPlayers = 0;
+
+
+std::vector<Participants> Participants::participantsList = {};
+INF::i5array Participants::trainCosts = {};
+int Participants::humanPlayers = 0;
 
 Participants::Participants() : Participants(0) {
 	//For debugging

@@ -3,7 +3,6 @@
 
 using namespace PROV;
 using namespace COMM;
-using namespace INF;
 using namespace Input;
 
 //View the map

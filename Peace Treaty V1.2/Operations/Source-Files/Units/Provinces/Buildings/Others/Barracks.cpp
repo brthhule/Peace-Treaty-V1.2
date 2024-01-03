@@ -5,7 +5,7 @@ Barracks::Barracks() : BuildingsBASE({ 1, 1, 1, 1, 0.2 }) {
 	troopsTrainedThisTurn = 0;  
 }
 
-constINT Barracks::getTroopsTrainedThisTurn() { 
+INF::constINT Barracks::getTroopsTrainedThisTurn() { 
 	return troopsTrainedThisTurn;
 }
 

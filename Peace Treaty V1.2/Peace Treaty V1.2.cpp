@@ -13,6 +13,7 @@
 #include <iomanip>
 #include <time.h>
 #include <thread>
+#include <memory>
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 //#include INF_HEADER  
@@ -36,11 +37,9 @@ void endScreen();
 
 int getContinentInformation();
 
-using namespace INF;
-using namespace Input;
-using namespace TROOP;
-
-extern int INF::continentSize;
+using INF::addColor;
+using INF::getColor;
+using INF::COLORS;
 
 int main()/*main code*/
 {
@@ -57,7 +56,7 @@ void startOrResumeGame() {
 
 	//srand((unsigned int)time(0));
 	INF::printFile(path);
-	char startOrResume = Input::getOptionPrompt(INTRODUCTION).at(0);
+	char startOrResume = Input::getOptionPrompt(Input::INTRODUCTION).at(0);
 
 	switch (startOrResume) {
 		case 'R':
@@ -99,6 +98,7 @@ void startNewGame() {
 	Participants::initializeParticipants(humanPlayers, allPlayers, 0);
 	std::cout << "Created participants";
 }
+
 int getContinentInformation() {
 	//For debugging
 	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "getContinentInformation");
@@ -112,19 +112,19 @@ int getContinentInformation() {
 	INF::enterAnything(1);
 	INF::clearScreen();
 
-	std::cout << "Continent size " << getColor(RED) << INF::continentSize << getColor(RESET) << " created..\n\n";
+	std::cout << "Continent size " << getColor(COLORS::RED) << INF::continentSize << INF::getColor(COLORS::RESET) << " created..\n\n";
 
 	int pNum = std::stoi(Input::getInputText("How many AI kingdoms will you fight? (1, 2, 3) ", { "number", "1", "2", "3" }));
-	std::cout << getColor(RED) << pNum << getColor(WHITE) << " opponent kingdoms generated... \n\n";
+	std::cout << INF::getColor(COLORS::RED) << pNum << getColor(COLORS::WHITE) << " opponent kingdoms generated... \n\n";
 	INF::enterAnything(1);
 	INF::clearScreen();
 
-	maxCommanders = continentSize;
+	TROOP::maxCommanders = INF::continentSize;
 
 	INF::enemyDifficulty = std::stoi(Input::getInputText("What gameplay difficulty do you want (1-3): ", { "number","1","2","3" }));
 	INF::enterAnything(1);
 	INF::clearScreen();
-	std::cout << "Gameplay difficulty " << getColor(RED) << INF::enemyDifficulty << getColor(RESET) << " selected. \n\n"; 
+	std::cout << "Gameplay difficulty " << getColor(COLORS::RED) << INF::enemyDifficulty << getColor(COLORS::RESET) << " selected. \n\n";
 
 	return pNum;
 }
@@ -145,7 +145,7 @@ int generateNewContinent(int pNum) {
 
 	INF::clearScreen();
 
-	std::cout << INF::getColor(RED) << players << INF::getColor(WHITE) << " players initialized...\n\n"; 
+	std::cout << INF::getColor(COLORS::RED) << players << INF::getColor(COLORS::WHITE) << " players initialized...\n\n";
 	pNum += players;
 	std::cout << "pNum: " << pNum << std::endl;
 	return players;

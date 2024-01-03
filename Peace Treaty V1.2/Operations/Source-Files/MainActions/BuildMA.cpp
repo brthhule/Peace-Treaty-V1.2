@@ -2,9 +2,8 @@
 #include PROVINCES_HEADER 
 
 using namespace BUILD;
+using namespace Input;
 using namespace INF;
-
-
 
 void Provinces::upgradeBuildingPrompt() {  
 	//For debugging

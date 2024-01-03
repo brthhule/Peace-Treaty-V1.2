@@ -3,10 +3,9 @@
 #ifndef TRAINMA_H
 #define TRAINMA_H
 
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
+#include <memory>
 
-#include INF_HEADER
-#include INPUT_HEADER
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 
 class TrainMA 
 {

@@ -10,13 +10,16 @@
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 
+#include INPUT_HEADER					//Utility
+#include INF_HEADER
+
+
 #include BUILDING_ATTRIBUTES_INT_HEADER	//Interface
 
 #include BUILD_MA_HEADER				//Interface
 
 #include PRIME_UNITS_HEADER					//Base Class
 #include COORDS_BASE_HEADER				//Base Class
-#include INF_HEADER
 #include TROOP_UNITS_BASE_HEADER		//Composition
 #include TROOP_HEADER
 #include TROOPS_INT_HEADER				//Interface
@@ -26,8 +29,6 @@
 
 #include PROVINCE_REPORT_HEADER			//Composition
 #include RESOURCE_BUILDINGS_BASE_HEADER	//Composition 
-
-#include INPUT_HEADER					//Utility
 
 #include FARM_HEADER
 #include MILL_HEADER

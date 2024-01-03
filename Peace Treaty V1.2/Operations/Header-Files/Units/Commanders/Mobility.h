@@ -4,6 +4,7 @@
 #define MOBILITY_H
 
 #include <vector>
+#include <memory>
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 #include PROVINCES_HEADER
@@ -18,7 +19,7 @@ public:
 
 	//----Methods--------------------------------------------------------------
 	virtual void moveUnitOne(COMM::commSPTR commander) = 0;
-	virtual std::vector <PROV::provSPTR> getSurroundingProvinces(COMM::commSPTR commander) = 0;
+	virtual PROV::provSPTRList getSurroundingProvinces(COMM::commSPTR commander) = 0;
 	virtual Provinces& pickProvinceToMoveTo(Commanders& commanderReference) = 0;
 };
 #endif

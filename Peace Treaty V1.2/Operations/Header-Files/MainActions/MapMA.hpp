@@ -4,13 +4,9 @@
 #include <iostream>
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
+#include <memory>
 
-#include ATTACK_MA_HEADER
-#include SCOUT_MA_HEADER
 #include PROVINCES_HEADER
-#include INPUT_HEADER
-#include INF_HEADER
-#include TRAIN_MA_HEADER
 
 class MapMA {
 public:
