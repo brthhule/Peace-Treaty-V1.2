@@ -42,6 +42,7 @@ namespace INF {
 	template <typename T>
 	T makeCopy(T& object);*/
 
+	/*
 	template<class T>
 	//Shared pointer of type T
 	class sPTR {
@@ -85,7 +86,7 @@ namespace INF {
 	private: 
 		std::vector<sPTR<T>> sharedPointersVector;
 	};
-
+	*/
 	//////////////////////////////////////Aliases//////////////////////////////
 	
 
@@ -218,11 +219,11 @@ namespace INF {
 	
 	//----void-------------------------
 	//CLears the screen
-	inline void clearScreen();
+	void clearScreen();
 	//Prompts the user to enter anything
-	inline void enterAnything(int option);
+	void enterAnything(int option);
 	///Calls enterAnything then clearScreen
-	inline void enterAndClear(int option);
+	void enterAndClear(int option);
 
 	//Text stuff
 	void showHelp(int caseNum);
@@ -237,8 +238,6 @@ namespace INF {
 
 	//Manipulate vectors
 	i5array mutateArray(i5array primeArray, constArrayReference secondaryArray, MutateDirection direction);
-
-	
 }
 
 #endif		

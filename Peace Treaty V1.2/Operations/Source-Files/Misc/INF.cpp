@@ -2,164 +2,159 @@
 
 #include INF_HEADER
 
-namespace INF {
-	////////////////////////////////////////////////Start Variables///////////////////////////////////////
+////////////////////////////////////////////////Start Variables///////////////////////////////////////
 	
-	/*template <typename T>
-	const T& makeConst(T& object) {
-		return object;
-	}
+/*template <typename T>
+const T& makeConst(T& object) {
+	return object;
+}
 
-	template<typename T>
-	T makeCopy(T& object) {
-		return T(object);
-	}*/
+template<typename T>
+T makeCopy(T& object) {
+	return T(object);
+}*/
 
-	/*INITIAL_VALUES = 5, 4, 3, 2, 1 */
-	i5array INITIAL_VALUES = { 5, 4, 3, 2, 1 };
+/*INITIAL_VALUES = 5, 4, 3, 2, 1 */
+INF::i5array INF::INITIAL_VALUES = { 5, 4, 3, 2, 1 };
 
-	std::array<std::string, 9> COLORS_STRING = {
-			"BLACK",
-			"RED",
-			"GREEN",
-			"YELLOW",
-			"BLUE",
-			"MAGENTA",
-			"CYAN",
-			"WHITE",
-			"RESET"
-	};
-	/*
-	template <typename T>
-	Array5<T>::Array5(std::initializer_list<T> list) : items(list) {
-	
-	}
-	
-	template <typename T>
-	T& Array5<T>::at(int index) {
-		return items.at(index);
-	}*/
-
-	int continentSize = 0;
-	int enemyDifficulty = 0;
-	int CPUNum = 0;
-	int turn = 0;
-	int currentParticipantIndex = 0;
-
-	bool debuggingMode = true;
-
-	//////////////////////////////////////End Variables////////////////////////
-
-	//For stand alone color integration
-	void addColor(COLORS color) {
-		//For debugging
-		DEBUG_FUNCTION("INF", "addColor");
-		std::cout << getColor(color);
-		
-	}
-
-	//For integration with strings/std::cout statements
-	std::string getColor(COLORS color) {
-		std::array<std::string, 9> sequences = {
-			"\033[30m", //Black
-			"\033[31m", //Red
-			"\033[32m", //Green
-			"\033[33m", //Yellow
-			"\033[34m", //Blue
-			"\033[35m", //Magenta
-			"\033[36m", //Cyan
-			"\033[37m", //White
-			"\033[0m" //Reset
-		};
-
-		return sequences.at(color);
-	}
-
-	//Generates a random name by randomly selecting consonants and vowels
-	std::string createRandomName() {
-		//For debugging
-		DEBUG_FUNCTION("INF", "createRandomName");
-
-		std::string name = "";
-		std::string consonants = "bcdfghjklmnpqrstvwxyz";
-		std::string vowels = "aeiou";
-
-		char newCharacter = ' ';
-		for (int x = 0; x < 6; x++) {
-			// if even
-			if (x % 2 == 0) {
-				newCharacter = consonants.at(rand() % 21);
-			} else {
-				// if odd
-				newCharacter = vowels.at(rand() % 5);
-			}
-
-			name += newCharacter;
-		}
-		//Capitalize name
-		name.at(0) = toupper(name.at(0));
-		return name;
-	}
-
-	//Can change this-> look at concatVectors as a template-- use a pair of arrays instead of passing two arrays
-	i5array mutateArray(
-		i5array primeArray, 
-		constArrayReference secondaryArray,
-		MutateDirection direction) 
-	{
-		//For debugging
-		DEBUG_FUNCTION("OF", "mutateArray");
-
-		switch (direction) {
-			case INCREASE:
-				for (int index = 0; index < 5; index++) {
-					primeArray.at(index) += secondaryArray.at(index);
-				}
-				break;
-			case DECREASE:
-			default:
-				for (int index = 0; index < 5; index++) {
-					primeArray.at(index) -= secondaryArray.at(index);
-				}
-				break;
-		}
-			
-		return primeArray;
-	}
-
-	INF::myvector<int>::myvector(std::vector<int> vectorArg) {
-		//vector(vectorArg.begin(), vectorArg.end());
-	}
-	void INF::myvector<int>::addVectorElements(INF::myvector<int> vectorInstance) {
-		for (int x = 0; x < (int) this->size(); x++) {
-			at(x) += vectorInstance.at(x);
-		}
-	}
-
-	void INF::myarray<i5array>::createArray(i5array arrayArg) {
-		for (int x = 0; x < 5; x++) {
-			this->at(x) = arrayArg.at(x);
-		}
-	}
-
-	void INF::myarray<i5array>::addArrayElements(INF::myarray<i5array> arrayArg) {
-		for (int x = 0; x < 5; x++) {
-			at(x) += arrayArg[x];
-		}
-	}
-
-	/*RESOURCE = Food, Wood, Ore, Gold, Mana*/
-	s5array RESOURCE_NAMES = { 
-		"Food",
-		"Wood",
-		"Ore",
-		"Gold",
-		"Mana"
-	};
+std::array<std::string, 9> COLORS_STRING = {
+		"BLACK",
+		"RED",
+		"GREEN",
+		"YELLOW",
+		"BLUE",
+		"MAGENTA",
+		"CYAN",
+		"WHITE",
+		"RESET"
 };
+/*
+template <typename T>
+Array5<T>::Array5(std::initializer_list<T> list) : items(list) {
+	
+}
+	
+template <typename T>
+T& Array5<T>::at(int index) {
+	return items.at(index);
+}*/
 
+int continentSize = 0;
+int enemyDifficulty = 0;
+int CPUNum = 0;
+int turn = 0;
+int currentParticipantIndex = 0;
 
+bool debuggingMode = true;
 
+//////////////////////////////////////End Variables////////////////////////
+
+//For stand alone color integration
+void INF::addColor(COLORS color) {
+	//For debugging
+	DEBUG_FUNCTION("INF", "addColor");
+	std::cout << getColor(color);
+		
+}
+
+//For integration with strings/std::cout statements
+std::string INF::getColor(COLORS color) {
+	std::array<std::string, 9> sequences = {
+		"\033[30m", //Black
+		"\033[31m", //Red
+		"\033[32m", //Green
+		"\033[33m", //Yellow
+		"\033[34m", //Blue
+		"\033[35m", //Magenta
+		"\033[36m", //Cyan
+		"\033[37m", //White
+		"\033[0m" //Reset
+	};
+
+	return sequences.at(color);
+}
+
+//Generates a random name by randomly selecting consonants and vowels
+std::string INF::createRandomName() {
+	//For debugging
+	DEBUG_FUNCTION("INF", "createRandomName");
+
+	std::string name = "";
+	std::string consonants = "bcdfghjklmnpqrstvwxyz";
+	std::string vowels = "aeiou";
+
+	char newCharacter = ' ';
+	for (int x = 0; x < 6; x++) {
+		// if even
+		if (x % 2 == 0) {
+			newCharacter = consonants.at(rand() % 21);
+		} else {
+			// if odd
+			newCharacter = vowels.at(rand() % 5);
+		}
+
+		name += newCharacter;
+	}
+	//Capitalize name
+	name.at(0) = toupper(name.at(0));
+	return name;
+}
+
+//Can change this-> look at concatVectors as a template-- use a pair of arrays instead of passing two arrays
+INF::i5array INF::mutateArray(
+	i5array primeArray, 
+	constArrayReference secondaryArray,
+	MutateDirection direction) 
+{
+	//For debugging
+	DEBUG_FUNCTION("OF", "mutateArray");
+
+	switch (direction) {
+		case INCREASE:
+			for (int index = 0; index < 5; index++) {
+				primeArray.at(index) += secondaryArray.at(index);
+			}
+			break;
+		case DECREASE:
+		default:
+			for (int index = 0; index < 5; index++) {
+				primeArray.at(index) -= secondaryArray.at(index);
+			}
+			break;
+	}
+			
+	return primeArray;
+}
+
+INF::myvector<int>::myvector(std::vector<int> vectorArg) {
+	//vector(vectorArg.begin(), vectorArg.end());
+}
+void INF::myvector<int>::addVectorElements(myvector<int> vectorInstance) {
+	for (int x = 0; x < (int) this->size(); x++) {
+		at(x) += vectorInstance.at(x);
+	}
+}
+
+void INF::myarray<INF::i5array>::createArray(i5array arrayArg) {
+	for (int x = 0; x < 5; x++) {
+		this->at(x) = arrayArg.at(x);
+	}
+}
+
+void INF::myarray<INF::i5array>::addArrayElements(myarray<i5array> arrayArg) {
+	for (int x = 0; x < 5; x++) {
+		at(x) += arrayArg[x];
+	}
+}
+
+/*RESOURCE = Food, Wood, Ore, Gold, Mana*/
+INF::s5array INF::RESOURCE_NAMES = { 
+	"Food",
+	"Wood",
+	"Ore",
+	"Gold",
+	"Mana"
+};
 
 bool INF::checkIsNumber(std::string numberString) {
 	std::string AV = "0123456789";
@@ -197,17 +192,17 @@ option = 1, says enter anything to proceed
 option = 2, says enter anything to return to previous menu*/
 void INF::enterAnything(int option) {
 	DEBUG_FUNCTION("INF.cpp", "enterAnything");
-	std::array<std::string, 2> phrases = { "proceed", "return to the previous menu" }; 
+	std::array<std::string, 2> phrases = { "proceed", "return to the previous menu" };
 	std::string line = phrases.at(option - 1);
 
 	std::cout << "Enter anything to " << line +
-		" (screen will clear): " << INF::getColor(BLUE);
-	std::string emptyString = " "; 
+		" (screen will clear): " << getColor(BLUE);
+	std::string emptyString = " ";
 	getline(std::cin, emptyString);
-	INF::addColor(BLUE);
+	addColor(BLUE);
 }
 
-/*Returns help prompt that correlates with the specified numerical 
+/*Returns help prompt that correlates with the specified numerical
 identifier(caseNum)*/
 void INF::showHelp(int caseNum) {
 	//For debugging
@@ -307,7 +302,7 @@ void INF::printResources(constArrayReference resourcesArray) {
 	DEBUG_FUNCTION("INF.cpp", "printResources");
 
 	for (int x = 0; x < 5; x++) {
-		std::cout << "- " << INF::RESOURCE_NAMES.at(x) << ": " << resourcesArray.at(x) << std::endl;
+		std::cout << "- " << RESOURCE_NAMES.at(x) << ": " << resourcesArray.at(x) << std::endl;
 	}
 
 	std::cout << std::endl;
@@ -317,4 +312,8 @@ void INF::enterAndClear(int option) {
 	enterAnything(option);
 	clearScreen();
 }
+
+
+
+
 

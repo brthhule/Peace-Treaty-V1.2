@@ -9,13 +9,13 @@ void Provinces::upgradeBuildingPrompt() {
 	//For debugging
 	DEBUG_FUNCTION("Provinces", "playerBuildFunction");
 
-	INF::clearScreen();
+	clearScreen();
 	std::cout <<
 		"---------- Start printing province information ----------";
-	INF::addColor(BLUE);
+	addColor(BLUE);
 	std::cout << "Province of kingdom " + getKingdomName();
 	std::cout << "Coordinates: " << getCoords(COORD::USER) << "\n\n";  
-	INF::addColor(RESET);
+	addColor(RESET);
 
 	this->printResources();
 	printBuildingStats();
@@ -29,7 +29,7 @@ void Provinces::upgradeBuildingPrompt() {
 	} else {
 		//Break condition
 		std::cout << "Returning to previous menu... " << std::endl;
-		INF::clearScreen();
+		clearScreen();
 	}
 }
 
@@ -44,7 +44,7 @@ void Provinces::printBuildingUpgradeCosts(i5array requiredResources, int buildin
 
 	println("The following is the cost of the upgrade: ");
 	for (int x = 0; x < 5; x++) {
-		std::cout << INF::RESOURCE_NAMES.at(x) << ": " << requiredResources.at(x)
+		std::cout << RESOURCE_NAMES.at(x) << ": " << requiredResources.at(x)
 			<< std::endl;
 	}
 	println("\nThe following are how many resources are in this province: ");
@@ -70,7 +70,7 @@ void Provinces::selectBuildingToUpgrade() {
 	if (buildingNumber.at(0) != 'H') {
 		upgradeBuilding(std::stoi(buildingNumber)); 
 	} else {
-		INF::showHelp(12);
+		showHelp(12);
 	}
 
 	char upgradeAgain = Input::getInputText("Upgrade another building (Y/N): ", { "Y", "N" }).at(0);
