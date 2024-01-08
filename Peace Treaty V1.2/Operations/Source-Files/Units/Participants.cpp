@@ -458,7 +458,7 @@ provSPTR Participants::pickProvince(int phrase) {
 		actualCoordinatesAVTwo.push_back(std::to_string(x));
 	}
 	
-	showMap();
+	Map::showMap(); 
 
 	std::array<std::string, 3> phrases{ 
 		"province you want to select" , 

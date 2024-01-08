@@ -177,7 +177,6 @@ public:
 
 	void setParticipantIndex(int num);
 	void setKingdomName(std::string newName);
-	void showMap();
 
 	/////////////////////////////////////ArmyOverviewMA.h//////////////////////
 	//----Methods--------------------------------------------------------------

@@ -14,7 +14,7 @@ void Participants::viewPlayerMap() {
 
 	//If the participant is a player
 	if (this->isPlayer()) {
-		this->showMap();
+		Map::showMap();
 		println("Welcome to the View Map action menu");
 		whatToDo = Input::getOptionPrompt(VIEW_PLAYER_MAP).at(0);
 	} 

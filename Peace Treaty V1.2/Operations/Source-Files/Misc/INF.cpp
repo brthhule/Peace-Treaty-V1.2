@@ -17,7 +17,7 @@ T makeCopy(T& object) {
 /*INITIAL_VALUES = 5, 4, 3, 2, 1 */
 INF::i5array INF::INITIAL_VALUES = { 5, 4, 3, 2, 1 };
 
-std::array<std::string, 9> COLORS_STRING = {
+std::array<std::string, 9> INF::COLORS_STRING = {
 		"BLACK",
 		"RED",
 		"GREEN",
@@ -39,13 +39,12 @@ T& Array5<T>::at(int index) {
 	return items.at(index);
 }*/
 
-int continentSize = 0;
-int enemyDifficulty = 0;
-int CPUNum = 0;
-int turn = 0;
-int currentParticipantIndex = 0;
 
-bool debuggingMode = true;
+int INF::continentSize = 0; 
+int INF::enemyDifficulty = 0;
+int INF::CPUNum = 0;
+int INF::turn = 0;
+int INF::currentParticipantIndex = 0;
 
 //////////////////////////////////////End Variables////////////////////////
 
@@ -312,8 +311,3 @@ void INF::enterAndClear(int option) {
 	enterAnything(option);
 	clearScreen();
 }
-
-
-
-
-

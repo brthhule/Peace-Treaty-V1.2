@@ -14,7 +14,7 @@ void Participants::trainMAMain() {
     //For debugging
     provSPTR province = this->pickYourProvince(1);
 
-    this->showMap();
+    Map::showMap();
 
     //Barracks level determins how 
     int barracksLevel = province->getBuilding(BARRACKS).getLevel(); 
