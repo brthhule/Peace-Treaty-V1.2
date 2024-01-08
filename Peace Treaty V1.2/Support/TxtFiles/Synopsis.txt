@@ -1,4 +1,4 @@
-!R
+!G
 - Welcome to Fight For Emperor!
 - In a large continent, filled with various kingdoms, you are a monarch seeking to unit the land; you will defeat the other kingdoms and become emperorer.
 - Develop buildings, train troops, and use logistics and battle strategies to conquer enemy provinces.

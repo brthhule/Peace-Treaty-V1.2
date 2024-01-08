@@ -36,9 +36,7 @@ std::vector<std::string> getShowPrompt(std::string prompt) {
 	DEBUG_FUNCTION("Input.cpp", "getShowPrompt");
 
 	std::fstream newfile;
-	"C:\\Users\\Brennen\\Source\\Repos\\brthhule\\Peace-Treaty-V1.2\\Peace Treaty V1.2\\Units\\Misc\\TxtFiles\\Synopsis.txt";
-
-	std::string path = "C:\\Users\\Brennen\\Source\\Repos\\brthhule\\Peace-Treaty-V1.2\\Peace Treaty V1.2\\Units\\Misc\\TxtFiles\\Prompts.txt";
+	std::string path = "../Peace Treaty V1.2/Support/TxtFiles/Prompts.txt";
 
 	std::vector<std::string> acceptableValues = { "H" };
 	std::cout << "List of options: \n";
@@ -50,9 +48,7 @@ std::vector<std::string> getShowPrompt(std::string prompt) {
 	newfile.open(path, std::ios::in);
 
 	if (!newfile.is_open()) {
-		addColor(GREEN);
-		std::cout << "Error occurred opening file...\n";
-		addColor(RESET);
+		LOG::ERROR("Error occurred opening file...\n");
 		return {};
 	}
 
@@ -80,7 +76,7 @@ std::vector<std::string> getShowPrompt(std::string prompt) {
 	try {
 		optionsLine = optionsLine.substr(8);//S,R
 	} catch (...) {
-		std::cout << "Error occurred in Input file\n";
+		LOG::ERROR("Error occurred in Input file\n");
 	}
 
 	//While there are more than one values

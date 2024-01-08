@@ -52,7 +52,8 @@ int main()/*main code*/
 	gamePlay();
 }
 void startOrResumeGame() {
-	std::string path = "C:\\Users\\Brennen\\Source\\Repos\\brthhule\\Peace-Treaty-V1.2\\Peace Treaty V1.2\\Units\\Misc\\TxtFiles\\Synopsis.txt";
+	//std::string path = "../Peace Treaty V1.2\\Support\\TxtFiles\\Synopsis.txt";
+	std::string path = "C:/Users/Brennen/Source/Repos/brthhule/Peace-Treaty-V1.2/Peace Treaty V1.2/Support/TxtFiles/Synopsis.txt";
 
 	//srand((unsigned int)time(0));
 	INF::printFile(path);
@@ -163,7 +164,7 @@ void gamePlay() {
 		if (!participant.isAlive()) { break; }
 
 		try { participant.chooseAction(); } 
-		catch (...) { std::cout << "Error occurred in player turn";}
+		catch (...) { INF::LOG::ERROR("Error occurred in player turn"); }
 	}
 
 	INF::turn++;

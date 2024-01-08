@@ -51,7 +51,7 @@ int INF::currentParticipantIndex = 0;
 //For stand alone color integration
 void INF::addColor(COLORS color) {
 	//For debugging
-	DEBUG_FUNCTION("INF", "addColor");
+	DEBUG_FUNCTION("INF.cpp", "addColor(COLORS)");
 	std::cout << getColor(color);
 		
 }
@@ -76,7 +76,7 @@ std::string INF::getColor(COLORS color) {
 //Generates a random name by randomly selecting consonants and vowels
 std::string INF::createRandomName() {
 	//For debugging
-	DEBUG_FUNCTION("INF", "createRandomName");
+	DEBUG_FUNCTION("INF.cpp", "createRandomName(void)");
 
 	std::string name = "";
 	std::string consonants = "bcdfghjklmnpqrstvwxyz";
@@ -106,29 +106,22 @@ INF::i5array INF::mutateArray(
 	MutateDirection direction) 
 {
 	//For debugging
-	DEBUG_FUNCTION("OF", "mutateArray");
+	DEBUG_FUNCTION("INF.cpp", "mutateArray(i5array, constArrayReference, MutateDirection)");
 
-	switch (direction) {
-		case INCREASE:
-			for (int index = 0; index < 5; index++) {
-				primeArray.at(index) += secondaryArray.at(index);
-			}
-			break;
-		case DECREASE:
-		default:
-			for (int index = 0; index < 5; index++) {
-				primeArray.at(index) -= secondaryArray.at(index);
-			}
-			break;
+	int modifier = 1;
+	if (direction == DECREASE) { modifier = -1; }
+
+	for (int index = 0; index < 5; index++) {
+		primeArray.at(index) += secondaryArray.at(index) * modifier;
 	}
-			
+
 	return primeArray;
 }
 
-INF::myvector<int>::myvector(std::vector<int> vectorArg) {
+INF::myvector<int>::myvector(std::vector<int> vectorArg) { 
 	//vector(vectorArg.begin(), vectorArg.end());
 }
-void INF::myvector<int>::addVectorElements(myvector<int> vectorInstance) {
+void INF::myvector<int>::addVectorElements(myvector<int> vectorInstance) { 
 	for (int x = 0; x < (int) this->size(); x++) {
 		at(x) += vectorInstance.at(x);
 	}
@@ -156,6 +149,7 @@ INF::s5array INF::RESOURCE_NAMES = {
 };
 
 bool INF::checkIsNumber(std::string numberString) {
+	DEBUG_FUNCTION("INF.cpp", "checkIsNumber(std::string)")
 	std::string AV = "0123456789";
 	for (char letter : numberString) {
 		if (AV.find(letter) == std::string::npos) {
@@ -168,7 +162,7 @@ bool INF::checkIsNumber(std::string numberString) {
 //Clears the screen
 void INF::clearScreen() {
 	//For debugging
-	DEBUG_FUNCTION("OF", "clearScreen");
+	DEBUG_FUNCTION("INF.cpp", "clearScreen(void)");
 
 	addColor(RED);
 	std::cout << "Clearing screen. \n";
@@ -181,7 +175,7 @@ void INF::clearScreen() {
 
 void INF::clearScreenCommand() {
 	//For debugging
-	DEBUG_FUNCTION("OF", "clearScreenCommand");
+	DEBUG_FUNCTION("INF.cpp", "clearScreenCommand(void)");
 	std::cout << "\033[2J\033[1;1H";
 }
 
@@ -190,7 +184,7 @@ void INF::clearScreenCommand() {
 option = 1, says enter anything to proceed
 option = 2, says enter anything to return to previous menu*/
 void INF::enterAnything(int option) {
-	DEBUG_FUNCTION("INF.cpp", "enterAnything");
+	DEBUG_FUNCTION("INF.cpp", "enterAnything(int)");
 	std::array<std::string, 2> phrases = { "proceed", "return to the previous menu" };
 	std::string line = phrases.at(option - 1);
 
@@ -205,7 +199,7 @@ void INF::enterAnything(int option) {
 identifier(caseNum)*/
 void INF::showHelp(int caseNum) {
 	//For debugging
-	DEBUG_FUNCTION("INF", "showHelp");
+	DEBUG_FUNCTION("INF.cpp", "showHelp(int)");
 
 	std::string caseNumString = std::to_string(caseNum);
 
@@ -239,14 +233,14 @@ void INF::showHelp(int caseNum) {
 //Print a text file
 void INF::printFile(std::string path) {
 	//For debugging
-	DEBUG_FUNCTION("OF", "printFile");
+	DEBUG_FUNCTION("INF.cpp", "printFile(std::string)");
 
 	//Create file
 	std::fstream newfile;
 	newfile.open(path, std::ios::in);
 
 	if (!newfile.is_open()) {
-		std::cout << "File cannot be opened...\n";
+		LOG::ERROR("File cannot be opened\n");
 		return;
 	}
 
@@ -264,6 +258,9 @@ void INF::printFile(std::string path) {
 					break;
 				case 'W':
 					addColor(WHITE);
+					break;
+				case 'G':
+					addColor(GREEN);
 					break;
 				case 'N':
 					std::cout << std::endl;
@@ -284,6 +281,7 @@ void INF::printFile(std::string path) {
 template <typename T>
 //Takes a list of vectors, concatentate them together. List goes in order of earliest to latest index
 std::vector<T> INF::concatVectors(std::vector<std::vector<T>> vectorsList) {
+	DEBUG_FUNCTION("INF.cpp", "concatVectors(std::vector<std::vector<T>>)")
 	std::vector<T> baseList = vectorsList.at(0); 
 
 	for (int list = 1; list < vectorsList.size(); list++) {
@@ -298,7 +296,7 @@ std::vector<T> INF::concatVectors(std::vector<std::vector<T>> vectorsList) {
 
 void INF::printResources(constArrayReference resourcesArray) {
 	//For debugging
-	DEBUG_FUNCTION("INF.cpp", "printResources");
+	DEBUG_FUNCTION("INF.cpp", "printResources(constArrayReference)");
 
 	for (int x = 0; x < 5; x++) {
 		std::cout << "- " << RESOURCE_NAMES.at(x) << ": " << resourcesArray.at(x) << std::endl;
@@ -308,6 +306,20 @@ void INF::printResources(constArrayReference resourcesArray) {
 }
 
 void INF::enterAndClear(int option) {
+	DEBUG_FUNCTION("INF.cpp", "enterAndClear(int)")
 	enterAnything(option);
 	clearScreen();
 }
+
+void INF::LOG::ERROR(std::string message) {
+	std::cout << getColor(RED) << message << getColor(RESET);
+}
+
+/*void INF::LOG::FILE_METHOD(std::string file, std::string method) {
+#define DEBUGGING_MODE 
+#ifndef DEBUGGING_MODE 
+	return;
+#else
+	std::cout << getColor(MAGENTA)
+#endif
+}*/

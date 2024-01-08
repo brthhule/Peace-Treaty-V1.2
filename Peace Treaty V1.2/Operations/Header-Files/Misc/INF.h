@@ -235,6 +235,12 @@ namespace INF {
 
 	//Manipulate vectors
 	i5array mutateArray(i5array primeArray, constArrayReference secondaryArray, MutateDirection direction);
+
+	class LOG {
+	public:
+		static void ERROR(std::string message);
+		//static void FILE_METHOD(std::string file, std::string method);
+	};
 }
 
 #endif		
