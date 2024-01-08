@@ -13,33 +13,38 @@
 #include <iomanip>
 #include <time.h>
 #include <thread>
+#include <memory>
 
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Misc\Main_FilePaths.h"
-#include PROVINCES_HEADER
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
+//#include INF_HEADER  
 #include PARTICIPANTS_HEADER
-#include COMMANDERS_HEADER
-#include DATABASE_HEADER
-#include INF_HEADER
+#include PROVINCES_HEADER
 #include INPUT_HEADER
+#include COMMANDERS_HEADER
 #include PLAYER_ACTION_HEADER
+#include TROOP_HEADER
+#include ARMY_OVERVIEW_MA_HEADER
+#include INF_HEADER
+#include MAP_HEADER
+#include MOBILITY_HEADER
 
 void startOrResumeGame();
 void resumeGame();
-void startGame();
+void startNewGame();
 int generateNewContinent(int pNum);
 void gamePlay();
 void endScreen();
 
 int getContinentInformation();
 
-using namespace INF;
-
-Database db;
+using INF::addColor;
+using INF::getColor;
+using INF::COLORS;
 
 int main()/*main code*/
 {
 	//For debugging
-	INF::debugFunction("main, main");
+	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "main");
 
 	INF::CPUNum = std::thread::hardware_concurrency();
 
@@ -47,29 +52,24 @@ int main()/*main code*/
 	gamePlay();
 }
 void startOrResumeGame() {
-	std::string path = "C:\\Users\\Brennen\\Source\\Repos\\brthhule\\Peace-Treaty-V1.2\\Peace Treaty V1.2\\Units\\Misc\\TxtFiles\\Synopsis.txt";
+	//std::string path = "../Peace Treaty V1.2\\Support\\TxtFiles\\Synopsis.txt";
+	std::string path = "C:/Users/Brennen/Source/Repos/brthhule/Peace-Treaty-V1.2/Peace Treaty V1.2/Support/TxtFiles/Synopsis.txt";
 
 	//srand((unsigned int)time(0));
 	INF::printFile(path);
-	char startOrResume = Input::getOptionPrompt(INTRODUCTION).at(0);
+	char startOrResume = Input::getOptionPrompt(Input::INTRODUCTION).at(0);
 
 	switch (startOrResume) {
 		case 'R':
 			resumeGame();
 			break;
-		case 'S':
-		{
-			INF::enterAnything(1);
-			INF::clearScreen();
+		case 'S': {
+			INF::enterAndClear(1);
 			std::cout << "New game started...\n\n";
-			// std::cout << "What is your kingdom name? " << RED;
-			// std::getline(std::cin, kingdomName);
-			// std::cout << WHITE << "The kingdom of " << RED << kingdomName << WHITE << " has been created! \n\n";
-			startGame();
+			startNewGame();
 			break;
 		}
-		case 'H':
-		{
+		case 'H': {
 			INF::showHelp(3);
 			main();
 			break;
@@ -82,7 +82,7 @@ void startOrResumeGame() {
 void resumeGame() /*download data from previous game fix this*/
 {
 	//For debugging
-	INF::debugFunction("main, resumeGame");
+	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "resumeGame");
 
 	std::string gameCode;
 	std::cout << "Please enter the game code of your previous game: \033[31m";
@@ -90,17 +90,19 @@ void resumeGame() /*download data from previous game fix this*/
 	std::cout << "\033[0m";
 	/*use global variables to figure out code*/
 }
-void startGame() {
+void startNewGame() {
 	//For debugging
-	INF::debugFunction("main, startGame");
-	int pNum = getContinentInformation();
-	int players = generateNewContinent(pNum);
-	db.initializeParticipants(pNum, players);
+	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "startNewGame");
+	int humanPlayers = getContinentInformation();
+	int allPlayers = generateNewContinent(humanPlayers);
+	Participants::setHumanPlayers(humanPlayers);
+	Participants::initializeParticipants(humanPlayers, allPlayers, 0);
 	std::cout << "Created participants";
 }
+
 int getContinentInformation() {
 	//For debugging
-	debugFunction("main, getContinentInformation");
+	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "getContinentInformation");
 
 	std::string text = "What continent size do you want to play on?\n- 5 (Recommended for mobile devices)\n- 10 (Medium-sized map)\n- 15 (Full experienced, recommended for a monitor)";
 	//"What continent size do you want to play on? (5, 10, 15) "
@@ -111,28 +113,28 @@ int getContinentInformation() {
 	INF::enterAnything(1);
 	INF::clearScreen();
 
-	std::cout << "Continent size " << getColor(RED) << INF::continentSize << getColor(RESET) << " created..\n\n";
+	std::cout << "Continent size " << getColor(COLORS::RED) << INF::continentSize << INF::getColor(COLORS::RESET) << " created..\n\n";
 
 	int pNum = std::stoi(Input::getInputText("How many AI kingdoms will you fight? (1, 2, 3) ", { "number", "1", "2", "3" }));
-	std::cout << getColor(RED) << pNum << getColor(WHITE) << " opponent kingdoms generated... \n\n";
+	std::cout << INF::getColor(COLORS::RED) << pNum << getColor(COLORS::WHITE) << " opponent kingdoms generated... \n\n";
 	INF::enterAnything(1);
 	INF::clearScreen();
 
-	maxCommanders = continentSize;
+	TROOP::maxCommanders = INF::continentSize;
 
 	INF::enemyDifficulty = std::stoi(Input::getInputText("What gameplay difficulty do you want (1-3): ", { "number","1","2","3" }));
 	INF::enterAnything(1);
 	INF::clearScreen();
-	std::cout << "Gameplay difficulty " << getColor(RED) << INF::enemyDifficulty << getColor(WHITE) << " selected. \n\n";
+	std::cout << "Gameplay difficulty " << getColor(COLORS::RED) << INF::enemyDifficulty << getColor(COLORS::RESET) << " selected. \n\n";
 
 	return pNum;
 }
 int generateNewContinent(int pNum) {
 	//For debugging
-	INF::debugFunction("main, generateNewContinent");
+	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "generateNewContinent");
 
 	std::cout << "Create map...\n";
-	db.createMap();
+	Map::setMap();
 
 	std::vector<std::string> howManyPlayers;
 	for (int x = 1; x <= 3; x++) {
@@ -144,78 +146,65 @@ int generateNewContinent(int pNum) {
 
 	INF::clearScreen();
 
-	std::cout << getColor(RED) << players << getColor(WHITE) << " players initialized...\n\n";
+	std::cout << INF::getColor(COLORS::RED) << players << INF::getColor(COLORS::WHITE) << " players initialized...\n\n";
 	pNum += players;
 	std::cout << "pNum: " << pNum << std::endl;
+	return players;
 }
 
 
 void gamePlay() {
 	//For debugging
-	INF::debugFunction("main, gamePlay");
+	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "gamePlay");
 
 	bool gameEnd = false;
 
-	//Create vector to copy the list of participants from the database
-	std::vector<Participants>* participantsPtr = db.getParticipantsList();
-	std::vector <std::shared_ptr<Participants>> participantsPtr = db.getParticipantsList();
-
 	//Iterate through partiicpants by reference
-	for (int x = 0; x < (signed)participantsPtr->size(); x++)
-	{
-		Participants newParticipant = participantsPtr->at(x);
-		//If the current participant is alive
-		if (newParticipant.isAlive())
-		{
-			try {
-				newParticipant->initialDecision();
-			} catch (...) {
-				std::cout << "Something went wrong, error occurred. Restarting player turn.";
-				x--;
-			}
+	for (Participants participant : Participants::getParticipants()) {  
+		if (!participant.isAlive()) { break; }
 
-		}
+		try { participant.chooseAction(); } 
+		catch (...) { INF::LOG::ERROR("Error occurred in player turn"); }
 	}
+
 	INF::turn++;
-	db.updateTurnResources();
+	Map::updateTurnResources(); 
 
 	//Check game end
 	//If there are more than one players, keep playing
 	int participantsAlive = 0;
-	for (Participants newParticipant : *db.getParticipantsList()) {
-		if (newParticipant.isAlive() == true) {
-			participantsAlive++;
-		}
+
+	for (Participants participant : Participants::getParticipants()) { 
+		if (participant.isAlive()) { participantsAlive++; } 
 	}
 
 	if (participantsAlive > 1) {
-		gamePlay();
+		try { gamePlay(); } 
+		catch (...) { println("Didn't work, try agian");}
 	}
 
 	endScreen();
 }
 
+
+
 //Call this function when all winning condition has been met
 void endScreen() {
 	//For debugging
-	INF::debugFunction("main, endScreen");
+	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "endScreen");
+	std::string kingdomName = " ";
 
-	std::vector<Participants>* participantsListCopy = db.getParticipantsList();
-	Participants* currentParticipant = new Participants;
-
-	for (int x = 0; x <= (signed)participantsListCopy->size(); x++) {
-		if (currentParticipant->isAlive()) {
-			currentParticipant = &participantsListCopy->at(x);
+	//Only one is surviving, iterates through to find that participant
+	for (Participants participant : Participants::getParticipants()) {  
+		if (participant.isAlive()) {    
+			kingdomName = participant.getKingdomName(); 
+			break;
 		}
 	}
 
-	std::cout << "Congratulations to player " << currentParticipant->getKingdomName() << " for winning. You have successfully conquered your enemies and now reign as the Emperor! \n";
+	std::cout << "Congratulations to player " << kingdomName << " for winning. You have successfully conquered your enemies and now reign as the Emperor! \n"; 
 
 	char playAgain = Input::getInputText("Play again? (Y/N) ", { "letter", "Y", "N" }).at(0);
-
-
-	if (playAgain == 'Y') {
-		main();
-	}
+	if (playAgain == 'Y') { main();}
 }
 

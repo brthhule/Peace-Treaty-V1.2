@@ -1,0 +1,60 @@
+#include <iostream>
+#include <typeinfo>
+
+using namespace std;
+
+int main() {
+  int i = 10;
+  typeid(i) == typeid(int) // true
+  return 0;
+}
+
+/*The color definition is a series of numbers, separated by semicolons.
+		In order to make the text color red (number 31), you can write 
+		"\033[31m" which will make any following output red. If you want yellow
+		text (33) on blue background (44), you write "\033[31;44m". To reset 
+		everything back to the default colors, you write "\033[0m".
+
+		foreground background
+		black        30         40
+		red          31         41
+		green        32         42
+		yellow       33         43
+		blue         34         44
+		magenta      35         45
+		cyan         36         46
+		white        37         47*/
+
+
+
+Further, the keyword decltype can be used to determine the type of expression at compile-time. For example:
+
+int some_int;
+decltype(some_int) other_integer_variable = 5;
+
+
+Lambda functions and expressions
+Main article: Anonymous function § C++ (since C++11)
+C++11 provides the ability to create anonymous functions, called lambda functions.[14] These are defined as follows:
+
+[](int x, int y) -> int { return x + y; }
+The return type (-> int in this example) can be omitted as long as all return expressions return the same type. A lambda can optionally be a closure.
+
+lvalue is an object reference and an rvalue is a value
+
+An lvalue is an expression that yields an object reference, such as a variable name, an array subscript reference, a dereferenced pointer, or a function call that returns a reference. An lvalue always has a defined region of storage, so you can take its address.
+
+An rvalue is an expression that is not an lvalue. Examples of rvalues include literals, the results of most operators, and function calls that return nonreferences. An rvalue does not necessarily have any storage associated with it.
+
+#define rvalue 42
+int lvalue;
+lvalue = rvalue;
+
+when you need to declare two variables of different types, it can't be done by one declaration
+
+Hackety hack hack:
+
+for (struct {int i; char c;} loop = {0, 'a'}; loop.i < 26; ++loop.i, ++loop.c)
+{
+    std::cout << loop.c << '\n';
+}
