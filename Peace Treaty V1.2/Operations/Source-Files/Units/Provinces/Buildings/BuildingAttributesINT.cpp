@@ -129,7 +129,7 @@ void Provinces::addTroopsTrainedThisTurn(int amount) {
 
 	Barracks* barracks = static_cast<Barracks*>(&buildings.get(BARRACKS)); 
 
-	barracks->addTroopsTrainedThisTurn(amount);
+	barracks->Barracks::addTroopsTrainedThisTurn(amount); 
 	delete barracks;
 }
 

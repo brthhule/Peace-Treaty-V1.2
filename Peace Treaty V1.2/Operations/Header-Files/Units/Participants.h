@@ -244,10 +244,10 @@ public:
 	COMM::commSPTR pickCommanderAttack(COMM::commSPTRList commandersCanAttack) override;
 
 	void playerCommitAttack(PROV::provSPTR defendingProvince, COMM::commSPTR attackingCommander) override;
-	void determineLostCP(int attackerCP, int defendingCP, int& attackerLostCP, int& defenderLostCP) override;
+	INF::ipair determineLostCP(int attackerCP, int defendingCP) override;
 
 	void calculateTroopsLost(COMM::commSPTR commander, int lostCombatPower, INF::constArrayReference troopsLost, int troopIndex) override;
-	void battleCalculationsTwo(int& lostCombatPower, int troopsLost[5], int troopIndex, COMM::commSPTR attackingCommander) override;
+	void battleCalculationsTwo(INF::constINT lostCombatPower, INF::i5array troopsLost, int troopIndex, COMM::commSPTR attackingCommander) override;
 	void casualtyReport(INF::i5array troopsLost, INF::i5array injuredTroops) override;
 
 	//Need this for some reason or else the program breaks

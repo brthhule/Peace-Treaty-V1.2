@@ -247,3 +247,7 @@ std::pair <unitSPTR, int> Participants::playerScoutStepTwo(scoutTypes canScout, 
 
 	return std::make_pair(unit, accuracy);
 }
+
+void Participants::scoutLogCalculationsProvince(int accuracy) { 
+	//Add implementation
+}

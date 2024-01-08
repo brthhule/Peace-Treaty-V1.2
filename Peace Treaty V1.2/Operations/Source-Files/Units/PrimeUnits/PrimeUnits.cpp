@@ -133,12 +133,12 @@ unitSPTRList PrimeUnits::levelSort(unitSPTRList list) {
 	unitSPTR lastElement = list.at(listSize - 1);
 	int lastLevel = lastElement->getLevel();
 
-	unitSPTRList greater = {}; 
+	unitSPTRList greater = {};  
 	unitSPTRList lesser = {}; 
 	unitSPTRList same = { lastElement }; 
 
 	for (int index = 0; index < listSize - 1; index++) {
-		unitSPTR  currentElement = list.at(index);
+		unitSPTR currentElement = list.at(index);
 		int currentLevel = currentElement->getLevel();
 		if (currentLevel < lastLevel) {
 			lesser.push_back(currentElement);
@@ -153,9 +153,9 @@ unitSPTRList PrimeUnits::levelSort(unitSPTRList list) {
 
 	greater = levelSort(greater); 
 	lesser = levelSort(lesser);
-
-	std::vector<unitSPTRList> returnList = { lesser, same, greater }; 
-	return concatVectors(returnList);
+	std::vector<unitSPTRList> returnList = { lesser, same, greater };
+	return concatUnitVectors(returnList); 
+	
 }
 
 
@@ -166,4 +166,16 @@ void PrimeUnits::printNameLevel() const {
 
 const std::string PrimeUnits::getNameLevel() const {
 	return "Name " + name + ", Level: " + std::to_string(level); 
+}
+
+UNIT::unitSPTRList UNIT::concatUnitVectors(std::vector<unitSPTRList> list) {
+	unitSPTRList baseList = list.at(0); 
+
+	for (int index = 1; index < 3; index++) { 
+		unitSPTRList currentList = list.at(index);  
+		for (unitSPTR element : currentList) {
+			baseList.push_back(element);
+		}
+	}
+	return baseList;
 }

@@ -285,7 +285,7 @@ void INF::printFile(std::string path) {
 template <typename T>
 //Takes a list of vectors, concatentate them together. List goes in order of earliest to latest index
 std::vector<T> INF::concatVectors(std::vector<std::vector<T>> vectorsList) {
-	std::vector<T> baseList = vectorsList.at(0);
+	std::vector<T> baseList = vectorsList.at(0); 
 
 	for (int list = 1; list < vectorsList.size(); list++) {
 		std::vector<T> currentList = vectorsList.at(list);

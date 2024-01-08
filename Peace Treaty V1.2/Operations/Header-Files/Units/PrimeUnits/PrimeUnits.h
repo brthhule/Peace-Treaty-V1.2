@@ -82,6 +82,7 @@ public:
 	*/
 	void mutateAllResources(INF::constArrayReference resourcesArray,
 		INF::MutateDirection direction);
+	
 
 	//----Printers-------------------------------------------------------------
 	///Print all the resources in this unit
@@ -127,8 +128,9 @@ protected:
 
 namespace UNIT {
 
-using unitSPTR = std::shared_ptr<PrimeUnits>;
-using unitSPTRList = std::vector<unitSPTR>;
+	using unitSPTR = std::shared_ptr<PrimeUnits>;
+	using unitSPTRList = std::vector<unitSPTR>;
 
-}
+	unitSPTRList concatUnitVectors(std::vector<unitSPTRList>);
+};
 #endif

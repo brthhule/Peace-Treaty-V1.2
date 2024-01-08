@@ -119,12 +119,14 @@ void Participants::playerCommitAttack(provSPTR defendingProvince,  commSPTR atta
 	}
 
 	commSPTR defendingCommander = defendingCommanders[0]; 
-	int attackerCP = attackingCommander->getCombatPower(); 
-	int defendingCP = defendingCommander->getCombatPower();
-	int attackerLostCP = 0;
-	int defenderLostCP = 0;
 
-	determineLostCP(attackerCP, defendingCP, attackerLostCP, defenderLostCP); 
+	int attackerCP = attackingCommander->getCombatPower();  
+	int defendingCP = defendingCommander->getCombatPower(); 
+	
+
+	ipair lostCPPair = determineLostCP(attackerCP, defendingCP); 
+	int attackerLostCP = lostCPPair.first;
+	int defenderLostCP = lostCPPair.second;
 
 	i5array troopsLost = { 0, 0, 0, 0, 0 };
 	i5array injuredTroops = { 0, 0, 0, 0, 0 };
@@ -230,9 +232,9 @@ void Participants::calculateTroopsLost(commSPTR commander, int lostCombatPower, 
 */
 }
 
-/*
-void Participants::battleCalculationsTwo(constINT lostCombatPower, i5array, int troopIndex, commSPTR attackingCommander)
-{
+
+void Participants::battleCalculationsTwo(constINT lostCombatPower, i5array troopsLost, int troopIndex, commSPTR attackingCommander) {
+	/*
 	DEBUG_FUNCTION("AttackMA.cpp", "battleCalculationsTwo(constINT, i5array, int, commSPTR)");
 
 	partSPTR playerParticipant = Participants::participantsList.at(currentParticipantIndex);
@@ -254,29 +256,32 @@ void Participants::battleCalculationsTwo(constINT lostCombatPower, i5array, int 
 				b = TROOPS_CP[z];
 		}
 	}
+	*/
 }
-*/
-void Participants::determineLostCP(int attackerCP, int defendingCP, int& attackerLostCP, int& defenderLostCP) { 
+
+ipair Participants::determineLostCP(int attackerCP, int defendingCP) { 
 	//For debugging
 	DEBUG_FUNCTION("AttackMA", "determineLostCP");
 
 	int higherCP, lowerCP = 0;
+	higherCP = defendingCP;
+	lowerCP = attackerCP;
+
 
 	if (attackerCP > defendingCP) {
 		higherCP = attackerCP;
 		lowerCP = defendingCP;
-	} else {
-		higherCP = defendingCP;
-		lowerCP = attackerCP;
 	}
 
 	int difference = attackerCP / defendingCP;
-	attackerLostCP = (defendingCP * (1 / difference)) / 2;
-	defenderLostCP = (attackerCP * (1 / difference)) / 2;
+	int attackerLostCP = (defendingCP * (1 / difference)) / 2;
+	int defenderLostCP = (attackerCP * (1 / difference)) / 2;
 
 	//Add functionality so that there have to be some amount of CP lost; if no CP is lost, then will just repeat forever
 	if (attackerLostCP == 0) { attackerLostCP = 1; }
 	if (defendingCP == 0) { defendingCP = 1; }
+
+	return std::make_pair(attackerLostCP, defenderLostCP);
 }
 
 void Participants::casualtyReport(i5array troopsLost, i5array injuredTroops)

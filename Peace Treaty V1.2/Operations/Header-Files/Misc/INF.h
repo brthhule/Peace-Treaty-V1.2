@@ -14,7 +14,6 @@
 #include <vector>
 #include <fstream>
 
-#define Array5(x) std::array<x, 5>
 
 namespace INF {
 	//----Symbolic Constants-----------
@@ -158,7 +157,7 @@ namespace INF {
 	///////////////////////////////////Templates///////////////////////////////
 	//---Vector/Array Implementations--
 	template <typename T>
-	std::vector<T> concatVectors(std::vector<std::vector<T>> vectorsList);
+	std::vector<T> concatVectors(std::vector<std::vector<T>> vectorsList); 
 	
 	/*
 	template <class T>
@@ -181,8 +180,6 @@ namespace INF {
 		CPUNum,
 		turn,
 		currentParticipantIndex;
-
-	extern bool debuggingMode;
 
 	/*"BLACK",
 		"RED",
