@@ -16,7 +16,8 @@
 #define TYPE_
 
 #ifndef DEBUGGING_MODE
-#define DEBUG_FUNCTION(x, y) std::cout << "File: " << x << ", Method: " << y << std::endl;
+
+#define DEBUG_FUNCTION(x, y) std::cout << "\033[35mFile: " << x << ", Method: " << y << " \033[0m\n";
 #else
 #define DEBUG_FUNCTION(x)
 #endif

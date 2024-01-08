@@ -11,7 +11,7 @@ using namespace INF;
 	"Troops lost:    ",
 	"Other stats:    "
 */
-s5array statsOne = {
+s5array COMM::statsOne = {
 	"Resources:      ",
 	"Troops present: ",
 	"Troops injured: ",
