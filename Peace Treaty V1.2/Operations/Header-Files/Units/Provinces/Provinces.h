@@ -83,7 +83,7 @@ public:
 	bool isCapital() const;
 	bool hasCommander(std::string name);
 	/*Subtracts the necessary resources from capital province. If resources left over are all positive (there were enough resources), return true. If any resources are negative, return false*/
-	bool subtractCheckResources(INF::constArrayReference resourcesArray);
+	bool subtractCheckResources(INF::constArrayRef resourcesArray);
 
 	///Initializes this province as a capital
 	void makeCapital(int participantIndexArg);

@@ -24,7 +24,7 @@ public:
 	//----Getters--------------------------------------------------------------
 	INF::constINT getLevel() const;
 	INF::constINT getWorkersNum() const;
-	INF::constArrayReference getUpgradeCosts();
+	INF::constArrayRef getUpgradeCosts();
 
 	//----Mutators-------------------------------------------------------------
 	void increaseLevel(int amount);

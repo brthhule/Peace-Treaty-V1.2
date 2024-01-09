@@ -102,11 +102,11 @@ std::string INF::createRandomName() {
 //Can change this-> look at concatVectors as a template-- use a pair of arrays instead of passing two arrays
 INF::i5array INF::mutateArray(
 	i5array primeArray, 
-	constArrayReference secondaryArray,
+	constArrayRef secondaryArray,
 	MutateDirection direction) 
 {
 	//For debugging
-	DEBUG_FUNCTION("INF.cpp", "mutateArray(i5array, constArrayReference, MutateDirection)");
+	DEBUG_FUNCTION("INF.cpp", "mutateArray(i5array, constArrayRef, MutateDirection)");
 
 	int modifier = 1;
 	if (direction == DECREASE) { modifier = -1; }
@@ -294,9 +294,9 @@ std::vector<T> INF::concatVectors(std::vector<std::vector<T>> vectorsList) {
 	return baseList;
 }
 
-void INF::printResources(constArrayReference resourcesArray) {
+void INF::printResources(constArrayRef resourcesArray) {
 	//For debugging
-	DEBUG_FUNCTION("INF.cpp", "printResources(constArrayReference)");
+	DEBUG_FUNCTION("INF.cpp", "printResources(constArrayRef)");
 
 	for (int x = 0; x < 5; x++) {
 		std::cout << "- " << RESOURCE_NAMES.at(x) << ": " << resourcesArray.at(x) << std::endl;

@@ -200,7 +200,7 @@ const Commanders& Provinces::getCommander(int index) const {
 	return commandersVector.at(index);
 }
 
-bool Provinces::subtractCheckResources(constArrayReference resourcesArray) {
+bool Provinces::subtractCheckResources(constArrayRef resourcesArray) {
 	//For debugging
 	DEBUG_FUNCTION("Provinces.cpp", "subtractCheckResources");
 

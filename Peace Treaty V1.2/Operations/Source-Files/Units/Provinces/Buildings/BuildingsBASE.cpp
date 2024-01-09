@@ -32,7 +32,7 @@ void BuildingsBASE::increaseLevel(int amount) {
 
 constINT BuildingsBASE::getLevel() const { return level; }
 
-constArrayReference BuildingsBASE::getUpgradeCosts() {
+constArrayRef BuildingsBASE::getUpgradeCosts() {
 	return upgradeCosts;
 }
 

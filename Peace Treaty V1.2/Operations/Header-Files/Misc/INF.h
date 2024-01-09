@@ -97,7 +97,7 @@ namespace INF {
 	using ivector = std::vector<int>;
 	using myvectorI = myvector<int>;
 	using myarrayI5A = myarray<i5array>;
-	using constArrayReference = const std::array<int, 5>&;
+	using constArrayRef = const std::array<int, 5>&;
 
 	//----Other Types------------------
 	using String = std::string;
@@ -205,7 +205,7 @@ namespace INF {
 	std::string createRandomName();
 
 	///Takes an array of resources, formats and prints them out
-	void printResources(constArrayReference resourcesArray);
+	void printResources(constArrayRef resourcesArray);
 
 	///Checks if a string is an inteer, only works for positive integers
 	bool checkIsNumber(std::string number);
@@ -234,7 +234,7 @@ namespace INF {
 	
 
 	//Manipulate vectors
-	i5array mutateArray(i5array primeArray, constArrayReference secondaryArray, MutateDirection direction);
+	i5array mutateArray(i5array primeArray, constArrayRef secondaryArray, MutateDirection direction);
 
 	class LOG {
 	public:

@@ -15,11 +15,12 @@
 #define ARRAY_
 #define TYPE_
 
+#define DEBUGGING_MODE
 #ifndef DEBUGGING_MODE
 
 #define DEBUG_FUNCTION(x, y) std::cout << "\033[35mFile: " << x << ", Method: " << y << " \033[0m\n";
 #else
-#define DEBUG_FUNCTION(x)
+#define DEBUG_FUNCTION(x, y)
 #endif
 //MainActions Folder
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths\MainActions\MainActions_Paths.h"

@@ -39,10 +39,11 @@ std::vector<std::string> getShowPrompt(std::string prompt) {
 	std::string path = "../Peace Treaty V1.2/Support/TxtFiles/Prompts.txt";
 
 	std::vector<std::string> acceptableValues = { "H" };
+	addColor(GREEN);
 	std::cout << "List of options: \n";
-	std::string line;
-	std::string optionsLine;
-	bool startReading = false;
+	
+	
+	
 
 	// open a file to perform read operation using file object
 	newfile.open(path, std::ios::in);
@@ -51,18 +52,23 @@ std::vector<std::string> getShowPrompt(std::string prompt) {
 		LOG::ERROR("Error occurred opening file...\n");
 		return {};
 	}
+	
+	bool startReading = false;
+	std::string line = "";
+	std::string optionsLine = "";
 
 	while (getline(newfile, line)) {
-		if (line.substr(0, 7) == "Options") {
+		if (line.substr(0, 7) == "Options" && startReading == true) {
 			startReading = false;
 			optionsLine = line;
+			break;
 		}
 
 		if (startReading == true) {
 			std::cout << line << "\n";
 		}
 
-		if (line.substr(0, line.find(" ")) == prompt) {
+		if (line == prompt) {
 			startReading = true;
 		}
 	}
@@ -90,6 +96,8 @@ std::vector<std::string> getShowPrompt(std::string prompt) {
 	acceptableValues.push_back(optionsLine);
 	acceptableValues.push_back("M");//go back to previous menu
 	return acceptableValues;
+
+	addColor(RESET);
 }
 
 std::string getOptionPromptQuery(std::vector<std::string>AV) {
@@ -97,7 +105,7 @@ std::string getOptionPromptQuery(std::vector<std::string>AV) {
 	DEBUG_FUNCTION("Input.cpp", "getShowPromptQuery");
 
 	std::string input;
-	std::cout << "Enter an option: " << getColor(BLUE);
+	std::cout << getColor(GREEN) << "Enter an option: " << getColor(BLUE);
 	getline(std::cin, input);
 	addColor(RESET);
 

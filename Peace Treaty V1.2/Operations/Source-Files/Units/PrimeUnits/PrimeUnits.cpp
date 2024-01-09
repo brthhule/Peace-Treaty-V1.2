@@ -69,7 +69,7 @@ void PrimeUnits::mutateResource(ResourceType resource, constINT amount,
 	resourcesPresent[resource] += (amount * modifier); 
 }
 
-void PrimeUnits::mutateAllResources(constArrayReference resourcesArray,
+void PrimeUnits::mutateAllResources(constArrayRef resourcesArray,
 	INF::MutateDirection direction) {
 	//For debugging
 	DEBUG_FUNCTION("PrimeUnits.cpp", "mutateAllResources");
@@ -85,7 +85,7 @@ constINT PrimeUnits::getLevel() const {
 	return level;
 }
 
-constArrayReference PrimeUnits::getAllResources() const {
+constArrayRef PrimeUnits::getAllResources() const {
 	//For debugging
 	DEBUG_FUNCTION("PrimeUnits.cpp", "getAllResources");
 	return resourcesPresent;

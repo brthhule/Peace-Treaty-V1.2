@@ -64,7 +64,7 @@ void Participants::upgradeCommander() {
 
 	if (commander == nullptr) { return; }
 
-	constArrayReference costsArray = commander.get()->getUpgradeCosts(); 
+	constArrayRef costsArray = commander.get()->getUpgradeCosts(); 
 
 	std::cout << "The following are the Commander upgrade costs: \n";
 	INF::printResources(costsArray);
@@ -147,8 +147,8 @@ void Participants::trainCommanderPrompt() {
 	INF::enterAnything(1);
 }
 
-void Participants::proceedWithTraining(constArrayReference trainCosts) { 
-	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "proceedWithTraining(constArrayReference)");
+void Participants::proceedWithTraining(constArrayRef trainCosts) { 
+	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "proceedWithTraining(constArrayRef)");
 
 	bool trainingSuccess = getCapitalProvince()->subtractCheckResources(trainCosts);
 

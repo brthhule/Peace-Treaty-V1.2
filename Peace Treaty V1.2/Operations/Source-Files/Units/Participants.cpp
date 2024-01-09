@@ -199,7 +199,7 @@ std::string Participants::getNewName() {
 //     if ()
 // }
 
-constArrayReference Participants::getTrainCosts() { 
+constArrayRef Participants::getTrainCosts() { 
 	//For debugging
 	DEBUG_FUNCTION("Participants.cpp", "getTrainCosts");
 

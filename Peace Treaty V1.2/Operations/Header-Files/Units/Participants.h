@@ -77,7 +77,7 @@ public:
 
 	//----Getters----------------------------------------------------------
 	///Get the costs needed to train a new Commander?
-	INF::constArrayReference getTrainCosts();
+	INF::constArrayRef getTrainCosts();
 
 	INF::i5array calculateEach(int option);
 	///Returns all units in a participant, uses threading
@@ -183,7 +183,7 @@ public:
 	void armyOverviewSelectAction() override;
 	void armyOverviewSelectActionShowHelp() override;
 	void trainCommanderPrompt() override;
-	void proceedWithTraining(INF::constArrayReference trainCosts) override;
+	void proceedWithTraining(INF::constArrayRef trainCosts) override;
 	void upgradeCommander() override;
 	COMM::commSPTR pickCommanderToUpgrade() override;
 	void viewCommanderStats() override;
@@ -245,9 +245,9 @@ public:
 	void playerCommitAttack(PROV::provSPTR defendingProvince, COMM::commSPTR attackingCommander) override;
 	INF::ipair determineLostCP(int attackerCP, int defendingCP) override;
 
-	void calculateTroopsLost(COMM::commSPTR commander, int lostCombatPower, INF::constArrayReference troopsLost, int troopIndex) override;
+	void calculateTroopsLost(COMM::commSPTR commander, int lostCombatPower, INF::constArrayRef troopsLost, int troopIndex) override;
 	void battleCalculationsTwo(INF::constINT lostCombatPower, INF::i5array troopsLost, int troopIndex, COMM::commSPTR attackingCommander) override;
-	void casualtyReport(INF::i5array troopsLost, INF::i5array injuredTroops) override;
+	void casualtyReport(INF::constArrayRef troopsLost, INF::constArrayRef injuredTroops) override;
 
 	//Need this for some reason or else the program breaks
 	void plaerActionShowHelp();

@@ -112,7 +112,7 @@ void Participants::playerCommitAttack(provSPTR defendingProvince,  commSPTR atta
 
 	std::vector<commSPTR> defendingCommanders = defendingProvince->getAllCommanders(); 
 	
-	constArrayReference preAttackResources = attackingCommander->getAllResources();
+	constArrayRef preAttackResources = attackingCommander->getAllResources();
 
 	for (commSPTR defendingCommander : defendingCommanders) {
 		//Add implementation
@@ -187,8 +187,8 @@ void Participants::playerCommitAttack(provSPTR defendingProvince,  commSPTR atta
 
 
 /*Basically go through each unit type and subtract 16CP worth of troops and keep going (done so that lost troops are distributed evenly among the various ranks, but there is still use to training lower rank troops as meat shields (if all lower troops are used up, then losses start piling up on higher rank troops; it's key to keep a healthy proportion of troops in your army))*/
-void Participants::calculateTroopsLost(commSPTR commander, int lostCombatPower, constArrayReference troopsLost, int troopIndex) {
-	/*DEBUG_FUNCTION("AttackMA.cpp", "calculateTroopsLost(commSPTR, int, constArrayReference, int)");
+void Participants::calculateTroopsLost(commSPTR commander, int lostCombatPower, constArrayRef troopsLost, int troopIndex) {
+	/*DEBUG_FUNCTION("AttackMA.cpp", "calculateTroopsLost(commSPTR, int, constArrayRef, int)");
 
 	//Have to implement Troop functionality before doing this
 	//int troopPresent = commander->getTroop(REGULAR, troopIndex, SINGLE)[0];
@@ -285,19 +285,19 @@ ipair Participants::determineLostCP(int attackerCP, int defendingCP) {
 	return std::make_pair(attackerLostCP, defenderLostCP);
 }
 
-void Participants::casualtyReport(i5array troopsLost, i5array injuredTroops)
-{
+void Participants::casualtyReport(constArrayRef troopsLost, constArrayRef injuredTroops) {
 	//For debugging
 	DEBUG_FUNCTION("AttackMA", "casualtyReport");
 
 	std::cout << "\nTroops casualties: \n";
-	for (int x = 0; x < 5; x++) /*print out deaths*/
-	{
+	/*print out deaths*/
+	for (int x = 0; x < 5; x++) {
 		std::cout << TROOP::TROOP_NAMES[x] << " lost: " << troopsLost[x] << std::endl;
 	}
 	std::cout << std::endl;
-	for (int x = 0; x < 5; x++) /*print out deaths*/
-	{
+
+	/*print out deaths*/
+	for (int x = 0; x < 5; x++) {
 		std::cout << TROOP::TROOP_NAMES[x] << " injured: " << injuredTroops[x] << std::endl;
 	}
 	std::cout << std::endl;

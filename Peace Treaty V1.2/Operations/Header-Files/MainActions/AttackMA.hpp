@@ -26,9 +26,9 @@ public:
 
 	virtual void playerCommitAttack(PROV::provSPTR defendingProvince, COMM::commSPTR attackingCommander) = 0;
 
-	virtual void calculateTroopsLost(COMM::commSPTR commander, int lostCombatPower, INF::constArrayReference troopsLost, int troopIndex) = 0;
+	virtual void calculateTroopsLost(COMM::commSPTR commander, int lostCombatPower, INF::constArrayRef troopsLost, int troopIndex) = 0;
 	virtual void battleCalculationsTwo(INF::constINT lostCombatPower, INF::i5array troopsLost, int troopIndex, COMM::commSPTR attackingCommander) = 0;
-	virtual void casualtyReport(INF::i5array troopsLost, INF::i5array injuredTroops) = 0;
+	virtual void casualtyReport(INF::constArrayRef troopsLost, INF::constArrayRef injuredTroops) = 0; 
 
 	virtual COMM::commSPTRList getCommandersCanAttack(PROV::provSPTR defendingProvince) = 0;
 };

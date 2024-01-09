@@ -87,7 +87,7 @@ void Provinces::upgradeBuilding(int buildingNumber) {
 
 	//Multiplies level by base line rate
 	std::shared_ptr<BuildingsBASE> building = std::make_shared<BuildingsBASE>(buildings.get(buildingNumber)); 
-	constArrayReference requiredResources = building->getUpgradeCosts();
+	constArrayRef requiredResources = building->getUpgradeCosts();
 
 	printBuildingUpgradeCosts(requiredResources, buildingNumber);
 	std::string message = "Proceed with upgrade? (Y/N): ";

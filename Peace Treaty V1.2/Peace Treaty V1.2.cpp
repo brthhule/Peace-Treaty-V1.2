@@ -57,6 +57,7 @@ void startOrResumeGame() {
 
 	//srand((unsigned int)time(0));
 	INF::printFile(path);
+	std::cout << "\n";
 	char startOrResume = Input::getOptionPrompt(Input::INTRODUCTION).at(0);
 
 	switch (startOrResume) {
