@@ -268,14 +268,15 @@ ipair Participants::determineLostCP(int attackerCP, int defendingCP) {
 	lowerCP = attackerCP;
 
 
-	if (attackerCP > defendingCP) {
-		higherCP = attackerCP;
-		lowerCP = defendingCP;
-	}
+	if (attackerCP > defendingCP) { std::swap(higherCP, lowerCP); }
 
 	int difference = attackerCP / defendingCP;
-	int attackerLostCP = (defendingCP * (1 / difference)) / 2;
-	int defenderLostCP = (attackerCP * (1 / difference)) / 2;
+	int differenceInverse = 1 / difference;
+
+	auto calcLostCP = [](int whichCP, int diffInv) { return (whichCP * diffInv) / 2; };
+
+	int attackerLostCP = calcLostCP(defendingCP, differenceInverse);   
+	int defenderLostCP = calcLostCP(attackerCP, differenceInverse);  
 
 	//Add functionality so that there have to be some amount of CP lost; if no CP is lost, then will just repeat forever
 	if (attackerLostCP == 0) { attackerLostCP = 1; }
