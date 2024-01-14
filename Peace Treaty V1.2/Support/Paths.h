@@ -15,9 +15,9 @@
 #define ARRAY_
 #define TYPE_
 
-#define DEBUGGING_MODE
-#ifndef DEBUGGING_MODE
+//#define DEBUGGING_MODE
 
+#ifndef DEBUGGING_MODE
 #define DEBUG_FUNCTION(x, y) std::cout << "\033[35mFile: " << x << ", Method: " << y << " \033[0m\n";
 #else
 #define DEBUG_FUNCTION(x, y)

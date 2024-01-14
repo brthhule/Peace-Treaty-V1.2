@@ -107,6 +107,7 @@ int getContinentInformation() {
 
 	std::string text = "What continent size do you want to play on?\n- 5 (Recommended for mobile devices)\n- 10 (Medium-sized map)\n- 15 (Full experienced, recommended for a monitor)";
 	//"What continent size do you want to play on? (5, 10, 15) "
+
 	std::string input = Input::getInputText(text, { "5", "10", "15" });
 	INF::continentSize = std::stoi(input);
 	//int *thing = db.getContinentSizePointer();

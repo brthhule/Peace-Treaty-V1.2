@@ -97,24 +97,19 @@ bool Participants::isAlive() const {
 	return false;
 }
 
-void Participants::createAsPlayer(bool status)
-{
+void Participants::createAsPlayer(bool status) {
 	//For debugging
 	DEBUG_FUNCTION("Participants.cpp", "createAsPlayer");
 
-	std::cout << "This is a human player...\n";
 	//If player
-	if (status == true)
-	{
+	if (status == true) {
 		std::string name;
-		std::cout << "Enter a name for this participant: " << RED;
+		std::cout << "Enter a kingdom name for a player: " << RED;
 		getline(std::cin, name);
 		this->setKingdomName(name);
 		std::cout << WHITE << "Participant " << RED << kingdomName << WHITE << " created... \n\n";
 		return;
 	}
-	std::cout << "Player created \n";
-	std::cout << "AI created \n";
 }
 
 void Participants::viewStats() {
@@ -626,6 +621,10 @@ void Participants::createCapital() {
 	province->setName(getNewName());
 	addProvince(province);
 	setCapital(province);
+
+	//Delete the old key-value pair (value should not be moved)
+	Map::mapMap.erase(std::to_string(province->getMapIndex()));
+	mapMap[province->getName()] = std::make_shared<Provinces>(province);
 }
 
 

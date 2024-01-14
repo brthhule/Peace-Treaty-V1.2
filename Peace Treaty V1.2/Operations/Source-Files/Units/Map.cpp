@@ -25,18 +25,22 @@ void Map::setMap() {
 	int mapIndex = 0;
 	for (int x = 0; x < INF::continentSize; x++) { 
 		std::vector<Provinces> tempVector = {}; 
-		for (int y = 0; x < INF::continentSize; y++, mapIndex++) {  
+		for (int y = 0; y < INF::continentSize; y++, mapIndex++) {  
 			Provinces newProvince(mapIndex, -1);
-			mapIndex++;
 			tempVector.push_back(newProvince);
+			std::cout << "Province " << mapIndex << " Created...\n";
 		}
 		mapVectors.push_back(tempVector);
 	}
 
+
+
 	for (std::vector<Provinces> provinceVector : mapVectors) { 
 		for (int x = 0; x < (int) provinceVector.size(); x++) {
 			Provinces* province = &provinceVector.at(x);
-			mapMap[province->getName()] = std::make_shared<Provinces>(*province);
+			//Tenmp intialize mapMap with mapIndex as name instead of actual name. When provinces gain an owner, delete this map entry and enter new entry with new name but same province.
+			std::pair<std::string, provSPTR> keyValuePair(std::to_string(province->getMapIndex()), std::make_shared<Provinces>(province));
+			mapMap.insert(keyValuePair); 
 			delete province; 
 		}
 	}

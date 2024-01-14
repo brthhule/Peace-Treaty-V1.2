@@ -53,7 +53,6 @@ Provinces::Provinces(int mapIndex, int participantIndex) : PrimeUnits(participan
 	this->mapIndex = mapIndex;
 	//Initialize building levels
 	resourcesPresent = INF::INITIAL_VALUES;
-
 	isACapital = false;
 	newAccuracy = -1;
 	resourcesPresent = INF::mutateArray(resourcesPresent, INF::INITIAL_VALUES, INCREASE);
