@@ -51,17 +51,8 @@ public:
 	BuildingsBASE& get(BUILD::BuildingsEnum name);
 	BuildingsBASE& get(int num);
 private:
-	Farm farm;
-	Mill mill;
-	Quarry quarry;
-	Mine mine;
-	Church church;
-	Barracks barracks;
-	Infirmary infirmary;
-	Library library;
-	Residences residences;
-	Wall wall;
-	std::vector<std::reference_wrapper<BuildingsBASE>> buildingsVector;
+
+	std::array<std::unique_ptr<BuildingsBASE>, 10> buildingsArray; 
 };
 
 
