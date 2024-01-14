@@ -10,11 +10,13 @@ using namespace BUILD;
 const int Provinces::getCapacity(BUILD::BuildingsEnum name) { 
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "getCapacity");
-	ResourceBuildingsBASE* resourceBuilding = static_cast<ResourceBuildingsBASE*>(&buildings.get(name));
+	ResourceBuildingsBASE* resourceBuilding = static_cast<ResourceBuildingsBASE*>(buildingsVector.at(name)));  
 
 	int amount = resourceBuilding->getCapacityAmount();
 	//Message: cannot delete ojects that are not pointers
 	//delete resourceBuilding;
+
+	delete resourceBuilding;
 
 	return amount;
 }
@@ -27,13 +29,13 @@ i5array Provinces::getResourceProduction(BUILD::BuildingsEnum name, INF::Quantit
 	i5array arrayCopy = {}, returnArray = {};
 
 	if (amount == SINGLE) {
-		BuildingsBASE& buildingRef = getBuilding(name); 
-		ResourceBuildingsBASE* resourceBuilding = static_cast<ResourceBuildingsBASE*>(&buildingRef); 
+		ResourceBuildingsBASE* resourceBuilding = static_cast<ResourceBuildingsBASE*>(buildingsVector.at(name));   
+		auto foo = &static_cast<ResourceBuildingsBASE&>(*buildingsVector.at(name));
 		returnArray[0] = arrayCopy[name] * resourceBuilding->getProductionRate();
 		delete resourceBuilding;
 	} else {
 		for (int x = 0; x < 5; x++) {
-			ResourceBuildingsBASE* building = static_cast<ResourceBuildingsBASE*>(&buildings.get(BuildingsEnum(x)));
+			ResourceBuildingsBASE* building = static_cast<ResourceBuildingsBASE*>(buildingsVector.at(x));  
 			returnArray[0] = arrayCopy[x] * building->getProductionRate(); 
 			delete building;
 		}
@@ -55,16 +57,16 @@ void Provinces::mutateLevel(BuildingsEnum name, MutateDirection direction, int a
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "mutateLevel");
 	if (direction == DECREASE) { amount *= -1; }
-	buildings.get(name).increaseLevel(amount); 
+	buildingsVector.at(name)->increaseLevel(amount);
 }
 
 /*Return the amount of troops trained this turn - troopsTrainedThisTurn*/
 const int Provinces::getTroopsTrainedThisTurn() {
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "getTroopsTrainedThisTurn");
-	Barracks* building = static_cast<Barracks*>(&buildings.get(BARRACKS)); 
-	int amount = building->getTroopsTrainedThisTurn();
-	delete building;
+	Barracks* barracks = static_cast<Barracks&>(buildingsVector.at(BARRACKS));  
+	int amount = barracks->getTroopsTrainedThisTurn();
+	delete barracks;
 	return amount;
 }
 
@@ -79,22 +81,21 @@ void Provinces::printBuildingStats()
 	std::cout << "Building stats of this province: " << std::endl;
 	for (int x = 0; x < 10; x++) {
 		std::cout << "- " << BUILD::BuildingStrings.at(x) << "(" << BUILD::BuildingStrings.at(x).at(0) << "): \n";
-		std::cout << "		Level: " << buildings.get(x).getLevel() << "\n";
+		std::cout << "		Level: " << buildingsVector.at(x)->getLevel() << "\n";
 		if (x < 5) {
-			ResourceBuildingsBASE* resourceBuilding = static_cast<ResourceBuildingsBASE*>(&buildings.get(x));
+			ResourceBuildingsBASE* resourceBuilding = static_cast<ResourceBuildingsBASE*>(buildingsVector.at(x)); 
 			std::cout << "		" << INF::RESOURCE_NAMES.at(x) << " production rate: " << resourceBuilding->getProductionRate();
 			delete resourceBuilding;
 		}
 	}
-	for (int x = 0; x < 5; x++)
-	{
+	for (int x = 0; x < 5; x++) {
 		std::cout << "- " << BUILD::RESOURCE_BUILDING_NAMES[x] << " (" << BUILD::RESOURCE_BUILDING_NAMES[x].at(0) << ") " << std::endl;
-		std::cout << "    Level: " << buildings.get(x).getLevel() << std::endl;
+		std::cout << "    Level: " << buildingsVector.at(x)->getLevel() << std::endl;
 		std::cout << "    " << INF::RESOURCE_NAMES[x] << " production rate : " << productionArray[x] << std::endl;
 	}
 	//Add implementation
 	std::cout << "Barracks (B) " << std::endl;
-	std::cout << "    Level: " << buildings.get(BARRACKS).getLevel() << std::endl; 
+	std::cout << "    Level: " << buildingsVector.at(BARRACKS)->getLevel() << std::endl;  
 	std::cout << "    Max training capacity: " << getCapacity(BARRACKS) << "\n\n\033[;0m";
 
 
@@ -106,7 +107,9 @@ const int Provinces::getProvinceLevel() {
 	DEBUG_FUNCTION("Provinces.cpp", "getProvinceLevel");
 
 	int unitLevel = 0;
-	for (int x = 0; x < 10; x++) { unitLevel += buildings.get(x).getLevel(); }  
+	std::vector<std::unique_ptr<BuildingsBASE>>::iterator it; 
+	for (it = buildingsVector.begin(); it < buildingsVector.end(); it++) { unitLevel += it->get()->getLevel(); }
+	//for (int x = 0; x < 10; x++) { unitLevel += buildingsVector.at(x)->getLevel(); }  
 	
 	return unitLevel /= 10;;
 }
@@ -114,23 +117,17 @@ const int Provinces::getProvinceLevel() {
 void Provinces::resetTroopsTrainedThisTurn() {
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "resetTroopsTrainedThisTurn");
-	BuildingsBASE* building = &buildings.get(BARRACKS);
-
-	Barracks* barracks = static_cast<Barracks*>(building);  
-	delete building;
-
+	Barracks* barracks = static_cast<Barracks&>(buildingsVector.at(BARRACKS));    
 	barracks->resetTroopsTrainedThisTurn();
-	delete barracks;
+	delete barracks;;
 }
 
 void Provinces::addTroopsTrainedThisTurn(int amount) {
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "addTroopsTrainedThisTurn");
-
-	Barracks* barracks = static_cast<Barracks*>(&buildings.get(BARRACKS)); 
-
-	barracks->Barracks::addTroopsTrainedThisTurn(amount); 
-	delete barracks;
+	Barracks* barracks = static_cast<Barracks&>(buildingsVector.at(BARRACKS));   
+	barracks->addTroopsTrainedThisTurn(amount);   
+	delete barracks;; 
 }
 
 //Do something in Buildings here
@@ -143,35 +140,26 @@ void Provinces::initiailizeCapitalBuildings() {
 	otherBuildingsLevels = getTypeLevels(OTHER);
 
 	for (int x = 0; x < 10; x++) {
-		buildings.get(x).increaseLevel(1);
+		buildingsVector.at(x)->increaseLevel(1);
 	}
 }
-
+ 
 void Provinces::printListOfBuildings() {
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "printListOfBuildings");
 	for (int x = 0; x < 10; x++) {
-		std::cout << x << ") " << BUILD::BuildingStrings.at(x) << ", level: " << buildings.get(x).getLevel();
+		std::cout << x << ") " << BUILD::BuildingStrings.at(x) << ", level: " << buildingsVector.at(x)->getLevel();   
 	}
 }
-
-BuildingsBASE& Provinces::getBuilding(BUILD::BuildingsEnum name) {
-	return buildings.get(name);
-}
-
-BuildingsBASE& Provinces::getBuilding(int num) {
-	return buildings.get(num);
-}
-
 
 i5array Provinces::getTypeLevels(BUILD::BuildingType type) {
 	i5array resourceLevels = {}, otherLevels = {};
 	for (int index = 0; index < 5; index++) { 
-		resourceLevels.at(index) = buildings.get(index).getLevel();
+		resourceLevels.at(index) = buildingsVector.at(index)->getLevel();
 		/*Added explicitness below to get rid of Int - arithn error
 		Error: A sub-expression may overflow before being assigned to a wider type*/
 		int otherLevelsIndex = index + 5; 
-		otherLevels.at(index) = buildings.get(otherLevelsIndex).getLevel();
+		otherLevels.at(index) = buildingsVector.at(otherLevelsIndex)->getLevel(); 
 	}
 
 	if (type == RESOURCE) {

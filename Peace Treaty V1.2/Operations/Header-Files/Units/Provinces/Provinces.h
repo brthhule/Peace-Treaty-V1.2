@@ -42,20 +42,6 @@
 #include RESIDENCES_HEADER 
 #include WALL_HEADER
 
-
-//Plain old data, only accessible withing Provinces
-class BuildingsClass {
-public:
-	BuildingsClass();
-
-	BuildingsBASE& get(BUILD::BuildingsEnum name);
-	BuildingsBASE& get(int num);
-private:
-
-	std::array<std::unique_ptr<BuildingsBASE>, 10> buildingsArray; 
-};
-
-
 /*
 Implement getLists, calculateCombatPower, calculateFoodConsumption
 */
@@ -210,8 +196,6 @@ protected:
 
 	enum REPORT { REPORT_TURN, REPORT_LOG };
 
-	BuildingsClass buildings;
-
 private:
 	INF::SortType commandersSortType;
 	bool isACapital;
@@ -232,6 +216,8 @@ private:
 	//Index within reports is the report. Index of report object is the participant the report belongs to
 	typedef std::vector<std::pair<int, ProvinceReport >> reports;
 	std::vector<reports> scoutReports;
+
+	std::vector<std::unique_ptr<BuildingsBASE>> buildingsVector; 
 
 	
 };

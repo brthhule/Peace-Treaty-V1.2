@@ -51,10 +51,41 @@ private:
     decltype(myString) name; 
 };*/
 
-int main()
-{
-    Provinces province("New Yahk");
-    std::cout << "Name: " << province.getName();
+int main() {
+    class TempClass {
+    public:
+        TempClass() {
+            
+            std::unique_ptr<Provinces> thing (new Provinces("Hi"));
+
+            provincesList.insert(std::move(thing));
+        }
+
+        int getA() { return a; }
+        void printName() { std::cout << thing->getName(); } 
+        void printName(int index) { std::cout << provincesList.at(index)->getName(); }
+        /*void setProvincesList() {
+           provincesList.
+
+
+           std::make_unique<Provinces&>(new Provinces("Hey")),
+           std::make_unique<Provinces&>(new Provinces("Hello"))
+            };
+        }*/
+    private:
+        int a{ 4 };
+        std::unique_ptr<Provinces> thing{ new Provinces("thing") };
+
+        std::vector<std::unique_ptr<Provinces>> provincesList;
+    
+
+    };
+
+    TempClass newFoo;
+    std::cout << newFoo.getA(); 
+    newFoo.printName();
+    newFoo.printName(0);
+
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

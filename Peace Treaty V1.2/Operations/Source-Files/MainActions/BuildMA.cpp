@@ -86,7 +86,7 @@ void Provinces::upgradeBuilding(int buildingNumber) {
 	DEBUG_FUNCTION("Provinces", "upgradeBuildings2");
 
 	//Multiplies level by base line rate
-	std::shared_ptr<BuildingsBASE> building = std::make_shared<BuildingsBASE>(buildings.get(buildingNumber)); 
+	std::unique_ptr<BuildingsBASE> building = std::move(buildingsVector.at(buildingNumber)); 
 	constArrayRef requiredResources = building->getUpgradeCosts();
 
 	printBuildingUpgradeCosts(requiredResources, buildingNumber);
@@ -105,6 +105,7 @@ void Provinces::upgradeBuilding(int buildingNumber) {
 
 	println("Upgrade successful.\n");
 	building->increaseLevel(1);
+	buildingsVector.at(buildingNumber) = std::move(building);
 	return;
 }
 

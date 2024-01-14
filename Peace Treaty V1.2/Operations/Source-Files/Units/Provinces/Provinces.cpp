@@ -8,43 +8,6 @@ using namespace COMM;
 using namespace INF;
 using namespace BUILD;
 
-
-BuildingsClass::BuildingsClass() : farm(), mill(), quarry(), mine(), church(), barracks(), infirmary(), library(), residences(), wall() {
-	/*buildingsArray = {
-		
-		std::make_shared<BuildingsBASE>(farm), 
-		std::make_shared<BuildingsBASE>(mill), 
-		std::make_shared<BuildingsBASE>(quarry), 
-		std::make_shared<BuildingsBASE>(mine), 
-		std::make_shared<BuildingsBASE>(church), 
-		std::make_shared<BuildingsBASE>(barracks), 
-		std::make_shared<BuildingsBASE>(infirmary), 
-		std::make_shared<BuildingsBASE>(library), 
-		std::make_shared<BuildingsBASE>(residences), 
-		std::make_shared<BuildingsBASE>(wall) 
-	};*/
-
-	buildingsVector = { farm, mill, quarry, mine, church, barracks, infirmary, library, residences, wall };
-	/*
-	buildingsVector.at(0).get() = farm;
-	buildingsVector.at(0).get() = mill;
-	buildingsVector.at(0).get() = quarry;
-	buildingsVector.at(0).get() = mine;
-	buildingsVector.at(0).get() = church;
-	buildingsVector.at(0).get() = barracks;
-	buildingsVector.at(0).get() = infirmary;
-	buildingsVector.at(0).get() = library;
-	buildingsVector.at(0).get() = residences;
-	buildingsVector.at(0).get() = wall;*/
-}
-
-BuildingsBASE& BuildingsClass::get(BUILD::BuildingsEnum name) {
-	return buildingsVector.at(name).get();
-}
-BuildingsBASE& BuildingsClass::get(int num) {
-	return buildingsVector.at(num).get();
-}
-
 //Use participantIndex = -1 for empty provinces
 Provinces::Provinces(int mapIndex, int participantIndex) : PrimeUnits(participantIndex) {
 	//For debugging
@@ -59,6 +22,31 @@ Provinces::Provinces(int mapIndex, int participantIndex) : PrimeUnits(participan
 
 	level = 1;
 	commandersSortType = ALPHABETICAL;
+
+	std::unique_ptr<Farm> farm(new Farm());   
+	std::unique_ptr<Mill> mill(new Mill()); 
+	std::unique_ptr<Quarry> quarry(new Quarry());  
+	std::unique_ptr<Mine> mine(new Mine());
+	std::unique_ptr<Church> church(new Church());  
+	std::unique_ptr<Barracks> barracks(new Barracks());  
+	std::unique_ptr<Infirmary> infirmary(new Infirmary()); 
+	std::unique_ptr<Library> library(new Library());  
+	std::unique_ptr<Wall> wall(new Wall());  
+	std::unique_ptr<Residences> residences(new Residences()); 
+
+	buildingsVector.push_back(std::move(farm));
+	buildingsVector.push_back(std::move(mill));
+	buildingsVector.push_back(std::move(quarry));
+	buildingsVector.push_back(std::move(mine));
+	buildingsVector.push_back(std::move(church));
+	buildingsVector.push_back(std::move(barracks));
+	buildingsVector.push_back(std::move(infirmary));
+	buildingsVector.push_back(std::move(library));
+	buildingsVector.push_back(std::move(wall));
+	buildingsVector.push_back(std::move(residences));
+
+
+	
 
 	//Buildings should be created when their province is created, figure out how to do that
 	/*Barracks barracks();
