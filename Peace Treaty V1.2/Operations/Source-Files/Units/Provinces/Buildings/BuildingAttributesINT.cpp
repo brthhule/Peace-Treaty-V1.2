@@ -10,7 +10,7 @@ using namespace BUILD;
 const int Provinces::getCapacity(BUILD::BuildingsEnum name) { 
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "getCapacity");
-	ResourceBuildingsBASE* resourceBuilding = static_cast<ResourceBuildingsBASE*>(buildingsVector.at(name)));  
+	ResourceBuildingsBASE* resourceBuilding = &static_cast<ResourceBuildingsBASE&>(*buildingsVector.at(name));
 
 	int amount = resourceBuilding->getCapacityAmount();
 	//Message: cannot delete ojects that are not pointers
@@ -21,32 +21,29 @@ const int Provinces::getCapacity(BUILD::BuildingsEnum name) {
 	return amount;
 }
 
+int Provinces::getResourceBuildingProduction(int buildingNumber) {
+	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "getResourceProduction");
+	ResourceBuildingsBASE* resourceBuilding = &static_cast<ResourceBuildingsBASE&>(*buildingsVector.at(buildingNumber));
+	int production = resourceBuilding->getProductionRate();
+	delete resourceBuilding;
+	return production;
+}
+
 /*Use returnArray or returnInt for arrayArg*/
-i5array Provinces::getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount) { 
+i5array Provinces::getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount) {  
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "getResourceProduction");
 
-	i5array arrayCopy = {}, returnArray = {};
+	i5array returnArray = {};
 
-	if (amount == SINGLE) {
-		ResourceBuildingsBASE* resourceBuilding = static_cast<ResourceBuildingsBASE*>(buildingsVector.at(name));   
-		auto foo = &static_cast<ResourceBuildingsBASE&>(*buildingsVector.at(name));
-		returnArray[0] = arrayCopy[name] * resourceBuilding->getProductionRate();
-		delete resourceBuilding;
-	} else {
-		for (int x = 0; x < 5; x++) {
-			ResourceBuildingsBASE* building = static_cast<ResourceBuildingsBASE*>(buildingsVector.at(x));  
-			returnArray[0] = arrayCopy[x] * building->getProductionRate(); 
-			delete building;
-		}
-	}
-
+	for (int x = 0; x < 5; x++) { returnArray[x] = getResourceBuildingProduction(x); }
+	if (amount == SINGLE) { returnArray[0] = getResourceBuildingProduction(name); }
 
 	return returnArray;
 }
 
 /*Purpose: Changes the level of a building.
-*type: determines whether the building is a resource or other building.
+*type: determines whether the building is a resource or other building. 
 *
 *name: is the name of the building withing the resource/other building array.
 *
@@ -64,7 +61,7 @@ void Provinces::mutateLevel(BuildingsEnum name, MutateDirection direction, int a
 const int Provinces::getTroopsTrainedThisTurn() {
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "getTroopsTrainedThisTurn");
-	Barracks* barracks = static_cast<Barracks&>(buildingsVector.at(BARRACKS));  
+	Barracks* barracks = static_cast<Barracks*>(buildingsVector.at(BARRACKS).get());
 	int amount = barracks->getTroopsTrainedThisTurn();
 	delete barracks;
 	return amount;
@@ -83,9 +80,7 @@ void Provinces::printBuildingStats()
 		std::cout << "- " << BUILD::BuildingStrings.at(x) << "(" << BUILD::BuildingStrings.at(x).at(0) << "): \n";
 		std::cout << "		Level: " << buildingsVector.at(x)->getLevel() << "\n";
 		if (x < 5) {
-			ResourceBuildingsBASE* resourceBuilding = static_cast<ResourceBuildingsBASE*>(buildingsVector.at(x)); 
-			std::cout << "		" << INF::RESOURCE_NAMES.at(x) << " production rate: " << resourceBuilding->getProductionRate();
-			delete resourceBuilding;
+			std::cout << "		" << INF::RESOURCE_NAMES.at(x) << " production rate: " << getResourceBuildingProduction(x);
 		}
 	}
 	for (int x = 0; x < 5; x++) {
@@ -117,7 +112,7 @@ const int Provinces::getProvinceLevel() {
 void Provinces::resetTroopsTrainedThisTurn() {
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "resetTroopsTrainedThisTurn");
-	Barracks* barracks = static_cast<Barracks&>(buildingsVector.at(BARRACKS));    
+	Barracks* barracks = static_cast<Barracks*>(buildingsVector.at(BARRACKS).get());
 	barracks->resetTroopsTrainedThisTurn();
 	delete barracks;;
 }
@@ -125,7 +120,7 @@ void Provinces::resetTroopsTrainedThisTurn() {
 void Provinces::addTroopsTrainedThisTurn(int amount) {
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "addTroopsTrainedThisTurn");
-	Barracks* barracks = static_cast<Barracks&>(buildingsVector.at(BARRACKS));   
+	Barracks* barracks = static_cast<Barracks*>(buildingsVector.at(BARRACKS).get());  
 	barracks->addTroopsTrainedThisTurn(amount);   
 	delete barracks;; 
 }

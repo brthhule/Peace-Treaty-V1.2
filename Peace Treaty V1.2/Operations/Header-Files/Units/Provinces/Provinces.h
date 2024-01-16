@@ -73,7 +73,7 @@ public:
 	///Set map index of this province
 
 	//----Getters----------------------------------------------------------
-	///Return shared pointer of commander by name
+	///Return reference of commander by name
 	const Commanders& getCommander(std::string name) const;
 	const Commanders& getCommander(int index) const;
 	//Returns vector of commanders in this province
@@ -136,9 +136,10 @@ public:
 	///////////////////////////////BuildingAttributesINT///////////////////
 		
 	//----Getters----------------------------------------------------------
-	INF::i5array getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount);
+	INF::i5array getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount) override;
 //Returns an array of Resource/Other buildings levels
 	INF::i5array getTypeLevels(BUILD::BuildingType type);
+	int getResourceBuildingProduction(int buildingIndex);
 
 
 	const int getCapacity(BUILD::BuildingsEnum name);
@@ -227,5 +228,9 @@ namespace PROV {
 	using provMAP = std::unordered_map<std::string, provSPTR>;
 	using provSPTRList = std::vector<provSPTR>;
 	using scoutTypes = std::pair<COMM::commSPTRList, PROV::provSPTRList>;
+
+	provSPTR make_provSPTR(Provinces& province_ref) {
+		return std::make_shared<Provinces>(province_ref);
+	}
 }
 #endif

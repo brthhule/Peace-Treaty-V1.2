@@ -55,17 +55,16 @@ void Participants::moveUnitOne(commSPTR commander) {
 } /* unfinished*/
 
 
-Provinces& Participants::pickProvinceToMoveTo(Commanders& commanderReference) {
+Provinces& Participants::pickProvinceToMoveTo(Commanders& commander_ref) {
 	//This will have the list of provinces that can be moved to
 	provSPTRList provincesCanSelect;
 	std::cout << "The coordinates of the chosen unit unit are: ";
-	commSPTR commander = std::make_shared<Commanders>(commanderReference);
 
-	commander->printCoords(COORD::USER); 
+	commander_ref.printCoords(COORD::USER); 
 	println("\n\nYou can only move this unit to one of the provinces adjacent to the province it is in");
 
 	//Get list of provinces that can be moved to
-	provincesCanSelect = getSurroundingProvinces(commander); 
+	provincesCanSelect = getSurroundingProvinces(commander_ref); 
 
 	// The participant slects coordinates
 	ipair pickUserCoords = Map::pickCoords();
@@ -75,56 +74,54 @@ Provinces& Participants::pickProvinceToMoveTo(Commanders& commanderReference) {
 		INF::enterAndClear(1);
 		nullptr;
 	}
-
-	provSPTR provinceSelected = Map::getProvince(USER, pickUserCoords);
+	Provinces& provinceSelected = *Map::getProvince(USER, pickUserCoords).get();
 	bool validProvince = false;
 	for (provSPTR provincePtr : provincesCanSelect) {
-		if (provincePtr == provinceSelected) {
+		if (provincePtr.get() == &provinceSelected) {
 			validProvince = true;
 		}
 	}
 
-	if (!validProvince) {
-		std::cout << "Invalid province selected... please choose a valid province\n";
-		return pickProvinceToMoveTo(*commander); 
-	}
+	if (validProvince) { return provinceSelected; }
 
-	return *provinceSelected;
+
+	std::cout << "Invalid province selected... please choose a valid province\n";
+	return pickProvinceToMoveTo(commander_ref); 
+	
+
 }
 
-provSPTRList Participants::getSurroundingProvinces(commSPTR commander) {
+provSPTRList Participants::getSurroundingProvinces(Commanders& commander_ref) {
 	//For debugging
 	DEBUG_FUNCTION("Mobility.cpp", "getSurroundingProvinces");
 
 	std::vector<provSPTR> provincesSelectList;
-	ipair systemCoords = commander->CoordsBASE::getCoords(COORD::SYSTEM);
+	ipair systemCoords = commander_ref.CoordsBASE::getCoords(COORD::SYSTEM);
 
 	/*Identify all the provinces that the player can move a unit to*/
 	for (int x = -1; x <= 1; x++) {
 		for (int y = -1; y <= 1; y++) {
-			// Check to see if the coordinates are in bounds (not outside of the map
+			// Check if coords are within map bounds
 			// size)
-			int
-				firstCoordinate = systemCoords.first + x,
-				secondCoordinate = systemCoords.second + y;
+			int firstCoordinate = systemCoords.first + x;
+			int secondCoordinate = systemCoords.second + y;
 
-			bool
-				checkFirstCoordinate = (
-					firstCoordinate >= 0 &&
-					firstCoordinate < INF::continentSize),
-				checkSecondCoordinate = (
-					secondCoordinate >= 0 &&
-					secondCoordinate < INF::continentSize),
-					//Returns true if the changed coordinates aren't both the same as the original coordinates
-				checkBothCoordinates = (
-					firstCoordinate != systemCoords.first ||
-					secondCoordinate != systemCoords.second);
+			bool checkFirst = (
+				firstCoordinate >= 0 &&
+				firstCoordinate < INF::continentSize);
+			bool checkSecond = (
+				secondCoordinate >= 0 &&
+				secondCoordinate < INF::continentSize);
+			//Returns true if the changed coordinates != original
+			bool checkBoth = (
+				firstCoordinate != systemCoords.first ||
+				secondCoordinate != systemCoords.second);
 
 
-			if (checkFirstCoordinate && checkSecondCoordinate && checkBothCoordinates){
+			if (checkFirst && checkSecond && checkBoth){ 
 				ipair pushCoords(firstCoordinate, secondCoordinate);
-				provSPTR province = Map::getProvince(SYSTEM, pushCoords);
-				provincesSelectList.push_back(std::make_shared<Provinces>(*province)); 
+				provSPTR province = Map::getProvince(SYSTEM, pushCoords);  
+				provincesSelectList.push_back(province); 
 			}
 		}
 	}

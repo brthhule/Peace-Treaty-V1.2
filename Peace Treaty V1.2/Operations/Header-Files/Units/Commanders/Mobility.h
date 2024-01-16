@@ -19,7 +19,7 @@ public:
 
 	//----Methods--------------------------------------------------------------
 	virtual void moveUnitOne(COMM::commSPTR commander) = 0;
-	virtual PROV::provSPTRList getSurroundingProvinces(COMM::commSPTR commander) = 0;
+	virtual PROV::provSPTRList getSurroundingProvinces(Commanders& commander_ref) = 0;
 	virtual Provinces& pickProvinceToMoveTo(Commanders& commanderReference) = 0;
 };
 #endif

@@ -205,7 +205,7 @@ public:
 
 	///////////////////////////////////Mobility.h//////////////////////////////
 	void moveUnitOne(COMM::commSPTR commander) override;
-	std::vector <PROV::provSPTR> getSurroundingProvinces(COMM::commSPTR commander) override;
+	std::vector <PROV::provSPTR> getSurroundingProvinces(Commanders& commander_ref) override;
 	Provinces& pickProvinceToMoveTo(Commanders& commanderReference) override;
 	///////////////////////////////////MapMA.h/////////////////////////////////
 	void viewPlayerMap();
