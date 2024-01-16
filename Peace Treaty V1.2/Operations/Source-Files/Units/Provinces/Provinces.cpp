@@ -23,7 +23,19 @@ Provinces::Provinces(int mapIndex, int participantIndex) : PrimeUnits(participan
 	level = 1;
 	commandersSortType = ALPHABETICAL;
 
-	std::unique_ptr<Farm> farm(new Farm());   
+
+	buildingsVector.push_back(std::unique_ptr<Farm>(new Farm()));
+	buildingsVector.push_back(std::unique_ptr<Mill>(new Mill())); 
+	buildingsVector.push_back(std::unique_ptr<Quarry>(new Quarry())); 
+	buildingsVector.push_back(std::unique_ptr<Mine>(new Mine())); 
+	buildingsVector.push_back(std::unique_ptr<Church>(new Church())); 
+	buildingsVector.push_back(std::unique_ptr<Barracks>(new Barracks())); 
+	buildingsVector.push_back(std::unique_ptr<Infirmary>(new Infirmary())); 
+	buildingsVector.push_back(std::unique_ptr<Library>(new Library())); 
+	buildingsVector.push_back(std::unique_ptr<Wall>(new Wall())); 
+	buildingsVector.push_back(std::unique_ptr<Residences>(new Residences()));
+
+	/*std::unique_ptr<Farm> farm();
 	std::unique_ptr<Mill> mill(new Mill()); 
 	std::unique_ptr<Quarry> quarry(new Quarry());  
 	std::unique_ptr<Mine> mine(new Mine());
@@ -34,6 +46,7 @@ Provinces::Provinces(int mapIndex, int participantIndex) : PrimeUnits(participan
 	std::unique_ptr<Wall> wall(new Wall());  
 	std::unique_ptr<Residences> residences(new Residences()); 
 
+	
 	buildingsVector.push_back(std::move(farm));
 	buildingsVector.push_back(std::move(mill));
 	buildingsVector.push_back(std::move(quarry));
@@ -44,7 +57,7 @@ Provinces::Provinces(int mapIndex, int participantIndex) : PrimeUnits(participan
 	buildingsVector.push_back(std::move(library));
 	buildingsVector.push_back(std::move(wall));
 	buildingsVector.push_back(std::move(residences));
-
+	*/
 
 	
 

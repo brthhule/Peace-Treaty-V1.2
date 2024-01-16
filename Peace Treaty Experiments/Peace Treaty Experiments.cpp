@@ -52,8 +52,11 @@ private:
 };*/
 
 int main() {
-    std::unique_ptr<Provinces> thing (new Provinces("hey"));
-    std::unique_ptr<Provinces> replacement(new Provinces("foo"));
+    std::unique_ptr<Provinces> thing(new Provinces("hey"));
+    Provinces& ref = *thing;
+    std::cout << ref.getName() << "\n";
+    std::cout << thing->getName();
+    /*std::unique_ptr<Provinces> replacement(new Provinces("foo"));
 
     std::cout << thing->getName() << "\n";
 
@@ -69,7 +72,7 @@ int main() {
     thing.swap(returnProvince);
     std::cout << thing->getName() << "\n";
     
-    return 0;
+    return 0; */
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

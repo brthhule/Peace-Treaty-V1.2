@@ -10,23 +10,19 @@ using namespace BUILD;
 const int Provinces::getCapacity(BUILD::BuildingsEnum name) { 
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "getCapacity");
-	ResourceBuildingsBASE* resourceBuilding = &static_cast<ResourceBuildingsBASE&>(*buildingsVector.at(name));
+	BuildingsBASE& building_ref = *buildingsVector.at(name);
+	ResourceBuildingsBASE &resourceBuilding = static_cast<ResourceBuildingsBASE&>(building_ref);
 
-	int amount = resourceBuilding->getCapacityAmount();
-	//Message: cannot delete ojects that are not pointers
-	//delete resourceBuilding;
-
-	delete resourceBuilding;
-
-	return amount;
+	return resourceBuilding.getCapacityAmount();
 }
 
 int Provinces::getResourceBuildingProduction(int buildingNumber) {
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "getResourceProduction");
-	ResourceBuildingsBASE* resourceBuilding = &static_cast<ResourceBuildingsBASE&>(*buildingsVector.at(buildingNumber));
-	int production = resourceBuilding->getProductionRate();
-	delete resourceBuilding;
-	return production;
+
+	BuildingsBASE& building_ref = *buildingsVector.at(buildingNumber);
+
+	ResourceBuildingsBASE& resourceBuilding = static_cast<ResourceBuildingsBASE&>(building_ref);
+	return resourceBuilding.getProductionRate();
 }
 
 /*Use returnArray or returnInt for arrayArg*/
@@ -61,9 +57,9 @@ void Provinces::mutateLevel(BuildingsEnum name, MutateDirection direction, int a
 const int Provinces::getTroopsTrainedThisTurn() {
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "getTroopsTrainedThisTurn");
-	Barracks* barracks = static_cast<Barracks*>(buildingsVector.at(BARRACKS).get());
-	int amount = barracks->getTroopsTrainedThisTurn();
-	delete barracks;
+	BuildingsBASE& building_ref = *buildingsVector.at(BARRACKS);
+	Barracks& barracks = static_cast<Barracks&>(building_ref);
+	int amount = barracks.getTroopsTrainedThisTurn();
 	return amount;
 }
 
@@ -112,17 +108,17 @@ const int Provinces::getProvinceLevel() {
 void Provinces::resetTroopsTrainedThisTurn() {
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "resetTroopsTrainedThisTurn");
-	Barracks* barracks = static_cast<Barracks*>(buildingsVector.at(BARRACKS).get());
-	barracks->resetTroopsTrainedThisTurn();
-	delete barracks;;
+	BuildingsBASE& building_ref = *buildingsVector.at(BARRACKS); 
+	Barracks& barracks = static_cast<Barracks&>(building_ref); 
+	barracks.resetTroopsTrainedThisTurn(); 
 }
 
 void Provinces::addTroopsTrainedThisTurn(int amount) {
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "addTroopsTrainedThisTurn");
-	Barracks* barracks = static_cast<Barracks*>(buildingsVector.at(BARRACKS).get());  
-	barracks->addTroopsTrainedThisTurn(amount);   
-	delete barracks;; 
+	BuildingsBASE& building_ref = *buildingsVector.at(BARRACKS); 
+	Barracks& barracks = static_cast<Barracks&>(building_ref); 
+	barracks.addTroopsTrainedThisTurn(amount);    
 }
 
 //Do something in Buildings here
@@ -162,4 +158,12 @@ i5array Provinces::getTypeLevels(BUILD::BuildingType type) {
 	}
 
 	return otherLevels;
+}
+
+BuildingsBASE& Provinces::getBuilding(BUILD::BuildingsEnum name) {
+	return *buildingsVector.at(name);
+}
+
+BuildingsBASE& Provinces::getBuilding(int num) {
+	return *buildingsVector.at(num);
 }

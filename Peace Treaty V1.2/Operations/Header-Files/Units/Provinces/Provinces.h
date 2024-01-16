@@ -138,7 +138,9 @@ public:
 	//----Getters----------------------------------------------------------
 	INF::i5array getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount) override;
 //Returns an array of Resource/Other buildings levels
-	INF::i5array getTypeLevels(BUILD::BuildingType type);
+	INF::i5array getTypeLevels(BUILD::BuildingType type) override;
+	BuildingsBASE& getBuilding(BUILD::BuildingsEnum name) override;
+	BuildingsBASE& getBuilding(int num) override;
 	int getResourceBuildingProduction(int buildingIndex);
 
 
@@ -157,9 +159,6 @@ public:
 			@return void
 	*/
 	const int getProvinceLevel() override;
-
-	BuildingsBASE& getBuilding(BUILD::BuildingsEnum name);
-	BuildingsBASE& getBuilding(int num);
 
 	//----Setters----------------------------------------------------------
 	/** mutateLevel__

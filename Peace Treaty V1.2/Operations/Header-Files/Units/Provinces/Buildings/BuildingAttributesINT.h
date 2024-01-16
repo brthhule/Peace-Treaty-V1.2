@@ -20,6 +20,7 @@ public:
 
 	///////////////////////////////////Getters/////////////////////////////////
 	virtual INF::i5array getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount) = 0;
+	virtual int getResourceBuildingProduction(int buildingIndex) = 0;
 	//Returns an array of Resource/Other buildings levels
 	virtual INF::i5array getTypeLevels(BUILD::BuildingType type) = 0;
 

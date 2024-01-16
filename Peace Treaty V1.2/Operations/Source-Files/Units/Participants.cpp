@@ -178,12 +178,12 @@ std::string Participants::getNewName() {
 	std::string newName = INF::createRandomName();
 	for (provSPTR newProvince : provincesVector)
 		if (newName == newProvince->getName())
-			getNewName();
+			return getNewName();
 
 
 	for (commIt = commandersMap.begin(); commIt != commandersMap.end(); commIt++)
 		if (newName == commIt->second->getName())
-			getNewName();
+			return getNewName();
 
 	return newName;
 }
