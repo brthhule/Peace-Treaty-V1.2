@@ -23,85 +23,19 @@ Provinces::Provinces(int mapIndex, int participantIndex) : PrimeUnits(participan
 	level = 1;
 	commandersSortType = ALPHABETICAL;
 	civilians = 0;
-	/*
-	std::initializer_list buildingsVectorList = {
-		std::unique_ptr<BuildingsBASE>(new Farm()),
-		std::unique_ptr<BuildingsBASE>(new Mill()),
-		std::unique_ptr<BuildingsBASE>(new Quarry()),
-		std::unique_ptr<BuildingsBASE>(new Mine()),
-		std::unique_ptr<BuildingsBASE>(new Church()),
-		std::unique_ptr<BuildingsBASE>(new Barracks()),
-		std::unique_ptr<BuildingsBASE>(new Infirmary()),
-		std::unique_ptr<BuildingsBASE>(new Library()),
-		std::unique_ptr<BuildingsBASE>(new Wall()),
-		std::unique_ptr<BuildingsBASE>(new Residences())
-	};
 
-	auto foo = {
-		std::unique_ptr<BuildingsBASE>(new Farm()),
-		std::unique_ptr<BuildingsBASE>(new Mill()),
-		std::unique_ptr<BuildingsBASE>(new Quarry()),
-		std::unique_ptr<BuildingsBASE>(new Mine()),
-		std::unique_ptr<BuildingsBASE>(new Church()),
-		std::unique_ptr<BuildingsBASE>(new Barracks()),
-		std::unique_ptr<BuildingsBASE>(new Infirmary()),
-		std::unique_ptr<BuildingsBASE>(new Library()),
-		std::unique_ptr<BuildingsBASE>(new Wall()),
-		std::unique_ptr<BuildingsBASE>(new Residences())
-	};
-	*/
-	/*
-	buildingsVector.emplace_back(std::unique_ptr<Farm>(new Farm()));
-	buildingsVector.emplace_back(std::unique_ptr<Mill>(new Mill()));
-	buildingsVector.emplace_back(std::unique_ptr<Quarry>(new Quarry()));
-	buildingsVector.emplace_back(std::unique_ptr<Mine>(new Mine()));
-	buildingsVector.emplace_back(std::unique_ptr<Church>(new Church()));
-	buildingsVector.emplace_back(std::unique_ptr<Barracks>(new Barracks()));
-	buildingsVector.emplace_back(std::unique_ptr<Infirmary>(new Infirmary()));
-	buildingsVector.emplace_back(std::unique_ptr<Library>(new Library()));
-	buildingsVector.emplace_back(std::unique_ptr<Wall>(new Wall()));
-	buildingsVector.emplace_back(std::unique_ptr<Residences>(new Residences()));
-	*/
-	buildingsVector.push_back(std::move(std::unique_ptr<BuildingsBASE>(new Farm())));
-	buildingsVector.push_back(std::move(std::unique_ptr<BuildingsBASE>(new Mill()))); 
-	buildingsVector.push_back(std::move(std::unique_ptr<BuildingsBASE>(new Quarry()))); 
-	buildingsVector.push_back(std::move(std::unique_ptr<BuildingsBASE>(new Mine())));
-	buildingsVector.push_back(std::move(std::unique_ptr<BuildingsBASE>(new Church())));
-	buildingsVector.push_back(std::move(std::unique_ptr<BuildingsBASE>(new Barracks())));
-	buildingsVector.push_back(std::move(std::unique_ptr<BuildingsBASE>(new Infirmary())));
-	buildingsVector.push_back(std::move(std::unique_ptr<BuildingsBASE>(new Library())));
-	buildingsVector.push_back(std::move(std::unique_ptr<BuildingsBASE>(new Wall())));
-	buildingsVector.push_back(std::move(std::unique_ptr<BuildingsBASE>(new Residences()))); 
+	buildingsVector = new std::vector<std::unique_ptr<BuildingsBASE>>;
 
-	/*std::unique_ptr<Farm> farm();
-	std::unique_ptr<Mill> mill(new Mill()); 
-	std::unique_ptr<Quarry> quarry(new Quarry());  
-	std::unique_ptr<Mine> mine(new Mine());
-	std::unique_ptr<Church> church(new Church());  
-	std::unique_ptr<Barracks> barracks(new Barracks());  
-	std::unique_ptr<Infirmary> infirmary(new Infirmary()); 
-	std::unique_ptr<Library> library(new Library());  
-	std::unique_ptr<Wall> wall(new Wall());  
-	std::unique_ptr<Residences> residences(new Residences()); 
-
-	
-	buildingsVector.push_back(std::move(farm));
-	buildingsVector.push_back(std::move(mill));
-	buildingsVector.push_back(std::move(quarry));
-	buildingsVector.push_back(std::move(mine));
-	buildingsVector.push_back(std::move(church));
-	buildingsVector.push_back(std::move(barracks));
-	buildingsVector.push_back(std::move(infirmary));
-	buildingsVector.push_back(std::move(library));
-	buildingsVector.push_back(std::move(wall));
-	buildingsVector.push_back(std::move(residences));
-	*/
-
-	
-
-	//Buildings should be created when their province is created, figure out how to do that
-	/*Barracks barracks();
-	buildings.at(0) = barracks;*/
+	buildingsVector->push_back(std::move(std::unique_ptr<BuildingsBASE>(new Farm()))); 
+	buildingsVector->push_back(std::move(std::unique_ptr<BuildingsBASE>(new Mill())));   
+	buildingsVector->push_back(std::move(std::unique_ptr<BuildingsBASE>(new Quarry()))); 
+	buildingsVector->push_back(std::move(std::unique_ptr<BuildingsBASE>(new Mine())));
+	buildingsVector->push_back(std::move(std::unique_ptr<BuildingsBASE>(new Church())));
+	buildingsVector->push_back(std::move(std::unique_ptr<BuildingsBASE>(new Barracks())));
+	buildingsVector->push_back(std::move(std::unique_ptr<BuildingsBASE>(new Infirmary())));
+	buildingsVector->push_back(std::move(std::unique_ptr<BuildingsBASE>(new Library())));
+	buildingsVector->push_back(std::move(std::unique_ptr<BuildingsBASE>(new Wall())));
+	buildingsVector->push_back(std::move(std::unique_ptr<BuildingsBASE>(new Residences()))); 
 }
 
 Provinces::Provinces(const Provinces& copyProvince) : 
@@ -132,9 +66,7 @@ Provinces::Provinces(const Provinces& copyProvince) :
 		scoutReports.push_back(std::move(copyProvince.scoutReports.at(index)));
 	}
 
-	for (int index = 0; index < 10; index++) {
-		buildingsVector.push_back(std::move(buildingsVector.at(index)));
-	}
+	buildingsVector = copyProvince.buildingsVector; 
 }
 
 constINT Provinces::getCombatPower() const { return combatPower; }

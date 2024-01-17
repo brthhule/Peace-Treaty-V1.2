@@ -218,7 +218,7 @@ private:
 	typedef std::vector<std::pair<int, ProvinceReport >> reports;
 	std::vector<reports> scoutReports;
 
-	std::vector<std::unique_ptr<BuildingsBASE>> buildingsVector; 
+	std::vector<std::unique_ptr<BuildingsBASE>>* buildingsVector; 
 
 	
 };

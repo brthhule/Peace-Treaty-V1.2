@@ -86,7 +86,7 @@ void Provinces::upgradeBuilding(int buildingNumber) {
 	DEBUG_FUNCTION("Provinces", "upgradeBuildings2");
 
 	//Multiplies level by base line rate
-	BuildingsBASE& building_ref = *buildingsVector.at(buildingNumber);
+	BuildingsBASE& building_ref = *buildingsVector->at(buildingNumber);
 	constArrayRef requiredResources = building_ref.getUpgradeCosts();
 
 	printBuildingUpgradeCosts(requiredResources, buildingNumber);
