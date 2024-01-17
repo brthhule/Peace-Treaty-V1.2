@@ -33,7 +33,7 @@ public:
 	///One param overloaded Constructor
 	///Use -1 for empty provinces
 	PrimeUnits(int participantIndex);
-	///Destructor
+	PrimeUnits(const PrimeUnits& copyUnit);
 	~PrimeUnits(){}
 
 	//----Getters--------------------------------------------------------------

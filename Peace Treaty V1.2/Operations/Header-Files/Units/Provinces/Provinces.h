@@ -47,13 +47,14 @@ Implement getLists, calculateCombatPower, calculateFoodConsumption
 */
 class Provinces :
 	public PrimeUnits,				//Base Class
-	public BuildMA,				//Interface
+	public BuildMA,					//Interface
 	public BuildingAttributesINT	//Interface
 {
 public:
 	///////////////////////////////This Class//////////////////////////////
 	//----Constructors-----------------------------------------------------
 	Provinces(int mapIndex, int participantIndex);
+	Provinces(const Provinces &copyProvince);
 	~Provinces() {}
 
 	//----Initialization---------------------------------------------------
@@ -227,9 +228,8 @@ namespace PROV {
 	using provMAP = std::unordered_map<std::string, provSPTR>;
 	using provSPTRList = std::vector<provSPTR>;
 	using scoutTypes = std::pair<COMM::commSPTRList, PROV::provSPTRList>;
+	using prov2Vector = std::vector <std::vector<Provinces>>;
 
-	provSPTR make_provSPTR(Provinces& province_ref) {
-		return std::make_shared<Provinces>(province_ref);
-	}
+	provSPTR make_provSPTR(Provinces& province_ref);
 }
 #endif

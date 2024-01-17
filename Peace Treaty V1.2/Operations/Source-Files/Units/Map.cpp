@@ -7,8 +7,8 @@ using namespace PROV;
 using namespace COORD;
 using namespace Input;
 
-std::vector<std::vector<Provinces>> Map::mapVectors = std::vector<std::vector<Provinces>>{}; 
-Map::ProvincesMap Map::mapMap = std::unordered_map<std::string, provSPTR>(); 
+prov2Vector Map::mapVectors = std::vector<std::vector<Provinces>>{}; 
+provMAP Map::mapMap = std::unordered_map<std::string, provSPTR>(); 
 
 Map::Map() {
 
@@ -33,15 +33,12 @@ void Map::setMap() {
 		mapVectors.push_back(tempVector);
 	}
 
-
-
 	for (std::vector<Provinces> provinceVector : mapVectors) { 
 		for (int x = 0; x < (int) provinceVector.size(); x++) {
-			Provinces* province = &provinceVector.at(x);
-			//Tenmp intialize mapMap with mapIndex as name instead of actual name. When provinces gain an owner, delete this map entry and enter new entry with new name but same province.
-			std::pair<std::string, provSPTR> keyValuePair(std::to_string(province->getMapIndex()), std::make_shared<Provinces>(province));
-			mapMap.insert(keyValuePair); 
-			delete province; 
+			provSPTR province = make_provSPTR(provinceVector.at(x)); 
+			mapMap.insert(std::make_pair(province->getName(), province));
+			//mapMap's are originally created using mapIndex instead of name
+			mapMap.erase(std::to_string(province->getMapIndex()));
 		}
 	}
 }
@@ -70,11 +67,12 @@ void Map::meat(int x, int y) {
 	//For debugging
 	DEBUG_FUNCTION("Map.cpp", "meat"); 
 
-	provSPTR currentProvince = std::make_shared<Provinces>(mapVectors.at(x).at(y)); 
+	const Provinces& currentProvince = mapVectors.at(x).at(y); 
+
 	//If it's a capital province, 'C', if regular, 'P'
-	char letter = (currentProvince->isCapital()) ? 'C' : 'P'; 
+	char letter = (currentProvince.isCapital()) ? 'C' : 'P'; 
 	constINT currentIndex = currentParticipantIndex; 
-	constINT thisIndex = currentProvince->getParticipantIndex(); 
+	constINT thisIndex = currentProvince.getParticipantIndex(); 
 
 	//If current participant's province
 	if (thisIndex == currentIndex){ INF::addColor(BLUE);}
@@ -83,7 +81,7 @@ void Map::meat(int x, int y) {
 	//Empty province
 	else {letter = '0';}
 
-	std::cout << letter << currentProvince->getCommandersNum();
+	std::cout << letter << currentProvince.getCommandersNum();
 	INF::addColor(RESET);
 }
 

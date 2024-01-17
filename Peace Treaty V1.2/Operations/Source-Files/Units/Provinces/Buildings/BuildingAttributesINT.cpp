@@ -98,9 +98,7 @@ const int Provinces::getProvinceLevel() {
 	DEBUG_FUNCTION("Provinces.cpp", "getProvinceLevel");
 
 	int unitLevel = 0;
-	std::vector<std::unique_ptr<BuildingsBASE>>::iterator it; 
-	for (it = buildingsVector.begin(); it < buildingsVector.end(); it++) { unitLevel += it->get()->getLevel(); }
-	//for (int x = 0; x < 10; x++) { unitLevel += buildingsVector.at(x)->getLevel(); }  
+	for (int x = 0; x < 10; x++) { unitLevel += buildingsVector.at(x)->getLevel(); }  
 	
 	return unitLevel /= 10;;
 }

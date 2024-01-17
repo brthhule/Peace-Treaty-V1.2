@@ -22,18 +22,56 @@ Provinces::Provinces(int mapIndex, int participantIndex) : PrimeUnits(participan
 
 	level = 1;
 	commandersSortType = ALPHABETICAL;
+	civilians = 0;
+	/*
+	std::initializer_list buildingsVectorList = {
+		std::unique_ptr<BuildingsBASE>(new Farm()),
+		std::unique_ptr<BuildingsBASE>(new Mill()),
+		std::unique_ptr<BuildingsBASE>(new Quarry()),
+		std::unique_ptr<BuildingsBASE>(new Mine()),
+		std::unique_ptr<BuildingsBASE>(new Church()),
+		std::unique_ptr<BuildingsBASE>(new Barracks()),
+		std::unique_ptr<BuildingsBASE>(new Infirmary()),
+		std::unique_ptr<BuildingsBASE>(new Library()),
+		std::unique_ptr<BuildingsBASE>(new Wall()),
+		std::unique_ptr<BuildingsBASE>(new Residences())
+	};
 
-
-	buildingsVector.push_back(std::unique_ptr<Farm>(new Farm()));
-	buildingsVector.push_back(std::unique_ptr<Mill>(new Mill())); 
-	buildingsVector.push_back(std::unique_ptr<Quarry>(new Quarry())); 
-	buildingsVector.push_back(std::unique_ptr<Mine>(new Mine())); 
-	buildingsVector.push_back(std::unique_ptr<Church>(new Church())); 
-	buildingsVector.push_back(std::unique_ptr<Barracks>(new Barracks())); 
-	buildingsVector.push_back(std::unique_ptr<Infirmary>(new Infirmary())); 
-	buildingsVector.push_back(std::unique_ptr<Library>(new Library())); 
-	buildingsVector.push_back(std::unique_ptr<Wall>(new Wall())); 
-	buildingsVector.push_back(std::unique_ptr<Residences>(new Residences()));
+	auto foo = {
+		std::unique_ptr<BuildingsBASE>(new Farm()),
+		std::unique_ptr<BuildingsBASE>(new Mill()),
+		std::unique_ptr<BuildingsBASE>(new Quarry()),
+		std::unique_ptr<BuildingsBASE>(new Mine()),
+		std::unique_ptr<BuildingsBASE>(new Church()),
+		std::unique_ptr<BuildingsBASE>(new Barracks()),
+		std::unique_ptr<BuildingsBASE>(new Infirmary()),
+		std::unique_ptr<BuildingsBASE>(new Library()),
+		std::unique_ptr<BuildingsBASE>(new Wall()),
+		std::unique_ptr<BuildingsBASE>(new Residences())
+	};
+	*/
+	/*
+	buildingsVector.emplace_back(std::unique_ptr<Farm>(new Farm()));
+	buildingsVector.emplace_back(std::unique_ptr<Mill>(new Mill()));
+	buildingsVector.emplace_back(std::unique_ptr<Quarry>(new Quarry()));
+	buildingsVector.emplace_back(std::unique_ptr<Mine>(new Mine()));
+	buildingsVector.emplace_back(std::unique_ptr<Church>(new Church()));
+	buildingsVector.emplace_back(std::unique_ptr<Barracks>(new Barracks()));
+	buildingsVector.emplace_back(std::unique_ptr<Infirmary>(new Infirmary()));
+	buildingsVector.emplace_back(std::unique_ptr<Library>(new Library()));
+	buildingsVector.emplace_back(std::unique_ptr<Wall>(new Wall()));
+	buildingsVector.emplace_back(std::unique_ptr<Residences>(new Residences()));
+	*/
+	buildingsVector.push_back(std::move(std::unique_ptr<BuildingsBASE>(new Farm())));
+	buildingsVector.push_back(std::move(std::unique_ptr<BuildingsBASE>(new Mill()))); 
+	buildingsVector.push_back(std::move(std::unique_ptr<BuildingsBASE>(new Quarry()))); 
+	buildingsVector.push_back(std::move(std::unique_ptr<BuildingsBASE>(new Mine())));
+	buildingsVector.push_back(std::move(std::unique_ptr<BuildingsBASE>(new Church())));
+	buildingsVector.push_back(std::move(std::unique_ptr<BuildingsBASE>(new Barracks())));
+	buildingsVector.push_back(std::move(std::unique_ptr<BuildingsBASE>(new Infirmary())));
+	buildingsVector.push_back(std::move(std::unique_ptr<BuildingsBASE>(new Library())));
+	buildingsVector.push_back(std::move(std::unique_ptr<BuildingsBASE>(new Wall())));
+	buildingsVector.push_back(std::move(std::unique_ptr<BuildingsBASE>(new Residences()))); 
 
 	/*std::unique_ptr<Farm> farm();
 	std::unique_ptr<Mill> mill(new Mill()); 
@@ -64,6 +102,39 @@ Provinces::Provinces(int mapIndex, int participantIndex) : PrimeUnits(participan
 	//Buildings should be created when their province is created, figure out how to do that
 	/*Barracks barracks();
 	buildings.at(0) = barracks;*/
+}
+
+Provinces::Provinces(const Provinces& copyProvince) : 
+	PrimeUnits(dynamic_cast<const PrimeUnits&>(copyProvince)){
+
+	commandersSortType = copyProvince.commandersSortType;
+	isACapital = copyProvince.isACapital;
+
+	mapIndex = copyProvince.mapIndex;
+
+	civilians = copyProvince.civilians;
+
+	for (int index = 0; index < (int)copyProvince.commandersVector.size(); index++) {
+		commandersVector.push_back(std::move(copyProvince.commandersVector.at(index)));
+		commandersMap[commandersVector.at(index).getName()] = std::make_shared<Commanders>(commandersVector.at(index));
+	}
+
+	///The main commander at this province
+	provinceCommander = copyProvince.provinceCommander;
+
+	newAccuracy = copyProvince.newAccuracy;
+	kingdomName = copyProvince.kingdomName;
+
+	//Index within reports is the report. Index of report object is the participant the report belongs to
+	scoutReports = copyProvince.scoutReports;
+
+	for (int index = 0; index < (int)copyProvince.scoutReports.size(); index++) {
+		scoutReports.push_back(std::move(copyProvince.scoutReports.at(index)));
+	}
+
+	for (int index = 0; index < 10; index++) {
+		buildingsVector.push_back(std::move(buildingsVector.at(index)));
+	}
 }
 
 constINT Provinces::getCombatPower() const { return combatPower; }
@@ -338,4 +409,8 @@ void Provinces::calculateCombatPower() {
 
 void Provinces::calculateFoodConsumption() {
 
+}
+
+provSPTR PROV::make_provSPTR(Provinces& province_ref){ 
+	return std::make_shared<Provinces>(province_ref);  
 }

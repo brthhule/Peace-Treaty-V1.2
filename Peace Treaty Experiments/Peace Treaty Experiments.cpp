@@ -56,23 +56,20 @@ int main() {
     Provinces& ref = *thing;
     std::cout << ref.getName() << "\n";
     std::cout << thing->getName();
-    /*std::unique_ptr<Provinces> replacement(new Provinces("foo"));
-
-    std::cout << thing->getName() << "\n";
-
-    thing.swap(replacement);
-
-    Provinces &province_ptr = *replacement.get();
-    replacement.release();
-
-    std::cout << province_ptr.getName() << "\n";
-
-    std::unique_ptr<Provinces> returnProvince(&province_ptr);
-
-    thing.swap(returnProvince);
-    std::cout << thing->getName() << "\n";
     
-    return 0; */
+    class ClassThing {
+    public:
+        std::vector<std::unique_ptr<Provinces>> provincesList;
+
+        ClassThing() {
+            provincesList.push_back(std::unique_ptr<Provinces>(new Provinces("What up bro")));
+            provincesList.push_back(std::unique_ptr<Provinces>(new Provinces("Hey what's good")));
+        }
+    private:
+    };
+
+    ClassThing foo;
+    std::cout << "One: " << foo.provincesList.at(0)->getName();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

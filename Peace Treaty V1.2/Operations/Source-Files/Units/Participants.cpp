@@ -624,7 +624,7 @@ void Participants::createCapital() {
 
 	//Delete the old key-value pair (value should not be moved)
 	Map::mapMap.erase(std::to_string(province->getMapIndex()));
-	mapMap[province->getName()] = std::make_shared<Provinces>(province);
+	mapMap[province->getName()] = std::make_shared<Provinces>(*province);
 }
 
 

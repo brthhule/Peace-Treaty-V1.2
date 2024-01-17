@@ -34,6 +34,24 @@ PrimeUnits::PrimeUnits(int participantIndexArg) {
 	type = COMMANDER;//Fix this???
 }
 
+PrimeUnits::PrimeUnits(const PrimeUnits& copyUnit) {
+	resourcesPresent = copyUnit.resourcesPresent;
+	initialStats = copyUnit.initialStats;
+
+	combatPower = copyUnit.combatPower;
+	totalTroops = copyUnit.totalTroops;
+	foodConsumption = copyUnit.foodConsumption;
+	participantIndex = copyUnit.participantIndex;
+	level = copyUnit.level;
+
+	//Coordinates;
+
+	canSelectThisUnit = copyUnit.canSelectThisUnit;
+	type = copyUnit.type;
+	name = copyUnit.name;
+	troops = copyUnit.troops; 
+}
+
 constINT PrimeUnits::getParticipantIndex() const {
 	//For debugging
 	DEBUG_FUNCTION("PrimeUnits.cpp", "getParticipantIndex");

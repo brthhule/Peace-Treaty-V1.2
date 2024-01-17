@@ -51,13 +51,10 @@ public:
 	//Prompts the user to pick a pair of x and y coordinates within the bounds of the map, returns USER type coords
 	static INF::ipair pickCoords();
 	static bool checkInBounds(INF::ipair coords, COORD::CoordsType type);
-	
-	typedef std::unordered_map <std::string, PROV::provSPTR> ProvincesMap;
-	typedef std::vector <std::vector<Provinces>> ProvincesVector;
 
 	///2D vector of provinces shared ptrs
-	static ProvincesVector mapVectors; 
+	static PROV::prov2Vector mapVectors; 
 	///unordered map of provinces shared pointers
-	static ProvincesMap mapMap;
+	static PROV::provMAP mapMap;
 };
 #endif
