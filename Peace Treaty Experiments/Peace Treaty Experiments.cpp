@@ -51,25 +51,35 @@ private:
     decltype(myString) name; 
 };*/
 
-int main() {
-    std::unique_ptr<Provinces> thing(new Provinces("hey"));
-    Provinces& ref = *thing;
-    std::cout << ref.getName() << "\n";
-    std::cout << thing->getName();
-    
-    class ClassThing {
-    public:
-        std::vector<std::unique_ptr<Provinces>> provincesList;
+class foo {
+public:
+    foo() {
+        std::string name = "Hey";
+        province.reset(new Provinces(name));
+    };
+    Provinces& getProvince() {
+        return *province.get();
+    }
+    std::string getName() {
+        return province->getName();
+    }
+private:
+    std::unique_ptr<Provinces> province;
+};
 
-        ClassThing() {
-            provincesList.push_back(std::unique_ptr<Provinces>(new Provinces("What up bro")));
-            provincesList.push_back(std::unique_ptr<Provinces>(new Provinces("Hey what's good")));
-        }
-    private:
+int main() {
+    foo thing; 
+    auto print = [](std::string message) {
+        std::cout << message;
+    };
+    auto println = [](std::string message) {
+        std::cout << message << "\n";
     };
 
-    ClassThing foo;
-    std::cout << "One: " << foo.provincesList.at(0)->getName();
+    println(thing.getName());
+    Provinces& thing2 = thing.getProvince();
+    println(thing2.getName());
+    println(thing.getName());
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
