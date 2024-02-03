@@ -2,7 +2,11 @@
 Current status: In development (will not run)
 
 Concept:
-4x turn-based strategy game combining aspects of games like Civilizations, Hexonia, Polytopia, Lords Mobile, Rise of Kingdoms, and Infinity Kingdom with original ideas. Aim: A game with the semantics of a massively multiplayer strategy game like Lords Mobile but applied to the structure/procedures of a turn-based game like Civilizations? 
+4x turn-based strategy game combining aspects of games like Civilizations, Hexonia, Polytopia, Lords Mobile, Rise of Kingdoms, and Infinity Kingdom with original ideas. Aim: A game with the semantics of a massively multiplayer strategy game like Lords Mobile but applied to the structure/procedures of a turn-based game like Civilizations.
+
+Implementation:
+- Design: The design is based on a coordinate-based system in which Provinces objects represent coordinates held in a double vector. Provinces are owned by a static Map object that creates and tracks the coordinate system. Provinces own Commanders objects that represent deployable units. Commanders own Troops objects that interact with other Troops in various ways, and these Troops have different tiers. Participants represent players (human and AI) that complete actions. Participants share ownership of Provinces with Map and share ownership of Commanders with Provinces-- Provinces and Commanders and are created on the stack and moved into vectors of the object that owns it.
+- AI functionality (in design phase): This game is based on users choosing actions, and the AI functionality will work by randomly choosing actions. User actions as well as in-game events affect the probabilities of certain actions being chosen. For example, if a player attacks an AI, the AI is more likely to choose the Attack function, and within that, they are more likely to choose to attack their agressor rather than another Participant. Various actions add or subtract to this process of random access-- probabilities change dynamically to simulate responsiveness. The idea is to represent a neural network implementation.
 
 Game experience:
 - Users can choose from a variety of options such as building infrastructure, developing armies, training troops, and attacking others
