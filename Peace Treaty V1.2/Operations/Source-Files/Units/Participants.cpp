@@ -16,7 +16,7 @@ std::vector<partSPTR> Participants::botsList = {};
 int totalPlayers = 0;
 
 
-std::vector<Participants> Participants::participantsList = {};
+std::vector<partUPTR> Participants::participantsVector = {};
 INF::i5array Participants::trainCosts = {};
 int Participants::humanPlayers = 0;
 
@@ -33,8 +33,6 @@ Participants::Participants(int pIndex) {
 	addCommander();
 	setKingdomName("-1");
 	participantIndex = pIndex;
-
-	capitalIndex = 0;
 
 	//Defaults
 	commandersMap = std::unordered_map<std::string, commSPTR>();
@@ -101,15 +99,14 @@ void Participants::createAsPlayer(bool status) {
 	//For debugging
 	DEBUG_FUNCTION("Participants.cpp", "createAsPlayer");
 
-	//If player
-	if (status == true) {
-		std::string name;
-		std::cout << "Enter a kingdom name for a player: " << RED;
-		getline(std::cin, name);
-		this->setKingdomName(name);
-		std::cout << WHITE << "Participant " << RED << kingdomName << WHITE << " created... \n\n";
-		return;
-	}
+	//If AI
+	if (!status) { return; }
+
+	std::string text = "Enter a kingdom name for player " + getColor(RED) + std::to_string(participantIndex) + getColor(RESET) + " : ";  
+	this->setKingdomName(Input::getInputText(text, {}));
+
+	std::cout << WHITE << "Participant " << RED << kingdomName << WHITE << " created... \n\n";
+	return;
 }
 
 void Participants::viewStats() {
@@ -121,10 +118,7 @@ void Participants::viewStats() {
 
 	std::cout << "Kingdom name: " << kingdomName << "\n\n";
 
-	for (int x = 0; x < 5; x++) {
-		std::cout << "Total " << INF::RESOURCE_NAMES[x] << ": " << totalResources[x] << std::endl;
-	}
-
+	INF::printResources(totalResources);
 	for (int x = 0; x < 5; x++)
 		std::cout << "Total " << TROOP::TROOP_NAMES[x] << " alive: " << eachUnit[x] << std::endl;
 
@@ -143,56 +137,44 @@ std::vector<int> Participants::calculatePlayerValues(int decision) {
 
 	i5array newArray = calculateEach(decision);
 	switch (decision) {
-	case 1: { // Return total CP
-		int totalCPThingy = 0;
-		for (int x = 0; x < 5; x++)
-			totalCPThingy += newArray[x] * TROOP::TROOPS_CP[x];
-		return { totalCPThingy };
-	}
-	case 2: {
-		std::vector<int> newArray;
-		std::vector<int> troopsLost;//?????????????????????????????????????????????????
-		for (int x : troopsLost) {
-			newArray.push_back(x);
+		case 1: { // Return total CP
+			int totalCPThingy = 0;
+			for (int x = 0; x < 5; x++)
+				totalCPThingy += newArray[x] * TROOP::TROOPS_CP[x];
+			return { totalCPThingy };
 		}
-		return newArray;
+		case 2:
+		default: {
+			std::vector<int> newArray;
+			std::vector<int> troopsLost;//?????????????????????????????????????????????????
+			for (int x : troopsLost) {
+				newArray.push_back(x);
+			}
+			return newArray;
+		}
 	}
-	}
-
-	std::cout << "Error case; shouldn't happen\n";
-	std::vector<int> emptyVector;
-	return emptyVector;
 }
 
 provSPTR Participants::getProvince(int index) { 
 	//For debugging
 	DEBUG_FUNCTION("Participants.cpp", "getProvince");
-
-	return provincesVector[index]; 
+	return provincesVector.at(index); 
 }
 
 std::string Participants::getNewName() {
 	//For debugging
 	DEBUG_FUNCTION("Participants.cpp", "getNewName");
-
 	std::string newName = INF::createRandomName();
-	for (provSPTR newProvince : provincesVector)
-		if (newName == newProvince->getName())
-			return getNewName();
+	bool provincesCondition = provincesMap.find(newName) != provincesMap.end(); 
+	bool commandersCondition = commandersMap.find(newName) != commandersMap.end();
 
+	if (provincesCondition && commandersCondition) { 
+		return newName; 
+	}
 
-	for (commIt = commandersMap.begin(); commIt != commandersMap.end(); commIt++)
-		if (newName == commIt->second->getName())
-			return getNewName();
-
-	return newName;
+	return getNewName();
 }
 
-// commSPTR Participants::getCommander(int index) {
-//   std::unordered_map<std::string, commSPTR>::iterator it;
-//   for (it = commandersMap.begin(); it != commandersMap.end(); it++)
-//     if ()
-// }
 
 constArrayRef Participants::getTrainCosts() { 
 	//For debugging
@@ -286,26 +268,27 @@ commSPTR Participants::getCommander(std::string name) {
 	return commandersMap[name];
 }
 
-int Participants::calculateTotals(int option)
-{
+commSPTR Participants::getCommander(int index) {
+	DEBUG_FUNCTION("Participants.cpp", "getCommander");
+	return commandersVector.at(index);
+}
+
+int Participants::calculateTotals(int option) {
 	//For debugging
 	DEBUG_FUNCTION("Participants.cpp", "calculateTotals");
 
 	int sum = 0;
-	std::array <int, 5> totals = calculateEach(option);
-	for (int x : totals)
-		sum += x;
+	for (int x : calculateEach(option)) { sum += x; }
+		
 
 	return sum;
 }
 
-i5array Participants::calculateEach(int option)
-{
+i5array Participants::calculateEach(int option) {
 	//For debugging
 	DEBUG_FUNCTION("Participants.cpp", "calculateEach");
 
 	i5array returnArray = { 0, 0, 0, 0, 0 };
-
 	std::vector<std::shared_ptr<Commanders>> commandersTempVector = {};
 
 	/*unitsVector = [&](std::vector < std::shared_ptr<PrimeUnits>> unitsVector, std::vector<provSPTR> provincesVector) {
@@ -360,11 +343,9 @@ bool Participants::subtractCheckResources(unitSPTR unit, i5array resources) {
 
 
 
-provSPTR Participants::getProvince(std::string name)
-{
+provSPTR Participants::getProvince(std::string name) {
 	//For debugging
 	DEBUG_FUNCTION("Participants.cpp", "getProvince");
-
 	return provincesMap[name];
 }
 
@@ -566,9 +547,10 @@ std::thread Participants::th2Method() const {
 	return std::thread([=] {getPrimeUnitsArrayCommanders(); });
 }
 
-partSPTR Participants::getParticipant(int listIndex) const { 
-	return std::make_shared<Participants>(participantsList.at(listIndex));
+Participants& Participants::getParticipant(int listIndex) const {  
+	return *participantsVector.at(listIndex); 
 }
+
 std::unordered_map<std::string, commSPTR> Participants::getCommandersMap() const{
 	return commandersMap;
 }
@@ -593,18 +575,23 @@ void Participants::getPrimeUnitsArrayProvinces() const {
 	}
 }
 
-
-void Participants::initializeParticipants(int totalPlayers, int humanPlayers, int count) {
+/*
+Total players: 10
+Human players: 2
+Human player indices: 0,1
+AI indices: 3, 4, 5, 6, 7, 8, 9
+*/
+void Participants::initializeParticipants(int totalPlayers, int count) { 
+	DEBUG_FUNCTION("Participants.cpp", "initializeParticipants")
 	if (count == totalPlayers) { return; }
 
-	std::cout << "Creating participant " << count + 1 << ": \n"; 
 	Participants participant(count);
 	participant.createCapital();
-	if (count < totalPlayers) { participant.createAsPlayer(true); }
-	else { participant.createAsPlayer(false); }
-	participantsList.push_back(participant);
+	participant.createAsPlayer(count < humanPlayers);
 
-	initializeParticipants(totalPlayers, humanPlayers, ++count);
+	participantsVector.push_back(std::make_unique<Participants>(participant)); 
+
+	initializeParticipants(totalPlayers, count + 1);
 }
 
 void Participants::createCapital() {
@@ -615,7 +602,10 @@ void Participants::createCapital() {
 	provSPTR province = Map::getProvince(SYSTEM, systemCoords);
 
 	//Recurses if Province is already taken
-	if (province->getParticipantIndex() != -1) { createCapital(); }
+	if (province->getParticipantIndex() != -1) { 
+		createCapital(); 
+		return; 
+	}
 
 	province->setParticipantIndex(participantIndex);
 	province->setName(getNewName());
@@ -629,8 +619,8 @@ void Participants::createCapital() {
 
 
 
-partSPTR Participants::getCurrentParticipant() {
-	return std::make_shared<Participants>(participantsList.at(currentParticipantIndex));
+Participants& Participants::getCurrentParticipant() {
+	return *participantsVector.at(currentParticipantIndex); 
 }
 
 bool Participants::isPlayer() const {
@@ -642,6 +632,30 @@ void Participants::setHumanPlayers(int num) {
 	humanPlayers = num;
 }
 
-const std::vector<Participants>& Participants::getParticipants() { 
-	return participantsList; 
+const std::vector<partUPTR>& Participants::getParticipants() { 
+	return participantsVector; 
+}
+
+static int Participants::getParticipantsAlive() {
+	int alive = 0;
+	for (int index = 0; index < participantsVector.size(); index++) {
+		if (participantsVector.at(index)->isAlive()) { alive++; }
+	}
+	return alive;
+}
+
+static Participants& Participants::getRemainingParticipant() {
+	int foo = 0;
+	for (int index = 0; index < participantsVector.size(); index++) {
+		if (participantsVector.at(index)->isAlive()) { foo = index; break; }
+	}
+	return *participantsVector.at(foo);  
+}
+
+static int Participants::getParticipantsNum() {
+	return provincesVector.size();
+}
+
+static void Participants::clearParticipantsVector() { 
+	participantsVector.clear();
 }

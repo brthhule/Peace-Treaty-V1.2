@@ -174,8 +174,8 @@ namespace INF {
 	extern s5array RESOURCE_NAMES;
 
 	extern i5array INITIAL_VALUES;
-	extern int 
-		continentSize, 
+	extern int
+		continentSize,
 		enemyDifficulty,
 		CPUNum,
 		turn,

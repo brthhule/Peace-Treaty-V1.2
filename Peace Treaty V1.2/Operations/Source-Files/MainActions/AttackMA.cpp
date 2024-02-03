@@ -237,7 +237,7 @@ void Participants::battleCalculationsTwo(constINT lostCombatPower, i5array troop
 	/*
 	DEBUG_FUNCTION("AttackMA.cpp", "battleCalculationsTwo(constINT, i5array, int, commSPTR)");
 
-	partSPTR playerParticipant = Participants::participantsList.at(currentParticipantIndex);
+	partSPTR playerParticipant = Participants::participantsVector.at(currentParticipantIndex);
 
 	int z = abs(4 - troopIndex);
 

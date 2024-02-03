@@ -22,4 +22,6 @@
 
 #define PARTICIPANTS_HEADER "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Header-Files\Units\Participants.h"
 
+#define AIPARTICIPANTS_HEADER "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Header-Files\Units\AIParticipant.h"
+
 #endif

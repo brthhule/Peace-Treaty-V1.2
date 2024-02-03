@@ -71,9 +71,9 @@ public:
 	Participants(int pIndex);
 	~Participants();
 
-	static void initializeParticipants(int totalPlayers, int humanPlayers, int count); 
+	static void initializeParticipants(int totalPlayers, int count); 
 	void createCapital();
-	static partSPTR getCurrentParticipant();
+	static Participants& getCurrentParticipant();
 
 	//----Getters----------------------------------------------------------
 	///Get the costs needed to train a new Commander?
@@ -89,10 +89,15 @@ public:
 
 	//Need to implement this
 	void getPrimeUnitsArrayCommanders() const;
+	static int getParticipantsAlive();
+	static Participants& getRemainingParticipant();
+	static int getParticipantsNum();
+	static void clearParticipantsVector();
 
 
 	///Returns a commander this Participant owns by name
 	COMM::commSPTR getCommander(std::string name);
+	COMM::commSPTR getCommander(int index);
 	///Return the unordered_map of Commander shared pointers
 	std::unordered_map<std::string, COMM::commSPTR> getCommandersMap() const;
 
@@ -105,7 +110,7 @@ public:
 	///Get the index of this participant in the vector of all participants
 	INF::constINT getParticipantIndex() const;
 
-	partSPTR getParticipant(int listIndex) const;
+	static Participants& getParticipant(int listIndex); 
 
 	///Returns participant statistics?
 	INF::ivector calculatePlayerValues(int decision);
@@ -126,7 +131,7 @@ public:
 		getNewName();
 
 	COMM::commSPTR pickCommander() const;
-	static const std::vector<Participants>& getParticipants();
+	static const std::vector<std::unique_ptr<Participants>>& getParticipants(); 
 
 	//----Threads----------------------------------------------------------
 	///Experimental
@@ -252,8 +257,12 @@ public:
 	//Need this for some reason or else the program breaks
 	void plaerActionShowHelp();
 
+protected:
+	PROV::provSPTRList provincesVector;
+	COMM::commSPTRList commandersVector;
+
 private:
-	static std::vector<Participants> participantsList;
+	static std::vector<std::unique_ptr<Participants>> participantsVector;     
 	static INF::i5array trainCosts;
 	static int humanPlayers;
 
@@ -262,9 +271,7 @@ private:
 
 	COMM::commSPTR selectedCommander; //For ArmyDeploymentMA
 
-	int
-		capitalIndex,
-		participantIndex;
+	int participantIndex; 
 
 	PROV::provSPTR capitalProvince;
 
@@ -272,11 +279,7 @@ private:
 
 	std::unordered_map <std::string, COMM::commSPTR> commandersMap;
 	std::unordered_map <std::string, PROV::provSPTR> provincesMap;
-	std::unordered_map<std::string, COMM::commSPTR>::iterator commIt;
-
-	PROV::provSPTRList provincesVector;
-	COMM::commSPTRList commandersVector;
-
+	std::unordered_map <std::string, COMM::commSPTR>::iterator commIt;
 };
 
 namespace PART {
@@ -284,4 +287,8 @@ namespace PART {
 	using partSPTR = std::shared_ptr<Participants>;
 	using partSPTRList = std::vector<partSPTR>;
 }
+
+class AIParticipant {
+
+};
 #endif

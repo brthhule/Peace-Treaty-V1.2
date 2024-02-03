@@ -97,7 +97,7 @@ void startNewGame() {
 	int humanPlayers = getContinentInformation();
 	int allPlayers = generateNewContinent(humanPlayers);
 	Participants::setHumanPlayers(humanPlayers);
-	Participants::initializeParticipants(humanPlayers, allPlayers, 0);
+	Participants::initializeParticipants(allPlayers, 0);
 	std::cout << "Created participants";
 }
 
@@ -162,10 +162,11 @@ void gamePlay() {
 	bool gameEnd = false;
 
 	//Iterate through partiicpants by reference
-	for (Participants participant : Participants::getParticipants()) {  
-		if (!participant.isAlive()) { break; }
+	for (int index = 0; index < Participants::getParticipantsNum(); index++) {
+		Participants& participant = Participants::getParticipant(index);
+		if (!participant.isAlive()) { break; } 
 
-		try { participant.chooseAction(); } 
+		try { participant.chooseAction(); }  
 		catch (...) { INF::LOG::ERROR("Error occurred in player turn"); }
 	}
 
@@ -174,13 +175,8 @@ void gamePlay() {
 
 	//Check game end
 	//If there are more than one players, keep playing
-	int participantsAlive = 0;
 
-	for (Participants participant : Participants::getParticipants()) { 
-		if (participant.isAlive()) { participantsAlive++; } 
-	}
-
-	if (participantsAlive > 1) {
+	if (Participants::getParticipantsAlive() > 1) { 
 		try { gamePlay(); } 
 		catch (...) { println("Didn't work, try agian");}
 	}
@@ -194,19 +190,12 @@ void gamePlay() {
 void endScreen() {
 	//For debugging
 	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "endScreen");
-	std::string kingdomName = " ";
-
-	//Only one is surviving, iterates through to find that participant
-	for (Participants participant : Participants::getParticipants()) {  
-		if (participant.isAlive()) {    
-			kingdomName = participant.getKingdomName(); 
-			break;
-		}
-	}
+	std::string kingdomName = Participants::getRemainingParticipant().getKingdomName();
 
 	std::cout << "Congratulations to player " << kingdomName << " for winning. You have successfully conquered your enemies and now reign as the Emperor! \n"; 
 
 	char playAgain = Input::getInputText("Play again? (Y/N) ", { "letter", "Y", "N" }).at(0);
+	Participants::clearParticipantsVector(); 
 	if (playAgain == 'Y') { main();}
 }
 
