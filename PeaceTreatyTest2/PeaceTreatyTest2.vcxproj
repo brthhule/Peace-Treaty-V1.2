@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ParticipantsTests.cpp" />
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="PeaceTreatyTest2.cpp" />
   </ItemGroup>

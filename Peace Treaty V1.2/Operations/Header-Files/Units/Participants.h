@@ -74,6 +74,7 @@ public:
 	static void initializeParticipants(int totalPlayers, int count); 
 	void createCapital();
 	static Participants& getCurrentParticipant();
+	static void clear();
 
 	//----Getters----------------------------------------------------------
 	///Get the costs needed to train a new Commander?
@@ -260,6 +261,8 @@ public:
 protected:
 	PROV::provSPTRList provincesVector;
 	COMM::commSPTRList commandersVector;
+	enum ParticipantType {AI, HUMAN};
+	ParticipantType participantType; 
 
 private:
 	static std::vector<std::unique_ptr<Participants>> participantsVector;     

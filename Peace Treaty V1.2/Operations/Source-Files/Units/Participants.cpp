@@ -15,6 +15,9 @@ std::vector<partSPTR> Participants::playersList = {};
 std::vector<partSPTR> Participants::botsList = {};  
 int totalPlayers = 0;
 
+void Participants::clear() {
+	clearParticipantsVector();
+}
 
 std::vector<partUPTR> Participants::participantsVector = {};
 INF::i5array Participants::trainCosts = {};
@@ -547,7 +550,7 @@ std::thread Participants::th2Method() const {
 	return std::thread([=] {getPrimeUnitsArrayCommanders(); });
 }
 
-Participants& Participants::getParticipant(int listIndex) const {  
+Participants& Participants::getParticipant(int listIndex) {  
 	return *participantsVector.at(listIndex); 
 }
 
@@ -636,26 +639,26 @@ const std::vector<partUPTR>& Participants::getParticipants() {
 	return participantsVector; 
 }
 
-static int Participants::getParticipantsAlive() {
+int Participants::getParticipantsAlive() {
 	int alive = 0;
-	for (int index = 0; index < participantsVector.size(); index++) {
+	for (int index = 0; index < (int)participantsVector.size(); index++) {
 		if (participantsVector.at(index)->isAlive()) { alive++; }
 	}
 	return alive;
 }
 
-static Participants& Participants::getRemainingParticipant() {
+Participants& Participants::getRemainingParticipant() {
 	int foo = 0;
-	for (int index = 0; index < participantsVector.size(); index++) {
+	for (int index = 0; index < (int) participantsVector.size(); index++) {
 		if (participantsVector.at(index)->isAlive()) { foo = index; break; }
 	}
 	return *participantsVector.at(foo);  
 }
 
-static int Participants::getParticipantsNum() {
-	return provincesVector.size();
+int Participants::getParticipantsNum() {
+	return participantsVector.size();
 }
 
-static void Participants::clearParticipantsVector() { 
+void Participants::clearParticipantsVector() { 
 	participantsVector.clear();
 }
