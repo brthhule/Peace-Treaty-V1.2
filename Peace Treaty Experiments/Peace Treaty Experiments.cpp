@@ -17,6 +17,18 @@ private:
     std::shared_ptr<T> ptr;
 };
 
+class Commanders {
+public:
+    Commanders(std::string name) {
+        this->name = name;
+    }
+    std::string getName() {
+        return name;
+    }
+private:
+    std::string name;
+};
+
 class Provinces {
 public:
     using String = std::string;
@@ -28,9 +40,23 @@ public:
         return name;
     }
 
+    Provinces& operator+=(const std::shared_ptr<Commanders> rhs){
+        commanderList.push_back(rhs); 
+        return *this; // return the result by reference
+    }
+
+    int getCommanderListSize() {
+        return commanderList.size();
+    }
+
+    void printCommanderName(int index) {
+        std::cout << commanderList.at(index)->getName() + "\n";
+    }
+
 
 private:
     std::string name;
+    std::vector<std::shared_ptr<Commanders>>commanderList;
 };
 
 namespace PROV {
@@ -80,6 +106,10 @@ int main() {
     Provinces& thing2 = thing.getProvince();
     println(thing2.getName());
     println(thing.getName());
+
+    Commanders commander("Hey, this is a Commander");
+    thing2 += std::make_shared<Commanders>(commander);
+    thing2.printCommanderName(0);
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
