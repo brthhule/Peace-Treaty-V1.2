@@ -87,20 +87,17 @@ std::vector<commSPTR> Participants::getCommandersCanAttack(provSPTR defendingPro
 commSPTR Participants::pickCommanderAttack(commSPTRList commandersCanAttack) {
 	DEBUG_FUNCTION("AttackMA.cpp", "pickCommanderCanAttack(commSPTRList)");
 
-	std::cout << "The following number of commanders can attack the target: " +
-		 std::to_string(commandersCanAttack.size()) + "\n";
+	LOG::PRINT("The following number of commanders can attack the target: "s +
+		 std::to_string(commandersCanAttack.size()) + "\n");
 
 
-	for (commSPTR commander : commandersCanAttack) {
-		commander->printNameLevel();
-	}
+	for (commSPTR commander : commandersCanAttack) { commander->printNameLevel(); }
 	
 	std::string commanderName = getInputText("Enter the name of the commander you would like to select: ", {});
-
 	if (this->hasCommander(commanderName)) { return getCommander(commanderName); }
 
 	//If participant doesn't have commander, recurse until it does
-	std::cout << "Invalid commander selected... please try again.\n";
+	LOG::ERROR("Invalid commander selected... please try again...\n");
 	pickCommanderAttack(commandersCanAttack);
 
 	//not all control paths return a value
@@ -148,8 +145,8 @@ void Participants::playerCommitAttack(provSPTR defendingProvince,  commSPTR atta
 	attackingCommander->mutateTroop(INJURED, type, injuredTroopsTemp, ALL, INCREASE, NULL);
 	attackingCommander->mutateTroop(LOST, type, troopsLostTemp, ALL, INCREASE, NULL);
 
-	std::cout << "  Results: \n\n";
-	std::cout << "Resources gained: " << getColor(BLUE);
+	LOG::PRINT("    Results:\n\n");
+	LOG::PRINT("Resources gained: ", LOG::BLUE);
 
 	i5array oldResources = {};///////////////////
 	printResources(mutateArray(attackingCommander->getAllResources(), oldResources, DECREASE));

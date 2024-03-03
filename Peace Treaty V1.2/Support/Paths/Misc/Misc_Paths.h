@@ -10,4 +10,7 @@
 #define INPUT_
 	#define INPUT_HEADER "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Header-Files\Misc\INPUT.h"
 
+#define LOG_ 
+#define LOG_HEADER "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Header-Files\Misc\LOG.hpp"
+
 #endif

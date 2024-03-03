@@ -13,6 +13,7 @@
 #include PROVINCES_HEADER				//Composition 
 #include INF_HEADER
 #include INPUT_HEADER
+#include LOG_HEADER
 
 /*TODO
 * Potentially implement lamda in showMap();

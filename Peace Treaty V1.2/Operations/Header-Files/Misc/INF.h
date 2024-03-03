@@ -1,3 +1,5 @@
+//Second level class
+
 #ifndef INF_H
 #define INF_H
 
@@ -13,6 +15,8 @@
 #include <time.h>
 #include <vector>
 #include <fstream>
+
+#include LOG_HEADER
 
 
 namespace INF {
@@ -132,18 +136,7 @@ namespace INF {
 	};
 
 
-	/*BLACK = 0, RED, GREEN, YELLOW, BLUE, MAGENTA = 5, CYAN, WHITE, RESET*/
-	enum COLORS {
-		BLACK,
-		RED,
-		GREEN,
-		YELLOW,
-		BLUE,
-		MAGENTA,
-		CYAN,
-		WHITE,
-		RESET
-	};
+	
 
 	///FARM, WOOD, STONE, ORE, MANA
 	enum ResourceType {
@@ -181,16 +174,7 @@ namespace INF {
 		turn,
 		currentParticipantIndex;
 
-	/*"BLACK",
-		"RED",
-		"GREEN",
-		"YELLOW",
-		"BLUE",
-		"MAGENTA",
-		"CYAN",
-		"WHITE",
-		"RESET" */
-	extern std::array<std::string, 9> COLORS_STRING;
+	
 
 	
 
@@ -198,8 +182,7 @@ namespace INF {
 	///////////////////////////////////Functions///////////////////////////////
 	
 	//----String-----------------------
-	//Get command to print certain color to console
-	std::string getColor(COLORS color);
+	
 	
 
 	std::string createRandomName();
@@ -228,19 +211,12 @@ namespace INF {
 	//More text stuff
 	void clearScreenCommand();
 
-	//Adds color to console
-	void addColor(COLORS c);
+	
 	
 	
 
 	//Manipulate vectors
 	i5array mutateArray(i5array primeArray, constArrayRef secondaryArray, MutateDirection direction);
-
-	class LOG {
-	public:
-		static void ERROR(std::string message);
-		//static void FILE_METHOD(std::string file, std::string method);
-	};
 }
 
 #endif		

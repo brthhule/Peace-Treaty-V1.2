@@ -17,17 +17,6 @@ T makeCopy(T& object) {
 /*INITIAL_VALUES = 5, 4, 3, 2, 1 */
 INF::i5array INF::INITIAL_VALUES = { 5, 4, 3, 2, 1 };
 
-std::array<std::string, 9> INF::COLORS_STRING = {
-		"BLACK",
-		"RED",
-		"GREEN",
-		"YELLOW",
-		"BLUE",
-		"MAGENTA",
-		"CYAN",
-		"WHITE",
-		"RESET"
-};
 /*
 template <typename T>
 Array5<T>::Array5(std::initializer_list<T> list) : items(list) {
@@ -48,30 +37,7 @@ int INF::currentParticipantIndex = 0;
 
 //////////////////////////////////////End Variables////////////////////////
 
-//For stand alone color integration
-void INF::addColor(COLORS color) {
-	//For debugging
-	DEBUG_FUNCTION("INF.cpp", "addColor(COLORS)");
-	std::cout << getColor(color);
-		
-}
 
-//For integration with strings/std::cout statements
-std::string INF::getColor(COLORS color) {
-	std::array<std::string, 9> sequences = {
-		"\033[30m", //Black
-		"\033[31m", //Red
-		"\033[32m", //Green
-		"\033[33m", //Yellow
-		"\033[34m", //Blue
-		"\033[35m", //Magenta
-		"\033[36m", //Cyan
-		"\033[37m", //White
-		"\033[0m" //Reset
-	};
-
-	return sequences.at(color);
-}
 
 //Generates a random name by randomly selecting consonants and vowels
 std::string INF::createRandomName() {
@@ -164,9 +130,7 @@ void INF::clearScreen() {
 	//For debugging
 	DEBUG_FUNCTION("INF.cpp", "clearScreen(void)");
 
-	addColor(RED);
-	std::cout << "Clearing screen. \n";
-	addColor(RESET);
+	LOG::PRINT("Clearing screen.\n", LOG::RED); 
 
 	std::chrono::seconds dura(1);
 	std::this_thread::sleep_for(dura);
@@ -188,8 +152,13 @@ void INF::enterAnything(int option) {
 	std::array<std::string, 2> phrases = { "proceed", "return to the previous menu" };
 	std::string line = phrases.at(option - 1);
 
-	std::cout << "Enter anything to " << line +
-		" (screen will clear): " << getColor(BLUE);
+	std::string message = "Enter anything to ";
+	message += line;
+	message += " (screen will clear): ";
+
+	LOG::SYSTEM(message);
+	std::cout << "" << line +
+		 << getColor(BLUE);
 	std::string emptyString = " ";
 	getline(std::cin, emptyString);
 	addColor(BLUE);

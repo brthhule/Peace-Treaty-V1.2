@@ -6,9 +6,9 @@
 #include PROVINCES_HEADER
 #include COMMANDERS_HEADER
 
-class AIParticipants : Participants {
+class AIParticipants : Participants { 
 public:
-	PROV::provSPTR pickRandomProvince();
+	PROV::provSPTR pickRandomProvince(); 
 
 private:
 };

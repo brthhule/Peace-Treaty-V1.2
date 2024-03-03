@@ -28,7 +28,6 @@ void Map::setMap() {
 		for (int y = 0; y < INF::continentSize; y++, mapIndex++) {  
 			Provinces newProvince(mapIndex, -1);
 			tempVector.push_back(newProvince);
-			std::cout << "Province " << mapIndex << " Created...\n";
 		}
 		mapVectors.push_back(tempVector);
 	}
@@ -154,12 +153,8 @@ bool Map::checkInBounds(ipair coords, CoordsType type) {
 		coords.second -= 1; 
 	}
 
-	if (coords.first < 0 || coords.first >= INF::continentSize) {
-		return false;
-	}
-	if (coords.second < 0 || coords.second >= INF::continentSize) {
-		return false;
-	}
+	return	(coords.first < 0 || coords.first >= INF::continentSize) ? false :
+			(coords.second < 0 || coords.second >= INF::continentSize) ? false :
+			true;
 
-	return true;
 }

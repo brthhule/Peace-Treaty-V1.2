@@ -14,6 +14,7 @@
 
 #include INF_HEADER
 #include COMMANDERS_HEADER
+#include LOG_HEADER
 
 class ArmyOverviewMA { 
 public:

@@ -40,15 +40,15 @@ void Participants::armyOverviewSelectAction() {
 commSPTR Participants::pickCommanderToUpgrade() {  
 	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "pickCommanderToUpgrade()");
 	if (getCommandersNum() == 0) { 
-		std::cout << "No commanders available, can not upgrade\n"; 
-		enterAnything(1); 
+		LOG::PRINT("No commanders available, can not upgrade\n"); 
+		enterAnything(1);  
 		return nullptr;
 	}
 
 	COMM::commSPTR commander = this->pickCommander(); 
 
 	if (commander.get() == nullptr) {
-		std::cout << "Cancelling upgrade...\n"; 
+		LOG::PRINT("Cancelling upgrade...\n");
 		enterAnything(1); 
 		return nullptr;
 	}
@@ -66,15 +66,16 @@ void Participants::upgradeCommander() {
 
 	constArrayRef costsArray = commander.get()->getUpgradeCosts(); 
 
-	std::cout << "The following are the Commander upgrade costs: \n";
+	LOG::PRINT("The following are the Commander upgrade costs: \n");
 	INF::printResources(costsArray);
-	std::cout << "The following are the resources currently in your capital: \n";
+	LOG::PRINT("The following are the resources currently in your capital: \n");
+
 	getCapitalProvince()->printResources();
 	char proceedWithUpgradeQuestion =
 		Input::getInputText("\nProceed with upgrade? ", { "Y", "N" }).at(0);
 
 	if (proceedWithUpgradeQuestion == 'N') {
-		std::cout << "Cancelling upgrade...\n";
+		LOG::PRINT("Cancelling upgrade...\n"); 
 		INF::enterAnything(1);
 		return;
 	}
@@ -83,10 +84,10 @@ void Participants::upgradeCommander() {
 
 	if (resourcesPositive == true) {
 		commander.get()->addLevel();
-		std::cout << "Upgrade successful; Commander " + commander.get()->getName() + "is now level " << commander.get()->getLevel() << std::endl; 
+		LOG::PRINT("Upgrade successful; Commander "s + commander.get()->getName() + "is now level "s + commander.get()->getLevel() + "\n";);
 	} else {
 		//Add subtracted resources back to province resources
-		std::cout << "Upgrade failed. " << std::endl;
+		LOG::PRINT("Upgrade failed...\n");
 	}
 
 	INF::enterAnything(1);
@@ -119,10 +120,11 @@ void Participants::viewCommanderStats() {
 		return;
 	}
 	
-	std::cout << "Commander " + commander->getName() +" selected... \n" +
-		"The coordinates of this Commander: ";
+	LOG::PRINT("Commander "s + commander->getName() +" selected... \n"s +
+		"The coordinates of this Commander: ");
+
 	commander->printCoords(COORD::USER); 
-	std::cout << "\n\n";
+	LOG::PRINT("\n\n");
 	commander->printCommanderStats();
 
 }
@@ -130,9 +132,9 @@ void Participants::viewCommanderStats() {
 void Participants::trainCommanderPrompt() {
 	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "trainCommanderPrompt()");
 
-	std::cout << "You have " << this->getCommandersNum() << "/" << TROOP::maxCommanders << " total army commanders. \n";
+	LOG::PRINT("You have "s + this->getCommandersNum() + "/"s + TROOP::maxCommanders + " total army commanders.\n");
 	if (getCommandersNum() < TROOP::maxCommanders) {
-		std::cout << "At maximum army commander amount. Training failed, returning to menu \n";
+		LOG::PRINT("At maximum army commander amount.Training failed, returning to menu \n");
 		return;
 	}
 	
@@ -145,6 +147,7 @@ void Participants::trainCommanderPrompt() {
 	proceedWithTraining(trainCosts);
 
 	INF::enterAnything(1);
+	return;
 }
 
 void Participants::proceedWithTraining(constArrayRef trainCosts) { 
@@ -153,14 +156,15 @@ void Participants::proceedWithTraining(constArrayRef trainCosts) {
 	bool trainingSuccess = getCapitalProvince()->subtractCheckResources(trainCosts);
 
 	if (trainingSuccess == false) {
-		std::cout << "Commander training failed (Not enough resources)... \n\n";
+		LOG::ERROR("Commander training failed(Not enough resources)... \n\n");
 		return;
 	}
 
 	addCommander();
 
-	println("Commander training successful ");
-	std::cout << "Current commanders: " << this->getCommandersNum() << std::endl;
+	LOG::PRINT("Commander training successful\n");
+	LOG::PRINT("Current commanders: "s + this->getCommandersNum() + "\n");
+
 	return;
 }
 
@@ -172,11 +176,11 @@ void Participants::deployCommanderPrompt() {
 
 	commander->printCommanderStats();
 
-	std::cout << "Deploy commander " + commander->getName() + "? (Y/N) ";
+	LOG::PRINT("Deploy commander "s + commander->getName() + "? (Y/N) ");
 	char confirmDeploy = Input::getInputText("Replacement", { "Y", "N" }).at(0);
 
 	if (confirmDeploy == 'N') {
-		std::cout << "Returning to the previous page...\n";
+		LOG::PRINT("Returning to the previous page... \n");
 		return;
 	}
 
@@ -185,7 +189,7 @@ void Participants::deployCommanderPrompt() {
 		return;
 	} 
 
-	std::cout << "This unit has already moved... please pick another unit \n";
+	LOG::ERROR("This unit has already moved... please pick another unit\n");
 	deployCommanderPrompt(); 
 	INF::enterAnything(1);
 }
