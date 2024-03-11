@@ -31,6 +31,7 @@ public:
 	///Iterate through all the provinces and update resource amounts
 	static void updateTurnResources();
 
+
 	//----Printers-------------------------------------------------------------
 	///Shows the map
 	static void showMap();
@@ -53,9 +54,13 @@ public:
 	static INF::ipair pickCoords();
 	static bool checkInBounds(INF::ipair coords, COORD::CoordsType type);
 
-	///2D vector of provinces shared ptrs
+	///2D vector of Provinces (original context)
 	static PROV::prov2Vector mapVectors; 
 	///unordered map of provinces shared pointers
 	static PROV::provMAP mapMap;
+
+private:
+	void assignSurroundingProvinces(); 
+	void assignSurroundingProvincesAux(int rowIndex, int colIndex, Provinces* currentProvince);
 };
 #endif

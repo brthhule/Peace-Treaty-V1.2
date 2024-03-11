@@ -343,6 +343,18 @@ void Provinces::calculateFoodConsumption() {
 
 }
 
-provSPTR PROV::make_provSPTR(Provinces& province_ref){ 
-	return std::make_shared<Provinces>(province_ref);  
+provSPTR PROV::make_provSPTR(Provinces& province_ref){   
+	return std::make_shared<Provinces>(province_ref);   
+} 
+
+std::shared_ptr<Provinces> Provinces::getRelativeProvince(RelativeDirection direction) {    
+	return (relativeProvinces.at(direction) == nullptr) ? nullptr : relativeProvinces.at(direction); 
+}
+
+const std::array<Provinces*, 8>* Provinces::getRelativeDirectionList() {   
+	return &relativeProvinces; 
+}
+ 
+void Provinces::setRelativeProvince(RelativeDirection direction, Provinces* province) {  
+	this->relativeProvinces[direction] = province;  
 }

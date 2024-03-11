@@ -40,6 +40,8 @@ void Map::setMap() {
 			mapMap.erase(std::to_string(province->getMapIndex()));
 		}
 	}
+
+	//Work out surrounding provinces
 }
 
 void Map::showMap() {
@@ -80,8 +82,8 @@ void Map::meat(int x, int y) {
 	//Empty province
 	else {letter = '0';}
 
-	std::cout << letter << currentProvince.getCommandersNum();
-	INF::addColor(RESET);
+std::cout << letter << currentProvince.getCommandersNum();
+INF::addColor(RESET);
 }
 
 void Map::printXAxis() {
@@ -123,13 +125,13 @@ PROV::provSPTR Map::getProvince(CoordsType type, ipair coords) {
 	if (type == USER) {
 		coords = CoordsBASE::translateCoords(coords, USER);
 	}
-	
+
 	return std::make_shared<Provinces>(mapVectors.at(coords.first).at(coords.second));
 }
 
 
 ipair Map::pickCoords() {
-	int xCoordinate, yCoordinate; 
+	int xCoordinate, yCoordinate;
 	xCoordinate = Input::getNumber("Enter an X Coordinate (-1 to cancel): ");
 	yCoordinate = Input::getNumber("Enter a Y Coordinate (-1 to cancel): ");
 
@@ -143,18 +145,42 @@ ipair Map::pickCoords() {
 	if (xCoordinate == -1 || yCoordinate == -1) {
 		return std::make_pair<int, int>(-1, -1);
 	}
-	
+
 	return userCoords;
 }
 
 bool Map::checkInBounds(ipair coords, CoordsType type) {
 	if (type == USER) {
 		coords.first -= 1;
-		coords.second -= 1; 
+		coords.second -= 1;
 	}
 
 	return	(coords.first < 0 || coords.first >= INF::continentSize) ? false :
-			(coords.second < 0 || coords.second >= INF::continentSize) ? false :
-			true;
+		(coords.second < 0 || coords.second >= INF::continentSize) ? false :
+		true;
 
+}
+
+
+
+void Map::assignSurroundingProvinces() {
+	//Set everything except boundary provinces
+	for (int rowIndex = 1; rowIndex < mapVectors.size() - 1; rowIndex++) {
+		for (int colIndex = 1; colIndex < mapVectors.at(0).size() - 1; colIndex++) {
+			Provinces* currentProvince = &mapVectors.at(rowIndex).at(colIndex);
+			assignSurroundingProvincesAux(rowIndex, colIndex, currentProvince);
+		}
+	}
+}
+
+void Map::assignSurroundingProvincesAux(int rowIndex, int colIndex, Provinces* currentProvince) {
+	int count = 0;
+	for (int outer = -1; outer <= 1; outer++) { 
+		for (int inner = -1, inner <= 1; inner++) { 
+			bool inBounds = checkInBounds(std::make_pair(rowIndex + outer, colIndex + inner));
+			Provinces* relativeProvince = (inBounds) ? nullptr : &mapVectors.at(rowIndex + inner).at(colIndex + outer);
+			currentProvince->setRelativeProvince((ProvinceRelation)count, relativeProvince);
+			count++;
+		}
+	}
 }

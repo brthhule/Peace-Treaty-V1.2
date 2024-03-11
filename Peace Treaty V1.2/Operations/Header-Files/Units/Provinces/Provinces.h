@@ -51,6 +51,11 @@ class Provinces :
 	public BuildingAttributesINT	//Interface
 {
 public:
+	static enum RelativeDirection{
+		UP_LEFT, UP, UP_RIGHT,
+		LEFT, /*This Province*/ RIGHT,
+		DOWN_LEFT, DOWN, DOWN_RIGHT
+	};
 	///////////////////////////////This Class//////////////////////////////
 	//----Constructors-----------------------------------------------------
 	Provinces(int mapIndex, int participantIndex);
@@ -184,6 +189,12 @@ public:
 
 
 
+
+	std::shared_ptr<Provinces> getRelativeProvince(RelativeDirection direction);
+	const std::array<Provinces*, 8>* getRelativeDirectionList();
+	void setRelativeProvince(RelativeDirection direction, Provinces* province);
+
+
 	
 
 protected:
@@ -219,6 +230,7 @@ private:
 	std::vector<reports> scoutReports;
 
 	std::vector<std::unique_ptr<BuildingsBASE>>* buildingsVector; 
+	std::array<Provinces*, 8> relativeProvinces; 
 
 	
 };
