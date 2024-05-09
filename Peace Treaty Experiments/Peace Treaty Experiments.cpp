@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <vector>
+#include "../Peace Treaty V1.2/Operations/Header-Files/Units/Provinces/Buildings/BuildingsBASE.h"
+#include "../Peace Treaty V1.2/Operations/Header-Files/Units/Provinces/Buildings/Resources/Farm.h"
 
 template<class T>
 class sPTR {
@@ -94,22 +96,12 @@ private:
 };
 
 int main() {
-    foo thing; 
-    auto print = [](std::string message) {
-        std::cout << message;
-    };
-    auto println = [](std::string message) {
-        std::cout << message << "\n";
-    };
+    
+    std::vector<std::unique_ptr<BuildingsBASE>> buildingsVector;
 
-    println(thing.getName());
-    Provinces& thing2 = thing.getProvince();
-    println(thing2.getName());
-    println(thing.getName());
+    buildingsVector.push_back(std::move(std::unique_ptr<BuildingsBASE>(new Farm())));  
 
-    Commanders commander("Hey, this is a Commander");
-    thing2 += std::make_shared<Commanders>(commander);
-    thing2.printCommanderName(0);
+    //std::cout << buildingsVector.at(0)->getLevel();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

@@ -27,7 +27,7 @@ std::string LOG::getColor(Colors color) {
 		"\033[31m", //Red
 		"\033[32m", //Green
 		"\033[33m", //Yellow
-		"\033[34m", //Blue
+		"\033[34m", //LOG::BLUE
 		"\033[35m", //Magenta
 		"\033[36m", //Cyan
 		"\033[37m", //White
@@ -38,15 +38,15 @@ std::string LOG::getColor(Colors color) {
 }
 
 void LOG::PRINT(std::string message, Colors color) {
-	std::cout << addColor(color) << message << addColor(RESET);
+	std::cout << addColor(color) << message << addColor(RESET);  
 }
 
 void LOG::PRINT(std::string message) {
-	PRINT(message, RESET);
+	PRINT(message, RESET); 
 }
 
 void LOG::DEBUG(std::string message) {
-	PRINT(message, MAGENTA);
+	PRINT(message, MAGENTA); 
 }
 
 void LOG::SYSTEM(std::string message) {
@@ -55,4 +55,8 @@ void LOG::SYSTEM(std::string message) {
 
 void LOG::ERROR(std::string message) {
 	PRINT(message, RED); 
+}
+
+static std::string LOG::EMBED(std::string message, Colors color) {
+	return addColor(color) + message + addColor(RESET); 
 }

@@ -143,6 +143,32 @@ void INF::clearScreenCommand() {
 	std::cout << "\033[2J\033[1;1H";
 }
 
+std::string INF::getText(std::string target) {
+	std::string filename = "C:\Users\Brennen\Source\Repos\brthhule\Peace - Treaty - V1.2\Peace Treaty V1.2\Support\TxtFiles\Text.txt";
+
+	std::ifstream file(filename);
+	std::string str, text;
+	while (std::getline(file, str)) {
+		if (str.find(target) != -1) {
+			text = str.substr(target.find(" "));
+			break;
+		}
+	}
+
+	if (text.find("BREAK") == -1) {
+		return text;
+	}
+
+	std::string returnText = "";
+	while (text.find("BREAK" != -1)) {
+		int point = text.find("BREAK");
+		returnText += text.substr(0, point) + "\n";
+		text = text.substr(point);
+		//Can't have BREAK at the end (will break everything)
+		text = text.substr(text.find("K") + 1);
+	}
+	return returnText;
+}
 
 /*The user is prompeted to enter anything
 option = 1, says enter anything to proceed
@@ -158,10 +184,10 @@ void INF::enterAnything(int option) {
 
 	LOG::SYSTEM(message);
 	std::cout << "" << line +
-		 << getColor(BLUE);
+		 << getColor(LOG::BLUE);
 	std::string emptyString = " ";
 	getline(std::cin, emptyString);
-	addColor(BLUE);
+	addColor(LOG::BLUE);
 }
 
 /*Returns help prompt that correlates with the specified numerical
@@ -223,7 +249,7 @@ void INF::printFile(std::string path) {
 					addColor(RED);
 					break;
 				case 'B':
-					addColor(BLUE);
+					addColor(LOG::BLUE);
 					break;
 				case 'W':
 					addColor(WHITE);

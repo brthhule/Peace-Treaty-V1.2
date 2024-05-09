@@ -1,5 +1,6 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 #include INPUT_HEADER
+#include LOG_HEADER
 
 using namespace INF;
 
@@ -105,7 +106,7 @@ std::string getOptionPromptQuery(std::vector<std::string>AV) {
 	DEBUG_FUNCTION("Input.cpp", "getShowPromptQuery");
 
 	std::string input;
-	std::cout << getColor(GREEN) << "Enter an option: " << getColor(BLUE);
+	std::cout << getColor(GREEN) << "Enter an option: " << getColor(LOG::BLUE);
 	getline(std::cin, input);
 	addColor(RESET);
 
@@ -137,10 +138,10 @@ std::string getInputQuery(std::vector<std::string>AV) {
 	//For debugging
 	DEBUG_FUNCTION("Input.cpp", "getInputQuery");
 
-	std::cout << "Enter an option: " << getColor(BLUE);
+	std::cout << "Enter an option: " << LOG::getColor(LOG::BLUE);  
 	std::string input;
 	getline(std::cin, input);
-	INF::addColor(RESET);
+	LOG::addColor(RESET);
 
 	for (std::string value : AV) {
 		if (input == value) {

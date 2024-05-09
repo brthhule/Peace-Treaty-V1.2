@@ -12,7 +12,7 @@ void Provinces::upgradeBuildingPrompt() {
 	clearScreen();
 	std::cout <<
 		"---------- Start printing province information ----------";
-	addColor(BLUE);
+	addColor(LOG::BLUE);
 	std::cout << "Province of kingdom " + getKingdomName();
 	std::cout << "Coordinates: " << getCoords(COORD::USER) << "\n\n";  
 	addColor(RESET);

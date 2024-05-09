@@ -76,14 +76,14 @@ void Map::meat(int x, int y) {
 	constINT thisIndex = currentProvince.getParticipantIndex(); 
 
 	//If current participant's province
-	if (thisIndex == currentIndex){ INF::addColor(BLUE);}
+	if (thisIndex == currentIndex){ LOG::addColor(LOG::BLUE);} 
 	//Enemy province (any other participant)
-	else if (thisIndex != 0) {INF::addColor(RED);}
+	else if (thisIndex != 0) {LOG::addColor(LOG::RED);}
 	//Empty province
 	else {letter = '0';}
 
 std::cout << letter << currentProvince.getCommandersNum();
-INF::addColor(RESET);
+LOG::addColor(RESET);
 }
 
 void Map::printXAxis() {
@@ -160,7 +160,6 @@ bool Map::checkInBounds(ipair coords, CoordsType type) {
 		true;
 
 }
-
 
 
 void Map::assignSurroundingProvinces() {

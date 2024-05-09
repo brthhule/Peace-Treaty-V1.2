@@ -16,6 +16,7 @@
 #include <vector>
 #include <fstream>
 
+
 #include LOG_HEADER
 
 
@@ -212,7 +213,7 @@ namespace INF {
 	void clearScreenCommand();
 
 	
-	
+	std::string getText();
 	
 
 	//Manipulate vectors

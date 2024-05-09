@@ -6,6 +6,7 @@
 using namespace COORD;
 using namespace COMM;
 using namespace INF;
+using namespace std::literals::string_literals; 
 
 void Participants::armyOverviewSelectAction() { 
 	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "armyOverviewSelectAction()");

@@ -108,5 +108,7 @@ namespace COMM {
 	/*Vector of Commanders shared pointers
 	Expanded: std::vector<commSPTR>*/
 	using commSPTRList = std::vector<commSPTR>;
+
+	commSPTR make_commSPTR(Commanders& commander_ref);
 }
 #endif

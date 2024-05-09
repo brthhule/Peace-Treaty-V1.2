@@ -18,55 +18,41 @@ Provinces::Provinces(int mapIndex, int participantIndex) : PrimeUnits(participan
 	resourcesPresent = INF::INITIAL_VALUES;
 	isACapital = false;
 	newAccuracy = -1;
-	resourcesPresent = INF::mutateArray(resourcesPresent, INF::INITIAL_VALUES, INCREASE);
+	resourcesPresent = INF::mutateArray(resourcesPresent, INF::INITIAL_VALUES,
+		INCREASE);
 
 	level = 1;
 	commandersSortType = ALPHABETICAL;
 	civilians = 0;
-
-	buildingsVector = new std::vector<std::unique_ptr<BuildingsBASE>>;
-
-	buildingsVector->push_back(std::move(std::unique_ptr<BuildingsBASE>(new Farm()))); 
-	buildingsVector->push_back(std::move(std::unique_ptr<BuildingsBASE>(new Mill())));   
-	buildingsVector->push_back(std::move(std::unique_ptr<BuildingsBASE>(new Quarry()))); 
-	buildingsVector->push_back(std::move(std::unique_ptr<BuildingsBASE>(new Mine())));
-	buildingsVector->push_back(std::move(std::unique_ptr<BuildingsBASE>(new Church())));
-	buildingsVector->push_back(std::move(std::unique_ptr<BuildingsBASE>(new Barracks())));
-	buildingsVector->push_back(std::move(std::unique_ptr<BuildingsBASE>(new Infirmary())));
-	buildingsVector->push_back(std::move(std::unique_ptr<BuildingsBASE>(new Library())));
-	buildingsVector->push_back(std::move(std::unique_ptr<BuildingsBASE>(new Wall())));
-	buildingsVector->push_back(std::move(std::unique_ptr<BuildingsBASE>(new Residences()))); 
 }
 
-Provinces::Provinces(const Provinces& copyProvince) : 
-	PrimeUnits(dynamic_cast<const PrimeUnits&>(copyProvince)){
 
-	commandersSortType = copyProvince.commandersSortType;
-	isACapital = copyProvince.isACapital;
+Provinces::Provinces(const Provinces& province) : 
+	PrimeUnits(dynamic_cast<const PrimeUnits&>(province)){
 
-	mapIndex = copyProvince.mapIndex;
-
-	civilians = copyProvince.civilians;
-
-	for (int index = 0; index < (int)copyProvince.commandersVector.size(); index++) {
-		commandersVector.push_back(std::move(copyProvince.commandersVector.at(index)));
-		commandersMap[commandersVector.at(index).getName()] = std::make_shared<Commanders>(commandersVector.at(index));
-	}
+	this->commandersSortType = province.commandersSortType;
+	this->isACapital = province.isACapital;
+	this->mapIndex = province.mapIndex;
+	this->civilians = province.civilians;
+	this->buildings = copyProvince.buildings;
 
 	///The main commander at this province
-	provinceCommander = copyProvince.provinceCommander;
+	this->provinceCommander = province.provinceCommander;
+	this->newAccuracy = copyProvince.newAccuracy;
+	this->kingdomName = copyProvince.kingdomName;
 
-	newAccuracy = copyProvince.newAccuracy;
-	kingdomName = copyProvince.kingdomName;
+	for (int index = 0; index < province.getCommandersNum(); index++) {
+		commSPTR commander = make_commSPTR(province.getCommander(index));
 
-	//Index within reports is the report. Index of report object is the participant the report belongs to
-	scoutReports = copyProvince.scoutReports;
-
-	for (int index = 0; index < (int)copyProvince.scoutReports.size(); index++) {
-		scoutReports.push_back(std::move(copyProvince.scoutReports.at(index)));
+		this->commandersVector.push_back(*commander);  
+		this->commandersMap[commander->getName()] = commander; 
 	}
 
-	buildingsVector = copyProvince.buildingsVector; 
+
+	this->scoutReports = copyProvince.scoutReports;
+	for (Reports foo : province.scoutReports) { 
+		this->scoutReports.push_back(foo);
+	}
 }
 
 constINT Provinces::getCombatPower() const { return combatPower; }

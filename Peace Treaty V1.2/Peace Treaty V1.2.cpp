@@ -37,9 +37,9 @@ void endScreen();
 
 int getContinentInformation();
 
-using INF::addColor;
+using LOG::addColor;
 using INF::getColor;
-using INF::COLORS;
+using INF::LOG;
 
 int main()/*main code*/
 {
@@ -105,7 +105,7 @@ int getContinentInformation() {
 	//For debugging
 	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "getContinentInformation");
 
-	std::string text = "What continent size do you want to play on?\n- 5 (Recommended for mobile devices)\n- 10 (Medium-sized map)\n- 15 (Full experienced, recommended for a monitor)";
+	std::string text = INF::getText("WhatContinentSize");
 	//"What continent size do you want to play on? (5, 10, 15) "
 
 	std::string input = Input::getInputText(text, { "5", "10", "15" });
@@ -115,19 +115,21 @@ int getContinentInformation() {
 	INF::enterAnything(1);
 	INF::clearScreen();
 
-	std::cout << "Continent size " << getColor(COLORS::RED) << INF::continentSize << INF::getColor(COLORS::RESET) << " created..\n\n";
+	std::cout << "Continent size "s + LOG::EMBED(INF::continentSize, LOG::RED) + 
+		" created..\n\n"s;
 
-	int pNum = std::stoi(Input::getInputText("How many AI kingdoms will you fight? (1, 2, 3) ", { "number", "1", "2", "3" }));
-	std::cout << INF::getColor(COLORS::RED) << pNum << getColor(COLORS::WHITE) << " opponent kingdoms generated... \n\n";
-	INF::enterAnything(1);
-	INF::clearScreen();
+	std::string text = "How many AI kingdoms will you fight? (1, 2, 3) ";
+	int pNum = std::stoi(Input::getInputText(text, { "number", "1", "2", "3" }));
+	LOG::PRINT(LOG::EMBED(pNum, LOG::RED) << " opponent kingdoms generated... \n\n");
+	INF::enterAndClear(1);
 
 	TROOP::maxCommanders = INF::continentSize;
 
 	INF::enemyDifficulty = std::stoi(Input::getInputText("What gameplay difficulty do you want (1-3): ", { "number","1","2","3" }));
-	INF::enterAnything(1);
-	INF::clearScreen();
-	std::cout << "Gameplay difficulty " << getColor(COLORS::RED) << INF::enemyDifficulty << getColor(COLORS::RESET) << " selected. \n\n";
+	INF::enterAndClear(1);
+
+	std::cout << "Gameplay difficulty " << 
+		LOG::EMBED(INF::enemyDifficulty, LOG::RED) << " selected. \n\n";
 
 	return pNum;
 }
@@ -144,11 +146,11 @@ int generateNewContinent(int pNum) {
 	}
 
 
-	int players = std::stoi(Input::getInputText("How many human players are there (1/2/3); 1 is recommended for single player experience): ", howManyPlayers));
+	int players = std::stoi(Input::getInputText(INF::getText("HowManyPlayers"), howManyPlayers));
 
 	INF::clearScreen();
 
-	std::cout << INF::getColor(COLORS::RED) << players << INF::getColor(COLORS::WHITE) << " players initialized...\n\n";
+	std::cout << INF::getColor(LOG::RED) << players << INF::getColor(LOG::WHITE) << " players initialized...\n\n";
 	pNum += players;
 	std::cout << "pNum: " << pNum << std::endl;
 	return players;

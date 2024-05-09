@@ -205,7 +205,7 @@ void Participants::viewAllStatsFunction() {
 	DEBUG_FUNCTION("Participants.cpp", "viewAllStatsFunction");
 
 	std::string literallyAnyRandomCharacter;
-	std::cout << BLUE; // NW
+	std::cout << LOG::BLUE; // NW
 	i5array troopsLost = calculateEach(3);
 	for (int x = 0; x < 5; x++) {
 		std::cout << TROOP::TROOP_NAMES[x] << " lost: "

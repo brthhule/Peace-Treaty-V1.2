@@ -18,7 +18,7 @@ void Participants::trainMAMain() {
 
     //Barracks level determins how 
     int barracksLevel = province->getBuilding(BARRACKS).getLevel(); 
-    std::cout << "Start printing province barracks information: " << getColor(BLUE);
+    std::cout << "Start printing province barracks information: " << getColor(LOG::BLUE);
     std::cout << "Province of kingdom " << getKingdomName() << " selected\n";
 
 

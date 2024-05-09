@@ -42,6 +42,8 @@
 #include RESIDENCES_HEADER 
 #include WALL_HEADER
 
+#include BUILDINGS_HEADER
+
 /*
 Implement getLists, calculateCombatPower, calculateFoodConsumption
 */
@@ -51,11 +53,17 @@ class Provinces :
 	public BuildingAttributesINT	//Interface
 {
 public:
-	static enum RelativeDirection{
-		UP_LEFT, UP, UP_RIGHT,
-		LEFT, /*This Province*/ RIGHT,
-		DOWN_LEFT, DOWN, DOWN_RIGHT
+
+	static enum RelativeDirection {
+		LEFT_UP,
+		UP,
+		RIGHT_UP,
+		LEFT, RIGHT,
+		LEFT_DOWN,
+		DOWN,
+		RIGHT_DOWN
 	};
+
 	///////////////////////////////This Class//////////////////////////////
 	//----Constructors-----------------------------------------------------
 	Provinces(int mapIndex, int participantIndex);
@@ -111,8 +119,8 @@ public:
 	void printCommanders();
 
 
-	///////////////////////////////BuildMA/////////////////////////////////
-	//----Printers---------------------------------------------------------
+	///////////////////////////////////BuildMA/////////////////////////////////
+	//----Printers-------------------------------------------------------------
 	void printBuildingUpgradeCosts(INF::i5array requiredresources, int buildingindex) override;
 	void upgradeBuildingPrompt() override,
 		selectBuildingToUpgrade() override,
@@ -136,19 +144,18 @@ public:
 	//Implement these, add them to PrimeUnits later on
 	void calculateCombatPower();
 	void calculateFoodConsumption();
-	///////////////////////////////PrimeUnits.h////////////////////////////
+	///////////////////////////////PrimeUnits.h////////////////////////////////
 	INF::constINT getCombatPower() const override;
 	INF::constINT getFoodConsumption() const override;
-	///////////////////////////////BuildingAttributesINT///////////////////
+	///////////////////////////////BuildingAttributesINT///////////////////////
 		
-	//----Getters----------------------------------------------------------
+	//----Getters--------------------------------------------------------------
 	INF::i5array getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount) override;
 //Returns an array of Resource/Other buildings levels
 	INF::i5array getTypeLevels(BUILD::BuildingType type) override;
 	BuildingsBASE& getBuilding(BUILD::BuildingsEnum name) override;
 	BuildingsBASE& getBuilding(int num) override;
 	int getResourceBuildingProduction(int buildingIndex);
-
 
 	const int getCapacity(BUILD::BuildingsEnum name);
 	/** getTroopsTrainedThisTurn__
@@ -198,15 +205,32 @@ public:
 	
 
 protected:
-	enum LISTS { RESOURCE_BUILDINGS_LEVELS, OTHER_BUILDINGS_LEVELS, RESOURCES_PRESENT, TROOPS_PRESENT, TROOPS_INJURED, TROOPS_LOST, INITIAL_STATS };
+	enum Lists { RESOURCE_BUILDINGS_LEVELS, 
+		OTHER_BUILDINGS_LEVELS, 
+		RESOURCES_PRESENT, 
+		TROOPS_PRESENT, 
+		TROOPS_INJURED, 
+		TROOPS_LOST, 
+		INITIAL_STATS 
+	};
 
-	enum LISTS_INT { CP, TOTAL_TROOPS, FOOD_CONSUMPTION, PARTICIPANT_INDEX, UNIT_LEVEL, TROOPS_TRAINED_THIS_TURN, OVRALL_INDEX };
+	enum ListsInt { 
+		CP, 
+		TOTAL_TROOPS, 
+		FOOD_CONSUMPTION, 
+		PARTICIPANT_INDEX, 
+		UNIT_LEVEL, 
+		TROOPS_TRAINED_THIS_TURN, 
+		OVRALL_INDEX 
+	};
 
-	enum LIST_bool{ CAN_SELECT_THIS_UNIT, IS_CAPITAL, DELETE_PROVINCE };
+	enum ListBool{ CAN_SELECT_THIS_UNIT, IS_CAPITAL, DELETE_PROVINCE };
 
-	enum LIST_COORDS { SYSTEM_COORDS, USER_COORDS };
+	enum ListCoords { SYSTEM_COORDS, USER_COORDS };
 
-	enum REPORT { REPORT_TURN, REPORT_LOG };
+	enum Report { REPORT_TURN, REPORT_LOG };
+
+	
 
 private:
 	INF::SortType commandersSortType;
@@ -225,13 +249,14 @@ private:
 	double newAccuracy;
 	std::string kingdomName;
 
-	//Index within reports is the report. Index of report object is the participant the report belongs to
-	typedef std::vector<std::pair<int, ProvinceReport >> reports;
-	std::vector<reports> scoutReports;
+	//Index within reports is the report. 
+	// Index of report object is the participant the report belongs to
+	typedef std::vector<std::pair<int, ProvinceReport >> Reports;
+	std::vector<Reports> scoutReports;
 
-	std::vector<std::unique_ptr<BuildingsBASE>>* buildingsVector; 
-	std::array<Provinces*, 8> relativeProvinces; 
+	std::unordered_map<ProvinceDirections, Provinces*> nearbyProvinces;
 
+	Buildings buildings;
 	
 };
 

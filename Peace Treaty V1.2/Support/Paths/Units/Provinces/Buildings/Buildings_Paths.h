@@ -16,4 +16,6 @@
 #define BUILDINGS_BASE_
 #define BUILDINGS_BASE_HEADER "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Header-Files\Units\Provinces\Buildings\BuildingsBASE.h"
 
+#define BUILDINGS_HEADER "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Operations\Header-Files\Units\Provinces\Buildings\Buildings.h"
+
 #endif

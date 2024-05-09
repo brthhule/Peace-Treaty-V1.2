@@ -64,9 +64,9 @@ void PrimeUnits::printResources() const {
 	DEBUG_FUNCTION("PrimeUnits.cpp", "printResources");
 
 	std::cout << "Resources currently present in this " << type << ": \n";
-	INF::addColor(INF::BLUE);
+	LOG::addColor(INF::LOG::BLUE);
 	INF::printResources(resourcesPresent);
-	INF::addColor(INF::RESET);
+	LOG::addColor(INF::RESET);
 }
 
 const std::string& PrimeUnits::getName() const { return name; }
