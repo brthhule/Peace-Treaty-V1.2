@@ -10,7 +10,7 @@
 #include <memory>
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
-#include PROVINCES_HEADER				//Composition 
+#include Provinces::_HEADER				//Composition 
 #include INF_HEADER
 #include INPUT_HEADER
 #include LOG_HEADER
@@ -28,7 +28,7 @@ public:
 	//----Mutators-------------------------------------------------------------
 	///Creates the map
 	static void setMap();
-	///Iterate through all the provinces and update resource amounts
+	///Iterate through all the Provinces:: and update resource amounts
 	static void updateTurnResources();
 
 
@@ -47,20 +47,20 @@ public:
 	*		
 	*		@param type__ SYSTEM or USER
 	*		@param coords__ the pair of coords corresponding to SYSTEM/USER
-	*		@return Provinces shared pointer
+	*		@return Provinces:: shared pointer
 	*/	
 	static PROV::provSPTR getProvince(COORD::CoordsType type, INF::ipair coords);
 	//Prompts the user to pick a pair of x and y coordinates within the bounds of the map, returns USER type coords
 	static INF::ipair pickCoords();
 	static bool checkInBounds(INF::ipair coords, COORD::CoordsType type);
 
-	///2D vector of Provinces (original context)
+	///2D vector of Provinces:: (original context)
 	static PROV::prov2Vector mapVectors; 
-	///unordered map of provinces shared pointers
+	///unordered map of Provinces:: shared pointers
 	static PROV::provMAP mapMap;
 
 private:
-	void assignSurroundingProvinces(); 
-	void assignSurroundingProvincesAux(int rowIndex, int colIndex, Provinces* currentProvince);
+	void assignSurroundingProvinces::(); 
+	void assignSurroundingProvinces::Aux(int rowIndex, int colIndex, Provinces::* currentProvince);
 };
 #endif

@@ -51,16 +51,16 @@ scoutTypes Participants::selectTarget(PROV::provSPTR targetProvince)
 
 	//If the selected province doesn't belong to the participant
 	std::cout << "Province " << targetProvince->getName() << " selected \n";
-	std::cout << "You can only scout this unit if one of your provinces or commanders is next to it... \n";
+	std::cout << "You can only scout this unit if one of your Provinces:: or commanders is next to it... \n";
 
-	//Check nearby provinces
+	//Check nearby Provinces::
 	scoutTypes canScout = getCanScout(targetProvince);
-	// If there are commanders or provinces that can scout the target
+	// If there are commanders or Provinces:: that can scout the target
 	if (canScout.first.size() > 0 || canScout.second.size() > 0) {
 		return canScout;
 	}
 	else {
-		std::cout << "No player provinces or armies are around the target... \n";
+		std::cout << "No player Provinces:: or armies are around the target... \n";
 		COMM::commSPTRList commList = {nullptr};
 		PROV::provSPTRList provList = {nullptr};
 		canScout = std::make_pair(commList, provList);
@@ -133,9 +133,9 @@ UNIT::unitSPTR Participants::selectUnitToScout(scoutTypes canScout) {
 	int unitLevel = 0;
 	std::cout << "\033[;34m";
 
-	// For all the provinces in the std::vector
+	// For all the Provinces:: in the std::vector
 
-	std::cout << "Provinces that can scout: \n";
+	std::cout << "Provinces:: that can scout: \n";
 	for (PROV::provSPTR province : canScout.second) {
 		std::cout << province->getName() + "; ";
 		province->printCoords(USER);
@@ -212,7 +212,7 @@ std::pair <unitSPTR, int> Participants::playerScoutStepTwo(scoutTypes canScout, 
 	int enemyLevel = targetProvince->getLevel();//Fix this later
 
 
-	std::cout << "You have " << canScout.second.size() << " provinces and " << canScout.first.size() << "armies next to the target. Below is a list of units that can scout the target.";
+	std::cout << "You have " << canScout.second.size() << " Provinces:: and " << canScout.first.size() << "armies next to the target. Below is a list of units that can scout the target.";
 	std::cout << " Please note that the higher the level of the scouting unit, the more accurate the results of the scout report are (The level of the target unit is " << enemyLevel << "). \n\n";
 
 	unitSPTR unit = selectUnitToScout(canScout);

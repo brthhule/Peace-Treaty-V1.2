@@ -8,17 +8,6 @@
 #include INF_HEADER
 
 namespace BUILD {
-	/*FARM, 
-	LUMBER_MILL,
-	QUARRY, 
-	MINE,
-	CHURCH 
-	
-	BARRACKS,
-	INFIRMARY,
-	LIBRARY,
-	WALL,
-	RESIDENCES*/
 	enum BuildingsEnum {
 		FARM, 
 		LUMBER_MILL,

@@ -33,7 +33,6 @@ private:
 	std::string getColor(Colors color);
 	//Adds color to console
 	
-
 	const bool debuggingMode = false;
 };
 #endif

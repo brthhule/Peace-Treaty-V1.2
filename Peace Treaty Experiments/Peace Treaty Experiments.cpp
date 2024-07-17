@@ -3,8 +3,8 @@
 
 #include <iostream>
 #include <vector>
-#include "../Peace Treaty V1.2/Operations/Header-Files/Units/Provinces/Buildings/BuildingsBASE.h"
-#include "../Peace Treaty V1.2/Operations/Header-Files/Units/Provinces/Buildings/Resources/Farm.h"
+#include "../Peace Treaty V1.2/Operations/Header-Files/Units/Provinces::/Buildings/BuildingsBASE.h"
+#include "../Peace Treaty V1.2/Operations/Header-Files/Units/Provinces::/Buildings/Resources/Farm.h"
 
 template<class T>
 class sPTR {
@@ -31,18 +31,18 @@ private:
     std::string name;
 };
 
-class Provinces {
+class Provinces:: {
 public:
     using String = std::string;
 
-    Provinces(std::string name) {
+    Provinces::(std::string name) {
         this->name = name;
     }
     const std::string& getName() {
         return name;
     }
 
-    Provinces& operator+=(const std::shared_ptr<Commanders> rhs){
+    Provinces::& operator+=(const std::shared_ptr<Commanders> rhs){
         commanderList.push_back(rhs); 
         return *this; // return the result by reference
     }
@@ -62,7 +62,7 @@ private:
 };
 
 namespace PROV {
-    using provSPTR = std::shared_ptr<Provinces>;
+    using provSPTR = std::shared_ptr<Provinces::>;
 }
 /*
 class Commanders {
@@ -83,16 +83,16 @@ class foo {
 public:
     foo() {
         std::string name = "Hey";
-        province.reset(new Provinces(name));
+        province.reset(new Provinces::(name));
     };
-    Provinces& getProvince() {
+    Provinces::& getProvince() {
         return *province.get();
     }
     std::string getName() {
         return province->getName();
     }
 private:
-    std::unique_ptr<Provinces> province;
+    std::unique_ptr<Provinces::> province;
 };
 
 int main() {

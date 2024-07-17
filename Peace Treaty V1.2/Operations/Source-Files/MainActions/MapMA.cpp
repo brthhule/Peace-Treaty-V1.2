@@ -88,7 +88,7 @@ void Participants::selectUnitOriginal(provSPTR province) {
 	}
 }
 
-//You selected one of your provinces
+//You selected one of your Provinces::
 void Participants::selectPlayerProvince(provSPTR province) {
 	//For debugging
 	DEBUG_FUNCTION("MapMA", "selectPlayerProvince");
@@ -97,7 +97,7 @@ void Participants::selectPlayerProvince(provSPTR province) {
 		print("This is your capital province ");
 	}
 	else {
-		print("This is one of your provinces ");
+		print("This is one of your Provinces:: ");
 	}
 	std::cout << "\n\n";
 
@@ -132,10 +132,10 @@ void Participants::selectEnemyProvince(provSPTR newP) {
 		println("This is an enemy capital province ");
 	}
 	else {
-		println("This is one of the enemy's provinces");
+		println("This is one of the enemy's Provinces::");
 	}
 
-	println("\n\nWelcome to the Enemy Provinces Action Selection menu ");
+	println("\n\nWelcome to the Enemy Provinces:: Action Selection menu ");
 
 	char selectUnitEnemyProvinceChar = Input::getOptionPrompt(SELECT_ENEMY_PROVINCE).at(0);
 

@@ -5,7 +5,7 @@
 #include INF_HEADER
 #include PARTICIPANTS_HEADER
 #include COMMANDERS_HEADER
-#include PROVINCES_HEADER
+#include Provinces::_HEADER
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 

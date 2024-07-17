@@ -1,26 +1,84 @@
 #ifndef BUILDINGS_H
 #define BUILDINGS_H
 
-#include BUILDINGS_BASE_HEADER
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
+
+#include BUILDINGS_BASE_HEADER  
+#include RESOURCE_BUILDINGS_HEADER  
+#include BARRACKS_HEADER
+#include INFIRMARY_HEADER
+#include LIBRARY_HEADER
+#include RESIDENCES_HEADER
+#include WALL_HEADER
+#include BUILD_HEADER
+#include INF_HEADER
 
 class Buildings {
 public:
-	Farm farm;
-	Infirmary infirmary;
-	Library library;
-	Residences residences;
-	Wall wall;
-
-	Church church;
-	Farm farm;
-	Mill mill;
-	Mine mine;
-	Quarry quarry;
-
 	Buildings();
+	INF::i5array getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount);
+	
+	//Returns an array of Resource/Other buildings levels
+
+	INF::i5array getTypeLevels(BUILD::BuildingType type);
+	BuildingsBASE& getBuilding(BUILD::BuildingsEnum name);
+	BuildingsBASE& getBuilding(int num) override;
+	int getResourceBuildingProduction(int buildingIndex);
 
 
-	/*
+	BuildingsBASE* at(int index) {
+		return allBuildings.at(index); 
+	}
+
+	ResourceBuildings* getResourceBuilding(BUILD::BuildingsEnum type);
+
+	Buildings* getBuildings();
+
+	const int getCapacity(BUILD::BuildingsEnum name);
+
+	const int getTroopsTrainedThisTurn() override;
+
+	const int getProvinceLevel() override;
+
+	void mutateLevel(BUILD::BuildingsEnum name, INF::MutateDirection direction, int amount);
+	void addTroopsTrainedThisTurn(int amount);
+	void resetTroopsTrainedThisTurn();
+	void initiailizeCapitalBuildings();
+
+	//----Printers---------------------------------------------------------
+	void printBuildingStats();
+
+	///////////////////////////////////Getters/////////////////////////////////
+	INF::i5array getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount);
+	int getResourceBuildingProduction(int buildingIndex);
+	//Returns an array of Resource/Other buildings levels
+	INF::i5array getTypeLevels(BUILD::BuildingType type);
+
+
+	const int getCapacity(BUILD::BuildingsEnum name);
+	const int getTroopsTrainedThisTurn();
+	const int getProvinceLevel();
+
+	void printListOfBuildings();
+
+
+private:
+
+	std::array <BuildingsBASE*, 10> allBuildings; 
+	Barracks barracks; 
+	Infirmary infirmary; 
+	Library library; 
+	Residences residences; 
+	Wall wall; 
+
+	std::array<ResourceBuildings, 5> resourceBuildings;
+
+};
+
+#endif
+
+
+/*
 	struct Iterator {
 		//Tags
 		using iterator_category = std::forward_iterator_tag;
@@ -52,17 +110,6 @@ public:
 	Iterator begin() { return Iterator(&m_data[0]); }
 	Iterator end() { return Iterator(&m_data[10]); } // 10 is out of bounds
 
-	
+
 
 	*/
-
-	BuildingsBASE* at(int index) {
-		return m_data.at(index);
-	}
-
-private:
-
-	std::array <BuildingsBASE*, 10> m_data; 
-};
-
-#endif

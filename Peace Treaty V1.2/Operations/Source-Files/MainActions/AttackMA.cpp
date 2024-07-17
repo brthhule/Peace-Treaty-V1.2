@@ -20,7 +20,7 @@ void Participants::mainAttackMA(provSPTR defendProv, commSPTR attackComm) {
 	if (attackingCommander == nullptr) {
 		commSPTRList commandersCanAttack = getCommandersCanAttack(defendingProvince); 
 		if (commandersCanAttack.size() == 0) {
-			std::cout << "There are no armies available to attack the enemy. Please move an army unit to one of the provinces around the target. \n\n";
+			std::cout << "There are no armies available to attack the enemy. Please move an army unit to one of the Provinces:: around the target. \n\n";
 			return;
 		}
 
@@ -35,23 +35,23 @@ std::vector<commSPTR> Participants::getCommandersCanAttack(provSPTR defendingPro
 	DEBUG_FUNCTION("AttackMA.cpp", "getCommandersCanAtack(provSPTR)");
 
 	std::vector<commSPTR> commandersCanAttack = {};
-	std::array<ipair, 8> surroundingProvinces;
+	std::array<ipair, 8> surroundingProvinces::;
 	ipair defenderSystemCoords = defendingProvince->CoordsBASE::getCoords(COORD::SYSTEM);
 	int currentElements = 0;
 	for (int x = -1; x <= 1; x++) {
 		for (int y = -1; y <= 1; y++)
 		{
-			//Make sure the changed provinces aren't the same as the unchanged province
+			//Make sure the changed Provinces:: aren't the same as the unchanged province
 			if (x != 0 || y != 0) {
 				ipair tempPair(defenderSystemCoords.first + x, defenderSystemCoords.second + y);
-				surroundingProvinces[currentElements] = tempPair;
+				surroundingProvinces::[currentElements] = tempPair;
 				currentElements++;
 			}
 		}
 	}
 
 	
-	for (ipair currentPair : surroundingProvinces) {
+	for (ipair currentPair : surroundingProvinces::) {
 		int
 			firstCoordinate = currentPair.first,
 			secondCoordinate = currentPair.second;

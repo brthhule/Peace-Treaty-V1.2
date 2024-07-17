@@ -18,7 +18,7 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 //#include INF_HEADER  
 #include PARTICIPANTS_HEADER
-#include PROVINCES_HEADER
+#include Provinces::_HEADER
 #include INPUT_HEADER
 #include COMMANDERS_HEADER
 #include PLAYER_ACTION_HEADER

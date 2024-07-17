@@ -1,7 +1,7 @@
 //Participants.h
 
 //Interfaces/Inheritance: Map, Mobility, ArmyOverviewMA, TrainMA, PlayerAction
-//Composition: Provinces, Commanders
+//Composition: Provinces::, Commanders
 
 #ifndef PARTICIPANTS_H
 #define PARTICIPANTS_H
@@ -27,7 +27,7 @@
 #include MOBILITY_HEADER				//Base Class
 #include MAP_HEADER						//Base Class
 
-#include PROVINCES_HEADER				//Composition
+#include Provinces::_HEADER				//Composition
 #include COMMANDERS_HEADER
 #include PRIME_UNITS_HEADER
 
@@ -86,7 +86,7 @@ public:
 	/*Check out the return types of the bottom two funtions-
 	Are they supposed to return anything? Currently call to global variables
 	I deleted, can probably use a return type as a substitute*/
-	void getPrimeUnitsArrayProvinces() const;
+	void getPrimeUnitsArrayProvinces::() const;
 
 	//Need to implement this
 	void getPrimeUnitsArrayCommanders() const;
@@ -102,11 +102,11 @@ public:
 	///Return the unordered_map of Commander shared pointers
 	std::unordered_map<std::string, COMM::commSPTR> getCommandersMap() const;
 
-	///Got total number of Provinces in this participant
-	int getProvincesNum() const;
+	///Got total number of Provinces:: in this participant
+	int getProvinces::Num() const;
 	///Get total number of Commanders in this participant
 	int getCommandersNum() const;
-	///Return total number of Commanders + Provinces in this Participant
+	///Return total number of Commanders + Provinces:: in this Participant
 	int getPrimeUnitsAmount() const;
 	///Get the index of this participant in the vector of all participants
 	INF::constINT getParticipantIndex() const;
@@ -172,7 +172,7 @@ public:
 	static void setHumanPlayers(int num);
 	void setCapital(PROV::provSPTR newProvince); 
 	void addProvince(PROV::provSPTR newProvince);
-	void printListOfProvinces();
+	void printListOfProvinces::();
 
 	void createAsPlayer(bool status);
 	void viewAllStatsFunction();
@@ -211,8 +211,8 @@ public:
 
 	///////////////////////////////////Mobility.h//////////////////////////////
 	void moveUnitOne(COMM::commSPTR commander) override;
-	std::vector <PROV::provSPTR> getSurroundingProvinces(Commanders& commander_ref) override;
-	Provinces& pickProvinceToMoveTo(Commanders& commanderReference) override;
+	std::vector <PROV::provSPTR> getSurroundingProvinces::(Commanders& commander_ref) override;
+	Provinces::& pickProvinceToMoveTo(Commanders& commanderReference) override;
 	///////////////////////////////////MapMA.h/////////////////////////////////
 	void viewPlayerMap();
 	void selectUnitOriginal(PROV::provSPTR selectedProvince);
@@ -259,7 +259,7 @@ public:
 	void plaerActionShowHelp();
 
 protected:
-	PROV::provSPTRList provincesVector;
+	PROV::provSPTRList Provinces::Vector;
 	COMM::commSPTRList commandersVector;
 	enum ParticipantType {AI, HUMAN};
 	ParticipantType participantType; 
@@ -270,7 +270,7 @@ private:
 	static int humanPlayers;
 
 	INF::i5array allCommandersArray;
-	INF::i5array allProvincesArray;
+	INF::i5array allProvinces::Array;
 
 	COMM::commSPTR selectedCommander; //For ArmyDeploymentMA
 
@@ -281,7 +281,7 @@ private:
 	std::string kingdomName = " "; 
 
 	std::unordered_map <std::string, COMM::commSPTR> commandersMap;
-	std::unordered_map <std::string, PROV::provSPTR> provincesMap;
+	std::unordered_map <std::string, PROV::provSPTR> Provinces::Map;
 	std::unordered_map <std::string, COMM::commSPTR>::iterator commIt;
 };
 

@@ -31,7 +31,7 @@ public:
 
 	//----Constructors---------------------------------------------------------
 	///One param overloaded Constructor
-	///Use -1 for empty provinces
+	///Use -1 for empty Provinces::
 	PrimeUnits(int participantIndex);
 	PrimeUnits(const PrimeUnits& copyUnit);
 	~PrimeUnits(){}

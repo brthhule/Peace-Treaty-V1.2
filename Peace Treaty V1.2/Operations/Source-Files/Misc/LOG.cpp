@@ -15,9 +15,7 @@ const std::array<std::string, 9> LOG::COLORS_STRING = {
 
 //For stand alone color integration
 void LOG::addColor(Colors color) {
-	//For debugging
-	
-
+	std::cout << getColor(color); 
 }
 
 //For integration with strings/std::cout statements
@@ -46,7 +44,9 @@ void LOG::PRINT(std::string message) {
 }
 
 void LOG::DEBUG(std::string message) {
-	PRINT(message, MAGENTA); 
+	if (debuggingMode) { 
+		PRINT(message, MAGENTA); 
+	}
 }
 
 void LOG::SYSTEM(std::string message) {

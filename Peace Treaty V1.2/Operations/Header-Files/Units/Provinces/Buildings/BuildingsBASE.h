@@ -13,6 +13,7 @@
 
 #include INF_HEADER
 
+
 class BuildingsBASE {
 public:
 	//----Constructors---------------------------------------------------------
