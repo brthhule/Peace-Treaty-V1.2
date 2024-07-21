@@ -1,5 +1,5 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
-#include Provinces::_HEADER 
+#include PROVINCES_HEADER 
 #include INPUT_HEADER
 
 using namespace PROV;
@@ -8,8 +8,8 @@ using namespace COMM;
 using namespace INF;
 using namespace BUILD;
 
-//Use participantIndex = -1 for empty Provinces::
-Provinces::Provinces::(int mapIndex, int participantIndex) : PrimeUnits(participantIndex) {
+//Use participantIndex = -1 for empty Provinces
+Provinces::Provinces(int mapIndex, int participantIndex) : PrimeUnits(participantIndex) {
 	//For debugging
 	DEBUG_FUNCTION("Provinces::.cpp", "Provinces:: (int)");
 
@@ -27,29 +27,29 @@ Provinces::Provinces::(int mapIndex, int participantIndex) : PrimeUnits(particip
 }
 
 
-Provinces::Provinces::(const Provinces::& province) : 
+Provinces::Provinces(const Provinces& province) : 
 	PrimeUnits(dynamic_cast<const PrimeUnits&>(province)){
 
 	this->commandersSortType = province.commandersSortType;
 	this->isACapital = province.isACapital;
 	this->mapIndex = province.mapIndex;
 	this->civilians = province.civilians;
-	this->buildings = copyProvince.buildings;
+	this->buildings = province.buildings; 
 
 	///The main commander at this province
 	this->provinceCommander = province.provinceCommander;
-	this->newAccuracy = copyProvince.newAccuracy;
-	this->kingdomName = copyProvince.kingdomName;
+	this->newAccuracy = province.newAccuracy;
+	this->kingdomName = province.kingdomName;
 
 	for (int index = 0; index < province.getCommandersNum(); index++) {
-		commSPTR commander = make_commSPTR(province.getCommander(index));
+		commSPTR commander = std::make_shared<Commanders>(province.getCommander(index)); 
 
 		this->commandersVector.push_back(*commander);  
 		this->commandersMap[commander->getName()] = commander; 
 	}
 
 
-	this->scoutReports = copyProvince.scoutReports;
+	this->scoutReports = province->scoutReports;
 	for (Reports foo : province.scoutReports) { 
 		this->scoutReports.push_back(foo);
 	}
@@ -66,7 +66,7 @@ std::array<int, 7> Provinces::getListInt() {
 		foodConsumption,
 		participantIndex,
 		level,
-		getTroopsTrainedThisTurn(),
+		buildings.getTroopsTrainedThisTurn(),
 		mapIndex
 	};
 	return returnArray;
@@ -101,7 +101,7 @@ void Provinces::updateProvinceResources() {
 	DEBUG_FUNCTION("Provinces::.cpp", "updateProvinceResources");
 
 	//Farm is just a placeholder, it is overridden by the ALL param
-	i5array resourcesProduced = getResourceProduction(BuildingsEnum::FARM, ALL);  
+	i5array resourcesProduced = buildings.getResourceProduction(BuildingsEnum::FARM, ALL);  
 	resourcesPresent = INF::mutateArray(resourcesPresent, resourcesProduced, INCREASE);
 }
 
@@ -179,13 +179,13 @@ COMM::commSPTRList Provinces::getAllCommanders() const {
 	return commandersList;
 }
 
-const Commanders& Provinces::getCommander(std::string name) const { 
+Commanders& Provinces::getCommander(std::string name) const { 
 	//For debugging
 	DEBUG_FUNCTION("Provinces::.cpp", "getCommander");	
 	return *commandersMap.at(name);
 }
 
-const Commanders& Provinces::getCommander(int index) const {
+Commanders& Provinces::getCommander(int index)  {
 	return commandersVector.at(index);
 }
 
@@ -299,8 +299,8 @@ int Provinces::getCommanderIndex(commSPTR commander) {
 
 std::array<i5array, 4> Provinces::getGeneralLists() {
 	std::array<i5array, 4> returnArray = {
-		getTypeLevels(RESOURCE),
-		getTypeLevels(OTHER),
+		buildings.getTypeLevels(RESOURCE),
+		buildings.getTypeLevels(OTHER),
 		resourcesPresent,
 		initialStats
 	};
@@ -329,20 +329,20 @@ void Provinces::calculateFoodConsumption() {
 
 }
 
-provSPTR PROV::make_provSPTR(Provinces::& province_ref){   
-	return std::make_shared<Provinces::>(province_ref);   
+provSPTR PROV::make_provSPTR(Provinces& province_ref){   
+	return std::make_shared<Provinces>(province_ref);   
 } 
 
-std::shared_ptr<Provinces::> Provinces::getRelativeProvince(RelativeDirection direction) {    
-	return (relativeProvinces::.at(direction) == nullptr) ? nullptr : relativeProvinces::.at(direction); 
+std::shared_ptr<Provinces> Provinces::getRelativeProvince(RelativeDirection direction) {    
+	return (this->nearbyProvinces.at(direction) == nullptr) ? nullptr : PROV::make_provSPTR(*nearbyProvinces.at(direction));  
 }
 
-const std::array<Provinces::*, 8>* Provinces::getRelativeDirectionList() {   
-	return &relativeProvinces::; 
+const std::array<Provinces*, 8>* Provinces::getRelativeDirectionList() {   
+	return nearbyProvinces;
 }
  
-void Provinces::setRelativeProvince(RelativeDirection direction, Provinces::* province) {  
-	this->relativeProvinces::[direction] = province;  
+void Provinces::setRelativeProvince(RelativeDirection direction, Provinces* province) {  
+	this->nearbyProvinces[direction] = province;
 }
 
 Buildings* Provinces::getBuildings() {  

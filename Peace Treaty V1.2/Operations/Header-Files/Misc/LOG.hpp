@@ -6,6 +6,8 @@
 #include <iostream>
 #include <array>
 
+using std::string;
+
 class LOG {
 public:
 	/*BLACK = 0, RED, GREEN, YELLOW, LOG::BLUE, MAGENTA = 5, CYAN, WHITE, RESET*/
@@ -13,26 +15,38 @@ public:
 		BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE, RESET
 	};
 
-	static void PRINT(std::string message, Colors color);
-	static void PRINT(std::string message);
+	static void PRINT(string message, Colors color);
+	static void PRINT(string message);
 
-	static std::string EMBED(std::string message, Colors color);
+	static string EMBED(string message, Colors color);
 
 	//Always red
-	static void ERROR(std::string message);
-	static void DEBUG(std::string message);
-	static void SYSTEM(std::string message);
+	static void ERROR(string message);
+	static void DEBUG(string message);
+	static void SYSTEM(string message);
 
-	void addColor(Colors c);
+	static void addColor(Colors c);
+	static string getColor(Colors color);
+
 private:
 	/*"BLACK", "RED", "GREEN", "YELLOW", "LOG::BLUE", "MAGENTA", "CYAN", "WHITE",
 		"RESET" */
-	const std::array<std::string, 9> COLORS_STRING;  
+	const std::array<std::string, 9> COLORS_STRING = { 
+		"BLACK",
+		"RED",
+		"GREEN",
+		"YELLOW",
+		"BLUE",
+		"MAGENTA",
+		"CYAN",
+		"WHITE",
+		"RESET"
+	};
 
 	//Get command to print certain color to console
-	std::string getColor(Colors color);
+	
 	//Adds color to console
 	
-	const bool debuggingMode = false;
+	static const bool debuggingMode = false; 
 };
 #endif

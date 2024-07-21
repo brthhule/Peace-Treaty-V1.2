@@ -39,7 +39,7 @@ int getContinentInformation();
 
 using LOG::addColor;
 using INF::getColor;
-using INF::LOG;
+using LOG;
 
 int main()/*main code*/
 {
@@ -58,7 +58,7 @@ void startOrResumeGame() {
 	//srand((unsigned int)time(0));
 	INF::printFile(path);
 	std::cout << "\n";
-	char startOrResume = Input::getOptionPrompt(Input::INTRODUCTION).at(0);
+	char startOrResume = Input::getPrompt(Input::INTRODUCTION).at(0);
 
 	switch (startOrResume) {
 		case 'R':
@@ -169,7 +169,7 @@ void gamePlay() {
 		if (!participant.isAlive()) { break; } 
 
 		try { participant.chooseAction(); }  
-		catch (...) { INF::LOG::ERROR("Error occurred in player turn"); }
+		catch (...) { LOG::ERROR("Error occurred in player turn"); }
 	}
 
 	INF::turn++;

@@ -213,7 +213,7 @@ namespace INF {
 	void clearScreenCommand();
 
 	
-	std::string getText();
+	std::string getText(std::string target);
 	
 
 	//Manipulate vectors

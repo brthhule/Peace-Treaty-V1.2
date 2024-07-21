@@ -37,9 +37,9 @@
 /*
 Implement getLists, calculateCombatPower, calculateFoodConsumption
 */
-class Provinces:: :
+class Provinces :
 	public PrimeUnits,				//Base Class
-	public BuildMA,					//Interface
+	public BuildMA					//Interface
 {
 public:
 
@@ -56,7 +56,7 @@ public:
 	///////////////////////////////This Class//////////////////////////////
 	//----Constructors-----------------------------------------------------
 	Provinces(int mapIndex, int participantIndex);
-	Provinces(const Provinces:: &copyProvince);
+	Provinces(const Provinces &copyProvince);
 	~Provinces() {}
 
 	//----Initialization---------------------------------------------------
@@ -77,8 +77,8 @@ public:
 
 	//----Getters----------------------------------------------------------
 	///Return reference of commander by name
-	const Commanders& getCommander(std::string name) const;
-	const Commanders& getCommander(int index) const;
+	Commanders& getCommander(std::string name);
+	Commanders& getCommander(int index);
 	//Returns vector of commanders in this province
 	COMM::commSPTRList getAllCommanders() const;
 
@@ -145,6 +145,8 @@ public:
 	const std::array<Provinces*, 8>* getRelativeDirectionList();
 	void setRelativeProvince(RelativeDirection direction, Provinces* province);
 
+	Buildings* getBuildings();
+
 protected:
 	enum Lists { 
 		RESOURCE_BUILDINGS_LEVELS, 
@@ -194,19 +196,19 @@ private:
 	typedef std::vector<std::pair<int, ProvinceReport >> Reports;
 	std::vector<Reports> scoutReports;
 
-	std::unordered_map<ProvinceDirections, Provinces::*> nearbyProvinces::;
+	std::unordered_map<RelativeDirection, Provinces*> nearbyProvinces;
 
 	Buildings buildings;
 	
 };
 
 namespace PROV {
-	using provSPTR = std::shared_ptr<Provinces::>;
+	using provSPTR = std::shared_ptr<Provinces>;
 	using provMAP = std::unordered_map<std::string, provSPTR>;
 	using provSPTRList = std::vector<provSPTR>;
 	using scoutTypes = std::pair<COMM::commSPTRList, PROV::provSPTRList>;
-	using prov2Vector = std::vector <std::vector<Provinces::>>;
+	using prov2Vector = std::vector <std::vector<Provinces>>;
 
-	provSPTR make_provSPTR(Provinces::& province_ref);
+	provSPTR make_provSPTR(Provinces& province_ref);
 }
 #endif

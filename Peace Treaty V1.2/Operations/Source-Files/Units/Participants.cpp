@@ -39,17 +39,17 @@ Participants::Participants(int pIndex) {
 
 	//Defaults
 	commandersMap = std::unordered_map<std::string, commSPTR>();
-	Provinces::Map = std::unordered_map<std::string, provSPTR>();
+	ProvincesMap = std::unordered_map<std::string, provSPTR>();
 	commIt = std::unordered_map<std::string, commSPTR>::iterator();
 
-	Provinces::Vector = std::vector<provSPTR>();
+	ProvincesVector = std::vector<provSPTR>();
 	commandersVector = std::vector<commSPTR>(); 
 }
 
 // Accessors
 provSPTR Participants::getCapitalProvince() { return capitalProvince; }
 
-int Participants::getProvinces::Num() const { return (int) Provinces::Vector.size(); }
+int Participants::getProvincesNum() const { return (int) ProvincesVector.size(); }
 
 int Participants::getCommandersNum() const { return (int) commandersVector.size(); }
 
@@ -70,8 +70,8 @@ void Participants::addProvince(provSPTR newProvince) {
 	//For debugging
 	DEBUG_FUNCTION("Participants.cpp", "addProvince");
 
-	Provinces::Vector.push_back(newProvince);
-	Provinces::Map[newProvince->getName()] = Provinces::Vector[Provinces::Vector.size() - 1];
+	ProvincesVector.push_back(newProvince);
+	ProvincesMap[newProvince->getName()] = ProvincesVector[ProvincesVector.size() - 1];
 }
 
 
@@ -94,7 +94,7 @@ bool Participants::isAlive() const {
 	//For debugging
 	DEBUG_FUNCTION("Participants.cpp", "isAlive");
 
-	if (getProvinces::Num() > 0 || getCommandersNum() > 0) { return true; }
+	if (getProvincesNum() > 0 || getCommandersNum() > 0) { return true; }
 	return false;
 }
 
@@ -105,10 +105,12 @@ void Participants::createAsPlayer(bool status) {
 	//If AI
 	if (!status) { return; }
 
-	std::string text = "Enter a kingdom name for player " + getColor(RED) + std::to_string(participantIndex) + getColor(RESET) + " : ";  
+	std::string text = "Enter a kingdom name for player " + LOG::getColor(LOG::RED) + std::to_string(participantIndex) + LOG::getColor(LOG::RESET) + " : ";  
 	this->setKingdomName(Input::getInputText(text, {}));
 
-	std::cout << WHITE << "Participant " << RED << kingdomName << WHITE << " created... \n\n";
+	LOG::PRINT("Participant ");
+	LOG::PRINT(kingdomName, LOG::RED);
+	LOG::PRINT(" created...\n\n");
 	return;
 }
 
@@ -126,7 +128,7 @@ void Participants::viewStats() {
 		std::cout << "Total " << TROOP::TROOP_NAMES[x] << " alive: " << eachUnit[x] << std::endl;
 
 	std::cout << "Your total army combat power: " << calculatePlayerValues(1).at(0);
-	std::cout << "\nYour numnber of Provinces::: " << getProvinces::Num() << "\n\n";
+	std::cout << "\nYour numnber of Provinces: " << getProvincesNum() << "\n\n";
 
 	if (Input::getInputText("View all stats? (Y/N) ", { "Y", "N" }).at(0) == 'Y')
 		viewAllStatsFunction();
@@ -161,17 +163,17 @@ std::vector<int> Participants::calculatePlayerValues(int decision) {
 provSPTR Participants::getProvince(int index) { 
 	//For debugging
 	DEBUG_FUNCTION("Participants.cpp", "getProvince");
-	return Provinces::Vector.at(index); 
+	return ProvincesVector.at(index); 
 }
 
 std::string Participants::getNewName() {
 	//For debugging
 	DEBUG_FUNCTION("Participants.cpp", "getNewName");
 	std::string newName = INF::createRandomName();
-	bool Provinces::Condition = Provinces::Map.find(newName) != Provinces::Map.end(); 
+	bool ProvincesCondition = ProvincesMap.find(newName) != ProvincesMap.end(); 
 	bool commandersCondition = commandersMap.find(newName) != commandersMap.end();
 
-	if (Provinces::Condition && commandersCondition) { 
+	if (ProvincesCondition && commandersCondition) { 
 		return newName; 
 	}
 
@@ -218,12 +220,12 @@ void Participants::viewAllStatsFunction() {
 	INF::enterAnything(1);
 }
 
-void Participants::printListOfProvinces::() {
+void Participants::printListOfProvinces() {
 	//For debugging
-	DEBUG_FUNCTION("Participants.cpp", "printListOfProvinces::");
+	DEBUG_FUNCTION("Participants.cpp", "printListOfProvinces");
 
-	std::cout << "Here is a list of your Provinces:: (Name, Coordinates): \n";
-	for (provSPTR province : Provinces::Vector)
+	std::cout << "Here is a list of your Provinces (Name, Coordinates): \n";
+	for (provSPTR province : ProvincesVector)
 	{
 		std::cout << "- " << province->getName() << ": ";
 		province->getCoords(USER);
@@ -243,7 +245,7 @@ provSPTR Participants::pickYourProvince(int identifier) {
 	provSPTR newProvince = pickProvince(identifier);
 	if (newProvince->getParticipantIndex() == participantIndex)
 	{
-		std::cout << "This is one of your Provinces::...\n" + newProvince->CoordsBASE::getCoordsString(USER) + "\n"; 
+		std::cout << "This is one of your Provinces...\n" + newProvince->CoordsBASE::getCoordsString(USER) + "\n"; 
 		return newProvince;
 	}
 
@@ -294,8 +296,8 @@ i5array Participants::calculateEach(int option) {
 	i5array returnArray = { 0, 0, 0, 0, 0 };
 	std::vector<std::shared_ptr<Commanders>> commandersTempVector = {};
 
-	/*unitsVector = [&](std::vector < std::shared_ptr<PrimeUnits>> unitsVector, std::vector<provSPTR> Provinces::Vector) {
-		for (std::shared_ptr<PrimeUnits> ptr : Provinces::Vector) {
+	/*unitsVector = [&](std::vector < std::shared_ptr<PrimeUnits>> unitsVector, std::vector<provSPTR> ProvincesVector) {
+		for (std::shared_ptr<PrimeUnits> ptr : ProvincesVector) {
 			unitsVector.push_back(ptr);
 		}
 	}*/
@@ -305,7 +307,7 @@ i5array Participants::calculateEach(int option) {
 		commandersTempVector.push_back(ptr);
 	}
 
-	//Iterate through all Provinces:: and Commanders
+	//Iterate through all Provinces and Commanders
 	for (std::shared_ptr<Commanders> commander : commandersTempVector) {
 		i5array secondaryArray;
 		switch (option) {
@@ -349,13 +351,13 @@ bool Participants::subtractCheckResources(unitSPTR unit, i5array resources) {
 provSPTR Participants::getProvince(std::string name) {
 	//For debugging
 	DEBUG_FUNCTION("Participants.cpp", "getProvince");
-	return Provinces::Map[name];
+	return ProvincesMap[name];
 }
 
 /*provSPTR Participants::selectRandomProvince()
 {
 	//place holder
-	Provinces:: newProvince;
+	Provinces newProvince;
 	return &newProvince;
 }*/
 
@@ -363,7 +365,7 @@ const bool Participants::hasProvince(std::string name) const {
 	//For debugging
 	DEBUG_FUNCTION("Participants.cpp", "hasProvince");
 
-	if (Provinces::Map.find(name) != Provinces::Map.end()) {
+	if (ProvincesMap.find(name) != ProvincesMap.end()) {
 		return true;
 	}
 
@@ -445,8 +447,8 @@ provSPTR Participants::pickProvince(int phrase) {
 		"army you want to use to attack the target with" 
 	};
 
-	//Prints list of Provinces:: if prompted
-	if (phrase == 1 || phrase == 2) { printListOfProvinces::(); }
+	//Prints list of Provinces if prompted
+	if (phrase == 1 || phrase == 2) { printListOfProvinces(); }
 
 	/*Added explicitness below to get rid of Int - arithn error
 	Error: A sub-expression may overflow before being assigned to a wider type*/
@@ -516,7 +518,7 @@ i5array Participants::getPrimeUnitsArray() const {
 	}
 	catch (...) {
 		getPrimeUnitsArrayCommanders();
-		getPrimeUnitsArrayProvinces::();
+		getPrimeUnitsArrayProvinces();
 	}
 	
 
@@ -540,7 +542,7 @@ std::thread Participants::th1Method() const {
 	//For debugging
 	DEBUG_FUNCTION("Participants.cpp", "th1Method");
 
-	return std::thread([=] {getPrimeUnitsArrayProvinces::(); });
+	return std::thread([=] {getPrimeUnitsArrayProvinces(); });
 }
 
 std::thread Participants::th2Method() const {
@@ -568,13 +570,13 @@ void Participants::getPrimeUnitsArrayCommanders() const {
 	}
 }
 
-void Participants::getPrimeUnitsArrayProvinces::() const {
+void Participants::getPrimeUnitsArrayProvinces() const {
 	//For debugging
-	DEBUG_FUNCTION("Participants.cpp", "getPrimeUnitsArrayProvinces::");
+	DEBUG_FUNCTION("Participants.cpp", "getPrimeUnitsArrayProvinces");
 
-	for (provSPTR instance : Provinces::Vector) {
-		//i5array Provinces::Array = instance->getTroop(REGULAR, -1, ALL);
-		//INF::mutateArray(allProvinces::Array, Provinces::Array, INCREASE);
+	for (provSPTR instance : ProvincesVector) {
+		//i5array ProvincesArray = instance->getTroop(REGULAR, -1, ALL);
+		//INF::mutateArray(allProvincesArray, ProvincesArray, INCREASE);
 	}
 }
 
@@ -617,7 +619,7 @@ void Participants::createCapital() {
 
 	//Delete the old key-value pair (value should not be moved)
 	Map::mapMap.erase(std::to_string(province->getMapIndex()));
-	mapMap[province->getName()] = std::make_shared<Provinces::>(*province);
+	mapMap[province->getName()] = std::make_shared<Provinces>(*province);
 }
 
 

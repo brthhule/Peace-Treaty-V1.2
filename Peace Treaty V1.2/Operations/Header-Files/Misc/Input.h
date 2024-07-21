@@ -35,18 +35,18 @@ namespace Input
 		TRAIN_MA_FUNCTION_UNITS
 	};
 
-	std::string promptsToString(Input::Prompts p);
+	//Turn Prompts element to a string
+	std::string promptsToString(Input::Prompts prompt);
+
 	extern std::array<std::string, 13> PROMPTS_STRING;
+
 	int getStringIndex(std::string arg);
 	Input::Prompts stringToPrompts(std::string arg);
 
 	//For prompt input
-	std::vector<std::string> getShowPrompt(std::string prompt);
-
-	std::string
-		getOptionPromptQuery(std::vector<std::string>AV),
-		getOptionPrompt(Input::Prompts p),
-		getInputQuery(std::vector<std::string>AV);
+	std::string getPrompt(Input::Prompts p);
+	std::vector<std::string> showOptions(std::string prompt);
+	std::string selectOption(std::vector<std::string>AV);
 	std::string getInputText(std::string text, std::vector<std::string> AV);
 
 	int getNumber(std::string text);

@@ -6,7 +6,7 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 #include <memory>
 
-#include Provinces::_HEADER
+#include PROVINCES_HEADER
 
 class MapMA {
 public:

@@ -16,7 +16,7 @@ void Participants::viewPlayerMap() {
 	if (this->isPlayer()) {
 		Map::showMap();
 		println("Welcome to the View Map action menu");
-		whatToDo = Input::getOptionPrompt(VIEW_PLAYER_MAP).at(0);
+		whatToDo = Input::getPrompt(VIEW_PLAYER_MAP).at(0);
 	} 
 	//If the participant is an AI
 	else {
@@ -102,7 +102,7 @@ void Participants::selectPlayerProvince(provSPTR province) {
 	std::cout << "\n\n";
 
 	//Get option
-	char selectPlayerCapitalAction = Input::getOptionPrompt(SELECT_PLAYER_PROVINCE).at(0);
+	char selectPlayerCapitalAction = Input::getPrompt(SELECT_PLAYER_PROVINCE).at(0);
 
 	/*- Build infrastructure (B)
 		- Train Troops (T)
@@ -137,7 +137,7 @@ void Participants::selectEnemyProvince(provSPTR newP) {
 
 	println("\n\nWelcome to the Enemy Provinces:: Action Selection menu ");
 
-	char selectUnitEnemyProvinceChar = Input::getOptionPrompt(SELECT_ENEMY_PROVINCE).at(0);
+	char selectUnitEnemyProvinceChar = Input::getPrompt(SELECT_ENEMY_PROVINCE).at(0);
 
 	switch (selectUnitEnemyProvinceChar) {
 	case 'A': {
@@ -171,7 +171,7 @@ void Participants::playerUnitAction(provSPTR newP) {
 	provSPTR newProvince = newP;
 	println("This is one of your armies ");
 
-	switch (Input::getOptionPrompt(Input::PLAYER_UNIT_ACTION).at(0)) {
+	switch (Input::getPrompt(Input::PLAYER_UNIT_ACTION).at(0)) {
 		//Move this unit 
 	case 'P': {
 		playerUnitActionP(newProvince);
@@ -230,7 +230,7 @@ void Participants::selectEnemyAction() /*Add implementation*/
 
 	std::cout << "This is an enmy army. \n";
 
-	switch (Input::getOptionPrompt(SELECT_ENEMY_ACTION).at(0))
+	switch (Input::getPrompt(SELECT_ENEMY_ACTION).at(0))
 	{
 	case 'A':
 		break;

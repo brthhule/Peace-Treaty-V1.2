@@ -11,7 +11,7 @@ using namespace std::literals::string_literals;
 void Participants::armyOverviewSelectAction() { 
 	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "armyOverviewSelectAction()");
 
-	char action = Input::getOptionPrompt(Input::ARMY_DEPLOYMENT).at(0);
+	char action = Input::getPrompt(Input::ARMY_DEPLOYMENT).at(0);
 
 	switch (action) {
 		case 'T':
@@ -85,7 +85,7 @@ void Participants::upgradeCommander() {
 
 	if (resourcesPositive == true) {
 		commander.get()->addLevel();
-		LOG::PRINT("Upgrade successful; Commander "s + commander.get()->getName() + "is now level "s + commander.get()->getLevel() + "\n";);
+		LOG::PRINT("Upgrade successful; Commander "s + commander.get()->getName() + "is now level "s + std::to_string(commander.get()->getLevel()) + "\n");
 	} else {
 		//Add subtracted resources back to province resources
 		LOG::PRINT("Upgrade failed...\n");
@@ -133,7 +133,10 @@ void Participants::viewCommanderStats() {
 void Participants::trainCommanderPrompt() {
 	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "trainCommanderPrompt()");
 
-	LOG::PRINT("You have "s + this->getCommandersNum() + "/"s + TROOP::maxCommanders + " total army commanders.\n");
+	std::string commandersNum = std::to_string(this->getCommandersNum());
+	std::string maxCommanders = std::to_string(TROOP::maxCommanders); 
+
+	LOG::PRINT("You have "s + commandersNum + "/"s + maxCommanders + " total army commanders.\n");
 	if (getCommandersNum() < TROOP::maxCommanders) {
 		LOG::PRINT("At maximum army commander amount.Training failed, returning to menu \n");
 		return;
@@ -164,7 +167,7 @@ void Participants::proceedWithTraining(constArrayRef trainCosts) {
 	addCommander();
 
 	LOG::PRINT("Commander training successful\n");
-	LOG::PRINT("Current commanders: "s + this->getCommandersNum() + "\n");
+	LOG::PRINT("Current commanders: "s + std::to_string(this->getCommandersNum()) + "\n");
 
 	return;
 }

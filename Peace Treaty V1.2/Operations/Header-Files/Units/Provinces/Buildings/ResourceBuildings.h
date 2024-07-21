@@ -11,6 +11,7 @@ public:
 	};
 
 	ResourceBuildings(ResourceBuildingType type);
+
 	int getProductionRate() {
 		return productionRate;
 	}
@@ -23,7 +24,7 @@ public:
 		return capacity;
 	}
 
-	void mutateLevel(int amount)
+	void mutateLevel(int amount);
 
 private:
 	ResourceBuildingType type;

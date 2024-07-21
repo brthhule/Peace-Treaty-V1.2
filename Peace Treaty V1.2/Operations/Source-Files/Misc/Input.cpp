@@ -32,19 +32,15 @@ std::array<std::string, 13> PROMPTS_STRING = {
 		"TRAIN_MA_FUNCTION_UNITS"
 };
 
-std::vector<std::string> getShowPrompt(std::string prompt) {
-//For debugging
-	DEBUG_FUNCTION("Input.cpp", "getShowPrompt");
+std::vector<std::string> showOptions(std::string prompt) {
+	DEBUG_FUNCTION("Input.cpp", "showOptions");
 
 	std::fstream newfile;
 	std::string path = "../Peace Treaty V1.2/Support/TxtFiles/Prompts.txt";
 
 	std::vector<std::string> acceptableValues = { "H" };
-	addColor(GREEN);
+	LOG::addColor(LOG::GREEN);
 	std::cout << "List of options: \n";
-	
-	
-	
 
 	// open a file to perform read operation using file object
 	newfile.open(path, std::ios::in);
@@ -98,50 +94,27 @@ std::vector<std::string> getShowPrompt(std::string prompt) {
 	acceptableValues.push_back("M");//go back to previous menu
 	return acceptableValues;
 
-	addColor(RESET);
+	LOG::addColor(LOG::RESET);
 }
 
-std::string getOptionPromptQuery(std::vector<std::string>AV) {
+std::string getPrompt(Prompts p) {
 	//For debugging
-	DEBUG_FUNCTION("Input.cpp", "getShowPromptQuery");
-
-	std::string input;
-	std::cout << getColor(GREEN) << "Enter an option: " << getColor(LOG::BLUE);
-	getline(std::cin, input);
-	addColor(RESET);
-
-	for (int x = 0; x < (int)input.size(); x++) {
-		input.at(x) = toupper(input.at(x));
-	}
-
-	for (std::string value : AV) {
-		if (input == value) {
-			return input;
-		}
-	}
-
-	std::cout << "Invalid option entered... please try again.\n";
-	return getOptionPromptQuery(AV);
-}
-
-std::string getOptionPrompt(Prompts p) {
-	//For debugging
-	DEBUG_FUNCTION("Input.cpp", "getOptionPrompt");
+	DEBUG_FUNCTION("Input.cpp", "getPrompt");
 
 	//Print prompt, return acceptable values
-	std::vector<std::string> AV = getShowPrompt(promptsToString(p));
+	std::vector<std::string> AV = showOptions(promptsToString(p));
 
-	return getOptionPromptQuery(AV);
+	return selectOption(AV);
 }
 
-std::string getInputQuery(std::vector<std::string>AV) {
+std::string selectOption(std::vector<std::string>AV) {
 	//For debugging
-	DEBUG_FUNCTION("Input.cpp", "getInputQuery");
+	DEBUG_FUNCTION("Input.cpp", "selectOption");
 
 	std::cout << "Enter an option: " << LOG::getColor(LOG::BLUE);  
 	std::string input;
 	getline(std::cin, input);
-	LOG::addColor(RESET);
+	LOG::addColor(LOG::RESET);
 
 	for (std::string value : AV) {
 		if (input == value) {
@@ -150,7 +123,7 @@ std::string getInputQuery(std::vector<std::string>AV) {
 	}
 
 	std::cout << "Invalid option... please try again.\n";
-	return getInputQuery(AV);
+	return selectOption(AV);
 }
 
 std::string getInputText(std::string text, std::vector<std::string> AV) {
@@ -160,7 +133,7 @@ std::string getInputText(std::string text, std::vector<std::string> AV) {
 	std::cout << text << "\n";
 
 	if (AV.size() != 0) {
-		return getInputQuery(AV);
+		return selectOption(AV);
 	}
 		
 	std::string input = "";

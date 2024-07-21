@@ -7,7 +7,7 @@ using namespace PROV;
 using namespace COORD;
 using namespace Input;
 
-prov2Vector Map::mapVectors = std::vector<std::vector<Provinces::>>{}; 
+prov2Vector Map::mapVectors = std::vector<std::vector<Provinces>>{}; 
 provMAP Map::mapMap = std::unordered_map<std::string, provSPTR>(); 
 
 Map::Map() {
@@ -24,15 +24,15 @@ void Map::setMap() {
 
 	int mapIndex = 0;
 	for (int x = 0; x < INF::continentSize; x++) { 
-		std::vector<Provinces::> tempVector = {}; 
+		std::vector<Provinces> tempVector = {}; 
 		for (int y = 0; y < INF::continentSize; y++, mapIndex++) {  
-			Provinces:: newProvince(mapIndex, -1);
+			Provinces newProvince(mapIndex, -1);
 			tempVector.push_back(newProvince);
 		}
 		mapVectors.push_back(tempVector);
 	}
 
-	for (std::vector<Provinces::> provinceVector : mapVectors) { 
+	for (std::vector<Provinces> provinceVector : mapVectors) { 
 		for (int x = 0; x < (int) provinceVector.size(); x++) {
 			provSPTR province = make_provSPTR(provinceVector.at(x)); 
 			mapMap.insert(std::make_pair(province->getName(), province));
@@ -41,7 +41,7 @@ void Map::setMap() {
 		}
 	}
 
-	//Work out surrounding Provinces::
+	//Work out surrounding Provinces
 }
 
 void Map::showMap() {
@@ -68,7 +68,7 @@ void Map::meat(int x, int y) {
 	//For debugging
 	DEBUG_FUNCTION("Map.cpp", "meat"); 
 
-	const Provinces::& currentProvince = mapVectors.at(x).at(y); 
+	const Provinces& currentProvince = mapVectors.at(x).at(y); 
 
 	//If it's a capital province, 'C', if regular, 'P'
 	char letter = (currentProvince.isCapital()) ? 'C' : 'P'; 
@@ -82,8 +82,8 @@ void Map::meat(int x, int y) {
 	//Empty province
 	else {letter = '0';}
 
-std::cout << letter << currentProvince.getCommandersNum();
-LOG::addColor(RESET);
+	std::cout << letter << currentProvince.getCommandersNum();
+	LOG::addColor(LOG::RESET);
 }
 
 void Map::printXAxis() {
@@ -126,7 +126,7 @@ PROV::provSPTR Map::getProvince(CoordsType type, ipair coords) {
 		coords = CoordsBASE::translateCoords(coords, USER);
 	}
 
-	return std::make_shared<Provinces::>(mapVectors.at(coords.first).at(coords.second));
+	return std::make_shared<Provinces>(mapVectors.at(coords.first).at(coords.second));
 }
 
 
@@ -138,7 +138,7 @@ ipair Map::pickCoords() {
 	ipair userCoords = std::make_pair(xCoordinate, yCoordinate);
 
 	if (checkInBounds(userCoords, USER) == false) {
-		std::cout << getColor(RED) << "Coordinates out of bounds... please try again\n" << getColor(RESET);
+		LOG::PRINT("Coordinates out of bounds... please try again\n", LOG::RED);
 		pickCoords();
 	}
 
@@ -162,23 +162,25 @@ bool Map::checkInBounds(ipair coords, CoordsType type) {
 }
 
 
-void Map::assignSurroundingProvinces::() {
-	//Set everything except boundary Provinces::
+void Map::assignSurroundingProvinces() {
+	//Set everything except boundary Provinces
 	for (int rowIndex = 1; rowIndex < mapVectors.size() - 1; rowIndex++) {
 		for (int colIndex = 1; colIndex < mapVectors.at(0).size() - 1; colIndex++) {
-			Provinces::* currentProvince = &mapVectors.at(rowIndex).at(colIndex);
-			assignSurroundingProvinces::Aux(rowIndex, colIndex, currentProvince);
+			Provinces* currentProvince = &mapVectors.at(rowIndex).at(colIndex);
+			assignSurroundingProvincesAux(rowIndex, colIndex, currentProvince); 
 		}
 	}
 }
 
-void Map::assignSurroundingProvinces::Aux(int rowIndex, int colIndex, Provinces::* currentProvince) {
+void Map::assignSurroundingProvincesAux(int rowIndex, int colIndex, Provinces* currentProvince) {
 	int count = 0;
 	for (int outer = -1; outer <= 1; outer++) { 
-		for (int inner = -1, inner <= 1; inner++) { 
-			bool inBounds = checkInBounds(std::make_pair(rowIndex + outer, colIndex + inner));
-			Provinces::* relativeProvince = (inBounds) ? nullptr : &mapVectors.at(rowIndex + inner).at(colIndex + outer);
-			currentProvince->setRelativeProvince((ProvinceRelation)count, relativeProvince);
+		for (int inner = -1; inner <= 1; inner++) {
+			bool inBounds = checkInBounds(std::make_pair(rowIndex + outer, colIndex + inner), SYSTEM); 
+			Provinces* relativeProvince = (inBounds) ? nullptr : &mapVectors.at(rowIndex + inner).at(colIndex + outer);
+
+			Provinces::RelativeDirection direction = Provinces::RelativeDirection(count);
+			currentProvince->setRelativeProvince(direction, relativeProvince); 
 			count++;
 		}
 	}

@@ -144,7 +144,7 @@ void INF::clearScreenCommand() {
 }
 
 std::string INF::getText(std::string target) {
-	std::string filename = "C:\Users\Brennen\Source\Repos\brthhule\Peace - Treaty - V1.2\Peace Treaty V1.2\Support\TxtFiles\Text.txt";
+	std::string filename = "C:/Users/Brennen/Source/Repos/brthhule/Peace - Treaty - V1.2/Peace Treaty V1.2/Support/TxtFiles/Text.txt";
 
 	std::ifstream file(filename);
 	std::string str, text;
@@ -160,7 +160,7 @@ std::string INF::getText(std::string target) {
 	}
 
 	std::string returnText = "";
-	while (text.find("BREAK" != -1)) {
+	while (text.find("BREAK") != -1) {
 		int point = text.find("BREAK");
 		returnText += text.substr(0, point) + "\n";
 		text = text.substr(point);
@@ -183,11 +183,10 @@ void INF::enterAnything(int option) {
 	message += " (screen will clear): ";
 
 	LOG::SYSTEM(message);
-	std::cout << "" << line +
-		 << getColor(LOG::BLUE);
+	std::cout << "" << line << LOG::getColor(LOG::BLUE);
 	std::string emptyString = " ";
 	getline(std::cin, emptyString);
-	addColor(LOG::BLUE);
+	LOG::addColor(LOG::BLUE);
 }
 
 /*Returns help prompt that correlates with the specified numerical
@@ -246,16 +245,16 @@ void INF::printFile(std::string path) {
 		if (line.substr(0, 1) == "!") {
 			switch (line.at(1)) {
 				case 'R':
-					addColor(RED);
+					LOG::addColor(LOG::RED);
 					break;
 				case 'B':
-					addColor(LOG::BLUE);
+					LOG::addColor(LOG::BLUE);
 					break;
 				case 'W':
-					addColor(WHITE);
+					LOG::addColor(LOG::WHITE);
 					break;
 				case 'G':
-					addColor(GREEN);
+					LOG::addColor(LOG::GREEN);
 					break;
 				case 'N':
 					std::cout << std::endl;
@@ -306,11 +305,8 @@ void INF::enterAndClear(int option) {
 	clearScreen();
 }
 
-void INF::LOG::ERROR(std::string message) {
-	std::cout << getColor(RED) << message << getColor(RESET);
-}
 
-/*void INF::LOG::FILE_METHOD(std::string file, std::string method) {
+/*void LOG::FILE_METHOD(std::string file, std::string method) {
 #define DEBUGGING_MODE 
 #ifndef DEBUGGING_MODE 
 	return;

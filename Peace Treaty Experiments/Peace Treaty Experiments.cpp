@@ -3,8 +3,7 @@
 
 #include <iostream>
 #include <vector>
-#include "../Peace Treaty V1.2/Operations/Header-Files/Units/Provinces::/Buildings/BuildingsBASE.h"
-#include "../Peace Treaty V1.2/Operations/Header-Files/Units/Provinces::/Buildings/Resources/Farm.h"
+#include "../Peace Treaty V1.2/Operations/Header-Files/Units/Provinces/Buildings/BuildingsBASE.h"
 
 template<class T>
 class sPTR {

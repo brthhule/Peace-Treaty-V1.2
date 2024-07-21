@@ -12,7 +12,7 @@
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 
-#include Provinces::_HEADER	
+#include PROVINCES_HEADER	
 #include PRIME_UNITS_HEADER
 
 class ScoutMA {

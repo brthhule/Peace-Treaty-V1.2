@@ -1,17 +1,7 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
 #include LOG_HEADER
 
-const std::array<std::string, 9> LOG::COLORS_STRING = {
-		"BLACK",
-		"RED",
-		"GREEN",
-		"YELLOW",
-		"BLUE",
-		"MAGENTA",
-		"CYAN",
-		"WHITE",
-		"RESET"
-};
+
 
 //For stand alone color integration
 void LOG::addColor(Colors color) {
@@ -36,7 +26,7 @@ std::string LOG::getColor(Colors color) {
 }
 
 void LOG::PRINT(std::string message, Colors color) {
-	std::cout << addColor(color) << message << addColor(RESET);  
+	std::cout << getColor(color) << message << getColor(RESET);
 }
 
 void LOG::PRINT(std::string message) {
@@ -44,7 +34,7 @@ void LOG::PRINT(std::string message) {
 }
 
 void LOG::DEBUG(std::string message) {
-	if (debuggingMode) { 
+	if (debuggingMode) {  
 		PRINT(message, MAGENTA); 
 	}
 }
@@ -57,6 +47,6 @@ void LOG::ERROR(std::string message) {
 	PRINT(message, RED); 
 }
 
-static std::string LOG::EMBED(std::string message, Colors color) {
-	return addColor(color) + message + addColor(RESET); 
+std::string LOG::EMBED(std::string message, Colors color) {
+	return getColor(color) + message + getColor(RESET);
 }

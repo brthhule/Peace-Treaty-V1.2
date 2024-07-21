@@ -20,7 +20,7 @@ void Participants::chooseAction() {
 		std::cout << "\n\nWelcome to the Main Action menu \n\n\n";
 
 		showMap();
-		courseOfAction = Input::getOptionPrompt(PLAYER_ACTION).at(0); 
+		courseOfAction = Input::getPrompt(PLAYER_ACTION).at(0); 
 	} 
 
 	switch (courseOfAction) {

@@ -1,5 +1,5 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
-#include Provinces::_HEADER 
+#include PROVINCES_HEADER 
 
 using namespace BUILD;
 using namespace Input;
@@ -15,15 +15,15 @@ void Provinces::upgradeBuildingPrompt() {
 	LOG::addColor(LOG::BLUE);
 	std::cout << "Province of kingdom " + getKingdomName();
 	std::cout << "Coordinates: " << getCoords(COORD::USER) << "\n\n";  
-	addColor(RESET);
+	LOG::addColor(LOG::RESET);
 
 	this->printResources();
-	printBuildingStats();
+	this->buildings.printBuildingStats(); 
 	println("---------- End printing province information ----------\n");
 
 	char repeatPlayerBuildFunction = 'Y';
 
-	char upgradeBuilding = Input::getOptionPrompt(Input::PLAYER_BUILD_FUNCTION).at(0);
+	char upgradeBuilding = Input::getPrompt(Input::PLAYER_BUILD_FUNCTION).at(0);
 	if (upgradeBuilding == 'U') {
 		selectBuildingToUpgrade();
 	} else {
@@ -35,7 +35,7 @@ void Provinces::upgradeBuildingPrompt() {
 
 
 void Provinces::printBuildingUpgradeCosts(i5array requiredResources, int buildingIndex) {
-	LOG::DEBUG("Provinces::", "printInformation");
+	LOG::DEBUG("Provinces, printBuildingUpgradeCosts");
 
 	std::cout << "---------- Start printing information----------\n\n\033[34m";
 	std::cout << BUILD::RESOURCE_BUILDING_NAMES[buildingIndex] << " selected \n";
@@ -43,8 +43,8 @@ void Provinces::printBuildingUpgradeCosts(i5array requiredResources, int buildin
 	LOG::PRINT("The following is the cost of the upgrade: ");
 	for (int x = 0; x < 5; x++) {
 		std::string resourceName = INF::RESOURCE_NAMES.at(x);
-		int resourcesRequired = requiredResources.at(x);
-		LOG::PRINT(resourceName + ": "s + resourcesRequired + "\n");
+		std::string resourcesRequired = std::to_string(requiredResources.at(x));
+		LOG::PRINT(resourceName + ": " + resourcesRequired + "\n");
 	}
 	LOG::PRINT("\nThe following are how many resources are in this province: ");
 	this->printResources();
@@ -54,14 +54,14 @@ void Provinces::printBuildingUpgradeCosts(i5array requiredResources, int buildin
 
 void Provinces::selectBuildingToUpgrade() {
 	//For debugging
-	LOG::DEBUG("Provinces::", "upgradeBuildings");
+	LOG::DEBUG("Provinces, upgradeBuildings");
 
 	std::vector<std::string> buildingLetterList = { "H" };
 	for (int x = 1; x <= 10; x++) {
 		buildingLetterList.push_back(std::to_string(x));
 	}
 
-	printListOfBuildings();
+	this->buildings.printListOfBuildings();
 
 	std::string message1 = "Enter the number of the building you want to upgrade (enter 'H' for help) : ";
 	std::string buildingNumber = Input::getInputText(message1, buildingLetterList);
@@ -84,11 +84,11 @@ void Provinces::upgradeBuilding(int buildingNumber) {
 	//For debugging
 	DEBUG_FUNCTION("Provinces::", "upgradeBuildings2");
 
-	Buildings provinceBuildings = this->getBuildings();
+	Buildings *provinceBuildings = &(this->buildings); 
 
 	//Multiplies level by base line rate
-	BuildingsBASE& building_ref = *buildingsVector->at(buildingNumber);
-	constArrayRef requiredResources = building_ref.getUpgradeCosts();
+	BuildingsBASE* building_ref = provinceBuildings->at(buildingNumber);
+	constArrayRef requiredResources = building_ref->getUpgradeCosts(); 
 
 	printBuildingUpgradeCosts(requiredResources, buildingNumber);
 	std::string message = "Proceed with upgrade? (Y/N): ";
@@ -105,7 +105,11 @@ void Provinces::upgradeBuilding(int buildingNumber) {
 	}
 
 	println("Upgrade successful.\n");
-	building_ref.increaseLevel(1);
+	building_ref->increaseLevel(1);
+
+	delete building_ref;
+	delete provinceBuildings;
+
 	return;
 }
 

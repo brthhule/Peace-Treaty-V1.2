@@ -75,17 +75,17 @@ void Commanders::printCommanderStats() {
 	DEBUG_FUNCTION("Commanders.cpp", "printCommanderStats");
 
 	// print out stats
-	LOG::addColor(INF::LOG::BLUE);
+	LOG::addColor(LOG::BLUE);
 	//Add implementation
-
-	std::cout << COMM::statsOne.at(0) << std::endl;
+	 
+	std::cout << COMM::statsOne.at(0) << std::endl; 
 	this->printResources();
 
 	std::cout << COMM::statsOne.at(0) << std::endl;
 	this->printTroopsPresent();
 
 	//Continue implementing here
-	LOG::addColor(INF::RESET);
+	LOG::addColor(LOG::RESET);
 }
 
 ////////////Accessors//////////////////
@@ -167,6 +167,6 @@ const int& Commanders::getIndexInProvince() const {
 	return indexInProvince;
 }
 
-commSPTR Commanders::make_commSPTR(Commanders& commander_ref) {
+commSPTR COMM::make_commSPTR(Commanders& commander_ref) { 
 	return std::make_shared<Commanders>(commander_ref);
 }

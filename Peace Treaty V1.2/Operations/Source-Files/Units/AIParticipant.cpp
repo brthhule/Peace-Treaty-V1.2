@@ -6,6 +6,9 @@
 using namespace PROV;
 
 provSPTR AIParticipants::pickRandomProvince() {
-	int randomNum = rand() & Provinces::Vector.size();
-	return Provinces::Vector.at(randomNum); 
+	/*int randomNum = rand() & ProvincesVector.size();
+	return ProvincesVector.at(randomNum); */
+
+	return nullptr;
+	
 }

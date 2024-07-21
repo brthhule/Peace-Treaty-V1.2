@@ -10,7 +10,7 @@
 #include <memory>
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
-#include Provinces::_HEADER				//Composition 
+#include PROVINCES_HEADER		//Composition 
 #include INF_HEADER
 #include INPUT_HEADER
 #include LOG_HEADER
@@ -60,7 +60,7 @@ public:
 	static PROV::provMAP mapMap;
 
 private:
-	void assignSurroundingProvinces::(); 
-	void assignSurroundingProvinces::Aux(int rowIndex, int colIndex, Provinces::* currentProvince);
+	void assignSurroundingProvinces(); 
+	void assignSurroundingProvincesAux(int rowIndex, int colIndex, Provinces* currentProvince);
 };
 #endif

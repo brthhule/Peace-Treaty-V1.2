@@ -171,127 +171,19 @@
     <ClCompile Include="Operations\Source-Files\Units\Participants.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Operations\Header-Files\MainActions\ArmyOverviewMA.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\MainActions\AttackMA.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\MainActions\BuildMA.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\MainActions\MapMA.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\MainActions\PlayerAction.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\MainActions\ScoutMA.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\MainActions\TrainMA.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\Misc\BASE.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\Misc\INF.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\Misc\Input.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\Units\Commanders\Mobility.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\Units\Commanders\Commanders.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\Units\PrimeUnits\Troops\Archers.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\Units\PrimeUnits\Troops\Artillary.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\Units\PrimeUnits\Troops\Cavalry.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\Units\PrimeUnits\Troops\Guards.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\Units\PrimeUnits\Troops\Infantry.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\Units\PrimeUnits\Troops\TroopUnitsBASE.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\Units\PrimeUnits\PrimeUnits.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\Units\PrimeUnits\CoordsBASE.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\Units\PrimeUnits\TroopsINT.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\Others\Barracks.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\Others\Infirmary.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\Others\Library.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\Others\Residences.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\Others\Wall.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\Resources\Church.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\Resources\Farm.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\Resources\Mill.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\Resources\Mine.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\Resources\Quarry.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\Resources\ResourceBuildingsBASE.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\BUILD.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\BuildingAttributesINT.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\Units\Provinces\Buildings\BuildingsBASE.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\Units\Provinces\Provinces.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\Units\Reports\CommanderReport.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\Units\Reports\ProvinceReport.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\Units\Map.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Header-Files\Units\Participants.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
     <ClCompile Include="Operations\Source-Files\Units\PrimeUnits\Troops\TROOP.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Operations\Source-Files\Units\AIParticipant.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Operations\Source-Files\Misc\LOG.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Buildings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\ResourceBuildings.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -380,6 +272,129 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Support\Paths\Units\Units_Paths.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\MainActions\ArmyOverviewMA.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\MainActions\AttackMA.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\MainActions\BuildMA.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\MainActions\MapMA.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\MainActions\PlayerAction.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\MainActions\ScoutMA.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\MainActions\TrainMA.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\Misc\BASE.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\Misc\INF.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\Misc\Input.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\Units\Commanders\Mobility.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\Units\Commanders\Commanders.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\Units\PrimeUnits\Troops\Archers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\Units\PrimeUnits\Troops\Artillary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\Units\PrimeUnits\Troops\Cavalry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\Units\PrimeUnits\Troops\Guards.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\Units\PrimeUnits\Troops\Infantry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\Units\PrimeUnits\Troops\TroopUnitsBASE.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\Units\PrimeUnits\PrimeUnits.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\Units\PrimeUnits\CoordsBASE.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\Units\PrimeUnits\TroopsINT.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\Others\Barracks.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\Others\Infirmary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\Others\Library.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\Others\Residences.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\Others\Wall.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\Resources\Church.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\Resources\Farm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\Resources\Mill.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\Resources\Mine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\Resources\Quarry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\Resources\ResourceBuildingsBASE.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\BUILD.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\BuildingAttributesINT.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\BuildingsBASE.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\Units\Provinces\Provinces.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\Units\Reports\CommanderReport.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\Units\Reports\ProvinceReport.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\Units\Map.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\Units\Participants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\Misc\LOG.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

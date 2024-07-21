@@ -35,7 +35,7 @@ std::vector<commSPTR> Participants::getCommandersCanAttack(provSPTR defendingPro
 	DEBUG_FUNCTION("AttackMA.cpp", "getCommandersCanAtack(provSPTR)");
 
 	std::vector<commSPTR> commandersCanAttack = {};
-	std::array<ipair, 8> surroundingProvinces::;
+	std::array<ipair, 8> surroundingProvinces;
 	ipair defenderSystemCoords = defendingProvince->CoordsBASE::getCoords(COORD::SYSTEM);
 	int currentElements = 0;
 	for (int x = -1; x <= 1; x++) {
@@ -44,28 +44,22 @@ std::vector<commSPTR> Participants::getCommandersCanAttack(provSPTR defendingPro
 			//Make sure the changed Provinces:: aren't the same as the unchanged province
 			if (x != 0 || y != 0) {
 				ipair tempPair(defenderSystemCoords.first + x, defenderSystemCoords.second + y);
-				surroundingProvinces::[currentElements] = tempPair;
+				surroundingProvinces[currentElements] = tempPair;
 				currentElements++;
 			}
 		}
 	}
 
 	
-	for (ipair currentPair : surroundingProvinces::) {
-		int
-			firstCoordinate = currentPair.first,
-			secondCoordinate = currentPair.second;
+	for (ipair currentPair : surroundingProvinces) {
+		int coord1 = currentPair.first;
+		int coord2 = currentPair.second;
 
-		bool
-			checkFirstCoordinate = (
-				firstCoordinate >= 0 &&
-				firstCoordinate < continentSize),
-			checkSecondCoordinate = (
-				secondCoordinate >= 0 &&
-				secondCoordinate < continentSize);
+		bool checkCoord1 = (coord1 >= 0 && coord1 < continentSize);
+		bool checkCoord2 = (coord2 >= 0 && coord2 < continentSize);
 
-		if (checkFirstCoordinate && checkSecondCoordinate) {
-			ipair tempCoords(firstCoordinate, secondCoordinate);
+		if (checkCoord1 && checkCoord2) {
+			ipair tempCoords(coord1, coord2); 
 
 			provSPTR provincePtr = getSystemProvince(tempCoords);
 
@@ -87,7 +81,7 @@ std::vector<commSPTR> Participants::getCommandersCanAttack(provSPTR defendingPro
 commSPTR Participants::pickCommanderAttack(commSPTRList commandersCanAttack) {
 	DEBUG_FUNCTION("AttackMA.cpp", "pickCommanderCanAttack(commSPTRList)");
 
-	LOG::PRINT("The following number of commanders can attack the target: "s +
+	LOG::PRINT("The following number of commanders can attack the target: " +
 		 std::to_string(commandersCanAttack.size()) + "\n");
 
 
