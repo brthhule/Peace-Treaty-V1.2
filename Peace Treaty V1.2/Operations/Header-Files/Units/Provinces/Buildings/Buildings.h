@@ -22,7 +22,7 @@ public:
 
 	INF::i5array getTypeLevels(BUILD::BuildingType type);
 	BuildingsBASE& getBuilding(BUILD::BuildingsEnum name);
-	BuildingsBASE& getBuilding(int num) override;
+	BuildingsBASE& getBuilding(int num);
 	int getResourceBuildingProduction(int buildingIndex);
 
 
@@ -36,9 +36,9 @@ public:
 
 	const int getCapacity(BUILD::BuildingsEnum name);
 
-	const int getTroopsTrainedThisTurn() override;
+	const int getTroopsTrainedThisTurn();
 
-	const int getProvinceLevel() override;
+	const int getProvinceLevel();
 
 	void mutateLevel(BUILD::BuildingsEnum name, INF::MutateDirection direction, int amount);
 	void addTroopsTrainedThisTurn(int amount);

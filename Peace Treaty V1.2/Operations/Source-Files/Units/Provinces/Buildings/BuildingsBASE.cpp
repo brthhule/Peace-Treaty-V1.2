@@ -47,3 +47,10 @@ void BuildingsBASE::mutateWorkersNum(int amount, INF::MutateDirection direction)
 constINT BuildingsBASE::getWorkersNum() const {
 	return workersNum;
 }
+
+void BuildingsBASE::mutateLevel(int amount, INF::MutateDirection direction) {
+	if (direction == DECREASE) {
+		amount *= -1;
+	}
+	this->level += amount;
+}

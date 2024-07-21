@@ -2,6 +2,18 @@
 
 #include RESOURCE_BUILDINGS_HEADER
 
-ResourceProvinces::ResourceBuildings(ResourceBuildingType type) {
+ResourceBuildings::ResourceBuildings(ResourceBuildingType type) {
 	this->type = type;
+}
+
+int ResourceBuildings::getProductionRate() {
+	return productionRate;
+}
+
+int ResourceBuildings::getMaximumCapacity() {
+	return maximumCapacity;
+}
+
+int ResourceBuildings::getCapacity() {
+	return capacity;
 }

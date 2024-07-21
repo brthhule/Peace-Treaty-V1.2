@@ -120,6 +120,7 @@ namespace INF {
 	enum ProvinceRelation { 
 		ENEMY_PROVINCE, FRIENDLY_PROVINCE };
 
+
 	enum MutateDirection {
 		DECREASE = 0,
 		INCREASE = 1

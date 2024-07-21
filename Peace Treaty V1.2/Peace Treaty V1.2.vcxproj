@@ -165,12 +165,6 @@
     <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Others\Library.cpp" />
     <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Others\Residences.cpp" />
     <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Others\Wall.cpp" />
-    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Resources\Church.cpp" />
-    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Resources\Farm.cpp" />
-    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Resources\Mill.cpp" />
-    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Resources\Mine.cpp" />
-    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Resources\Quarry.cpp" />
-    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Resources\ResourceBuildingsBASE.cpp" />
     <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\BUILD.cpp" />
     <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\BuildingAttributesINT.cpp" />
     <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\BuildingsBASE.cpp" />
@@ -219,6 +213,7 @@
     <ClInclude Include="Operations\Header-Files\Misc\INF.h" />
     <ClInclude Include="Operations\Header-Files\Misc\Input.h" />
     <ClInclude Include="Operations\Header-Files\Misc\LOG.hpp" />
+    <ClInclude Include="Operations\Header-Files\Units\AIParticipant.h" />
     <ClInclude Include="Operations\Header-Files\Units\Commanders\Mobility.h" />
     <ClInclude Include="Operations\Header-Files\Units\Commanders\Commanders.h" />
     <ClInclude Include="Operations\Header-Files\Units\PrimeUnits\Troops\Archers.h" />
@@ -230,11 +225,13 @@
     <ClInclude Include="Operations\Header-Files\Units\PrimeUnits\PrimeUnits.h" />
     <ClInclude Include="Operations\Header-Files\Units\PrimeUnits\CoordsBASE.h" />
     <ClInclude Include="Operations\Header-Files\Units\PrimeUnits\TroopsINT.h" />
+    <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\Buildings.h" />
     <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\Others\Barracks.h" />
     <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\Others\Infirmary.h" />
     <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\Others\Library.h" />
     <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\Others\Residences.h" />
     <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\Others\Wall.h" />
+    <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\ResourceBuildings.h" />
     <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\Resources\Church.h" />
     <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\Resources\Farm.h" />
     <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\Resources\Mill.h" />

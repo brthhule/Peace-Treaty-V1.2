@@ -4,16 +4,9 @@
 #include BUILD_HEADER
 
 Buildings::Buildings() {
-	m_data[0] = *farm;
-	m_data[1] = &mill;
-	m_data[2] = &quarry;
-	m_data[3] = &mine;
-	m_data[4] = &church;
-	m_data[5] = &barracks;
-	m_data[6] = &infirmary;
-	m_data[7] = &library;
-	m_data[8] = &residences;
-	m_data[9] = &wall;
+	for (int x = 0; x < 5; x++) {
+		resourceBuildings[x] = re
+	}
 }
 
 ResourceBuildings* Buildings::getResourceBuilding(BUILD::BuildingsEnum type) {  

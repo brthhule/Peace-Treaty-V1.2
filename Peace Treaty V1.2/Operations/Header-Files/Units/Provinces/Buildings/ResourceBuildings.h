@@ -12,19 +12,11 @@ public:
 
 	ResourceBuildings(ResourceBuildingType type);
 
-	int getProductionRate() {
-		return productionRate;
-	}
+	int getProductionRate();
 
-	int getMaximumCapacity() {
-		return maximumCapacity;
-	}
+	int getMaximumCapacity();
 
-	int getCapacity() {
-		return capacity;
-	}
-
-	void mutateLevel(int amount);
+	int getCapacity();
 
 private:
 	ResourceBuildingType type;

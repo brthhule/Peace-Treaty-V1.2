@@ -129,24 +129,6 @@
     <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Others\Wall.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Resources\Church.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Resources\Farm.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Resources\Mill.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Resources\Mine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Resources\Quarry.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Resources\ResourceBuildingsBASE.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\BUILD.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -395,6 +377,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Operations\Header-Files\Misc\LOG.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\Units\AIParticipant.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\ResourceBuildings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\Buildings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

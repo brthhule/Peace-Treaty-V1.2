@@ -30,6 +30,7 @@ public:
 	//----Mutators-------------------------------------------------------------
 	void increaseLevel(int amount);
 	void mutateWorkersNum(int amount, INF::MutateDirection direction);
+	void mutateLevel(int amount, INF::MutateDirection direction);
 
 private:
 	int level;
