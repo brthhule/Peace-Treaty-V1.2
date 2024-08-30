@@ -8,6 +8,9 @@ using namespace COORD;
 using namespace UNIT;
 using namespace INF;
 
+using namespace std::literals::string_literals;
+
+
 /*Main ScoutMA function. Takes a target province pointer as a parameter
 If the target */
 void Participants::mainScoutMA(PROV::provSPTR provinceArg) {

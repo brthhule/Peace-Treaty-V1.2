@@ -34,12 +34,6 @@ public:
 
 	Buildings* getBuildings();
 
-	const int getCapacity(BUILD::BuildingsEnum name);
-
-	const int getTroopsTrainedThisTurn();
-
-	const int getProvinceLevel();
-
 	void mutateLevel(BUILD::BuildingsEnum name, INF::MutateDirection direction, int amount);
 	void addTroopsTrainedThisTurn(int amount);
 	void resetTroopsTrainedThisTurn();
@@ -49,15 +43,12 @@ public:
 	void printBuildingStats();
 
 	///////////////////////////////////Getters/////////////////////////////////
-	INF::i5array getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount);
-	int getResourceBuildingProduction(int buildingIndex);
 	//Returns an array of Resource/Other buildings levels
-	INF::i5array getTypeLevels(BUILD::BuildingType type);
 
 
-	const int getCapacity(BUILD::BuildingsEnum name);
-	const int getTroopsTrainedThisTurn();
-	const int getProvinceLevel();
+	int getCapacity(BUILD::BuildingsEnum name);
+	int getTroopsTrainedThisTurn();
+	int getProvinceLevel();
 
 	void printListOfBuildings();
 

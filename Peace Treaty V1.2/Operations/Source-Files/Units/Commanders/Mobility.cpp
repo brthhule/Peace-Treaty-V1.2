@@ -59,7 +59,7 @@ void Participants::moveUnitOne(commSPTR commander) {
 
 Provinces& Participants::pickProvinceToMoveTo(Commanders& commander_ref) {
 	//This will have the list of Provinces:: that can be moved to
-	LOG::PRINT("The coordinates of the chosen unit unit are: ")
+	LOG::PRINT("The coordinates of the chosen unit unit are: ");
 	commander_ref.printCoords(COORD::USER); 
 	println("\n\nYou can only move this unit to one of the Provinces:: adjacent to the province it is in");
 

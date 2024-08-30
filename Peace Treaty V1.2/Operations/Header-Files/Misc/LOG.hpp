@@ -23,6 +23,7 @@ public:
 	//Always red
 	static void ERROR(string message);
 	static void DEBUG(string message);
+	static void DEBUG(string file, string function);
 	static void SYSTEM(string message);
 
 	static void addColor(Colors c);

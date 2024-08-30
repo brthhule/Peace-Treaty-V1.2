@@ -5,6 +5,9 @@ using namespace PROV;
 using namespace COMM;
 using namespace Input;
 
+using namespace std::literals::string_literals;
+
+
 //View the map
 void Participants::viewPlayerMap() {
 	//For debugging

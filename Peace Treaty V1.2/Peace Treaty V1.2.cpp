@@ -28,6 +28,9 @@
 #include MAP_HEADER
 #include MOBILITY_HEADER
 
+using namespace std::literals::string_literals;
+
+
 void startOrResumeGame();
 void resumeGame();
 void startNewGame();
@@ -36,10 +39,6 @@ void gamePlay();
 void endScreen();
 
 int getContinentInformation();
-
-using LOG::addColor;
-using INF::getColor;
-using LOG;
 
 int main()/*main code*/
 {
@@ -115,12 +114,13 @@ int getContinentInformation() {
 	INF::enterAnything(1);
 	INF::clearScreen();
 
+
 	std::cout << "Continent size "s + LOG::EMBED(INF::continentSize, LOG::RED) + 
 		" created..\n\n"s;
 
-	std::string text = "How many AI kingdoms will you fight? (1, 2, 3) ";
+	text = "How many AI kingdoms will you fight? (1, 2, 3) ";
 	int pNum = std::stoi(Input::getInputText(text, { "number", "1", "2", "3" }));
-	LOG::PRINT(LOG::EMBED(pNum, LOG::RED) << " opponent kingdoms generated... \n\n");
+	LOG::PRINT(std::to_string(LOG::EMBED(pNum, LOG::RED))s + " opponent kingdoms generated... \n\n"s);
 	INF::enterAndClear(1);
 
 	TROOP::maxCommanders = INF::continentSize;
@@ -128,7 +128,7 @@ int getContinentInformation() {
 	INF::enemyDifficulty = std::stoi(Input::getInputText("What gameplay difficulty do you want (1-3): ", { "number","1","2","3" }));
 	INF::enterAndClear(1);
 
-	std::cout << "Gameplay difficulty " << 
+	std::cout << "Gameplay difficulty "s +
 		LOG::EMBED(INF::enemyDifficulty, LOG::RED) << " selected. \n\n";
 
 	return pNum;
@@ -150,7 +150,7 @@ int generateNewContinent(int pNum) {
 
 	INF::clearScreen();
 
-	std::cout << INF::getColor(LOG::RED) << players << INF::getColor(LOG::WHITE) << " players initialized...\n\n";
+	std::cout << LOG::getColor(LOG::RED) << players << LOG::getColor(LOG::WHITE) << " players initialized...\n\n";
 	pNum += players;
 	std::cout << "pNum: " << pNum << std::endl;
 	return players;

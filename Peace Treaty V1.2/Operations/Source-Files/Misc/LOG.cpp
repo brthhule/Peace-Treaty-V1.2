@@ -34,10 +34,13 @@ void LOG::PRINT(std::string message) {
 }
 
 void LOG::DEBUG(std::string message) {
-	if (debuggingMode) {  
-		PRINT(message, MAGENTA); 
-	}
+	if (debuggingMode) { PRINT(message, MAGENTA); }
 }
+
+void LOG::DEBUG(string file, string function) {
+	LOG::DEBUG(file + ", " + function);
+}
+
 
 void LOG::SYSTEM(std::string message) {
 	PRINT(message, GREEN);

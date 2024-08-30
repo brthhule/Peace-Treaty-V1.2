@@ -10,15 +10,16 @@ using namespace TROOP;
 using namespace BUILD;
 
 //Main TrainMA function
-void Participants::trainMAMain() {
+void Participants::trainMAMain() { 
     //For debugging
     provSPTR province = this->pickYourProvince(1);
 
-    Map::showMap();
+    Map::showMap(); 
 
     //Barracks level determins how 
-    int barracksLevel = province->getBuildings(getBuilding(BARRACKS).getLevel(); 
-    std::cout << "Start printing province barracks information: " << LOG::getColor(LOG::BLUE);
+    Buildings* buildings = province->getBuildings(); 
+    int barracksLevel = buildings->getBuilding(BARRACKS).getLevel();  
+    LOG::PRINT("Start printing province barracks information: " + LOG::getColor(LOG::BLUE));
     std::cout << "Province of kingdom " << getKingdomName() << " selected\n";
 
 
@@ -77,7 +78,8 @@ void Participants::trainMAMain() {
         
         amountOfTroops = std::stoi(Input::getInputText( "", amountOfTroopsAV));
 
-        if (amountOfTroops > maxTroopsCanTrain - capitalProvince->getTroopsTrainedThisTurn()) {
+        int troopsTrained = capitalProvince->getBuildings()->getTroopsTrainedThisTurn();
+        if (amountOfTroops > maxTroopsCanTrain - troopsTrained) { 
             repeatOuterDoLoop = 'Y';
             std::cout << "Amount of troops selected exceeds the training capacity "
                 "of the barracks... please try again\n";
@@ -95,49 +97,49 @@ void Participants::trainMALoop(int troopTier, int amountOfTroops) {
 
     provSPTR capitalProvince = this->getCapitalProvince();
 
-    i5array 
-        troopCost = { 5, 4, 3, 2, 1 },
-        requiredResources = { 0, 0, 0, 0, 0 };
+    i5array troopCost = { 5, 4, 3, 2, 1 };
+    i5array requiredResources = { 0, 0, 0, 0, 0 };
 
     for (int x = 0; x < 5; x++) {
-        requiredResources[0] = troopCost[0] * troopTier;
-        requiredResources[0] *= amountOfTroops;
+        requiredResources[0] = (troopCost[0] * troopTier) * amountOfTroops;
     }
-    std::cout << "The required amount of resources are as follows: \n";
+
+    LOG::PRINT("The required amount of resources are as follows: \n");
     INF::printResources(requiredResources);
 
     std::cout << std::endl;
-    char repeatProceedWithTraining = 'Y';
-    std::vector<char> proceedWithTrainingThree = { 'P', 'S', 'M' };    
-    do {
-        switch (Input::getPrompt(Input::TRAIN_MA_FUNCTION).at(0)) {
-        case 'P': {
-            bool trainingIsSuccess = capitalProvince->subtractCheckResources(requiredResources);
+    std::vector<char> proceedWithTrainingThree = { 'P', 'S', 'M' };   
 
-            if (trainingIsSuccess == false) {
-                std::cout << "Training failed" << std::endl;
+    bool continueLoop = true;
+    while(continueLoop) {
+        switch (Input::getPrompt(Input::TRAIN_MA_FUNCTION).at(0)) {
+            case 'P': {
+                bool trainingIsSuccess = capitalProvince->subtractCheckResources(requiredResources);
+
+                if (trainingIsSuccess == false) {
+                    LOG::PRINT("Training failed\n");
+                    continue;
+                }
+                else {
+                    std::cout << "Training successful" << std::endl;
+                    //This is the old troop system. Check this
+                    Commanders* commanderPtr = &capitalProvince->getProvinceCommander();
+                    commanderPtr->mutateTroop(REGULAR, GUARDS/*Temp fix*/, {}, SINGLE, INCREASE, troopTier);//fix this
+                    delete commanderPtr;
+                }
+                break;
             }
-            else {
-                std::cout << "Training successful" << std::endl;
-                //This is the old troop system. Check this
-                Commanders* commanderPtr = &capitalProvince->getProvinceCommander();
-                TroopTypes type = GUARDS;//Temp fix
-                commanderPtr->mutateTroop(REGULAR, type, { }, SINGLE, INCREASE, troopTier);//fix this
-                delete commanderPtr;
+            case 'S': {
+                capitalProvince->printResources();
+                break;
             }
-            break;
+            case 'M': {
+                capitalProvince->getBuildings()->addTroopsTrainedThisTurn(amountOfTroops);
+                LOG::PRINT("Returning to menu... \n");
+                continueLoop = false;
+            }
         }
-        case 'S': {
-            capitalProvince->printResources();
-            break;
-        }
-        case 'M': {
-            repeatProceedWithTraining = 'N';
-            capitalProvince->addTroopsTrainedThisTurn(amountOfTroops);
-            std::cout << "Returning to menu... " << std::endl;
-        }
-        }
-    } while (repeatProceedWithTraining == 'Y');
+    }
 }
 
 void Participants::plaerActionShowHelp() {

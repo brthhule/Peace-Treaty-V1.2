@@ -2,10 +2,16 @@
 
 #include BUILDINGS_HEADER
 #include BUILD_HEADER
+#include <string>
+
+using namespace std::literals::string_literals;
+
+
+extern LOG::Colors;
 
 Buildings::Buildings() {
 	for (int x = 0; x < 5; x++) {
-		resourceBuildings[x] = re
+		//resourceBuildings[x]
 	}
 }
 
@@ -22,93 +28,96 @@ ResourceBuildings* Buildings::getResourceBuilding(BUILD::BuildingsEnum type) {
 #include <memory>
 
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
-#include Buildings::_HEADER
+#include BUILDINGS_HEADER
 
-using namespace PROV;
 using namespace INF;
 using namespace BUILD;
 
-const int Buildings::getCapacity(BUILD::BuildingsEnum name) {
-	//For debugging
-	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "getCapacity");
+ int Buildings::getCapacity(BUILD::BuildingsEnum name) {
+	LOG::DEBUG("BuildingAttributesINT.cpp. getCapacity");
 	return getResourceBuilding(name)->getCapacity();
 }
 
 int Buildings::getResourceBuildingProduction(int buildingNumber) {
-	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "getResourceProduction");
-
-	return getResourceBuilding(name)->getProductionRate(); 
+	LOG::DEBUG("BuildingAttributesINT.cpp, getResourceProduction");
+	return getResourceBuilding(buildingNumber)->getProductionRate();  
 }
 
 /*Use returnArray or returnInt for arrayArg*/
 i5array Buildings::getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount) {
-	//For debugging
-	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "getResourceProduction");
+	LOG::DEBUG("BuildingAttributesINT.cpp, getResourceProduction");
 
 	i5array returnArray = {};
-
-	for (int x = 0; x < 5; x++) { returnArray[x] = getResourceBuildingProduction(x); }
-	if (amount == SINGLE) { returnArray[0] = getResourceBuildingProduction(name); }
+	for (int x = 0; x < 5; x++) { 
+		returnArray[x] = getResourceBuildingProduction(x); 
+	}
+	if (amount == SINGLE) { 
+		returnArray[0] = getResourceBuildingProduction(name); 
+	}
 
 	return returnArray;
 }
 
 
 void Buildings::mutateLevel(BuildingsEnum name, MutateDirection direction, int amount) {
-	//For debugging
-	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "mutateLevel");
+	LOG::DEBUG("BuildingAttributesINT.cpp", "mutateLevel");
 	if (name < 5) {
-		resourceBuildings.at(name).mutateLevel(amount);
+		resourceBuildings.at(name).mutateLevel(amount, direction); 
 	}
+
 	if (direction == DECREASE) { amount *= -1; }
-	buildingsVector->at(name)->increaseLevel(amount);
+
+	allBuildings.at(name)->increaseLevel(amount); 
 }
 
 /*Return the amount of troops trained this turn - troopsTrainedThisTurn*/
-const int Buildings::getTroopsTrainedThisTurn() {
-	//For debugging
-	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "getTroopsTrainedThisTurn");
-	BuildingsBASE& building_ref = *buildingsVector->at(BARRACKS);
+int Buildings::getTroopsTrainedThisTurn() {
+	LOG::DEBUG("BuildingAttributesINT.cpp", "getTroopsTrainedThisTurn");
+	BuildingsBASE& building_ref = *allBuildings.at(BARRACKS);
 	Barracks& barracks = static_cast<Barracks&>(building_ref);
-	int amount = barracks.getTroopsTrainedThisTurn();
-	return amount;
+	return barracks.getTroopsTrainedThisTurn(); 
 }
 
 void Buildings::printBuildingStats() {
-	//For debugging
-	DEBUG_FUNCTION("Buildings::.cpp", "printBuildingStats");
+	LOG::DEBUG("Buildings.cpp, printBuildingStats"); 
 
 	i5array productionArray = getResourceProduction(BUILD::CHURCH, INF::ALL);
-	std::cout << "\033[;34m";
 
-	std::cout << "Building stats of this province: " << std::endl;
+	LOG::PRINT(LOG::getColor(LOG::BLUE) + "Building stats of this province: \n");
 	for (int x = 0; x < 10; x++) {
-		std::cout << "- " << BUILD::BuildingStrings.at(x) << "(" << BUILD::BuildingStrings.at(x).at(0) << "): \n";
-		std::cout << "		Level: " << buildingsVector->at(x)->getLevel() << "\n";
+		std::string buildingName = BUILD::BuildingStrings.at(x); 
+
+		LOG::PRINT("- " + buildingName + "(" + buildingName.at(0) + "): \n");
+		LOG::PRINT("\tLevel: "s + allBuildings.at(x)->getLevel() + "\n"s);  
 		if (x < 5) {
-			std::cout << "		" << INF::RESOURCE_NAMES.at(x) << " production rate: " << getResourceBuildingProduction(x);
+			LOG::PRINT("\t" << std::to_string(INF::RESOURCE_NAMES.at(x) )+ " production rate: " + getResourceBuildingProduction(x));  
 		}
 	}
+
 	for (int x = 0; x < 5; x++) {
-		std::cout << "- " << BUILD::RESOURCE_BUILDING_NAMES[x] << " (" << BUILD::RESOURCE_BUILDING_NAMES[x].at(0) << ") " << std::endl;
-		std::cout << "    Level: " << buildingsVector->at(x)->getLevel() << std::endl;
-		std::cout << "    " << INF::RESOURCE_NAMES[x] << " production rate : " << productionArray[x] << std::endl;
+		std::string buildingName = BUILD::RESOURCE_BUILDING_NAMES[x];
+		std::string resource = INF::RESOURCE_NAMES[x];
+		int productionRate = productionArray[x];
+
+		LOG::PRINT("- "s + buildingName + " (" + buildingName + ")\n"s);
+		LOG::PRINT("\tLevel: "s + allBuildings[x]->getLevel() + "\n"s); 
+		LOG::PRINT("\t" + resource + " production rate : " + productionRate + "\n"); 
 	}
 	//Add implementation
-	std::cout << "Barracks (B) " << std::endl;
-	std::cout << "    Level: " << buildingsVector->at(BARRACKS)->getLevel() << std::endl;
-	std::cout << "    Max training capacity: " << getCapacity(BARRACKS) << "\n\n\033[;0m";
+	LOG::PRINT("Barracks (B)\n");
+	LOG::PRINT("\tLevel: "s + allBuildings.at(BARRACKS)->getLevel() + "\n"s);
+	LOG::PRINT("\tMax training capacity: "s + getCapacity(BARRACKS) + "\n\n\033[;0m"s);
 
 
 }
 
 //Returns average of all BuildingAttributesINT.cpp", "rounded down to nearest int
-const int Buildings::getProvinceLevel() {
+int Buildings::getProvinceLevel() {
 	//For debugging
-	DEBUG_FUNCTION("Buildings::.cpp", "getProvinceLevel");
+	LOG::DEBUG("Buildings::.cpp, getProvinceLevel"); 
 
 	int unitLevel = 0;
-	for (int x = 0; x < 10; x++) { unitLevel += buildingsVector->at(x)->getLevel(); }
+	for (int x = 0; x < 10; x++) { unitLevel += allBuildings.at(x)->getLevel(); }
 
 	return unitLevel /= 10;;
 }
@@ -116,7 +125,7 @@ const int Buildings::getProvinceLevel() {
 void Buildings::resetTroopsTrainedThisTurn() {
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "resetTroopsTrainedThisTurn");
-	BuildingsBASE& building_ref = *buildingsVector->at(BARRACKS);
+	BuildingsBASE& building_ref = *allBuildings.at(BARRACKS);
 	Barracks& barracks = static_cast<Barracks&>(building_ref);
 	barracks.resetTroopsTrainedThisTurn();
 }
@@ -124,7 +133,7 @@ void Buildings::resetTroopsTrainedThisTurn() {
 void Buildings::addTroopsTrainedThisTurn(int amount) {
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "addTroopsTrainedThisTurn");
-	BuildingsBASE& building_ref = *buildingsVector->at(BARRACKS);
+	BuildingsBASE& building_ref = *allBuildings.at(BARRACKS);
 	Barracks& barracks = static_cast<Barracks&>(building_ref);
 	barracks.addTroopsTrainedThisTurn(amount);
 }
@@ -139,7 +148,7 @@ void Buildings::initiailizeCapitalBuildings() {
 	otherBuildingsLevels = getTypeLevels(OTHER);
 
 	for (int x = 0; x < 10; x++) {
-		buildingsVector->at(x)->increaseLevel(1);
+		allBuildings.at(x)->increaseLevel(1); 
 	}
 }
 
@@ -147,15 +156,15 @@ void Buildings::printListOfBuildings() {
 	//For debugging
 	DEBUG_FUNCTION("BuildingAttributesINT.cpp", "printListOfBuildings");
 	for (int x = 0; x < 10; x++) {
-		std::cout << x << ") " << BUILD::BuildingStrings.at(x) << ", level: " << buildingsVector->at(x)->getLevel();
+		std::cout << x << ") " << BUILD::BuildingStrings.at(x) << ", level: " << allBuildings.at(x)->getLevel(); 
 	}
 }
 
 i5array Buildings::getTypeLevels(BUILD::BuildingType type) { 
 	i5array resourceLevels = {}, otherLevels = {};
 	for (int index = 0; index < 5; index++) {
-		resourceLevels.at(index) = buildingsVector->at(index)->getLevel();
-		otherLevels.at(index) = buildingsVector->at(index + 5)->getLevel();
+		resourceLevels.at(index) = allBuildings.at(index)->getLevel();
+		otherLevels.at(index) = allBuildings.at(index + 5)->getLevel();
 	}
 
 	if (type == RESOURCE) { return resourceLevels; }
@@ -163,9 +172,9 @@ i5array Buildings::getTypeLevels(BUILD::BuildingType type) {
 }
 
 BuildingsBASE& Buildings::getBuilding(BUILD::BuildingsEnum name) {
-	return *buildingsVector->at(name);
+	return *allBuildings.at(name);
 }
 
 BuildingsBASE& Buildings::getBuilding(int num) {
-	return *buildingsVector->at(num);
+	return *allBuildings.at(num);
 }

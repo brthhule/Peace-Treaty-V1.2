@@ -26,6 +26,9 @@ Provinces::Provinces(int mapIndex, int participantIndex) : PrimeUnits(participan
 	civilians = 0;
 }
 
+int Provinces::getTroopsTrainedThisTurn() {
+	return buildings.getTroopsTrainedThisTurn();
+}
 
 Provinces::Provinces(const Provinces& province) : 
 	PrimeUnits(dynamic_cast<const PrimeUnits&>(province)){
@@ -49,7 +52,7 @@ Provinces::Provinces(const Provinces& province) :
 	}
 
 
-	this->scoutReports = province->scoutReports;
+	this->scoutReports = province.scoutReports;
 	for (Reports foo : province.scoutReports) { 
 		this->scoutReports.push_back(foo);
 	}
@@ -118,8 +121,7 @@ void Provinces::makeCapital(int participantIndexArg)
 void Provinces::initializeCapitalStats() {
 	//For debugging
 	DEBUG_FUNCTION("Provinces::.cpp", "initializeCapitalStats");
-
-	initiailizeCapitalBuildings();
+	buildings.initiailizeCapitalBuildings(); 
 }
 
 //Commander Stuff
@@ -179,7 +181,7 @@ COMM::commSPTRList Provinces::getAllCommanders() const {
 	return commandersList;
 }
 
-Commanders& Provinces::getCommander(std::string name) const { 
+Commanders& Provinces::getCommander(std::string name) { 
 	//For debugging
 	DEBUG_FUNCTION("Provinces::.cpp", "getCommander");	
 	return *commandersMap.at(name);
