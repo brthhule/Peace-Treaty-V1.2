@@ -144,9 +144,14 @@ void INF::clearScreenCommand() {
 }
 
 std::string INF::getText(std::string target) {
-	std::string filename = "C:/Users/Brennen/Source/Repos/brthhule/Peace - Treaty - V1.2/Peace Treaty V1.2/Support/TxtFiles/Text.txt";
+	DEBUG_FUNCTION("INF.cpp", "getText");
+	std::string filename = "C:/Users/Brennen/Source/Repos/brthhule/Peace-Treaty- V1.2/Peace Treaty V1.2/Support/TxtFiles/Text.txt";
 
 	std::ifstream file(filename);
+
+	if (!file.is_open()) {
+		LOG::ERROR("Could not open file\n");
+	}
 	std::string str, text;
 	while (std::getline(file, str)) {
 		if (str.find(target) != -1) {
@@ -175,18 +180,10 @@ option = 1, says enter anything to proceed
 option = 2, says enter anything to return to previous menu*/
 void INF::enterAnything(int option) {
 	DEBUG_FUNCTION("INF.cpp", "enterAnything(int)");
-	std::array<std::string, 2> phrases = { "proceed", "return to the previous menu" };
-	std::string line = phrases.at(option - 1);
-
-	std::string message = "Enter anything to ";
-	message += line;
-	message += " (screen will clear): ";
-
-	LOG::SYSTEM(message);
-	std::cout << "" << line << LOG::getColor(LOG::BLUE);
-	std::string emptyString = " ";
-	getline(std::cin, emptyString);
+	LOG::SYSTEM("Enter anything to proceed (screen will clear): ");
 	LOG::addColor(LOG::BLUE);
+	std::cin.get(); 
+
 }
 
 /*Returns help prompt that correlates with the specified numerical
@@ -271,6 +268,9 @@ void INF::printFile(std::string path) {
 	return;
 }
 
+std::string INF::str(int arg) {
+	return std::to_string(arg); 
+}
 
 template <typename T>
 //Takes a list of vectors, concatentate them together. List goes in order of earliest to latest index

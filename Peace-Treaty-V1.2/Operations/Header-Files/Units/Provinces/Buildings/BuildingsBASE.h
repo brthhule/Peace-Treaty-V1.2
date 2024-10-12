@@ -30,10 +30,12 @@ public:
 	//----Mutators-------------------------------------------------------------
 	void increaseLevel(int amount);
 	void mutateWorkersNum(int amount, INF::MutateDirection direction);
+
+protected: 
 	void mutateLevel(int amount, INF::MutateDirection direction);
+	int level;
 
 private:
-	int level;
 	INF::d5array baseUpgradeRates;
 	int workersNum;
 	INF::i5array upgradeCosts;

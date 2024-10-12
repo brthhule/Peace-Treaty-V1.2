@@ -114,6 +114,9 @@ std::string selectOption(std::vector<std::string>AV) {
 	std::cout << "Enter an option: " << LOG::getColor(LOG::BLUE);  
 	std::string input;
 	getline(std::cin, input);
+	for (int i = 0; i < input.size(); i++) {
+		input[i] = toupper(input[i]);
+	}
 	LOG::addColor(LOG::RESET);
 
 	for (std::string value : AV) {

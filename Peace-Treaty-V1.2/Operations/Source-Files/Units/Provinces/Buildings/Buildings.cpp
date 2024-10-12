@@ -6,22 +6,17 @@
 
 using namespace std::literals::string_literals;
 
-
-extern LOG::Colors;
-
 Buildings::Buildings() {
-	for (int x = 0; x < 5; x++) {
-		//resourceBuildings[x]
-	}
+	resourceBuildings = {}; 
 }
 
-ResourceBuildings* Buildings::getResourceBuilding(BUILD::BuildingsEnum type) {  
+ResourceBuildings* Buildings::getResourceBuilding(BUILD::BuildingsEnum type) {    
 	if ((int)type >= 5) {
 		LOG::DEBUG("Invalid Building Type");
 		throw "Invalid building type";
 		return nullptr;
 	}
-	return (this->resourceBuildings.at(type));
+	return &(this->resourceBuildings.at(type));
 }
 
 
@@ -35,24 +30,29 @@ using namespace BUILD;
 
  int Buildings::getCapacity(BUILD::BuildingsEnum name) {
 	LOG::DEBUG("BuildingAttributesINT.cpp. getCapacity");
+
 	return getResourceBuilding(name)->getCapacity();
 }
 
 int Buildings::getResourceBuildingProduction(int buildingNumber) {
 	LOG::DEBUG("BuildingAttributesINT.cpp, getResourceProduction");
-	return getResourceBuilding(buildingNumber)->getProductionRate();  
+
+	ResourceBuildings* building;
+	building = getResourceBuilding((BuildingsEnum)buildingNumber); 
+	return building->getProductionRate();   
 }
 
 /*Use returnArray or returnInt for arrayArg*/
-i5array Buildings::getResourceProduction(BUILD::BuildingsEnum name, INF::Quantity amount) {
+i5array Buildings::getResourceProduction(BUILD::BuildingsEnum building, INF::Quantity amount) {
 	LOG::DEBUG("BuildingAttributesINT.cpp, getResourceProduction");
 
 	i5array returnArray = {};
 	for (int x = 0; x < 5; x++) { 
 		returnArray[x] = getResourceBuildingProduction(x); 
 	}
+
 	if (amount == SINGLE) { 
-		returnArray[0] = getResourceBuildingProduction(name); 
+		returnArray[0] = getResourceBuildingProduction(building);  
 	}
 
 	return returnArray;
@@ -62,7 +62,8 @@ i5array Buildings::getResourceProduction(BUILD::BuildingsEnum name, INF::Quantit
 void Buildings::mutateLevel(BuildingsEnum name, MutateDirection direction, int amount) {
 	LOG::DEBUG("BuildingAttributesINT.cpp", "mutateLevel");
 	if (name < 5) {
-		resourceBuildings.at(name).mutateLevel(amount, direction); 
+		ResourceBuildings* building = &resourceBuildings.at(name);  
+		building->mutateLevel(amount, direction); 
 	}
 
 	if (direction == DECREASE) { amount *= -1; }
@@ -88,25 +89,30 @@ void Buildings::printBuildingStats() {
 		std::string buildingName = BUILD::BuildingStrings.at(x); 
 
 		LOG::PRINT("- " + buildingName + "(" + buildingName.at(0) + "): \n");
-		LOG::PRINT("\tLevel: "s + allBuildings.at(x)->getLevel() + "\n"s);  
+		std::cout << "\tLevel: " << allBuildings.at(x)->getLevel() << "\n";  
 		if (x < 5) {
-			LOG::PRINT("\t" << std::to_string(INF::RESOURCE_NAMES.at(x) )+ " production rate: " + getResourceBuildingProduction(x));  
+			int rate = getResourceBuildingProduction(x);
+			std::string resource = INF::RESOURCE_NAMES[x];
+			std::cout << "\t" << resource << " production rate: " << rate << "\n"; 
 		}
 	}
 
 	for (int x = 0; x < 5; x++) {
 		std::string buildingName = BUILD::RESOURCE_BUILDING_NAMES[x];
 		std::string resource = INF::RESOURCE_NAMES[x];
-		int productionRate = productionArray[x];
+		std::string productionRate = std::to_string(productionArray[x]);
+		std::string level = std::to_string(allBuildings[x]->getLevel());
 
 		LOG::PRINT("- "s + buildingName + " (" + buildingName + ")\n"s);
-		LOG::PRINT("\tLevel: "s + allBuildings[x]->getLevel() + "\n"s); 
+		LOG::PRINT("\tLevel: "s + level + "\n"s); 
 		LOG::PRINT("\t" + resource + " production rate : " + productionRate + "\n"); 
 	}
 	//Add implementation
+	std::string capacity = std::to_string(getCapacity(BARRACKS));
+	std::string level = std::to_string(allBuildings.at(BARRACKS)->getLevel());
 	LOG::PRINT("Barracks (B)\n");
-	LOG::PRINT("\tLevel: "s + allBuildings.at(BARRACKS)->getLevel() + "\n"s);
-	LOG::PRINT("\tMax training capacity: "s + getCapacity(BARRACKS) + "\n\n\033[;0m"s);
+	LOG::PRINT("\tLevel: "s + level + "\n"s);
+	LOG::PRINT("\tMax training capacity: "s + capacity + "\n\n\033[;0m"s); 
 
 
 }

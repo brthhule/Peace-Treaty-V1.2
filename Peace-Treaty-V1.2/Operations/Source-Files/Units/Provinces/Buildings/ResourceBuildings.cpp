@@ -2,8 +2,15 @@
 
 #include RESOURCE_BUILDINGS_HEADER
 
+ResourceBuildings::ResourceBuildings() {
+
+}
+
 ResourceBuildings::ResourceBuildings(ResourceBuildingType type) {
 	this->type = type;
+	this->productionRate = 1;
+	this->capacity = 0;
+	this->maximumCapacity = 2;
 }
 
 int ResourceBuildings::getProductionRate() {
@@ -16,4 +23,11 @@ int ResourceBuildings::getMaximumCapacity() {
 
 int ResourceBuildings::getCapacity() {
 	return capacity;
+}
+
+void ResourceBuildings::mutateLevel(int amount, INF::MutateDirection direction) {
+	if (direction == INF::MutateDirection::DECREASE)  {
+		amount *= -1;
+	}
+	this->level += amount;
 }

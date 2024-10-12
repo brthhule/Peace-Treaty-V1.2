@@ -10,6 +10,7 @@ public:
 		FOOD, WOOD, STONE, ORE, MANA
 	};
 
+	ResourceBuildings();
 	ResourceBuildings(ResourceBuildingType type);
 
 	int getProductionRate();
@@ -17,6 +18,8 @@ public:
 	int getMaximumCapacity();
 
 	int getCapacity();
+
+	void mutateLevel(int amount, INF::MutateDirection direction);
 
 private:
 	ResourceBuildingType type;

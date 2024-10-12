@@ -30,7 +30,7 @@ int Provinces::getTroopsTrainedThisTurn() {
 	return buildings.getTroopsTrainedThisTurn();
 }
 
-Provinces::Provinces(const Provinces& province) : 
+Provinces::Provinces(const Provinces& province) :  
 	PrimeUnits(dynamic_cast<const PrimeUnits&>(province)){
 
 	this->commandersSortType = province.commandersSortType;
@@ -45,7 +45,8 @@ Provinces::Provinces(const Provinces& province) :
 	this->kingdomName = province.kingdomName;
 
 	for (int index = 0; index < province.getCommandersNum(); index++) {
-		commSPTR commander = std::make_shared<Commanders>(province.getCommander(index)); 
+		auto foo = province.getConstCommander(index); 
+		commSPTR commander = std::make_shared<Commanders>(province.getConstCommander(index)); 
 
 		this->commandersVector.push_back(*commander);  
 		this->commandersMap[commander->getName()] = commander; 
@@ -189,6 +190,11 @@ Commanders& Provinces::getCommander(std::string name) {
 
 Commanders& Provinces::getCommander(int index)  {
 	return commandersVector.at(index);
+}
+
+Commanders Provinces::getConstCommander(int index) const { 
+	const Commanders& foo = commandersVector[index]; 
+	return foo;
 }
 
 bool Provinces::subtractCheckResources(constArrayRef resourcesArray) {
@@ -339,8 +345,8 @@ std::shared_ptr<Provinces> Provinces::getRelativeProvince(RelativeDirection dire
 	return (this->nearbyProvinces.at(direction) == nullptr) ? nullptr : PROV::make_provSPTR(*nearbyProvinces.at(direction));  
 }
 
-const std::array<Provinces*, 8>* Provinces::getRelativeDirectionList() {   
-	return nearbyProvinces;
+std::array<Provinces*, 8>* Provinces::getRelativeDirectionList() {   
+	return &nearbyProvinces;
 }
  
 void Provinces::setRelativeProvince(RelativeDirection direction, Provinces* province) {  

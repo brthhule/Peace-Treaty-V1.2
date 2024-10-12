@@ -132,9 +132,6 @@
     <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\BUILD.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\BuildingAttributesINT.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\BuildingsBASE.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -210,6 +207,7 @@
     <Text Include="Support\TxtFiles\Help.txt" />
     <Text Include="Support\TxtFiles\Prompts.txt" />
     <Text Include="Support\TxtFiles\Synopsis.txt" />
+    <Text Include="Support\TxtFiles\Text.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.md">

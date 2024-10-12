@@ -114,13 +114,16 @@ int getContinentInformation() {
 	INF::enterAnything(1);
 	INF::clearScreen();
 
+	std::string sizeString = std::to_string(INF::continentSize);
 
-	std::cout << "Continent size "s + LOG::EMBED(INF::continentSize, LOG::RED) + 
+
+	std::cout << "Continent size "s + LOG::EMBED(sizeString, LOG::RED) + 
 		" created..\n\n"s;
 
 	text = "How many AI kingdoms will you fight? (1, 2, 3) ";
-	int pNum = std::stoi(Input::getInputText(text, { "number", "1", "2", "3" }));
-	LOG::PRINT(std::to_string(LOG::EMBED(pNum, LOG::RED))s + " opponent kingdoms generated... \n\n"s);
+	std::string pNumString = Input::getInputText(text, { "number", "1", "2", "3" });
+	int pNum = std::stoi(pNumString);
+	std::cout << LOG::EMBED(pNumString, LOG::RED) + " opponent kingdoms generated... \n\n"; 
 	INF::enterAndClear(1);
 
 	TROOP::maxCommanders = INF::continentSize;
@@ -129,7 +132,7 @@ int getContinentInformation() {
 	INF::enterAndClear(1);
 
 	std::cout << "Gameplay difficulty "s +
-		LOG::EMBED(INF::enemyDifficulty, LOG::RED) << " selected. \n\n";
+		LOG::EMBED(INF::str(INF::enemyDifficulty), LOG::RED) << " selected. \n\n"; 
 
 	return pNum;
 }

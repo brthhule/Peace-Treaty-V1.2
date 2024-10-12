@@ -61,7 +61,6 @@ private:
 	Library library; 
 	Residences residences; 
 	Wall wall; 
-
 	std::array<ResourceBuildings, 5> resourceBuildings;
 
 };

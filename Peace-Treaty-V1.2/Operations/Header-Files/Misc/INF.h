@@ -149,6 +149,8 @@ namespace INF {
 		MANA
 	};
 
+	std::string str(int);
+
 	///////////////////////////////////Templates///////////////////////////////
 	//---Vector/Array Implementations--
 	template <typename T>

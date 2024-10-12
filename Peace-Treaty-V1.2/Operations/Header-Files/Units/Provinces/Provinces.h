@@ -56,6 +56,8 @@ public:
 	///////////////////////////////This Class//////////////////////////////
 	//----Constructors-----------------------------------------------------
 	Provinces(int mapIndex, int participantIndex);
+
+	//Copy constructor
 	Provinces(const Provinces &copyProvince);
 	~Provinces() {}
 
@@ -79,6 +81,7 @@ public:
 	///Return reference of commander by name
 	Commanders& getCommander(std::string name);
 	Commanders& getCommander(int index);
+	Commanders getConstCommander(int index) const;
 	//Returns vector of commanders in this province
 	COMM::commSPTRList getAllCommanders() const;
 
@@ -144,7 +147,7 @@ public:
 
 
 	std::shared_ptr<Provinces> getRelativeProvince(RelativeDirection direction); 
-	const std::array<Provinces*, 8>* getRelativeDirectionList();
+	std::array<Provinces*, 8>* getRelativeDirectionList();
 	void setRelativeProvince(RelativeDirection direction, Provinces* province);
 
 	Buildings* getBuildings();
@@ -198,7 +201,7 @@ private:
 	typedef std::vector<std::pair<int, ProvinceReport >> Reports;
 	std::vector<Reports> scoutReports;
 
-	std::unordered_map<RelativeDirection, Provinces*> nearbyProvinces;
+	std::array<Provinces*, 8> nearbyProvinces;
 
 	Buildings buildings;
 	
