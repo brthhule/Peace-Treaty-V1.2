@@ -21,7 +21,7 @@
 #include <vector>
 #include <memory>
 
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace-Treaty-V1.2\Support\Paths.h"
 
 #include BASE_HEADER					//Base Class
 #include MOBILITY_HEADER				//Base Class
@@ -281,6 +281,8 @@ private:
 	std::string kingdomName = " "; 
 
 	std::unordered_map <std::string, COMM::commSPTR> commandersMap;
+	// Uses system coords
+	std::pair<int, int> TUI_coords;
 	std::unordered_map <std::string, PROV::provSPTR> ProvincesMap;
 	std::unordered_map <std::string, COMM::commSPTR>::iterator commIt;
 };

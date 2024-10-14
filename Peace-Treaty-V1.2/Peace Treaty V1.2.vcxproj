@@ -135,6 +135,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Operations\Source-Files\Misc\LOG.cpp" />
+	<ClCompile Include="Operations\Source-Files\Misc\TUI.cpp" />
     <ClCompile Include="Operations\Source-Files\Units\AIParticipant.cpp" />
     <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Buildings.cpp" />
     <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\ResourceBuildings.cpp" />
@@ -214,6 +215,7 @@
     <ClInclude Include="Operations\Header-Files\Misc\INF.h" />
     <ClInclude Include="Operations\Header-Files\Misc\Input.h" />
     <ClInclude Include="Operations\Header-Files\Misc\LOG.hpp" />
+	<ClInclude Include="Operations\Header-Files\Misc\TUI.hpp" />
     <ClInclude Include="Operations\Header-Files\Units\AIParticipant.h" />
     <ClInclude Include="Operations\Header-Files\Units\Commanders\Mobility.h" />
     <ClInclude Include="Operations\Header-Files\Units\Commanders\Commanders.h" />

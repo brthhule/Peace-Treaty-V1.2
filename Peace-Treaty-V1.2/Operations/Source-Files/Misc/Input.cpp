@@ -1,4 +1,4 @@
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace-Treaty-V1.2\Support\Paths.h"
 #include INPUT_HEADER
 #include LOG_HEADER
 
@@ -34,9 +34,9 @@ std::array<std::string, 13> PROMPTS_STRING = {
 
 std::vector<std::string> showOptions(std::string prompt) {
 	DEBUG_FUNCTION("Input.cpp", "showOptions");
-
+	LOG::DEBUG("prompt: " + prompt + "\n");
 	std::fstream newfile;
-	std::string path = "../Peace Treaty V1.2/Support/TxtFiles/Prompts.txt";
+	std::string path = "C:/Users/Brennen/source/repos/brthhule/Peace-Treaty-V1.2/Peace-Treaty-V1.2/Support/TxtFiles/Prompts.txt";
 
 	std::vector<std::string> acceptableValues = { "H" };
 	LOG::addColor(LOG::GREEN);
@@ -44,7 +44,6 @@ std::vector<std::string> showOptions(std::string prompt) {
 
 	// open a file to perform read operation using file object
 	newfile.open(path, std::ios::in);
-
 	if (!newfile.is_open()) {
 		LOG::ERROR("Error occurred opening file...\n");
 		return {};

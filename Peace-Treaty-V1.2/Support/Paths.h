@@ -23,12 +23,12 @@
 #define DEBUG_FUNCTION(x, y)
 #endif
 //MainActions Folder
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths\MainActions\MainActions_Paths.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace-Treaty-V1.2\Support\Paths\MainActions\MainActions_Paths.h"
 
 //Misc Folder
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths\Misc\Misc_Paths.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace-Treaty-V1.2\Support\Paths\Misc\Misc_Paths.h"
 
 //Units Folder
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths\Units\Units_Paths.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace-Treaty-V1.2\Support\Paths\Units\Units_Paths.h"
 
 #endif

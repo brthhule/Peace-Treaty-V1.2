@@ -15,7 +15,7 @@
 #include <thread>
 #include <memory>
 
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace-Treaty-V1.2\Support\Paths.h"
 //#include INF_HEADER  
 #include PARTICIPANTS_HEADER
 #include PROVINCES_HEADER
@@ -27,6 +27,7 @@
 #include INF_HEADER
 #include MAP_HEADER
 #include MOBILITY_HEADER
+#include TUI_HEADER;
 
 using namespace std::literals::string_literals;
 
@@ -46,13 +47,15 @@ int main()/*main code*/
 	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "main");
 
 	INF::CPUNum = std::thread::hardware_concurrency();
+	TUI::initialize();
 
 	startOrResumeGame();
 	gamePlay();
 }
 void startOrResumeGame() {
+	TUI::printScreen();
 	//std::string path = "../Peace Treaty V1.2\\Support\\TxtFiles\\Synopsis.txt";
-	std::string path = "C:/Users/Brennen/Source/Repos/brthhule/Peace-Treaty-V1.2/Peace Treaty V1.2/Support/TxtFiles/Synopsis.txt";
+	std::string path = "C:/Users/Brennen/Source/Repos/brthhule/Peace-Treaty-V1.2/Peace-Treaty-V1.2/Support/TxtFiles/Synopsis.txt";
 
 	//srand((unsigned int)time(0));
 	INF::printFile(path);

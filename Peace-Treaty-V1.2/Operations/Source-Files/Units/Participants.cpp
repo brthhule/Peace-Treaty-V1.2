@@ -1,4 +1,4 @@
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace-Treaty-V1.2\Support\Paths.h"
 #include PARTICIPANTS_HEADER  
 
 using namespace COMM;
@@ -27,6 +27,7 @@ Participants::Participants() : Participants(0) {
 	//For debugging
 	DEBUG_FUNCTION("Participants.cpp", "Participants (0 Param)");
 	capitalProvince = nullptr;
+	TUI_coords = std::make_pair(0, 0);
 }
 
 Participants::Participants(int pIndex) { 
@@ -44,6 +45,7 @@ Participants::Participants(int pIndex) {
 
 	ProvincesVector = std::vector<provSPTR>();
 	commandersVector = std::vector<commSPTR>(); 
+	TUI_coords = std::make_pair(0,0);
 }
 
 // Accessors
@@ -62,6 +64,7 @@ Participants::~Participants() {
 void Participants::setCapital(provSPTR newProvince) {
 	//For debugging
 	DEBUG_FUNCTION("Participants.cpp", "setCapital");
+	TUI_coords = newProvince->CoordsBASE::getCoords(SYSTEM);  
 
 	capitalProvince = newProvince;
 }

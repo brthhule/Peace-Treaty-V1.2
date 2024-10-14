@@ -1,7 +1,7 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\PeaceTreatyTest2\pch.h"
 #include "CppUnitTest.h"
 
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace-Treaty-V1.2\Support\Paths.h"
 #include "../Peace Treaty V1.2/Operations/Header-Files/Units/Provinces::/Buildings/BuildingsBASE.h"
 #include "../Peace Treaty V1.2/Operations/Header-Files/Units/Provinces::/Provinces::.h"
 #include INF_HEADER

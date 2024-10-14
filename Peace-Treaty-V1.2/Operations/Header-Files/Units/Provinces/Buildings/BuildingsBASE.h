@@ -9,7 +9,7 @@
 #ifndef BUILDINGSBASE_H
 #define BUILDINGSBASE_H
 
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace Treaty V1.2\Support\Paths.h"
+#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace-Treaty-V1.2\Support\Paths.h"
 
 #include INF_HEADER
 
