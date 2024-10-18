@@ -1,4 +1,4 @@
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace-Treaty-V1.2\Support\Paths.h"
+#include "C:\Users\Darren Zheng\source\repos\brthhule\Peace-Treaty-V1.2\Peace-Treaty-V1.2\Support\Paths.h"
 #include TUI_HEADER
 
 
@@ -52,128 +52,106 @@ void TUI::printBar() {
 }
 
 void TUI::printMapXAxis() {
-	for (int i = 0; i < mapCols; i++) {
-		std::cout << "-";
-	}
-}
-
-void TUI::setPrimeCoordinates(std::pair<int, int> coords) {
-	primeCoords = coords;
-}
-
-void TUI::printLeftSide(int row) { 
 	std::cout << indent << "||";
-	if (row == cellHeight * zoom) { 
-		printMapXAxis();
-	} else if (row % cellHeight == 0 && row != 0) {
-		//Edge of province box
-		printDottedHorizontal();
-	} else {
-		int cellsSinceBorder = 0;
-
-		int yDisplacement = 4 * (cellHeight + 1);
-		yDisplacement -=  row / (cellHeight + 1);
-		for (int col = 1; col <= mapCols; col++) {
-			if (col == yAxisIndex + 1) {
-				std::cout << "|";
-				cellsSinceBorder = 0;
-			} else if (col % (cellWidth + 1) == 0) {
-				std::cout << ".";
-			} else {
-				std::cout << " ";
-			}
+	for (int col = 0; col < cols - 4; col++) {
+		if (col < mapCols) {
+			std::cout << "-";
+		} else if (col == mapCols) {
+			std::cout << "||";
+			col++;
+		} else {
+			std::cout << " ";
 		}
+		
 	}
-}
-
-void TUI::printRightSide(int row) {
-	int length = cols - 6 - mapCols;
-	for (int i = 0; i < length; i++) {
-		std::cout << " ";
-	}
-	std::cout << "||\n";
-}
-
-void TUI::printLine(int row) {
-	printLeftSide(row); 
-	//Middle barrier
-	std::cout << "||"; 
-	printRightSide(row); 
+	std::cout << "||";
 }
 
 void TUI::printScreen() {
+	int mapHorizons = rows / ( 2 * zoom);
+
+	int currentHorizon = mapHorizons;
+	
 	std::cout << "cell height: " << cellHeight << "\n";
-	std::cout << "YAxisIndex: " << yAxisIndex << "\n";
 
 	printBar();
+	
 
 	// Print all rows
 	for (int row = 1; row <= rows - 2; row++) {
 		// At halfway, print out axis
-		printLine(row);
+		if (row == cellHeight * zoom) {
+			printMapXAxis();
+		} else if (row % cellHeight == 0 && row != 0) {
+			//Edge of province box
+			printDottedHorizontal();
+			currentHorizon += mapHorizons;
+		} else {
+			std::cout << indent << "||"; 
+			for (int col = 1; col <= cols - 4; col++) {
+				if (col < mapCols) {
+					if (col % (cellWidth + 1) == 0 && col != 0) {
+						std::cout << ".";
+					} else {
+						std::cout << " ";
+					}
+				}
+				
+				
+			}
+			std::cout << "||";
+		}
+		std::cout << "\n";
 	}
 	printBar();
 }
 
 void TUI::printDottedHorizontal() {
-	for (int col = 0; col < mapCols; col++) {
-		// Print Y axis halfway thru map
-		if (col == yAxisIndex) {
-			std::cout << "|";
+	int mapVerticals = (cols - mapCols) / (2 * zoom);
+
+	std::cout << indent << "||";
+	for (int col = 0; col < cols-2; col++) {
+		//Within map
+		if (col <= mapCols) {
+			// Print Y axis halfway thru map
+			if (col == yAxisIndex) {
+				std::cout << "|";
+			} 
+			// Print dotted line, spread dots out so not cluttered
+			else if (col % 4 == 0 || col % mapVerticals == 0) {
+				std::cout << ".";
+			} 
+			else {
+				std::cout << " ";
+			}
 		} 
-		// Print dotted line, spread dots out so not cluttered
-		else if (col % 3 == 0) {
-			std::cout << ".";
-		} 
+		//Pint bars ending map section
+		else if (col == mapCols + 1) {
+			std::cout << "||";
+			col++;
+		}
+		//Outside of map section
 		else {
 			std::cout << " ";
-		}		
+		}
 	}
-}
-
-void TUI::addOutputArg(std::string arg, TextType type) { 
-	// If TEXT type
-	if (type) {
-		textArgs.emplace_back(arg);
-		return;
-	}
-	inputArgs.emplace_back(arg);
-}
-
-void TUI::resetArg(TextType type) {
-	if (type) {
-		textArgs.clear();
-		return;
-	}
+	std::cout << "||";
 }
 
 TUI::TUI() {
-	rows = 33;
-	cols = 134;
-	mapCols = 82;
-	indentNum = 2;
-	indent = "";
-	zoom = 4;
-	cellWidth = 0;
-	cellHeight = 0;
-	xAxisIndex = 0;
-	yAxisIndex = 0;
-
-	inputArgs = new vector<std::string>(size, 0);
-	textArgs = new vector<std::string>(size, 0);
-
+	// Not implemented
 }
 
 void TUI::initialize() { 
+	
 	for (int i = 0; i < indentNum; i++) {
 		indent += "\t";
 	}
 	cellHeight = (rows - 1) / (zoom * 2); 
-	cellWidth = (mapCols - 7) / (zoom * 2);
-	yAxisIndex = (cellWidth * 4) + 3;
+	cellWidth = (mapCols - 2) / (zoom * 2);
+	yAxisIndex = (cellWidth * 4) + 1;
 	xAxisIndex = (cellWidth * 4) + 1;
 
 	std::cout << "cellHeight: " << cellHeight << "\n";
 	std::cout << "cellWidth: " << cellWidth << "\n";
 }
-
