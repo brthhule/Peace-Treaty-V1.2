@@ -2,29 +2,40 @@
 #define TUI_HPP
 #include <string.h>
 #include <iostream>
+#include <vector>
 
-using namespace std;
+// Singleton, participants have pointer to TUI/Input?
 class TUI {
 public:
 	TUI();
-	static void printScreen();
+	void printScreen();
 	// Print screen out
-	static void initialize();
-	static void printBar();
-	static void printDottedHorizontal();
-	static void printMapXAxis();
+	void initialize();
+	void printBar();
+	void printDottedHorizontal();
+	void printMapXAxis();
 
-	static int rows;
-	static int mapCols;
-	static int cols;
-	static int indentNum;
-	static std::string indent;
-	static int zoom;
-	static int cellWidth;
-	static int cellHeight;
-	static int xAxisIndex;
-	static int yAxisIndex;
-private:
+	static enum TextType {
+		INPUT = 0, TEXT = 1
+	};
+	void addOutputArg(std::string arg, TextType type);
+
 	
+private:
+	int rows;
+	int mapCols;
+	int cols;
+	int indentNum;
+
+	std::string indent;
+
+	int zoom;
+	int cellWidth;
+	int cellHeight;
+
+	int xAxisIndex;
+	int yAxisIndex;
+	std::vector <std::string> inputArgs;
+	std::vector<std::string> textArgs;
 };
 #endif

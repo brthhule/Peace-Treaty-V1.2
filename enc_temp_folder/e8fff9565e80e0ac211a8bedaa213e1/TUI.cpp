@@ -1,4 +1,4 @@
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace-Treaty-V1.2\Support\Paths.h"
+#include "C:\Users\Darren Zheng\source\repos\brthhule\Peace-Treaty-V1.2\Peace-Treaty-V1.2\Support\Paths.h"
 #include TUI_HEADER
 
 
@@ -31,6 +31,17 @@ Sections :
 			==================================================================================================
 
 */
+
+int TUI::rows = 33;
+int TUI::cols = 134;
+int TUI::mapCols = 82;
+int TUI::indentNum = 2;
+std::string TUI::indent = "";
+int TUI::zoom = 4;
+int TUI::cellWidth = 0;
+int TUI::cellHeight = 0;
+int TUI::xAxisIndex = 0; 
+int TUI::yAxisIndex = 0;
 
 void TUI::printBar() {
 	std::cout << indent;
@@ -127,40 +138,12 @@ void TUI::printDottedHorizontal() {
 	std::cout << "||";
 }
 
-void TUI::addOutputArg(std::string arg, TextType type) { 
-	// If TEXT type
-	if (type) {
-		textArgs.emplace_back(arg);
-		return;
-	}
-	inputArgs.emplace_back(arg);
-}
-
-void TUI::resetArg(TextType type) {
-	if (type) {
-		textArgs.clear();
-		return;
-	}
-}
-
 TUI::TUI() {
-	rows = 33;
-	cols = 134;
-	mapCols = 82;
-	indentNum = 2;
-	indent = "";
-	zoom = 4;
-	cellWidth = 0;
-	cellHeight = 0;
-	xAxisIndex = 0;
-	yAxisIndex = 0;
-
-	inputArgs = new vector<std::string>(size, 0);
-	textArgs = new vector<std::string>(size, 0);
-
+	// Not implemented
 }
 
 void TUI::initialize() { 
+	
 	for (int i = 0; i < indentNum; i++) {
 		indent += "\t";
 	}
@@ -172,4 +155,3 @@ void TUI::initialize() {
 	std::cout << "cellHeight: " << cellHeight << "\n";
 	std::cout << "cellWidth: " << cellWidth << "\n";
 }
-
