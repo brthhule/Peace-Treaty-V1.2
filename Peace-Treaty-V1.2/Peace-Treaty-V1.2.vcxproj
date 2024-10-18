@@ -139,7 +139,7 @@
     <ClCompile Include="Operations\Source-Files\Units\AIParticipant.cpp" />
     <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Buildings.cpp" />
     <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\ResourceBuildings.cpp" />
-    <ClCompile Include="Peace Treaty V1.2.cpp" />
+    <ClCompile Include="Peace-Treaty-V1.2.cpp" />
     <ClCompile Include="Operations\Source-Files\MainActions\ArmyOverviewMA.cpp" />
     <ClCompile Include="Operations\Source-Files\MainActions\AttackMA.cpp" />
     <ClCompile Include="Operations\Source-Files\MainActions\BuildMA.cpp" />

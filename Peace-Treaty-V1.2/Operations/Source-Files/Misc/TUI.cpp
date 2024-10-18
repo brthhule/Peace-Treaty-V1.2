@@ -34,7 +34,7 @@ Sections :
 
 int TUI::rows = 33;
 int TUI::cols = 134;
-int TUI::mapCols = 82;
+int TUI::mapCols = 87;
 int TUI::indentNum = 2;
 std::string TUI::indent = "";
 int TUI::zoom = 4;
@@ -42,6 +42,7 @@ int TUI::cellWidth = 0;
 int TUI::cellHeight = 0;
 int TUI::xAxisIndex = 0; 
 int TUI::yAxisIndex = 0;
+std::pair<int, int> TUI::primeCoords = std::make_pair<int, int>(0, 0);
 
 void TUI::printBar() {
 	std::cout << indent;
@@ -52,90 +53,83 @@ void TUI::printBar() {
 }
 
 void TUI::printMapXAxis() {
-	std::cout << indent << "||";
-	for (int col = 0; col < cols - 4; col++) {
-		if (col < mapCols) {
-			std::cout << "-";
-		} else if (col == mapCols) {
-			std::cout << "||";
-			col++;
-		} else {
-			std::cout << " ";
-		}
-		
+	for (int i = 0; i < mapCols; i++) {
+		std::cout << "-";
 	}
-	std::cout << "||";
+}
+
+void TUI::setPrimeCoordinates(std::pair<int, int> coords) {
+	primeCoords = coords;
+}
+
+void TUI::printLeftSide(int row) { 
+	std::cout << indent << "||";
+	if (row == cellHeight * zoom) { 
+		printMapXAxis();
+	} else if (row % cellHeight == 0 && row != 0) {
+		//Edge of province box
+		printDottedHorizontal();
+	} else {
+		int cellsSinceBorder = 0;
+
+		int yDisplacement = 4 * (cellHeight + 1);
+		yDisplacement -=  row / (cellHeight + 1);
+		for (int col = 1; col <= mapCols; col++) {
+			if (col == yAxisIndex + 1) {
+				std::cout << "|";
+				cellsSinceBorder = 0;
+			} else if (col % (cellWidth + 1) == 0) {
+				std::cout << ".";
+			} else {
+				std::cout << " ";
+			}
+		}
+	}
+}
+
+void TUI::printRightSide(int row) {
+	int length = cols - 6 - mapCols;
+	for (int i = 0; i < length; i++) {
+		std::cout << " ";
+	}
+	std::cout << "||\n";
+}
+
+void TUI::printLine(int row) {
+	printLeftSide(row); 
+	//Middle barrier
+	std::cout << "||"; 
+	printRightSide(row); 
 }
 
 void TUI::printScreen() {
-	int mapHorizons = rows / ( 2 * zoom);
-
-	int currentHorizon = mapHorizons;
-	
 	std::cout << "cell height: " << cellHeight << "\n";
+	std::cout << "YAxisIndex: " << yAxisIndex << "\n";
 
 	printBar();
-	
 
 	// Print all rows
 	for (int row = 1; row <= rows - 2; row++) {
 		// At halfway, print out axis
-		if (row == cellHeight * zoom) {
-			printMapXAxis();
-		} else if (row % cellHeight == 0 && row != 0) {
-			//Edge of province box
-			printDottedHorizontal();
-			currentHorizon += mapHorizons;
-		} else {
-			std::cout << indent << "||"; 
-			for (int col = 1; col <= cols - 4; col++) {
-				if (col < mapCols) {
-					if (col % (cellWidth + 1) == 0 && col != 0) {
-						std::cout << ".";
-					} else {
-						std::cout << " ";
-					}
-				}
-				
-				
-			}
-			std::cout << "||";
-		}
-		std::cout << "\n";
+		printLine(row);
 	}
 	printBar();
 }
 
 void TUI::printDottedHorizontal() {
-	int mapVerticals = (cols - mapCols) / (2 * zoom);
-
-	std::cout << indent << "||";
-	for (int col = 0; col < cols-2; col++) {
-		//Within map
-		if (col <= mapCols) {
-			// Print Y axis halfway thru map
-			if (col == yAxisIndex) {
-				std::cout << "|";
-			} 
-			// Print dotted line, spread dots out so not cluttered
-			else if (col % 4 == 0 || col % mapVerticals == 0) {
-				std::cout << ".";
-			} 
-			else {
-				std::cout << " ";
-			}
+	for (int col = 0; col < mapCols; col++) {
+		// Print Y axis halfway thru map
+		if (col == yAxisIndex) {
+			std::cout << "|";
 		} 
-		//Pint bars ending map section
-		else if (col == mapCols + 1) {
-			std::cout << "||";
-			col++;
-		}
-		//Outside of map section
+		// Print dotted line, spread dots out so not cluttered
+		else if (col % 3 == 0) {
+			std::cout << ".";
+		} 
 		else {
 			std::cout << " ";
-		}
+		}		
 	}
-	std::cout << "||";
 }
 
 TUI::TUI() {
@@ -148,8 +142,8 @@ void TUI::initialize() {
 		indent += "\t";
 	}
 	cellHeight = (rows - 1) / (zoom * 2); 
-	cellWidth = (mapCols - 2) / (zoom * 2);
-	yAxisIndex = (cellWidth * 4) + 1;
+	cellWidth = (mapCols - 7) / (zoom * 2);
+	yAxisIndex = (cellWidth * 4) + 3;
 	xAxisIndex = (cellWidth * 4) + 1;
 
 	std::cout << "cellHeight: " << cellHeight << "\n";

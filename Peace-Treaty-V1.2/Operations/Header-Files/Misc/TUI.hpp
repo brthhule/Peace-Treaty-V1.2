@@ -14,6 +14,13 @@ public:
 	static void printDottedHorizontal();
 	static void printMapXAxis();
 
+	static void printLeftSide(int row);
+	static void printRightSide(int row);
+	static void printLine(int row);
+
+	// Uses user coords
+	static void setPrimeCoordinates(std::pair<int, int> coords);
+
 	static int rows;
 	static int mapCols;
 	static int cols;
@@ -24,6 +31,7 @@ public:
 	static int cellHeight;
 	static int xAxisIndex;
 	static int yAxisIndex;
+	static pair<int, int> primeCoords; 
 private:
 	
 };
