@@ -1,4 +1,4 @@
-#include "..\..\..\..\Support\Paths.h"
+#include "..\..\..\Support\Paths.h"
 #include PARTICIPANTS_HEADER
 
 using namespace PART;

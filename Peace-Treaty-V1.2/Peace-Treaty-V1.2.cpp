@@ -15,7 +15,7 @@
 #include <thread>
 #include <memory>
 
-#include "..\Support\Paths.h"
+#include "..\Peace-Treaty-V1.2\Support\Paths.h"
 //#include INF_HEADER  
 #include PARTICIPANTS_HEADER
 #include PROVINCES_HEADER

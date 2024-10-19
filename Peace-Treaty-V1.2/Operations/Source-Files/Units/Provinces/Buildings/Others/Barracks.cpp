@@ -1,6 +1,7 @@
 #include "..\..\..\..\..\..\Support\Paths.h"
 
 #include BARRACKS_HEADER  
+#include BUILDINGS_BASE_HEADER
 
 Barracks::Barracks() : BuildingsBASE({ 1, 1, 1, 1, 0.2 }) {  
 	troopsTrainedThisTurn = 0;  

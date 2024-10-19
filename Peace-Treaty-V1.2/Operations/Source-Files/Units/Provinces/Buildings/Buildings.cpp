@@ -2,9 +2,14 @@
 
 #include BUILDINGS_HEADER
 #include BUILD_HEADER
+#include INF_HEADER
+
+using namespace BUILD;
+
 #include <string>
 
 using namespace std::literals::string_literals;
+using namespace INF;
 
 Buildings::Buildings() {
 	resourceBuildings = {}; 
@@ -16,7 +21,7 @@ ResourceBuildings* Buildings::getResourceBuilding(BUILD::BuildingsEnum type) {
 		throw "Invalid building type";
 		return nullptr;
 	}
-	return &(this->resourceBuildings.at(type));
+	return &(this->resourceBuildings.at(type)); 
 }
 
 
@@ -38,7 +43,7 @@ int Buildings::getResourceBuildingProduction(int buildingNumber) {
 }
 
 /*Use returnArray or returnInt for arrayArg*/
-i5array Buildings::getResourceProduction(BUILD::BuildingsEnum building, INF::Quantity amount) {
+INF::i5array Buildings::getResourceProduction(BUILD::BuildingsEnum building, INF::Quantity amount) {
 	LOG::DEBUG("BuildingAttributesINT.cpp, getResourceProduction");
 
 	i5array returnArray = {};
