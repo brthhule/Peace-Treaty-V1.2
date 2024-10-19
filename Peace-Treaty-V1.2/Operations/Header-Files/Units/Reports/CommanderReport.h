@@ -5,7 +5,7 @@
 #include <array>
 #include <vector>
 
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace-Treaty-V1.2\Support\Paths.h"
+#include "..\..\..\..\Support\Paths.h"
 #include INF_HEADER
 
 class CommanderReport {

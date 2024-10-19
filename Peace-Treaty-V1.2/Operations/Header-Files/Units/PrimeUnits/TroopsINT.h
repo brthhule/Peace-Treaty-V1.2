@@ -5,7 +5,7 @@
 #ifndef TROOPSINT_H
 #define TROOPSINT_H
 
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace-Treaty-V1.2\Support\Paths.h"
+#include "..\..\..\..\Support\Paths.h"
 #include INF_HEADER
 #include TROOP_HEADER
 #include TROOP_UNITS_BASE_HEADER

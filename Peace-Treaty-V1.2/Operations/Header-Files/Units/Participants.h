@@ -21,7 +21,7 @@
 #include <vector>
 #include <memory>
 
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace-Treaty-V1.2\Support\Paths.h"
+#include "..\..\..\Support\Paths.h"
 
 #include BASE_HEADER					//Base Class
 #include MOBILITY_HEADER				//Base Class

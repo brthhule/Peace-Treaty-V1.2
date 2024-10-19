@@ -1,4 +1,4 @@
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace-Treaty-V1.2\Support\Paths.h"
+#include "..\..\..\..\..\Support\Paths.h"
 
 #include BUILDINGS_HEADER
 #include BUILD_HEADER
@@ -22,11 +22,6 @@ ResourceBuildings* Buildings::getResourceBuilding(BUILD::BuildingsEnum type) {
 
 #include <memory>
 
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace-Treaty-V1.2\Support\Paths.h"
-#include BUILDINGS_HEADER
-
-using namespace INF;
-using namespace BUILD;
 
  int Buildings::getCapacity(BUILD::BuildingsEnum name) {
 	LOG::DEBUG("BuildingAttributesINT.cpp. getCapacity");

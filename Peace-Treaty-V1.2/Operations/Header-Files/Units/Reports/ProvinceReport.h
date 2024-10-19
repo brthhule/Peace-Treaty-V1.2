@@ -6,7 +6,7 @@
 #include <vector>
 #include <unordered_map>
 
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace-Treaty-V1.2\Support\Paths.h"
+#include "..\..\..\..\Support\Paths.h"
 #include COMMANDER_REPORT_HEADER
 #include COMMANDERS_HEADER 
 

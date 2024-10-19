@@ -1,4 +1,4 @@
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace-Treaty-V1.2\Support\Paths.h"
+#include "..\..\..\..\Support\Paths.h"
 #include PROVINCE_REPORT_HEADER
 
 using namespace INF;

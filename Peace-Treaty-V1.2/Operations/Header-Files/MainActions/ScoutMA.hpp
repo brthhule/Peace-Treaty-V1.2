@@ -10,7 +10,7 @@
 #include <vector>
 #include <memory>
 
-#include "C:\Users\Darren Zheng\source\repos\brthhule\Peace-Treaty-V1.2\Peace-Treaty-V1.2\Support\Paths.h"
+#include "..\..\..\Support\Paths.h"
 
 #include PROVINCES_HEADER	
 #include PRIME_UNITS_HEADER

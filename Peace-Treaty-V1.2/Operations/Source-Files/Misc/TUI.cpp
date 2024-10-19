@@ -1,4 +1,4 @@
-#include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Peace-Treaty-V1.2\Support\Paths.h"
+#include "..\..\..\Support\Paths.h"
 #include TUI_HEADER
 
 
@@ -40,7 +40,7 @@ std::string TUI::indent = "";
 int TUI::zoom = 4;
 int TUI::cellWidth = 0;
 int TUI::cellHeight = 0;
-int TUI::xAxisIndex = 0; 
+int TUI::xAxisIndex = 0;
 int TUI::yAxisIndex = 0;
 
 void TUI::printBar() {
@@ -134,34 +134,17 @@ void TUI::printDottedHorizontal() {
 void TUI::addOutputArg(std::string arg, TextType type) { 
 	// If TEXT type
 	if (type) {
-		textArgs.emplace_back(arg);
+		textArgs->emplace_back(arg);
 		return;
 	}
-	inputArgs.emplace_back(arg);
+	inputArgs->emplace_back(arg);
 }
 
 void TUI::resetArg(TextType type) {
 	if (type) {
-		textArgs.clear();
+		textArgs->clear();
 		return;
 	}
-}
-
-TUI::TUI() {
-	rows = 33;
-	cols = 134;
-	mapCols = 82;
-	indentNum = 2;
-	indent = "";
-	zoom = 4;
-	cellWidth = 0;
-	cellHeight = 0;
-	xAxisIndex = 0;
-	yAxisIndex = 0;
-
-	inputArgs = new vector<std::string>(size, 0);
-	textArgs = new vector<std::string>(size, 0);
-
 }
 
 void TUI::initialize() { 

@@ -4,8 +4,7 @@
 #include <iostream>
 #include <memory>
 
-#include "C:\Users\Darren Zheng\source\repos\brthhule\Peace-Treaty-V1.2\Peace-Treaty-V1.2\Support\Paths.h"
-
+#include "..\..\..\Support\Paths.h"
 #include INF_HEADER
 
 class BuildMA {
