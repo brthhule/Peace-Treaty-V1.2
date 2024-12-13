@@ -11,7 +11,7 @@ using std::string;
 class LOG {
 public:
 	/*BLACK = 0, RED, GREEN, YELLOW, LOG::BLUE, MAGENTA = 5, CYAN, WHITE, RESET*/
-	static enum Colors {
+	enum Colors {
 		BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE, RESET
 	};
 

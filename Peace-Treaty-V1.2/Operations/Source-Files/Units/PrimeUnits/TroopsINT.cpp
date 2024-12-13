@@ -23,7 +23,7 @@ int Commanders::getSumOfTiersOfTroop(TROOP::TroopCondition troopCondition, TROOP
 	int total = 0;
 	for (int index = 0; index < 5; index++) {
 		oneTier foo = tempArray.at(index);
-		total += foo.size();
+		total += (int) foo.size();
 	}
 
 	return total;

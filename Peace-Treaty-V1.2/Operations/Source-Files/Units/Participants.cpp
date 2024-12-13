@@ -661,7 +661,7 @@ Participants& Participants::getRemainingParticipant() {
 }
 
 int Participants::getParticipantsNum() {
-	return participantsVector.size();
+	return (int) participantsVector.size();
 }
 
 void Participants::clearParticipantsVector() { 

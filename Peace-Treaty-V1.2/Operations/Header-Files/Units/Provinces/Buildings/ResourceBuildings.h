@@ -6,7 +6,7 @@
 
 class ResourceBuildings : BuildingsBASE {
 public:
-	static enum ResourceBuildingType {
+	enum ResourceBuildingType {
 		FOOD, WOOD, STONE, ORE, MANA
 	};
 

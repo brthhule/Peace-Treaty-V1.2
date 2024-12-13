@@ -147,7 +147,7 @@ unitSPTRList PrimeUnits::levelSort(unitSPTRList list) {
 		return list;
 	}
 
-	int listSize = list.size();
+	int listSize = (int)list.size();
 	unitSPTR lastElement = list.at(listSize - 1);
 	int lastLevel = lastElement->getLevel();
 

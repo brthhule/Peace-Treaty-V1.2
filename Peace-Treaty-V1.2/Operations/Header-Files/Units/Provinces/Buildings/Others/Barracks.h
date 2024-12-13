@@ -2,6 +2,7 @@
 #define BARRACKS_H
 
 #include "..\..\..\..\..\..\Support\Paths.h"
+#include BUILDINGS_BASE_HEADER
 
 class Barracks : public BuildingsBASE {
 public:

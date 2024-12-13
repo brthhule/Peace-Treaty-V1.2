@@ -43,7 +43,7 @@ class Provinces :
 {
 public:
 
-	static enum RelativeDirection {
+	enum RelativeDirection {
 		LEFT_UP,
 		UP,
 		RIGHT_UP,

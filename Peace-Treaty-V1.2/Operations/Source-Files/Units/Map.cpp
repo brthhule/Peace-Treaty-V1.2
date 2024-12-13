@@ -164,8 +164,8 @@ bool Map::checkInBounds(ipair coords, CoordsType type) {
 
 void Map::assignSurroundingProvinces() {
 	//Set everything except boundary Provinces
-	for (int rowIndex = 1; rowIndex < mapVectors.size() - 1; rowIndex++) {
-		for (int colIndex = 1; colIndex < mapVectors.at(0).size() - 1; colIndex++) {
+	for (size_t rowIndex = 1; rowIndex < mapVectors.size() - 1; rowIndex++) { 
+		for (size_t colIndex = 1; colIndex < mapVectors.at(0).size() - 1; colIndex++) {
 			Provinces* currentProvince = &mapVectors.at(rowIndex).at(colIndex);
 			assignSurroundingProvincesAux(rowIndex, colIndex, currentProvince); 
 		}
@@ -177,7 +177,7 @@ void Map::assignSurroundingProvincesAux(int rowIndex, int colIndex, Provinces* c
 	for (int outer = -1; outer <= 1; outer++) { 
 		for (int inner = -1; inner <= 1; inner++) {
 			bool inBounds = checkInBounds(std::make_pair(rowIndex + outer, colIndex + inner), SYSTEM); 
-			Provinces* relativeProvince = (inBounds) ? nullptr : &mapVectors.at(rowIndex + inner).at(colIndex + outer);
+			Provinces* relativeProvince = (inBounds) ? &mapVectors.at(size_t(rowIndex + inner)).at(size_t(colIndex + outer)) : nullptr; 
 
 			Provinces::RelativeDirection direction = Provinces::RelativeDirection(count);
 			currentProvince->setRelativeProvince(direction, relativeProvince); 

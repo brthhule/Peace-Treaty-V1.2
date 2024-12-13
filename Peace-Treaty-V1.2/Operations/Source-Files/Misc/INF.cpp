@@ -166,7 +166,7 @@ std::string INF::getText(std::string target) {
 
 	std::string returnText = "";
 	while (text.find("BREAK") != -1) {
-		int point = text.find("BREAK");
+		int point = (int)text.find("BREAK");
 		returnText += text.substr(0, point) + "\n";
 		text = text.substr(point);
 		//Can't have BREAK at the end (will break everything)

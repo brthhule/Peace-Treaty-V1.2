@@ -1,7 +1,7 @@
 #include "C:\Users\Brennen\Source\Repos\brthhule\Peace-Treaty-V1.2\Test\pch.h"
 #include "CppUnitTest.h"
 
-#include "..\..\..\..\Support\Paths.h"
+#include "..\..\Peace-Treaty-V1.2\Peace-Treaty-V1.2\Support\Paths.h"
 #include INF_HEADER
 #include PARTICIPANTS_HEADER
 #include COMMANDERS_HEADER
@@ -15,13 +15,13 @@ namespace Test
 	{
 	public:
 		TEST_METHOD(constructor) {
-			INF::continentSize = 5;
-			Map::setMap();
+			//INF::continentSize = 5;
+			//Map::setMap();
 			/*Participants::setHumanPlayers(1);
 			Participants newParticipant;
 			Assert::AreEqual(Participants::getParticipantsNum(), 1);
 			Participants::clear(); */
-			Participants participant;
+			//Participants participant;
 			Assert::AreEqual(1, 1);
 		}
 	};

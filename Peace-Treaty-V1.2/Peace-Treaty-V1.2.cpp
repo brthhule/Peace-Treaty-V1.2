@@ -27,7 +27,7 @@
 #include INF_HEADER
 #include MAP_HEADER
 #include MOBILITY_HEADER
-#include TUI_HEADER;
+#include TUI_HEADER
 
 using namespace std::literals::string_literals;
 
@@ -47,13 +47,13 @@ int main()/*main code*/
 	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "main");
 
 	INF::CPUNum = std::thread::hardware_concurrency();
-	TUI::initialize();
+	TUI::tui.initialize();
 
 	startOrResumeGame();
 	gamePlay();
 }
 void startOrResumeGame() {
-	TUI::printScreen();
+	TUI::tui.printScreen();
 	//std::string path = "../Peace Treaty V1.2\\Support\\TxtFiles\\Synopsis.txt";
 	std::string path = "C:/Users/Brennen/Source/Repos/brthhule/Peace-Treaty-V1.2/Peace-Treaty-V1.2/Support/TxtFiles/Synopsis.txt";
 
