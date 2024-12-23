@@ -164,8 +164,8 @@ bool Map::checkInBounds(ipair coords, CoordsType type) {
 
 void Map::assignSurroundingProvinces() {
 	//Set everything except boundary Provinces
-	for (size_t rowIndex = 1; rowIndex < mapVectors.size() - 1; rowIndex++) { 
-		for (size_t colIndex = 1; colIndex < mapVectors.at(0).size() - 1; colIndex++) {
+	for (int rowIndex = 1; rowIndex < (int) mapVectors.size() - 1; rowIndex++) { 
+		for (int colIndex = 1; colIndex < (int) mapVectors.at(0).size() - 1; colIndex++) {
 			Provinces* currentProvince = &mapVectors.at(rowIndex).at(colIndex);
 			assignSurroundingProvincesAux(rowIndex, colIndex, currentProvince); 
 		}

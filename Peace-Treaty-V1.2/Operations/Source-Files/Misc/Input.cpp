@@ -34,7 +34,8 @@ std::array<std::string, 13> PROMPTS_STRING = {
 
 std::vector<std::string> showOptions(std::string prompt) {
 	DEBUG_FUNCTION("Input.cpp", "showOptions");
-	LOG::DEBUG("prompt: " + prompt + "\n");
+	Tui::tui.debug("Input.cpp, showOptions");
+
 	std::fstream newfile;
 	std::string path = "C:/Users/Brennen/source/repos/brthhule/Peace-Treaty-V1.2/Peace-Treaty-V1.2/Support/TxtFiles/Prompts.txt";
 
@@ -52,7 +53,7 @@ std::vector<std::string> showOptions(std::string prompt) {
 	bool startReading = false;
 	std::string line = "";
 	std::string optionsLine = "";
-
+	
 	while (getline(newfile, line)) {
 		if (line.substr(0, 7) == "Options" && startReading == true) {
 			startReading = false;
@@ -99,6 +100,7 @@ std::vector<std::string> showOptions(std::string prompt) {
 std::string getPrompt(Prompts p) {
 	//For debugging
 	DEBUG_FUNCTION("Input.cpp", "getPrompt");
+	Tui::tui.debug("Input.cpp, getPrompt");
 
 	//Print prompt, return acceptable values
 	std::vector<std::string> AV = showOptions(promptsToString(p));

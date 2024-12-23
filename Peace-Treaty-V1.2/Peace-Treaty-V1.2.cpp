@@ -59,6 +59,7 @@ void startOrResumeGame() {
 
 	//srand((unsigned int)time(0));
 	INF::printFile(path);
+	Tui::tui.printScreen();
 	std::cout << "\n";
 	char startOrResume = Input::getPrompt(Input::INTRODUCTION).at(0);
 

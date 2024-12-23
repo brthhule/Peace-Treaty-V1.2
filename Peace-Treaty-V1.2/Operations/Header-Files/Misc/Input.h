@@ -4,6 +4,7 @@
 #include <iostream>
 #include "..\..\..\Support\Paths.h"
 #include INF_HEADER
+#include TUI_HEADER
 
 namespace Input 
 {

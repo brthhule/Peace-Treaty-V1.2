@@ -261,6 +261,9 @@ void INF::printFile(std::string path) {
 		} else {
 			//print line as normal
 			std::cout << line << std::endl;
+
+			Tui::tui.promptSection->addText(line); 
+			std::cout << Tui::tui.promptSection->getTexts()->size() << "\n";
 		}
 
 	}
