@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{830c0685-efa7-4e30-995a-fcf04679e5e0}</ProjectGuid>
+    <RootNamespace>PeaceTreatyV12</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Peace-Treaty-V1.2</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <Profile>true</Profile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <DebugInformationFormat>None</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <Profile>true</Profile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Operations\Source-Files\Misc\LOG.cpp" />
+	<ClCompile Include="Operations\Source-Files\Misc\TUI.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\AIParticipant.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Buildings.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\ResourceBuildings.cpp" />
+    <ClCompile Include="Peace-Treaty-V1.2.cpp" />
+    <ClCompile Include="Operations\Source-Files\MainActions\ArmyOverviewMA.cpp" />
+    <ClCompile Include="Operations\Source-Files\MainActions\AttackMA.cpp" />
+    <ClCompile Include="Operations\Source-Files\MainActions\BuildMA.cpp" />
+    <ClCompile Include="Operations\Source-Files\MainActions\MapMA.cpp" />
+    <ClCompile Include="Operations\Source-Files\MainActions\PlayerAction.cpp" />
+    <ClCompile Include="Operations\Source-Files\MainActions\ScoutMA.cpp" />
+    <ClCompile Include="Operations\Source-Files\MainActions\TrainMA.cpp" />
+    <ClCompile Include="Operations\Source-Files\Misc\BASE.cpp" />
+    <ClCompile Include="Operations\Source-Files\Misc\INF.cpp" />
+    <ClCompile Include="Operations\Source-Files\Misc\Input.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\Commanders\Mobility.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\Commanders\Commanders.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\PrimeUnits\Troops\Archers.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\PrimeUnits\Troops\Artillary.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\PrimeUnits\Troops\Cavalry.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\PrimeUnits\Troops\Guards.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\PrimeUnits\Troops\Infantry.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\PrimeUnits\Troops\TROOP.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\PrimeUnits\Troops\TroopUnitsBASE.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\PrimeUnits\PrimeUnits.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\PrimeUnits\CoordsBASE.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\PrimeUnits\TroopsINT.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Others\Barracks.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Others\Infirmary.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Others\Library.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Others\Residences.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\Others\Wall.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\BUILD.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\Provinces\Buildings\BuildingsBASE.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\Provinces\Provinces.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\Reports\CommanderReport.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\Reports\ProvinceReport.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\Map.cpp" />
+    <ClCompile Include="Operations\Source-Files\Units\Participants.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="AdministrativeDocs\debugQuickAccess.txt" />
+    <Text Include="AdministrativeDocs\deletedContent.txt" />
+    <Text Include="AdministrativeDocs\headersAllocation.txt" />
+    <Text Include="AdministrativeDocs\needToDo.txt" />
+    <Text Include="AdministrativeDocs\notes.txt.txt" />
+    <Text Include="AdministrativeDocs\tips.txt.txt" />
+    <Text Include="AdministrativeDocs\aliases.txt" />
+    <Text Include="Support\AdministrativeDocs\aliases.txt" />
+    <Text Include="Support\AdministrativeDocs\color.txt" />
+    <Text Include="Support\AdministrativeDocs\debugQuickAccess.txt" />
+    <Text Include="Support\AdministrativeDocs\documentationStyle.txt" />
+    <Text Include="Support\AdministrativeDocs\headersAllocation.txt" />
+    <Text Include="Support\AdministrativeDocs\needToDo.txt" />
+    <Text Include="Support\AdministrativeDocs\notes.txt" />
+    <Text Include="Support\AdministrativeDocs\outputResults.txt" />
+    <Text Include="Support\AdministrativeDocs\tips.txt" />
+    <Text Include="Support\TxtFiles\Help.txt" />
+    <Text Include="Support\TxtFiles\Prompts.txt" />
+    <Text Include="Support\TxtFiles\Synopsis.txt" />
+    <Text Include="Support\TxtFiles\Text.txt" />
+    <Text Include="TxtFiles\Help.txt" />
+    <Text Include="TxtFiles\Prompts.txt" />
+    <Text Include="TxtFiles\Synopsis.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Operations\Header-Files\MainActions\ArmyOverviewMA.hpp" />
+    <ClInclude Include="Operations\Header-Files\MainActions\AttackMA.hpp" />
+    <ClInclude Include="Operations\Header-Files\MainActions\BuildMA.hpp" />
+    <ClInclude Include="Operations\Header-Files\MainActions\MapMA.hpp" />
+    <ClInclude Include="Operations\Header-Files\MainActions\PlayerAction.hpp" />
+    <ClInclude Include="Operations\Header-Files\MainActions\ScoutMA.hpp" />
+    <ClInclude Include="Operations\Header-Files\MainActions\TrainMA.hpp" />
+    <ClInclude Include="Operations\Header-Files\Misc\BASE.h" />
+    <ClInclude Include="Operations\Header-Files\Misc\INF.h" />
+    <ClInclude Include="Operations\Header-Files\Misc\Input.h" />
+    <ClInclude Include="Operations\Header-Files\Misc\LOG.hpp" />
+	<ClInclude Include="Operations\Header-Files\Misc\TUI.hpp" />
+    <ClInclude Include="Operations\Header-Files\Units\AIParticipant.h" />
+    <ClInclude Include="Operations\Header-Files\Units\Commanders\Mobility.h" />
+    <ClInclude Include="Operations\Header-Files\Units\Commanders\Commanders.h" />
+    <ClInclude Include="Operations\Header-Files\Units\PrimeUnits\Troops\Archers.h" />
+    <ClInclude Include="Operations\Header-Files\Units\PrimeUnits\Troops\Artillary.h" />
+    <ClInclude Include="Operations\Header-Files\Units\PrimeUnits\Troops\Cavalry.h" />
+    <ClInclude Include="Operations\Header-Files\Units\PrimeUnits\Troops\Guards.h" />
+    <ClInclude Include="Operations\Header-Files\Units\PrimeUnits\Troops\Infantry.h" />
+    <ClInclude Include="Operations\Header-Files\Units\PrimeUnits\Troops\TroopUnitsBASE.h" />
+    <ClInclude Include="Operations\Header-Files\Units\PrimeUnits\PrimeUnits.h" />
+    <ClInclude Include="Operations\Header-Files\Units\PrimeUnits\CoordsBASE.h" />
+    <ClInclude Include="Operations\Header-Files\Units\PrimeUnits\TroopsINT.h" />
+    <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\Buildings.h" />
+    <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\Others\Barracks.h" />
+    <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\Others\Infirmary.h" />
+    <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\Others\Library.h" />
+    <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\Others\Residences.h" />
+    <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\Others\Wall.h" />
+    <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\ResourceBuildings.h" />
+    <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\Resources\Church.h" />
+    <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\Resources\Farm.h" />
+    <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\Resources\Mill.h" />
+    <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\Resources\Mine.h" />
+    <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\Resources\Quarry.h" />
+    <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\Resources\ResourceBuildingsBASE.h" />
+    <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\BUILD.h" />
+    <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\BuildingAttributesINT.h" />
+    <ClInclude Include="Operations\Header-Files\Units\Provinces\Buildings\BuildingsBASE.h" />
+    <ClInclude Include="Operations\Header-Files\Units\Provinces\Provinces.h" />
+    <ClInclude Include="Operations\Header-Files\Units\Reports\CommanderReport.h" />
+    <ClInclude Include="Operations\Header-Files\Units\Reports\ProvinceReport.h" />
+    <ClInclude Include="Operations\Header-Files\Units\Map.h" />
+    <ClInclude Include="Operations\Header-Files\Units\Participants.h" />
+    <ClInclude Include="Operations\Header-Files\Units\PrimeUnits\Troops\TROOP.h" />
+    <ClInclude Include="Support\Paths.h" />
+    <ClInclude Include="Support\Paths\MainActions\MainActions_Paths.h" />
+    <ClInclude Include="Support\Paths\Misc\Misc_Paths.h" />
+    <ClInclude Include="Support\Paths\Units\Commanders\Commanders_Paths.h" />
+    <ClInclude Include="Support\Paths\Units\PrimeUnits\PrimeUnits_Paths.h" />
+    <ClInclude Include="Support\Paths\Units\PrimeUnits\Troops\Troops_Paths.h" />
+    <ClInclude Include="Support\Paths\Units\Provinces\Buildings\Buildings_Paths.h" />
+    <ClInclude Include="Support\Paths\Units\Provinces\Buildings\Others\Others_Paths.h" />
+    <ClInclude Include="Support\Paths\Units\Provinces\Buildings\ResourceBuildings\Resources_Paths.h" />
+    <ClInclude Include="Support\Paths\Units\Provinces\Provinces_Paths.h" />
+    <ClInclude Include="Support\Paths\Units\Reports\Reports_Paths.h" />
+    <ClInclude Include="Support\Paths\Units\Units_Paths.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
