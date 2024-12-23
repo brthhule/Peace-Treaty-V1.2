@@ -1,31 +1,49 @@
-#ifndef TUI_HPP
-#define TUI_HPP
+#ifndef Tui_HPP
+#define Tui_HPP
 #include <string.h>
 #include <iostream>
 #include <vector>
 #include <array>
 
-// Singleton, participants have pointer to TUI/Input?
-class DebugFunctions {
+// Singleton, participants have pointer to Tui/Input?
+class Section {
 public:
-	DebugFunctions();
-	std::string getFunction(int index);
-	void addFunction(std::string);
+	Section();
+	Section(int sectionStart, int bodyLength);
+	std::string getText(int index);
+	void addText(std::string);
 	void resetStart();
 	int modifyStartIndex(std::string input);
-	std::array<std::string, 3> getFunctions();
+	const std::vector<std::string> *getTexts();
+	bool withinBounds(int row) const;
+
+	int sectionStart;
+	int bodyLength;
 private:
-	std::vector<std::string> functions;
+	std::vector<std::string> texts;
 	int startIndex;
 };
 
-class TUI {
+
+
+class Tui {
 public:
 	enum TextType {
 		TEXT, INPUT
 	};
 
-	TUI();
+	Tui();
+	void initialize();
+	
+	static std::string centerText(std::string, int length);
+	static void debug(std::string text);
+
+	Section *debugSection;
+	Section *promptSection;
+	static Tui tui;
+	void printScreen();
+
+private:
 	void printBar();
 	void printDottedHorizontal();
 	void printMapXAxis();
@@ -33,15 +51,10 @@ public:
 	void printLeftSide(int row);
 	void printRightSide(int row);
 	void printLine(int row);
-	void printScreen();
-	void initialize();
 	void addOutputArg(std::string arg, TextType type);
 	void resetArg(TextType type);
+	void printRightSideHorizontalRow() const;
 
-	static TUI tui;
-
-
-private:
 	int rows;
 	int mapCols;
 	int cols;
@@ -58,7 +71,8 @@ private:
 	std::pair<int, int> primeCoords;
 	std::vector <std::string> inputArgs;
 	std::vector<std::string> textArgs;
-	DebugFunctions debugFunctions;
+	std::string currentDebugFunction;
+
 	
 };
 #endif

@@ -16,9 +16,10 @@
 #include <vector>
 #include <fstream>
 
+#include "..\..\..\Support\Paths.h"
 
 #include LOG_HEADER
-
+#include TUI_HEADER
 
 namespace INF {
 	//----Symbolic Constants-----------

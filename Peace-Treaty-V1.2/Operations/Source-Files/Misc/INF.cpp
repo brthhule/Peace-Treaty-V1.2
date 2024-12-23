@@ -225,6 +225,7 @@ void INF::showHelp(int caseNum) {
 void INF::printFile(std::string path) {
 	//For debugging
 	DEBUG_FUNCTION("INF.cpp", "printFile(std::string)");
+	Tui::debug("INF, printFile");  
 
 	//Create file
 	std::fstream newfile;

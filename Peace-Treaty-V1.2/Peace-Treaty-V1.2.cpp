@@ -44,16 +44,16 @@ int getContinentInformation();
 int main()/*main code*/
 {
 	//For debugging
-	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "main");
 
 	INF::CPUNum = std::thread::hardware_concurrency();
-	TUI::tui.initialize();
+	Tui::tui.initialize(); 
+	Tui::debug("Peace Treaty V1.2.cpp, main");
 
 	startOrResumeGame();
 	gamePlay();
 }
 void startOrResumeGame() {
-	TUI::tui.printScreen();
+	Tui::debug("Peace Treaty V1.2.cpp, startOrResumeGame");
 	//std::string path = "../Peace Treaty V1.2\\Support\\TxtFiles\\Synopsis.txt";
 	std::string path = "C:/Users/Brennen/Source/Repos/brthhule/Peace-Treaty-V1.2/Peace-Treaty-V1.2/Support/TxtFiles/Synopsis.txt";
 
@@ -95,7 +95,7 @@ void resumeGame() /*download data from previous game fix this*/
 }
 void startNewGame() {
 	//For debugging
-	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "startNewGame");
+	Tui::debug("Peace Treaty V1.2.cpp, startNewGame");
 	int humanPlayers = getContinentInformation();
 	int allPlayers = generateNewContinent(humanPlayers);
 	Participants::setHumanPlayers(humanPlayers);
@@ -106,6 +106,7 @@ void startNewGame() {
 int getContinentInformation() {
 	//For debugging
 	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "getContinentInformation");
+	Tui::debug("Peace Treaty V1.2.cpp, getContinentInformation");
 
 	std::string text = INF::getText("WhatContinentSize");
 	//"What continent size do you want to play on? (5, 10, 15) "
@@ -140,6 +141,7 @@ int getContinentInformation() {
 	return pNum;
 }
 int generateNewContinent(int pNum) {
+	Tui::debug("Peace Treaty V1.2.cpp, generateNewContinent");
 	//For debugging
 	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "generateNewContinent");
 
