@@ -44,7 +44,7 @@ int getContinentInformation();
 int main()/*main code*/
 {
 	//For debugging
-
+	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "main");
 	INF::CPUNum = std::thread::hardware_concurrency();
 	Tui::tui.initialize(); 
 	Tui::debug("Peace Treaty V1.2.cpp, main");
@@ -53,6 +53,7 @@ int main()/*main code*/
 	gamePlay();
 }
 void startOrResumeGame() {
+	DEBUG_FUNCTION("Peace-Treaty-V1.2.cpp", "startOrResumeGame");
 	Tui::debug("Peace Treaty V1.2.cpp, startOrResumeGame");
 	//std::string path = "../Peace Treaty V1.2\\Support\\TxtFiles\\Synopsis.txt";
 	std::string path = "C:/Users/Brennen/Source/Repos/brthhule/Peace-Treaty-V1.2/Peace-Treaty-V1.2/Support/TxtFiles/Synopsis.txt";
@@ -63,11 +64,15 @@ void startOrResumeGame() {
 	std::cout << "\n";
 	char startOrResume = Input::getPrompt(Input::INTRODUCTION).at(0);
 
+	std::string startOrResumeString(1, startOrResume);
+	LOG::DEBUG("startOrResume char: " + startOrResumeString + "\n"); 
+
 	switch (startOrResume) {
 		case 'R':
 			resumeGame();
 			break;
 		case 'S': {
+			LOG::DEBUG("Starting new game\n");
 			INF::enterAndClear(1);
 			std::cout << "New game started...\n\n";
 			startNewGame();
@@ -96,7 +101,8 @@ void resumeGame() /*download data from previous game fix this*/
 }
 void startNewGame() {
 	//For debugging
-	Tui::debug("Peace Treaty V1.2.cpp, startNewGame");
+	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "startNewGame"); 
+	Tui::debug("Peace Treaty V1.2.cpp, startNewGame"); 
 	int humanPlayers = getContinentInformation();
 	int allPlayers = generateNewContinent(humanPlayers);
 	Participants::setHumanPlayers(humanPlayers);

@@ -105,7 +105,9 @@ std::string getPrompt(Prompts p) {
 	//Print prompt, return acceptable values
 	std::vector<std::string> AV = showOptions(promptsToString(p));
 
-	return selectOption(AV);
+	std::string returnValue = selectOption(AV);
+	LOG::DEBUG("getPrompt return value: " + returnValue + "\n");
+	return returnValue;
 }
 
 std::string selectOption(std::vector<std::string>AV) {
@@ -116,8 +118,8 @@ std::string selectOption(std::vector<std::string>AV) {
 	getline(std::cin, input);
 
 	int ret = Tui::tuiFormat(input);
-	LOG::DEBUG("tui -" + std::to_string(ret) + "\n");
-	if (ret) { return "TUI"; }
+	LOG::DEBUG("tui - " + std::to_string(ret) + "\n");
+	if (ret == 0) { return "TUI"; }
 
 
 	for (size_t i = 0; i < input.size(); i++) {

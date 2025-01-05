@@ -1,7 +1,7 @@
 #include "..\..\..\Support\Paths.h"
 #include LOG_HEADER
 
-
+const bool LOG::debuggingMode = true; 
 
 //For stand alone color integration
 void LOG::addColor(Colors color) {
@@ -34,10 +34,10 @@ void LOG::PRINT(std::string message) {
 }
 
 void LOG::DEBUG(std::string message) {
-	if (debuggingMode) { PRINT(message, MAGENTA); }
+	if (debuggingMode) { PRINT("DEBUG " + message, MAGENTA); }
 }
 
-void LOG::DEBUG(string file, string function) {
+void LOG::DEBUG(string file, string function) { 
 	LOG::DEBUG(file + ", " + function);
 }
 

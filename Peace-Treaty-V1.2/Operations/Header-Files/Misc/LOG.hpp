@@ -48,6 +48,6 @@ private:
 	
 	//Adds color to console
 	
-	static const bool debuggingMode = true; 
+	static const bool debuggingMode; 
 };
 #endif

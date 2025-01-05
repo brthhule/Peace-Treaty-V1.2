@@ -47,9 +47,7 @@ private:
 	void printLeftSide(int row);
 	void printRightSide(int row);
 	void printLine(int row);
-	void addOutputArg(std::string arg, TextType type);
-	void resetArg(TextType type);
-	void printRightSideHorizontalRow() const;
+	void printRightDottedHorizontal() const;
 
 	int rows;
 	int mapCols;

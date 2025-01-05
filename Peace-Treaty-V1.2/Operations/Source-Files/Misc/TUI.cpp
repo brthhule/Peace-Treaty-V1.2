@@ -91,7 +91,7 @@ void Tui::printLeftSide(int row) {
 	}
 }
 
-void Tui::printRightSideHorizontalRow() const {
+void Tui::printRightDottedHorizontal() const {
 	int rowLength = tuiCols - 3 - mapCols;
 	for (int i = 0; i < rowLength; i++) {
 		std::cout << "-";
@@ -120,6 +120,15 @@ std::string Tui::centerText(std::string text, int length) {
 
 }
 
+/// <summary>
+///		Prints out a section's text values
+/// </summary>
+/// <param name="section">const reference to a section</param>
+/// <param name="row">the row number for a particular line</param>
+/// <returns>
+///		true - The row within the bounds of the section arg, printing occurs
+///		false - the row is not within the section's bounds, no printing happens
+/// </returns>
 bool Tui::printSection(const Section& section, int row) {
 	if (!section.withinSection(row)) {
 		return false;
@@ -144,7 +153,7 @@ bool Tui::printSection(const Section& section, int row) {
 	}
 
 	else if (row == section.sectionStart + 1 || row == section.sectionEnd) {
-		printRightSideHorizontalRow();
+		printRightDottedHorizontal();
 	}
 
 	else {
@@ -155,7 +164,10 @@ bool Tui::printSection(const Section& section, int row) {
 	return true;
 }
 
-
+/// <summary>
+///		Print the right side of the screen
+/// </summary>
+/// <param name="row">The row number for a particular line</param>
 void Tui::printRightSide(int row) {
 	int rowLength = tuiCols - 3 - mapCols;
 	bool sectionPrinted = false;
@@ -237,6 +249,15 @@ int Tui::tuiFormat(std::string text) {
 }
 
 // TODO: Add case for map section
+
+/// <summary>
+///		Returns a pointer to a Section based on a sectionNumber
+/// </summary>
+/// <param name="sectionNum">the character representing a particular section</param>
+/// <returns>
+///		Secton* - the sectionNum arg is valid
+///		nullptr - arg is invalid
+/// </returns>
 Section* Tui::getSection(char sectionNum) {
 	switch (sectionNum) {
 		case '1': 
@@ -247,6 +268,7 @@ Section* Tui::getSection(char sectionNum) {
 			break;
 		case 'M':
 			//return 
+			return nullptr;
 			break;
 		default:
 			return nullptr;
