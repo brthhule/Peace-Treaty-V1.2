@@ -5,6 +5,7 @@
 #include "..\..\..\Support\Paths.h"
 #include INF_HEADER
 #include TUI_HEADER
+#include LOG_HEADER
 
 namespace Input 
 {

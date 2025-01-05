@@ -6,49 +6,16 @@
 #include <string>
 #include <string.h>
 #include <array>
+#include <exception>
 #include <iomanip>
+#include <unordered_set>
+#include <set>
+#include "..\..\..\Support\Paths.h"
 
 #define HIGH_REFRESH_
+#include SECTION_HEADER
 
 // Singleton, participants have pointer to Tui/Input?
-class Section {
-public:
-	enum Order {
-		FRONT_TO_BACK,
-		BACK_TO_FRONT
-	};
-
-	Section();
-	Section(int sectionStart, int bodyLength, std::string title, Order order, int* width);
-	std::string getText(int index);
-	void addText(std::string);
-	void resetStart();
-	int modifyStartIndex(std::string input);
-	const std::vector<std::string> *getTexts();
-	// Includes everythigng from section title to line below the body
-	bool withinSection(int row) const;
-	// Body does not include the horizontal lines above and below the body
-	bool withinBody(int row) const;
-	const std::string &getCurrentText() const;
-	void setCurrentText(std::string);
-	void clearTexts();
-	void detCurrentText(int row, int increment);
-
-	int *rightSideTextWidth;
-	int sectionStart;
-	int sectionEnd;
-	int bodyLength;
-	std::string title;
-	bool textsOrder;
-
-private:
-	std::vector<std::string> texts;
-	int startIndex;
-	std::string currentText;
-};
-
-
-
 class Tui {
 public:
 	enum TextType {
@@ -59,8 +26,8 @@ public:
 	void initialize();
 	
 	static std::string centerText(std::string, int length);
-	static std::string concatText(std::string, int length);
 	static void debug(std::string text);
+	static int sectionsNum;
 
 	Section *debugSection;
 	Section *promptSection;
@@ -68,10 +35,13 @@ public:
 	void printScreen();
 
 	bool printSection(const Section& section, int row);
+	static int tuiFormat(std::string text);
+	Section* getSection(char sectionNum);
+
 
 private:
 	void printBar() const;
-	void printDottedHorizontal() const;
+	void printLeftDottedHorizontal() const;
 	void printMapXAxis() const;
 	void setPrimeCoordinates(std::pair<int, int> coords);
 	void printLeftSide(int row);
@@ -83,7 +53,7 @@ private:
 
 	int rows;
 	int mapCols;
-	int cols;
+	int tuiCols;
 	int indentNum;
 
 	std::string indent;
@@ -91,14 +61,49 @@ private:
 	int zoom;
 	int cellWidth;
 	int cellHeight;
-	int rightSideTextWidth;
+	int sectionCols;
 
 	int xAxisIndex;
 	int yAxisIndex;
 	std::pair<int, int> primeCoords;
-	std::vector <std::string> inputArgs;
-	std::vector<std::string> textArgs;
+
+
+	std::set<std::string> sectionNums;
 
 	
 };
 #endif
+
+
+
+
+
+/*
+Sections :
+- Map section
+- Text section
+- Input section
+
+			==================================================================================================
+			||		.		.		.		|							||			Debug Section (0)		||
+			||		.		.		.		|							||==================================||
+			||		.		.		.		|							||      Func Name   | frame |  ret  ||
+			||		.		.		.		|							||------------------|---------------||
+			||		.		.		.		|							|| 1.				|		|		||
+			||		.		.		.		|							|| 2.				|		|		||
+			||		.		.		.		|							|| 3.				|		|		||
+			||		.		.		.		|							|| 4.				|		|		||
+			||		.		.		.		|							||...				|		|		||
+			||		.		.		.		|							||					|		|		||
+			||------------------------(-1)--|---------------------------||====================================
+			||		.		.		.		|							||					Input			||
+			||		.		.		.		|							||====================================
+			||		.		.		.		|							||									||
+			||		.		.		.		|							||									||
+			||		.		.		.		|							||									||
+			||		.		.		.		|							||									||
+			||		.		.		.		|							||									||
+			|| 		.		.		.		|							||									||
+			==================================================================================================
+
+*/

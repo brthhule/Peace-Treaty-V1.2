@@ -15,4 +15,6 @@
 
 #define TUI_HEADER "C:\Users\Brennen\source\repos\brthhule\Peace-Treaty-V1.2\Peace-Treaty-V1.2\Operations\Header-Files\Misc\TUI.hpp"
 
+#define SECTION_HEADER "C:\Users\Brennen\source\repos\brthhule\Peace-Treaty-V1.2\Peace-Treaty-V1.2\Operations\Header-Files\Misc\Section.hpp"
+
 #endif

@@ -2,127 +2,18 @@
 #include TUI_HEADER
 
 
-/*
-Sections :
-- Map section
-- Text section
-- Input section
 
-			==================================================================================================
-			||		.		.		.		|							||					Text			||
-			||		.		.		.		|							||==================================||
-			||		.		.		.		|							||									||
-			||		.		.		.		|							||									||
-			||		.		.		.		|							||									||
-			||		.		.		.		|							||									||
-			||		.		.		.		|							||									||
-			||		.		.		.		|							||									||
-			||		.		.		.		|							||									||
-			||		.		.		.		|							||									||
-			||------------------------(-1)--|---------------------------||====================================
-			||		.		.		.		|							||					Input			||
-			||		.		.		.		|							||====================================
-			||		.		.		.		|							||									||
-			||		.		.		.		|							||									||
-			||		.		.		.		|							||									||
-			||		.		.		.		|							||									||
-			||		.		.		.		|							||									||
-			|| 		.		.		.		|							||									||
-			==================================================================================================
+int Tui::sectionsNum = 2;
 
-*/
-Section::Section(int sectionStart, int bodyLength, std::string title, Order order, int* width) {
-	this->startIndex = 0;
-	this->bodyLength = bodyLength;
-	this->sectionStart = sectionStart;
-	this->texts = {};
-	// Plus 2 for the lines after the section header and after the body
-	this->sectionEnd = sectionStart + bodyLength + 2;
-	this->title = title;
-	this->textsOrder = order;
-	this->rightSideTextWidth = width;
-}
-
-void Section::resetStart() {
-	startIndex = 0;
-}
-
-const std::vector<std::string> *Section::getTexts() {
-	return &texts;
-}
-
-int Section::modifyStartIndex(std::string input) {
-	char inputChar = toupper(input.at(0));
-	// Move up
-	if (inputChar == 'P') {
-		if (startIndex != 0) {
-			startIndex--;
-			return 0;
-		}
-	} else if (inputChar == 'L') {
-		if (startIndex < texts.size() - 1) {
-			startIndex++;
-			return 0;
-		}
-	}
-	// If input is not valid
-	else {
-		return 1;
-	}
-	// If startIndex could not be modified
-	return 2;
-}
-
-std::string Section::getText(int index) {
-	if (index >= texts.size()) {
-		return "";
-	}
-	return texts[index];
-}
-
-void Section::addText(std::string text) {
-	std::cout << "Text: " << text << "\n";
-	std::cout << "rightSideTextWidth: " << rightSideTextWidth << "\n";
-	if (textsOrder == BACK_TO_FRONT || text.length() <= *rightSideTextWidth) {
-		std::cout << "Emplace back text\n";
-		texts.emplace_back(text);
-		return;
-	}
-
-	std::string firstPortion = text.substr(0, *rightSideTextWidth);
-	texts.emplace_back(firstPortion);
-	addText(text.substr(*rightSideTextWidth));
-}
-
-bool Section::withinSection(int row) const {
-	bool frontBound = row >= sectionStart;
-	bool backBound = row <= sectionEnd;
-	return frontBound && backBound;
-}
-
-bool Section::withinBody(int row) const {
-	int bodyStart = this->sectionStart + 2;
-	bool frontBound = row >= bodyStart;
-	bool backBound = row < bodyStart + bodyLength;
-	return (frontBound && backBound);
-}
-
-
-
-Section::Section() : Section(0, 0, "", Order::FRONT_TO_BACK, nullptr) {
-	
-}
-
-void Section::clearTexts() {
-	texts.clear(); 
-}
 Tui Tui::tui;
 
 Tui::Tui() {
 
-
+	sectionNums = {};
 	rows = 33;
-	cols = 134;
+
+	//Prev 134
+	tuiCols = 180;
 	mapCols = 82;
 	indentNum = 2;
 	indent = "";
@@ -131,31 +22,35 @@ Tui::Tui() {
 	cellHeight = 0;
 	xAxisIndex = 0;
 	yAxisIndex = 0;
-	textArgs = {};
-	inputArgs = {};
-	rightSideTextWidth = cols - 3 - mapCols - 4;
+
+	sectionCols = tuiCols - mapCols - 5;
 	// primeCoords = {};
 
 	debugSection = new Section(
+		0,
 		1,
 		3,
-		"Debug call stack (0)",
+		"Debug call stack (1)",
 		Section::Order::BACK_TO_FRONT,
-		&rightSideTextWidth
+		&sectionCols
 	);
 	promptSection = new Section(
+		1,
 		debugSection->sectionEnd + 1,
 		10,
-		"Prompt (1)",
+		"Prompt (2)",
 		Section::Order::FRONT_TO_BACK,
-		&rightSideTextWidth);
-	
+		&sectionCols);
+
+	sectionNums.insert("0"); // For for debug section
+	sectionNums.insert("1"); // For prompt section
+	sectionNums.insert("M"); // For map
 }
 
 
 void Tui::printBar() const  {
 	std::cout << indent;
-	for (int col = 0; col < cols; col++) {
+	for (int col = 0; col < tuiCols; col++) {
 		std::cout << "=";
 	}
 	std::cout << "\n";
@@ -177,7 +72,7 @@ void Tui::printLeftSide(int row) {
 		printMapXAxis();
 	} else if (row % cellHeight == 0 && row != 0) {
 		//Edge of province box
-		printDottedHorizontal();
+		printLeftDottedHorizontal();
 	} else {
 		int cellsSinceBorder = 0;
 
@@ -197,7 +92,7 @@ void Tui::printLeftSide(int row) {
 }
 
 void Tui::printRightSideHorizontalRow() const {
-	int rowLength = cols - 3 - mapCols;
+	int rowLength = tuiCols - 3 - mapCols;
 	for (int i = 0; i < rowLength; i++) {
 		std::cout << "-";
 	}
@@ -209,7 +104,7 @@ std::string Tui::centerText(std::string text, int length) {
 		return text;
 	}
 
-	int leftPadding = length - text.length();
+	int leftPadding = length - (int) text.length();
 	leftPadding /= 2;
 	int currentIndex = 0;
 	std::string returnString = "";
@@ -230,7 +125,7 @@ bool Tui::printSection(const Section& section, int row) {
 		return false;
 	}
 
-	int rowLength = cols - 3 - mapCols;
+	int rowLength = tuiCols - 3 - mapCols;
 
 	if (row == section.sectionStart) {
 		std::cout << Tui::centerText(section.title, rowLength);
@@ -240,15 +135,15 @@ bool Tui::printSection(const Section& section, int row) {
 		int bodyStart = section.sectionStart + 2;
 		const std::string currText = section.getCurrentText();
 		int listNumber = row - bodyStart + 1;
-		std::cout << std::setw(2)<< listNumber << ". \033[35m" << currText << "\033[0m"; 
+		std::cout << std::setw(2) << listNumber << ". \033[35m" << currText << "\033[0m";
 
-		int rightPadding = rowLength - currText.size() - 4; 
-		for (int space = 0; space < rightPadding; space++) { 
+		int rightPadding = rowLength - (int) currText.size() - 4;
+		for (int space = 0; space < rightPadding; space++) {
 			std::cout << " ";
 		}
 	}
 
-	else if (row == section.sectionStart + 1 || row == section.sectionEnd ) {
+	else if (row == section.sectionStart + 1 || row == section.sectionEnd) {
 		printRightSideHorizontalRow();
 	}
 
@@ -262,11 +157,11 @@ bool Tui::printSection(const Section& section, int row) {
 
 
 void Tui::printRightSide(int row) {
-	int rowLength = cols - 3 - mapCols;
+	int rowLength = tuiCols - 3 - mapCols;
 	bool sectionPrinted = false;
 
 	// Print out debugText
-	sectionPrinted = sectionPrinted || printSection(*debugSection, row); 
+	sectionPrinted = sectionPrinted || printSection(*debugSection, row);
 	sectionPrinted = sectionPrinted || printSection(*promptSection, row);
 
 
@@ -286,6 +181,82 @@ void Tui::printLine(int row) {
 	printRightSide(row);
 }
 
+
+/// <summary>
+///		Determines whether a user's input is intended to modify the TUI interface.
+///		If the TUI is meant to be modified, any action is enacted accordingly
+/// </summary>
+/// <param name="text">A user's text input</param>
+/// <returns>
+///		0 - the TUI is modified as intended
+///		1 - Length of the user's input is 0 (no input)
+///		2 - The section number is invalid
+///		3 - The second character is not '+' or '-'
+///		4 - The input length is greater than 3 (invalid length)
+///		5 - If thre are 3 characters, the third character is not a number
+/// </returns>
+int Tui::tuiFormat(std::string text) {
+	if (text.length() == 0) {
+		return 1;
+	}
+
+	if (text.length() > 3) {
+		return 4;
+	}
+
+	std::string secNumber(1, text.at(0));
+	if (Tui::tui.sectionNums.find(secNumber) == Tui::tui.sectionNums.end()) {
+		return 2;
+	}
+	
+	if (text.at(1) != '+' && text.at(1) != '-') {
+		return 3;
+	}
+
+	// Determines whether we start at the start or end of a section's texts
+	Section::Direction direction = Section::UP;
+	if (text.at(1) == '-') {
+		direction = Section::DOWN;
+	}
+
+	int amount = 0;
+	if (text.length() == 2) {
+		amount = 1;
+	} else if ((text.at(2) != '+' && text.at(2) != '-')) {
+		try {
+			amount = std::stoi(text.at(2) + "");
+		}
+		catch (std::invalid_argument const& ex) {
+			return 5;
+		}
+	}
+
+	Section* section = tui.getSection(text.at(0)); 
+	section->modifyStartIndex(amount, direction); 
+	return true;
+}
+
+// TODO: Add case for map section
+Section* Tui::getSection(char sectionNum) {
+	switch (sectionNum) {
+		case '1': 
+			return debugSection;
+			break;
+		case '2':
+			return promptSection;
+			break;
+		case 'M':
+			//return 
+			break;
+		default:
+			return nullptr;
+	}
+}
+
+/// <summary>
+///		Print out the TUI 
+///		Has opitonality to clear screen before printing out new TUI
+/// </summary>
 void Tui::printScreen() {
 	//clear screen
 	/*
@@ -299,47 +270,34 @@ void Tui::printScreen() {
 
 	printBar();
 
+	std::string guide = "Input \"[section num][num][+/-]\" to navigate a section. Enter \"GUIDE\" to access an extended guide.";
+	std::cout << indent;
+	std::cout << "||";
+	std::cout << Tui::centerText(guide, tuiCols - 4);
+	std::cout << "||\n";
+
+
+	printBar();
 	// Information for debugText
-	int rowLength = cols - 3 - mapCols;
+	int rowLength = tuiCols - 3 - mapCols;
 
 	// Print all rows
-	int increment = 0;
+	debugSection->increment = 0;
+	promptSection->increment = 0;
+	
 	for (int row = 1; row <= rows - 2; row++) {
-		debugSection->detCurrentText(row, increment);
-		promptSection->detCurrentText(row, increment);
-		increment++;
-
+		debugSection->detCurrentText(row);
+		promptSection->detCurrentText(row);
 		printLine(row);
 	}
 	printBar();
 }
 
-void Section::detCurrentText(int row, int increment) {
-	if (!withinBody(row)) {
-		return;
-	}
-	if (texts.empty()) {
-		setCurrentText("");
-		return;
-	}
-	int index = textsOrder == Section::Order::BACK_TO_FRONT ?
-		texts.size() - increment - 1 : increment;
-	setCurrentText(Tui::concatText(texts.at(index), *rightSideTextWidth));
-}
-
-void Section::setCurrentText(std::string text) {
-	this->currentText = text;
-}
-
-const std::string &Section::getCurrentText() const {
-	return currentText;
-}
-
-std::string Tui::concatText(std::string text, int length) {
-	return text.substr(0, length);
-}
-
-void Tui::printDottedHorizontal() const  {
+/// <summary>
+///		Prints a dotted horizontal line on the left side of the screen
+///		Used to represent the x-axis
+/// </summary>
+void Tui::printLeftDottedHorizontal() const  {
 	for (int col = 0; col < mapCols - 3; col++) {
 		// Print Y axis halfway thru map
 		if (col == yAxisIndex) {
@@ -354,22 +312,6 @@ void Tui::printDottedHorizontal() const  {
 	}
 }
 
-
-void Tui::addOutputArg(std::string arg, TextType type) {
-	// If TEXT type
-	if (type) {
-		textArgs.emplace_back(arg);
-		return;
-	}
-	inputArgs.emplace_back(arg);
-}
-
-void Tui::resetArg(TextType type) {
-	if (type) {
-		textArgs.clear();
-		return;
-	}
-}
 
 void Tui::initialize() {
 	for (int i = 0; i < indentNum; i++) {
