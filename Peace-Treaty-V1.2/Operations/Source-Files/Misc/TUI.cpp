@@ -67,7 +67,21 @@ void Tui::setPrimeCoordinates(std::pair<int, int> coords) {
 }
 
 void Tui::printLeftSide(int row) {
+	row -= 2;
+
 	std::cout << indent << "||";
+
+	if (row == -1) {
+		std::cout << Tui::centerText("Map (M)", mapCols - 3);
+		return;
+	}
+	if (row == 0) {
+		for (int col = 1; col <= mapCols - 3; col++) {
+			std::cout << "~";
+		}
+		return;
+	}
+
 	if (row == cellHeight * zoom) {
 		printMapXAxis();
 	} else if (row % cellHeight == 0 && row != 0) {
@@ -94,7 +108,7 @@ void Tui::printLeftSide(int row) {
 void Tui::printRightDottedHorizontal() const {
 	int rowLength = tuiCols - 3 - mapCols;
 	for (int i = 0; i < rowLength; i++) {
-		std::cout << "-";
+		std::cout << "~";
 	}
 	return;
 }
@@ -307,7 +321,7 @@ void Tui::printScreen() {
 	debugSection->increment = 0;
 	promptSection->increment = 0;
 	
-	for (int row = 1; row <= rows - 2; row++) {
+	for (int row = 1; row <= rows; row++) {
 		debugSection->detCurrentText(row);
 		promptSection->detCurrentText(row);
 		printLine(row);

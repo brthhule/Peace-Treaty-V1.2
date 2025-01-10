@@ -43,6 +43,7 @@ int getContinentInformation();
 
 int main()/*main code*/
 {
+	LOG::stack_frame++;
 	//For debugging
 	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "main");
 	INF::CPUNum = std::thread::hardware_concurrency();
@@ -51,8 +52,10 @@ int main()/*main code*/
 
 	startOrResumeGame();
 	gamePlay();
+	LOG::stack_frame--;
 }
 void startOrResumeGame() {
+	LOG::stack_frame++;
 	DEBUG_FUNCTION("Peace-Treaty-V1.2.cpp", "startOrResumeGame");
 	Tui::debug("Peace Treaty V1.2.cpp, startOrResumeGame");
 	//std::string path = "../Peace Treaty V1.2\\Support\\TxtFiles\\Synopsis.txt";
@@ -87,9 +90,11 @@ void startOrResumeGame() {
 
 	INF::enterAnything(1);
 	INF::clearScreen();
+	LOG::stack_frame--;
 }
 void resumeGame() /*download data from previous game fix this*/
 {
+	LOG::stack_frame++;
 	//For debugging
 	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "resumeGame");
 
@@ -98,8 +103,10 @@ void resumeGame() /*download data from previous game fix this*/
 	std::getline(std::cin, gameCode);
 	std::cout << "\033[0m";
 	/*use global variables to figure out code*/
+	LOG::stack_frame--;
 }
 void startNewGame() {
+	LOG::stack_frame++;
 	//For debugging
 	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "startNewGame"); 
 	Tui::debug("Peace Treaty V1.2.cpp, startNewGame"); 
@@ -108,9 +115,11 @@ void startNewGame() {
 	Participants::setHumanPlayers(humanPlayers);
 	Participants::initializeParticipants(allPlayers, 0);
 	std::cout << "Created participants";
+	LOG::stack_frame--;
 }
 
 int getContinentInformation() {
+	LOG::stack_frame++;
 	//For debugging
 	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "getContinentInformation");
 	Tui::debug("Peace Treaty V1.2.cpp, getContinentInformation");
@@ -144,10 +153,11 @@ int getContinentInformation() {
 
 	std::cout << "Gameplay difficulty "s +
 		LOG::EMBED(INF::str(INF::enemyDifficulty), LOG::RED) << " selected. \n\n"; 
-
+	LOG::stack_frame--;
 	return pNum;
 }
 int generateNewContinent(int pNum) {
+	LOG::stack_frame++;
 	Tui::debug("Peace Treaty V1.2.cpp, generateNewContinent");
 	//For debugging
 	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "generateNewContinent");
@@ -168,11 +178,13 @@ int generateNewContinent(int pNum) {
 	std::cout << LOG::getColor(LOG::RED) << players << LOG::getColor(LOG::WHITE) << " players initialized...\n\n";
 	pNum += players;
 	std::cout << "pNum: " << pNum << std::endl;
+	LOG::stack_frame--;
 	return players;
 }
 
 
 void gamePlay() {
+	LOG::stack_frame++;
 	//For debugging
 	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "gamePlay");
 
@@ -199,12 +211,14 @@ void gamePlay() {
 	}
 
 	endScreen();
+	LOG::stack_frame--;
 }
 
 
 
 //Call this function when all winning condition has been met
 void endScreen() {
+	LOG::stack_frame++;
 	//For debugging
 	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "endScreen");
 	std::string kingdomName = Participants::getRemainingParticipant().getKingdomName();
@@ -214,5 +228,6 @@ void endScreen() {
 	char playAgain = Input::getInputText("Play again? (Y/N) ", { "letter", "Y", "N" }).at(0);
 	Participants::clearParticipantsVector(); 
 	if (playAgain == 'Y') { main();}
+	LOG::stack_frame--; 
 }
 

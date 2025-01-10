@@ -2,6 +2,7 @@
 #include LOG_HEADER
 
 const bool LOG::debuggingMode = true; 
+int LOG::stack_frame = 0;
 
 //For stand alone color integration
 void LOG::addColor(Colors color) {
@@ -9,8 +10,8 @@ void LOG::addColor(Colors color) {
 }
 
 //For integration with strings/std::cout statements
-std::string LOG::getColor(Colors color) {
-	std::array<std::string, 9> sequences = {
+string LOG::getColor(Colors color) {
+	std::array<string, 9> sequences = {
 		"\033[30m", //Black
 		"\033[31m", //Red
 		"\033[32m", //Green
@@ -25,31 +26,41 @@ std::string LOG::getColor(Colors color) {
 	return sequences.at(color);
 }
 
-void LOG::PRINT(std::string message, Colors color) {
+void LOG::PRINT(string message, Colors color) {
 	std::cout << getColor(color) << message << getColor(RESET);
 }
 
-void LOG::PRINT(std::string message) {
+void LOG::PRINT(string message) {
 	PRINT(message, RESET); 
 }
 
-void LOG::DEBUG(std::string message) {
-	if (debuggingMode) { PRINT("DEBUG " + message, MAGENTA); }
+void LOG::DEBUG(string message) {
+	if (debuggingMode) { 
+		std::cout << "DEBUG " << stack_frame;
+		for (int i = 0; i < LOG::stack_frame; i++) {
+			std::cout << "+";
+		}
+		PRINT(message, MAGENTA); 
+	}
 }
 
 void LOG::DEBUG(string file, string function) { 
 	LOG::DEBUG(file + ", " + function);
 }
 
+void LOG::DEBUG_LN(string message) {
+	LOG::DEBUG(message + "\n");
+}
 
-void LOG::SYSTEM(std::string message) {
+
+void LOG::SYSTEM(string message) {
 	PRINT(message, GREEN);
 }
 
-void LOG::ERROR(std::string message) {
+void LOG::ERROR(string message) {
 	PRINT(message, RED); 
 }
 
-std::string LOG::EMBED(std::string message, Colors color) {
+string LOG::EMBED(string message, Colors color) {
 	return getColor(color) + message + getColor(RESET);
 }

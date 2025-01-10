@@ -1,6 +1,8 @@
 #include "..\..\..\Support\Paths.h"
 
 #include INF_HEADER
+#include <filesystem>
+
 
 ////////////////////////////////////////////////Start Variables///////////////////////////////////////
 	
@@ -144,34 +146,48 @@ void INF::clearScreenCommand() {
 }
 
 std::string INF::getText(std::string target) {
+	LOG::stack_frame++;
 	DEBUG_FUNCTION("INF.cpp", "getText");
-	std::string filename = "C:/Users/Brennen/Source/Repos/brthhule/Peace-Treaty- V1.2/Peace Treaty V1.2/Support/TxtFiles/Text.txt";
+	std::string filename = "C:/Users/Brennen/source/repos/brthhule/Peace-Treaty-V1.2/Peace-Treaty-V1.2/Support/TxtFiles/Text.txt";
+
+	LOG::DEBUG("Filename: " + filename + "\n");
 
 	std::ifstream file(filename);
 
 	if (!file.is_open()) {
 		LOG::ERROR("Could not open file\n");
 	}
-	std::string str, text;
-	while (std::getline(file, str)) {
-		if (str.find(target) != -1) {
-			text = str.substr(target.find(" "));
+
+	LOG::DEBUG_LN("File opened");
+	// Retrieve a line of text based on the target label param
+	LOG::DEBUG_LN("Getting line of text");
+	std::string line, text;
+	while (std::getline(file, line)) {
+		LOG::DEBUG_LN("Line: " + line);
+		if (line.find(target) != -1) {
+			text = line.substr(target.find(" "));
 			break;
 		}
 	}
 
+	LOG::DEBUG("Line of text: " + text);
+
+	// If there are no breaks in the text (no newlines), return text
 	if (text.find("BREAK") == -1) {
 		return text;
 	}
 
 	std::string returnText = "";
 	while (text.find("BREAK") != -1) {
-		int point = (int)text.find("BREAK");
-		returnText += text.substr(0, point) + "\n";
-		text = text.substr(point);
+		LOG::DEBUG_LN("Text: " + text); 
+		int breakIndex = (int)text.find("BREAK");
+		returnText += text.substr(0, breakIndex) + "\n";
+		text = text.substr(breakIndex);
 		//Can't have BREAK at the end (will break everything)
 		text = text.substr(text.find("K") + 1);
 	}
+	LOG::DEBUG_LN("returnText: " + returnText);
+	LOG::stack_frame--;
 	return returnText;
 }
 
@@ -179,10 +195,12 @@ std::string INF::getText(std::string target) {
 option = 1, says enter anything to proceed
 option = 2, says enter anything to return to previous menu*/
 void INF::enterAnything(int option) {
+	LOG::stack_frame++;
 	DEBUG_FUNCTION("INF.cpp", "enterAnything(int)");
 	LOG::SYSTEM("Enter anything to proceed (screen will clear): ");
 	LOG::addColor(LOG::BLUE);
 	std::cin.get(); 
+	LOG::stack_frame--;
 
 }
 
