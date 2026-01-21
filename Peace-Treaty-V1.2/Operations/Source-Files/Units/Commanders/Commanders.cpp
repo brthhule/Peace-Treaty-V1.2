@@ -62,11 +62,13 @@ Commanders::Commanders(int level, std::string name, int participantIndex) : Prim
 			battleFormation.at(lane).at(cell) = {};
 		}
 	}
+	DEBUG_FUNCTION_END;
 }
 /*Destructor*/
 Commanders::~Commanders() {
 	//For debugging
 	DEBUG_FUNCTION("Commanders.cpp", "~Commanders");
+	DEBUG_FUNCTION_END;
 }
 
 /////////////////////Display///////////
@@ -86,6 +88,7 @@ void Commanders::printCommanderStats() {
 
 	//Continue implementing here
 	LOG::addColor(LOG::RESET);
+	DEBUG_FUNCTION_END;
 }
 
 ////////////Accessors//////////////////
@@ -94,6 +97,7 @@ int Commanders::getCommanderStat(int index) {
 	DEBUG_FUNCTION("Commanders.cpp", "getCommanderStat");
 
 	//placeholder
+	DEBUG_FUNCTION_END;
 	return -1;
 	//return *commanderArmyStats[index];
 }
@@ -109,7 +113,7 @@ const i5array Commanders::getUpgradeCosts() {
 	for (int x = 0; x < 5; x++) {
 		costsArray[x] = costToUpgrade.at(x) * level;
 	}
-		
+	DEBUG_FUNCTION_END;
 	return costsArray;
 }
 
@@ -120,25 +124,27 @@ void Commanders::calculateCommanderScoutLog(){
 	DEBUG_FUNCTION("Commanders.cpp", "calculateCommanderScoutLog");
 
 	//Implement this
+	DEBUG_FUNCTION_END;
 }
 
 void Commanders::addLevel() {
 	//For debugging
 	DEBUG_FUNCTION("Commanders.cpp", "addLevel");
 	level++;
+	DEBUG_FUNCTION_END;
 }
 
 bool Commanders::hasMoved() const {
 	//For debugging
 	DEBUG_FUNCTION("Commanders.cpp", "hasMoved");
-
+	DEBUG_FUNCTION_END;
 	return moved;
 }
 
 void Commanders::resetCommanderMoved() {
 	//For debugging
 	DEBUG_FUNCTION("Commanders.cpp", "resetCommanderHasMoved");
-
+	DEBUG_FUNCTION_END;
 	moved = false;
 }
 

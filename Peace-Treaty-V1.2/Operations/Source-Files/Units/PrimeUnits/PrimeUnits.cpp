@@ -32,9 +32,11 @@ PrimeUnits::PrimeUnits(int participantIndexArg) {
 	resourcesPresent = { 0,0,0,0,0 };
 	initialStats = { 5,4,3,2,1 };
 	type = COMMANDER;//Fix this???
+	DEBUG_FUNCTION_END;
 }
 
 PrimeUnits::PrimeUnits(const PrimeUnits& copyUnit) {
+	DEBUG_FUNCTION("PrimeUnits.cpp", "PrimeUnits(const PrimeUnits& copyUnit)");
 	resourcesPresent = copyUnit.resourcesPresent;
 	initialStats = copyUnit.initialStats;
 
@@ -50,12 +52,13 @@ PrimeUnits::PrimeUnits(const PrimeUnits& copyUnit) {
 	type = copyUnit.type;
 	name = copyUnit.name;
 	troops = copyUnit.troops; 
+	DEBUG_FUNCTION_END;
 }
 
 constINT PrimeUnits::getParticipantIndex() const {
 	//For debugging
 	DEBUG_FUNCTION("PrimeUnits.cpp", "getParticipantIndex");
-
+	DEBUG_FUNCTION_END;
 	return participantIndex;
 }
 
@@ -67,13 +70,25 @@ void PrimeUnits::printResources() const {
 	LOG::addColor(LOG::BLUE);
 	INF::printResources(resourcesPresent);
 	LOG::addColor(LOG::RESET);
+	DEBUG_FUNCTION_END;
 }
 
-const std::string& PrimeUnits::getName() const { return name; }
-void PrimeUnits::setName(std::string name) { this->name = name; }
+const std::string& PrimeUnits::getName() const { 
+	DEBUG_FUNCTION("PrimeUnits.cpp", "getName()"); 
+	DEBUG_FUNCTION_END;
+	return name; 
+}
+void PrimeUnits::setName(std::string name) { 
+	DEBUG_FUNCTION("PrimeUnits.cpp", "setName(std::string name)"); 
+	this->name = name; 
+	DEBUG_FUNCTION_END;
+}
 
 //Mutator Functions
-constINT PrimeUnits::getFoodConsumption() const { return foodConsumption;}
+constINT PrimeUnits::getFoodConsumption() const {
+	DEBUG_FUNCTION("PrimeUnits.cpp", "getFoodConsumption()"); 
+	DEBUG_FUNCTION_END;
+	return foodConsumption;}
 constINT PrimeUnits::getResource(int resourceIndex) { 
 	return resourcesPresent[resourceIndex];
 }
@@ -81,31 +96,33 @@ constINT PrimeUnits::getResource(int resourceIndex) {
 void PrimeUnits::mutateResource(ResourceType resource, constINT amount,
 	INF::MutateDirection direction) {
 	//For debugging
-	DEBUG_FUNCTION("PrimeUnits.cpp", "mutateResources");
+	DEBUG_FUNCTION("PrimeUnits.cpp", "mutateResource(ResourceType resource, constINT amount, INF::MutateDirection direction)");
 	int modifier = 1;
 	if (direction == DECREASE) { modifier = -1; }
 	resourcesPresent[resource] += (amount * modifier); 
+	DEBUG_FUNCTION_END;
 }
 
 void PrimeUnits::mutateAllResources(constArrayRef resourcesArray,
 	INF::MutateDirection direction) {
-	//For debugging
 	DEBUG_FUNCTION("PrimeUnits.cpp", "mutateAllResources");
 
 
 	resourcesPresent = mutateArray(resourcesPresent, resourcesArray, direction);
+	DEBUG_FUNCTION_END;
 }
 
 constINT PrimeUnits::getLevel() const {
 	//For debugging
 	DEBUG_FUNCTION("PrimeUnits.cpp", "getLevel");
-
+	DEBUG_FUNCTION_END;
 	return level;
 }
 
 constArrayRef PrimeUnits::getAllResources() const {
 	//For debugging
 	DEBUG_FUNCTION("PrimeUnits.cpp", "getAllResources");
+	DEBUG_FUNCTION_END;
 	return resourcesPresent;
 }
 
@@ -116,7 +133,7 @@ const std::string PrimeUnits::getCoords(CoordsType type) const {
 void PrimeUnits::setParticipantIndex(int number) {
 	//For debugging
 	DEBUG_FUNCTION("PrimeUnits.cpp", "setParticipantIndex");
-
+	DEBUG_FUNCTION_END;
 	participantIndex = number;
 }
 
@@ -129,10 +146,13 @@ INF::ipair PrimeUnits::translateCoords(INF::ipair coords, CoordsType type) {
 
 //Quicksort
 unitSPTRList PrimeUnits::sortVector(SortType sort, unitSPTRList list) { 
+	DEBUG_FUNCTION("PrimeUnits.cpp", "sortVector(SortType sort, unitSPTRList list)");
 	if (sort == LEVEL) {
+		DEBUG_FUNCTION_END;
 		return levelSort(list);
 	}
 
+	DEBUG_FUNCTION_END;
 	return {};
 	/* for casting back later :
 	std::shared_ptr<Base> base(new Derived());
@@ -143,6 +163,7 @@ unitSPTRList PrimeUnits::sortVector(SortType sort, unitSPTRList list) {
 //Has been tested with concatVectors, so should work
 
 unitSPTRList PrimeUnits::levelSort(unitSPTRList list) {
+	DEBUG_FUNCTION("PrimeUnits.cpp", "levelSort(unitSPTRList list)");
 	if (list.size() <= 1) {
 		return list;
 	}
@@ -172,6 +193,7 @@ unitSPTRList PrimeUnits::levelSort(unitSPTRList list) {
 	greater = levelSort(greater); 
 	lesser = levelSort(lesser);
 	std::vector<unitSPTRList> returnList = { lesser, same, greater };
+	DEBUG_FUNCTION_END;
 	return concatUnitVectors(returnList); 
 	
 }
@@ -187,6 +209,7 @@ const std::string PrimeUnits::getNameLevel() const {
 }
 
 UNIT::unitSPTRList UNIT::concatUnitVectors(std::vector<unitSPTRList> list) {
+	DEBUG_FUNCTION("PrimeUnits.cpp", "concatUnitVectors(std::vector<unitSPTRList> list)");
 	unitSPTRList baseList = list.at(0); 
 
 	for (int index = 1; index < 3; index++) { 
@@ -196,4 +219,5 @@ UNIT::unitSPTRList UNIT::concatUnitVectors(std::vector<unitSPTRList> list) {
 		}
 	}
 	return baseList;
+	DEBUG_FUNCTION_END;
 }

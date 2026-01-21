@@ -203,7 +203,9 @@ namespace INF {
 	
 	
 	//----void-------------------------
-	//CLears the screen
+	/// @brief Clears the screen
+	/// @param N/A
+	/// @return void
 	void clearScreen();
 	//Prompts the user to enter anything
 	void enterAnything(int option);

@@ -2,7 +2,8 @@
 #include LOG_HEADER
 
 const bool LOG::debuggingMode = true; 
-int LOG::stack_frame = 0;
+bool LOG::firstGetline = true;
+std::stack<std::string> LOG::functionStack = {};
 
 //For stand alone color integration
 void LOG::addColor(Colors color) {
@@ -34,21 +35,35 @@ void LOG::PRINT(string message) {
 	PRINT(message, RESET); 
 }
 
+
 void LOG::DEBUG(string message) {
 	if (debuggingMode) { 
-		std::cout << "DEBUG " << stack_frame;
-		for (int i = 0; i < LOG::stack_frame; i++) {
-			std::cout << "+";
+		int stackFrame = (int) functionStack.size();
+		std::string finalMessage = "DEBUG " + std::to_string(stackFrame); 
+
+		for (int i = 0; i < stackFrame; i++) {
+			finalMessage += "++++";
 		}
-		PRINT(message, MAGENTA); 
+		PRINT(finalMessage + " " + message, MAGENTA); 
 	}
 }
 
 void LOG::DEBUG(string file, string function) { 
-	LOG::DEBUG(file + ", " + function);
+	
+	std::string functionString = "File: " + file + ", Function: " + function;
+	functionStack.push(functionString);
+
+	LOG::DEBUGln(functionString + " start");
 }
 
-void LOG::DEBUG_LN(string message) {
+void LOG::debug_function_end() {
+	std::string functionString = functionStack.top();
+	LOG::DEBUGln(functionString + " end");
+
+	functionStack.pop();
+}
+
+void LOG::DEBUGln(string message) {
 	LOG::DEBUG(message + "\n");
 }
 

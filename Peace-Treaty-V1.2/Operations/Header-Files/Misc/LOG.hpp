@@ -5,6 +5,8 @@
 
 #include <iostream>
 #include <array>
+#include <string>
+#include <stack>
 
 using std::string;
 
@@ -25,13 +27,14 @@ public:
 	static void DEBUG(string message);
 	// Function info logging
 	static void DEBUG(string file, string function);
-	static void DEBUG_LN(string message);
+	static void DEBUGln(string message);
 	static void SYSTEM(string message);
 
 	static void addColor(Colors c);
 	static string getColor(Colors color);
 
-	static int stack_frame;
+	static bool firstGetline;
+	static void debug_function_end();
 
 private:
 	/*"BLACK", "RED", "GREEN", "YELLOW", "LOG::BLUE", "MAGENTA", "CYAN", "WHITE",
@@ -51,6 +54,7 @@ private:
 	//Get command to print certain color to console
 	
 	//Adds color to console
+	static std::stack<std::string> functionStack; 
 	
 	static const bool debuggingMode; 
 };

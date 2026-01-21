@@ -170,6 +170,7 @@ public:
 
 		
 	static void setHumanPlayers(int num);
+	static const int& getHumanPlayers();
 	void setCapital(PROV::provSPTR newProvince); 
 	void addProvince(PROV::provSPTR newProvince);
 	void printListOfProvinces();

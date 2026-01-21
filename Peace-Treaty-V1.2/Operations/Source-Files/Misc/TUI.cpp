@@ -8,7 +8,6 @@ int Tui::sectionsNum = 2;
 Tui Tui::tui;
 
 Tui::Tui() {
-
 	sectionNums = {};
 	rows = 33;
 
@@ -208,30 +207,34 @@ void Tui::printLine(int row) {
 }
 
 
-/// <summary>
-///		Determines whether a user's input is intended to modify the TUI interface.
-///		If the TUI is meant to be modified, any action is enacted accordingly
-/// </summary>
-/// <param name="text">A user's text input</param>
-/// <returns>
+
+
+
+
+
+
+/// @brief Determines whether a user's input is intended to modify the TUI interface.
+///	
+/// If the TUI is meant to be modified, any action is enacted accordingly
+///	
+/// @param The user's text input
+/// 
+/// @return A status of whether the TUI has been updated based on the input
 ///		0 - the TUI is modified as intended
-///		1 - Length of the user's input is 0 (no input)
-///		2 - The section number is invalid
+///		1 - Length of the user's input isn't 2 or 3
+///		2 - The section number is invalid/section could not be found
 ///		3 - The second character is not '+' or '-'
-///		4 - The input length is greater than 3 (invalid length)
 ///		5 - If thre are 3 characters, the third character is not a number
-/// </returns>
 int Tui::tuiFormat(std::string text) {
-	if (text.length() == 0) {
+	int length = (int) text.length();
+
+	if (length != 2 && length != 3) {
 		return 1;
 	}
 
-	if (text.length() > 3) {
-		return 4;
-	}
+	Section* section = tui.getSection(text.at(0));
 
-	std::string secNumber(1, text.at(0));
-	if (Tui::tui.sectionNums.find(secNumber) == Tui::tui.sectionNums.end()) {
+	if (section == nullptr) { 
 		return 2;
 	}
 	
@@ -257,21 +260,22 @@ int Tui::tuiFormat(std::string text) {
 		}
 	}
 
-	Section* section = tui.getSection(text.at(0)); 
 	section->modifyStartIndex(amount, direction); 
 	return true;
 }
 
-// TODO: Add case for map section
 
-/// <summary>
-///		Returns a pointer to a Section based on a sectionNumber
-/// </summary>
-/// <param name="sectionNum">the character representing a particular section</param>
-/// <returns>
-///		Secton* - the sectionNum arg is valid
-///		nullptr - arg is invalid
-/// </returns>
+/// @brief Returns a pointer to a Section based on a sectionNumber
+/// 
+/// Each section corresponds to a diferent part of the TUI
+/// There are three sections:
+/// 1) Map section
+/// 2) Debugging section
+/// 3) Prompt section
+/// TODO: Add case for map section
+/// 
+/// @param the character representing a particular section
+/// @return Section* if the sectionNum arg is valid, nullptr if arg is invalid
 Section* Tui::getSection(char sectionNum) {
 	switch (sectionNum) {
 		case '1': 
@@ -289,10 +293,9 @@ Section* Tui::getSection(char sectionNum) {
 	}
 }
 
-/// <summary>
-///		Print out the TUI 
-///		Has opitonality to clear screen before printing out new TUI
-/// </summary>
+/// @brief Prints out the TUI
+/// 
+/// has optionality to clear screen before printing out the new TUI
 void Tui::printScreen() {
 	//clear screen
 	/*
@@ -329,10 +332,7 @@ void Tui::printScreen() {
 	printBar();
 }
 
-/// <summary>
-///		Prints a dotted horizontal line on the left side of the screen
-///		Used to represent the x-axis
-/// </summary>
+///	@brief Prints a dotted horizontal line on the left side of the screen (x-axis)
 void Tui::printLeftDottedHorizontal() const  {
 	for (int col = 0; col < mapCols - 3; col++) {
 		// Print Y axis halfway thru map
@@ -348,7 +348,7 @@ void Tui::printLeftDottedHorizontal() const  {
 	}
 }
 
-
+/// @brief Initializes sizes for the TUI
 void Tui::initialize() {
 	for (int i = 0; i < indentNum; i++) {
 		indent += "\t";
@@ -362,9 +362,9 @@ void Tui::initialize() {
 	std::cout << "cellWidth: " << cellWidth << "\n";
 	std::cout << "String : foobar\n";
 	std::string newString = Tui::centerText("Foobar", 10);
-	std::cout << "Formatted: \n" << newString;
 }
 
+/// @brief Adds text to the debug section of the screen
 void Tui::debug(std::string text) {
 	Tui::tui.debugSection->addText(text);
 #ifdef HIGH_REFRESH

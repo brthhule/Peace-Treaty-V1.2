@@ -47,6 +47,7 @@ std::vector<std::string> showOptions(std::string prompt) {
 	newfile.open(path, std::ios::in);
 	if (!newfile.is_open()) {
 		LOG::ERROR("Error occurred opening file...\n");
+		DEBUG_FUNCTION_END;
 		return {};
 	}
 	
@@ -92,14 +93,15 @@ std::vector<std::string> showOptions(std::string prompt) {
 	//Add the last value (besides go back to previous menu)
 	acceptableValues.push_back(optionsLine);
 	acceptableValues.push_back("M");//go back to previous menu
-	return acceptableValues;
 
 	LOG::addColor(LOG::RESET);
+
+	DEBUG_FUNCTION_END;
+	return acceptableValues;
 }
 
 std::string getPrompt(Prompts p) {
-	//For debugging
-	DEBUG_FUNCTION("Input.cpp", "getPrompt");
+	DEBUG_FUNCTION("Input.cpp", "getPrompt(Prompts p)");
 	Tui::tui.debug("Input.cpp, getPrompt");
 
 	//Print prompt, return acceptable values
@@ -107,19 +109,26 @@ std::string getPrompt(Prompts p) {
 
 	std::string returnValue = selectOption(AV);
 	LOG::DEBUG("getPrompt return value: " + returnValue + "\n");
+	DEBUG_FUNCTION_END;
 	return returnValue;
 }
 
 std::string selectOption(std::vector<std::string>AV) {
 	//For debugging
 	DEBUG_FUNCTION("Input.cpp", "selectOption");
-	std::cout << "Enter an option: " << LOG::getColor(LOG::BLUE);  
-	std::string input;
-	getline(std::cin, input);
 
+	LOG::PRINT("Enter an option: ", LOG::BLUE);
+	std::string input = "";
+
+	getline(std::cin, input); 
+
+	LOG::DEBUGln("Input: " + input);
 	int ret = Tui::tuiFormat(input);
 	LOG::DEBUG("tui - " + std::to_string(ret) + "\n");
-	if (ret == 0) { return "TUI"; }
+	if (ret == 0) { 
+		DEBUG_FUNCTION_END; 
+		return "TUI"; 
+	}
 
 
 	for (size_t i = 0; i < input.size(); i++) {
@@ -130,11 +139,15 @@ std::string selectOption(std::vector<std::string>AV) {
 
 	for (std::string value : AV) {
 		if (input == value) {
+			DEBUG_FUNCTION_END;
 			return value;
 		}
 	}
 
+	if (input == "0")
+
 	std::cout << "Invalid option... please try again.\n";
+	DEBUG_FUNCTION_END;
 	return selectOption(AV);
 }
 
@@ -145,18 +158,20 @@ std::string getInputText(std::string text, std::vector<std::string> AV) {
 	std::cout << text << "\n";
 
 	if (AV.size() != 0) {
+		DEBUG_FUNCTION_END;
 		return selectOption(AV);
 	}
 		
 	std::string input = "";
 	getline(std::cin, input);
+	DEBUG_FUNCTION_END;
 	return input;
 }
 
 std::string promptsToString(Prompts p) {
 	//For debugging
 	DEBUG_FUNCTION("Input.cpp" ,"promptsToString");
-
+	DEBUG_FUNCTION_END;
 	return PROMPTS_STRING.at(p);
 }
 
@@ -166,17 +181,19 @@ int getStringIndex(std::string arg) {
 
 	for (int x = 0; x < (signed)PROMPTS_STRING.size(); x++) {
 		if (PROMPTS_STRING.at(x) == arg) {
+			DEBUG_FUNCTION_END;
 			return x;
 		}
 	}
 	//Error case
+	DEBUG_FUNCTION_END;
 	return -1;
 }
 
 Prompts stringToPrompts(std::string arg) {
 	//For debugging
 	DEBUG_FUNCTION("Input.cpp", "stringToPrompts");
-
+	DEBUG_FUNCTION_END;
 	return Prompts(getStringIndex(arg));
 }
 

@@ -64,6 +64,7 @@ std::string INF::createRandomName() {
 	}
 	//Capitalize name
 	name.at(0) = toupper(name.at(0));
+	DEBUG_FUNCTION_END; 
 	return name;
 }
 
@@ -82,7 +83,7 @@ INF::i5array INF::mutateArray(
 	for (int index = 0; index < 5; index++) {
 		primeArray.at(index) += secondaryArray.at(index) * modifier;
 	}
-
+	DEBUG_FUNCTION_END;
 	return primeArray;
 }
 
@@ -127,7 +128,6 @@ bool INF::checkIsNumber(std::string numberString) {
 	return true;
 }
 
-//Clears the screen
 void INF::clearScreen() {
 	//For debugging
 	DEBUG_FUNCTION("INF.cpp", "clearScreen(void)");
@@ -137,16 +137,18 @@ void INF::clearScreen() {
 	std::chrono::seconds dura(1);
 	std::this_thread::sleep_for(dura);
 	clearScreenCommand();
+	DEBUG_FUNCTION_END;
 }
 
 void INF::clearScreenCommand() {
 	//For debugging
 	DEBUG_FUNCTION("INF.cpp", "clearScreenCommand(void)");
 	std::cout << "\033[2J\033[1;1H";
+	DEBUG_FUNCTION_END;
 }
 
 std::string INF::getText(std::string target) {
-	LOG::stack_frame++;
+	
 	DEBUG_FUNCTION("INF.cpp", "getText");
 	std::string filename = "C:/Users/Brennen/source/repos/brthhule/Peace-Treaty-V1.2/Peace-Treaty-V1.2/Support/TxtFiles/Text.txt";
 
@@ -158,36 +160,39 @@ std::string INF::getText(std::string target) {
 		LOG::ERROR("Could not open file\n");
 	}
 
-	LOG::DEBUG_LN("File opened");
+	LOG::DEBUGln("File opened");
 	// Retrieve a line of text based on the target label param
-	LOG::DEBUG_LN("Getting line of text");
+	LOG::DEBUGln("Getting line of text");
 	std::string line, text;
 	while (std::getline(file, line)) {
-		LOG::DEBUG_LN("Line: " + line);
-		if (line.find(target) != -1) {
-			text = line.substr(target.find(" "));
+		LOG::DEBUGln("Line: " + line);
+		if (line.find(target) != std::string::npos) { 
+			text = line.substr(line.find(" "));
 			break;
 		}
 	}
 
-	LOG::DEBUG("Line of text: " + text);
+	LOG::DEBUGln("Line of text: " + text);
 
 	// If there are no breaks in the text (no newlines), return text
 	if (text.find("BREAK") == -1) {
+		DEBUG_FUNCTION_END;
 		return text;
 	}
 
 	std::string returnText = "";
+	LOG::DEBUGln("Break index: " + std::to_string(text.find("BREAK")));
+
 	while (text.find("BREAK") != -1) {
-		LOG::DEBUG_LN("Text: " + text); 
+		LOG::DEBUGln("Text: " + text); 
 		int breakIndex = (int)text.find("BREAK");
 		returnText += text.substr(0, breakIndex) + "\n";
 		text = text.substr(breakIndex);
 		//Can't have BREAK at the end (will break everything)
 		text = text.substr(text.find("K") + 1);
 	}
-	LOG::DEBUG_LN("returnText: " + returnText);
-	LOG::stack_frame--;
+	LOG::DEBUGln("returnText: " + returnText);
+	DEBUG_FUNCTION_END;
 	return returnText;
 }
 
@@ -195,13 +200,13 @@ std::string INF::getText(std::string target) {
 option = 1, says enter anything to proceed
 option = 2, says enter anything to return to previous menu*/
 void INF::enterAnything(int option) {
-	LOG::stack_frame++;
+	
 	DEBUG_FUNCTION("INF.cpp", "enterAnything(int)");
 	LOG::SYSTEM("Enter anything to proceed (screen will clear): ");
 	LOG::addColor(LOG::BLUE);
-	std::cin.get(); 
-	LOG::stack_frame--;
-
+	std::string foo; 
+	std::getline(std::cin, foo);  
+	DEBUG_FUNCTION_END;
 }
 
 /*Returns help prompt that correlates with the specified numerical
@@ -237,6 +242,7 @@ void INF::showHelp(int caseNum) {
 		}
 		newfile.close(); // close the file object.
 	}
+	DEBUG_FUNCTION_END;
 }
 
 //Print a text file
@@ -287,6 +293,7 @@ void INF::printFile(std::string path) {
 	}
 	//close file
 	newfile.close();
+	DEBUG_FUNCTION_END;
 	return;
 }
 
@@ -306,7 +313,7 @@ std::vector<T> INF::concatVectors(std::vector<std::vector<T>> vectorsList) {
 			baseList.push_back(currentList.at(currentElement));
 		}
 	}
-
+	DEBUG_FUNCTION_END;
 	return baseList;
 }
 
@@ -315,16 +322,18 @@ void INF::printResources(constArrayRef resourcesArray) {
 	DEBUG_FUNCTION("INF.cpp", "printResources(constArrayRef)");
 
 	for (int x = 0; x < 5; x++) {
-		std::cout << "- " << RESOURCE_NAMES.at(x) << ": " << resourcesArray.at(x) << std::endl;
+		std::cout << "- " << RESOURCE_NAMES.at(x) << ": " << resourcesArray.at(x) << "\n";
 	}
 
-	std::cout << std::endl;
+	std::cout << "\n";
+	DEBUG_FUNCTION_END; 
 }
 
 void INF::enterAndClear(int option) {
 	DEBUG_FUNCTION("INF.cpp", "enterAndClear(int)")
 	enterAnything(option);
 	clearScreen();
+	DEBUG_FUNCTION_END; 
 }
 
 

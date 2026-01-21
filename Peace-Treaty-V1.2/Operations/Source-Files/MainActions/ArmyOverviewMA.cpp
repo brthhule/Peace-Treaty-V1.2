@@ -36,6 +36,7 @@ void Participants::armyOverviewSelectAction() {
 	}
 
 	if (action != 'M') { armyOverviewSelectAction(); }
+	DEBUG_FUNCTION_END;
 	return;
 }
 
@@ -43,7 +44,8 @@ commSPTR Participants::pickCommanderToUpgrade() {
 	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "pickCommanderToUpgrade()");
 	if (getCommandersNum() == 0) { 
 		LOG::PRINT("No commanders available, can not upgrade\n"); 
-		enterAnything(1);  
+		enterAnything(1);
+		DEBUG_FUNCTION_END;
 		return nullptr;
 	}
 
@@ -52,10 +54,12 @@ commSPTR Participants::pickCommanderToUpgrade() {
 	if (commander.get() == nullptr) {
 		LOG::PRINT("Cancelling upgrade...\n");
 		enterAnything(1); 
+		DEBUG_FUNCTION_END;
 		return nullptr;
 	}
 
 	//This should return the reference that commander holds
+	DEBUG_FUNCTION_END;
 	return commander;
 }
 
@@ -64,7 +68,10 @@ void Participants::upgradeCommander() {
 
 	commSPTR commander = pickCommanderToUpgrade();
 
-	if (commander == nullptr) { return; }
+	if (commander == nullptr) { 
+		DEBUG_FUNCTION_END; 
+		return; 
+	}
 
 	constArrayRef costsArray = commander.get()->getUpgradeCosts(); 
 
@@ -79,6 +86,7 @@ void Participants::upgradeCommander() {
 	if (proceedWithUpgradeQuestion == 'N') {
 		LOG::PRINT("Cancelling upgrade...\n"); 
 		INF::enterAnything(1);
+		DEBUG_FUNCTION_END;
 		return;
 	}
 
@@ -93,6 +101,7 @@ void Participants::upgradeCommander() {
 	}
 
 	INF::enterAnything(1);
+	DEBUG_FUNCTION_END;
 	return;
 }
 
@@ -108,6 +117,7 @@ void Participants::addCommander() {
 	commander->setParticipantIndex(participantIndex);
 	commandersVector.push_back(std::make_shared<Commanders>(*commander));
 	commandersMap[commander->getName()] = std::make_shared<Commanders>(*commander);
+	DEBUG_FUNCTION_END;
 }
 
 //Currently shows one commander information by selection. Need to update to show all commander information
@@ -118,6 +128,7 @@ void Participants::viewCommanderStats() {
 
 	//Check that the user wants to proceed
 	if (commander == nullptr) {
+		DEBUG_FUNCTION_END;
 		INF::enterAnything(1);
 		return;
 	}
@@ -128,7 +139,7 @@ void Participants::viewCommanderStats() {
 	commander->printCoords(COORD::USER); 
 	LOG::PRINT("\n\n");
 	commander->printCommanderStats();
-
+	DEBUG_FUNCTION_END;
 }
 
 void Participants::trainCommanderPrompt() {
@@ -140,11 +151,13 @@ void Participants::trainCommanderPrompt() {
 	LOG::PRINT("You have "s + commandersNum + "/"s + maxCommanders + " total army commanders.\n");
 	if (getCommandersNum() < TROOP::maxCommanders) {
 		LOG::PRINT("At maximum army commander amount.Training failed, returning to menu \n");
+		DEBUG_FUNCTION_END;
 		return;
 	}
 	
 	if (Input::getInputText("Proceed with training (Y/N)", { "Y", "N" }).at(0) == 'N') {
 		INF::enterAnything(1);
+		DEBUG_FUNCTION_END;
 		return;
 	}
 
@@ -152,6 +165,7 @@ void Participants::trainCommanderPrompt() {
 	proceedWithTraining(trainCosts);
 
 	INF::enterAnything(1);
+	DEBUG_FUNCTION_END;
 	return;
 }
 
@@ -162,6 +176,7 @@ void Participants::proceedWithTraining(constArrayRef trainCosts) {
 
 	if (trainingSuccess == false) {
 		LOG::ERROR("Commander training failed(Not enough resources)... \n\n");
+		DEBUG_FUNCTION_END;
 		return;
 	}
 
@@ -170,6 +185,7 @@ void Participants::proceedWithTraining(constArrayRef trainCosts) {
 	LOG::PRINT("Commander training successful\n");
 	LOG::PRINT("Current commanders: "s + std::to_string(this->getCommandersNum()) + "\n");
 
+	DEBUG_FUNCTION_END;
 	return;
 }
 
@@ -177,7 +193,10 @@ void Participants::deployCommanderPrompt() {
 	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "deployComanderPrompt(0)");
 
 	commSPTR commander = pickCommander();
-	if (commander == nullptr) { return; }
+	if (commander == nullptr) { 
+		DEBUG_FUNCTION_END; 
+		return; 
+	}
 
 	commander->printCommanderStats();
 
@@ -186,23 +205,27 @@ void Participants::deployCommanderPrompt() {
 
 	if (confirmDeploy == 'N') {
 		LOG::PRINT("Returning to the previous page... \n");
+		DEBUG_FUNCTION_END;
 		return;
 	}
 
 	if (commander->hasMoved() == false) { 
 		this->moveUnitOne(commander);
+		DEBUG_FUNCTION_END;
 		return;
 	} 
 
 	LOG::ERROR("This unit has already moved... please pick another unit\n");
 	deployCommanderPrompt(); 
 	INF::enterAnything(1);
+	DEBUG_FUNCTION_END;
 }
 
 
 void Participants::armyOverviewSelectActionShowHelp() {
 	DEBUG_FUNCTION("ArmyOverviewMA.cpp", "armyOverviewSelectActionShowHelp()");
 	INF::showHelp(5);
+	DEBUG_FUNCTION_END;
 }
 
 /*Its type is “int (*)(char,float)” if an ordinary function

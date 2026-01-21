@@ -42,6 +42,7 @@ void Map::setMap() {
 	}
 
 	//Work out surrounding Provinces
+	DEBUG_FUNCTION_END;
 }
 
 void Map::showMap() {
@@ -62,6 +63,8 @@ void Map::showMap() {
 		for (int y = 0; y < INF::continentSize; y++) { meat(x, y); }
 		std::cout << std::endl;
 	}
+	DEBUG_FUNCTION_END;
+
 }
 
 void Map::meat(int x, int y) {
@@ -84,6 +87,8 @@ void Map::meat(int x, int y) {
 
 	std::cout << letter << currentProvince.getCommandersNum();
 	LOG::addColor(LOG::RESET);
+	DEBUG_FUNCTION_END;
+
 }
 
 void Map::printXAxis() {
@@ -104,6 +109,8 @@ void Map::printXAxis() {
 			std::cout << a + 1 << "  ";//2 spaces
 	}
 	std::cout << "\n\n";
+	DEBUG_FUNCTION_END;
+
 }
 
 
@@ -117,20 +124,24 @@ void Map::updateTurnResources() {
 			mapVectors.at(x).at(y).updateProvinceResources();
 		}
 	}
+	DEBUG_FUNCTION_END;
+
 }
 
 
 
 PROV::provSPTR Map::getProvince(CoordsType type, ipair coords) {
+	DEBUG_FUNCTION("Map.cpp", "getProvince(CoordsType type, ipair coords)");
 	if (type == USER) {
 		coords = CoordsBASE::translateCoords(coords, USER);
 	}
-
+	DEBUG_FUNCTION_END
 	return std::make_shared<Provinces>(mapVectors.at(coords.first).at(coords.second));
 }
 
 
 ipair Map::pickCoords() {
+	DEBUG_FUNCTION("Map.cpp", "pickCoords");
 	int xCoordinate, yCoordinate;
 	xCoordinate = Input::getNumber("Enter an X Coordinate (-1 to cancel): ");
 	yCoordinate = Input::getNumber("Enter a Y Coordinate (-1 to cancel): ");
@@ -143,18 +154,23 @@ ipair Map::pickCoords() {
 	}
 
 	if (xCoordinate == -1 || yCoordinate == -1) {
+		DEBUG_FUNCTION_END;
 		return std::make_pair<int, int>(-1, -1);
 	}
 
+	DEBUG_FUNCTION_END;
 	return userCoords;
 }
 
 bool Map::checkInBounds(ipair coords, CoordsType type) {
+	DEBUG_FUNCTION("Map.cpp", "checkInBounds(ipair coords, CoordsType type)");
+
 	if (type == USER) {
 		coords.first -= 1;
 		coords.second -= 1;
 	}
 
+	DEBUG_FUNCTION_END;
 	return	(coords.first < 0 || coords.first >= INF::continentSize) ? false :
 		(coords.second < 0 || coords.second >= INF::continentSize) ? false :
 		true;
@@ -163,6 +179,8 @@ bool Map::checkInBounds(ipair coords, CoordsType type) {
 
 
 void Map::assignSurroundingProvinces() {
+	DEBUG_FUNCTION("Map.cpp", "assignSurroundingProvinces");
+
 	//Set everything except boundary Provinces
 	for (int rowIndex = 1; rowIndex < (int) mapVectors.size() - 1; rowIndex++) { 
 		for (int colIndex = 1; colIndex < (int) mapVectors.at(0).size() - 1; colIndex++) {
@@ -170,9 +188,11 @@ void Map::assignSurroundingProvinces() {
 			assignSurroundingProvincesAux(rowIndex, colIndex, currentProvince); 
 		}
 	}
+	DEBUG_FUNCTION_END;
 }
 
 void Map::assignSurroundingProvincesAux(int rowIndex, int colIndex, Provinces* currentProvince) {
+	DEBUG_FUNCTION("Map.cpp", "assignSurroundingProvincesAux(int rowIndex, int colIndex, Provinces* currentProvince)");
 	int count = 0;
 	for (int outer = -1; outer <= 1; outer++) { 
 		for (int inner = -1; inner <= 1; inner++) {
@@ -184,4 +204,5 @@ void Map::assignSurroundingProvincesAux(int rowIndex, int colIndex, Provinces* c
 			count++;
 		}
 	}
+	DEBUG_FUNCTION_END;
 }

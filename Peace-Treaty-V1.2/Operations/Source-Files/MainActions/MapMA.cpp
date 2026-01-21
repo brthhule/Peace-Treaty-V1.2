@@ -56,12 +56,13 @@ void Participants::viewPlayerMap() {
 			break;
 		}
 	}
+	DEBUG_FUNCTION_END;
 }
 
 
 void Participants::selectUnitOriginal(provSPTR province) {
 	//For debugging
-	DEBUG_FUNCTION("MapMA", "selectUnitOriginal");
+	DEBUG_FUNCTION("MapMA", "void selectUnitOriginal(provSTPR)");
 
 	int provinceParticipantIndex = province->getParticipantIndex();
 
@@ -89,12 +90,13 @@ void Participants::selectUnitOriginal(provSPTR province) {
 		else { selectEnemyAction(); }
 		return;
 	}
+	DEBUG_FUNCTION_END;
 }
 
 //You selected one of your Provinces::
 void Participants::selectPlayerProvince(provSPTR province) {
 	//For debugging
-	DEBUG_FUNCTION("MapMA", "selectPlayerProvince");
+	DEBUG_FUNCTION("MapMA", "void selectPlayerProvince(provSTPR)");
 
 	if (province->isCapital()) {
 		print("This is your capital province ");
@@ -123,12 +125,13 @@ void Participants::selectPlayerProvince(provSPTR province) {
 		std::cout << "Returning to the map...\n\n";
 		break;
 	}
+	DEBUG_FUNCTION_END;
 }
 
 //You selected an enemy province
 void Participants::selectEnemyProvince(provSPTR newP) {
 	//For debugging
-	DEBUG_FUNCTION("MapMA", "selectEnemyProvince");
+	DEBUG_FUNCTION("MapMA", "void selectEnemyProvince(provSPTR)");
 
 	provSPTR enemyProvince = newP;
 	if (enemyProvince->isCapital()) {
@@ -160,6 +163,7 @@ void Participants::selectEnemyProvince(provSPTR newP) {
 		std::cout << "Returning to the menu... " << std::endl;
 		break;
 	}
+	DEBUG_FUNCTION_END; 
 }
 
 
@@ -169,7 +173,7 @@ You selected an empty province that your commander is in
 - Capture this province (C)*/
 void Participants::playerUnitAction(provSPTR newP) {
 	//For debugging
-	DEBUG_FUNCTION("MapMA", "playerUnitAction");
+	DEBUG_FUNCTION("MapMA", "void playerUnitAction(provSPTR)");
 
 	provSPTR newProvince = newP;
 	println("This is one of your armies ");
@@ -192,12 +196,12 @@ void Participants::playerUnitAction(provSPTR newP) {
 		std::cout << "Returning to menu... \n";
 		break;
 	}
+	DEBUG_FUNCTION_END; 
 }
 
 //Selected 
 void Participants::playerUnitActionP(provSPTR newP)
 {
-	//For debugging
 	DEBUG_FUNCTION("MapMA", "playerUnitActionP");
 
 	provSPTR newProvince = newP;
@@ -207,6 +211,7 @@ void Participants::playerUnitActionP(provSPTR newP)
 	std::string commanderName = " ";
 	std::cout << "\nEnter the name of the commander you would like to select: ";
 	getline(std::cin, commanderName);
+
 	if (newProvince->hasCommander(commanderName) == false)
 	{
 		std::cout << "Invalid name entered; please try again...";
@@ -221,15 +226,13 @@ void Participants::playerUnitActionP(provSPTR newP)
 	{
 		println("This unit has already moved this turn... returning to the View Map action menu \n");
 	}
+	DEBUG_FUNCTION_END;
 }
-
-
 
 
 void Participants::selectEnemyAction() /*Add implementation*/
 {
-	//For debugging
-	DEBUG_FUNCTION("MapMA", "selectEnemyAction");
+	DEBUG_FUNCTION("MapMA", "void selectEnemyAction()");
 
 	std::cout << "This is an enmy army. \n";
 
@@ -244,5 +247,6 @@ void Participants::selectEnemyAction() /*Add implementation*/
 	case 'M':
 		break;
 	}
+	DEBUG_FUNCTION_END; 
 }
 

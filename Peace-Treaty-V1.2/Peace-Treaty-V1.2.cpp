@@ -41,22 +41,21 @@ void endScreen();
 
 int getContinentInformation();
 
-int main()/*main code*/
+/*main code*/
+int main()
 {
-	LOG::stack_frame++;
-	//For debugging
-	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "main");
+	DEBUG_FUNCTION("Peace-Treaty-V1.2.cpp", "int main()");
 	INF::CPUNum = std::thread::hardware_concurrency();
 	Tui::tui.initialize(); 
 	Tui::debug("Peace Treaty V1.2.cpp, main");
 
 	startOrResumeGame();
 	gamePlay();
-	LOG::stack_frame--;
+	DEBUG_FUNCTION_END; 
 }
+
 void startOrResumeGame() {
-	LOG::stack_frame++;
-	DEBUG_FUNCTION("Peace-Treaty-V1.2.cpp", "startOrResumeGame");
+	DEBUG_FUNCTION("Peace-Treaty-V1.2.cpp", "void startOrResumeGame()");
 	Tui::debug("Peace Treaty V1.2.cpp, startOrResumeGame");
 	//std::string path = "../Peace Treaty V1.2\\Support\\TxtFiles\\Synopsis.txt";
 	std::string path = "C:/Users/Brennen/Source/Repos/brthhule/Peace-Treaty-V1.2/Peace-Treaty-V1.2/Support/TxtFiles/Synopsis.txt";
@@ -86,42 +85,51 @@ void startOrResumeGame() {
 			main();
 			break;
 		}
+		case '1': {
+			std::cout << "Not implemented. Application will close\n";
+		}
+		case '2': {
+			std::cout << "Not implemented. Application will close\n";
+		}
+		case '3': {
+			std::cout << "Not implemented. Application will close\n";
+		}
 	}
 
 	INF::enterAnything(1);
 	INF::clearScreen();
-	LOG::stack_frame--;
+	DEBUG_FUNCTION_END;
 }
 void resumeGame() /*download data from previous game fix this*/
 {
-	LOG::stack_frame++;
-	//For debugging
-	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "resumeGame");
+	DEBUG_FUNCTION("Peace-Treaty-V1.2.cpp", "void resumeGame()");
 
 	std::string gameCode;
 	std::cout << "Please enter the game code of your previous game: \033[31m";
 	std::getline(std::cin, gameCode);
 	std::cout << "\033[0m";
 	/*use global variables to figure out code*/
-	LOG::stack_frame--;
+	DEBUG_FUNCTION_END;
+	return;
 }
 void startNewGame() {
-	LOG::stack_frame++;
-	//For debugging
-	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "startNewGame"); 
+	DEBUG_FUNCTION("Peace-Treaty-V1.2.cpp", "void startNewGame()"); 
 	Tui::debug("Peace Treaty V1.2.cpp, startNewGame"); 
-	int humanPlayers = getContinentInformation();
-	int allPlayers = generateNewContinent(humanPlayers);
+
+	int humanPlayers = getContinentInformation(); 
+
 	Participants::setHumanPlayers(humanPlayers);
+	int allPlayers = generateNewContinent(humanPlayers);
+
 	Participants::initializeParticipants(allPlayers, 0);
-	std::cout << "Created participants";
-	LOG::stack_frame--;
+	LOG::DEBUGln("Created participants"); 
+	
+	DEBUG_FUNCTION_END;
+	return;
 }
 
 int getContinentInformation() {
-	LOG::stack_frame++;
-	//For debugging
-	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "getContinentInformation");
+	DEBUG_FUNCTION("Peace-Treaty-V1.2.cpp", "int getContinentInformation()");
 	Tui::debug("Peace Treaty V1.2.cpp, getContinentInformation");
 
 	std::string text = INF::getText("WhatContinentSize");
@@ -142,7 +150,7 @@ int getContinentInformation() {
 
 	text = "How many AI kingdoms will you fight? (1, 2, 3) ";
 	std::string pNumString = Input::getInputText(text, { "number", "1", "2", "3" });
-	int pNum = std::stoi(pNumString);
+	int aiOpponents = std::stoi(pNumString);
 	std::cout << LOG::EMBED(pNumString, LOG::RED) + " opponent kingdoms generated... \n\n"; 
 	INF::enterAndClear(1);
 
@@ -153,14 +161,22 @@ int getContinentInformation() {
 
 	std::cout << "Gameplay difficulty "s +
 		LOG::EMBED(INF::str(INF::enemyDifficulty), LOG::RED) << " selected. \n\n"; 
-	LOG::stack_frame--;
-	return pNum;
+	
+	DEBUG_FUNCTION_END;
+	return aiOpponents;
 }
-int generateNewContinent(int pNum) {
-	LOG::stack_frame++;
-	Tui::debug("Peace Treaty V1.2.cpp, generateNewContinent");
+
+/// <summary>
+///		Initialies the Map object
+/// </summary>
+/// <param name="pNum">Number of participants/players</param>
+/// <returns>
+///		int - number of human players
+/// </returns>
+int generateNewContinent(int aiOpponents) {
+	Tui::debug("Peace Treaty V1.2.cpp, int generateNewContinent(int)");
 	//For debugging
-	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "generateNewContinent");
+	DEBUG_FUNCTION("Peace-Treaty-V1.2.cpp", "generateNewContinent");
 
 	std::cout << "Create map...\n";
 	Map::setMap();
@@ -176,22 +192,22 @@ int generateNewContinent(int pNum) {
 	INF::clearScreen();
 
 	std::cout << LOG::getColor(LOG::RED) << players << LOG::getColor(LOG::WHITE) << " players initialized...\n\n";
-	pNum += players;
-	std::cout << "pNum: " << pNum << std::endl;
-	LOG::stack_frame--;
+	aiOpponents += players; 
+	std::cout << "aiOpponents: " << aiOpponents << std::endl; 
+	
+	DEBUG_FUNCTION_END;
 	return players;
 }
 
 
 void gamePlay() {
-	LOG::stack_frame++;
-	//For debugging
-	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "gamePlay");
+	DEBUG_FUNCTION("Peace-Treaty-V1.2.cpp", "void gamePlay()");
 
 	bool gameEnd = false;
 
 	//Iterate through partiicpants by reference
-	for (int index = 0; index < Participants::getParticipantsNum(); index++) {
+	int participantsNum = Participants::getParticipantsNum();
+	for (int index = 0; index < participantsNum; index++) {
 		Participants& participant = Participants::getParticipant(index);
 		if (!participant.isAlive()) { break; } 
 
@@ -211,16 +227,14 @@ void gamePlay() {
 	}
 
 	endScreen();
-	LOG::stack_frame--;
+	DEBUG_FUNCTION_END;
 }
 
 
 
 //Call this function when all winning condition has been met
 void endScreen() {
-	LOG::stack_frame++;
-	//For debugging
-	DEBUG_FUNCTION("Peace Treaty V1.2.cpp", "endScreen");
+	DEBUG_FUNCTION("Peace-Treaty-V1.2.cpp", "void endScreen()");
 	std::string kingdomName = Participants::getRemainingParticipant().getKingdomName();
 
 	std::cout << "Congratulations to player " << kingdomName << " for winning. You have successfully conquered your enemies and now reign as the Emperor! \n"; 
@@ -228,6 +242,6 @@ void endScreen() {
 	char playAgain = Input::getInputText("Play again? (Y/N) ", { "letter", "Y", "N" }).at(0);
 	Participants::clearParticipantsVector(); 
 	if (playAgain == 'Y') { main();}
-	LOG::stack_frame--; 
+	DEBUG_FUNCTION_END;
 }
 

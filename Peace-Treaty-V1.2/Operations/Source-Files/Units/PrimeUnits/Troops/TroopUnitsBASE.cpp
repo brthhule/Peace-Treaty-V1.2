@@ -12,8 +12,7 @@ TroopUnitsBASE::TroopUnitsBASE(int level,
 	int tier,
 	std::array<int,3> baseDamage,
 	TROOP::TroopTypes thisType) {
-	//For debugging
-	DEBUG_FUNCTION("TroopUnitsBASE.cpp", "Troops");
+	DEBUG_FUNCTION("TroopUnitsBASE.cpp", "TroopUnitsBASE(...)");
 
 	//Every battle increases level. At 10 levels, increase tier and reset levels
 	this->level = level;
@@ -26,6 +25,7 @@ TroopUnitsBASE::TroopUnitsBASE(int level,
 		this->baseDamage.at(x) = baseDamage.at(x) + (1 * (tier - 1));
 		this->currentDamage.at(x) = baseDamage.at(x) + (1 * (tier - 1));
 	}
+	DEBUG_FUNCTION_END;
 }
 
 

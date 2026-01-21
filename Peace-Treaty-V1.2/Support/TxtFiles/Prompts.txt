@@ -11,7 +11,10 @@ Options:P, C
 INTRODUCTION
 - Start a new game (S)
 - Resume a previous game (R) 
-Options:S,R
+- Testing 1 (1)
+- Testing 2 (2)
+- Testing 3 (3)
+Options:S,R,1,2,3
 
 PLAYER_ACTION
 - Buildings (B)
